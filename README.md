@@ -58,7 +58,7 @@ their [website](https://pushover.net/). **FYI**: Pushover is a paid service (a l
 costs $5.00). However, if Pushover is not right for you then
 the [source code](yellowstone_availability/check_yellowstone.py)
 can be manually changed to use your preferred method of sending notifications. To bypass logging to
-Pushover, just remove the variables, set them to empty, or leave them untouched, the script will
+Pushover, just remove the variables, set them to empty, or leave them untouched; the script will
 simply log `CRITICAL` events to the console when a campsite is available.
 
 * * *
@@ -70,7 +70,7 @@ simply log `CRITICAL` events to the console when a campsite is available.
 
 ### *About this Project*
 
-My partner Sarah and I are taking a trip this summer (July, 2021) from home in Colorado through
+My partner and I are taking a trip this summer (July, 2021) from home in Colorado through
 Wyoming to Glacier National Park. Like all national parks right now, the campsites in Glacier are a
 hot commodity and tough to come by.
 
