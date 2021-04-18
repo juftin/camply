@@ -19,7 +19,7 @@ use the [example.yellowstone-camping.env](example.yellowstone-camping.env) file 
 the `yellowstone-camping.env` file is ready, fill out your lodging details and Pushover credentials:
 
 ```shell
-export BOOKING_DATE_START="2021-07-16" # YELLOWSTONE ARRIVAL DATE (YYYY-MM-DD)
+export BOOKING_DATE_START="2021-07-31" # YELLOWSTONE ARRIVAL DATE (YYYY-MM-DD)
 export NUMBER_OF_GUESTS=2 # NUMBER OF PEOPLE IN THE CAMPING RESERVATION
 export NUMBER_OF_NIGHTS=1 # NUMBER OF NIGHTS IN THE CAMPING RESERVATION
 export POLLING_INTERVAL=600 # HOW OFTER TO CHECK FOR NEW RESERVATIONS (IN SECONDS)
@@ -46,7 +46,7 @@ Don't work with Docker? No problem. Souce the `yellowstone-camping.env` file and
 script (this requires the `requests` package to be installed):
 
 ```shell
-source yellowstone-camping.env && python yellowstone_availability/check_yellowstone.py
+source yellowstone-camping.env && python scripts/find_availability.py
 ```
 
 ## How do I set up Pushover for Push Notifications to my phone?
@@ -55,7 +55,7 @@ Pushover is an neat service/app that allows you to easily send push notification
 device. More details on how to set up Pushover can be found on
 their [website](https://pushover.net/). **FYI**: Pushover is a paid service (a lifetime subscription
 costs $5.00). However, if Pushover is not right for you then
-the [source code](yellowstone_availability/check_yellowstone.py#L49-L55)
+the [source code](yellowstone_availability/check_yellowstone.py)
 can be manually changed to use your preferred method of sending notifications.
 
 * * *

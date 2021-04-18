@@ -3,71 +3,21 @@
 # Author::    Justin Flannery  (mailto:juftin@juftin.com)
 
 """
-Check Yellowstone Campground Booking API for Availability
+Python Class Check Yellowstone Campground Booking API for Availability
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from json import loads
 import logging
-from os import environ
 from time import sleep
-from typing import Optional
 from urllib import parse
 
 import requests
 
+from yellowstone_availability.config import YellowstoneConfig
+from yellowstone_availability.notifications import PushoverNotifications
+
 logger = logging.getLogger(__name__)
-
-
-class PushoverNotifications(logging.StreamHandler):
-    """
-    Push Notifications via Pushover + a Logging Handler
-    """
-    PUSH_TOKEN: str = environ["PUSHOVER_PUSH_TOKEN"]
-    PUSH_USER: str = environ["PUSHOVER_PUSH_USER"]
-
-    def __init__(self, level: Optional[int] = logging.INFO):
-        logging.StreamHandler.__init__(self)
-        self.setLevel(level=level)
-
-    def __repr__(self):
-        return "<PushoverNotifications>"
-
-    @staticmethod
-    def send_message(message: str, **kwargs) -> requests.Response:
-        """
-        Send a message via Pushover
-
-        Parameters
-        ----------
-        message: str
-
-        Returns
-        -------
-        Response
-        """
-        response = requests.post(url="https://api.pushover.net/1/messages.json",
-                                 headers={"Content-Type": "application/json"},
-                                 params=dict(token=PushoverNotifications.PUSH_TOKEN,
-                                             user=PushoverNotifications.PUSH_USER,
-                                             message=message,
-                                             **kwargs)
-                                 )
-        return response
-
-    def emit(self, record):
-        """
-        Produce a logging record
-
-        Parameters
-        ----------
-        record: str
-            Message to log
-        """
-        log_formatted_message = "[{:>10}]: {}".format(record.levelname.upper(),
-                                                      record.msg)
-        title = f"Pushover {record.levelname.title()} Message"
-        self.send_message(message=log_formatted_message, title=title)
 
 
 class YellowstoneLodging(object):
@@ -81,8 +31,9 @@ class YellowstoneLodging(object):
         Build the API Endpoint for All Yellowstone Lodging
         """
         query_string = parse.urlencode(query=query)
-        url_components = dict(scheme="https", netloc="webapi.xanterra.net",
-                              url="/v1/api/availability/hotels/yellowstonenationalparklodges",
+        url_components = dict(scheme=YellowstoneConfig.API_SCHEME,
+                              netloc=YellowstoneConfig.API_BASE_ENDPOINT,
+                              url=YellowstoneConfig.YELLOWSTONE_LODGING_PATH,
                               params="", query=query_string, fragment="")
         api_endpoint = parse.urlunparse(tuple(url_components.values()))
         return api_endpoint
@@ -109,11 +60,18 @@ class YellowstoneLodging(object):
         str
             URL String
         """
-        webui_url = (f"https://secure.yellowstonenationalparklodges.com/booking/"
-                     f"lodging-search?dateFrom={booking_start.strftime('%m-%d-%Y')}&"
-                     f"adults={number_of_guests}&children=0&nights={number_of_nights}&"
-                     f"destination={lodging_code}")
-        return webui_url
+        query = dict(dateFrom=booking_start.strftime('%m-%d-%Y'),
+                     adults=number_of_guests,
+                     children=0,
+                     nights=number_of_nights,
+                     destination=lodging_code)
+        query_string = parse.urlencode(query=query)
+        url_components = dict(scheme=YellowstoneConfig.API_SCHEME,
+                              netloc=YellowstoneConfig.WEBUI_BASE_ENDPOINT,
+                              url=YellowstoneConfig.WEBUI_BOOKING_PATH,
+                              params="", query=query_string, fragment="")
+        webui_endpoint = parse.urlunparse(tuple(url_components.values()))
+        return webui_endpoint
 
     @classmethod
     def check_yellowstone_lodging(cls, booking_start: datetime, number_of_nights: int = 1,
@@ -140,13 +98,23 @@ class YellowstoneLodging(object):
                           nights=number_of_nights,
                           limit=number_of_nights,
                           adults=number_of_guests,
-                          rate_code="INTERNET")
+                          rate_code=YellowstoneConfig.RATE_CODE)
         api_endpoint = cls._get_api_endpoint(query=query_dict)
-        logger.info(f"Searching for Yellowstone Lodging Availability: {formatted_date}")
+        logger.info(f"Searching for Yellowstone Lodging Availability: {formatted_date} | "
+                    f"{number_of_nights} Nights | {number_of_guests} Guests")
 
         try:
-            all_resort_availability = requests.get(url=api_endpoint,
-                                                   headers={"Content-Type": "application/json"})
+            # EXPONENTIAL BACKOFF: 9, 27, 81, 243, 729...
+            wait_time = 9
+            for _ in range(5):
+                all_resort_availability = requests.get(url=api_endpoint,
+                                                       headers=YellowstoneConfig.API_HEADERS)
+                if all_resort_availability.status_code == 200:
+                    break
+                logger.warning("Uh oh, something went wrong while requesting data from "
+                               f"Yellowstone. Waiting {wait_time} seconds before trying again.")
+                sleep(wait_time)
+                wait_time *= 3
             assert all_resort_availability.status_code == 200
         except AssertionError:
             error_message = ("Something went wrong with checking the "
@@ -158,7 +126,8 @@ class YellowstoneLodging(object):
             raise RuntimeError(f"error_message: {all_resort_availability}")
 
         all_resort_availability_data = loads(all_resort_availability.content)
-        starting_day_availability = all_resort_availability_data["availability"][
+        starting_day_availability = all_resort_availability_data[
+            YellowstoneConfig.BOOKING_AVAILABILITY][
             formatted_date]
         data_availability = cls._scan_for_availabilities(
             booking_start=booking_start,
@@ -192,11 +161,15 @@ class YellowstoneLodging(object):
         """
         data_availability = dict()
         for hotel_code, hotel_data in starting_day_availability.items():
-            if ":RV" in hotel_code:
+            if YellowstoneConfig.LODGING_CAMPGROUND_QUALIFIER in hotel_code:
                 try:
-                    hotel_title = hotel_data["rates"]["INTERNET"]["title"]
+                    hotel_title = hotel_data[YellowstoneConfig.LODGING_RATES][
+                        YellowstoneConfig.RATE_CODE][
+                        YellowstoneConfig.LODGING_TITLE]
                     logger.info(f"Searching {hotel_title} ({hotel_code}) for availability.")
-                    hotel_rate_mins = hotel_data["rates"]["INTERNET"]["mins"]
+                    hotel_rate_mins = hotel_data[YellowstoneConfig.LODGING_RATES][
+                        YellowstoneConfig.RATE_CODE][
+                        YellowstoneConfig.LODGING_BASE_PRICES]
                     try:
                         minimum_booking_rate = hotel_rate_mins[str(number_of_guests)]
                         webui_url = cls._return_lodging_url(booking_start=booking_start,
@@ -245,7 +218,8 @@ class YellowstoneLodging(object):
             Returns Data About Yellowstone Availability Beginning on Booking Start
         """
         looking_for_booking = True
-        check_counter = 0
+        sleep_time = YellowstoneConfig.get_polling_interval(interval=polling_interval)
+        search_start_time = datetime.now()
         while looking_for_booking is True:
             availability_found = YellowstoneLodging.check_yellowstone_lodging(
                 booking_start=booking_start,
@@ -254,25 +228,15 @@ class YellowstoneLodging(object):
             for hotel_code, lodging_found in availability_found.items():
                 if lodging_found is True:
                     looking_for_booking = False
-                    break
+                    exit(0)
             logger.info(f"No availabilities found. Waiting {polling_interval} seconds "
                         "before checking again.")
-            # Remind every 72nd Run (12 hrs = 10 min * 72)
-            if check_counter >= 71:
+            # Remind every 12th hour
+            run_time = datetime.now() - search_start_time
+            if run_time >= timedelta(hours=12):
                 PushoverNotifications.send_message(
                     message=(f"Still checking for Yellowstone "
                              f"Campsites to open up: {datetime.now()}"),
                     title="Still looking for Campsites in Yellowstone")
-                check_counter = 0
-            check_counter += 1
-            sleep(polling_interval)
-
-
-if __name__ == "__main__":
-    logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s [%(name)s]",
-                        level=logging.INFO)
-    YellowstoneLodging.continuously_check_for_availability(
-        booking_start=datetime.strptime(environ["BOOKING_DATE_START"], "%Y-%m-%d"),
-        number_of_guests=environ["NUMBER_OF_GUESTS"],
-        number_of_nights=environ["NUMBER_OF_NIGHTS"],
-        polling_interval=int(environ["POLLING_INTERVAL"]))
+                search_start_time = datetime.now()
+            sleep(sleep_time)
