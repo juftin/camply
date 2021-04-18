@@ -70,9 +70,9 @@ simply log `CRITICAL` events to the console when a campsite is available.
 
 ### *About this Project*
 
-My partner and I are taking a trip this summer (July, 2021) from home in Colorado through
-Wyoming to Glacier National Park. Like all national parks right now, the campsites in Glacier are a
-hot commodity and tough to come by.
+My partner and I are taking a trip this summer (July, 2021) from home in Colorado through Wyoming to
+Glacier National Park. Like all national parks right now, the campsites in Glacier are a hot
+commodity and tough to come by.
 
 To help us get an advantage in finding a site we signed up for
 [*Campnab*](https://campnab.com/), a service that lets you sign up for text notifications when
@@ -80,11 +80,12 @@ booked out campgrounds receive cancellations. Long story short, it's totally wor
 big recommendation from me. We found a 5 day cancellation and booked our first choice campground
 within a couple weeks of signing up.
 
-Later in our trip, we'll be going through Yellowstone and Grand Tetons National Park. Unfortunately,
+Later in our trip, we'll be going through Yellowstone and Grand Teton National Park. Unfortunately,
 Campnab doesn't (currently) work for most sites in Yellowstone, since they use a different booking
 provider than the rest of the National Park System. Instead, I decided to play around with the
-booking website and build my own integration with their API. It's built in Python, runs in a docker
-container, and sends push notifications through via [Pushover](https://pushover.net/).
+booking website with Chrome Developer tools, figure out the endpoints responses, and build my own
+integration with their API. It's built in Python, runs in a docker container, and sends push
+notifications through via [Pushover](https://pushover.net/).
 
 Feature Requests and Technical Feedback / Questions are best done though
 the [Issues Page](https://github.com/juftin/yellowstone-camping/issues). Some basic command line
