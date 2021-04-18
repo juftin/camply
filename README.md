@@ -14,9 +14,19 @@ let `yellowstone-camping` do the work for you.
 
 ## How to set up your campsite search
 
-Make a file called `.env` and place it at the root of this repository, you can use
-the [`example.env`](example.yellowstone-camping.env) file a template. Once the `.env` file is ready,
-fill out your lodging details and Pushover credentials.
+Make a file called `yellowstone-camping.env` and place it at the root of this repository, you can
+use the [example.yellowstone-camping.env](example.yellowstone-camping.env) file as a template. Once
+the `yellowstone-camping.env` file is ready, fill out your lodging details and Pushover credentials:
+
+```shell
+export BOOKING_DATE_START="2021-07-16" # YELLOWSTONE ARRIVAL DATE
+export NUMBER_OF_GUESTS=2 # NUMBER OF PEOPLE IN THE CAMPING RESERVATION
+export NUMBER_OF_NIGHTS=1 # NUMBER OF NIGHTS IN THE CAMPING RESERVATION
+export POLLING_INTERVAL=600 # HOW OFTER TO CHECK FOR NEW RESERVATIONS (IN SECONDS)
+
+export PUSHOVER_PUSH_TOKEN="xxxxxxxxxxxxxxxxxxxxxxxx" # PUSHOVER API TOKEN
+export PUSHOVER_PUSH_USER="xxxxxxxxxxxxxxxxxxxxxxxx" # PUSHOVER USER KEY
+```
 
 ### Running with Docker
 
