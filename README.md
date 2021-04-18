@@ -42,8 +42,9 @@ active logs, or `docker stop yellowstone-camping` to kill the container and stop
 
 ### Running Locally with Python
 
-Don't work with Docker? No problem. Souce the `yellowstone-camping.env` file and run the python
-script (this requires the `requests` package to be installed):
+Don't work with Docker? No problem. The docker image is based on Python `3.8.X`, but any version of
+Python 3 you have locally should suffice. Source the `yellowstone-camping.env` file and run the
+python script (this requires the `requests` package to be installed):
 
 ```shell
 source yellowstone-camping.env && python scripts/find_availability.py
@@ -56,7 +57,9 @@ device. More details on how to set up Pushover can be found on
 their [website](https://pushover.net/). **FYI**: Pushover is a paid service (a lifetime subscription
 costs $5.00). However, if Pushover is not right for you then
 the [source code](yellowstone_availability/check_yellowstone.py)
-can be manually changed to use your preferred method of sending notifications.
+can be manually changed to use your preferred method of sending notifications. To bypass logging to
+Pushover, just remove the variables, set them to empty, or leave them untouched, the script will
+simply log `CRITICAL` events to the console when a campsite is available.
 
 * * *
 
