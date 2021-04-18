@@ -1,7 +1,7 @@
 # yellowstone-camping
 
 <p align="center">
-  <"https://raw.githubusercontent.com/juftin/resume/master/resume/web/favicon.png" width="200" height="200"  alt="juftin logo">
+  <img src="https://raw.githubusercontent.com/juftin/resume/master/resume/web/favicon.png" width="200" height="200"  alt="juftin logo">
 </p>
 
 Camping Reservation Scraper for Yellowstone National Park
@@ -19,7 +19,7 @@ booking it will exit in the background.
 
 Pushover is an awesome service that allows you to easily send push notifications to your mobile
 device. A lifetime subscription costs $5.00 and it's totally worth it. More details on how to set up
-Pushover can be found on their [website]().
+Pushover can be found on their [website](https://pushover.net/).
 
 * * *
 
