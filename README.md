@@ -19,7 +19,7 @@ use the [example.yellowstone-camping.env](example.yellowstone-camping.env) file 
 the `yellowstone-camping.env` file is ready, fill out your lodging details and Pushover credentials:
 
 ```shell
-export BOOKING_DATE_START="2021-07-16" # YELLOWSTONE ARRIVAL DATE (YYYY-MM-DD)
+export BOOKING_DATE_START="2021-07-31" # YELLOWSTONE ARRIVAL DATE (YYYY-MM-DD)
 export NUMBER_OF_GUESTS=2 # NUMBER OF PEOPLE IN THE CAMPING RESERVATION
 export NUMBER_OF_NIGHTS=1 # NUMBER OF NIGHTS IN THE CAMPING RESERVATION
 export POLLING_INTERVAL=600 # HOW OFTER TO CHECK FOR NEW RESERVATIONS (IN SECONDS)
@@ -42,11 +42,12 @@ active logs, or `docker stop yellowstone-camping` to kill the container and stop
 
 ### Running Locally with Python
 
-Don't work with Docker? No problem. Souce the `yellowstone-camping.env` file and run the python
-script (this requires the `requests` package to be installed):
+Don't work with Docker? No problem. The docker image is based on Python `3.8.X`, but any version of
+Python 3 you have locally should suffice. Source the `yellowstone-camping.env` file and run the
+python script (this requires the `requests` package to be installed):
 
 ```shell
-source yellowstone-camping.env && python yellowstone_availability/check_yellowstone.py
+source yellowstone-camping.env && python scripts/find_availability.py
 ```
 
 ## How do I set up Pushover for Push Notifications to my phone?
@@ -55,8 +56,10 @@ Pushover is an neat service/app that allows you to easily send push notification
 device. More details on how to set up Pushover can be found on
 their [website](https://pushover.net/). **FYI**: Pushover is a paid service (a lifetime subscription
 costs $5.00). However, if Pushover is not right for you then
-the [source code](yellowstone_availability/check_yellowstone.py#L49-L55)
-can be manually changed to use your preferred method of sending notifications.
+the [source code](yellowstone_availability/check_yellowstone.py)
+can be manually changed to use your preferred method of sending notifications. To bypass logging to
+Pushover, just remove the variables, set them to empty, or leave them untouched; the script will
+simply log `CRITICAL` events to the console when a campsite is available.
 
 * * *
 
@@ -67,28 +70,30 @@ can be manually changed to use your preferred method of sending notifications.
 
 ### *About this Project*
 
-My partner and I are taking a trip this summer (July, 2021) from home in Colorado through
-Wyoming to Glacier National Park. Like all national parks right now, the campsites in Glacier are a
-hot commodity and tough to come by.
+My partner and I are taking a trip this summer (July, 2021) from home in Colorado through Wyoming to
+Glacier National Park. Like all national parks right now, the campsites in Glacier are a hot
+commodity and tough to come by.
 
-To help us get an advantage in finding a site we signed up for [*Campnab*](https://campnab.com/), a
-service that lets you sign up for text notifications when booked out campgrounds receive
-cancellations. Long story short, it's totally worth it I have nothing but great things to say about
-it. We found a 5 day cancellation and booked our first choice campground within a couple weeks of
-signing up for text alerts.
+To help us get an advantage in finding a site we signed up for
+[*Campnab*](https://campnab.com/), a service that lets you sign up for text notifications when
+booked out campgrounds receive cancellations. Long story short, it's totally worth it and get's a
+big recommendation from me. We found a 5 day cancellation and booked our first choice campground
+within a couple weeks of signing up.
 
-On our way home from Glacier we'll be going through Yellowstone and Grand Teton National Park.
-Unfortunately, Campnab doesn't (currently) work for most sites in Yellowstone, since they use a
-different booking provider than the rest of the National Park System. Instead, I decided to play
-around with the booking website and build my own integration with their API. It's built in Python,
-runs in a docker container, and sends push notifications through [Pushover](https://pushover.net/).
+Later in our trip, we'll be going through Yellowstone and Grand Teton National Park. Unfortunately,
+Campnab doesn't (currently) work for most sites in Yellowstone, since they use a different booking
+provider than the rest of the National Park System. Instead, I decided to play around with the
+booking website with Chrome Developer tools, figure out the endpoints responses, and build my own
+integration with their API. It's built in Python, runs in a docker container, and sends push
+notifications through via [Pushover](https://pushover.net/).
 
 Feature Requests and Technical Feedback / Questions are best done though
 the [Issues Page](https://github.com/juftin/yellowstone-camping/issues). Some basic command line
 skills and an always-on computer are required to run this.
 
 We're still waiting for our Yellowstone spot as of writing this and can't wait to get back there
-this summer. I hope this tool is useful for someone out there, good luck hunting for your next spot!
+this summer. I hope `yellowstone-camping` is useful for someone out there, good luck hunting for
+your next spot!
 
 <br/>
 <br/>

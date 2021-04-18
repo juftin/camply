@@ -13,8 +13,9 @@ docker run -d --rm \
   --env POLLING_INTERVAL=${POLLING_INTERVAL} \
   --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
   --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
+  --env PYTHONPATH="${PYTHONPATH}:/home/yellowstone-camping/" \
   --volume ${YELLOWSTONE_CAMPING_DIR}:"/home/yellowstone-camping/" \
   --workdir "/home/yellowstone-camping/" \
   --entrypoint "/home/yellowstone-camping/scripts/docker-entrypoint.sh" \
   python:3.8-slim-buster \
-  python yellowstone_availability/check_yellowstone.py
+  python scripts/find_availabilities.py
