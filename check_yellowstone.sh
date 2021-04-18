@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-docker run --rm \
+docker run -d --rm \
   --name "yellowstone-camping" \
   --volume ${PWD}:"/home/yellowstone-camping/" \
   --workdir "/home/yellowstone-camping/" \

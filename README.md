@@ -5,7 +5,10 @@
 
 # yellowstone-camping
 
-Camping Reservation Scraper for Yellowstone National Park
+Camping Reservation Scraper for Yellowstone National Park. This simple Python application will
+continuously check Yellowstone's Campground Availability API and let you know as soon as a
+reservation is available with a Push Notification on your Android or iOS device. Don't stress about
+finding a campsite in that booked out campground, let `yellowstone-camping` do the work for you.
 
 ## How to set up your campsite search
 
@@ -14,7 +17,12 @@ file is ready, fill out your lodging details and Pushover credentials.
 
 That's it. Next, you'll run the [check_yellowstone.sh](check_yellowstone.sh) which creates a docker
 image called `yellowstone-camping` that runs in the background. Once the script has found its first
-booking it will exit in the background.
+booking it will exit in the background (you can always run `docker logs -f yellowstone-camping` to
+check up on the logs, or `docker stop yellowstone-camping` to stop searching).
+
+```shell
+./check_yellowstone.sh
+```
 
 ## How do I set up Pushover for Push Notifications to my phone?
 
