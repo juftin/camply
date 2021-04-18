@@ -1,8 +1,9 @@
-# yellowstone-camping
-
 <p align="center">
-  <img src="https://raw.githubusercontent.com/juftin/resume/master/resume/web/favicon.png" width="200" height="200"  alt="juftin logo">
+  <img src="https://raw.githubusercontent.com/juftin/resume/master/resume/web/favicon.png" width="150" height="150"  alt="juftin logo">
+  <img src="https://i.pinimg.com/originals/28/0f/f3/280ff34e4be0123c7eb383ad2d48958f.png" width="230" height="150"  alt="juftin logo">
 </p>
+
+# yellowstone-camping
 
 Camping Reservation Scraper for Yellowstone National Park
 
