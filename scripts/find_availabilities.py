@@ -27,8 +27,8 @@ if __name__ == "__main__":
     # Find the campsite!
     logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s [%(name)s]",
                         level=logging.INFO)
-    YellowstoneLodging.continuously_check_for_availability(
-        booking_start=YellowstoneConfig.BOOKING_START,
-        number_of_guests=YellowstoneConfig.NUMBER_OF_GUESTS,
-        number_of_nights=YellowstoneConfig.NUMBER_OF_NIGHTS,
-        polling_interval=YellowstoneConfig.POLLING_INTERVAL)
+    campsite_finder = YellowstoneLodging(booking_start=YellowstoneConfig.BOOKING_START,
+                                         number_of_guests=YellowstoneConfig.NUMBER_OF_GUESTS,
+                                         number_of_nights=YellowstoneConfig.NUMBER_OF_NIGHTS,
+                                         polling_interval=YellowstoneConfig.POLLING_INTERVAL)
+    campsite_finder.continuously_check_for_availability()
