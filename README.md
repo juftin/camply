@@ -36,9 +36,10 @@ export PUSHOVER_PUSH_USER="xxxxxxxxxxxxxxxxxxxxxxxx" # PUSHOVER USER KEY
 
 To run the reservation search in a Docker container you'll run
 the [check-yellowstone.sh](scripts/check-yellowstone.sh) file, this creates a docker container
-called `yellowstone-camping` that runs in the background. Once the scraper has found its first
-booking it will exit (you can always run `docker logs -f yellowstone-camping` to check up on the
-active logs, or `docker stop yellowstone-camping` to kill the container and stop searching).
+called `yellowstone-camping` that runs in the background. Automatically, the logs will be attached
+to the current session. Exiting the attached logs **does not** kill the search. Once the scraper has
+found its first booking it will exit. Use `docker stop yellowstone-camping` to kill the container
+and stop searching or `docker logs -f yellowstone-camping` to reattach the container logs.
 
 ### Running Locally with Python
 
