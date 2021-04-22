@@ -19,7 +19,7 @@ function log_bash_event() {
 }
 
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-YELLOWSTONE_CAMPING_DIR=$(dirname ${SCRIPTS_DIR})
+ROOT_DIE=$(dirname ${SCRIPTS_DIR})
 
 source ${YELLOWSTONE_CAMPING_DIR}/yellowstone-camping.env
 
@@ -38,6 +38,7 @@ docker run -d --rm \
   --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
   --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
   --env PYTHONPATH="${PYTHONPATH}:/home/yellowstone-camping/" \
+  --env TZ=${TIMEZONE_DB_NAME} \
   --volume ${YELLOWSTONE_CAMPING_DIR}:"/home/yellowstone-camping/" \
   --workdir "/home/yellowstone-camping/" \
   --entrypoint "/home/yellowstone-camping/scripts/docker-entrypoint.sh" \

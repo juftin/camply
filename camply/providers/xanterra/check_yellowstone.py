@@ -9,13 +9,14 @@ Python Class Check Yellowstone Campground Booking API for Availability
 from datetime import datetime, timedelta
 from json import loads
 import logging
+from random import choice
 from time import sleep
 from urllib import parse
 
 import requests
 
-from yellowstone_availability.config import YellowstoneConfig
-from yellowstone_availability.notifications import PushoverNotifications
+from camply.config import API_HEADERS, YellowstoneConfig
+from camply.utils.notifications import PushoverNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -111,9 +112,12 @@ class YellowstoneLodging(object):
             # EXPONENTIAL BACKOFF: 27, 81, 243, 729...
             wait_time = 27
             for _ in range(5):
+                yellowstone_headers = choice(API_HEADERS)
+                yellowstone_headers.update(YellowstoneConfig.API_HEADERS)
                 all_resort_availability = requests.get(url=api_endpoint,
-                                                       headers=YellowstoneConfig.API_HEADERS)
-                if all_resort_availability.status_code == 200:
+                                                       headers=yellowstone_headers)
+                if all_resort_availability.status_code == 200 and \
+                        all_resort_availability.text.strip() != "":
                     break
                 logger.warning("Uh oh, something went wrong while requesting data from "
                                f"Yellowstone. Waiting {wait_time} seconds before trying again.")
@@ -128,7 +132,6 @@ class YellowstoneLodging(object):
                 message=error_message,
                 title="Campsite Search: SOS")
             raise RuntimeError(f"error_message: {all_resort_availability}")
-
         all_resort_availability_data = loads(all_resort_availability.content)
         starting_day_availability = all_resort_availability_data[
             YellowstoneConfig.BOOKING_AVAILABILITY][self._formatted_booking_start_slashes]
@@ -197,7 +200,7 @@ class YellowstoneLodging(object):
                     hotel_title = hotel_data[YellowstoneConfig.LODGING_RATES][
                         YellowstoneConfig.RATE_CODE][
                         YellowstoneConfig.LODGING_TITLE]
-                    logger.info(f"Searching {hotel_title} ({hotel_code}) for availability.")
+                    logger.info(f"Searching {hotel_title} ({hotel_code}) for availability_status.")
                     hotel_rate_mins = hotel_data[YellowstoneConfig.LODGING_RATES][
                         YellowstoneConfig.RATE_CODE][
                         YellowstoneConfig.LODGING_BASE_PRICES]

@@ -11,7 +11,7 @@ from typing import Optional
 
 import requests
 
-from yellowstone_availability.config import PushoverConfig
+from camply.config import PushoverConfig
 
 logger = logging.getLogger(__name__)
 

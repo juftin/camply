@@ -9,19 +9,19 @@ Python Script to Check Yellowstone Campground Booking API for Availability
 import logging
 
 try:
-    from yellowstone_availability import YellowstoneLodging
-    from yellowstone_availability.config import YellowstoneConfig
+    from camply.providers import YellowstoneLodging
+    from camply.config import YellowstoneConfig
 except ModuleNotFoundError:
     # APPEND THE PATH FOR THOSE WITHOUT THIS PROJECT AT PYTHON PATH
-    from os.path import abspath
+    from os.path import abspath, join
     from pathlib import Path
     from sys import path as python_path
 
-    yellowstone_camping_dir = Path(abspath(__file__)).parent.parent
-    python_path.append(str(yellowstone_camping_dir))
+    camply_dir = join(Path(abspath(__file__)).parent.parent, "camply")
+    python_path.append(str(camply_dir))
 
-    from yellowstone_availability import YellowstoneLodging
-    from yellowstone_availability.config import YellowstoneConfig
+    from camply.providers import YellowstoneLodging
+    from camply.config import YellowstoneConfig
 
 if __name__ == "__main__":
     # Find the campsite!

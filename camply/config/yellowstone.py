@@ -25,14 +25,14 @@ class YellowstoneConfig(object):
 
     API_SCHEME: str = "https"
     API_BASE_ENDPOINT: str = "webapi.xanterra.net"
-    LODGING_PATH: str = "/v1/api/availability/hotels"
+    LODGING_PATH: str = "/v1/api/availability_status/hotels"
     YELLOWSTONE_LODGING_PATH: str = f"{LODGING_PATH}/yellowstonenationalparklodges"
     API_HEADERS: dict = {"Content-Type": "application/json"}
 
     LODGING_CAMPGROUND_QUALIFIER: str = ":RV"
 
     # JSON FILTERING
-    BOOKING_AVAILABILITY: str = "availability"
+    BOOKING_AVAILABILITY: str = "availability_status"
 
     RATE_CODE: str = "INTERNET"
     LODGING_RATES: str = "rates"

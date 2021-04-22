@@ -57,7 +57,7 @@ Pushover is an neat service/app that allows you to easily send push notification
 device. More details on how to set up Pushover can be found on
 their [website](https://pushover.net/). **FYI**: Pushover is a paid service (a lifetime subscription
 costs $5.00). However, if Pushover is not right for you then
-the [source code](yellowstone_availability/check_yellowstone.py)
+the [source code](camply/providers/xanterra/check_yellowstone.py)
 can be manually changed to use your preferred method of sending notifications. To bypass logging to
 Pushover, just remove the variables, set them to empty, or leave them untouched; the script will
 simply log `CRITICAL` events to the console when a campsite is available.
