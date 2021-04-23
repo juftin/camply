@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="docs/static/camply.svg" width="400" height="400"  alt="tent">
-</p>
+[<p align="center"> <img src="docs/static/camply.svg" width="400" height="400"  alt="tent"> </p>]()
 
 ___________
 ___________

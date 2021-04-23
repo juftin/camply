@@ -22,4 +22,4 @@ camping_finder = SearchRecreationDotGov(search_window=search_window_1,
                                         recreation_area=2725,
                                         weekends_only=False)
 matches = camping_finder.search_matching_campsites_available()
-df = camping_finder._assemble_availabilities(matches, log=True, verbose=True)
+df = camping_finder.assemble_availabilities(matches, log=True, verbose=True)

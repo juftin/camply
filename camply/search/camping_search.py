@@ -83,13 +83,13 @@ class SearchRecreationDotGov(BaseCampingSearch):
         """
         if self._campground_object is not None:
             returned_sites = list()
-            for campground in make_list(self._campground_object):
-                facility = self.campsite_finder.find_campsites(campsite_id=campground)
+            for campground_id in make_list(self._campground_object):
+                facility = self.campsite_finder.find_campsites(campground_id=campground_id)
                 campground_data, campground_facility = \
                     self.campsite_finder.process_facilities_responses(facility=facility)
                 self.campsite_finder.log_sorted_response(response_array=[campground_facility])
                 returned_sites.append(campground_facility)
-                return returned_sites
+            return returned_sites
         elif self._recreation_area_id is not None:
             processed_array = list()
             for rec_area in self._recreation_area_id:

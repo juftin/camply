@@ -74,8 +74,9 @@ class BaseCampingSearch(ABC):
         for window in self.search_window:
             generated_dates = set()
             for index in range(0, (window.end_date - window.start_date).days + 1):
-                search_day = window.start_date.replace(hour=0, minute=0, second=0,
-                                                       microsecond=0) + timedelta(days=index)
+                search_day = window.start_date
+                search_day = search_day.replace(hour=0, minute=0, second=0,
+                                                microsecond=0) + timedelta(days=index)
                 generated_dates.add(search_day)
             search_days.update(generated_dates)
 
@@ -117,8 +118,8 @@ class BaseCampingSearch(ABC):
             return sorted(list(truncated_months))
 
     @classmethod
-    def _assemble_availabilities(cls, matching_data, log: bool = True,
-                                 verbose: bool = False) -> DataFrame:
+    def assemble_availabilities(cls, matching_data, log: bool = True,
+                                verbose: bool = False) -> DataFrame:
         """
         Prepare a Pandas DataFrame from Array of AvailableCampsite objects
 

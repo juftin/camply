@@ -6,7 +6,7 @@ yosemite_or_sierra_summer_weekend_search:
     provider:    RecreationDotGov # RecreationDotGov IF NOT PROVIDED
     recreation_area:
         - 2991 # Yosemite National Park, CA (All Campgrounds)
-        - 1074 # Sierra National Forest, CA (All Campgrounds)
+#        - 1074 # Sierra National Forest, CA (All Campgrounds)
     campgrounds: null # ENTIRE FIELD CAN BE OMITTED IF NOT USED.
     start_date:  2021-05-01 # YYYY-MM-DD
     end_date:    2021-08-31
@@ -24,15 +24,15 @@ glacier_specific_week_search:
     start_date: 2021-06-09
     end_date:   2021-06-16
 
-# YELLOWSTONE SEARCH (INSIDE THE PARK). YELLOWSTONE USES A DIFFERENT BOOKING
-# PROVIDER SO THE OPTIONS ARE LIMITED. ANY UN-NEEDED FIELDS WILL BE THROWN OUT.
-# THE BELOW SEARCH LOOKS FOR THE ENTIRE MONTH OF AUGUST (`WEEKENDS` CAN ALSO BE OMITTED IF FALSE).
-
-yellowstone_search:
-    enabled:    True
-    provider:   YellowstoneLodging
-    start_date: 2021-08-01
-    end_date:   2021-08-01
-    weekends:   False
+## YELLOWSTONE SEARCH (INSIDE THE PARK). YELLOWSTONE USES A DIFFERENT BOOKING
+## PROVIDER SO THE OPTIONS ARE LIMITED. ANY UN-NEEDED FIELDS WILL BE THROWN OUT.
+## THE BELOW SEARCH LOOKS FOR THE ENTIRE MONTH OF AUGUST (`WEEKENDS` CAN ALSO BE OMITTED IF FALSE).
+#
+#yellowstone_search:
+#    enabled:    True
+#    provider:   YellowstoneLodging
+#    start_date: 2021-08-01
+#    end_date:   2021-08-01
+#    weekends:   False
 
 

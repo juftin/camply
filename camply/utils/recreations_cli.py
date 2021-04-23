@@ -109,7 +109,7 @@ if cli_arguments.availabilities is True:
                                             campgrounds=cli_arguments.campground_list,
                                             weekends_only=cli_arguments.weekends)
     matches = camping_finder.search_matching_campsites_available()
-    camping_finder._assemble_availabilities(matches, log=True, verbose=True)
+    camping_finder.assemble_availabilities(matches, log=True, verbose=True)
 
 else:
     params = dict()
