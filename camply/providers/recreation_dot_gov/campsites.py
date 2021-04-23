@@ -283,7 +283,6 @@ class RecreationDotGov(BaseProvider):
             facility_state = facility[RIDBConfig.FACILITY_ADDRESS][0][
                 RIDBConfig.FACILITY_LOCATION_STATE].upper()
         except IndexError:
-            logger.error(facility)
             facility_state = "USA"
         recreation_area = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
             RIDBConfig.RECREATION_AREA_NAME]
