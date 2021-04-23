@@ -11,11 +11,12 @@ from json import loads
 import logging
 from random import choice
 from time import sleep
+from typing import Optional
 from urllib import parse
 
 import requests
 
-from camply.config import API_HEADERS, YellowstoneConfig
+from camply.config import STANDARD_HEADERS, USER_AGENTS, YellowstoneConfig
 from camply.utils.notifications import PushoverNotifications
 
 logger = logging.getLogger(__name__)
@@ -103,7 +104,7 @@ class YellowstoneLodging(object):
                           limit=self.number_of_nights,
                           adults=self.number_of_guests,
                           rate_code=YellowstoneConfig.RATE_CODE)
-        api_endpoint = self._get_api_endpoint(query=query_dict)
+        api_endpoint = self._get_api_endpoint(query=None)
         logger.info(f"Searching for Yellowstone Lodging Availability: "
                     f"{self._formatted_booking_start_slashes} | "
                     f"{self.number_of_nights} Nights | {self.number_of_guests} Guests")
@@ -112,13 +113,12 @@ class YellowstoneLodging(object):
             # EXPONENTIAL BACKOFF: 27, 81, 243, 729...
             wait_time = 27
             for _ in range(5):
-                yellowstone_headers = choice(API_HEADERS)
-                yellowstone_headers.update(YellowstoneConfig.API_HEADERS)
-                logger.info(yellowstone_headers)
+                yellowstone_headers = choice(USER_AGENTS)
+                yellowstone_headers.update(STANDARD_HEADERS)
+                yellowstone_headers.update(YellowstoneConfig.API_REFERRERS)
                 all_resort_availability = requests.get(url=api_endpoint,
-                                                       headers=YellowstoneConfig.API_HEADERS)
-                logger.info(api_endpoint)
-                logger.critical(all_resort_availability.text)
+                                                       headers=yellowstone_headers,
+                                                       params=query_dict)
                 if all_resort_availability.status_code == 200 and \
                         all_resort_availability.text.strip() != "":
                     break
@@ -143,11 +143,14 @@ class YellowstoneLodging(object):
         return data_availability
 
     @classmethod
-    def _get_api_endpoint(cls, query) -> str:
+    def _get_api_endpoint(cls, query: Optional[dict] = None) -> str:
         """
         Build the API Endpoint for All Yellowstone Lodging
         """
-        query_string = parse.urlencode(query=query)
+        if query is not None:
+            query_string = parse.urlencode(query=query)
+        else:
+            query_string = ""
         url_components = dict(scheme=YellowstoneConfig.API_SCHEME,
                               netloc=YellowstoneConfig.API_BASE_ENDPOINT,
                               url=YellowstoneConfig.YELLOWSTONE_LODGING_PATH,

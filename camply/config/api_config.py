@@ -7,7 +7,7 @@ Configuration
 """
 from os import getenv
 
-API_HEADERS: list = [
+USER_AGENTS: list = [
     {"User-Agent": ("Mozilla/5.0 (X11; Linux x86_64; rv:10.0) "
                     "Gecko/20100101 Firefox/10.0")},
     {"User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -21,6 +21,14 @@ API_HEADERS: list = [
     {"User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/89.0.4389.128 Safari/537.36")}
 ]
+
+STANDARD_HEADERS: dict = {
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Language": "en-US,en;q=0.9,la;q=0.8",
+    "Cache-Control": "max-age=0",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+}
 
 
 class RIDBConfig(object):
@@ -72,6 +80,10 @@ class RecreationBookingConfig(object):
     API_NET_LOC = "recreation.gov"
     API_BASE_PATH: str = "api/camps/availability/campground/"
     API_MONTH_PATH: str = "month"
+    API_REFERRERS: dict = {
+        "Referer": "https://www.recreation.gov/"
+    }
+
 
     CAMPSITE_UNAVAILABLE_STRINGS: list = [
         "Reserved",

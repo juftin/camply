@@ -6,7 +6,7 @@
 Recreation.gov Web Scraping Utilities
 """
 from datetime import datetime
-from json import dumps, loads
+from json import loads
 import logging
 from random import choice
 from typing import List, Optional, Tuple, Union
@@ -14,7 +14,7 @@ from urllib import parse
 
 import requests
 
-from camply.config import API_HEADERS, RecreationBookingConfig, RIDBConfig
+from camply.config import RecreationBookingConfig, RIDBConfig, STANDARD_HEADERS, USER_AGENTS
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
 from camply.providers.base_provider import BaseProvider
 from camply.utils import api_utils, logging_utils
@@ -36,7 +36,7 @@ class RecreationDotGov(BaseProvider):
         else:
             self.api_key: str = api_key
         self._ridb_api_headers: dict = dict(accept="application/json", apikey=self.api_key)
-        self._recreation_gov_headers: str = API_HEADERS
+        self._recreation_gov_headers: str = USER_AGENTS
 
     def __repr__(self):
         """
@@ -82,8 +82,8 @@ class RecreationDotGov(BaseProvider):
         return api_response
 
     def find_campsites(self, search_string: str = None,
-                       rec_area_id: Optional[int] = None,
-                       campsite_id: Optional[int] = None, **kwargs) -> List[dict]:
+                       rec_area_id: Optional[List[int]] = None,
+                       campground_id: Optional[List[int]] = None, **kwargs) -> List[dict]:
         """
         Find Matching Campsites Based on Search String
 
@@ -91,9 +91,9 @@ class RecreationDotGov(BaseProvider):
         ----------
         search_string: str
             Search Keyword(s)
-        rec_area_id: Optional[int]
+        rec_area_id: Optional[List[int]]
             Recreation Area ID to filter with
-        campsite_id: Optional[int]
+        campground_id: Optional[List[int]]
             ID of the Campsite
 
         Returns
@@ -101,8 +101,8 @@ class RecreationDotGov(BaseProvider):
         filtered_responses: List[dict]
             Array of Matching Campsites
         """
-        if campsite_id is not None:
-            return self._ridb_get_data(path=f"{RIDBConfig.FACILITIES_API_PATH}/{campsite_id}",
+        if campground_id is not None:
+            return self._ridb_get_data(path=f"{RIDBConfig.FACILITIES_API_PATH}/{campground_id}",
                                        params=dict(full=True))
         if rec_area_id is not None:
             facilities = list()
@@ -118,7 +118,7 @@ class RecreationDotGov(BaseProvider):
                                                                       full="true",
                                                                       **kwargs))
             filtered_responses = self._filter_facilities_responses(responses=facilities_response)
-            logger.info(f"{len(filtered_responses)} Matching Campsites Found")
+            logger.info(f"{len(filtered_responses)} Matching Campgrounds Found")
 
             logging_messages = list()
             for facility in filtered_responses:
@@ -279,8 +279,12 @@ class RecreationDotGov(BaseProvider):
         """
         facility_id = facility[RIDBConfig.FACILITY_ID]
         facility_name = facility[RIDBConfig.FACILITY_NAME]
-        facility_state = facility[RIDBConfig.FACILITY_ADDRESS][0][
-            RIDBConfig.FACILITY_LOCATION_STATE]
+        try:
+            facility_state = facility[RIDBConfig.FACILITY_ADDRESS][0][
+                RIDBConfig.FACILITY_LOCATION_STATE].upper()
+        except IndexError:
+            logger.error(facility)
+            facility_state = "USA"
         recreation_area = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
             RIDBConfig.RECREATION_AREA_NAME]
         recreation_area_id = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
@@ -422,7 +426,11 @@ class RecreationDotGov(BaseProvider):
         formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
         api_endpoint = self._rec_availability_get_endpoint(
             path=f"{campground_id}/{RecreationBookingConfig.API_MONTH_PATH}")
-        response = requests.get(url=api_endpoint, headers=choice(self._recreation_gov_headers),
+        # BUILD THE HEADERS EXPECTED FROM THE API
+        headers = STANDARD_HEADERS
+        headers.update(choice(USER_AGENTS))
+        headers.update(RecreationBookingConfig.API_REFERRERS)
+        response = requests.get(url=api_endpoint, headers=headers,
                                 params=dict(start_date=formatted_month))
 
         try:

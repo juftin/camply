@@ -121,4 +121,5 @@ else:
     # --find-campgrounds
     elif cli_arguments.campgrounds is not None:
         camp_finder.find_campsites(search_string=cli_arguments.campgrounds,
-                                   rec_area_id=cli_arguments.rec_area_id, **params)
+                                   rec_area_id=cli_arguments.rec_area_id,
+                                   campground_id=None, **params)

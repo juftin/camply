@@ -6,6 +6,6 @@
 Utils __init__ file
 """
 
-from .api_config import API_HEADERS, RecreationBookingConfig, RIDBConfig
+from .api_config import RecreationBookingConfig, RIDBConfig, STANDARD_HEADERS, USER_AGENTS
 from .pushover import PushoverConfig
 from .yellowstone import YellowstoneConfig
