@@ -6,7 +6,7 @@
 Recreation.gov Web Scraping Utilities
 """
 from datetime import datetime
-from json import loads
+from json import dumps, loads
 import logging
 from random import choice
 from typing import List, Optional, Tuple, Union
@@ -16,7 +16,7 @@ import requests
 
 from camply.config import API_HEADERS, RecreationBookingConfig, RIDBConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
-from camply.providers.provider_base import BaseProvider
+from camply.providers.base_provider import BaseProvider
 from camply.utils import api_utils, logging_utils
 
 logger = logging.getLogger(__name__)
@@ -78,7 +78,7 @@ class RecreationDotGov(BaseProvider):
                 recreation_area=recreation_area_object)
             if recreation_area is not None:
                 logging_messages.append(recreation_area)
-        self._log_sorted_response(response_array=logging_messages)
+        self.log_sorted_response(response_array=logging_messages)
         return api_response
 
     def find_campsites(self, search_string: str = None,
@@ -105,7 +105,10 @@ class RecreationDotGov(BaseProvider):
             return self._ridb_get_data(path=f"{RIDBConfig.FACILITIES_API_PATH}/{campsite_id}",
                                        params=dict(full=True))
         if rec_area_id is not None:
-            return self.find_facilities_per_recreation_area(rec_area_id=rec_area_id)
+            facilities = list()
+            for recreation_area in rec_area_id:
+                facilities += self.find_facilities_per_recreation_area(rec_area_id=recreation_area)
+            return facilities
         else:
             if search_string.strip() == "" and kwargs.get("state", None) is None:
                 raise RuntimeError("You must provide a search query or state to find campsites")
@@ -121,7 +124,7 @@ class RecreationDotGov(BaseProvider):
             for facility in filtered_responses:
                 _, campground_facility = self.process_facilities_responses(facility=facility)
                 logging_messages.append(campground_facility)
-            self._log_sorted_response(response_array=logging_messages)
+            self.log_sorted_response(response_array=logging_messages)
             return filtered_responses
 
     def find_facilities_per_recreation_area(self, rec_area_id: int = None, **kwargs) -> List[dict]:
@@ -147,7 +150,7 @@ class RecreationDotGov(BaseProvider):
         for facility in filtered_facilities:
             _, campground_facility = self.process_facilities_responses(facility=facility)
             logging_messages.append(campground_facility)
-        self._log_sorted_response(response_array=logging_messages)
+        self.log_sorted_response(response_array=logging_messages)
         return filtered_facilities
 
     @classmethod
@@ -337,8 +340,8 @@ class RecreationDotGov(BaseProvider):
         else:
             return response
 
-    @classmethod
-    def _log_sorted_response(cls, response_array: List[str]) -> None:
+    @staticmethod
+    def log_sorted_response(response_array: List[str]) -> None:
         """
         Log Some Statements in a Nice Sorted way
 
@@ -350,7 +353,7 @@ class RecreationDotGov(BaseProvider):
         -------
         None
         """
-        log_array = [cls._generate_response_string(obj) for obj in response_array]
+        log_array = [RecreationDotGov._generate_response_string(obj) for obj in response_array]
         sorted_logs = sorted(log_array)
         for log_response in sorted_logs:
             logger.info(log_response)
@@ -474,7 +477,6 @@ class RecreationDotGov(BaseProvider):
                 matching_date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%SZ")
                 if availability_status not in RecreationBookingConfig.CAMPSITE_UNAVAILABLE_STRINGS:
                     booking_url = f"{RecreationBookingConfig.CAMPSITE_BOOKING_URL}/{campsite_id}"
-                    # logger.info(dumps(site_related_data, indent=4, sort_keys=True))
                     available_campsite = AvailableCampsite(
                         campsite_id=campsite_id,
                         booking_date=matching_date,

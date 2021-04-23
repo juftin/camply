@@ -21,6 +21,26 @@ class SearchWindow(NamedTuple):
     end_date: datetime
 
 
+class AvailableCampsite(NamedTuple):
+    """
+    Campsite Storage, this container should be universal regardless of
+    API Provider
+    """
+    campsite_id: int
+    booking_date: datetime
+    campsite_site_name: str
+    campsite_loop_name: str
+    campsite_type: str
+    campsite_occupancy: Tuple[int, int]
+    campsite_use_type: str
+    availability_status: str
+    recreation_area: str
+    recreation_area_id: int
+    facility_name: str
+    facility_id: int
+    booking_url: str
+
+
 class CampgroundFacility(NamedTuple):
     """
     Campground Facility Data Storage
@@ -38,22 +58,3 @@ class RecreationArea(NamedTuple):
     recreation_area: str
     recreation_area_id: int
     recreation_area_location: str
-
-
-class AvailableCampsite(NamedTuple):
-    """
-    Recreation Area Data Storage
-    """
-    campsite_id: int
-    booking_date: datetime
-    campsite_site_name: str
-    campsite_loop_name: str
-    campsite_type: str
-    campsite_occupancy: Tuple[int, int]
-    campsite_use_type: str
-    availability_status: str
-    recreation_area: str
-    recreation_area_id: int
-    facility_name: str
-    facility_id: int
-    booking_url: str

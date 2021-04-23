@@ -5,6 +5,7 @@
 """
 Configuration
 """
+from os import getenv
 
 API_HEADERS: list = [
     {"User-Agent": ("Mozilla/5.0 (X11; Linux x86_64; rv:10.0) "
@@ -28,7 +29,7 @@ class RIDBConfig(object):
 
     https://ridb.recreation.gov/docs
     """
-    API_KEY: str = "842d8997-353f-4680-b340-f512610f20a9"
+    API_KEY: str = getenv("RIDB_API_KEY", None)
 
     RIDB_SCHEME: str = "https"
     RIDB_NET_LOC: str = "ridb.recreation.gov"

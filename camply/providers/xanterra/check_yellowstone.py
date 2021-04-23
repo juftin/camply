@@ -114,8 +114,11 @@ class YellowstoneLodging(object):
             for _ in range(5):
                 yellowstone_headers = choice(API_HEADERS)
                 yellowstone_headers.update(YellowstoneConfig.API_HEADERS)
+                logger.info(yellowstone_headers)
                 all_resort_availability = requests.get(url=api_endpoint,
-                                                       headers=yellowstone_headers)
+                                                       headers=YellowstoneConfig.API_HEADERS)
+                logger.info(api_endpoint)
+                logger.critical(all_resort_availability.text)
                 if all_resort_availability.status_code == 200 and \
                         all_resort_availability.text.strip() != "":
                     break

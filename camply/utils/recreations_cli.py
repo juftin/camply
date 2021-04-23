@@ -6,91 +6,115 @@
 Redshift Unload Pipeline Script
 """
 
-from argparse import ArgumentParser, Namespace
+from argparse import ArgumentParser
+from datetime import datetime
 import logging
 
 __version__ = 0.01
 
+from camply.search.camping_search import SearchRecreationDotGov
+from camply.containers import SearchWindow
 from camply.providers import RecreationDotGov
 
 camp_finder = RecreationDotGov()
 logger = logging.getLogger(__name__)
+logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
+                    level=logging.INFO)
 
+### ARG PARSER
+parser = ArgumentParser(description="Camply - Campsite Finder",
+                        prog="camply")
+parser.add_argument("--version",
+                    action="version",
+                    version=f"%(prog)s {__version__}")
+primary_exclusives = parser.add_mutually_exclusive_group()
 
-def parse_arguments() -> Namespace:
-    parser = ArgumentParser(description="Campsite Availability Finder",
-                            prog="camping-finder")
-    exclusive_commands = parser.add_mutually_exclusive_group()
+primary_exclusives.add_argument("--find-recreation-areas",
+                                action="store",
+                                dest="recreation_areas",
+                                nargs="?",
+                                const="",
+                                default=None,
+                                required=False,
+                                help="Search for Recreation Areas and list them.")
 
-    # CLI VERSION
-    parser.add_argument("--version",
-                        action="version",
-                        version=f"%(prog)s {__version__}")
+primary_exclusives.add_argument("--find-campgrounds",
+                                action="store",
+                                dest="campgrounds",
+                                nargs="?",
+                                const="",
+                                default=None,
+                                required=False,
+                                help="Search for Campgrounds by String areas and return a "
+                                     "list of Recreation Facilities.")
+primary_exclusives.add_argument("--find-availabilities",
+                                action="store_true",
+                                dest="availabilities",
+                                required=False,
+                                help="Search for Campsites. Requires --start-date and "
+                                     "--end-date flags as well as --campground or "
+                                     "--rec-area-id")
 
-    exclusive_commands.add_argument("--find-recreation-areas",
-                                    action="store",
-                                    dest="recreation_areas",
-                                    nargs="?",
-                                    const="",
-                                    default=None,
-                                    required=False,
-                                    help="Search for Recreation Areas and list them.")
+parser.add_argument("--state",
+                    action="store",
+                    dest="state",
+                    required=False,
+                    help="Useful for Searching commands. Filter by state")
+parser.add_argument("--rec-area-id",
+                    action="append",
+                    dest="rec_area_id",
+                    required=False,
+                    help="Add Recreation Areas (comprised of campgrounds) by ID")
+parser.add_argument("--campground",
+                    action="append",
+                    dest="campground_list",
+                    required=False,
+                    help="Add individual Campgrounds by ID")
+parser.add_argument("--start-date",
+                    action="store",
+                    dest="start_date",
+                    required=False,
+                    help="Start of Search window, YYYY-MM-DD. "
+                         "You will be arriving this day")
+parser.add_argument("--end-date",
+                    action="store",
+                    dest="end_date",
+                    required=False,
+                    help="Start of Search window, YYYY-MM-DD. "
+                         "You will be leaving the following day")
+parser.add_argument("--weekends",
+                    action="store_true",
+                    dest="weekends",
+                    required=False,
+                    help="Only search for weekend bookings (Fri/Sat)")
 
-    exclusive_commands.add_argument("--find-campgrounds",
-                                    action="store",
-                                    dest="campgrounds",
-                                    nargs="?",
-                                    const="",
-                                    default=None,
-                                    required=False,
-                                    help="Search for Campgrounds by String areas and return a "
-                                         "list of Recreation Facilities.")
+# ARGUMENT VALIDATION
+cli_arguments = parser.parse_args()
 
-    parser.add_argument("--state",
-                        action="store",
-                        dest="state",
-                        required=False,
-                        help="Useful for Searching commands. Filter by state")
-    parser.add_argument("--rec-area-id",
-                        action="store",
-                        dest="rec_area_id",
-                        required=False,
-                        help="Used to search for campgrounds by ID")
+if cli_arguments.availabilities is True and any([cli_arguments.campground_list is not None,
+                                                 cli_arguments.rec_area_id is not None]) is False:
+    parser.error("--find-availabilities requires (--rec-area-id / --campground) + --start-date + "
+                 "--end-date.")
 
-    cli_arguments = parser.parse_args()
-    try:
-        validate_arguments(cli_arguments=cli_arguments)
-    except AssertionError:
-        parser.print_help()
-        print("\n\n\n")
-        raise RuntimeError("You must provide arguments to the CLI")
-    return cli_arguments
+# CODE EXECUTION
 
+# --find-availabilities
+if cli_arguments.availabilities is True:
+    search_window = SearchWindow(
+        start_date=datetime.strptime(cli_arguments.start_date, "%Y-%m-%d"),
+        end_date=datetime.strptime(cli_arguments.end_date, "%Y-%m-%d"))
+    rec_dot_gov = RecreationDotGov()
+    camping_finder = SearchRecreationDotGov(search_window=search_window,
+                                            recreation_area=cli_arguments.rec_area_id,
+                                            campgrounds=cli_arguments.campground_list,
+                                            weekends_only=cli_arguments.weekends)
+    matches = camping_finder.search_matching_campsites_available()
+    camping_finder._assemble_availabilities(matches, log=True, verbose=True)
 
-def validate_arguments(cli_arguments: Namespace) -> None:
-    """
-    Validate proper CLI Params Entered
-
-    Parameters
-    ----------
-    cli_arguments
-
-    Returns
-    -------
-
-    """
-    distinct_values = set(vars(cli_arguments).values())
-    assert distinct_values != {None}
-
-
-def run_cli(cli_arguments: Namespace) -> None:
-    """
-    Run the pipeline if this file is called directly - use arguments
-    """
+else:
     params = dict()
     if cli_arguments.state is not None:
-        params = dict(state=cli_arguments.state)
-    validate_arguments(cli_arguments=cli_arguments)
+        params.update(dict(state=cli_arguments.state))
     # --find-recreation-areas
     if cli_arguments.recreation_areas is not None:
         camp_finder.find_recreation_areas(search_string=cli_arguments.recreation_areas, **params)
@@ -98,13 +122,3 @@ def run_cli(cli_arguments: Namespace) -> None:
     elif cli_arguments.campgrounds is not None:
         camp_finder.find_campsites(search_string=cli_arguments.campgrounds,
                                    rec_area_id=cli_arguments.rec_area_id, **params)
-
-
-if __name__ == "__main__":
-    # SET UP LOGGING
-    logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
-                        level=logging.INFO)
-    # GET THE DIRECTORY NAME FROM ARGUMENT PARSER
-    activated_cli_arguments = parse_arguments()
-    # RUN THE PIPELINE
-    run_cli(cli_arguments=activated_cli_arguments)
