@@ -6,7 +6,7 @@
 Recreation.gov Web Scraping Utilities
 """
 
-from datetime import datetime, timedelta
+from datetime import datetime
 import logging
 from random import random
 from time import sleep
@@ -54,7 +54,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
         assert any([campgrounds is not None, recreation_area is not None]) is True
         self.campgrounds: List[AvailableCampsite] = self._get_searchable_campgrounds()
 
-    def search_matching_campsites_available(self) -> List[AvailableCampsite]:
+    def search_matching_campsites_available(self, log: bool = False,
+                                            verbose: bool = False) -> List[AvailableCampsite]:
         """
         Perform the Search and Return Matching Availabilities
 
@@ -69,6 +70,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
                 matching_campgrounds.append(camp)
         logger.info(f"{(get_emoji(matching_campgrounds) + ' ') * 4}{len(matching_campgrounds)} "
                     "Campsites Matching Search Preferences")
+        self.assemble_availabilities(matching_data=matching_campgrounds,
+                                     log=log, verbose=verbose)
         return matching_campgrounds
 
     def _get_searchable_campgrounds(self) -> List[int]:

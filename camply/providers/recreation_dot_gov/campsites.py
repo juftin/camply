@@ -480,6 +480,8 @@ class RecreationDotGov(BaseProvider):
             campsite_name = site_related_data.get(
                 RecreationBookingConfig.CAMPSITE_LOCATION_SITE,
                 RecreationBookingConfig.CAMPSITE_LOCATION_SITE_DEFAULT)
+            if campsite_availabilities is None:
+                campsite_availabilities = {}
             for date_string, availability_status in campsite_availabilities.items():
                 matching_date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%SZ")
                 if availability_status not in RecreationBookingConfig.CAMPSITE_UNAVAILABLE_STRINGS:

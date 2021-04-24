@@ -12,7 +12,7 @@ import logging
 
 __version__ = 0.01
 
-from camply.search.camping_search import SearchRecreationDotGov
+from camply.search import SearchRecreationDotGov
 from camply.containers import SearchWindow
 from camply.providers import RecreationDotGov
 
