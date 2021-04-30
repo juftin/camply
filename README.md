@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/static/camply.png" width="400" height="400"  alt="camply">
+  <img src="docs/static/camply.svg" width="400" height="400"  alt="camply">
 </p>
 
 ### Command Line Campsite Search:
