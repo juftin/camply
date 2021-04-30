@@ -25,8 +25,13 @@ class YellowstoneConfig(object):
 
     API_SCHEME: str = "https"
     API_BASE_ENDPOINT: str = "webapi.xanterra.net"
-    LODGING_PATH: str = "/v1/api/availability/hotels"
-    YELLOWSTONE_LODGING_PATH: str = f"{LODGING_PATH}/yellowstonenationalparklodges"
+    API_BASE_PATH: str = "v1/api"
+    LODGING_PATH: str = f"/{API_BASE_PATH}/availability/hotels"
+    YELLOWSTONE_PARK_PATH: str = "yellowstonenationalparklodges"
+    YELLOWSTONE_LODGING_PATH: str = f"{LODGING_PATH}/{YELLOWSTONE_PARK_PATH}"
+    CAMPSITE_AVAILABILITY: str = f"{API_BASE_PATH}/availability/rooms"
+    YELLOWSTONE_CAMPSITE_AVAILABILITY: str = f"{CAMPSITE_AVAILABILITY}/{YELLOWSTONE_PARK_PATH}"
+    YELLOWSTONE_PROPERTY_INFO: str = f"{API_BASE_PATH}/property/rooms/{YELLOWSTONE_PARK_PATH}"
     API_REFERRERS: dict = {
         "Host": "webapi.xanterra.net",
         "Origin": "https://secure.yellowstonenationalparklodges.com",
@@ -38,6 +43,17 @@ class YellowstoneConfig(object):
     # JSON FILTERING
     BOOKING_AVAILABILITY: str = "availability"
 
+    # DATAFRAME FILTERING
+    FACILITY_ID: str = "facility_id"
+    FACILITY_STATUS: str = "status"
+    FACILITY_STATUS_QUALIFIER: str = "OPEN"
+    FACILITY_ROOMS: str = "rooms"
+    FACILITY_AVAILABLE_QUALIFIER: str = "available"
+    FACILITY_HOTEL_CODE: str = "hotelCode"
+    FACILITY_ROOM_CODE: str = "roomCode"
+    FACILITY_PRICE: str = "price"
+    FACILITY_TYPE: str = "type"
+
     RATE_CODE: str = "INTERNET"
     LODGING_RATES: str = "rates"
     LODGING_TITLE: str = "title"
@@ -46,7 +62,7 @@ class YellowstoneConfig(object):
     MINIMUM_POLLING_INTERVAL: int = 45
 
     WEBUI_BASE_ENDPOINT: str = "secure.yellowstonenationalparklodges.com"
-    WEBUI_BOOKING_PATH: str = "booking/lodging-search"
+    WEBUI_BOOKING_PATH: str = "booking/lodging-select"
 
     @staticmethod
     def get_polling_interval(interval: int) -> int:

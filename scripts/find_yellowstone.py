@@ -8,6 +8,8 @@ Python Script to Check Yellowstone Campground Booking API for Availability
 
 import logging
 
+logger = logging.getLogger(__name__)
+
 try:
     from camply.providers import YellowstoneLodging
     from camply.config import YellowstoneConfig
@@ -31,4 +33,4 @@ if __name__ == "__main__":
                                          number_of_guests=YellowstoneConfig.NUMBER_OF_GUESTS,
                                          number_of_nights=YellowstoneConfig.NUMBER_OF_NIGHTS,
                                          polling_interval=YellowstoneConfig.POLLING_INTERVAL)
-    campsite_finder.continuously_check_for_availability()
+    availability_found = campsite_finder.get_monthly_availability()

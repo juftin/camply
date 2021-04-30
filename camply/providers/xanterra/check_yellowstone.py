@@ -11,15 +11,23 @@ from json import loads
 import logging
 from random import choice
 from time import sleep
-from typing import Optional
+from typing import List, Optional
 from urllib import parse
 
+from pandas import DataFrame
 import requests
 
 from camply.config import STANDARD_HEADERS, USER_AGENTS, YellowstoneConfig
+from camply.containers import AvailableCampsite
 from camply.utils.notifications import PushoverNotifications
 
 logger = logging.getLogger(__name__)
+
+
+# TODO: Build All 3 API Layers (https://webapi.xanterra.net/):
+#   - [x] /v1/api/availability/hotels/yellowstonenationalparklodges?date=...
+#   - [ ] /v1/api/availability/rooms/yellowstonenationalparklodges/YLYB:RV?date=...
+#   - [ ] /v1/api/property/rooms/yellowstonenationalparklodges/YLYB:RV
 
 
 class YellowstoneLodging(object):
@@ -90,6 +98,71 @@ class YellowstoneLodging(object):
                 search_start_time = datetime.now()
             sleep(self.polling_interval)
 
+    def get_monthly_availability(self) -> dict:
+        """
+        Check All Lodging in Yellowstone for Campground Data
+
+        Returns
+        -------
+        data_availability: dict
+            Data Availability Dictionary
+        """
+        query_dict = dict(date=self.booking_start.replace(day=1),
+                          limit=31,
+                          rate_code=YellowstoneConfig.RATE_CODE)
+        api_endpoint = self._get_api_endpoint(url_path=YellowstoneConfig.YELLOWSTONE_LODGING_PATH,
+                                              query=None)
+        logger.info(f"Searching for Yellowstone Lodging Availability: "
+                    f"{self._formatted_booking_start_slashes} | "
+                    f"{self.number_of_nights} Nights | {self.number_of_guests} Guests")
+        all_resort_availability_data = self._try_retry_get_data(endpoint=api_endpoint,
+                                                                params=query_dict)
+        return all_resort_availability_data
+
+    @staticmethod
+    def _try_retry_get_data(endpoint: str, params: Optional[dict] = None):
+        """
+        Try and Retry Fetching Data from the Yellowstone API. Unfortunately this is a required
+        method to request the data since the Yellowstone API doesn't always return data.
+
+        Parameters
+        ----------
+        endpoint: str
+            API Endpoint
+        params
+
+        Returns
+        -------
+
+        """
+        try:
+            # EXPONENTIAL BACKOFF: 27, 81, 243, 729...
+            wait_time = 27
+            for _ in range(5):
+                yellowstone_headers = choice(USER_AGENTS)
+                yellowstone_headers.update(STANDARD_HEADERS)
+                yellowstone_headers.update(YellowstoneConfig.API_REFERRERS)
+                response = requests.get(url=endpoint,
+                                        headers=yellowstone_headers,
+                                        params=params)
+                if response.status_code == 200 and \
+                        response.text.strip() != "":
+                    break
+                logger.warning("Uh oh, something went wrong while requesting data from "
+                               f"Yellowstone. Waiting {wait_time} seconds before trying again.")
+                sleep(wait_time)
+                wait_time *= 3
+            assert response.status_code == 200
+        except AssertionError:
+            error_message = ("Something went wrong with checking the "
+                             f"Yellowstone Booking API. Exiting. {response.text}")
+            logger.error(error_message)
+            PushoverNotifications.send_message(
+                message=error_message,
+                title="Campsite Search: SOS")
+            raise RuntimeError(f"error_message: {response}")
+        return loads(response.content)
+
     def check_yellowstone_lodging(self) -> dict:
         """
         Check All Lodging in Yellowstone for Campground Availability
@@ -99,43 +172,8 @@ class YellowstoneLodging(object):
         data_availability: dict
             Data Availability Dictionary
         """
-        query_dict = dict(date=self._formatted_booking_start_slashes,
-                          nights=self.number_of_nights,
-                          limit=self.number_of_nights,
-                          adults=self.number_of_guests,
-                          rate_code=YellowstoneConfig.RATE_CODE)
-        api_endpoint = self._get_api_endpoint(query=None)
-        logger.info(f"Searching for Yellowstone Lodging Availability: "
-                    f"{self._formatted_booking_start_slashes} | "
-                    f"{self.number_of_nights} Nights | {self.number_of_guests} Guests")
 
-        try:
-            # EXPONENTIAL BACKOFF: 27, 81, 243, 729...
-            wait_time = 27
-            for _ in range(5):
-                yellowstone_headers = choice(USER_AGENTS)
-                yellowstone_headers.update(STANDARD_HEADERS)
-                yellowstone_headers.update(YellowstoneConfig.API_REFERRERS)
-                all_resort_availability = requests.get(url=api_endpoint,
-                                                       headers=yellowstone_headers,
-                                                       params=query_dict)
-                if all_resort_availability.status_code == 200 and \
-                        all_resort_availability.text.strip() != "":
-                    break
-                logger.warning("Uh oh, something went wrong while requesting data from "
-                               f"Yellowstone. Waiting {wait_time} seconds before trying again.")
-                sleep(wait_time)
-                wait_time *= 3
-            assert all_resort_availability.status_code == 200
-        except AssertionError:
-            error_message = ("Something went wrong with checking the "
-                             f"Yellowstone Booking API. Exiting. {all_resort_availability.text}")
-            logger.error(error_message)
-            PushoverNotifications.send_message(
-                message=error_message,
-                title="Campsite Search: SOS")
-            raise RuntimeError(f"error_message: {all_resort_availability}")
-        all_resort_availability_data = loads(all_resort_availability.content)
+        all_resort_availability_data = self.get_monthly_availability()
         starting_day_availability = all_resort_availability_data[
             YellowstoneConfig.BOOKING_AVAILABILITY][self._formatted_booking_start_slashes]
         data_availability = self._scan_for_availabilities(
@@ -143,7 +181,7 @@ class YellowstoneLodging(object):
         return data_availability
 
     @classmethod
-    def _get_api_endpoint(cls, query: Optional[dict] = None) -> str:
+    def _get_api_endpoint(cls, url_path: str, query: Optional[dict] = None) -> str:
         """
         Build the API Endpoint for All Yellowstone Lodging
         """
@@ -153,7 +191,7 @@ class YellowstoneLodging(object):
             query_string = ""
         url_components = dict(scheme=YellowstoneConfig.API_SCHEME,
                               netloc=YellowstoneConfig.API_BASE_ENDPOINT,
-                              url=YellowstoneConfig.YELLOWSTONE_LODGING_PATH,
+                              url=url_path,
                               params="", query=query_string, fragment="")
         api_endpoint = parse.urlunparse(tuple(url_components.values()))
         return api_endpoint
@@ -172,15 +210,15 @@ class YellowstoneLodging(object):
         str
             URL String
         """
-        query = dict(dateFrom=self._formatted_booking_start_dashes,
+        query = dict(dateFrom=self.booking_start,
                      adults=self.number_of_guests,
                      children=0,
-                     nights=self.number_of_nights,
-                     destination=lodging_code)
+                     nights=self.number_of_nights)
         query_string = parse.urlencode(query=query)
+
         url_components = dict(scheme=YellowstoneConfig.API_SCHEME,
                               netloc=YellowstoneConfig.WEBUI_BASE_ENDPOINT,
-                              url=YellowstoneConfig.WEBUI_BOOKING_PATH,
+                              url=f"{YellowstoneConfig.WEBUI_BOOKING_PATH}/{lodging_code}",
                               params="", query=query_string, fragment="")
         webui_endpoint = parse.urlunparse(tuple(url_components.values()))
         return webui_endpoint
@@ -230,3 +268,122 @@ class YellowstoneLodging(object):
                         f"Something went wrong searching for {hotel_code}: {error_message}")
                     data_availability[hotel_code] = False
         return data_availability
+
+    def _compile_campground_availabilities(self, availability: dict) -> List[AvailableCampsite]:
+        """
+
+        Parameters
+        ----------
+        availability
+
+        Returns
+        -------
+
+        """
+        available_campsites = list()
+        for date_string in availability.keys():
+            booking_date = datetime.strptime(date_string, "%m/%d/%Y")
+            daily_data = availability[date_string]
+            camping_keys = [key for key in daily_data.keys() if
+                            YellowstoneConfig.LODGING_CAMPGROUND_QUALIFIER in key]
+            for hotel_code in camping_keys:
+                hotel_data = daily_data[hotel_code]
+                try:
+                    hotel_title = hotel_data[YellowstoneConfig.LODGING_RATES][
+                        YellowstoneConfig.RATE_CODE][
+                        YellowstoneConfig.LODGING_TITLE]
+                    hotel_rate_mins = hotel_data[YellowstoneConfig.LODGING_RATES][
+                        YellowstoneConfig.RATE_CODE][
+                        YellowstoneConfig.LODGING_BASE_PRICES]
+                    if hotel_rate_mins != {"1": 0}:
+                        min_capacity = int(min(hotel_rate_mins.keys()))
+                        max_capacity = int(max(hotel_rate_mins.keys()))
+                        capacity = (min_capacity, max_capacity)
+                        webui_url = self._return_lodging_url(lodging_code=hotel_code)
+                        campsite = dict(campsite_id=None,
+                                        booking_date=booking_date,
+                                        campsite_occupancy=capacity,
+                                        recreation_area="Yellowstone",
+                                        recreation_area_id=1,
+                                        facility_name=hotel_title,
+                                        facility_id=hotel_code,
+                                        booking_url=webui_url)
+                        available_campsites.append(campsite)
+                except (KeyError, TypeError):
+                    error_message = hotel_data["message"]
+                    logger.debug(
+                        f"Something went wrong searching for {hotel_code}: {error_message}")
+        return available_campsites
+
+    def _gather_campsite_specific_availability(
+            self, available_campsites: List[AvailableCampsite]) -> List[dict]:
+        """
+        Given a DataFrame of campsite availability, return updated Data with details about the
+        actual campsites that are available (i.e Tent Size, RV Length, Etc)
+
+        Parameters
+        ----------
+        campsite_df: DataFrame
+            Dataframe of Availability data
+
+        Returns
+        -------
+        DataFrame
+        """
+        available_room_array = list()
+        availability_df = DataFrame(data=available_campsites)
+        for facility_id, facility_df in availability_df.groupby(YellowstoneConfig.FACILITY_ID):
+            api_endpoint = self._get_api_endpoint(
+                url_path=YellowstoneConfig.YELLOWSTONE_CAMPSITE_AVAILABILITY,
+                query=None)
+            params = dict(date=self.booking_start.replace(day=1), limit=31)
+            campsite_data = self._try_retry_get_data(endpoint=f"{api_endpoint}/{facility_id}",
+                                                     params=params)
+            campsite_availability = campsite_data[YellowstoneConfig.BOOKING_AVAILABILITY]
+            booking_dates = campsite_availability.keys()
+            for booking_date_str in booking_dates:
+                daily_availability = campsite_availability[booking_date_str]
+                if daily_availability[YellowstoneConfig.FACILITY_STATUS] == \
+                        YellowstoneConfig.FACILITY_STATUS_QUALIFIER:
+                    available_rooms = daily_availability[YellowstoneConfig.FACILITY_ROOMS]
+                    for room in available_rooms:
+                        if room[YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER] > 0:
+                            available_room_array.append(dict(
+                                booking_date=booking_date_str,
+                                facility_id=facility_id,
+                                campsite_code=room[YellowstoneConfig.FACILITY_ROOM_CODE],
+                                available=room[YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER],
+                                price=room[YellowstoneConfig.FACILITY_PRICE],
+                            ))
+        return available_room_array
+
+    def _get_property_information(self, available_rooms: List[dict]) -> List[dict]:
+        """
+
+        Parameters
+        ----------
+        facility_id
+
+        Returns
+        -------
+
+        """
+        property_info_array = list()
+        availability_df = DataFrame(data=available_rooms)
+        facility_identifiers = availability_df[YellowstoneConfig.FACILITY_ID].unique()
+        for facility_id in facility_identifiers:
+            api_endpoint = self._get_api_endpoint(
+                url_path=YellowstoneConfig.YELLOWSTONE_PROPERTY_INFO,
+                query=None)
+            campsite_info = self._try_retry_get_data(endpoint=f"{api_endpoint}/{facility_id}")
+            campsite_codes = campsite_info.keys()
+            for campsite_code in campsite_codes:
+                campsite_data = campsite_info[campsite_code]
+                property_info_array.append(dict(
+                    facility_id=facility_id,
+                    campsite_code=campsite_code,
+                    campsite_title=campsite_data["title"],
+                    campsite_type=campsite_data["type"].upper(),
+                    capacity=(campsite_data["occupancyBase"], campsite_data["occupancyMax"])
+                ))
+        return property_info_array
