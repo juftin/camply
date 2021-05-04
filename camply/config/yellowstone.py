@@ -9,6 +9,7 @@ Project Configuration for Yellowstone Variables
 from datetime import datetime
 import logging
 from os import environ
+from typing import List
 
 logger = logging.getLogger(__name__)
 
@@ -53,6 +54,8 @@ class YellowstoneConfig(object):
     FACILITY_ROOM_CODE: str = "roomCode"
     FACILITY_PRICE: str = "price"
     FACILITY_TYPE: str = "type"
+
+    CAMPSITE_DATA_COLUMNS: List[str] = ["facility_id", "facility_name", "booking_url"]
 
     RATE_CODE: str = "INTERNET"
     LODGING_RATES: str = "rates"

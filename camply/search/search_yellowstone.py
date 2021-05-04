@@ -5,11 +5,11 @@
 """
 Yellowstone Lodging Web Scraping Utilities
 """
-
+from datetime import datetime
 import logging
-from typing import List, Optional, Union
+from typing import List, Union
 
-from camply.containers import AvailableCampsite, SearchWindow
+from camply.containers import SearchWindow
 from camply.providers import YellowstoneLodging
 from camply.search.base_search import BaseCampingSearch
 
@@ -21,9 +21,10 @@ class SearchYellowstone(BaseCampingSearch):
     Camping Search Object
     """
 
+    # noinspection PyUnusedLocal
     def __init__(self, search_window: Union[SearchWindow, List[SearchWindow]],
-                 campgrounds: Optional[Union[List[str], str]] = None,
-                 weekends_only: bool = False) -> None:
+                 weekends_only: bool = False,
+                 **kwargs) -> None:
         """
         Initialize with Search Parameters
 
@@ -40,23 +41,17 @@ class SearchYellowstone(BaseCampingSearch):
         super(SearchYellowstone, self).__init__(provider=YellowstoneLodging(),
                                                 search_window=search_window,
                                                 weekends_only=weekends_only)
-        self._campground_object = campgrounds
-        self.weekends_only = weekends_only
 
-    def search_matching_campsites_available(self, log: bool = False,
-                                            verbose: bool = False) -> List[AvailableCampsite]:
+    def get_all_campsites(self):
         """
-        Perform the Search and Return Matching Availabilities
 
         Returns
         -------
-        List[AvailableCampsite]
+
         """
-        campsite_finder = YellowstoneLodging(booking_start=self.search_window.start_date,
-                                             number_of_guests=1,  # SET THE MINIMUM FOR NOW
-                                             number_of_nights=1,  # SET THE MINIMUM FOR NOW
-                                             polling_interval=600)
-        campsite_finder.continuously_check_for_availability()
-        availability_found = self.check_yellowstone_lodging()
-        for hotel_code, lodging_found in availability_found.items():
-            logger.info(hotel_code, lodging_found)
+        all_campsites = list()
+        this_month = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        for month in self.search_months:
+            if month >= this_month:
+                all_campsites += self.campsite_finder.get_monthly_campsites(month=month)
+        return all_campsites

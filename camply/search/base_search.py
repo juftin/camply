@@ -17,6 +17,7 @@ from camply.containers import AvailableCampsite, SearchWindow
 from camply.providers import RecreationDotGov, YellowstoneLodging
 from camply.providers.base_provider import BaseProvider
 from camply.utils import make_list
+from camply.utils.logging_utils import get_emoji
 
 logger = logging.getLogger(__name__)
 
@@ -46,11 +47,11 @@ class BaseCampingSearch(ABC):
         self.campsite_finder: BaseProvider = provider
         self.search_window: List[SearchWindow] = make_list(search_window)
         self.weekends_only: bool = weekends_only
-        self.search_days: List[datetime] = self._get_search_days()
+        self.search_days = self._get_search_days()
         self.search_months = self._get_search_months()
 
     @abstractmethod
-    def search_matching_campsites_available(self) -> List[AvailableCampsite]:
+    def get_all_campsites(self) -> List[AvailableCampsite]:
         """
         Perform the Search and Return Matching Availabilities. This method must be implemented
         on all sub-classes.
@@ -60,6 +61,25 @@ class BaseCampingSearch(ABC):
         List[AvailableCampsite]
         """
         pass
+
+    def search_matching_campsites_available(self, log: bool = False,
+                                            verbose: bool = False) -> List[AvailableCampsite]:
+        """
+        Perform the Search and Return Matching Availabilities
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        matching_campgrounds = list()
+        for camp in self.get_all_campsites():
+            if camp.booking_date in self.search_days:
+                matching_campgrounds.append(camp)
+        logger.info(f"{(get_emoji(matching_campgrounds) + ' ') * 4}{len(matching_campgrounds)} "
+                    "Campsites Matching Search Preferences")
+        self.assemble_availabilities(matching_data=matching_campgrounds,
+                                     log=log, verbose=verbose)
+        return matching_campgrounds
 
     def _get_search_days(self) -> List[datetime]:
         """
@@ -131,12 +151,12 @@ class BaseCampingSearch(ABC):
         if log is True:
             for booking_date, available_sites in availability_df.groupby("booking_date"):
                 logger.info(f"📅 {booking_date.strftime('%a, %B %d')} "
-                            f"🏕 {len(available_sites)} sites")
+                            f"🏕  {len(available_sites)} sites")
                 for location_tuple, campground_availability in \
                         available_sites.groupby(["recreation_area", "facility_name"]):
                     logger.info(f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
                                 f"{len(campground_availability)} sites")
                     if verbose is True:
-                        for _, row in campground_availability.iterrows():
-                            logger.info(f"\t\t🔗 {row['booking_url']}")
+                        for booking_url in campground_availability['booking_url'].unique():
+                            logger.info(f"\t\t🔗 {booking_url}")
         return availability_df

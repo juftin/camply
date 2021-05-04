@@ -12,7 +12,7 @@ import logging
 
 __version__ = 0.01
 
-from camply.search import SearchRecreationDotGov
+from camply.config.search_config import CAMPSITE_PROVIDER
 from camply.containers import SearchWindow
 from camply.providers import RecreationDotGov
 
@@ -54,7 +54,13 @@ primary_exclusives.add_argument("--find-availabilities",
                                 help="Search for Campsites. Requires --start-date and "
                                      "--end-date flags as well as --campground or "
                                      "--rec-area-id")
-
+parser.add_argument("--provider",
+                    action="store",
+                    dest="provider",
+                    required=False,
+                    default="RecreationDotGov",
+                    help="Camping Search Provider. Options available are 'Yellowstone' and "
+                         "'RecreationDotGov'. Defaults to 'RecreationDotGov")
 parser.add_argument("--state",
                     action="store",
                     dest="state",
@@ -90,9 +96,10 @@ parser.add_argument("--weekends",
 
 # ARGUMENT VALIDATION
 cli_arguments = parser.parse_args()
-
 if cli_arguments.availabilities is True and any([cli_arguments.campground_list is not None,
-                                                 cli_arguments.rec_area_id is not None]) is False:
+                                                 cli_arguments.rec_area_id is not None,
+                                                 cli_arguments.provider != "RecreationDotGov"
+                                                 ]) is False:
     parser.error("--find-availabilities requires (--rec-area-id / --campground) + --start-date + "
                  "--end-date.")
 
@@ -104,10 +111,12 @@ if cli_arguments.availabilities is True:
         start_date=datetime.strptime(cli_arguments.start_date, "%Y-%m-%d"),
         end_date=datetime.strptime(cli_arguments.end_date, "%Y-%m-%d"))
     rec_dot_gov = RecreationDotGov()
-    camping_finder = SearchRecreationDotGov(search_window=search_window,
-                                            recreation_area=cli_arguments.rec_area_id,
-                                            campgrounds=cli_arguments.campground_list,
-                                            weekends_only=cli_arguments.weekends)
+    provider_class = {key.lower(): value for
+                      key, value in CAMPSITE_PROVIDER.items()}[cli_arguments.provider.lower()]
+    camping_finder = provider_class(search_window=search_window,
+                                    recreation_area=cli_arguments.rec_area_id,
+                                    campgrounds=cli_arguments.campground_list,
+                                    weekends_only=cli_arguments.weekends)
     matches = camping_finder.search_matching_campsites_available()
     camping_finder.assemble_availabilities(matches, log=True, verbose=True)
 

@@ -33,4 +33,3 @@ if __name__ == "__main__":
                                          number_of_guests=YellowstoneConfig.NUMBER_OF_GUESTS,
                                          number_of_nights=YellowstoneConfig.NUMBER_OF_NIGHTS,
                                          polling_interval=YellowstoneConfig.POLLING_INTERVAL)
-    availability_found = campsite_finder.get_monthly_availability()

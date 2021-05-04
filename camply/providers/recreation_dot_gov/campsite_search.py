@@ -5,6 +5,7 @@
 """
 Recreation.gov Web Scraping Utilities
 """
+
 from datetime import datetime
 from json import loads
 import logging
@@ -382,32 +383,7 @@ class RecreationDotGov(BaseProvider):
         endpoint_url = parse.urljoin(base_url, path)
         return endpoint_url
 
-    def get_recreation_campsite_availability(self, campground_id: int, month: datetime) -> \
-            Union[dict, list]:
-        """
-        Find Campsite Availability Data and Process It
-
-        Parameters
-        ----------
-        campground_id: int
-            Campground ID from the RIDB API. Can also be pulled of URLs on Recreation.gov
-        month: datetime
-            datetime object, results will be filtered to month
-
-        Returns
-        -------
-        Union[dict, list]
-        """
-        raw_availability_data = self._rec_availability_get_data(facility_id=campground_id,
-                                                                month=month)
-        monthly_availabilities = self._process_campsite_availability(
-            availability=raw_availability_data,
-            recreation_area=campground.recreation_area,
-            recreation_area_id=campground.recreation_area_id
-        )
-        return monthly_availabilities
-
-    def _rec_availability_get_data(self, campground_id: int, month: datetime) -> Union[dict, list]:
+    def get_recdotgov_data(self, campground_id: int, month: datetime) -> Union[dict, list]:
         """
         Find Campsite Availability Data
 
@@ -440,9 +416,9 @@ class RecreationDotGov(BaseProvider):
         return loads(response.content)
 
     @classmethod
-    def _process_campsite_availability(cls, availability: dict, recreation_area: str,
-                                       recreation_area_id: int, facility_name: str,
-                                       facility_id: int, month: datetime) -> \
+    def process_campsite_availability(cls, availability: dict, recreation_area: str,
+                                      recreation_area_id: int, facility_name: str,
+                                      facility_id: int, month: datetime) -> \
             List[Optional[AvailableCampsite]]:
         """
         Parse the JSON Response and return availabilities

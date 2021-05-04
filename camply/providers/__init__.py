@@ -6,5 +6,5 @@
 providers __init__ file
 """
 
-from .recreation_dot_gov.campsites import RecreationDotGov
-from .xanterra.check_yellowstone import YellowstoneLodging
+from .recreation_dot_gov.campsite_search import RecreationDotGov
+from .xanterra.yellowstone_lodging import YellowstoneLodging
