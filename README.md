@@ -2,6 +2,13 @@
   <img src="docs/static/camply.svg" width="400" height="400"  alt="camply">
 </p>
 
+### Table of Contents
+
+- [Command Line Campsite Search](#command-line-campsite-search)
+- [YAML Config Campsite Search](#yaml-config-campsite-search)
+- [Object-Oriented Campsite Search](#object-oriented-campsite-search)
+- [Dependencies](#dependencies)
+
 ### Command Line Campsite Search:
 
 ```shell
@@ -100,6 +107,30 @@ camping_finder = SearchRecreationDotGov(search_window=month_of_june,
 matches = camping_finder.search_matching_campsites_available(log=True, verbose=True)
 ```
 
+### Dependencies
+
+I've tried to build this module pretty simply. Everything is built on Python 3. This particular
+project was built in Python `3.8.X`, but any version of Python 3 should suffice. Currently, there
+are four required packages, the underlying code has been implemented to be friendly across a wide
+range of supported package versions.
+
+- [requests](https://docs.python-requests.org/en/master/)
+    - The `requests` package is used to fetch data from the APIs of Camping Booking Providers
+- [pandas](https://pandas.pydata.org/)
+    - The `pandas` package is to group and aggregate across large data sets of campsites,
+      campgrounds, and recreation areas.
+- [pyyaml](https://pyyaml.org/wiki/PyYAML)
+    - The `pyyaml` package is used to parse YAML files for campsite search configurations
+- [tenacity](https://tenacity.readthedocs.io/en/latest/)
+    - The `tenacity` package is used for retrying data fetches from some APIs. This retrying
+      methodology handles exceptions allowing for API downtime and facilitating exponential backoff.
+
+These packages can all be installed via pip:
+
+```shell
+pip install requests pandas pyyaml tenacity
+```
+
 ___________
 ___________
 
@@ -112,3 +143,4 @@ ___________
 </p>
 
 ###### Cool stuff happens in Denver, CO [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Flag_of_Denver%2C_Colorado.svg/800px-Flag_of_Denver%2C_Colorado.svg.png" width="25" alt="Denver">](https://denver-devs.slack.com/)
+

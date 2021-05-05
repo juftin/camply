@@ -11,7 +11,7 @@ from random import random
 from time import sleep
 from typing import List, Optional, Union
 
-from camply.containers import AvailableCampsite, SearchWindow
+from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import make_list
@@ -50,10 +50,10 @@ class SearchRecreationDotGov(BaseCampingSearch):
         self._campground_object = campgrounds
         self.weekends_only = weekends_only
         assert any([campgrounds is not None, recreation_area is not None]) is True
-        self.campgrounds: List[int] = self._get_searchable_campgrounds()
-        self.campsite_finder: RecreationDotGov = self.campsite_finder
+        self.campgrounds: List[CampgroundFacility] = self._get_searchable_campgrounds()
+        self.campsite_finder: RecreationDotGov
 
-    def _get_searchable_campgrounds(self) -> List[int]:
+    def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:
         """
         Return a List of Campgrounds to search, this handles scenarios
         where a recreation area is provided instead of a campground list
@@ -67,6 +67,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
             returned_sites = list()
             for campground_id in make_list(self._campground_object):
                 facility = self.campsite_finder.find_campsites(campground_id=campground_id)
+                campground_facility: CampgroundFacility
                 campground_data, campground_facility = \
                     self.campsite_finder.process_facilities_responses(facility=facility)
                 self.campsite_finder.log_sorted_response(response_array=[campground_facility])
@@ -77,6 +78,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
             for rec_area in self._recreation_area_id:
                 campground_array = self.campsite_finder.find_facilities_per_recreation_area(
                     rec_area_id=rec_area)
+                campground_facility: CampgroundFacility
                 for campground in campground_array:
                     campground_data, campground_facility = \
                         self.campsite_finder.process_facilities_responses(facility=campground)

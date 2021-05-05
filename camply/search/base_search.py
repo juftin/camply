@@ -13,6 +13,7 @@ from typing import List, Set, Union
 
 from pandas import DataFrame
 
+from camply.config import DataColumns
 from camply.containers import AvailableCampsite, SearchWindow
 from camply.providers import RecreationDotGov, YellowstoneLodging
 from camply.providers.base_provider import BaseProvider
@@ -44,7 +45,8 @@ class BaseCampingSearch(ABC):
             Whether to only search for Camping availabilities on the weekends (Friday /
             Saturday nights)
         """
-        self.campsite_finder: BaseProvider = provider
+        self.campsite_finder: Union[RecreationDotGov, YellowstoneLodging] = provider
+        # noinspection PyTypeChecker
         self.search_window: List[SearchWindow] = make_list(search_window)
         self.weekends_only: bool = weekends_only
         self.search_days = self._get_search_days()
@@ -149,14 +151,19 @@ class BaseCampingSearch(ABC):
         """
         availability_df = DataFrame(data=matching_data, columns=AvailableCampsite._fields)
         if log is True:
+            booking_date: datetime
             for booking_date, available_sites in availability_df.groupby("booking_date"):
                 logger.info(f"📅 {booking_date.strftime('%a, %B %d')} "
                             f"🏕  {len(available_sites)} sites")
+                location_tuple: tuple
                 for location_tuple, campground_availability in \
-                        available_sites.groupby(["recreation_area", "facility_name"]):
+                        available_sites.groupby([DataColumns.RECREATION_AREA_COLUMN,
+                                                 DataColumns.FACILITY_NAME_COLUMN]):
                     logger.info(f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
                                 f"{len(campground_availability)} sites")
                     if verbose is True:
-                        for booking_url in campground_availability['booking_url'].unique():
+                        for booking_url in campground_availability[
+                            DataColumns.BOOKING_URL_COLUMN
+                        ].unique():
                             logger.info(f"\t\t🔗 {booking_url}")
         return availability_df

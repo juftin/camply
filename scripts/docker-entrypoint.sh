@@ -2,9 +2,9 @@
 
 set -e
 
-PRIMARY_COMMAND="${@}"
+PRIMARY_COMMAND=${@}
 
-python -m pip install --upgrade pip > /dev/null 2>&1
-pip install requests pandas > /dev/null 2>&1
+python -m pip install --upgrade pip >/dev/null 2>&1
+pip install requests pandas >/dev/null 2>&1
 
-exec ${PRIMARY_COMMAND}
+exec "${PRIMARY_COMMAND}"

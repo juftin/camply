@@ -57,7 +57,7 @@ class PushoverNotifications(logging.StreamHandler):
             logger.warning(f"Pushover isn't currently configured. "
                            "I hope you're watching these logs :)")
 
-    def emit(self, record):
+    def emit(self, record: logging.LogRecord):
         """
         Produce a logging record
 

@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
                     level=logging.INFO)
 
-### ARG PARSER
+# ARG PARSER
 parser = ArgumentParser(description="Camply - Campsite Finder",
                         prog="camply")
 parser.add_argument("--version",
@@ -95,6 +95,7 @@ parser.add_argument("--weekends",
                     help="Only search for weekend bookings (Fri/Sat)")
 
 # ARGUMENT VALIDATION
+
 cli_arguments = parser.parse_args()
 if cli_arguments.availabilities is True and any([cli_arguments.campground_list is not None,
                                                  cli_arguments.rec_area_id is not None,

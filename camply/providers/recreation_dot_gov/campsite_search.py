@@ -37,7 +37,7 @@ class RecreationDotGov(BaseProvider):
         else:
             self.api_key: str = api_key
         self._ridb_api_headers: dict = dict(accept="application/json", apikey=self.api_key)
-        self._recreation_gov_headers: str = USER_AGENTS
+        self._recreation_gov_headers: List[dict] = USER_AGENTS
 
     def __repr__(self):
         """
@@ -297,7 +297,8 @@ class RecreationDotGov(BaseProvider):
         return facility, campground_facility
 
     @classmethod
-    def _process_rec_area_response(cls, recreation_area=dict) -> Tuple[dict, RecreationArea]:
+    def _process_rec_area_response(cls, recreation_area=dict) -> \
+            Tuple[dict, Optional[RecreationArea]]:
         """
         Process Rec Area Responses to be More Usable
 
@@ -323,7 +324,8 @@ class RecreationDotGov(BaseProvider):
             return recreation_area, None
 
     @classmethod
-    def _generate_response_string(cls, response: Union[CampgroundFacility, RecreationArea]) -> str:
+    def _generate_response_string(cls,
+                                  response: Union[CampgroundFacility, RecreationArea, str]) -> str:
         """
         Generate a formatted string for logging
 
@@ -345,7 +347,7 @@ class RecreationDotGov(BaseProvider):
             return response
 
     @staticmethod
-    def log_sorted_response(response_array: List[str]) -> None:
+    def log_sorted_response(response_array: List[object]) -> None:
         """
         Log Some Statements in a Nice Sorted way
 
@@ -416,10 +418,10 @@ class RecreationDotGov(BaseProvider):
         return loads(response.content)
 
     @classmethod
-    def process_campsite_availability(cls, availability: dict, recreation_area: str,
-                                      recreation_area_id: int, facility_name: str,
-                                      facility_id: int, month: datetime) -> \
-            List[Optional[AvailableCampsite]]:
+    def process_campsite_availability(
+            cls, availability: dict, recreation_area: str,
+            recreation_area_id: int, facility_name: str,
+            facility_id: int, month: datetime) -> List[Optional[AvailableCampsite]]:
         """
         Parse the JSON Response and return availabilities
 
@@ -431,6 +433,12 @@ class RecreationDotGov(BaseProvider):
             Name of Recreation Area
         recreation_area_id: int
             ID of Recreation Area
+        facility_name: str
+            Campground Facility Name
+        facility_id: int
+            Campground Facility ID
+        month: datetime
+            Month to Process
 
         Returns
         -------

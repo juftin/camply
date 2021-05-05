@@ -5,9 +5,11 @@
 """
 Configuration
 """
-from os import getenv
 
-USER_AGENTS: list = [
+from os import getenv
+from typing import List
+
+USER_AGENTS: List[dict] = [
     {"User-Agent": ("Mozilla/5.0 (X11; Linux x86_64; rv:10.0) "
                     "Gecko/20100101 Firefox/10.0")},
     {"User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -83,7 +85,6 @@ class RecreationBookingConfig(object):
     API_REFERRERS: dict = {
         "Referer": "https://www.recreation.gov/"
     }
-
 
     CAMPSITE_UNAVAILABLE_STRINGS: list = [
         "Reserved",

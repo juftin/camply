@@ -9,12 +9,14 @@ Project Configuration for Yellowstone Variables
 from datetime import datetime
 import logging
 from os import environ
-from typing import List
+from typing import List, Tuple
+
+from .data_columns import DataColumns
 
 logger = logging.getLogger(__name__)
 
 
-class YellowstoneConfig(object):
+class YellowstoneConfig(DataColumns):
     """
     Variable Storage Class
     """
@@ -61,11 +63,32 @@ class YellowstoneConfig(object):
     LODGING_RATES: str = "rates"
     LODGING_TITLE: str = "title"
     LODGING_BASE_PRICES: str = "mins"
+    LODGING_OCCUPANCY_BASE: str = "occupancyBase"
+    LODGING_OCCUPANCY_MAX: str = "occupancyMax"
+    LODGING_ERROR_MESSAGE: str = "message"
 
     MINIMUM_POLLING_INTERVAL: int = 45
 
     WEBUI_BASE_ENDPOINT: str = "secure.yellowstonenationalparklodges.com"
     WEBUI_BOOKING_PATH: str = "booking/lodging-select"
+
+    CAMPSITE_ID_COLUMN: str = "campsite_code"
+    BOOKING_DATE_COLUMN: str = "booking_date"
+    CAMPSITE_SITE_NAME_COLUMN: str = "campsite_title"
+    CAMPSITE_TYPE_COLUMN: str = "campsite_type"
+    CAMPSITE_OCCUPANCY_COLUMN: str = "capacity"
+    CAMPSITE_USE_TYPE_COLUMN: str = "campsite_type"
+    AVAILABILITY_STATUS_COLUMN: str = "Available"
+    RECREATION_AREA_COLUMN: str = "recreation_area"
+    FACILITY_NAME_COLUMN: str = "facility_name"
+    FACILITY_ID_COLUMN: str = "facility_id"
+    BOOKING_URL_COLUMN: str = "booking_url"
+
+    YELLOWSTONE_RECREATION_AREA_ID: int = 1
+    YELLOWSTONE_RECREATION_AREA_NAME: str = "Yellowstone"
+    YELLOWSTONE_LOOP_NAME: str = "Unknown Loop"
+    CAMPSITE_AVAILABILITY_STATUS: str = "Available"
+    YELLOWSTONE_CAMPGROUND_NAME_REPLACE: Tuple[str, str] = ("CG Internet Rate", "Campground")
 
     @staticmethod
     def get_polling_interval(interval: int) -> int:

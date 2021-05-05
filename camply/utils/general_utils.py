@@ -9,7 +9,7 @@ General Utilities
 import logging
 from os import getenv
 from re import compile
-from typing import List
+from typing import List, Optional
 
 from yaml import load, SafeLoader
 
@@ -18,17 +18,17 @@ from camply.containers import AvailableCampsite, CampgroundFacility, RecreationA
 logger = logging.getLogger(__name__)
 
 
-def make_list(obj) -> List:
+def make_list(obj) -> Optional[List]:
     """
     Make Anything An Iterable Instance
 
     Parameters
     ----------
-    obj
+    obj: object
 
     Returns
     -------
-
+    List[object]
     """
     if obj is None:
         return None
@@ -36,8 +36,6 @@ def make_list(obj) -> List:
         return [obj]
     elif isinstance(obj, (set, list, tuple)):
         return obj
-    # elif isinstance(obj, str):
-    #     return [obj]
     else:
         return [obj]
 

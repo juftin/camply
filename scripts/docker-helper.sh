@@ -28,23 +28,19 @@ function run_camply_app() {
 
   CAMPLY="camply"
   SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-  ROOT_DIR=$(dirname ${SCRIPTS_DIR})
+  ROOT_DIR=$(dirname "${SCRIPTS_DIR}")
 
   log_bash_event info "Running Campsite Finder Inside of Detached Docker Container: ${DOCKER_CONTAINER_NAME}"
 
-  docker stop ${DOCKER_CONTAINER_NAME} || true >/dev/null 2>&1
+#  docker stop "${DOCKER_CONTAINER_NAME}" || true >/dev/null 2>&1
 
-  docker run ${DOCKER_ARGUMENTS} --rm \
-    --name ${DOCKER_CONTAINER_NAME} \
-    --env BOOKING_DATE_START=${BOOKING_DATE_START} \
-    --env NUMBER_OF_GUESTS=${NUMBER_OF_GUESTS} \
-    --env NUMBER_OF_NIGHTS=${NUMBER_OF_NIGHTS} \
-    --env POLLING_INTERVAL=${POLLING_INTERVAL} \
-    --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
-    --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
+  docker run "${DOCKER_ARGUMENTS}" --rm \
+    --name "${DOCKER_CONTAINER_NAME}" \
+    --env PUSHOVER_PUSH_TOKEN="${PUSHOVER_PUSH_TOKEN}" \
+    --env PUSHOVER_PUSH_USER="${PUSHOVER_PUSH_USER}" \
     --env PYTHONPATH="${PYTHONPATH}:/home/${CAMPLY}/" \
-    --env TZ=${TIMEZONE_DB_NAME} \
-    --volume ${ROOT_DIR}:"/home/${CAMPLY}/" \
+    --env TZ="${TIMEZONE_DB_NAME}" \
+    --volume "${ROOT_DIR}":"/home/${CAMPLY}/" \
     --workdir "/home/${CAMPLY}/" \
     --entrypoint "/home/${CAMPLY}/scripts/docker-entrypoint.sh" \
     python:3.8-slim-buster \
@@ -55,5 +51,5 @@ function run_camply_app() {
   log_bash_event info "EXITING THE LOGS DOES NOT STOP THE CAMPSITE SEARCH"
   log_bash_event info "Use the following command to kill the search: docker stop ${DOCKER_CONTAINER_NAME}"
 
-  docker logs -f ${DOCKER_CONTAINER_NAME}
+  docker logs -f "${DOCKER_CONTAINER_NAME}"
 }
