@@ -2,12 +2,21 @@
   <img src="docs/static/camply.svg" width="400" height="400"  alt="camply">
 </p>
 
-### Table of Contents
+## Important Notice
 
-- [Command Line Campsite Search](#command-line-campsite-search)
-- [YAML Config Campsite Search](#yaml-config-campsite-search)
-- [Object-Oriented Campsite Search](#object-oriented-campsite-search)
-- [Dependencies](#dependencies)
+`camply` is still under active development and is not fully ready. Once this project is fully ready
+code will be released to a `main` branch. If you'd like to contribute to the project please reach
+out.
+
+## Table of Contents
+
+- [Usage](#usage)
+    - [Command Line Campsite Search](#command-line-campsite-search)
+    - [YAML Config Campsite Search](#yaml-config-campsite-search)
+    - [Object-Oriented Campsite Search](#object-oriented-campsite-search)
+    - [Dependencies](#dependencies)
+
+## Usage
 
 ### Command Line Campsite Search:
 

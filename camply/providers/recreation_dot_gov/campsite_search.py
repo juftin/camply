@@ -14,6 +14,7 @@ from typing import List, Optional, Tuple, Union
 from urllib import parse
 
 import requests
+import tenacity
 
 from camply.config import RecreationBookingConfig, RIDBConfig, STANDARD_HEADERS, USER_AGENTS
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
@@ -385,6 +386,37 @@ class RecreationDotGov(BaseProvider):
         endpoint_url = parse.urljoin(base_url, path)
         return endpoint_url
 
+    @tenacity.retry(wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
+                    stop=tenacity.stop.stop_after_delay(6000))
+    def _make_recdotgov_request(self, campground_id: int, month: datetime) -> requests.Response:
+        """
+        Make a request to the RecreationDotGov API - Handle Exponential Backoff
+        Parameters
+        ----------
+        campground_id
+        month
+
+        Returns
+        -------
+        Returns
+        """
+        try:
+            formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
+            api_endpoint = self._rec_availability_get_endpoint(
+                path=f"{campground_id}/{RecreationBookingConfig.API_MONTH_PATH}")
+            # BUILD THE HEADERS EXPECTED FROM THE API
+            headers = STANDARD_HEADERS
+            headers.update(choice(USER_AGENTS))
+            headers.update(RecreationBookingConfig.API_REFERRERS)
+            response = requests.get(url=api_endpoint, headers=headers,
+                                    params=dict(start_date=formatted_month))
+            assert response.status_code == 200
+        except AssertionError:
+            logger.warning("Bad Data Returned from the RecreationDotGov API, "
+                           "will continue to retry")
+            raise
+        return response
+
     def get_recdotgov_data(self, campground_id: int, month: datetime) -> Union[dict, list]:
         """
         Find Campsite Availability Data
@@ -400,21 +432,12 @@ class RecreationDotGov(BaseProvider):
         -------
         Union[dict, list]
         """
-        formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
-        api_endpoint = self._rec_availability_get_endpoint(
-            path=f"{campground_id}/{RecreationBookingConfig.API_MONTH_PATH}")
-        # BUILD THE HEADERS EXPECTED FROM THE API
-        headers = STANDARD_HEADERS
-        headers.update(choice(USER_AGENTS))
-        headers.update(RecreationBookingConfig.API_REFERRERS)
-        response = requests.get(url=api_endpoint, headers=headers,
-                                params=dict(start_date=formatted_month))
-
         try:
-            assert response.status_code == 200
-        except AssertionError:
-            logger.error(response.text)
-            raise RuntimeError(response.text)
+            response = self._make_recdotgov_request(campground_id=campground_id,
+                                                    month=month)
+        except tenacity.RetryError:
+            raise RuntimeError("Something went wrong in fetching data from the "
+                               "RecreationDotGov API.")
         return loads(response.content)
 
     @classmethod

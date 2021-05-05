@@ -61,7 +61,8 @@ class YellowstoneLodging(BaseProvider):
         return all_resort_availability_data
 
     @staticmethod
-    @tenacity.retry(wait=tenacity.wait_exponential(3, 2187, 3))
+    @tenacity.retry(wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
+                    stop=tenacity.stop.stop_after_delay(6000))
     def _try_retry_get_data(endpoint: str, params: Optional[dict] = None):
         """
         Try and Retry Fetching Data from the Yellowstone API. Unfortunately this is a required
@@ -87,7 +88,7 @@ class YellowstoneLodging(BaseProvider):
             return loads(response.content)
         else:
             error_message = ("Something went wrong with checking the "
-                             f"Yellowstone Booking API.")
+                             f"Yellowstone Booking API. Will continue retrying.")
             logger.warning(error_message)
             raise RuntimeError(error_message)
 
