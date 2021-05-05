@@ -5,6 +5,21 @@
 
 # yellowstone-camping
 
+## UPDATE:
+
+### [`yellowstone-camping` is being expanded and renamed to `camply`.](https://github.com/juftin/camply)
+
+The updated tool now interfaces with the Recreation.gov API as well, adding thousands of campgrounds
+across the USA. The original codebase has been migrated to
+https://github.com/juftin/camply . All work is currently on
+the [camply branch](https://github.com/juftin/camply/tree/camply) and will be merged soon once the
+final tool. The original `yellowtone-camping` source code will be preserved
+at https://github.com/juftin/yellowstone-camping
+
+* * *
+* * *
+
+
 `yellowstone-camping` is a Campsite Reservation Cancellation Finder for Yellowstone National Park.
 This simple Python application will continuously
 check [Yellowstone's Campground Availability](https://secure.yellowstonenationalparklodges.com/booking/lodging)
