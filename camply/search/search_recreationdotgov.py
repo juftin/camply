@@ -51,17 +51,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         self.weekends_only = weekends_only
         assert any([campgrounds is not None, recreation_area is not None]) is True
         self.campsite_finder: RecreationDotGov
-
-    @property
-    def campgrounds(self) -> List[CampgroundFacility]:
-        """
-        Campground Property
-
-        Returns
-        -------
-        List[CampgroundFacility]
-        """
-        return self._get_searchable_campgrounds()
+        self.campgrounds = self._get_searchable_campgrounds()
 
     def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:
         """
