@@ -3,9 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+
+
 # IDE Files
 .idea/
 
 # .env File
 !examle.*.env
 *.env
+
+# BUILD FILES
+dist/
+poetry.lock

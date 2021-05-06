@@ -21,11 +21,6 @@ class YellowstoneConfig(DataColumns):
     Variable Storage Class
     """
 
-    BOOKING_START: datetime = datetime.strptime(environ["BOOKING_DATE_START"], "%Y-%m-%d")
-    NUMBER_OF_GUESTS = environ["NUMBER_OF_GUESTS"]
-    NUMBER_OF_NIGHTS = environ["NUMBER_OF_NIGHTS"]
-    POLLING_INTERVAL = int(environ["POLLING_INTERVAL"])
-
     API_SCHEME: str = "https"
     API_BASE_ENDPOINT: str = "webapi.xanterra.net"
     API_BASE_PATH: str = "v1/api"

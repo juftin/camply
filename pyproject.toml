@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "camply"
+version = "0.1.0"
+description = "Campsite Reservation Cancellation Finder"
+authors = ["Justin Flannery <juftin@juftin.com>"]
+license = "MIT"
+
+[tool.poetry.scripts]
+camply = "camply.utils.camply_cli:run_the_cli"
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+requests = ">=2.9.0"
+pandas = ">=0.22.0"
+tenacity = ">=3.6.0"
+PyYAML = ">=3.12"
+
+[tool.poetry.dev-dependencies]
+pytest = ">=6.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

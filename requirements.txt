@@ -1,0 +1,4 @@
+requests>=2.9.0
+pandas>=0.22.0
+tenacity>=3.6.0
+PyYAML>=3.12
