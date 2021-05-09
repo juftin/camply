@@ -6,9 +6,7 @@
 Project Configuration for Yellowstone Variables
 """
 
-from datetime import datetime
 import logging
-from os import environ
 from typing import List, Tuple
 
 from .data_columns import DataColumns
@@ -64,6 +62,7 @@ class YellowstoneConfig(DataColumns):
 
     MINIMUM_POLLING_INTERVAL: int = 45
 
+    WEBUI_ALIAS_ENDPOINT: str = "yellowstonenationalparklodges.com"
     WEBUI_BASE_ENDPOINT: str = "secure.yellowstonenationalparklodges.com"
     WEBUI_BOOKING_PATH: str = "booking/lodging-select"
 
@@ -81,9 +80,11 @@ class YellowstoneConfig(DataColumns):
 
     YELLOWSTONE_RECREATION_AREA_ID: int = 1
     YELLOWSTONE_RECREATION_AREA_NAME: str = "Yellowstone"
-    YELLOWSTONE_LOOP_NAME: str = "Unknown Loop"
+    YELLOWSTONE_LOOP_NAME: str = "N/A"
     CAMPSITE_AVAILABILITY_STATUS: str = "Available"
     YELLOWSTONE_CAMPGROUND_NAME_REPLACE: Tuple[str, str] = ("CG Internet Rate", "Campground")
+
+    YELLOWSTONE_TIMEZONE: str = "America/Denver"
 
     @staticmethod
     def get_polling_interval(interval: int) -> int:
@@ -96,7 +97,7 @@ class YellowstoneConfig(DataColumns):
         """
         if interval < YellowstoneConfig.MINIMUM_POLLING_INTERVAL:
             logger.warning("Polling interval is too short, setting "
-                           f"to {YellowstoneConfig.MINIMUM_POLLING_INTERVAL} seconds")
+                           f"to {YellowstoneConfig.MINIMUM_POLLING_INTERVAL} minutes")
             return YellowstoneConfig.MINIMUM_POLLING_INTERVAL
         else:
             return interval

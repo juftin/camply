@@ -14,6 +14,7 @@ from typing import List, Optional
 from urllib import parse
 
 from pandas import DataFrame, to_datetime
+from pytz import timezone
 import requests
 import tenacity
 
@@ -21,7 +22,6 @@ from camply.config import STANDARD_HEADERS, USER_AGENTS, YellowstoneConfig
 from camply.containers import AvailableCampsite
 from camply.providers.base_provider import BaseProvider
 from camply.utils import logging_utils
-from camply.utils.notifications import PushoverNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ class YellowstoneLodging(BaseProvider):
         data_availability: dict
             Data Availability Dictionary
         """
-        query_dict = dict(date=month,
+        query_dict = dict(date=self._ensure_current_month(month=month),
                           limit=31,
                           rate_code=YellowstoneConfig.RATE_CODE)
         api_endpoint = self._get_api_endpoint(url_path=YellowstoneConfig.YELLOWSTONE_LODGING_PATH,
@@ -111,9 +111,6 @@ class YellowstoneLodging(BaseProvider):
         try:
             content = YellowstoneLodging._try_retry_get_data(endpoint=endpoint, params=params)
         except RuntimeError as re:
-            PushoverNotifications.send_message(
-                message=repr(re),
-                title="Campsite Search: SOS")
             raise RuntimeError(f"error_message: {re}")
         return content
 
@@ -203,9 +200,7 @@ class YellowstoneLodging(BaseProvider):
                             facility_id=hotel_code)
                         available_campsites.append(campsite)
                 except (KeyError, TypeError):
-                    error_message = hotel_data[YellowstoneConfig.LODGING_ERROR_MESSAGE]
-                    logger.debug(
-                        f"Something went wrong searching for {hotel_code}: {error_message}")
+                    _ = hotel_data[YellowstoneConfig.LODGING_ERROR_MESSAGE]
         logger.info(f"\t{logging_utils.get_emoji(available_campsites)}\t"
                     f"{len(available_campsites)} sites found.")
         return available_campsites
@@ -236,7 +231,7 @@ class YellowstoneLodging(BaseProvider):
             api_endpoint = self._get_api_endpoint(
                 url_path=YellowstoneConfig.YELLOWSTONE_CAMPSITE_AVAILABILITY,
                 query=None)
-            params = dict(date=month, limit=31)
+            params = dict(date=self._ensure_current_month(month=month), limit=31)
             campsite_data = self.make_yellowstone_request(endpoint=f"{api_endpoint}/{facility_id}",
                                                           params=params)
             campsite_availability = campsite_data[YellowstoneConfig.BOOKING_AVAILABILITY]
@@ -355,3 +350,24 @@ class YellowstoneLodging(BaseProvider):
                 booking_url=row[YellowstoneConfig.BOOKING_URL_COLUMN])
             all_monthly_campsite_array.append(campsite)
         return all_monthly_campsite_array
+
+    @classmethod
+    def _ensure_current_month(cls, month: datetime) -> datetime:
+        """
+        Ensure That We Never Give the Yellowstone API Dates in the past.
+
+        Parameters
+        ----------
+        month: datetime
+
+        Returns
+        -------
+        datetime
+        """
+        yellowstone_timezone = timezone(YellowstoneConfig.YELLOWSTONE_TIMEZONE)
+        yellowstone_current_time = datetime.now(yellowstone_timezone)
+        today = datetime(year=yellowstone_current_time.year, month=yellowstone_current_time.month,
+                         day=yellowstone_current_time.day)
+        if today > month:
+            month = today
+        return month

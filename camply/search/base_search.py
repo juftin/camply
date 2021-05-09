@@ -9,18 +9,28 @@ Recreation.gov Web Scraping Utilities
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 import logging
-from typing import List, Set, Union
+from os import getenv
+from typing import List, Optional, Set, Union
 
 from pandas import DataFrame
+import tenacity
 
-from camply.config import DataColumns
+from camply.config import DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
+from camply.notifications import CAMPSITE_NOTIFICATIONS, SilentNotifications
 from camply.providers import RecreationDotGov, YellowstoneLodging
 from camply.providers.base_provider import BaseProvider
 from camply.utils import make_list
 from camply.utils.logging_utils import get_emoji
 
 logger = logging.getLogger(__name__)
+
+
+class CampsiteNotFound(Exception):
+    """
+    Campsite not found Error
+    """
+    pass
 
 
 class BaseCampingSearch(ABC):
@@ -64,8 +74,9 @@ class BaseCampingSearch(ABC):
         """
         pass
 
-    def search_matching_campsites_available(self, log: bool = False,
-                                            verbose: bool = False) -> List[AvailableCampsite]:
+    def _search_matching_campsites_available(self, log: bool = False,
+                                             verbose: bool = False,
+                                             raise_error: bool = False) -> List[AvailableCampsite]:
         """
         Perform the Search and Return Matching Availabilities
 
@@ -78,10 +89,56 @@ class BaseCampingSearch(ABC):
             if camp.booking_date in self.search_days:
                 matching_campgrounds.append(camp)
         logger.info(f"{(get_emoji(matching_campgrounds) + ' ') * 4}{len(matching_campgrounds)} "
-                    "Campsites Matching Search Preferences")
+                    "Reservable Campsites Matching Search Preferences")
         self.assemble_availabilities(matching_data=matching_campgrounds,
                                      log=log, verbose=verbose)
+        if len(matching_campgrounds) == 0 and raise_error is True:
+            campsite_availability_message = "No Campsites were found, we'll continue checking"
+            logger.info(campsite_availability_message)
+            raise CampsiteNotFound(campsite_availability_message)
         return matching_campgrounds
+
+    def get_matching_campsites(self, log: bool = True, verbose: bool = False,
+                               continuous: bool = False,
+                               polling_interval: Optional[int] = None,
+                               notify_first_try: bool = False,
+                               notification_provider: Union["pushover", "email"] = "silent") -> \
+            List[AvailableCampsite]:
+        """
+        Perform the Search and Return Matching Availabilities
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        if polling_interval is None:
+            polling_interval = getenv("POLLING_INTERVAL", SearchConfig.RECOMMENDED_POLLING_INTERVAL)
+        if int(polling_interval) < SearchConfig.POLLING_INTERVAL_MINIMUM:
+            polling_interval = SearchConfig.POLLING_INTERVAL_MINIMUM
+        polling_interval_minutes = int(round(float(polling_interval), 2))
+
+        if continuous is True:
+            notifier = CAMPSITE_NOTIFICATIONS.get(notification_provider.lower(),
+                                                  SilentNotifications)()
+            logger.info(f"Searching for campsites every {polling_interval_minutes} minutes. "
+                        f"Notifications active via {notifier}")
+            retryer = tenacity.Retrying(
+                retry=tenacity.retry_if_exception_type(CampsiteNotFound),
+                wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60))
+            matching_campsites = retryer.__call__(self._search_matching_campsites_available, log,
+                                                  verbose, True)
+            if retryer.statistics.get("attempt_number", 1) > 1:
+                notifier.send_campsites(campsites=matching_campsites)
+            elif retryer.statistics.get("attempt_number", 1) == 1 and notify_first_try is True:
+                notifier.send_campsites(campsites=matching_campsites)
+            else:
+                logger.warning(f"Found matching campsites on the first try! "
+                               "Skipping notifications. Go Get your campsite! 🏕")
+                silent_notifier = SilentNotifications()
+                silent_notifier.send_campsites(campsites=matching_campsites)
+        else:
+            matching_campsites = self._search_matching_campsites_available(log=log, verbose=True)
+        return matching_campsites
 
     def _get_search_days(self) -> List[datetime]:
         """
@@ -92,6 +149,8 @@ class BaseCampingSearch(ABC):
         search_days: Set[datetime]
             Datetime days to search for reservations
         """
+        now = datetime.now()
+        current_date = datetime(year=now.year, month=now.month, day=now.day)
         search_days = set()
         for window in self.search_window:
             generated_dates = set()
@@ -99,7 +158,8 @@ class BaseCampingSearch(ABC):
                 search_day = window.start_date
                 search_day = search_day.replace(hour=0, minute=0, second=0,
                                                 microsecond=0) + timedelta(days=index)
-                generated_dates.add(search_day)
+                if search_day >= current_date:
+                    generated_dates.add(search_day)
             search_days.update(generated_dates)
 
         if self.weekends_only is True:

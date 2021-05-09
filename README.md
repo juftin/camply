@@ -113,7 +113,7 @@ month_of_june = SearchWindow(start_date=datetime(year=2021, month=6, day=1),
 camping_finder = SearchRecreationDotGov(search_window=month_of_june,
                                         recreation_area=2725,  # Glacier Ntl Park
                                         weekends_only=False)
-matches = camping_finder.search_matching_campsites_available(log=True, verbose=True)
+matches = camping_finder.get_matching_campsites(log=True, verbose=True, continuous=False)
 ```
 
 ### Dependencies

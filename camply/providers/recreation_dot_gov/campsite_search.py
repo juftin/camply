@@ -415,9 +415,11 @@ class RecreationDotGov(BaseProvider):
                                     params=dict(start_date=formatted_month))
             assert response.status_code == 200
         except AssertionError:
-            logger.warning("Bad Data Returned from the RecreationDotGov API, "
-                           "will continue to retry")
-            raise
+            response_error = response.text
+            error_message = f"Bad Data Returned from the RecreationDotGov API"
+            logger.debug(f"{error_message}, will continue to retry")
+            logger.debug(f"Error Details: {response_error}")
+            raise ConnectionError(f"{error_message}: {response_error}")
         return response
 
     def get_recdotgov_data(self, campground_id: int, month: datetime) -> Union[dict, list]:
@@ -513,5 +515,6 @@ class RecreationDotGov(BaseProvider):
                     )
                     total_campsite_availability.append(available_campsite)
         logger.info(f"\t{logging_utils.get_emoji(total_campsite_availability)}\t"
-                    f"{len(total_campsite_availability)} sites found in {month.strftime('%B')}")
+                    f"{len(total_campsite_availability)} total sites found in month of "
+                    f"{month.strftime('%B')}")
         return total_campsite_availability

@@ -6,17 +6,21 @@
 Push Notifications via Pushover
 """
 
+from abc import ABC
+from datetime import datetime
 import logging
-from typing import Optional
+from typing import List, Optional
 
 import requests
 
 from camply.config import PushoverConfig
+from .base_notifications import BaseNotifications
+from ..containers import AvailableCampsite
 
 logger = logging.getLogger(__name__)
 
 
-class PushoverNotifications(logging.StreamHandler):
+class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
     """
     Push Notifications via Pushover + a Logging Handler
     """
@@ -26,7 +30,7 @@ class PushoverNotifications(logging.StreamHandler):
         self.setLevel(level=level)
 
     def __repr__(self):
-        return "<PushoverNotifications>"
+        return f"<PushoverNotifications>"
 
     @staticmethod
     def send_message(message: str, **kwargs) -> Optional[requests.Response]:
@@ -70,3 +74,28 @@ class PushoverNotifications(logging.StreamHandler):
                                                       record.msg)
         title = f"Pushover {record.levelname.title()} Message"
         self.send_message(message=log_formatted_message, title=title)
+
+    @staticmethod
+    def send_campsites(campsites: List[AvailableCampsite], **kwargs):
+        """
+        Send a message with a campsite object
+
+        Parameters
+        ----------
+        campsites: AvailableCampsite
+        """
+        for campsite in campsites:
+            fields = list()
+            for key, value in campsite._asdict().items():
+                if key == "booking_url":
+                    key = "Booking Link"
+                    value = f"<a href='{value}'>{value}"
+                elif key == "booking_date":
+                    value: datetime = value.strftime("%Y-%m-%d")
+                formatted_key = key.replace("_", " ").title()
+                fields.append(f"<b>{formatted_key}:</b> {value}")
+            composed_message = "\n".join(fields)
+            message_title = (f"{campsite.recreation_area} | {campsite.facility_name} | "
+                             f"{campsite.booking_date.strftime('%Y-%m-%d')}")
+            PushoverNotifications.send_message(message=composed_message, title=message_title,
+                                               html=1)

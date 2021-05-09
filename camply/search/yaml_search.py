@@ -59,5 +59,4 @@ for file_path in config_files:
             recreation_area=recreation_area,
             campgrounds=campgrounds,
             weekends_only=weekends_only)
-        matches = campsite_finder.search_matching_campsites_available()
-        df = campsite_finder.assemble_availabilities(matches, log=True, verbose=True)
+        matches = campsite_finder.get_matching_campsites(log=True, verbose=True)

@@ -7,10 +7,10 @@ Recreation.gov Web Scraping Utilities
 """
 
 import logging
-from random import random
 from time import sleep
 from typing import List, Optional, Union
 
+from camply.config import RecreationBookingConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search.base_search import BaseCampingSearch
@@ -111,5 +111,5 @@ class SearchRecreationDotGov(BaseCampingSearch):
                     month=month)
                 found_campsites += campgrounds
                 if index + 1 < len(self.campgrounds):
-                    sleep(random() + 0.5)
+                    sleep(RecreationBookingConfig.RATE_LIMITING)
         return found_campsites

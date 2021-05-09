@@ -3,14 +3,13 @@
 # Author::    Justin Flannery  (mailto:juftin@juftin.com)
 
 """
-Search Provider Configuration
+Project Configuration for Yellowstone Variables
 """
 
-from typing import Dict
 
-from camply.search import SearchRecreationDotGov, SearchYellowstone
-
-CAMPSITE_PROVIDER: Dict[str, object] = {
-    "RecreationDotGov": SearchRecreationDotGov,
-    "Yellowstone": SearchYellowstone
-}
+class SearchConfig(object):
+    """
+    File Path Storage Class
+    """
+    POLLING_INTERVAL_MINIMUM: int = 5  # 5 MINUTES
+    RECOMMENDED_POLLING_INTERVAL: int = 10  # 10 MINUTES

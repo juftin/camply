@@ -7,7 +7,14 @@ Configuration
 """
 
 from os import getenv
+from random import uniform
 from typing import List
+
+from dotenv import load_dotenv
+
+from camply.config.file_config import FileConfig
+
+load_dotenv(FileConfig.DOT_ENV_FILE)
 
 USER_AGENTS: List[dict] = [
     {"User-Agent": ("Mozilla/5.0 (X11; Linux x86_64; rv:10.0) "
@@ -39,7 +46,8 @@ class RIDBConfig(object):
 
     https://ridb.recreation.gov/docs
     """
-    API_KEY: str = getenv("RIDB_API_KEY", None)
+    CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN: str = "a7416471-1b5d-4a64-ad3d-a233e7cb5c44"
+    API_KEY: str = getenv("RIDB_API_KEY", CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN)
 
     RIDB_SCHEME: str = "https"
     RIDB_NET_LOC: str = "ridb.recreation.gov"
@@ -79,18 +87,21 @@ class RecreationBookingConfig(object):
     Variable Storage Class for Recreation.gov Booking API
     """
     API_SCHEME: str = "https"
-    API_NET_LOC = "recreation.gov"
+    API_NET_LOC = "www.recreation.gov"
     API_BASE_PATH: str = "api/camps/availability/campground/"
     API_MONTH_PATH: str = "month"
     API_REFERRERS: dict = {
         "Referer": "https://www.recreation.gov/"
     }
+    # WAIT BETWEEN 1.01 - 1.51 SECONDS BETWEEN REQUESTS - EXACT RATE LIMIT UNKNOWN
+    RATE_LIMITING: float = round(uniform(1.01, 1.51), 2)
 
     CAMPSITE_UNAVAILABLE_STRINGS: list = [
         "Reserved",
         "Not Available",
         "Not Reservable",
-        "Not Reservable Management"
+        "Not Reservable Management",
+        "Not Available Cutoff"
     ]
 
     CAMPSITE_BASE: str = "campsites"
