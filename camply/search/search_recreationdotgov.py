@@ -13,7 +13,7 @@ from typing import List, Optional, Union
 from camply.config import RecreationBookingConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.providers import RecreationDotGov
-from camply.search.base_search import BaseCampingSearch
+from camply.search.base_search import BaseCampingSearch, SearchError
 from camply.utils import make_list
 
 logger = logging.getLogger(__name__)
@@ -96,6 +96,10 @@ class SearchRecreationDotGov(BaseCampingSearch):
         List[AvailableCampsite]
         """
         found_campsites = list()
+        if len(self.campgrounds) == 0:
+            error_message = "No campgrounds found to search"
+            logger.error(error_message)
+            raise SearchError(error_message)
         logger.info(f"Searching across {len(self.campgrounds)} campgrounds")
         for index, campground in enumerate(self.campgrounds):
             for month in self.search_months:

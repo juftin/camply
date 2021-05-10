@@ -26,7 +26,14 @@ from camply.utils.logging_utils import get_emoji
 logger = logging.getLogger(__name__)
 
 
-class CampsiteNotFound(Exception):
+class SearchError(Exception):
+    """
+    Generic Search Error
+    """
+    pass
+
+
+class CampsiteNotFound(SearchError):
     """
     Campsite not found Error
     """

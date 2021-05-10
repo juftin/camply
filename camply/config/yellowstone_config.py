@@ -66,18 +66,6 @@ class YellowstoneConfig(DataColumns):
     WEBUI_BASE_ENDPOINT: str = "secure.yellowstonenationalparklodges.com"
     WEBUI_BOOKING_PATH: str = "booking/lodging-select"
 
-    CAMPSITE_ID_COLUMN: str = "campsite_code"
-    BOOKING_DATE_COLUMN: str = "booking_date"
-    CAMPSITE_SITE_NAME_COLUMN: str = "campsite_title"
-    CAMPSITE_TYPE_COLUMN: str = "campsite_type"
-    CAMPSITE_OCCUPANCY_COLUMN: str = "capacity"
-    CAMPSITE_USE_TYPE_COLUMN: str = "campsite_type"
-    AVAILABILITY_STATUS_COLUMN: str = "Available"
-    RECREATION_AREA_COLUMN: str = "recreation_area"
-    FACILITY_NAME_COLUMN: str = "facility_name"
-    FACILITY_ID_COLUMN: str = "facility_id"
-    BOOKING_URL_COLUMN: str = "booking_url"
-
     YELLOWSTONE_RECREATION_AREA_ID: int = 1
     YELLOWSTONE_RECREATION_AREA_NAME: str = "Yellowstone"
     YELLOWSTONE_LOOP_NAME: str = "N/A"

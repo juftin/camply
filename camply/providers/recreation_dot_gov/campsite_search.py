@@ -118,7 +118,7 @@ class RecreationDotGov(BaseProvider):
                 facilities += self.find_facilities_per_recreation_area(rec_area_id=recreation_area)
             return facilities
         else:
-            if search_string.strip() == "" and kwargs.get("state", None) is None:
+            if search_string in ["", None] and kwargs.get("state", None) is None:
                 raise RuntimeError("You must provide a search query or state to find campsites")
             facilities_response = self._ridb_get_paginate(path=RIDBConfig.FACILITIES_API_PATH,
                                                           params=dict(query=search_string,
@@ -150,7 +150,7 @@ class RecreationDotGov(BaseProvider):
         filtered_responses: List[dict]
             Array of Matching Campsites
         """
-        logger.info(f"Retrieving Facility Information for Recreation Area ID: {rec_area_id}.")
+        logger.info(f"Retrieving Facility Information for Recreation Area ID: `{rec_area_id}`.")
         api_path = f"{RIDBConfig.REC_AREA_API_PATH}/{rec_area_id}/{RIDBConfig.FACILITIES_API_PATH}"
         api_response = self._ridb_get_paginate(path=api_path, params=dict(full="true", **kwargs))
         filtered_facilities = self._filter_facilities_responses(responses=api_response)
