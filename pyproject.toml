@@ -3,7 +3,11 @@ name = "camply"
 version = "0.1.0"
 description = "Campsite Reservation Cancellation Finder"
 authors = ["Justin Flannery <juftin@juftin.com>"]
+maintainers = ["Justin Flannery <juftin@juftin.com>"]
 license = "MIT"
+readme = "README.md"
+repository = "https://github.com/juftin/camply"
+keywords = ["camping", "scraper", "reservation", "national-parks", "notifications"]
 
 [tool.poetry.scripts]
 camply = "camply.utils.camply_cli:main"
