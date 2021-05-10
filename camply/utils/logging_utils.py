@@ -5,6 +5,7 @@
 """
 Logging Utilities for Pushover Variables
 """
+import logging
 
 CALENDARMOJI = "📅"
 CAMPMOJI = "🏕"
@@ -29,3 +30,24 @@ def get_emoji(obj: list) -> str:
         return TENTMOJI
     else:
         return XMOJI
+
+
+def log_camply(self: logging.Logger, message: str, *args, **kwargs) -> None:
+    """
+    Custom Logging Notification Level for Pushover Logging
+    between logging.ERROR and logging.CRITICAL (45)
+    Parameters
+    ----------
+    self: logging.Logger
+    message: str
+        Message String
+    args
+    kwargs
+    Returns
+    -------
+    None
+    """
+    notification_level = logging.INFO + 1
+    logging.addLevelName(level=notification_level, levelName="CAMPLY")
+    if self.isEnabledFor(level=notification_level):
+        self._log(level=notification_level, msg=message, args=args, **kwargs)

@@ -133,7 +133,7 @@ class BaseCampingSearch(ABC):
                 notifier.send_campsites(campsites=matching_campsites)
             else:
                 logger.warning(f"Found matching campsites on the first try! "
-                               "Skipping notifications. Go Get your campsite! 🏕")
+                               "Switching to Silent Notifications. Go Get your campsite! 🏕")
                 silent_notifier = SilentNotifications()
                 silent_notifier.send_campsites(campsites=matching_campsites)
         else:

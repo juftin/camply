@@ -67,15 +67,18 @@ class RecreationDotGov(BaseProvider):
         filtered_responses: List[dict]
             Array of Matching Campsites
         """
-        if search_string.strip() == "" and kwargs.get("state", None) is None:
+        try:
+            assert any([kwargs.get("state", None) is not None,
+                        search_string is not None and search_string != ""])
+        except AssertionError:
             raise RuntimeError("You must provide a search query or state(s) "
                                "to find Recreation Areas")
         logger.info(f'Searching for Recreation Areas: "{search_string}"')
+        params = dict(query=search_string, sort="Name", full="true", **kwargs)
+        if search_string is None:
+            params.pop("query")
         api_response = self._ridb_get_paginate(path=RIDBConfig.REC_AREA_API_PATH,
-                                               params=dict(query=search_string,
-                                                           sort="Name",
-                                                           full="true",
-                                                           **kwargs))
+                                               params=params)
         logger.info(f"{len(api_response)} recreation areas found.")
         logging_messages = list()
         for recreation_area_object in api_response:
@@ -86,9 +89,9 @@ class RecreationDotGov(BaseProvider):
         self.log_sorted_response(response_array=logging_messages)
         return api_response
 
-    def find_campsites(self, search_string: str = None,
-                       rec_area_id: Optional[List[int]] = None,
-                       campground_id: Optional[List[int]] = None, **kwargs) -> List[dict]:
+    def find_campgrounds(self, search_string: str = None,
+                         rec_area_id: Optional[List[int]] = None,
+                         campground_id: Optional[List[int]] = None, **kwargs) -> List[dict]:
         """
         Find Matching Campsites Based on Search String
 
@@ -106,7 +109,7 @@ class RecreationDotGov(BaseProvider):
         filtered_responses: List[dict]
             Array of Matching Campsites
         """
-        if campground_id is not None:
+        if campground_id not in [None, list()]:
             return self._ridb_get_data(path=f"{RIDBConfig.FACILITIES_API_PATH}/{campground_id}",
                                        params=dict(full=True))
         if rec_area_id is not None:
@@ -128,7 +131,8 @@ class RecreationDotGov(BaseProvider):
             logging_messages = list()
             for facility in filtered_responses:
                 _, campground_facility = self.process_facilities_responses(facility=facility)
-                logging_messages.append(campground_facility)
+                if campground_facility is not None:
+                    logging_messages.append(campground_facility)
             self.log_sorted_response(response_array=logging_messages)
             return filtered_responses
 
@@ -154,7 +158,8 @@ class RecreationDotGov(BaseProvider):
         logger.info(f"{len(filtered_facilities)} camping facilities found")
         for facility in filtered_facilities:
             _, campground_facility = self.process_facilities_responses(facility=facility)
-            logging_messages.append(campground_facility)
+            if campground_facility is not None:
+                logging_messages.append(campground_facility)
         self.log_sorted_response(response_array=logging_messages)
         return filtered_facilities
 
@@ -238,8 +243,11 @@ class RecreationDotGov(BaseProvider):
             historical_results += result_count
             total_count = metadata[RIDBConfig.FACILITY_METADATA_RESULTS][
                 RIDBConfig.PAGINATE_TOTAL_COUNT]
-
-            if historical_results < total_count:
+            if offset >= 500:
+                logger.info(f"Too Many Results returned ({total_count}), "
+                            "try performing a more specific search")
+                data_incomplete = False
+            elif historical_results < total_count:
                 offset = historical_results
             else:
                 data_incomplete = False
@@ -270,7 +278,8 @@ class RecreationDotGov(BaseProvider):
         return filtered_responses
 
     @classmethod
-    def process_facilities_responses(cls, facility: dict) -> Tuple[dict, CampgroundFacility]:
+    def process_facilities_responses(cls, facility: dict) -> \
+            Tuple[dict, Optional[CampgroundFacility]]:
         """
         Process Facilities Responses to be More Usable
 
@@ -289,16 +298,19 @@ class RecreationDotGov(BaseProvider):
                 RIDBConfig.FACILITY_LOCATION_STATE].upper()
         except IndexError:
             facility_state = "USA"
-        recreation_area = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
-            RIDBConfig.RECREATION_AREA_NAME]
-        recreation_area_id = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
-            RIDBConfig.REC_AREA_ID]
-        formatted_recreation_area = f"{recreation_area}, {facility_state}"
-        campground_facility = CampgroundFacility(facility_name=facility_name.title(),
-                                                 recreation_area=formatted_recreation_area,
-                                                 facility_id=facility_id,
-                                                 recreation_area_id=recreation_area_id)
-        return facility, campground_facility
+        try:
+            recreation_area = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
+                RIDBConfig.RECREATION_AREA_NAME]
+            recreation_area_id = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
+                RIDBConfig.REC_AREA_ID]
+            formatted_recreation_area = f"{recreation_area}, {facility_state}"
+            campground_facility = CampgroundFacility(facility_name=facility_name.title(),
+                                                     recreation_area=formatted_recreation_area,
+                                                     facility_id=facility_id,
+                                                     recreation_area_id=recreation_area_id)
+            return facility, campground_facility
+        except IndexError:
+            return facility, None
 
     @classmethod
     def _process_rec_area_response(cls, recreation_area=dict) -> \

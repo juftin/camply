@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 from camply.config.file_config import FileConfig
 
 logger = logging.getLogger(__name__)
-load_dotenv(FileConfig.DOT_ENV_FILE)
+load_dotenv(FileConfig.DOT_CAMPLY_FILE)
 
 
 class PushoverConfig(object):
@@ -46,14 +46,22 @@ class EmailConfig(object):
     Email Notification Config Class
     """
     EMAIL_TO_ADDRESS: str = getenv("EMAIL_TO_ADDRESS", None)
-    EMAIL_FROM_ADDRESS: str = getenv("EMAIL_FROM_ADDRESS", "camply@juftin.com")
-    EMAIL_SUBJECT: str = getenv("EMAIL_SUBJECT", "Camply Notification")
-    SMTP_EMAIL_SERVER: str = getenv("SMTP_EMAIL_SERVER", "smtp.gmail.com")
-    SMTP_EMAIL_SERVER_USERNAME: str = getenv("SMTP_EMAIL_SERVER_USERNAME", None)
-    SMTP_EMAIL_SERVER_PASSWORD: str = getenv("SMTP_EMAIL_SERVER_PASSWORD", None)
-    SMTP_EMAIL_SERVER_PORT: int = int(getenv("SMTP_EMAIL_SERVER_PORT", 465))
+    DEFAULT_FROM_ADDRESS: str = "camply@juftin.com"
+    EMAIL_FROM_ADDRESS: str = getenv("EMAIL_FROM_ADDRESS", DEFAULT_FROM_ADDRESS)
+    DEFAULT_SUBJECT_LINE: str = "Camply Notification"
+    EMAIL_SUBJECT_LINE: str = getenv("EMAIL_SUBJECT_LINE", DEFAULT_SUBJECT_LINE)
+    DEFAULT_SMTP_SERVER: str = "smtp.gmail.com"
+    EMAIL_SMTP_SERVER: str = getenv("EMAIL_SMTP_SERVER", DEFAULT_SMTP_SERVER)
+    EMAIL_USERNAME: str = getenv("EMAIL_USERNAME", None)
+    EMAIL_PASSWORD: str = getenv("EMAIL_PASSWORD", None)
+    DEFAULT_SMTP_PORT: int = 465
+    EMAIL_SMTP_PORT: int = int(getenv("EMAIL_SMTP_PORT", DEFAULT_SMTP_PORT))
 
     ENVIRONMENT_VARIABLE_NAMES: List[str] = ["EMAIL_TO_ADDRESS",
-                                             "SMTP_EMAIL_SERVER",
-                                             "SMTP_EMAIL_SERVER_USERNAME",
-                                             "SMTP_EMAIL_SERVER_PASSWORD"]
+                                             "EMAIL_USERNAME",
+                                             "EMAIL_PASSWORD"]
+    OPTIONAL_ENVIRONMENT_VARIABLE: List[str] = [
+        f"EMAIL_SMTP_SERVER (default: {DEFAULT_SMTP_SERVER})",
+        f"EMAIL_FROM_ADDRESS (default: {DEFAULT_FROM_ADDRESS})",
+        f'EMAIL_SUBJECT_LINE (default: "{DEFAULT_SUBJECT_LINE}")',
+        f"EMAIL_SMTP_PORT (default: {DEFAULT_SMTP_PORT})"]

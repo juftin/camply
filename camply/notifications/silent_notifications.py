@@ -5,11 +5,10 @@
 """
 Silent Notifications
 """
+
 from abc import ABC
 import logging
-from typing import List, Optional
-
-import requests
+from typing import List
 
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
@@ -22,11 +21,17 @@ class SilentNotifications(BaseNotifications, ABC):
     Silent Notifications
     """
 
+    def __init__(self):
+        """
+        Initialize Silent Notifications
+        """
+        logger.info(f"{self} enabled. I hope you're watching these logs.")
+
     def __repr__(self):
         return f"<SilentNotifications>"
 
     @staticmethod
-    def send_message(message: str, **kwargs) -> Optional[requests.Response]:
+    def send_message(message: str, **kwargs) -> None:
         """
         Send a message via Email
 
@@ -39,7 +44,7 @@ class SilentNotifications(BaseNotifications, ABC):
 
         Returns
         -------
-        Response
+        None
         """
         logger.info(f"SilentNotification: {message}")
 

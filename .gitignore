@@ -9,7 +9,6 @@ __pycache__/
 .idea/
 
 # .env File
-!examle.*.env
 *.env
 
 # BUILD FILES

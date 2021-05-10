@@ -49,7 +49,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         self._recreation_area_id = make_list(recreation_area)
         self._campground_object = campgrounds
         self.weekends_only = weekends_only
-        assert any([campgrounds is not None, recreation_area is not None]) is True
+        assert any([campgrounds not in [[], None], recreation_area is not None]) is True
         self.campsite_finder: RecreationDotGov
         self.campgrounds = self._get_searchable_campgrounds()
 
@@ -63,15 +63,16 @@ class SearchRecreationDotGov(BaseCampingSearch):
         searchable_campgrounds: List[int]
             List of searchable campground IDs
         """
-        if self._campground_object is not None:
+        if self._campground_object not in [[], None]:
             returned_sites = list()
             for campground_id in make_list(self._campground_object):
-                facility = self.campsite_finder.find_campsites(campground_id=campground_id)
+                facility = self.campsite_finder.find_campgrounds(campground_id=campground_id)
                 campground_facility: CampgroundFacility
                 campground_data, campground_facility = \
                     self.campsite_finder.process_facilities_responses(facility=facility)
-                self.campsite_finder.log_sorted_response(response_array=[campground_facility])
-                returned_sites.append(campground_facility)
+                if campground_facility is not None:
+                    self.campsite_finder.log_sorted_response(response_array=[campground_facility])
+                    returned_sites.append(campground_facility)
             return returned_sites
         elif self._recreation_area_id is not None:
             processed_array = list()
@@ -82,7 +83,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
                 for campground in campground_array:
                     campground_data, campground_facility = \
                         self.campsite_finder.process_facilities_responses(facility=campground)
-                    processed_array.append(campground_facility)
+                    if campground_facility is not None:
+                        processed_array.append(campground_facility)
             return processed_array
 
     def get_all_campsites(self) -> List[AvailableCampsite]:

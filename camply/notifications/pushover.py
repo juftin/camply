@@ -28,6 +28,13 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
     def __init__(self, level: Optional[int] = logging.INFO):
         logging.StreamHandler.__init__(self)
         self.setLevel(level=level)
+        if PushoverConfig.PUSH_TOKEN in [None, ""] or PushoverConfig.PUSH_USER in [None, ""]:
+            warning_message = (
+                "Pushover is not configured properly. "
+                "To send pushover messages make sure to set the "
+                "proper environment variables: `PUSHOVER_PUSH_TOKEN`, `PUSHOVER_PUSH_USER`.")
+            logger.error(warning_message)
+            raise EnvironmentError(warning_message)
 
     def __repr__(self):
         return f"<PushoverNotifications>"
@@ -45,21 +52,17 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
         -------
         Response
         """
-        if PushoverConfig.PUSH_TOKEN is not None:
-            response = requests.post(url=PushoverConfig.PUSHOVER_API_ENDPOINT,
-                                     headers=PushoverConfig.API_HEADERS,
-                                     params=dict(token=PushoverConfig.PUSH_TOKEN,
-                                                 user=PushoverConfig.PUSH_USER,
-                                                 message=message,
-                                                 **kwargs)
-                                     )
-            if response.status_code != 200:
-                logger.warning(f"Notifications weren't able to be sent to Pushover. "
-                               "Your configuration might be incorrect.")
-            return response
-        else:
-            logger.warning(f"Pushover isn't currently configured. "
-                           "I hope you're watching these logs :)")
+        response = requests.post(url=PushoverConfig.PUSHOVER_API_ENDPOINT,
+                                 headers=PushoverConfig.API_HEADERS,
+                                 params=dict(token=PushoverConfig.PUSH_TOKEN,
+                                             user=PushoverConfig.PUSH_USER,
+                                             message=message,
+                                             **kwargs)
+                                 )
+        if response.status_code != 200:
+            logger.warning(f"Notifications weren't able to be sent to Pushover. "
+                           "Your configuration might be incorrect.")
+        return response
 
     def emit(self, record: logging.LogRecord):
         """

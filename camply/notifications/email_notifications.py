@@ -26,6 +26,24 @@ class EmailNotifications(BaseNotifications, ABC):
     Notifications via Email
     """
 
+    def __init__(self):
+        """
+        Data Validation
+        """
+        # PERFORM SOME VALIDATION
+        if any([EmailConfig.EMAIL_TO_ADDRESS in [None, ""],
+                EmailConfig.EMAIL_USERNAME in [None, ""],
+                EmailConfig.EMAIL_PASSWORD in [None, ""]]):
+            variable_names = "\n\t".join(EmailConfig.ENVIRONMENT_VARIABLE_NAMES)
+            optional_variable_names = "\n\t".join(
+                EmailConfig.OPTIONAL_ENVIRONMENT_VARIABLE)
+            error_message = ("Please provide server connection parameters manually or set "
+                             f"the following Environment Variables:\n\t{variable_names}"
+                             "\nOptional Environment Variables:\n\t"
+                             f"{optional_variable_names}")
+            logger.error(error_message)
+            raise EnvironmentError(error_message)
+
     def __repr__(self):
         return f"<EmailNotifications>"
 
@@ -47,22 +65,21 @@ class EmailNotifications(BaseNotifications, ABC):
         """
         email = EmailMessage()
         email.set_content(message)
-        email["Subject"] = kwargs.get("subject", EmailConfig.EMAIL_SUBJECT)
+        email["Subject"] = kwargs.get("subject", EmailConfig.EMAIL_SUBJECT_LINE)
         email["From"] = kwargs.get("from", EmailConfig.EMAIL_FROM_ADDRESS)
         email["To"] = kwargs.get("to", EmailConfig.EMAIL_TO_ADDRESS)
-        email_server_user = kwargs.get("username", EmailConfig.SMTP_EMAIL_SERVER_USERNAME)
-        email_server_password = kwargs.get("password", EmailConfig.SMTP_EMAIL_SERVER_PASSWORD)
-        email_server_smtp_server = kwargs.get("server", EmailConfig.SMTP_EMAIL_SERVER)
-        email_server_smtp_server_port = kwargs.get("port", EmailConfig.SMTP_EMAIL_SERVER_PORT)
-        email_server = SMTP_SSL(email_server_smtp_server, email_server_smtp_server_port)
-        if any([email_server_smtp_server is None,
-                email_server_user is None,
-                email_server_password is None]):
-            variable_names = "\n\t".join(EmailConfig.ENVIRONMENT_VARIABLE_NAMES)
-            raise EnvironmentError("Please provide server connection parameters manually or set "
-                                   f"the following Environment Variables:\n\t{variable_names}")
+        email_server_user = kwargs.get("username", EmailConfig.EMAIL_USERNAME)
+        email_server_password = kwargs.get("password",
+                                           EmailConfig.EMAIL_PASSWORD)
+        email_server_smtp_server = kwargs.get("server",
+                                              EmailConfig.EMAIL_SMTP_SERVER)
+        email_server_smtp_server_port = kwargs.get("port",
+                                                   EmailConfig.EMAIL_SMTP_PORT)
+        email_server = SMTP_SSL(email_server_smtp_server,
+                                email_server_smtp_server_port)
         email_server.ehlo()
-        email_server.login(user=email_server_user, password=email_server_password)
+        email_server.login(user=email_server_user,
+                           password=email_server_password)
         logger.info(f"Sending Email to {email['To']}: {email['Subject']}")
         email_server.send_message(email)
         logger.info("Email sent successfully")
@@ -80,8 +97,9 @@ class EmailNotifications(BaseNotifications, ABC):
         master_email_body_list = list()
         for campsite in campsites:
             fields = list()
-            message_title = (f"{campsite.recreation_area} | {campsite.facility_name} | "
-                             f"{campsite.booking_date.strftime('%Y-%m-%d')}:")
+            message_title = (
+                f"{campsite.recreation_area} | {campsite.facility_name} | "
+                f"{campsite.booking_date.strftime('%Y-%m-%d')}:")
             fields.append(message_title)
             for key, value in campsite._asdict().items():
                 if key == "booking_date":

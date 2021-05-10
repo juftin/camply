@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 from camply.config.file_config import FileConfig
 
-load_dotenv(FileConfig.DOT_ENV_FILE)
+load_dotenv(FileConfig.DOT_CAMPLY_FILE)
 
 USER_AGENTS: List[dict] = [
     {"User-Agent": ("Mozilla/5.0 (X11; Linux x86_64; rv:10.0) "
@@ -46,7 +46,8 @@ class RIDBConfig(object):
 
     https://ridb.recreation.gov/docs
     """
-    CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN: str = "a7416471-1b5d-4a64-ad3d-a233e7cb5c44"
+    CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN: str = \
+        "a7416471-1b5d-4a64-ad3d-a233e7cb5c44"
     API_KEY: str = getenv("RIDB_API_KEY", CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN)
 
     RIDB_SCHEME: str = "https"
