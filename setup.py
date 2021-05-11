@@ -3,6 +3,7 @@ from setuptools import setup
 
 packages = ["camply",
             "camply.config",
+            "camply.notifications",
             "camply.providers",
             "camply.providers.recreation_dot_gov",
             "camply.providers.xanterra",
@@ -13,6 +14,8 @@ package_data = {"": ["*"]}
 
 install_requires = ["PyYAML>=3.12",
                     "pandas>=0.22.0",
+                    "python-dotenv>=0.6.0",
+                    "pytz>=2016.1",
                     "requests>=2.9.0",
                     "tenacity>=3.6.0"]
 
@@ -29,13 +32,13 @@ camply_long_description = ("camply is a Campsite Reservation Finder️. Finding 
 setup_kwargs = {
     "name": "camply",
     "version": "0.1.0",
-    "description": "Campsite Reservation Finder",
+    "description": "camply, the campsite finder",
     "long_description": camply_long_description,
     "author": "Justin Flannery",
     "author_email": "juftin@juftin.com",
     "maintainer": "Justin Flannery",
     "maintainer_email": "juftin@juftin.com",
-    "url": None,
+    "url": "https://github.com/juftin/camply",
     "packages": packages,
     "package_data": package_data,
     "install_requires": install_requires,

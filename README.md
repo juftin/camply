@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/juftin/camply/camply/docs/static/camply.svg" 
-    width="400" height="400"  alt="camply">
+    width="400" height="400" alt="camply">
 </p>
 
 `camply`, the campsite finder, is a tool to help you book an online campground. Finding reservations
@@ -18,14 +18,22 @@ out.
 ## Table of Contents
 
 - [Usage](#usage)
-    - [Command Line Campsite Search](#command-line-campsite-search)
-    - [YAML Config Campsite Search](#yaml-config-campsite-search)
-    - [Object-Oriented Campsite Search](#object-oriented-campsite-search)
-    - [Dependencies](#dependencies)
+    * [Command Line Usage](#command-line-usage)
+        + [Searching for a Campsite](#searching-for-a-campsite)
+        + [Continuously Searching For A Campsite](#continuously-searching-for-a-campsite)
+        + [Look for weekend campsite availabilities](#look-for-weekend-campsite-availabilities)
+        + [Look for a campsite inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
+        + [Look for Recreation Areas to Search](#look-for-recreation-areas-to-search)
+        + [Look for specific campgrounds within a recreation area](#look-for-specific-campgrounds-within-a-recreation-area)
+        + [Look for specific campgrounds that match a query string](#look-for-specific-campgrounds-that-match-a-query-string)
+        + [YAML Config Campsite Search](#yaml-config-campsite-search)
+    * [Object Oriented Usage](#object-oriented-usage)
+        + [Object-Oriented Campsite Search:](#object-oriented-campsite-search-)
+- [Dependencies](#dependencies)
 
 ## Usage
 
-### Command Line Campsite Search:
+### Command Line Usage
 
 #### Searching for a Campsite
 
@@ -61,7 +69,7 @@ camply campsites \
 2021-05-09 23:54:44,868 [  CAMPLY]: Exiting camply 👋
 ```
 
-### Continuously Searching For A Campsite
+#### Continuously Searching For A Campsite
 
 This version runs until found a match is found. It also sends a notification via `pushover`.
 Alternate notification methods are `email` and `silent` (default).
@@ -101,7 +109,7 @@ camply campsites \
 ...
 ```
 
-## Look for weekend campsite availabilities
+#### Look for weekend campsite availabilities
 
 This below search looks across larger periods of time, but only if a campground is available to book
 on a Friday or Saturday night (`--weekends`). It also uses the `--polling-interval` argument which
@@ -149,7 +157,7 @@ camply campsites \
 ...
 ```
 
-### Look for a campsite inside of Yellowstone
+#### Look for a campsite inside of Yellowstone
 
 Yellowstone doesn't use https://recreation.gov to manage its campgrounds, instead it uses its own
 proprietary system. In order to search the Yellowstone API for campsites, make sure to pass
@@ -188,7 +196,7 @@ camply campsites \
 2021-05-10 00:31:27,097 [  CAMPLY]: Exiting camply 👋
 ```
 
-### Look for Recreation Areas to Search
+#### Look for Recreation Areas to Search
 
 This search lists recreation areas. It accepts `--search` and `--state` arguments
 
@@ -209,7 +217,7 @@ camply recreation-areas --search "Yosemite National Park"
 2021-05-10 00:02:40,016 [  CAMPLY]: Exiting camply 👋
 ```
 
-### Look for specific campgrounds within a recreation area
+#### Look for specific campgrounds within a recreation area
 
 This search lists campgrounds attached to a recreation area id `--rec-area-id`. It also
 accepts `--search` and `--state` arguments.
@@ -234,7 +242,7 @@ camply campgrounds --rec-area-id 2991
 2021-05-10 00:03:17,045 [  CAMPLY]: Exiting camply 👋
 ```
 
-### Look for specific campgrounds that match a query string
+#### Look for specific campgrounds that match a query string
 
 The below search looks for Fire Lookout Towers to stay in inside of California.
 
@@ -255,7 +263,7 @@ camply campgrounds --search "Fire Tower Lookout" --state CA
 2021-05-10 00:05:20,652 [  CAMPLY]: Exiting camply 👋
 ```
 
-### YAML Config Campsite Search
+#### YAML Config Campsite Search
 
 `campsite_searches/glacier_in_may.yaml`:
 
@@ -298,7 +306,9 @@ camply --find-availabilities \
 2021-04-23 22:04:52,524 [    INFO]: 		🔗 https://www.recreation.gov/camping/campsites/5441
 ```
 
-### Object-Oriented Campsite Search:
+### Object Oriented Usage
+
+#### Object-Oriented Campsite Search:
 
 ```python
 from datetime import datetime
@@ -318,7 +328,7 @@ camping_finder = SearchRecreationDotGov(search_window=month_of_june,
 matches = camping_finder.get_matching_campsites(log=True, verbose=True, continuous=False)
 ```
 
-### Dependencies
+## Dependencies
 
 I've tried to build this module pretty simply. Everything is built on Python 3. This particular
 project was built in Python `3.8.X`, but any version of Python 3 should suffice. Currently, there
