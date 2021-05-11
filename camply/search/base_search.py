@@ -109,7 +109,7 @@ class BaseCampingSearch(ABC):
                                continuous: bool = False,
                                polling_interval: Optional[int] = None,
                                notify_first_try: bool = False,
-                               notification_provider: Union["pushover", "email"] = "silent") -> \
+                               notification_provider: str = "silent") -> \
             List[AvailableCampsite]:
         """
         Perform the Search and Return Matching Availabilities
