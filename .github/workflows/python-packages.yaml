@@ -1,4 +1,4 @@
-name: camply
+name: Camply PyTest
 
 on:
     push:
