@@ -347,7 +347,7 @@ functionality. Use the below example for a campground within Glacier National Pa
 
 First, perform your search on https://recreation.gov
 <p>
-<img src="docs/static/recreation_dot_gov.png" swidth="500" alt="recreation_dot_gov search">
+<img src="docs/static/recreation_dot_gov.png" width="500" alt="recreation_dot_gov search">
 </p>
 
 The above search will take you to a URL like
