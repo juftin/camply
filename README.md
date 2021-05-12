@@ -9,7 +9,9 @@ Services like https://recreation.gov (which works on thousands of campgrounds ac
 continuously check for cancellations and availabilities to pop up. Once a campsite becomes
 available, `camply` sends you a notification to book your spot!
 
+[![Version](https://img.shields.io/badge/camply-0.1.0-orange)](https://github.com/juftin/camply)
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yaml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yaml)
+[![Python Versions](https://img.shields.io/badge/python-3.6%20|%203.7%20|%203.8%20|%203.9-blue)](https://pypi.python.org/pypi/camply/)
 
 ## Important Notice
 
