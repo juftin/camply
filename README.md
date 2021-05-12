@@ -21,9 +21,12 @@ out.
 
 ## Table of Contents
 
+- [Important Notice](#important-notice)
 - [Usage](#usage)
     * [Command Line Usage](#command-line-usage)
+    * [Examples](#examples)
         + [Searching for a Campsite](#searching-for-a-campsite)
+        + [Generating the config file for notifications](#generating-the-config-file-for-notifications)
         + [Continuously Searching For A Campsite](#continuously-searching-for-a-campsite)
         + [Look for weekend campsite availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for a campsite inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
@@ -31,6 +34,7 @@ out.
         + [Look for specific campgrounds within a recreation area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for specific campgrounds that match a query string](#look-for-specific-campgrounds-that-match-a-query-string)
         + [YAML Config Campsite Search](#yaml-config-campsite-search)
+    * [Finding Recreation Areas and Campgrounds without Using the Command Line](#finding-recreation-areas-and-campgrounds-without-using-the-command-line)
     * [Object Oriented Usage](#object-oriented-usage)
         + [Object-Oriented Campsite Search:](#object-oriented-campsite-search-)
 - [Dependencies](#dependencies)
@@ -474,7 +478,6 @@ ___________
 <br/>
 <br/>
 
-<p align="center">
-<img src="https://raw.githubusercontent.com/juftin/juftin/master/static/juftin.png" 
-    width="120" height="120"  alt="juftin logo">
-</p>
+
+[<p align="center" ><img src="https://raw.githubusercontent.com/juftin/juftin/master/static/juftin.png" width="120" height="120"  alt="juftin logo"> </p>](https://github.com/juftin)
+
