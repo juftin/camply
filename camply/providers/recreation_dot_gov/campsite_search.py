@@ -37,7 +37,7 @@ class RecreationDotGov(BaseProvider):
             self.api_key: str = RIDBConfig.API_KEY
         else:
             self.api_key: str = api_key
-        if self.api_key is None:
+        if self.api_key in [None, ""]:
             raise EnvironmentError("Set the RIDB_API_KEY environment variable "
                                    "or provide it manually")
         self._ridb_api_headers: dict = dict(accept="application/json", apikey=self.api_key)

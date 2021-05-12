@@ -48,7 +48,8 @@ class RIDBConfig(object):
     """
     CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN: str = \
         "a7416471-1b5d-4a64-ad3d-a233e7cb5c44"
-    API_KEY: str = getenv("RIDB_API_KEY", CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN)
+    _api_key: str = getenv("RIDB_API_KEY", CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN)
+    API_KEY = CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN if _api_key == "" else _api_key
 
     RIDB_SCHEME: str = "https"
     RIDB_NET_LOC: str = "ridb.recreation.gov"

@@ -12,7 +12,8 @@ packages = ["camply",
 
 package_data = {"": ["*"]}
 
-install_requires = ["PyYAML>=3.12",
+install_requires = ["numpy>=1.15.4",
+                    "PyYAML>=3.12",
                     "pandas>=0.22.0",
                     "python-dotenv>=0.6.0",
                     "pytz>=2016.1",

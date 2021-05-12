@@ -103,6 +103,45 @@ camply campsites \
 2021-05-09 23:54:44,868 [  CAMPLY]: Exiting camply 👋
 ```
 
+#### Generating the config file for notifications
+
+```shell
+camply configure
+```
+
+```text
+2021-05-11 21:15:57,422 [  CAMPLY]: camply, the campsite finder ⛺️
+2021-05-11 21:15:57,425 [    INFO]: Running camply configuration.
+2021-05-11 21:15:57,425 [    INFO]: This process generates a configuration file (https://github.com/juftin/camply/blob/camply/example.camply)
+2021-05-11 21:15:57,425 [    INFO]: Do not include quotes around values
+2021-05-11 21:15:57,425 [    INFO]: To skip a configuration field or keep it as default, just press <Enter>.
+2021-05-11 21:15:58,930 [ WARNING]: .camply file already exists on this machine: /Users/juftin/.camply
+2021-05-12 03:15:58,930 [   INPUT]: Would you like to overwrite your `.campy` configuration file? : y
+2021-05-12 03:16:22,516 [   INPUT]: Are you sure? (y/n) : y
+2021-05-11 21:16:23,954 [    INFO]: PUSHOVER_PUSH_TOKEN: Enables Pushover Notifications
+2021-05-12 03:16:23,954 [   INPUT]: Enter value for `PUSHOVER_PUSH_TOKEN` : 12345
+2021-05-11 21:16:26,746 [    INFO]: PUSHOVER_PUSH_USER: Enables Pushover Notifications
+2021-05-12 03:16:26,746 [   INPUT]: Enter value for `PUSHOVER_PUSH_USER` : 456789
+2021-05-11 21:16:29,561 [    INFO]: EMAIL_TO_ADDRESS: Email Notifications will be sent here
+2021-05-12 03:16:29,561 [   INPUT]: Enter value for `EMAIL_TO_ADDRESS` : juftin@gmail.com
+2021-05-11 21:16:40,227 [    INFO]: EMAIL_USERNAME: Email Authorization Login Username
+2021-05-12 03:16:40,227 [   INPUT]: Enter value for `EMAIL_USERNAME` : juftin@gmail.com
+2021-05-11 21:16:45,626 [    INFO]: EMAIL_PASSWORD: Email Authorization Login Password
+2021-05-12 03:16:45,626 [   INPUT]: Enter value for `EMAIL_PASSWORD` : password123
+2021-05-11 21:16:52,252 [    INFO]: EMAIL_SMTP_SERVER: Email Authorization SMTP Server Address
+2021-05-12 03:16:52,252 [   INPUT]: Enter value for `EMAIL_SMTP_SERVER` (default: `smtp.gmail.com`) :
+2021-05-11 21:16:53,849 [    INFO]: EMAIL_SMTP_PORT: Email Authorization SMTP Server Port
+2021-05-12 03:16:53,850 [   INPUT]: Enter value for `EMAIL_SMTP_PORT` (default: `465`) :
+2021-05-11 21:16:55,116 [    INFO]: EMAIL_FROM_ADDRESS: Email Notifications Will Come From this Email
+2021-05-12 03:16:55,116 [   INPUT]: Enter value for `EMAIL_FROM_ADDRESS` (default: `camply@juftin.com`) :
+2021-05-11 21:16:55,762 [    INFO]: EMAIL_SUBJECT_LINE: Email Notifications Will Have This Subject Line
+2021-05-12 03:16:55,762 [   INPUT]: Enter value for `EMAIL_SUBJECT_LINE` (default: `Camply Notification`) :
+2021-05-11 21:16:59,328 [    INFO]: RIDB_API_KEY: Personal Recreation.gov API Key. Not required.
+2021-05-12 03:16:59,329 [   INPUT]: Enter value for `RIDB_API_KEY` :
+2021-05-11 21:17:03,641 [    INFO]: `.camply` file written to machine: /Users/juftin/.camply
+2021-05-11 21:17:03,641 [  CAMPLY]: Exiting camply 👋
+```
+
 #### Continuously Searching For A Campsite
 
 This version runs until found a match is found. It also sends a notification via `pushover`.
@@ -350,9 +389,9 @@ First, perform your search on https://recreation.gov
 <img src="docs/static/recreation_dot_gov.png" width="500" alt="recreation_dot_gov search">
 </p>
 
-The above search will take you to a URL like
-this: https://www.recreation.gov/search?q=Glacier%20National%20Park&entity_id=2725&entity_type=recarea
-. Taking a closer look at the URL you can see that Glacier National Park has the 
+The above search will take you to a URL like this:
+https://www.recreation.gov/search?q=Glacier%20National%20Park&entity_id=2725&entity_type=recarea.
+Taking a closer look at the URL you can see that Glacier National Park has the 
 Recreation Area ID #2725.
 
 Searching deeper you might mind a place like Fish Creek Campground at a URL
@@ -366,8 +405,9 @@ has a Campground ID of #232493 (and it also sits inside of Recreation Area ID #2
 ```python
 from datetime import datetime
 import logging
+from typing import List
 
-from camply.containers import SearchWindow
+from camply.containers import AvailableCampsite, SearchWindow
 from camply.search import SearchRecreationDotGov
 
 logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
@@ -378,7 +418,28 @@ month_of_june = SearchWindow(start_date=datetime(year=2021, month=6, day=1),
 camping_finder = SearchRecreationDotGov(search_window=month_of_june,
                                         recreation_area=2725,  # Glacier Ntl Park
                                         weekends_only=False)
-matches = camping_finder.get_matching_campsites(log=True, verbose=True, continuous=False)
+matches: List[AvailableCampsite] = camping_finder.get_matching_campsites(log=True, verbose=True,
+                                                                         continuous=False)
+```
+
+The above script returns a list of any matching `AvailableCampsite` objects:
+
+```python
+[
+    AvailableCampsite(campsite_id='5391',
+                      booking_date=datetime.datetime(2021, 6, 13, 0, 0),
+                      campsite_site_name='B37',
+                      campsite_loop_name='Loop B',
+                      campsite_type='STANDARD NONELECTRIC',
+                      campsite_occupancy=(0, 8),
+                      campsite_use_type='Overnight',
+                      availability_status='Available',
+                      recreation_area='Glacier National Park, MT',
+                      recreation_area_id='2725',
+                      facility_name='Fish Creek Campground',
+                      facility_id='232493',
+                      booking_url='https://www.recreation.gov/camping/campsites/5391')
+]
 ```
 
 ## Dependencies
@@ -398,12 +459,9 @@ range of supported package versions.
 - [tenacity](https://tenacity.readthedocs.io/en/latest/)
     - The `tenacity` package is used for retrying data fetches from some APIs. This retrying
       methodology handles exceptions allowing for API downtime and facilitating exponential backoff.
-
-These packages can all be installed via pip:
-
-```shell
-pip install requests pandas pyyaml tenacity
-```
+- [python-dotenv](https://github.com/theskumar/python-dotenv)
+    - The `python-dotenv` ¬package reads key-value pairs from a `.env` file and can set them as
+      environment variables.
 
 ___________
 ___________

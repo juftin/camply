@@ -17,6 +17,7 @@ from camply.providers import RecreationDotGov
 from camply.search import CAMPSITE_SEARCH_PROVIDER
 from camply.search.base_search import SearchError
 from camply.utils import log_camply
+from camply.utils import configure_camply
 
 logging.Logger.camply = log_camply
 logger = logging.getLogger(__name__)
@@ -67,7 +68,7 @@ class CamplyCommandLine(object):
                                      prog=self.__name__)
         self.arguments_compiled: bool = False
         self.arguments_parsed: bool = False
-        self.cli_arguments: Namespace = None
+        self.cli_arguments: Optional[Namespace] = None
         self.arguments_validated: bool = False
         self.arguments_executed: bool = False
 
@@ -129,6 +130,12 @@ class CamplyCommandLine(object):
                                      required=False,
                                      help=CommandLineConfig.SEARCH_HELP)
 
+        self.campsites = subparsers.add_parser(
+            name=CommandLineConfig.COMMAND_CAMPSITES,
+            help=CommandLineConfig.COMMAND_CAMPSITES_HELP,
+            description=CommandLineConfig.COMMAND_CAMPSITES_DESCRIPTION,
+            parents=[recreation_area_id_argument, campground_argument])
+
         self.recreation_areas = subparsers.add_parser(
             name=CommandLineConfig.COMMAND_RECREATION_AREA,
             help=CommandLineConfig.COMMAND_RECREATION_AREA_HELP,
@@ -142,11 +149,10 @@ class CamplyCommandLine(object):
             parents=[search_argument, state_argument,
                      recreation_area_id_argument, campground_argument])
 
-        self.campsites = subparsers.add_parser(
-            name=CommandLineConfig.COMMAND_CAMPSITES,
-            help=CommandLineConfig.COMMAND_CAMPSITES_HELP,
-            description=CommandLineConfig.COMMAND_CAMPSITES_DESCRIPTION,
-            parents=[recreation_area_id_argument, campground_argument])
+        subparsers.add_parser(
+            name=CommandLineConfig.COMMAND_CONFIGURE,
+            help=CommandLineConfig.COMMAND_CONFIGURE_HELP,
+            description=CommandLineConfig.COMMAND_CONFIGURE_DESCRIPTION)
 
         self.campsites.add_argument(CommandLineConfig.START_DATE_ARGUMENT,
                                     action=CommandLineConfig.STORE,
@@ -277,6 +283,8 @@ class CamplyCommandLine(object):
             self.execute_campgrounds()
         elif self.cli_arguments.command == CommandLineConfig.COMMAND_CAMPSITES:
             self.execute_campsites()
+        elif self.cli_arguments.command == CommandLineConfig.COMMAND_CONFIGURE:
+            configure_camply.generate_dot_camply_file()
 
     def execute_recreation_areas(self):
         """

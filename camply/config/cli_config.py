@@ -86,8 +86,8 @@ class CommandLineArguments(object):
 
     NOTIFY_FIRST_TRY_ARGUMENT: str = "--notify-first-try"
     NOTIFY_FIRST_TRY_DESTINATION: str = "notify_first_try"
-    NOTIFY_FIRST_TRY_HELP: str = ("Whether to send a notification if a matching campsite is "
-                                  "found on the first try. Defaults to false, please try a quick")
+    NOTIFY_FIRST_TRY_HELP: str = ("Whether to send a non-silent notification if a matching "
+                                  "campsite is found on the first try. Defaults to false.")
 
 
 class CommandLineValidation(object):
@@ -145,8 +145,19 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
                                             "single 'campsite'")
 
     COMMAND_CAMPSITES: str = "campsites"
-    COMMAND_CAMPSITES_HELP: str = ("Search for Available Campsites (inside of Campgrounds) "
-                                   "using search criteria")
-    COMMAND_CAMPSITES_DESCRIPTION: str = ("")
+    COMMAND_CAMPSITES_HELP: str = "Find Available Campsites using Search Criteria"
+    COMMAND_CAMPSITES_DESCRIPTION: str = ("Search for a campsite within camply. Campsites are "
+                                          "returned based on the search criteria provided. "
+                                          "Campsites contain properties like booking date, site "
+                                          "type (tent, RV, cabin, etc), capacity, price, and a "
+                                          "link to make the booking. "
+                                          "Required parameters include `--start-date`, "
+                                          "`--end-date`, `--rec-area-id` / `--campground`. "
+                                          "Constant searching functionality can be enabled with "
+                                          " `--continuous` and `--notifications` via Email and "
+                                          "Pushover can be enabled using `--notifications`.")
+    COMMAND_CONFIGURE: str = "configure"
+    COMMAND_CONFIGURE_HELP: str = "Set up camply configuration file with an interactive console"
+    COMMAND_CONFIGURE_DESCRIPTION: str = COMMAND_CAMPSITES_HELP
 
     RECREATION_DOT_GOV: str = "RecreationDotGov"
