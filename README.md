@@ -35,6 +35,40 @@ out.
 
 ### Command Line Usage
 
+When installed, `camply`'s command line utility can be invoked with the command, `camply`. The CLI
+tool accepts four sub-arguments:
+
+1) `campsites`
+   Find Available Campsites using Search Criteria
+2) `recreation-areas`
+3) `campgrounds`
+4) `configure`
+
+```text
+❯ camply
+2021-05-11 20:39:01,327 [  CAMPLY]: camply, the campsite finder ⛺️
+usage: camply [-h] [--version] {campsites,recreation-areas,campgrounds,configure} ...
+
+Welcome to camply, the campsite finder. Finding reservations at these sold out campgrounds can be
+tough. That's where camply comes in. It scrapes the APIs of Booking Services like
+https://recreation.gov (which works on thousands of campgrounds across the USA) to continuously check
+for cancellations and availabilities to pop up. Once a campsite becomes available, camply sends you a
+notification to book your spot!
+
+positional arguments:
+  {campsites,recreation-areas,campgrounds,configure}
+    campsites           Find Available Campsites using Search Criteria
+    recreation-areas    Search for Recreation Areas and list them.
+    campgrounds         Search for Campgrounds (inside of Recreation Areas) and list them
+    configure           Set up camply configuration file with an interactive console
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+```
+
+### Examples
+
 #### Searching for a Campsite
 
 ```shell
@@ -305,6 +339,25 @@ camply --find-availabilities \
 2021-04-23 22:04:52,523 [    INFO]: 	⛰️  Glacier National Park, MT  🏕  Fish Creek Campground: ⛺ 1 sites
 2021-04-23 22:04:52,524 [    INFO]: 		🔗 https://www.recreation.gov/camping/campsites/5441
 ```
+
+### Finding Recreation Areas and Campgrounds without Using the Commandline (`recreation.gov`)
+
+You can uncover campground and recreation area IDs just by using the https://recreation.gov search
+functionality. Use the below example for a campground within Glacier National Park.
+
+First, perform your search on https://recreation.gov
+<p>
+<img src="docs/static/recreation_dot_gov.png" swidth="500" alt="recreation_dot_gov search">
+</p>
+
+The above search will take you to a URL like
+this: https://www.recreation.gov/search?q=Glacier%20National%20Park&entity_id=2725&entity_type=recarea
+. Taking a closer look at the URL you can see that Glacier National Park has the 
+Recreation Area ID #2725.
+
+Searching deeper you might mind a place like Fish Creek Campground at a URL
+like https://www.recreation.gov/camping/campgrounds/232493. Here, we can see that this campground
+has a Campground ID of #232493 (and it also sits inside of Recreation Area ID #2725)
 
 ### Object Oriented Usage
 
