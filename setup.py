@@ -43,7 +43,7 @@ setup_kwargs = {
     "package_data": package_data,
     "install_requires": install_requires,
     "entry_points": entry_points,
-    "python_requires": ">=3.5",
+    "python_requires": ">=3.6",
 }
 
 setup(**setup_kwargs)
