@@ -11,5 +11,6 @@ __pycache__/
 
 # BUILD FILES
 dist/
+build/
 poetry.lock
 *.egg-info

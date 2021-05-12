@@ -12,12 +12,12 @@ packages = ["camply",
 
 package_data = {"": ["*"]}
 
-install_requires = ["PyYAML>=3.12",
-                    "pandas>=0.22.0",
-                    "python-dotenv>=0.6.0",
-                    "pytz>=2016.1",
-                    "requests>=2.9.0",
-                    "tenacity>=3.6.0"]
+install_requires = ["PyYAML",
+                    "pandas",
+                    "python-dotenv",
+                    "pytz",
+                    "requests",
+                    "tenacity"]
 
 entry_points = {"console_scripts": ["camply = camply.utils.camply_cli:main"]}
 
@@ -43,7 +43,7 @@ setup_kwargs = {
     "package_data": package_data,
     "install_requires": install_requires,
     "entry_points": entry_points,
-    "python_requires": ">=3.6",
+    "python_requires": ">2.7,>=3.6",
 }
 
 setup(**setup_kwargs)

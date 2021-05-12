@@ -1,6 +1,6 @@
-pandas>=0.22.0
-python-dotenv>=0.6.0
-pytz>=2016.1
-PyYAML>=3.12
-requests>=2.9.0
-tenacity>=3.6.0
+pandas
+python-dotenv
+pytz
+PyYAML
+requests
+tenacity

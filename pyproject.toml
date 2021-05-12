@@ -13,16 +13,16 @@ keywords = ["camping", "scraper", "reservation", "national-parks", "notification
 camply = "camply.utils.camply_cli:main"
 
 [tool.poetry.dependencies]
-python = ">=3.6"
-requests = ">=2.9.0"
-pandas = ">=0.22.0"
-tenacity = ">=3.6.0"
-PyYAML = ">=3.12"
-python-dotenv = ">=0.6.0"
-pytz = ">=2016.1"
+python = "~3.6 || ~3.7 || ~3.8 || 3.9"
+requests = "*"
+pandas = "*"
+tenacity = "*"
+PyYAML = "*"
+python-dotenv = "*"
+pytz = "*"
 
 [tool.poetry.dev-dependencies]
-pytest = ">=6.0.0"
+pytest = "*"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
