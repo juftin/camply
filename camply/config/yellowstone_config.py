@@ -86,6 +86,7 @@ class YellowstoneConfig(DataColumns):
         if interval < YellowstoneConfig.MINIMUM_POLLING_INTERVAL:
             logger.warning("Polling interval is too short, setting "
                            f"to {YellowstoneConfig.MINIMUM_POLLING_INTERVAL} minutes")
-            return YellowstoneConfig.MINIMUM_POLLING_INTERVAL
+            return_interval = YellowstoneConfig.MINIMUM_POLLING_INTERVAL
         else:
-            return interval
+            return_interval = interval
+        return return_interval

@@ -18,4 +18,4 @@ jobs:
                       pip install .  --use-feature=in-tree-build
             -   name: Analysing the code with pylint
                 run:  |
-                      pylint camply `ls -R|grep .py$|xargs` --exit-zero
+                      python -m pylint ./camply `ls -R|grep .py$|xargs` --exit-zero
