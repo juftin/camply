@@ -3,7 +3,7 @@
 # Author::    Justin Flannery  (mailto:juftin@juftin.com)
 
 """
-Configuration
+API Scraping Configuration
 """
 
 from os import getenv

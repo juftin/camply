@@ -10,6 +10,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 import logging
 from os import getenv
+from time import sleep
 from typing import List, Optional, Set, Union
 
 from pandas import DataFrame
@@ -66,8 +67,9 @@ class BaseCampingSearch(ABC):
         # noinspection PyTypeChecker
         self.search_window: List[SearchWindow] = make_list(search_window)
         self.weekends_only: bool = weekends_only
-        self.search_days = self._get_search_days()
-        self.search_months = self._get_search_months()
+        self.search_days: List[datetime] = self._get_search_days()
+        self.search_months: List[datetime] = self._get_search_months()
+        self.campsites_found: Set[AvailableCampsite] = set()
 
     @abstractmethod
     def get_all_campsites(self) -> List[AvailableCampsite]:
@@ -87,6 +89,15 @@ class BaseCampingSearch(ABC):
         """
         Perform the Search and Return Matching Availabilities
 
+        Parameters
+        ----------
+        log: bool
+            Whether to log found campsites
+        verbose: bool
+            Used with `log` to enhance the amount of info logged to the console
+        raise_error: bool
+            Whether to raise an error if nothing is found. Defaults to False.
+
         Returns
         -------
         List[AvailableCampsite]
@@ -105,47 +116,177 @@ class BaseCampingSearch(ABC):
             raise CampsiteNotFound(campsite_availability_message)
         return matching_campgrounds
 
-    def get_matching_campsites(self, log: bool = True, verbose: bool = False,
-                               continuous: bool = False,
-                               polling_interval: Optional[int] = None,
-                               notify_first_try: bool = False,
-                               notification_provider: str = "silent") -> \
-            List[AvailableCampsite]:
+    @classmethod
+    def _get_polling_minutes(cls, polling_interval: Optional[int]):
         """
-        Perform the Search and Return Matching Availabilities
+        Return the Nu,ber of Minutes to Search
+
+        Parameters
+        ----------
+        polling_interval: Optional[int]
+            Used with `continuous=True`, the amount of time to wait between searches.
+            Defaults to 10 if not provided, cannot be less than 5
 
         Returns
         -------
-        List[AvailableCampsite]
+
         """
         if polling_interval is None:
             polling_interval = getenv("POLLING_INTERVAL", SearchConfig.RECOMMENDED_POLLING_INTERVAL)
         if int(polling_interval) < SearchConfig.POLLING_INTERVAL_MINIMUM:
             polling_interval = SearchConfig.POLLING_INTERVAL_MINIMUM
         polling_interval_minutes = int(round(float(polling_interval), 2))
+        return polling_interval_minutes
 
-        if continuous is True:
-            notifier = CAMPSITE_NOTIFICATIONS.get(notification_provider.lower(),
-                                                  SilentNotifications)()
-            logger.info(f"Searching for campsites every {polling_interval_minutes} minutes. "
-                        f"Notifications active via {notifier}")
-            retryer = tenacity.Retrying(
-                retry=tenacity.retry_if_exception_type(CampsiteNotFound),
-                wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60))
-            matching_campsites = retryer.__call__(self._search_matching_campsites_available, log,
-                                                  verbose, True)
-            if retryer.statistics.get("attempt_number", 1) > 1:
-                notifier.send_campsites(campsites=matching_campsites)
-            elif retryer.statistics.get("attempt_number", 1) == 1 and notify_first_try is True:
-                notifier.send_campsites(campsites=matching_campsites)
+    def _continuous_search_retry(self, log: bool, verbose: bool, polling_interval: int,
+                                 continuous_search_attempts: int,
+                                 notification_provider: str,
+                                 notify_first_try: bool) -> List[AvailableCampsite]:
+        """
+        Search for Campsites until at least one is found
+
+        Parameters
+        ----------
+        log: bool
+            Whether to log found campsites
+        verbose: bool
+            Used with `log` to enhance the amount of info logged to the console
+        polling_interval: Optional[int]
+            Used with `continuous=True`, the amount of time to wait between searches.
+            Defaults to 10 if not provided, cannot be less than 5
+        continuous_search_attempts: int
+            Number of preexisting search attempts
+        notification_provider: str
+            Used with `continuous=True`, Name of notification provider to use. Accepts "email",
+            "pushover", and defaults to "silent"
+        notify_first_try: bool
+            Used with `continuous=True`, whether to actually send notification if the
+            first search returns a result. Defaults to False
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        polling_interval_minutes = self._get_polling_minutes(polling_interval=polling_interval)
+        notifier = CAMPSITE_NOTIFICATIONS.get(notification_provider.lower(),
+                                              SilentNotifications)()
+        logger.info(f"Searching for campsites every {polling_interval_minutes} minutes. "
+                    f"Notifications active via {notifier}")
+        retryer = tenacity.Retrying(
+            retry=tenacity.retry_if_exception_type(CampsiteNotFound),
+            wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60))
+        matching_campsites = retryer.__call__(self._search_matching_campsites_available,
+                                              False, False, True)
+        found_campsites = set(matching_campsites)
+        new_campsites = found_campsites.difference(self.campsites_found)
+        self.assemble_availabilities(matching_data=list(new_campsites), log=log,
+                                     verbose=verbose)
+        logger.info(f"{len(new_campsites)} New Campsites Found.")
+        self.campsites_found.update(new_campsites)
+        logged_campsites = list(new_campsites)
+        if max([retryer.statistics.get("attempt_number", 1), continuous_search_attempts]) > 1:
+            notifier.send_campsites(campsites=logged_campsites)
+        elif retryer.statistics.get("attempt_number", 1) == 1 and notify_first_try is True:
+            notifier.send_campsites(campsites=logged_campsites)
+        else:
+            logger.warning(f"Found matching campsites on the first try! "
+                           "Using Silent Notifications. Go Get your campsite! 🏕")
+            if type(notifier) != SilentNotifications:
+                notifier = SilentNotifications()
+            notifier.send_campsites(campsites=logged_campsites)
+        return list(self.campsites_found)
+
+    def _search_campsites_continuous(self, log: bool = True, verbose: bool = False,
+                                     polling_interval: Optional[int] = None,
+                                     notification_provider: str = "silent",
+                                     notify_first_try: bool = False,
+                                     search_forever: bool = False):
+        """
+        Continuously Search For Campsites
+
+        Parameters
+        ----------
+        log: bool
+            Whether to log found campsites
+        verbose: bool
+            Used with `log` to enhance the amount of info logged to the console
+        polling_interval: Optional[int]
+            Used with `continuous=True`, the amount of time to wait between searches.
+            Defaults to 10 if not provided, cannot be less than 5
+        notification_provider: str
+            Used with `continuous=True`, Name of notification provider to use. Accepts "email",
+            "pushover", and defaults to "silent"
+        notify_first_try: bool
+            Used with `continuous=True`, whether to actually send notification if the
+            first search returns a result. Defaults to False
+        search_forever: bool
+            Used with `continuous=True`, This option searches for new campsites forever, with
+            the caveat being that it will never notify about the same campsite.
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        polling_interval_minutes = self._get_polling_minutes(polling_interval=polling_interval)
+        continuous_search = True
+        continuous_search_attempts = 1
+        while continuous_search is True:
+            self._continuous_search_retry(log=log, verbose=verbose,
+                                          polling_interval=polling_interval,
+                                          notification_provider=notification_provider,
+                                          notify_first_try=notify_first_try,
+                                          continuous_search_attempts=continuous_search_attempts)
+            continuous_search_attempts += 1
+            if search_forever is True:
+                sleep(int(polling_interval_minutes) * 60)
             else:
-                logger.warning(f"Found matching campsites on the first try! "
-                               "Switching to Silent Notifications. Go Get your campsite! 🏕")
-                silent_notifier = SilentNotifications()
-                silent_notifier.send_campsites(campsites=matching_campsites)
+                continuous_search = False
+        return list(self.campsites_found)
+
+    def get_matching_campsites(self, log: bool = True, verbose: bool = False,
+                               continuous: bool = False,
+                               polling_interval: Optional[int] = None,
+                               notification_provider: str = "silent",
+                               notify_first_try: bool = False,
+                               search_forever: bool = False) -> List[AvailableCampsite]:
+        """
+        Perform the Search and Return Matching Availabilities
+
+        Parameters
+        ----------
+        log: bool
+            Whether to log found campsites
+        verbose: bool
+            Used with `log` to enhance the amount of info logged to the console
+        continuous: bool
+            Whether to continue searching beyond just the first time
+        polling_interval: Optional[int]
+            Used with `continuous=True`, the amount of time to wait between searches.
+            Defaults to 10 if not provided, cannot be less than 5
+        notification_provider: str
+            Used with `continuous=True`, Name of notification provider to use. Accepts "email",
+            "pushover", and defaults to "silent"
+        notify_first_try: bool
+            Used with `continuous=True`, whether to actually send notification if the
+            first search returns a result. Defaults to False
+        search_forever: bool
+            Used with `continuous=True`, This option searches for new campsites forever, with
+            the caveat being that it will never notify about the same campsite.
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        if continuous is True:
+            self._search_campsites_continuous(log=log, verbose=verbose,
+                                              polling_interval=polling_interval,
+                                              notification_provider=notification_provider,
+                                              notify_first_try=notify_first_try,
+                                              search_forever=search_forever)
         else:
             matching_campsites = self._search_matching_campsites_available(log=log, verbose=True)
-        return matching_campsites
+            self.campsites_found.update(set(matching_campsites))
+        return list(self.campsites_found)
 
     def _get_search_days(self) -> List[datetime]:
         """
@@ -153,7 +294,7 @@ class BaseCampingSearch(ABC):
 
         Returns
         -------
-        search_days: Set[datetime]
+        search_days: List[datetime]
             Datetime days to search for reservations
         """
         now = datetime.now()
@@ -190,7 +331,7 @@ class BaseCampingSearch(ABC):
 
         Returns
         -------
-        search_months: Set[datetime]
+        search_months: List[datetime]
             Datetime Months to search for reservations
         """
         search_days = self.search_days.copy()
@@ -207,15 +348,25 @@ class BaseCampingSearch(ABC):
             return sorted(list(truncated_months))
 
     @classmethod
-    def assemble_availabilities(cls, matching_data, log: bool = True,
+    def assemble_availabilities(cls, matching_data: List[AvailableCampsite], log: bool = True,
                                 verbose: bool = False) -> DataFrame:
         """
         Prepare a Pandas DataFrame from Array of AvailableCampsite objects
+
+        Parameters
+        ----------
+        matching_data: List[AvailableCampsite]
+            List of campsites to assemble
+        log: bool
+            Whether to log found campsites
+        verbose: bool
+            Used with `log` to enhance the amount of info logged to the console
 
         Returns
         -------
         availability_df: DataFrame
         """
+
         availability_df = DataFrame(data=matching_data, columns=AvailableCampsite._fields)
         if log is True:
             booking_date: datetime

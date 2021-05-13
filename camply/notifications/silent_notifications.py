@@ -8,6 +8,7 @@ Silent Notifications
 
 from abc import ABC
 import logging
+from pprint import pformat
 from typing import List
 
 from camply.containers import AvailableCampsite
@@ -46,7 +47,8 @@ class SilentNotifications(BaseNotifications, ABC):
         -------
         None
         """
-        logger.info(f"SilentNotification: {message}")
+        message_string = "\n\t• " + "\n\t• ".join(list(message))
+        logger.debug(f"SilentNotification: {message_string}")
 
     @staticmethod
     def send_campsites(campsites: List[AvailableCampsite], **kwargs):
@@ -58,7 +60,12 @@ class SilentNotifications(BaseNotifications, ABC):
         campsites: List[AvailableCampsite]
         """
         for campsite in campsites:
-            SilentNotifications.send_message((campsite.recreation_area,
-                                              campsite.facility_name,
-                                              campsite.booking_date.strftime("%Y-%m-%d"),
-                                              campsite.booking_url))
+            campsite_tuple = (campsite.booking_date.strftime("%Y-%m-%d"),
+                              campsite.campsite_type,
+                              campsite.campsite_site_name,
+                              campsite.recreation_area,
+                              campsite.facility_name,
+                              campsite.booking_url)
+            SilentNotifications.send_message(campsite_tuple)
+            campsite_formatted = pformat(dict(campsite._asdict()))
+            logger.debug("Campsite Info: " + campsite_formatted)

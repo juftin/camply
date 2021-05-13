@@ -5,11 +5,12 @@
 """
 Yellowstone Lodging Web Scraping Utilities
 """
+
 from datetime import datetime
 import logging
 from typing import List, Union
 
-from camply.containers import SearchWindow
+from camply.containers import AvailableCampsite, SearchWindow
 from camply.providers import YellowstoneLodging
 from camply.search.base_search import BaseCampingSearch
 
@@ -42,12 +43,13 @@ class SearchYellowstone(BaseCampingSearch):
                                                 search_window=search_window,
                                                 weekends_only=weekends_only)
 
-    def get_all_campsites(self):
+    def get_all_campsites(self) -> List[AvailableCampsite]:
         """
+        Search for all matching campsites in Yellowstone.
 
         Returns
         -------
-
+        List[AvailableCampsite]
         """
         all_campsites = list()
         this_month = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)

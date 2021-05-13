@@ -10,9 +10,7 @@ from datetime import datetime
 from email.message import EmailMessage
 import logging
 from smtplib import SMTP_SSL
-from typing import List, Optional
-
-import requests
+from typing import List
 
 from camply.config import EmailConfig
 from camply.containers import AvailableCampsite
@@ -48,7 +46,7 @@ class EmailNotifications(BaseNotifications, ABC):
         return f"<EmailNotifications>"
 
     @staticmethod
-    def send_message(message: str, **kwargs) -> Optional[requests.Response]:
+    def send_message(message: str, **kwargs) -> object:
         """
         Send a message via Email
 
@@ -61,7 +59,7 @@ class EmailNotifications(BaseNotifications, ABC):
 
         Returns
         -------
-        Response
+        object
         """
         email = EmailMessage()
         email.set_content(message)
@@ -81,12 +79,13 @@ class EmailNotifications(BaseNotifications, ABC):
         email_server.login(user=email_server_user,
                            password=email_server_password)
         logger.info(f"Sending Email to {email['To']}: {email['Subject']}")
-        email_server.send_message(email)
+        response = email_server.send_message(email)
         logger.info("Email sent successfully")
         email_server.quit()
+        return response
 
     @staticmethod
-    def send_campsites(campsites: List[AvailableCampsite], **kwargs):
+    def send_campsites(campsites: List[AvailableCampsite], **kwargs) -> None:
         """
         Send a message with a campsite object
 

@@ -89,6 +89,13 @@ class CommandLineArguments(object):
     NOTIFY_FIRST_TRY_HELP: str = ("Whether to send a non-silent notification if a matching "
                                   "campsite is found on the first try. Defaults to false.")
 
+    SEARCH_FOREVER_ARGUMENT: str = "--search-forever"
+    SEARCH_FOREVER_DESTINATION: str = "search_forever"
+    SEARCH_FOREVER_HELP: str = ("Continuous search on steroids. This method continues to search "
+                                  "after the first availability has been found. The one caveat is "
+                                  "that it will never notify about the same identical campsite for"
+                                  "the same date. ")
+
 
 class CommandLineValidation(object):
     """
@@ -124,7 +131,7 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
                                     "Once a campsite becomes available, camply sends you a "
                                     "notification to book your spot!")
 
-    LOG_LEVEL = logging.getLevelName(getenv("LOG_LEVEL", "INFO"))
+    LOG_LEVEL = logging.getLevelName(getenv("LOG_LEVEL", "INFO").upper())
 
     COMMAND_DESTINATION: str = "command"
 

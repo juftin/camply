@@ -3,7 +3,7 @@
 # Author::    Justin Flannery  (mailto:juftin@juftin.com)
 
 """
-Utils __init__ file
+Config __init__ file
 """
 
 from .api_config import RecreationBookingConfig, RIDBConfig, STANDARD_HEADERS, USER_AGENTS

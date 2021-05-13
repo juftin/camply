@@ -16,8 +16,8 @@ from camply.containers import SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search import CAMPSITE_SEARCH_PROVIDER
 from camply.search.base_search import SearchError
-from camply.utils import log_camply
 from camply.utils import configure_camply
+from camply.utils import log_camply
 
 logging.Logger.camply = log_camply
 logger = logging.getLogger(__name__)
@@ -200,6 +200,12 @@ class CamplyCommandLine(object):
                                     required=False,
                                     default=False,
                                     help=CommandLineConfig.NOTIFY_FIRST_TRY_HELP)
+        self.campsites.add_argument(CommandLineConfig.SEARCH_FOREVER_ARGUMENT,
+                                    action=CommandLineConfig.STORE_TRUE,
+                                    dest=CommandLineConfig.SEARCH_FOREVER_DESTINATION,
+                                    required=False,
+                                    default=False,
+                                    help=CommandLineConfig.SEARCH_FOREVER_HELP)
         self.arguments_compiled = True
 
     def parse_arguments(self) -> Namespace:
@@ -342,7 +348,8 @@ class CamplyCommandLine(object):
                 continuous=self.cli_arguments.continuous,
                 polling_interval=float(self.cli_arguments.polling_interval),
                 notify_first_try=self.cli_arguments.notify_first_try,
-                notification_provider=self.cli_arguments.notifications)
+                notification_provider=self.cli_arguments.notifications,
+                search_forever=self.cli_arguments.search_forever)
         except SearchError:
             exit(1)
 
