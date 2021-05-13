@@ -23,24 +23,24 @@ out.
 
 - [Important Notice](#important-notice)
 - [Usage](#usage)
-  * [Command Line Usage](#command-line-usage)
-    + [campsites](#-campsites-)
-    + [recreation-areas](#-recreation-areas-)
-    + [campgrounds](#-campgrounds-)
-    + [configure](#-configure-)
-  * [Examples](#examples)
-    + [Searching for a Campsite](#searching-for-a-campsite)
-    + [Generating the config file for notifications](#generating-the-config-file-for-notifications)
-    + [Continuously Searching For A Campsite](#continuously-searching-for-a-campsite)
-    + [Look for weekend campsite availabilities](#look-for-weekend-campsite-availabilities)
-    + [Look for a campsite inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
-    + [Look for Recreation Areas to Search](#look-for-recreation-areas-to-search)
-    + [Look for specific campgrounds within a recreation area](#look-for-specific-campgrounds-within-a-recreation-area)
-    + [Look for specific campgrounds that match a query string](#look-for-specific-campgrounds-that-match-a-query-string)
-    + [YAML Config Campsite Search](#yaml-config-campsite-search)
-  * [Finding Recreation Areas and Campgrounds without Using the Command Line](#finding-recreation-areas-and-campgrounds-without-using-the-command-line)
-  * [Object Oriented Usage](#object-oriented-usage)
-    + [Object-Oriented Campsite Search:](#object-oriented-campsite-search-)
+    * [Command Line Usage](#command-line-usage)
+        + [campsites](#-campsites-)
+        + [recreation-areas](#-recreation-areas-)
+        + [campgrounds](#-campgrounds-)
+        + [configure](#-configure-)
+    * [Examples](#examples)
+        + [Searching for a Campsite](#searching-for-a-campsite)
+        + [Generating the config file for notifications](#generating-the-config-file-for-notifications)
+        + [Continuously Searching For A Campsite](#continuously-searching-for-a-campsite)
+        + [Look for weekend campsite availabilities](#look-for-weekend-campsite-availabilities)
+        + [Look for a campsite inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
+        + [Look for Recreation Areas to Search](#look-for-recreation-areas-to-search)
+        + [Look for specific campgrounds within a recreation area](#look-for-specific-campgrounds-within-a-recreation-area)
+        + [Look for specific campgrounds that match a query string](#look-for-specific-campgrounds-that-match-a-query-string)
+        + [YAML Config Campsite Search](#yaml-config-campsite-search)
+    * [Finding Recreation Areas and Campgrounds without Using the Command Line](#finding-recreation-areas-and-campgrounds-without-using-the-command-line)
+    * [Object Oriented Usage](#object-oriented-usage)
+        + [Object-Oriented Campsite Search:](#object-oriented-campsite-search-)
 - [Dependencies](#dependencies)
 
 ## Usage
@@ -165,6 +165,10 @@ camply configure
 This version runs until found a match is found. It also sends a notification via `pushover`.
 Alternate notification methods are `email` and `silent` (default).
 
+Important Note: When camply is told to run `--continuous` and it finds matching sites on the first
+try, it just logs the campsites quietly. To bypass this behavior and send notifications, pass
+the `--notify-first-try` argument
+
 ```text
 camply campsites \
     --rec-area-id 2725 \
@@ -172,6 +176,24 @@ camply campsites \
     --end-date 2021-07-31 \
     --continuous \
     --notifications pushover
+```
+
+#### Continue Looking After The First Match Is Found
+
+Sometimes you want to search for all possible matches up until your arrival date. No problem. Add
+the `--search-forever` and Camply won't stop sending notifications after the first match is found.
+One important note, Camply will save and store all previous notifications when `--search-forever` is
+enabled, so it won't notify you about the exact same campsite availability twice. This can be
+problematic when certain campsites become available more than once.
+
+```text
+camply campsites \
+    --rec-area-id 2725 \
+    --start-date 2021-07-01 \
+    --end-date 2021-07-31 \
+    --continuous \
+    --notifications pushover \
+    --search-forever
 ```
 
 #### Look for weekend campsite availabilities
@@ -196,10 +218,7 @@ camply campsites \
 Yellowstone doesn't use https://recreation.gov to manage its campgrounds, instead it uses its own
 proprietary system. In order to search the Yellowstone API for campsites, make sure to pass
 the `--provider "yellowstone"` argument. This flag disables `--rec-area-id` and `--campground`
-arguments. Notice how `camply` throws a warning: `"Found matching campsites on the first try!
-Switching to Silent Notifications..."`. When camply is told to run `--continuous` and it finds
-matching sites on the first try, it just logs the campsites quietly. To bypass this behavior, pass
-the `--notify-first-try` argument
+arguments.
 
 ```shell
 camply campsites \
