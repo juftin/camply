@@ -40,4 +40,4 @@ jobs:
                       camply recreation-areas --search "Yosemite National Park"
                       camply campgrounds --rec-area-id 2991
                       camply campgrounds --search "Fire Tower Lookout" --state CA
-                      camply campsites --rec-area-id 2991 --start-date 2021-09-01 --end-date 2021-09-30
+                      camply campsites --rec-area-id 2991 --start-date 2021-09-15 --end-date 2021-09-16
