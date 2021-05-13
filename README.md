@@ -43,6 +43,48 @@ out.
         + [Object-Oriented Campsite Search:](#object-oriented-campsite-search-)
 - [Dependencies](#dependencies)
 
+## Installation and Execution
+
+### PyPi
+
+```shell
+pip install camply
+```
+
+### Building Locally
+
+```shell
+git clone https://github.com/juftin/camply.git
+cd camply
+python setup.py install
+```
+
+### Docker
+
+Official Docker Image Coming Soon - build locally for now.
+
+```shell
+git clone https://github.com/juftin/camply.git
+cd camply
+docker build --tag camply:latest .
+```
+
+Here's an example of a detached container searching in the background:
+
+```shell
+docker run -d --rm \
+  --name camply \
+  --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
+  --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
+  camply:latest \
+  camply campsites \
+      --rec-area-id 2991 \
+      --start-date 2021-08-01 \
+      --end-date 2021-08-31 \
+      --continuous \
+      --notifications pushover
+```
+
 ## Usage
 
 ### Command Line Usage
@@ -147,6 +189,10 @@ notification variables.
 
 #### Searching for a Campsite
 
+The below search looks for campsites inside of Receration Area ID #2725 (Glacier National Park)
+between 2021-06-10 and 2021-06-17. The search will be performed once and any results will be logged
+to the console.
+
 ```shell
 camply campsites \
     --rec-area-id 2725 \
@@ -155,6 +201,11 @@ camply campsites \
 ```
 
 #### Generating the config file for notifications
+
+In order to send notifications through camply you must set up some authorization values. Whether you
+need to set up pushover notifications (your pushover account can be set up at https://pushover.net)
+or Email messages, everything can be done thorught the `configure` command. The end result is a file
+called `.camply` in your home folder.
 
 ```shell
 camply configure
@@ -166,8 +217,9 @@ This version runs until found a match is found. It also sends a notification via
 Alternate notification methods are `email` and `silent` (default).
 
 Important Note: When camply is told to run `--continuous` and it finds matching sites on the first
-try, it just logs the campsites quietly. To bypass this behavior and send notifications, pass
-the `--notify-first-try` argument
+try, it just logs the campsites silently and exits. It's always encouraged to perform an initial
+online search before setting up a camply search. To bypass this behavior and send notifications,
+pass the `--notify-first-try` argument
 
 ```text
 camply campsites \
@@ -230,7 +282,8 @@ camply campsites \
 
 #### Look for Recreation Areas to Search
 
-This search lists recreation areas. It accepts `--search` and `--state` arguments
+Just need to find what your local Recreation Area ID number is? This simple command allows you to
+search and list recreation areas. It accepts `--search` and `--state` arguments.
 
 ```shell
 camply recreation-areas --search "Yosemite National Park"
@@ -238,8 +291,9 @@ camply recreation-areas --search "Yosemite National Park"
 
 #### Look for specific campgrounds within a recreation area
 
-This search lists campgrounds attached to a recreation area id `--rec-area-id`. It also
-accepts `--search` and `--state` arguments.
+Need to get even more specific and search for a particular campground? This search lists campgrounds
+attached to a recreation area id `--rec-area-id`. It also accepts `--search` and `--state`
+arguments.
 
 ```shell
 camply campgrounds --rec-area-id 2991
