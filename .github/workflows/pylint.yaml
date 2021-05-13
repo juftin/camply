@@ -15,8 +15,7 @@ jobs:
                 run:  |
                       python -m pip install --upgrade pip
                       pip install pylint
-                      pip install .
+                      pip install .  --use-feature=in-tree-build
             -   name: Analysing the code with pylint
                 run:  |
-                      cd camply
                       pylint camply `ls -R|grep .py$|xargs` --exit-zero
