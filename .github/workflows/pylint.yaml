@@ -18,4 +18,5 @@ jobs:
                       pip install .
             -   name: Analysing the code with pylint
                 run:  |
-                      pylint `ls -R|grep .py$|xargs` --exit-zero
+                      cd camply
+                      pylint camply `ls -R|grep .py$|xargs` --exit-zero
