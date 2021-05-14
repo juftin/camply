@@ -46,7 +46,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         super(SearchRecreationDotGov, self).__init__(provider=RecreationDotGov(),
                                                      search_window=search_window,
                                                      weekends_only=weekends_only)
-        self._recreation_area_id = make_list(recreation_area)
+        self._recreation_area_id = self._make_list(recreation_area)
         self._campground_object = campgrounds
         self.weekends_only = weekends_only
         assert any([campgrounds not in [[], None], recreation_area is not None]) is True
@@ -65,7 +65,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         """
         if self._campground_object not in [[], None]:
             returned_sites = list()
-            for campground_id in make_list(self._campground_object):
+            for campground_id in self._make_list(self._campground_object):
                 facility = self.campsite_finder.find_campgrounds(campground_id=campground_id)
                 campground_facility: CampgroundFacility
                 campground_data, campground_facility = \
