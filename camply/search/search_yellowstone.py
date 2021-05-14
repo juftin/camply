@@ -3,7 +3,7 @@
 # Author::    Justin Flannery  (mailto:juftin@juftin.com)
 
 """
-Yellowstone Lodging Web Scraping Utilities
+Yellowstone Lodging Web Searching Utilities
 """
 
 from datetime import datetime

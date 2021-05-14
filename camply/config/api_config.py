@@ -3,7 +3,7 @@
 # Author::    Justin Flannery  (mailto:juftin@juftin.com)
 
 """
-API Scraping Configuration
+API Searching Configuration
 """
 from os import getenv
 from random import uniform

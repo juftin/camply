@@ -35,7 +35,7 @@ class CommandLineArguments(object):
 
     STATE_ARGUMENT: str = "--state"
     STATE_DESTINATION: str = "state"
-    STATE_HELP: str = "Filter by state code: `--state CO`"
+    STATE_HELP: str = "Filter by US state code"
 
     REC_AREA_ID_ARGUMENT: str = "--rec-area-id"
     REC_AREA_ID_DESTINATION: str = "recreation_area_id"
@@ -124,7 +124,7 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
 
     CAMPLY_LONG_DESCRIPTION: str = ("Welcome to camply, the campsite finder. "
                                     "Finding reservations at these sold out campgrounds can be "
-                                    "tough. That's where camply comes in. It scrapes the APIs of "
+                                    "tough. That's where camply comes in. It searches the APIs of "
                                     "Booking Services like https://recreation.gov (which works on "
                                     "thousands of campgrounds across the USA) to continuously "
                                     "check for cancellations and availabilities to pop up. "

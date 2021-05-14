@@ -3,7 +3,7 @@
 # Author::    Justin Flannery  (mailto:juftin@juftin.com)
 
 """
-Recreation.gov Web Scraping Utilities
+Recreation.gov Web Searching Utilities
 """
 
 from base64 import b64decode

@@ -3,11 +3,11 @@
     width="400" height="400" alt="camply">
 </p>
 
-`camply`, the campsite finder ⛺️, is a tool to help you book an online campground. Finding reservations
-at sold out campgrounds can be tough. That's where `camply` comes in. It scrapes the APIs of Booking
-Services like https://recreation.gov (which works on thousands of campgrounds across the USA) to
-continuously check for cancellations and availabilities to pop up. Once a campsite becomes
-available, `camply` sends you a notification to book your spot!
+`camply`, the campsite finder ⛺️, is a tool to help you book an online campground. Finding
+reservations at sold out campgrounds can be tough. That's where `camply` comes in. It searches the
+APIs of Booking Services like https://recreation.gov (which works on thousands of campgrounds across
+the USA) to continuously check for cancellations and availabilities to pop up. Once a campsite
+becomes available, `camply` sends you a notification to book your spot!
 
 [![Version](https://img.shields.io/static/v1?label=⛺️camply&message=0.1.0&color=blue)](https://github.com/juftin/camply)
 [![Python Versions](https://img.shields.io/static/v1?label=Python&message=3.6%20|%203.7%20|%203.8%20|%203.9&color=blue&logo=python)](https://pypi.python.org/pypi/camply/)
@@ -16,6 +16,7 @@ available, `camply` sends you a notification to book your spot!
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Installation](#installation)
     * [PyPi](#pypi)
     * [Docker](#docker)
@@ -27,18 +28,18 @@ available, `camply` sends you a notification to book your spot!
     * [`configure`](#configure)
     * [Usage Examples](#usage-examples)
         + [Searching for a Campsite](#searching-for-a-campsite)
-        + [Continuously Searching For A Campsite](#continuously-searching-for-a-campsite)
+        + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
         + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
-        + [Look for weekend campsite availabilities](#look-for-weekend-campsite-availabilities)
-        + [Look for a campsite inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
-        + [Look for a campsite across multiple recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
-        + [Look for Recreation Areas to Search](#look-for-recreation-areas-to-search)
-        + [Look for specific campgrounds within a recreation area](#look-for-specific-campgrounds-within-a-recreation-area)
-        + [Look for specific campgrounds that match a query string](#look-for-specific-campgrounds-that-match-a-query-string)
-- [Finding Recreation Areas and Campgrounds without Using the Command Line](#finding-recreation-areas-and-campgrounds-without-using-the-command-line)
+        + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
+        + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
+        + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
+        + [Search for Recreation Areas by Query String](#search-for-recreation-areas-by-query-string)
+        + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
+        + [Look for Specific Campgrounds by Query String](#look-for-specific-campgrounds-by-query-string)
+- [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
 - [Object Oriented Usage](#object-oriented-usage)
-    * [Search for a recreation.gov campsite](#search-for-a-recreationgov-campsite)
-    * [Continuously search for recreation.gov campsites](#continuously-search-for-recreationgov-campsites)
+    * [Search for a Recreation.gov Campsite](#search-for-a-recreationgov-campsite)
+    * [Continuously Search for Recreation.gov Campsites](#continuously-search-for-recreationgov-campsites)
 - [Running in Docker](#running-in-docker)
 - [Dependencies](#dependencies)
 
@@ -76,7 +77,7 @@ and `configure`
 usage: camply [-h] [--version] {campsites,recreation-areas,campgrounds,configure} ...
 
 Welcome to camply, the campsite finder. Finding reservations at these sold out campgrounds can be
-tough. That's where camply comes in. It scrapes the APIs of Booking Services like
+tough. That's where camply comes in. It searches the APIs of Booking Services like
 https://recreation.gov (which works on thousands of campgrounds across the USA) to continuously check
 for cancellations and availabilities to pop up. Once a campsite becomes available, camply sends you a
 notification to book your spot!
@@ -146,7 +147,7 @@ that can contain one or many campgrounds.
 * `--search` `SEARCH`
     + Search for Campgrounds or Recreation Areas by search string
 * `--state` `STATE`
-    + Filter by state code: `--state CO`
+    + Filter by US State code
 
 ```text
 camply recreation-areas --search "Yosemite National Park"
@@ -163,7 +164,7 @@ towers that might only contain a single 'campsite'
 * `--search` `SEARCH`
     + Search for Campgrounds or Recreation Areas by search string
 * `--state` `STATE`
-    + Filter by state code: `--state CO`
+    + Filter by US State code
 * `--rec-area-id`: `RECREATION_AREA_ID`
     + Add Recreation Areas (comprised of campgrounds) by ID
 * `--campground`: `CAMPGROUND_LIST`
@@ -203,7 +204,7 @@ camply campsites \
     --end-date 2021-06-17
 ```
 
-#### Continuously Searching For A Campsite
+#### Continuously Searching for A Campsite
 
 This version runs until found a match is found. It also sends a notification via `pushover`.
 Alternate notification methods are `email` and `silent` (default).
@@ -240,7 +241,7 @@ camply campsites \
     --search-forever
 ```
 
-#### Look for weekend campsite availabilities
+#### Look for Weekend Campsite Availabilities
 
 This below search looks across larger periods of time, but only if a campground is available to book
 on a Friday or Saturday night (`--weekends`). It also uses the `--polling-interval` argument which
@@ -257,7 +258,7 @@ camply campsites \
     --polling-interval 5
 ```
 
-#### Look for a campsite inside of Yellowstone
+#### Look for a Campsite Inside of Yellowstone
 
 Yellowstone doesn't use https://recreation.gov to manage its campgrounds, instead it uses its own
 proprietary system. In order to search the Yellowstone API for campsites, make sure to pass
@@ -272,7 +273,7 @@ camply campsites \
     --continuous
 ```
 
-#### Look for a campsite across multiple recreation areas
+#### Look for a Campsite Across Multiple Recreation areas
 
 You don't have to confine your search to a single Recreation or Campground ID. Adding multiple
 arguments to the command line will search across multiple IDs. Keep in mind that any `--campground`
@@ -286,7 +287,7 @@ camply campsites \
     --end-date 2021-06-16
 ```
 
-#### Look for Recreation Areas to Search
+#### Search for Recreation Areas by Query String
 
 Just need to find what your local Recreation Area ID number is? This simple command allows you to
 search and list recreation areas. It accepts `--search` and `--state` arguments.
@@ -295,7 +296,7 @@ search and list recreation areas. It accepts `--search` and `--state` arguments.
 camply recreation-areas --search "Yosemite National Park"
 ```
 
-#### Look for specific campgrounds within a recreation area
+#### Look for Specific Campgrounds Within a Recreation Area
 
 Need to get even more specific and search for a particular campground? This search lists campgrounds
 attached to a recreation area id `--rec-area-id`. It also accepts `--search` and `--state`
@@ -305,7 +306,7 @@ arguments.
 camply campgrounds --rec-area-id 2991
 ```
 
-#### Look for specific campgrounds that match a query string
+#### Look for Specific Campgrounds by Query String
 
 The below search looks for Fire Lookout Towers to stay in inside of California.
 
@@ -313,7 +314,7 @@ The below search looks for Fire Lookout Towers to stay in inside of California.
 camply campgrounds --search "Fire Tower Lookout" --state CA
 ```
 
-## Finding Recreation Areas and Campgrounds without Using the Command Line
+## Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line
 
 You can uncover campground and recreation area IDs just by using the https://recreation.gov search
 functionality. Use the below example for a campground within Glacier National Park.
@@ -329,13 +330,13 @@ https://www.recreation.gov/search?q=Glacier%20National%20Park&entity_id=2725&ent
 Taking a closer look at the URL components you can see that Glacier National Park has the Recreation
 Area ID #2725.
 
-Searching deeper you might mind a place like Fish Creek Campground at a URL
-like https://www.recreation.gov/camping/campgrounds/232493. Here, we can see that this campground
-has a Campground ID of #232493 (and it also sits inside of Recreation Area ID #2725)
+Searching deeper into campgrounds inside of Glacier National Park you might mind a place like Fish
+Creek Campground at a URL like https://www.recreation.gov/camping/campgrounds/232493. Here, we can
+see that this campground has a Campground ID of #232493.
 
 ## Object Oriented Usage
 
-### Search for a recreation.gov campsite
+### Search for a Recreation.gov Campsite
 
 ```python
 from datetime import datetime
@@ -357,27 +358,27 @@ matches: List[AvailableCampsite] = camping_finder.get_matching_campsites(log=Tru
                                                                          continuous=False)
 ```
 
-The above script returns a list of any matching `AvailableCampsite` objects:
+The above script returns a list of any matching `AvailableCampsite` namedtuple objects:
 
 ```python
 [
-    AvailableCampsite(campsite_id='5391',
+    AvailableCampsite(campsite_id="5391",
                       booking_date=datetime.datetime(2021, 6, 13, 0, 0),
-                      campsite_site_name='B37',
-                      campsite_loop_name='Loop B',
-                      campsite_type='STANDARD NONELECTRIC',
+                      campsite_site_name="B37",
+                      campsite_loop_name="Loop B",
+                      campsite_type="STANDARD NONELECTRIC",
                       campsite_occupancy=(0, 8),
-                      campsite_use_type='Overnight',
-                      availability_status='Available',
-                      recreation_area='Glacier National Park, MT',
-                      recreation_area_id='2725',
-                      facility_name='Fish Creek Campground',
-                      facility_id='232493',
-                      booking_url='https://www.recreation.gov/camping/campsites/5391')
+                      campsite_use_type="Overnight",
+                      availability_status="Available",
+                      recreation_area="Glacier National Park, MT",
+                      recreation_area_id="2725",
+                      facility_name="Fish Creek Campground",
+                      facility_id="232493",
+                      booking_url="https://www.recreation.gov/camping/campsites/5391")
 ]
 ```
 
-### Continuously search for recreation.gov campsites
+### Continuously Search for Recreation.gov Campsites
 
 ```python
 from datetime import datetime
