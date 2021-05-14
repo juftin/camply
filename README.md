@@ -3,7 +3,7 @@
     width="400" height="400" alt="camply">
 </p>
 
-`camply`, the campsite finder, is a tool to help you book an online campground. Finding reservations
+`camply`, the campsite finder ⛺️, is a tool to help you book an online campground. Finding reservations
 at sold out campgrounds can be tough. That's where `camply` comes in. It scrapes the APIs of Booking
 Services like https://recreation.gov (which works on thousands of campgrounds across the USA) to
 continuously check for cancellations and availabilities to pop up. Once a campsite becomes
@@ -21,10 +21,10 @@ available, `camply` sends you a notification to book your spot!
     * [Docker](#docker)
     * [Building Locally](#building-locally)
 - [Command Line Usage](#command-line-usage)
-    * [`campsites`](#-campsites-)
-    * [`recreation-areas`](#-recreation-areas-)
-    * [`campgrounds`](#-campgrounds-)
-    * [`configure`](#-configure-)
+    * [`campsites`](#campsites)
+    * [`recreation-areas`](#recreation-areas)
+    * [`campgrounds`](#campgrounds)
+    * [`configure`](#configure)
     * [Usage Examples](#usage-examples)
         + [Searching for a Campsite](#searching-for-a-campsite)
         + [Continuously Searching For A Campsite](#continuously-searching-for-a-campsite)

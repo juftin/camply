@@ -5,7 +5,6 @@
 """
 API Scraping Configuration
 """
-
 from os import getenv
 from random import uniform
 from typing import List
@@ -46,10 +45,10 @@ class RIDBConfig(object):
 
     https://ridb.recreation.gov/docs
     """
-    CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN: str = \
-        "a7416471-1b5d-4a64-ad3d-a233e7cb5c44"
-    _api_key: str = getenv("RIDB_API_KEY", CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN)
-    API_KEY = CAMPLY_RIDB_SERVICE_ACCOUNT_API_TOKEN if _api_key == "" else _api_key
+    _camply_ridb_service_account_api_token: bytes = \
+        b'YTc0MTY0NzEtMWI1ZC00YTY0LWFkM2QtYTIzM2U3Y2I1YzQ0'
+    _api_key: str = getenv("RIDB_API_KEY", _camply_ridb_service_account_api_token)
+    API_KEY = _camply_ridb_service_account_api_token if _api_key == "" else _api_key
 
     RIDB_SCHEME: str = "https"
     RIDB_NET_LOC: str = "ridb.recreation.gov"

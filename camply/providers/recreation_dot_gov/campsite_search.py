@@ -6,6 +6,7 @@
 Recreation.gov Web Scraping Utilities
 """
 
+from base64 import b64decode
 from datetime import datetime
 from json import loads
 import logging
@@ -34,13 +35,12 @@ class RecreationDotGov(BaseProvider):
         Initialize with Search Dates
         """
         if api_key is None:
-            self.api_key: str = RIDBConfig.API_KEY
+            _api_key = RIDBConfig.API_KEY
+            if isinstance(_api_key, bytes):
+                _api_key: str = b64decode(RIDBConfig.API_KEY).decode("utf-8")
         else:
-            self.api_key: str = api_key
-        if self.api_key in [None, ""]:
-            raise EnvironmentError("Set the RIDB_API_KEY environment variable "
-                                   "or provide it manually")
-        self._ridb_api_headers: dict = dict(accept="application/json", apikey=self.api_key)
+            _api_key: str = api_key
+        self._ridb_api_headers: dict = dict(accept="application/json", apikey=_api_key)
         self._recreation_gov_headers: List[dict] = USER_AGENTS
 
     def __repr__(self):
@@ -191,6 +191,8 @@ class RecreationDotGov(BaseProvider):
         endpoint_url = parse.urljoin(base_url, path)
         return endpoint_url
 
+    @tenacity.retry(wait=tenacity.wait_random_exponential(multiplier=2, max=10),
+                    stop=tenacity.stop.stop_after_delay(15))
     def _ridb_get_data(self, path: str, params: Optional[dict] = None) -> Union[dict, list]:
         """
         Find Matching Campsites Based on Search String
@@ -211,7 +213,13 @@ class RecreationDotGov(BaseProvider):
         api_endpoint = self._ridb_get_endpoint(path=path)
         response = requests.get(url=api_endpoint, headers=self._ridb_api_headers,
                                 params=params)
-        assert response.status_code == 200
+        try:
+            assert response.status_code == 200
+        except AssertionError:
+            logger.info(self._ridb_api_headers)
+            error_message = f"Receiving bad data from Recreation.gov API: {response.text}"
+            logger.error(error_message)
+            raise ConnectionError(error_message)
         return loads(response.content)
 
     def _ridb_get_paginate(self, path: str, params: Optional[dict] = None) -> List[dict]:
