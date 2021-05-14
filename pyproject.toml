@@ -7,7 +7,7 @@ maintainers = ["Justin Flannery <juftin@juftin.com>"]
 license = "MIT"
 readme = "docs/README_PYPI.md"
 repository = "https://github.com/juftin/camply"
-keywords = ["camping", "scraper", "reservation", "national-parks", "notifications"]
+keywords = ["python", "scraping", "notifications", "camping", "national-parks", "reservations"]
 
 [tool.poetry.scripts]
 camply = "camply.utils.camply_cli:main"

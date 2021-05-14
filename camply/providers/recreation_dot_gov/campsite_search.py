@@ -74,6 +74,9 @@ class RecreationDotGov(BaseProvider):
             raise RuntimeError("You must provide a search query or state(s) "
                                "to find Recreation Areas")
         logger.info(f'Searching for Recreation Areas: "{search_string}"')
+        state_arg = kwargs.get("state", None)
+        if state_arg is not None:
+            kwargs.update({"state": state_arg.upper()})
         params = dict(query=search_string, sort="Name", full="true", **kwargs)
         if search_string is None:
             params.pop("query")
@@ -118,7 +121,10 @@ class RecreationDotGov(BaseProvider):
                 facilities += self.find_facilities_per_recreation_area(rec_area_id=recreation_area)
             return facilities
         else:
-            if search_string in ["", None] and kwargs.get("state", None) is None:
+            state_arg = kwargs.get("state", None)
+            if state_arg is not None:
+                kwargs.update({"state": state_arg.upper()})
+            if search_string in ["", None] and state_arg is None:
                 raise RuntimeError("You must provide a search query or state to find campsites")
             facilities_response = self._ridb_get_paginate(path=RIDBConfig.FACILITIES_API_PATH,
                                                           params=dict(query=search_string,
