@@ -9,6 +9,10 @@ APIs of Booking Services like https://recreation.gov (which works on thousands o
 the USA) to continuously check for cancellations and availabilities to pop up. Once a campsite
 becomes available, `camply` sends you a notification to book your spot!
 
+___________
+___________
+
+
 [![Version](https://img.shields.io/static/v1?label=⛺️camply&message=0.1.0&color=blue)](https://github.com/juftin/camply)
 [![Python Versions](https://img.shields.io/static/v1?label=Python&message=3.6%20|%203.7%20|%203.8%20|%203.9&color=blue&logo=python)](https://pypi.python.org/pypi/camply/)
 [![Docker Version](https://img.shields.io/static/v1?label=Docker&message=0.1.0&color=blue&logo=docker)](https://hub.docker.com/r/juftin/camply)
@@ -435,11 +439,12 @@ The docker image accepts the following environment variables:
     * `EMAIL_SUBJECT_LINE` (defaults to "camply Notification")
     * `EMAIL_SMTP_SERVER` (defaults to "smtp.gmail.com")
     * `EMAIL_SMTP_PORT` (defaults to 465)
-- Administration
+- Optional Environment Variables
     * `LOG_LEVEL` (sets logging level, defaults to "INFO")
-    * `RIDB_API_KEY` (personal API Key for Recreation.gov API defaults to camply's credentials)
-    * `TZ` ([TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones),
-      defaults to UTC)
+    * `RIDB_API_KEY` (Personal API Key
+      for [Recreation.gov API](https://ridb.recreation.gov/profile))
+    * `TZ` ([TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
+      logging, defaults to UTC)
 
 Alternatively, if you have already run `camply configure` locally, you can share
 your [`.camply`](example.camply) file inside the docker container:
@@ -478,8 +483,6 @@ dependencies:
 ___________
 ___________
 
-<br/>
-<br/>
 <br/>
 
 

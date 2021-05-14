@@ -37,5 +37,5 @@ class FileConfig(object):
                                 notes="Email Notifications Will Come From this Email"),
         EMAIL_SUBJECT_LINE=dict(default="Camply Notification",
                                 notes="Email Notifications Will Have This Subject Line"),
-        RIDB_API_KEY=dict(default="", notes="Personal Recreation.gov API Key. Not required.")
+        RIDB_API_KEY=dict(default="", notes="Personal Recreation.gov API Key (not required)")
     )
