@@ -9,50 +9,49 @@ Services like https://recreation.gov (which works on thousands of campgrounds ac
 continuously check for cancellations and availabilities to pop up. Once a campsite becomes
 available, `camply` sends you a notification to book your spot!
 
-[![Version](https://img.shields.io/badge/camply-0.1.0-orange)](https://github.com/juftin/camply)
-[![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yaml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yaml)
+[![Version](https://img.shields.io/badge/camply-0.1.0-purple)](https://github.com/juftin/camply)
 [![Python Versions](https://img.shields.io/badge/python-3.6%20|%203.7%20|%203.8%20|%203.9-blue)](https://pypi.python.org/pypi/camply/)
-
-## Important Notice
-
-`camply` is still under active development and is not fully ready. Once this project is fully ready
-code will be released to a `main` branch. If you'd like to contribute to the project please reach
-out.
+[![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yaml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yaml)
 
 ## Table of Contents
 
-- [Important Notice](#important-notice)
-- [Usage](#usage)
-    * [Command Line Usage](#command-line-usage)
-        + [campsites](#-campsites-)
-        + [recreation-areas](#-recreation-areas-)
-        + [campgrounds](#-campgrounds-)
-        + [configure](#-configure-)
-    * [Examples](#examples)
+- [Installation](#installation)
+    * [PyPi](#pypi)
+    * [Building Locally](#building-locally)
+    * [Docker](#docker)
+- [Command Line Usage](#command-line-usage)
+    * [`campsites`](#-campsites-)
+    * [`recreation-areas`](#-recreation-areas-)
+    * [`campgrounds`](#-campgrounds-)
+    * [`configure`](#-configure-)
+    * [Usage Examples](#usage-examples)
         + [Searching for a Campsite](#searching-for-a-campsite)
         + [Generating the config file for notifications](#generating-the-config-file-for-notifications)
         + [Continuously Searching For A Campsite](#continuously-searching-for-a-campsite)
+        + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
         + [Look for weekend campsite availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for a campsite inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
         + [Look for Recreation Areas to Search](#look-for-recreation-areas-to-search)
         + [Look for specific campgrounds within a recreation area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for specific campgrounds that match a query string](#look-for-specific-campgrounds-that-match-a-query-string)
-    * [Finding Recreation Areas and Campgrounds without Using the Command Line](#finding-recreation-areas-and-campgrounds-without-using-the-command-line)
-    * [Object Oriented Usage](#object-oriented-usage)
-        + [Object-Oriented Campsite Search:](#object-oriented-campsite-search-)
+- [Finding Recreation Areas and Campgrounds without Using the Command Line](#finding-recreation-areas-and-campgrounds-without-using-the-command-line)
+- [Object Oriented Usage](#object-oriented-usage)
+    * [Search for a recreation.gov campsite:](#search-for-a-recreationgov-campsite-)
+    * [Continuously search for a recreation.gov campsite:](#continuously-search-for-a-recreationgov-campsite-)
+- [Running in Docker](#running-in-docker)
 - [Dependencies](#dependencies)
 
-## Installation and Execution
+## Installation
 
 ### PyPi
 
-```shell
+```text
 pip install camply
 ```
 
 ### Building Locally
 
-```shell
+```text
 git clone https://github.com/juftin/camply.git
 cd camply
 python setup.py install
@@ -60,33 +59,11 @@ python setup.py install
 
 ### Docker
 
-Official Docker Image Coming Soon - build locally for now.
-
-```shell
-git clone https://github.com/juftin/camply.git
-cd camply
-docker build --tag camply:latest .
+```text
+docker pull juftin/camply:latest
 ```
 
-Here's an example of a detached container searching in the background:
-
-```shell
-docker run -d --rm \
-  --name camply \
-  --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
-  --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
-  camply:latest \
-  camply campsites \
-      --rec-area-id 2991 \
-      --start-date 2021-08-01 \
-      --end-date 2021-08-31 \
-      --continuous \
-      --notifications pushover
-```
-
-## Usage
-
-### Command Line Usage
+## Command Line Usage
 
 When installed, `camply`'s command line utility can be invoked with the command, `camply`. The CLI
 tool accepts four sub-arguments: `campsites`, `recreation-areas`, `campgrounds`, and `configure`
@@ -114,11 +91,11 @@ optional arguments:
   --version             show program's version number and exit
 ```
 
-#### `campsites`
+### `campsites`
 
 Find Available Campsites using Search Criteria
 
-##### Arguments:
+#### Arguments:
 
 * `--rec-area-id`: `RECREATION_AREA_ID`
     + Add Recreation Areas (comprised of campgrounds) by ID
@@ -150,25 +127,25 @@ Find Available Campsites using Search Criteria
       has been found. The one caveat is that it will never notify about the same identical campsite
       forthe same date.
 
-#### `recreation-areas`
+### `recreation-areas`
 
 Search for Recreation Areas. Recreation Areas are places like National Parks and National Forests
 that can contain one or many campgrounds.
 
-##### Arguments:
+#### Arguments:
 
 * `--search` `SEARCH`
     + Search for Campgrounds or Recreation Areas by search string
 * `--state` `STATE`
     + Filter by state code: `--state CO`
 
-#### `campgrounds`
+### `campgrounds`
 
 Search for Campgrounds. Campgrounds are facilities inside of Recreation Areas that contain
 campsites. Most 'Campgrounds' are traditional blocks of campsites, others are facilities like fire
 towers that might only contain a single 'campsite'
 
-##### Arguments:
+#### Arguments:
 
 * `--search` `SEARCH`
     + Search for Campgrounds or Recreation Areas by search string
@@ -179,12 +156,12 @@ towers that might only contain a single 'campsite'
 * `--campground`: `CAMPGROUND_LIST`
     + Add individual Campgrounds by ID
 
-#### `configure`
+### `configure`
 
 `configure` takes no arguments, just type `camply configure` to get started with setting
 notification variables.
 
-### Examples
+### Usage Examples
 
 #### Searching for a Campsite
 
@@ -192,7 +169,7 @@ The below search looks for campsites inside of Receration Area ID #2725 (Glacier
 between 2021-06-10 and 2021-06-17. The search will be performed once and any results will be logged
 to the console.
 
-```shell
+```text
 camply campsites \
     --rec-area-id 2725 \
     --start-date 2021-06-10 \
@@ -202,11 +179,12 @@ camply campsites \
 #### Generating the config file for notifications
 
 In order to send notifications through camply you must set up some authorization values. Whether you
-need to set up pushover notifications (your pushover account can be set up at https://pushover.net)
-or Email messages, everything can be done thorught the `configure` command. The end result is a file
-called `.camply` in your home folder.
+need to set up pushover notifications (push notifications on your phone, your pushover account can
+be set up at https://pushover.net)
+or Email messages, everything can be done thorugh the `configure` command. The end result is a file
+called [`.camply`](example.camply) in your home folder.
 
-```shell
+```text
 camply configure
 ```
 
@@ -253,7 +231,7 @@ This below search looks across larger periods of time, but only if a campground 
 on a Friday or Saturday night (`--weekends`). It also uses the `--polling-interval` argument which
 checks every 5 minutes instead of the default 10 minutes.
 
-```shell
+```text
 camply campsites \
     --rec-area-id 2991 \
     --start-date 2021-05-01 \
@@ -271,7 +249,7 @@ proprietary system. In order to search the Yellowstone API for campsites, make s
 the `--provider "yellowstone"` argument. This flag disables `--rec-area-id` and `--campground`
 arguments.
 
-```shell
+```text
 camply campsites \
     --provider yellowstone \
     --start-date 2021-06-09 \
@@ -284,7 +262,7 @@ camply campsites \
 Just need to find what your local Recreation Area ID number is? This simple command allows you to
 search and list recreation areas. It accepts `--search` and `--state` arguments.
 
-```shell
+```text
 camply recreation-areas --search "Yosemite National Park"
 ```
 
@@ -294,7 +272,7 @@ Need to get even more specific and search for a particular campground? This sear
 attached to a recreation area id `--rec-area-id`. It also accepts `--search` and `--state`
 arguments.
 
-```shell
+```text
 camply campgrounds --rec-area-id 2991
 ```
 
@@ -302,11 +280,11 @@ camply campgrounds --rec-area-id 2991
 
 The below search looks for Fire Lookout Towers to stay in inside of California.
 
-```shell
+```text
 camply campgrounds --search "Fire Tower Lookout" --state CA
 ```
 
-### Finding Recreation Areas and Campgrounds without Using the Command Line
+## Finding Recreation Areas and Campgrounds without Using the Command Line
 
 You can uncover campground and recreation area IDs just by using the https://recreation.gov search
 functionality. Use the below example for a campground within Glacier National Park.
@@ -326,9 +304,9 @@ Searching deeper you might mind a place like Fish Creek Campground at a URL
 like https://www.recreation.gov/camping/campgrounds/232493. Here, we can see that this campground
 has a Campground ID of #232493 (and it also sits inside of Recreation Area ID #2725)
 
-### Object Oriented Usage
+## Object Oriented Usage
 
-#### Object-Oriented Campsite Search:
+### Search for a recreation.gov campsite:
 
 ```python
 from datetime import datetime
@@ -368,6 +346,86 @@ The above script returns a list of any matching `AvailableCampsite` objects:
                       facility_id='232493',
                       booking_url='https://www.recreation.gov/camping/campsites/5391')
 ]
+```
+
+### Continuously search for a recreation.gov campsite:
+
+```python
+from datetime import datetime
+import logging
+
+from camply.containers import SearchWindow
+from camply.search import SearchRecreationDotGov
+
+logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
+                    level=logging.INFO)
+
+month_of_june = SearchWindow(start_date=datetime(year=2021, month=6, day=1),
+                             end_date=datetime(year=2021, month=6, day=30))
+camping_finder = SearchRecreationDotGov(search_window=month_of_june,
+                                        recreation_area=2725,
+                                        weekends_only=False)
+camping_finder.get_matching_campsites(log=True, verbose=True,
+                                      continuous=True,
+                                      polling_interval=True,
+                                      notification_provider="pushover",
+                                      search_forever=True,
+                                      notify_first_try=False)
+```
+
+## Running in Docker
+
+Here's an example of a detached container searching in the background:
+
+```text
+docker run -d --rm \
+  --name camply \
+  --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
+  --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
+  --env TZ="America/Denver" \
+  juftin/camply:latest \
+  camply campsites \
+      --rec-area-id 2991 \
+      --start-date 2021-08-01 \
+      --end-date 2021-08-31 \
+      --continuous \
+      --notifications pushover
+```
+
+The docker image accepts the following environment variables:
+
+- Pushover Notifications
+    * `PUSHOVER_PUSH_TOKEN`
+    * `PUSHOVER_PUSH_USER`
+- Email Notifications
+    * `EMAIL_TO_ADDRESS`
+    * `EMAIL_USERNAME`
+    * `EMAIL_PASSWORD`
+    * `EMAIL_FROM_ADDRESS` (defaults to "camply@juftin.com")
+    * `EMAIL_SUBJECT_LINE` (defaults to "camply Notification")
+    * `EMAIL_SMTP_SERVER` (defaults to "smtp.gmail.com")
+    * `EMAIL_SMTP_PORT` (defaults to 465)
+- Administration
+    * `LOG_LEVEL` (sets logging level, defaults to "INFO")
+    * `RIDB_API_KEY` (personal API Key for Recreation.gov API defaults to camply's credentials)
+    * `TZ` ([TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones),
+      defaults to UTC)
+
+Alternatively, if you have already run `camply configure` locally, you can share
+your [`.camply`](example.camply) file inside of the docker container:
+
+```text
+docker run -d --rm \
+  --name camply \
+  --env TZ="America/Denver" \
+  --volume ${HOME}/.camply:/home/camply/.camply \
+  juftin/camply:latest \
+  camply campsites \
+      --rec-area-id 2991 \
+      --start-date 2021-08-01 \
+      --end-date 2021-08-31 \
+      --continuous \
+      --notifications pushover
 ```
 
 ## Dependencies

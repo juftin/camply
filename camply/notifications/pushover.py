@@ -13,7 +13,7 @@ from typing import List, Optional
 
 import requests
 
-from camply.config import PushoverConfig
+from camply.config import FileConfig, PushoverConfig
 from .base_notifications import BaseNotifications
 from ..containers import AvailableCampsite
 
@@ -28,11 +28,13 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
     def __init__(self, level: Optional[int] = logging.INFO):
         logging.StreamHandler.__init__(self)
         self.setLevel(level=level)
-        if PushoverConfig.PUSH_TOKEN in [None, ""] or PushoverConfig.PUSH_USER in [None, ""]:
-            warning_message = (
-                "Pushover is not configured properly. "
-                "To send pushover messages make sure to set the "
-                "proper environment variables: `PUSHOVER_PUSH_TOKEN`, `PUSHOVER_PUSH_USER`.")
+        if any([PushoverConfig.PUSH_TOKEN is None, PushoverConfig.PUSH_USER is None,
+                PushoverConfig.PUSH_TOKEN == "", PushoverConfig.PUSH_USER == ""]):
+            warning_message = ("Pushover is not configured properly. To send pushover messages "
+                               "make sure to run `camply configure` or set the "
+                               "proper environment variables: `PUSHOVER_PUSH_TOKEN`, "
+                               "`PUSHOVER_PUSH_USER`.")
+            logger.critical(FileConfig.DOT_CAMPLY_FILE)
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 

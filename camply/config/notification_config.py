@@ -29,13 +29,6 @@ class PushoverConfig(object):
     try:
         PUSH_TOKEN: str = environ["PUSHOVER_PUSH_TOKEN"]
         PUSH_USER: str = environ["PUSHOVER_PUSH_USER"]
-
-        if any([''.join(set(PUSH_TOKEN)).lower() == "x",
-                ''.join(set(PUSH_USER)).lower() == "x",
-                PUSH_TOKEN == "",
-                PUSH_USER == ""]):
-            PUSH_TOKEN = None
-            PUSH_USER = None
     except KeyError:
         PUSH_TOKEN = None
         PUSH_USER = None
