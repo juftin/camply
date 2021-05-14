@@ -1,6 +1,5 @@
 pandas
 python-dotenv
 pytz
-PyYAML
 requests
 tenacity

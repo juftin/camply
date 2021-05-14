@@ -17,11 +17,10 @@ from pandas import DataFrame
 import tenacity
 
 from camply.config import DataColumns, SearchConfig
-from camply.containers import AvailableCampsite, SearchWindow
+from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea, SearchWindow
 from camply.notifications import CAMPSITE_NOTIFICATIONS, SilentNotifications
 from camply.providers import RecreationDotGov, YellowstoneLodging
 from camply.providers.base_provider import BaseProvider
-from camply.utils import make_list
 from camply.utils.logging_utils import get_emoji
 
 logger = logging.getLogger(__name__)
@@ -65,7 +64,7 @@ class BaseCampingSearch(ABC):
         """
         self.campsite_finder: Union[RecreationDotGov, YellowstoneLodging] = provider
         # noinspection PyTypeChecker
-        self.search_window: List[SearchWindow] = make_list(search_window)
+        self.search_window: List[SearchWindow] = self._make_list(search_window)
         self.weekends_only: bool = weekends_only
         self.search_days: List[datetime] = self._get_search_days()
         self.search_months: List[datetime] = self._get_search_months()
@@ -385,3 +384,25 @@ class BaseCampingSearch(ABC):
                         ].unique():
                             logger.info(f"\t\t🔗 {booking_url}")
         return availability_df
+
+    @classmethod
+    def _make_list(cls, obj) -> Optional[List]:
+        """
+        Make Anything An Iterable Instance
+
+        Parameters
+        ----------
+        obj: object
+
+        Returns
+        -------
+        List[object]
+        """
+        if obj is None:
+            return None
+        elif isinstance(obj, (SearchWindow, AvailableCampsite, RecreationArea, CampgroundFacility)):
+            return [obj]
+        elif isinstance(obj, (set, list, tuple)):
+            return obj
+        else:
+            return [obj]

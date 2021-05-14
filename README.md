@@ -37,7 +37,6 @@ out.
         + [Look for Recreation Areas to Search](#look-for-recreation-areas-to-search)
         + [Look for specific campgrounds within a recreation area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for specific campgrounds that match a query string](#look-for-specific-campgrounds-that-match-a-query-string)
-        + [YAML Config Campsite Search](#yaml-config-campsite-search)
     * [Finding Recreation Areas and Campgrounds without Using the Command Line](#finding-recreation-areas-and-campgrounds-without-using-the-command-line)
     * [Object Oriented Usage](#object-oriented-usage)
         + [Object-Oriented Campsite Search:](#object-oriented-campsite-search-)
@@ -307,18 +306,6 @@ The below search looks for Fire Lookout Towers to stay in inside of California.
 camply campgrounds --search "Fire Tower Lookout" --state CA
 ```
 
-#### YAML Config Campsite Search
-
-`campsite_searches/glacier_in_may.yaml`:
-
-```yaml
-glacier_month_of_june:
-    enabled:         True
-    recreation_area: 2725
-    start_date:      2021-06-09
-    end_date:        2021-06-16
-```
-
 ### Finding Recreation Areas and Campgrounds without Using the Command Line
 
 You can uncover campground and recreation area IDs just by using the https://recreation.gov search
@@ -394,8 +381,6 @@ range of supported package versions.
 - [pandas](https://pandas.pydata.org/)
     - The `pandas` package is to group and aggregate across large data sets of campsites,
       campgrounds, and recreation areas.
-- [pyyaml](https://pyyaml.org/wiki/PyYAML)
-    - The `pyyaml` package is used to parse YAML files for campsite search configurations
 - [tenacity](https://tenacity.readthedocs.io/en/latest/)
     - The `tenacity` package is used for retrying data fetches from some APIs. This retrying
       methodology handles exceptions allowing for API downtime and facilitating exponential backoff.
