@@ -13,50 +13,7 @@ available, `camply` sends you a notification to book your spot!
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yaml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yaml)
 [![Python Versions](https://img.shields.io/badge/python-3.6%20|%203.7%20|%203.8%20|%203.9-blue)](https://pypi.python.org/pypi/camply/)
 
-## Important Notice
-
-`camply` is still under active development and is not fully ready. Once this project is fully ready
-code will be released to a `main` branch. If you'd like to contribute to the project please reach
-out.
-
-## Table of Contents
-
-- [Important Notice](#important-notice)
-- [Usage](#usage)
-    * [Command Line Usage](#command-line-usage)
-        + [campsites](#-campsites-)
-        + [recreation-areas](#-recreation-areas-)
-        + [campgrounds](#-campgrounds-)
-        + [configure](#-configure-)
-    * [Examples](#examples)
-        + [Searching for a Campsite](#searching-for-a-campsite)
-        + [Generating the config file for notifications](#generating-the-config-file-for-notifications)
-        + [Continuously Searching For A Campsite](#continuously-searching-for-a-campsite)
-        + [Look for weekend campsite availabilities](#look-for-weekend-campsite-availabilities)
-        + [Look for a campsite inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
-        + [Look for Recreation Areas to Search](#look-for-recreation-areas-to-search)
-        + [Look for specific campgrounds within a recreation area](#look-for-specific-campgrounds-within-a-recreation-area)
-        + [Look for specific campgrounds that match a query string](#look-for-specific-campgrounds-that-match-a-query-string)
-    * [Finding Recreation Areas and Campgrounds without Using the Command Line](#finding-recreation-areas-and-campgrounds-without-using-the-command-line)
-    * [Object Oriented Usage](#object-oriented-usage)
-        + [Object-Oriented Campsite Search:](#object-oriented-campsite-search-)
-- [Dependencies](#dependencies)
-
 ## Installation and Execution
-
-### PyPi
-
-```shell
-pip install camply
-```
-
-### Building Locally
-
-```shell
-git clone https://github.com/juftin/camply.git
-cd camply
-python setup.py install
-```
 
 ### Docker
 
@@ -313,8 +270,7 @@ functionality. Use the below example for a campground within Glacier National Pa
 
 First, perform your search on https://recreation.gov
 <p>
-<img src="https://raw.githubusercontent.com/juftin/camply/camply/docs/static/recreation_dot_gov.png" 
-    width="500" alt="recreation_dot_gov search">
+<img src="https://raw.githubusercontent.com/juftin/camply/camply/docs/static/recreation_dot_gov.png" width="500" alt="recreation_dot_gov search">
 </p>
 
 The above search will take you to a URL like this:

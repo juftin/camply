@@ -14,7 +14,6 @@ from camply.config import RecreationBookingConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search.base_search import BaseCampingSearch, SearchError
-from camply.utils import make_list
 
 logger = logging.getLogger(__name__)
 
