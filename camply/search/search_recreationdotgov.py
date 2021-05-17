@@ -63,28 +63,53 @@ class SearchRecreationDotGov(BaseCampingSearch):
             List of searchable campground IDs
         """
         if self._campground_object not in [[], None]:
-            returned_sites = list()
-            for campground_id in self._make_list(self._campground_object):
-                facility = self.campsite_finder.find_campgrounds(campground_id=campground_id)
-                campground_facility: CampgroundFacility
-                campground_data, campground_facility = \
-                    self.campsite_finder.process_facilities_responses(facility=facility)
-                if campground_facility is not None:
-                    self.campsite_finder.log_sorted_response(response_array=[campground_facility])
-                    returned_sites.append(campground_facility)
-            return returned_sites
+            searchable_campgrounds = self._get_campgrounds_by_campground_id()
         elif self._recreation_area_id is not None:
-            processed_array = list()
-            for rec_area in self._recreation_area_id:
-                campground_array = self.campsite_finder.find_facilities_per_recreation_area(
-                    rec_area_id=rec_area)
-                campground_facility: CampgroundFacility
-                for campground in campground_array:
-                    campground_data, campground_facility = \
-                        self.campsite_finder.process_facilities_responses(facility=campground)
-                    if campground_facility is not None:
-                        processed_array.append(campground_facility)
-            return processed_array
+            searchable_campgrounds = self._get_campgrounds_by_recreation_area_id()
+        else:
+            raise RuntimeError("You must provide a Camprground or Recreation Area ID")
+        return searchable_campgrounds
+
+    def _get_campgrounds_by_campground_id(self) -> List[CampgroundFacility]:
+        """
+        Return a List of Campgrounds to search when provided with campground IDs
+
+        Returns
+        -------
+        returned_sites: List[int]
+            List of searchable campground IDs
+        """
+        returned_sites = list()
+        for campground_id in self._make_list(self._campground_object):
+            facility = self.campsite_finder.find_campgrounds(campground_id=campground_id)
+            campground_facility: CampgroundFacility
+            campground_data, campground_facility = \
+                self.campsite_finder.process_facilities_responses(facility=facility)
+            if campground_facility is not None:
+                self.campsite_finder.log_sorted_response(response_array=[campground_facility])
+                returned_sites.append(campground_facility)
+        return returned_sites
+
+    def _get_campgrounds_by_recreation_area_id(self) -> List[CampgroundFacility]:
+        """
+        Return a List of Campgrounds to search when provided with Recreation Area IDs
+
+        Returns
+        -------
+        processed_array: List[int]
+            List of searchable campground IDs
+        """
+        processed_array = list()
+        for rec_area in self._recreation_area_id:
+            campground_array = self.campsite_finder.find_facilities_per_recreation_area(
+                rec_area_id=rec_area)
+            campground_facility: CampgroundFacility
+            for campground in campground_array:
+                campground_data, campground_facility = \
+                    self.campsite_finder.process_facilities_responses(facility=campground)
+                if campground_facility is not None:
+                    processed_array.append(campground_facility)
+        return processed_array
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """

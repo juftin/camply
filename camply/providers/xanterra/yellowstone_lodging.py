@@ -222,7 +222,6 @@ class YellowstoneLodging(BaseProvider):
         -------
         List[dict]
         """
-
         available_room_array = list()
         availability_df = DataFrame(data=available_campsites)
         if availability_df.empty is True:
@@ -236,21 +235,47 @@ class YellowstoneLodging(BaseProvider):
                                                           params=params)
             campsite_availability = campsite_data[YellowstoneConfig.BOOKING_AVAILABILITY]
             booking_dates = campsite_availability.keys()
-            for booking_date_str in booking_dates:
-                daily_availability = campsite_availability[booking_date_str]
-                if daily_availability[YellowstoneConfig.FACILITY_STATUS] == \
-                        YellowstoneConfig.FACILITY_STATUS_QUALIFIER:
-                    available_rooms = daily_availability[YellowstoneConfig.FACILITY_ROOMS]
-                    for room in available_rooms:
-                        if room[YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER] > 0:
-                            available_room_array.append(dict(
-                                booking_date=booking_date_str,
-                                facility_id=facility_id,
-                                campsite_code=room[YellowstoneConfig.FACILITY_ROOM_CODE],
-                                available=room[YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER],
-                                price=room[YellowstoneConfig.FACILITY_PRICE],
-                            ))
+            availabilities = self._process_daily_availability(
+                booking_dates=booking_dates,
+                campsite_availability=campsite_availability,
+                facility_id=facility_id)
+            available_room_array += availabilities
         return available_room_array
+
+    @classmethod
+    def _process_daily_availability(cls, booking_dates: List[str],
+                                    campsite_availability: dict, facility_id: str) -> List[dict]:
+        """
+        Process Monthly Availability
+
+        Parameters
+        ----------
+        booking_dates: List[str]
+            List of booking dates to process
+        campsite_availability: dict
+            Campsite availability dict
+        facility_id: str
+            Identification of the Facility
+
+        Returns
+        -------
+        List[dict]
+        """
+        daily_availabilities = list()
+        for booking_date_str in booking_dates:
+            daily_availability = campsite_availability[booking_date_str]
+            if daily_availability[YellowstoneConfig.FACILITY_STATUS] == \
+                    YellowstoneConfig.FACILITY_STATUS_QUALIFIER:
+                available_rooms = daily_availability[YellowstoneConfig.FACILITY_ROOMS]
+                for room in available_rooms:
+                    if room[YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER] > 0:
+                        daily_availabilities.append(dict(
+                            booking_date=booking_date_str,
+                            facility_id=facility_id,
+                            campsite_code=room[YellowstoneConfig.FACILITY_ROOM_CODE],
+                            available=room[YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER],
+                            price=room[YellowstoneConfig.FACILITY_PRICE]))
+        return daily_availabilities
 
     def _get_property_information(self, available_rooms: List[dict]) -> List[dict]:
         """
