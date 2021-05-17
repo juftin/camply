@@ -20,7 +20,6 @@ from camply.config import DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea, SearchWindow
 from camply.notifications import CAMPSITE_NOTIFICATIONS, SilentNotifications
 from camply.providers import RecreationDotGov, YellowstoneLodging
-from camply.providers.base_provider import BaseProvider
 from camply.utils.logging_utils import get_emoji
 
 logger = logging.getLogger(__name__)
@@ -54,7 +53,7 @@ class BaseCampingSearch(ABC):
 
         Parameters
         ----------
-        provider: BaseProvider
+        provider: Union[RecreationDotGov, YellowstoneLodging]
             API Provider
         search_window: Union[SearchWindow, List[SearchWindow]]
             Search Window tuple containing start date and End Date
@@ -188,7 +187,7 @@ class BaseCampingSearch(ABC):
         elif retryer.statistics.get("attempt_number", 1) == 1 and notify_first_try is True:
             notifier.send_campsites(campsites=logged_campsites)
         else:
-            logger.warning(f"Found matching campsites on the first try! "
+            logger.warning("Found matching campsites on the first try! "
                            "Using Silent Notifications. Go Get your campsite! 🏕")
             if type(notifier) != SilentNotifications:
                 notifier = SilentNotifications()
@@ -310,7 +309,7 @@ class BaseCampingSearch(ABC):
             search_days.update(generated_dates)
 
         if self.weekends_only is True:
-            logger.info(f"Limiting Search of Campgrounds to Weekend Availabilities")
+            logger.info("Limiting Search of Campgrounds to Weekend Availabilities")
             for search_date in list(search_days):
                 if search_date.weekday() not in [4, 5]:
                     search_days.remove(search_date)
@@ -320,8 +319,9 @@ class BaseCampingSearch(ABC):
                         f"ranging from {min(search_days).strftime('%Y-%m-%d')} to "
                         f"{max(search_days).strftime('%Y-%m-%d')}")
         else:
-            logger.info(f"No search days configured. Exiting")
-            raise RuntimeError("No search days configured. Exiting")
+            error_message = "No search days configured. Exiting"
+            logger.info(error_message)
+            raise RuntimeError(error_message)
         return list(sorted(search_days))
 
     def _get_search_months(self) -> List[datetime]:
@@ -341,7 +341,7 @@ class BaseCampingSearch(ABC):
                         f"{max(search_days).strftime('%Y-%m-%d')}")
             return sorted(list(truncated_months))
         elif len(truncated_months) == 0:
-            logger.info(f"No search days configured. Exiting")
+            logger.info("No search days configured. Exiting")
             raise RuntimeError("No search days configured. Exiting")
         else:
             return sorted(list(truncated_months))

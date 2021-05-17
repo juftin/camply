@@ -39,7 +39,7 @@ class YellowstoneLodging(BaseProvider):
         -------
         str
         """
-        return f"<YellowstoneLodging>"
+        return "<YellowstoneLodging>"
 
     def _get_monthly_availability(self, month: datetime) -> dict:
         """
@@ -88,7 +88,7 @@ class YellowstoneLodging(BaseProvider):
             return loads(response.content)
         else:
             error_message = ("Something went wrong with checking the "
-                             f"Yellowstone Booking API. Will continue retrying.")
+                             "Yellowstone Booking API. Will continue retrying.")
             logger.warning(error_message)
             raise RuntimeError(error_message)
 

@@ -7,7 +7,7 @@ Project Configuration for Yellowstone Variables
 """
 
 from collections import OrderedDict
-from os.path import abspath, isfile, join
+from os.path import abspath, join
 from pathlib import Path
 from typing import List
 

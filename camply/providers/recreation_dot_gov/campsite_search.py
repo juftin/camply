@@ -442,7 +442,7 @@ class RecreationDotGov(BaseProvider):
             assert response.status_code == 200
         except AssertionError:
             response_error = response.text
-            error_message = f"Bad Data Returned from the RecreationDotGov API"
+            error_message = "Bad Data Returned from the RecreationDotGov API"
             logger.debug(f"{error_message}, will continue to retry")
             logger.debug(f"Error Details: {response_error}")
             raise ConnectionError(f"{error_message}: {response_error}")

@@ -43,7 +43,7 @@ class EmailNotifications(BaseNotifications, ABC):
             raise EnvironmentError(error_message)
 
     def __repr__(self):
-        return f"<EmailNotifications>"
+        return "<EmailNotifications>"
 
     @staticmethod
     def send_message(message: str, **kwargs) -> object:

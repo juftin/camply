@@ -39,7 +39,7 @@ def main():
         camply_cli = CamplyCommandLine()
         camply_cli.run_cli()
     except (KeyboardInterrupt, SystemExit):
-        logger.debug(f"Handling Exit Request")
+        logger.debug("Handling Exit Request")
     finally:
         logger.camply(CommandLineConfig.CAMPLY_EXIT_MESSAGE)
 
@@ -84,7 +84,7 @@ class CamplyCommandLine(object):
         -------
         str
         """
-        return f"<CamplyCommandLine>"
+        return "<CamplyCommandLine>"
 
     def assemble_cli_arguments(self) -> None:
         """

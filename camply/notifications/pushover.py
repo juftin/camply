@@ -39,7 +39,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
             raise EnvironmentError(warning_message)
 
     def __repr__(self):
-        return f"<PushoverNotifications>"
+        return "<PushoverNotifications>"
 
     @staticmethod
     def send_message(message: str, **kwargs) -> Optional[requests.Response]:
@@ -62,7 +62,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
                                              **kwargs)
                                  )
         if response.status_code != 200:
-            logger.warning(f"Notifications weren't able to be sent to Pushover. "
+            logger.warning("Notifications weren't able to be sent to Pushover. "
                            "Your configuration might be incorrect.")
         return response
 

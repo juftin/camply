@@ -29,7 +29,7 @@ class SilentNotifications(BaseNotifications, ABC):
         logger.info(f"{self} enabled. I hope you're watching these logs.")
 
     def __repr__(self):
-        return f"<SilentNotifications>"
+        return "<SilentNotifications>"
 
     @staticmethod
     def send_message(message: str, **kwargs) -> None:
