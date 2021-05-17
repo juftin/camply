@@ -77,36 +77,41 @@ and `configure`
 
 ```text
 ❯ camply
-2021-05-11 20:39:01,327 [  CAMPLY]: camply, the campsite finder ⛺️
+❯ camply
+2021-05-16 20:20:00,766 [  CAMPLY]: camply, the campsite finder ⛺️
 usage: camply [-h] [--version] {campsites,recreation-areas,campgrounds,configure} ...
 
-Welcome to camply, the campsite finder. Finding reservations at these sold out campgrounds can be
-tough. That's where camply comes in. It searches the APIs of Booking Services like
-https://recreation.gov (which works on thousands of campgrounds across the USA) to continuously check
-for cancellations and availabilities to pop up. Once a campsite becomes available, camply sends you a
-notification to book your spot!
+Welcome to camply, the campsite finder. Finding reservations at sold out campgrounds can be tough. 
+That's where camply comes in. It searches the APIs of booking services like https://recreation.gov (
+which works on thousands of campgrounds across the USA) to continuously check for cancellations and 
+availabilities to pop up. Once a campsite becomes available, camply sends you a notification to book 
+your spot!
 
 positional arguments:
   {campsites,recreation-areas,campgrounds,configure}
-    campsites           Find Available Campsites using Search Criteria
-    recreation-areas    Search for Recreation Areas and list them.
+    campsites           Find Available Campsites using search criteria
+    recreation-areas    Search for Recreation Areas and list them
     campgrounds         Search for Campgrounds (inside of Recreation Areas) and list them
     configure           Set up camply configuration file with an interactive console
 
 optional arguments:
   -h, --help            show this help message and exit
   --version             show program's version number and exit
+
+
+2021-05-16 20:20:00,770 [   ERROR]: You must provide an argument to the Camply CLI
+2021-05-16 20:20:00,770 [  CAMPLY]: Exiting camply 👋
 ```
 
 ### `campsites`
 
-Find Available Campsites using Search Criteria
+Find available Campsites using search criteria
 
 #### Arguments:
 
-* `--rec-area-id`: `RECREATION_AREA_ID`
+* `--rec-area`: `RECREATION_AREA_ID`
     + Add Recreation Areas (comprised of campgrounds) by ID
-* `--campground`: `CAMPGROUND_LIST`
+* `--campground`: `CAMPGROUND_ID`
     + Add individual Campgrounds by ID
 * `--start-date`: `START_DATE`
     + `YYYY-MM-DD`: Start of Search window. You will be arriving this day
@@ -115,43 +120,43 @@ Find Available Campsites using Search Criteria
 * `--weekends`
     + Only search for weekend bookings (Fri/Sat)
 * `--provider`: `PROVIDER`
-    + Camping Search Provider. Options available are
-      'Yellowstone' and 'RecreationDotGov'. Defaults to
-      'RecreationDotGov'
+    + Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
+      to 'RecreationDotGov', not case-sensitive.
 * `--continuous`
-    + Continuously check for a campsite to become available.
+    + Continuously check for a campsite to become available, and quit once at least one campsite is
+      found.
 * `--polling-interval`: `POLLING_INTERVAL`
-    + If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
+    + If --continuous is activated, how often to wait in between checks (in minutes). Defaults to
       10, cannot be less than 5
 * `--notifications`: `NOTIFICATIONS`
-    + Types of notifications to receive. Options available are `email`, `pushover`, or
-      `silent`. Defaults to `silent` - which just logs messages to console
+    + If --continuous is activated, types of notifications to receive. Options available are
+      `email`, `pushover`, or `silent`. Defaults to `silent` - which just logs messages to console
 * `--notify-first-try`
-    + Whether to send a non-silent notification if a matching campsite is found on the first try.
-      Defaults to false.
+    + If --continuous is activated, whether to send a non-silent notification if a matching campsite
+      is found on the first try. Defaults to false
 * `--search-forever`
-    + Continuous search on steroids. This method continues to search after the first availability
-      has been found. The one caveat is that it will never notify about the same identical campsite
-      forthe same date.
+    + If --continuous is activated, this method continues to search after the first availability has
+      been found. The one caveat is that it will never notify about the same identical campsite for
+      the same booking date.
 
 ```text
 camply campsites \
-    --rec-area-id 2725 \
+    --rec-area 2725 \
     --start-date 2021-06-10 \
     --end-date 2021-06-17
 ```
 
 ### `recreation-areas`
 
-Search for Recreation Areas. Recreation Areas are places like National Parks and National Forests
-that can contain one or many campgrounds.
+Search for Recreation Areas and their IDs. Recreation Areas are places like National Parks and
+National Forests that can contain one or many campgrounds.
 
 #### Arguments:
 
 * `--search` `SEARCH`
     + Search for Campgrounds or Recreation Areas by search string
 * `--state` `STATE`
-    + Filter by US State code
+    + Filter by US state code
 
 ```text
 camply recreation-areas --search "Yosemite National Park"
@@ -159,19 +164,19 @@ camply recreation-areas --search "Yosemite National Park"
 
 ### `campgrounds`
 
-Search for Campgrounds. Campgrounds are facilities inside of Recreation Areas that contain
-campsites. Most 'Campgrounds' are traditional blocks of campsites, others are facilities like fire
-towers that might only contain a single 'campsite'
+Search for Campgrounds and their IDs. Campgrounds are facilities inside of Recreation Areas that
+contain campsites. Most 'campgrounds' are areas made up of multiple campsites, others are facilities
+like fire towers or cabins that might only contain a single 'campsite' to book
 
 #### Arguments:
 
 * `--search` `SEARCH`
     + Search for Campgrounds or Recreation Areas by search string
 * `--state` `STATE`
-    + Filter by US State code
-* `--rec-area-id`: `RECREATION_AREA_ID`
+    + Filter by US state code
+* `--rec-area`: `RECREATION_AREA_ID`
     + Add Recreation Areas (comprised of campgrounds) by ID
-* `--campground`: `CAMPGROUND_LIST`
+* `--campground`: `CAMPGROUND_ID`
     + Add individual Campgrounds by ID
 
 ```text
@@ -197,13 +202,13 @@ camply configure
 
 #### Searching for a Campsite
 
-The below search looks for campsites inside of Receration Area ID #2725 (Glacier National Park)
+The below search looks for campsites inside of Recreation Area ID #2725 (Glacier National Park)
 between 2021-06-10 and 2021-06-17. The search will be performed once and any results will be logged
 to the console.
 
 ```text
 camply campsites \
-    --rec-area-id 2725 \
+    --rec-area 2725 \
     --start-date 2021-06-10 \
     --end-date 2021-06-17
 ```
@@ -220,7 +225,7 @@ pass the `--notify-first-try` argument
 
 ```text
 camply campsites \
-    --rec-area-id 2725 \
+    --rec-area 2725 \
     --start-date 2021-07-01 \
     --end-date 2021-07-31 \
     --continuous \
@@ -237,7 +242,7 @@ problematic when certain campsites become available more than once.
 
 ```text
 camply campsites \
-    --rec-area-id 2725 \
+    --rec-area 2725 \
     --start-date 2021-07-01 \
     --end-date 2021-07-31 \
     --continuous \
@@ -253,7 +258,7 @@ checks every 5 minutes instead of the default 10 minutes.
 
 ```text
 camply campsites \
-    --rec-area-id 2991 \
+    --rec-area 2991 \
     --start-date 2021-05-01 \
     --end-date 2021-07-31 \
     --weekends \
@@ -266,7 +271,7 @@ camply campsites \
 
 Yellowstone doesn't use https://recreation.gov to manage its campgrounds, instead it uses its own
 proprietary system. In order to search the Yellowstone API for campsites, make sure to pass
-the `--provider "yellowstone"` argument. This flag disables `--rec-area-id` and `--campground`
+the `--provider "yellowstone"` argument. This flag disables `--rec-area` and `--campground`
 arguments.
 
 ```text
@@ -281,12 +286,12 @@ camply campsites \
 
 You don't have to confine your search to a single Recreation or Campground ID. Adding multiple
 arguments to the command line will search across multiple IDs. Keep in mind that any `--campground`
-arguments will overwrite all `--rec-area-id` arguments.
+arguments will overwrite all `--rec-area` arguments.
 
 ```text
 camply campsites \
-    --rec-area-id 2991 \
-    --rec-area-id 1074 \
+    --rec-area 2991 \
+    --rec-area 1074 \
     --start-date 2021-06-09 \
     --end-date 2021-06-16
 ```
@@ -303,11 +308,11 @@ camply recreation-areas --search "Yosemite National Park"
 #### Look for Specific Campgrounds Within a Recreation Area
 
 Need to get even more specific and search for a particular campground? This search lists campgrounds
-attached to a recreation area id `--rec-area-id`. It also accepts `--search` and `--state`
+attached to a recreation area id `--rec-area`. It also accepts `--search` and `--state`
 arguments.
 
 ```text
-camply campgrounds --rec-area-id 2991
+camply campgrounds --rec-area 2991
 ```
 
 #### Look for Specific Campgrounds by Query String
@@ -419,7 +424,7 @@ docker run -d --rm \
   --env TZ="America/Denver" \
   juftin/camply:latest \
   camply campsites \
-      --rec-area-id 2991 \
+      --rec-area 2991 \
       --start-date 2021-08-01 \
       --end-date 2021-08-31 \
       --continuous \
@@ -456,7 +461,7 @@ docker run -d --rm \
   --volume ${HOME}/.camply:/home/camply/.camply \
   juftin/camply:latest \
   camply campsites \
-      --rec-area-id 2991 \
+      --rec-area 2991 \
       --start-date 2021-08-01 \
       --end-date 2021-08-31 \
       --continuous \

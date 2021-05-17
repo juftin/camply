@@ -37,12 +37,12 @@ class CommandLineArguments(object):
     STATE_DESTINATION: str = "state"
     STATE_HELP: str = "Filter by US state code"
 
-    REC_AREA_ID_ARGUMENT: str = "--rec-area-id"
+    REC_AREA_ID_ARGUMENT: str = "--rec-area"
     REC_AREA_ID_DESTINATION: str = "recreation_area_id"
     REC_AREA_ID_HELP: str = "Add Recreation Areas (comprised of campgrounds) by ID"
 
     CAMPGROUND_LIST_ARGUMENT: str = "--campground"
-    CAMPGROUND_LIST_DESTINATION: str = "campground_list"
+    CAMPGROUND_LIST_DESTINATION: str = "campground_id"
     CAMPGROUND_LIST_HELP: str = "Add individual Campgrounds by ID"
 
     SEARCH_ARGUMENT: str = "--search"
@@ -65,11 +65,12 @@ class CommandLineArguments(object):
     PROVIDER_DESTINATION: str = "provider"
     PROVIDER_DEFAULT: str = "RecreationDotGov"
     PROVIDER_HELP: str = ("Camping Search Provider. Options available are 'Yellowstone' and "
-                          "'RecreationDotGov'. Defaults to 'RecreationDotGov'")
+                          "'RecreationDotGov'. Defaults to 'RecreationDotGov', not case-sensitive.")
 
     CONTINUOUS_ARGUMENT: str = "--continuous"
     CONTINUOUS_DESTINATION: str = "continuous"
-    CONTINUOUS_HELP: str = "Continuously check for a campsite to become available."
+    CONTINUOUS_HELP: str = ("Continuously check for a campsite to become available, and quit once "
+                            "at least one campsite is found.")
 
     POLLING_INTERVAL_ARGUMENT: str = "--polling-interval"
     POLLING_INTERVAL_DESTINATION: str = "polling_interval"
@@ -80,21 +81,23 @@ class CommandLineArguments(object):
     NOTIFICATIONS_ARGUMENT: str = "--notifications"
     NOTIFICATIONS_DESTINATION: str = "notifications"
     NOTIFICATIONS_DEFAULT: str = "silent"
-    NOTIFICATIONS_HELP: str = ("Types of notifications to receive. Options available are 'email', "
+    NOTIFICATIONS_HELP: str = ("If --continuous is activated, types of notifications to receive. "
+                               "Options available are 'email', "
                                "'pushover', or 'silent'. Defaults to 'silent' - which just logs "
                                "messages to console")
 
     NOTIFY_FIRST_TRY_ARGUMENT: str = "--notify-first-try"
     NOTIFY_FIRST_TRY_DESTINATION: str = "notify_first_try"
-    NOTIFY_FIRST_TRY_HELP: str = ("Whether to send a non-silent notification if a matching "
+    NOTIFY_FIRST_TRY_HELP: str = ("If --continuous is activated, whether to send a "
+                                  "non-silent notification if a matching "
                                   "campsite is found on the first try. Defaults to false.")
 
     SEARCH_FOREVER_ARGUMENT: str = "--search-forever"
     SEARCH_FOREVER_DESTINATION: str = "search_forever"
-    SEARCH_FOREVER_HELP: str = ("Continuous search on steroids. This method continues to search "
-                                  "after the first availability has been found. The one caveat is "
-                                  "that it will never notify about the same identical campsite for"
-                                  "the same date. ")
+    SEARCH_FOREVER_HELP: str = ("If --continuous is activated, this method continues to search "
+                                "after the first availability has been found. The one caveat is "
+                                "that it will never notify about the same identical campsite for "
+                                "the same booking date.")
 
 
 class CommandLineValidation(object):
@@ -104,10 +107,10 @@ class CommandLineValidation(object):
     ERROR_NO_ARGUMENT_FOUND: str = "You must provide an argument to the Camply CLI"
     ERROR_MESSAGE_RECREATION_AREA: str = ("You must add a --search or --state parameter to search "
                                           "for Recreation Areas")
-    ERROR_MESSAGE_CAMPGROUNDS: str = ("You must add a --search, --state, or --rec-area-id "
+    ERROR_MESSAGE_CAMPGROUNDS: str = ("You must add a --search, --state, or --rec-area "
                                       " parameter to search for Campgrounds")
     ERROR_MESSAGE_REC_DOT_GOV: str = ("To search for Recreation.gov Campsites you must provide "
-                                      "either the --rec-area-id or the --campground parameter")
+                                      "either the --rec-area or the --campground parameters")
     ERROR_MESSAGE_CAMPSITES: str = ("Campsite searches require the following mandatory search "
                                     "parameters")
 
@@ -123,9 +126,9 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
     CAMPLY_EXIT_MESSAGE: str = "Exiting camply 👋"
 
     CAMPLY_LONG_DESCRIPTION: str = ("Welcome to camply, the campsite finder. "
-                                    "Finding reservations at these sold out campgrounds can be "
+                                    "Finding reservations at sold out campgrounds can be "
                                     "tough. That's where camply comes in. It searches the APIs of "
-                                    "Booking Services like https://recreation.gov (which works on "
+                                    "booking services like https://recreation.gov (which works on "
                                     "thousands of campgrounds across the USA) to continuously "
                                     "check for cancellations and availabilities to pop up. "
                                     "Once a campsite becomes available, camply sends you a "
@@ -136,35 +139,36 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
     COMMAND_DESTINATION: str = "command"
 
     COMMAND_RECREATION_AREA: str = "recreation-areas"
-    COMMAND_RECREATION_AREA_HELP: str = "Search for Recreation Areas and list them."
-    COMMAND_RECREATION_AREA_DESCRIPTION: str = ("Search for Recreation Areas. Recreation Areas are "
-                                                "places like National Parks and National Forests "
-                                                "that can contain one or many campgrounds.")
+    COMMAND_RECREATION_AREA_HELP: str = "Search for Recreation Areas and list them"
+    COMMAND_RECREATION_AREA_DESCRIPTION: str = ("Search for Recreation Areas and their IDs. "
+                                                "Recreation Areas are places like National Parks "
+                                                "and National Forests that can contain one or many "
+                                                "campgrounds.")
 
     COMMAND_CAMPGROUNDS: str = "campgrounds"
     COMMAND_CAMPGROUNDS_HELP: str = ("Search for Campgrounds (inside of Recreation Areas) "
                                      "and list them")
-    COMMAND_CAMPGROUNDS_DESCRIPTION: str = ("Search for Campgrounds. "
+    COMMAND_CAMPGROUNDS_DESCRIPTION: str = ("Search for Campgrounds and their IDs. "
                                             "Campgrounds are facilities inside of Recreation Areas "
-                                            "that contain campsites. Most 'Campgrounds' are "
-                                            "traditional blocks of campsites, others are "
-                                            "facilities like fire towers that might only contain a "
-                                            "single 'campsite'")
+                                            "that contain campsites. Most 'campgrounds' are areas "
+                                            "made up of multiple campsites, others are "
+                                            "facilities like fire towers or cabins that might only "
+                                            "contain a single 'campsite' to book")
 
     COMMAND_CAMPSITES: str = "campsites"
-    COMMAND_CAMPSITES_HELP: str = "Find Available Campsites using Search Criteria"
+    COMMAND_CAMPSITES_HELP: str = "Find available Campsites using search criteria"
     COMMAND_CAMPSITES_DESCRIPTION: str = ("Search for a campsite within camply. Campsites are "
                                           "returned based on the search criteria provided. "
                                           "Campsites contain properties like booking date, site "
                                           "type (tent, RV, cabin, etc), capacity, price, and a "
                                           "link to make the booking. "
                                           "Required parameters include `--start-date`, "
-                                          "`--end-date`, `--rec-area-id` / `--campground`. "
+                                          "`--end-date`, `--rec-area` / `--campground`. "
                                           "Constant searching functionality can be enabled with "
-                                          " `--continuous` and `--notifications` via Email and "
+                                          " `--continuous` and notifications via Email and "
                                           "Pushover can be enabled using `--notifications`.")
     COMMAND_CONFIGURE: str = "configure"
     COMMAND_CONFIGURE_HELP: str = "Set up camply configuration file with an interactive console"
-    COMMAND_CONFIGURE_DESCRIPTION: str = COMMAND_CAMPSITES_HELP
+    COMMAND_CONFIGURE_DESCRIPTION: str = COMMAND_CONFIGURE_HELP
 
     RECREATION_DOT_GOV: str = "RecreationDotGov"

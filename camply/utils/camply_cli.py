@@ -248,7 +248,7 @@ class CamplyCommandLine(object):
         elif self.cli_arguments.command == CommandLineConfig.COMMAND_CAMPSITES:
             if self.cli_arguments.provider == CommandLineConfig.RECREATION_DOT_GOV and all(
                     [self.cli_arguments.recreation_area_id is None,
-                     len(self.cli_arguments.campground_list) == 0]):
+                     len(self.cli_arguments.campground_id) == 0]):
                 error_message = CommandLineConfig.ERROR_MESSAGE_REC_DOT_GOV
                 help_parser = self.campsites
             mandatory_parameters = [self.cli_arguments.start_date,
@@ -321,7 +321,7 @@ class CamplyCommandLine(object):
             params.update(dict(state=self.cli_arguments.state))
         camp_finder.find_campgrounds(search_string=self.cli_arguments.search,
                                      rec_area_id=self.cli_arguments.recreation_area_id,
-                                     campground_id=self.cli_arguments.campground_list,
+                                     campground_id=self.cli_arguments.campground_id,
                                      **params)
 
     def execute_campsites(self):
@@ -340,7 +340,7 @@ class CamplyCommandLine(object):
             self.cli_arguments.provider.lower()]
         camping_finder = provider_class(search_window=search_window,
                                         recreation_area=self.cli_arguments.recreation_area_id,
-                                        campgrounds=self.cli_arguments.campground_list,
+                                        campgrounds=self.cli_arguments.campground_id,
                                         weekends_only=self.cli_arguments.weekends)
         try:
             camping_finder.get_matching_campsites(

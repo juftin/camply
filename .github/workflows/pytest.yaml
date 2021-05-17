@@ -38,6 +38,7 @@ jobs:
             -   name: "Unit Tests (commandline)"
                 run:  |
                       camply recreation-areas --search "Yosemite National Park"
-                      camply campgrounds --rec-area-id 2991
+                      camply campgrounds --rec-area 2991
                       camply campgrounds --search "Fire Tower Lookout" --state CA
-                      camply campsites --rec-area-id 2991 --start-date 2021-09-15 --end-date 2021-09-16
+                      camply campsites --rec-area 2991 --start-date 2021-09-15 --end-date 2021-09-16
+                      camply campsites --campground 252037 --start-date 2021-09-15 --end-date 2021-09-16
