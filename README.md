@@ -474,11 +474,12 @@ dependencies:
     - The `pandas` package is to group and aggregate across large data sets of campsites,
       campgrounds, and recreation areas.
 - [tenacity](https://tenacity.readthedocs.io/en/latest/)
-    - The `tenacity` package is used for retrying data fetches from some APIs. This retrying
-      methodology handles exceptions allowing for API downtime and facilitating exponential backoff.
+    - The `tenacity` package is used for retrying data searches on the underlying campsite APIs.
+      This retrying methodology handles exceptions allowing for API downtime and facilitating
+      exponential backoff.
 - [python-dotenv](https://github.com/theskumar/python-dotenv)
     - The `python-dotenv` package reads key-value pairs from a `.env` file and can set them as
-      environment variables.
+      environment variables - this helps with the `.camply` configuration file.
 
 ___________
 ___________
