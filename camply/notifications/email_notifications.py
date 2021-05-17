@@ -35,8 +35,8 @@ class EmailNotifications(BaseNotifications, ABC):
             variable_names = "\n\t".join(EmailConfig.ENVIRONMENT_VARIABLE_NAMES)
             optional_variable_names = "\n\t".join(
                 EmailConfig.OPTIONAL_ENVIRONMENT_VARIABLE)
-            error_message = ("Please provide server connection parameters manually or set "
-                             f"the following Environment Variables:\n\t{variable_names}"
+            error_message = ("Email Notification Auth Parameters not set. Run `camply configure` "
+                             f"or set the following Environment Variables:\n\t{variable_names}"
                              "\nOptional Environment Variables:\n\t"
                              f"{optional_variable_names}")
             logger.error(error_message)

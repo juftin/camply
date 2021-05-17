@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/juftin/camply/camply/docs/static/camply.svg" 
+  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg" 
     width="400" height="400" alt="camply">
 </p>
 
@@ -28,7 +28,7 @@ ___________
     * [`recreation-areas`](#recreation-areas)
     * [`campgrounds`](#campgrounds)
     * [`configure`](#configure)
-    * [Usage Examples](#usage-examples)
+    * [Examples](#examples)
         + [Searching for a Campsite](#searching-for-a-campsite)
         + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
         + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
@@ -187,9 +187,9 @@ camply campgrounds --search "Fire Tower Lookout" --state CA
 
 Set up `camply` configuration file with an interactive console
 
-In order to send notifications through `camply` you must set up some authorization values. Whether you
-need to set up pushover notifications (push notifications on your phone, your pushover account can
-be set up at https://pushover.net) or Email messages, everything can be done through the
+In order to send notifications through `camply` you must set up some authorization values. Whether
+you need to set up pushover notifications (push notifications on your phone, your pushover account
+can be set up at https://pushover.net) or Email messages, everything can be done through the
 `configure` command. The end result is a file called [`.camply`](example.camply) in your home
 folder. See the [Running in Docker](#running-in-docker) section to see how you can use environment
 variables instead of a config file.
@@ -198,7 +198,10 @@ variables instead of a config file.
 camply configure
 ```
 
-### Usage Examples
+### Examples
+
+Read through the examples below to get a better understanding of `camply`, its features,
+and the functionality of the different arguments provided to the CLI.
 
 #### Searching for a Campsite
 
@@ -236,8 +239,8 @@ camply campsites \
 
 Sometimes you want to search for all possible matches up until your arrival date. No problem. Add
 the `--search-forever` and `camply` won't stop sending notifications after the first match is found.
-One important note, `camply` will save and store all previous notifications when `--search-forever` is
-enabled, so it won't notify you about the exact same campsite availability twice. This can be
+One important note, `camply` will save and store all previous notifications when `--search-forever`
+is enabled, so it won't notify you about the exact same campsite availability twice. This can be
 problematic when certain campsites become available more than once.
 
 ```text
@@ -330,7 +333,7 @@ functionality. Use the below example for a campground within Glacier National Pa
 
 First, perform your search on https://recreation.gov
 <p>
-<img src="https://raw.githubusercontent.com/juftin/camply/camply/docs/static/recreation_dot_gov.png" 
+<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/recreation_dot_gov.png" 
     width="500" alt="recreation_dot_gov search">
 </p>
 
@@ -339,9 +342,9 @@ https://www.recreation.gov/search?q=Glacier%20National%20Park&entity_id=2725&ent
 Taking a closer look at the URL components you can see that Glacier National Park has the Recreation
 Area ID #2725.
 
-Searching deeper into campgrounds inside of Glacier National Park you might find Fish
-Creek Campground at a URL like https://www.recreation.gov/camping/campgrounds/232493. Here, we can
-see that this campground has a Campground ID of #232493.
+Searching deeper into campgrounds inside of Glacier National Park you might find Fish Creek
+Campground at a URL like https://www.recreation.gov/camping/campgrounds/232493. Here, we can see
+that this campground has a Campground ID of #232493.
 
 ## Object Oriented Usage (Python)
 
@@ -414,7 +417,8 @@ camping_finder.get_matching_campsites(log=True, verbose=True,
 
 ## Running in Docker
 
-Here's an example of a detached container searching in the background:
+Here's an example of a detached container searching in the background (notice the --rm flag, the
+container will disappear after `camply` exits):
 
 ```text
 docker run -d --rm \
@@ -457,15 +461,16 @@ your [`.camply`](example.camply) file inside the docker container:
 ```text
 docker run -d --rm \
   --name camply \
+  --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
+  --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
   --env TZ="America/Denver" \
-  --volume ${HOME}/.camply:/home/camply/.camply \
-  juftin/camply:latest \
+  camply:latest \
   camply campsites \
-      --rec-area 2991 \
-      --start-date 2021-08-01 \
-      --end-date 2021-08-31 \
+      --provider yellowstone \
+      --start-date 2021-07-22 \
+      --end-date 2021-07-26 \
       --continuous \
-      --notifications pushover
+      --notifications email
 ```
 
 ## Dependencies
