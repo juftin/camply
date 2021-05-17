@@ -229,10 +229,11 @@ pass the `--notify-first-try` argument
 ```text
 camply campsites \
     --rec-area 2725 \
-    --start-date 2021-07-01 \
-    --end-date 2021-07-31 \
+    --start-date 2021-07-12 \
+    --end-date 2021-07-12 \
     --continuous \
-    --notifications pushover
+    --notifications pushover \
+    --notify-first-try
 ```
 
 #### Continue Looking After The First Match Is Found
