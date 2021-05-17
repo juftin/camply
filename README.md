@@ -39,7 +39,7 @@ ___________
         + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for Specific Campgrounds by Query String](#look-for-specific-campgrounds-by-query-string)
 - [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
-- [Object Oriented Usage](#object-oriented-usage)
+- [Object Oriented Usage](#object-oriented-usage-python)
     * [Search for a Recreation.gov Campsite](#search-for-a-recreationgov-campsite)
     * [Continuously Search for Recreation.gov Campsites](#continuously-search-for-recreationgov-campsites)
 - [Running in Docker](#running-in-docker)
@@ -343,7 +343,7 @@ Searching deeper into campgrounds inside of Glacier National Park you might find
 Creek Campground at a URL like https://www.recreation.gov/camping/campgrounds/232493. Here, we can
 see that this campground has a Campground ID of #232493.
 
-## Object Oriented Usage
+## Object Oriented Usage (Python)
 
 ### Search for a Recreation.gov Campsite
 
@@ -406,7 +406,7 @@ camping_finder = SearchRecreationDotGov(search_window=month_of_june,
                                         weekends_only=False)
 camping_finder.get_matching_campsites(log=True, verbose=True,
                                       continuous=True,
-                                      polling_interval=True,
+                                      polling_interval=5,
                                       notification_provider="pushover",
                                       search_forever=True,
                                       notify_first_try=False)
