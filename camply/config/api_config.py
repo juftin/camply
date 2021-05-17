@@ -39,7 +39,7 @@ STANDARD_HEADERS: dict = {
 }
 
 
-class RIDBConfig(object):
+class RIDBConfig:
     """
     RIDB API Configuration
 
@@ -83,7 +83,7 @@ class RIDBConfig(object):
     REC_AREA_STATE: str = "AddressStateCode"
 
 
-class RecreationBookingConfig(object):
+class RecreationBookingConfig:
     """
     Variable Storage Class for Recreation.gov Booking API
     """

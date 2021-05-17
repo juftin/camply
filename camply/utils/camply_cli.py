@@ -51,7 +51,7 @@ class CommandLineError(Exception):
     pass
 
 
-class CamplyCommandLine(object):
+class CamplyCommandLine:
     """
     Camply Command Line Interface
     """

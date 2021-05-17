@@ -16,4 +16,3 @@ class BaseProvider(ABC):
     """
     Base Provider Class
     """
-    pass

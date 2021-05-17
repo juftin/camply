@@ -1,4 +1,11 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# Author::    Justin Flannery  (mailto:juftin@juftin.com)
+
+"""
+Camply Installation setup.py File
+"""
 
 from os import path
 

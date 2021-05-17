@@ -39,9 +39,9 @@ class SearchYellowstone(BaseCampingSearch):
             Whether to only search for Camping availabilities on the weekends (Friday /
             Saturday nights)
         """
-        super(SearchYellowstone, self).__init__(provider=YellowstoneLodging(),
-                                                search_window=search_window,
-                                                weekends_only=weekends_only)
+        super().__init__(provider=YellowstoneLodging(),
+                         search_window=search_window,
+                         weekends_only=weekends_only)
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """

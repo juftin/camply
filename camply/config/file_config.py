@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import List
 
 
-class FileConfig(object):
+class FileConfig:
     """
     File Path Storage Class
     """

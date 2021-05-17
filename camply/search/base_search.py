@@ -29,14 +29,12 @@ class SearchError(Exception):
     """
     Generic Search Error
     """
-    pass
 
 
 class CampsiteNotFound(SearchError):
     """
     Campsite not found Error
     """
-    pass
 
 
 class BaseCampingSearch(ABC):
@@ -79,7 +77,6 @@ class BaseCampingSearch(ABC):
         -------
         List[AvailableCampsite]
         """
-        pass
 
     def _search_matching_campsites_available(self, log: bool = False,
                                              verbose: bool = False,
@@ -115,7 +112,7 @@ class BaseCampingSearch(ABC):
         return matching_campgrounds
 
     @classmethod
-    def _get_polling_minutes(cls, polling_interval: Optional[int]):
+    def _get_polling_minutes(cls, polling_interval: Optional[int]) -> int:
         """
         Return the Nu,ber of Minutes to Search
 
@@ -127,7 +124,7 @@ class BaseCampingSearch(ABC):
 
         Returns
         -------
-
+        int
         """
         if polling_interval is None:
             polling_interval = getenv("POLLING_INTERVAL", SearchConfig.RECOMMENDED_POLLING_INTERVAL)
@@ -189,7 +186,7 @@ class BaseCampingSearch(ABC):
         else:
             logger.warning("Found matching campsites on the first try! "
                            "Using Silent Notifications. Go Get your campsite! 🏕")
-            if type(notifier) != SilentNotifications:
+            if not isinstance(notifier, SilentNotifications):
                 notifier = SilentNotifications()
             notifier.send_campsites(campsites=logged_campsites)
         return list(self.campsites_found)

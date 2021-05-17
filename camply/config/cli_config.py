@@ -17,7 +17,7 @@ from camply.config.search_config import SearchConfig
 load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=True)
 
 
-class CommandLineActions(object):
+class CommandLineActions:
     """
     ArgParse Actions
     """
@@ -27,7 +27,7 @@ class CommandLineActions(object):
     APPEND: str = "append"
 
 
-class CommandLineArguments(object):
+class CommandLineArguments:
     """
     Argument Config
     """
@@ -100,7 +100,7 @@ class CommandLineArguments(object):
                                 "the same booking date.")
 
 
-class CommandLineValidation(object):
+class CommandLineValidation:
     """
     Camply CLI Validation Config
     """

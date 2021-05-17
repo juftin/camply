@@ -7,7 +7,7 @@ Project Configuration for Yellowstone Variables
 """
 
 
-class SearchConfig(object):
+class SearchConfig:
     """
     File Path Storage Class
     """

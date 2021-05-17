@@ -42,9 +42,9 @@ class SearchRecreationDotGov(BaseCampingSearch):
             Whether to only search for Camping availabilities on the weekends (Friday /
             Saturday nights)
         """
-        super(SearchRecreationDotGov, self).__init__(provider=RecreationDotGov(),
-                                                     search_window=search_window,
-                                                     weekends_only=weekends_only)
+        super().__init__(provider=RecreationDotGov(),
+                         search_window=search_window,
+                         weekends_only=weekends_only)
         self._recreation_area_id = self._make_list(recreation_area)
         self._campground_object = campgrounds
         self.weekends_only = weekends_only

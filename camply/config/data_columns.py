@@ -7,7 +7,7 @@ Project Configuration for Data Variable Labels
 """
 
 
-class DataColumns(object):
+class DataColumns:
     """
     Variable Storage Class
     """

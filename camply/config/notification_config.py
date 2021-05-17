@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=True)
 
 
-class PushoverConfig(object):
+class PushoverConfig:
     """
     Pushover Notification Config Class
     """
@@ -34,7 +34,7 @@ class PushoverConfig(object):
         PUSH_USER = None
 
 
-class EmailConfig(object):
+class EmailConfig:
     """
     Email Notification Config Class
     """

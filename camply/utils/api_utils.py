@@ -66,8 +66,8 @@ def filter_json(json: dict, filters: Union[str, List[str]]) -> object:
             layer_index = index + 1
             object_layers[layer_index] = object_layers[index][filter_layer]
             del object_layers[index]
-    except KeyError as ke:
-        error_message = f"Unable to find matching JSON Filtering | {ke} | {filters}"
+    except KeyError as key_error:
+        error_message = f"Unable to find matching JSON Filtering | {key_error} | {filters}"
         logger.error(error_message)
-        raise KeyError(error_message)
+        raise KeyError from key_error
     return object_layers[len(filters)]
