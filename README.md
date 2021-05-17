@@ -56,8 +56,10 @@ pip install camply
 ### Docker
 
 ```text
-docker pull juftin/camply:latest
+docker pull juftin/camply
 ```
+
+** _see [Running in Docker](#running-in-docker) below._
 
 ### Building Locally
 
@@ -183,9 +185,9 @@ camply campgrounds --search "Fire Tower Lookout" --state CA
 
 ### `configure`
 
-Set up camply configuration file with an interactive console
+Set up `camply` configuration file with an interactive console
 
-In order to send notifications through camply you must set up some authorization values. Whether you
+In order to send notifications through `camply` you must set up some authorization values. Whether you
 need to set up pushover notifications (push notifications on your phone, your pushover account can
 be set up at https://pushover.net) or Email messages, everything can be done through the
 `configure` command. The end result is a file called [`.camply`](example.camply) in your home
@@ -216,9 +218,9 @@ camply campsites \
 This version runs until found a match is found. It also sends a notification via `pushover`.
 Alternate notification methods are `email` and `silent` (default).
 
-Important Note: When camply is told to run `--continuous` and it finds matching sites on the first
+Important Note: When `camply` is told to run `--continuous` and it finds matching sites on the first
 try, it just logs the campsites silently and exits. It's always encouraged to perform an initial
-online search before setting up a camply search. To bypass this behavior and send notifications,
+online search before setting up a `camply` search. To bypass this behavior and send notifications,
 pass the `--notify-first-try` argument
 
 ```text
@@ -233,8 +235,8 @@ camply campsites \
 #### Continue Looking After The First Match Is Found
 
 Sometimes you want to search for all possible matches up until your arrival date. No problem. Add
-the `--search-forever` and Camply won't stop sending notifications after the first match is found.
-One important note, Camply will save and store all previous notifications when `--search-forever` is
+the `--search-forever` and `camply` won't stop sending notifications after the first match is found.
+One important note, `camply` will save and store all previous notifications when `--search-forever` is
 enabled, so it won't notify you about the exact same campsite availability twice. This can be
 problematic when certain campsites become available more than once.
 
@@ -337,7 +339,7 @@ https://www.recreation.gov/search?q=Glacier%20National%20Park&entity_id=2725&ent
 Taking a closer look at the URL components you can see that Glacier National Park has the Recreation
 Area ID #2725.
 
-Searching deeper into campgrounds inside of Glacier National Park you might mind a place like Fish
+Searching deeper into campgrounds inside of Glacier National Park you might find Fish
 Creek Campground at a URL like https://www.recreation.gov/camping/campgrounds/232493. Here, we can
 see that this campground has a Campground ID of #232493.
 
