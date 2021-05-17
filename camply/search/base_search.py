@@ -316,9 +316,8 @@ class BaseCampingSearch(ABC):
                         f"ranging from {min(search_days).strftime('%Y-%m-%d')} to "
                         f"{max(search_days).strftime('%Y-%m-%d')}")
         else:
-            error_message = "No search days configured. Exiting"
-            logger.info(error_message)
-            raise RuntimeError(error_message)
+            logger.info(SearchConfig.ERROR_MESSAGE)
+            raise RuntimeError(SearchConfig.ERROR_MESSAGE)
         return list(sorted(search_days))
 
     def _get_search_months(self) -> List[datetime]:
@@ -338,8 +337,8 @@ class BaseCampingSearch(ABC):
                         f"{max(search_days).strftime('%Y-%m-%d')}")
             return sorted(list(truncated_months))
         elif len(truncated_months) == 0:
-            logger.info("No search days configured. Exiting")
-            raise RuntimeError("No search days configured. Exiting")
+            logger.info(SearchConfig.ERROR_MESSAGE)
+            raise RuntimeError(SearchConfig.ERROR_MESSAGE)
         else:
             return sorted(list(truncated_months))
 

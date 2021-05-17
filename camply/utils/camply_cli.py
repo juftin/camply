@@ -9,7 +9,7 @@ Camply CLI
 from argparse import ArgumentParser, Namespace
 from datetime import datetime
 import logging
-from typing import Optional
+from typing import Optional, Tuple
 
 from camply.config import CommandLineConfig
 from camply.containers import SearchWindow
@@ -235,31 +235,11 @@ class CamplyCommandLine:
             error_message = CommandLineConfig.ERROR_NO_ARGUMENT_FOUND
             help_parser = self.parser
         elif self.cli_arguments.command == CommandLineConfig.COMMAND_RECREATION_AREA:
-            if all([self.cli_arguments.search is None,
-                    self.cli_arguments.state is None]):
-                error_message = CommandLineConfig.ERROR_MESSAGE_RECREATION_AREA
-                help_parser = self.recreation_areas
+            error_message, help_parser = self._validate_recreation_areas()
         elif self.cli_arguments.command == CommandLineConfig.COMMAND_CAMPGROUNDS:
-            if all([self.cli_arguments.search is None,
-                    self.cli_arguments.state is None,
-                    self.cli_arguments.recreation_area_id is None]):
-                error_message = CommandLineConfig.ERROR_MESSAGE_CAMPGROUNDS
-                help_parser = self.campgrounds
+            error_message, help_parser = self._validate_campgrounds()
         elif self.cli_arguments.command == CommandLineConfig.COMMAND_CAMPSITES:
-            if self.cli_arguments.provider == CommandLineConfig.RECREATION_DOT_GOV and all(
-                    [self.cli_arguments.recreation_area_id is None,
-                     len(self.cli_arguments.campground_id) == 0]):
-                error_message = CommandLineConfig.ERROR_MESSAGE_REC_DOT_GOV
-                help_parser = self.campsites
-            mandatory_parameters = [self.cli_arguments.start_date,
-                                    self.cli_arguments.end_date]
-            mandatory_string_parameters = [CommandLineConfig.START_DATE_ARGUMENT,
-                                           CommandLineConfig.END_DATE_ARGUMENT]
-            for field in mandatory_parameters:
-                if field is None:
-                    error_message = (f"{CommandLineConfig.ERROR_MESSAGE_CAMPSITES}: "
-                                     f"{', '.join(mandatory_string_parameters)}")
-                    help_parser = self.campsites
+            error_message, help_parser = self._validate_campsites()
 
         if error_message is not None:
             help_parser.print_help()
@@ -267,6 +247,62 @@ class CamplyCommandLine:
             logger.error(error_message)
             exit(1)
         self.arguments_validated = True
+
+    def _validate_campsites(self) -> Tuple[Optional[str], Optional[ArgumentParser]]:
+        """
+        Validate the campsites portion of the CLI
+
+        Returns
+        -------
+        Tuple[Optional[str], Optional[ArgumentParser]]:
+        """
+        error_message = help_parser = None
+        if self.cli_arguments.provider == CommandLineConfig.RECREATION_DOT_GOV and all(
+                [self.cli_arguments.recreation_area_id is None,
+                 len(self.cli_arguments.campground_id) == 0]):
+            error_message = CommandLineConfig.ERROR_MESSAGE_REC_DOT_GOV
+            help_parser = self.campsites
+        mandatory_parameters = [self.cli_arguments.start_date,
+                                self.cli_arguments.end_date]
+        mandatory_string_parameters = [CommandLineConfig.START_DATE_ARGUMENT,
+                                       CommandLineConfig.END_DATE_ARGUMENT]
+        for field in mandatory_parameters:
+            if field is None:
+                error_message = (f"{CommandLineConfig.ERROR_MESSAGE_CAMPSITES}: "
+                                 f"{', '.join(mandatory_string_parameters)}")
+                help_parser = self.campsites
+        return error_message, help_parser
+
+    def _validate_campgrounds(self) -> Tuple[Optional[str], Optional[ArgumentParser]]:
+        """
+        Validate the campgrounds portion of the CLI
+
+        Returns
+        -------
+        Tuple[Optional[str], Optional[ArgumentParser]]:
+        """
+        error_message = help_parser = None
+        if all([self.cli_arguments.search is None,
+                self.cli_arguments.state is None,
+                self.cli_arguments.recreation_area_id is None]):
+            error_message = CommandLineConfig.ERROR_MESSAGE_CAMPGROUNDS
+            help_parser = self.campgrounds
+        return error_message, help_parser
+
+    def _validate_recreation_areas(self) -> Tuple[Optional[str], Optional[ArgumentParser]]:
+        """
+        Validate the recreation areas portion of the CLI
+
+        Returns
+        -------
+        Tuple[Optional[str], Optional[ArgumentParser]]
+        """
+        error_message = help_parser = None
+        if all([self.cli_arguments.search is None,
+                self.cli_arguments.state is None]):
+            error_message = CommandLineConfig.ERROR_MESSAGE_RECREATION_AREA
+            help_parser = self.recreation_areas
+        return error_message, help_parser
 
     def execute_cli_arguments(self) -> Optional[object]:
         """

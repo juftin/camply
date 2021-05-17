@@ -12,7 +12,6 @@ becomes available, `camply` sends you a notification to book your spot!
 ___________
 ___________
 
-
 [![Version](https://img.shields.io/static/v1?label=⛺️camply&message=0.1.0&color=blue)](https://github.com/juftin/camply)
 [![Python Versions](https://img.shields.io/static/v1?label=Python&message=3.6%20|%203.7%20|%203.8%20|%203.9&color=blue&logo=python)](https://pypi.python.org/pypi/camply/)
 [![Docker Version](https://img.shields.io/static/v1?label=Docker&message=0.1.0&color=blue&logo=docker)](https://hub.docker.com/r/juftin/camply)
@@ -20,7 +19,6 @@ ___________
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Installation](#installation)
     * [PyPi](#pypi)
     * [Docker](#docker)
@@ -77,7 +75,7 @@ and `configure`
 
 ```text
 ❯ camply
-❯ camply
+
 2021-05-16 20:20:00,766 [  CAMPLY]: camply, the campsite finder ⛺️
 usage: camply [-h] [--version] {campsites,recreation-areas,campgrounds,configure} ...
 
