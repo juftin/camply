@@ -151,8 +151,6 @@ camply campsites \
     --end-date 2021-06-17
 ```
 
-**_see the [examples](#searching-for-a-campsite) for more information_
-
 ### `recreation-areas`
 
 Search for Recreation Areas and their IDs. Recreation Areas are places like National Parks and
