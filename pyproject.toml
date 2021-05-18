@@ -26,3 +26,9 @@ pytest = "*"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/juftin/camply/issues"
+"Documentation" = "https://github.com/juftin/camply/blob/main/README.md"
+"Changelog" = "https://github.com/juftin/camply/blob/main/CHANGELOG.md"
+"Docker" = "https://hub.docker.com/r/juftin/camply"
