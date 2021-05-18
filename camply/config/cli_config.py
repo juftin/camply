@@ -128,11 +128,12 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
     CAMPLY_LONG_DESCRIPTION: str = ("Welcome to camply, the campsite finder. "
                                     "Finding reservations at sold out campgrounds can be "
                                     "tough. That's where camply comes in. It searches the APIs of "
-                                    "booking services like https://recreation.gov (which works on "
+                                    "booking services like https://recreation.gov (which indexes "
                                     "thousands of campgrounds across the USA) to continuously "
                                     "check for cancellations and availabilities to pop up. "
                                     "Once a campsite becomes available, camply sends you a "
                                     "notification to book your spot!")
+    CAMPLY_EPILOG: str = "visit the camply documentation at https://github.com/juftin/camply"
 
     LOG_LEVEL = logging.getLevelName(getenv("LOG_LEVEL", "INFO").upper())
 

@@ -66,7 +66,8 @@ class CamplyCommandLine:
         """
 
         self.parser = ArgumentParser(description=CommandLineConfig.CAMPLY_LONG_DESCRIPTION,
-                                     prog=self.__name__)
+                                     prog=self.__name__,
+                                     epilog=CommandLineConfig.CAMPLY_EPILOG)
         self.arguments_compiled: bool = False
         self.arguments_parsed: bool = False
         self.cli_arguments: Optional[Namespace] = None

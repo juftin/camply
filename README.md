@@ -1,13 +1,13 @@
-<p align="center">
+<div align="center">
   <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg" 
     width="400" height="400" alt="camply">
-</p>
+</div>
 
-`camply`, the campsite finder ⛺️, is a tool to help you book an online campground. Finding
-reservations at sold out campgrounds can be tough. That's where `camply` comes in. It searches the
-APIs of Booking Services like https://recreation.gov (which works on thousands of campgrounds across
+`camply`, the campsite finder ⛺️, is a tool to help you book a campground online. Finding
+reservations at sold out campgrounds can be tough. That's where camply comes in. It searches the
+APIs of booking services like https://recreation.gov (which indexes thousands of campgrounds across
 the USA) to continuously check for cancellations and availabilities to pop up. Once a campsite
-becomes available, `camply` sends you a notification to book your spot!
+becomes available, camply sends you a notification to book your spot!
 
 ___________
 ___________
@@ -16,6 +16,7 @@ ___________
 [![Python Versions](https://img.shields.io/static/v1?label=Python&message=3.6%20|%203.7%20|%203.8%20|%203.9&color=blue&logo=python)](https://pypi.python.org/pypi/camply/)
 [![Docker Version](https://img.shields.io/static/v1?label=Docker&message=0.1.0&color=blue&logo=docker)](https://hub.docker.com/r/juftin/camply)
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yaml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yaml)
+[![License](https://img.shields.io/static/v1?label=License&message=MIT&color=blue)](https://github.com/juftin/camply/blob/main/LICENSE)
 
 ## Table of Contents
 
@@ -76,31 +77,34 @@ tool accepts one of four sub-arguments: `campsites`, `recreation-areas`, `campgr
 and `configure`
 
 ```text
-❯ camply
+❯ camply --help
 
-2021-05-16 20:20:00,766 [  CAMPLY]: camply, the campsite finder ⛺️
-usage: camply [-h] [--version] {campsites,recreation-areas,campgrounds,configure} ...
+2021-05-17 19:11:59,858 [  CAMPLY]: camply, the campsite finder ⛺️
+usage: camply [-h] [--version]
+              {campsites,recreation-areas,campgrounds,configure} ...
 
-Welcome to camply, the campsite finder. Finding reservations at sold out campgrounds can be tough. 
-That's where camply comes in. It searches the APIs of booking services like https://recreation.gov (
-which works on thousands of campgrounds across the USA) to continuously check for cancellations and 
-availabilities to pop up. Once a campsite becomes available, camply sends you a notification to book 
-your spot!
+Welcome to camply, the campsite finder. Finding reservations at sold out
+campgrounds can be tough. That's where camply comes in. It searches the APIs
+of booking services like https://recreation.gov (which indexes thousands of
+campgrounds across the USA) to continuously check for cancellations and
+availabilities to pop up. Once a campsite becomes available, camply sends you
+a notification to book your spot!
 
 positional arguments:
   {campsites,recreation-areas,campgrounds,configure}
-    campsites           Find Available Campsites using search criteria
+    campsites           Find available Campsites using search criteria
     recreation-areas    Search for Recreation Areas and list them
-    campgrounds         Search for Campgrounds (inside of Recreation Areas) and list them
-    configure           Set up camply configuration file with an interactive console
+    campgrounds         Search for Campgrounds (inside of Recreation Areas)
+                        and list them
+    configure           Set up camply configuration file with an interactive
+                        console
 
 optional arguments:
   -h, --help            show this help message and exit
   --version             show program's version number and exit
 
-
-2021-05-16 20:20:00,770 [   ERROR]: You must provide an argument to the Camply CLI
-2021-05-16 20:20:00,770 [  CAMPLY]: Exiting camply 👋
+visit the camply documentation at https://github.com/juftin/camply
+2021-05-17 19:11:59,863 [  CAMPLY]: Exiting camply 👋
 ```
 
 ### `campsites`
@@ -200,8 +204,8 @@ camply configure
 
 ### Examples
 
-Read through the examples below to get a better understanding of `camply`, its features,
-and the functionality of the different arguments provided to the CLI.
+Read through the examples below to get a better understanding of `camply`, its features, and the
+functionality of the different arguments provided to the CLI.
 
 #### Searching for a Campsite
 
@@ -333,10 +337,10 @@ You can uncover campground and recreation area IDs just by using the https://rec
 functionality. Use the below example for a campground within Glacier National Park.
 
 First, perform your search on https://recreation.gov
-<p>
+<div>
 <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/recreation_dot_gov.png" 
     width="500" alt="recreation_dot_gov search">
-</p>
+</div>
 
 The above search will take you to a URL like this:
 https://www.recreation.gov/search?q=Glacier%20National%20Park&entity_id=2725&entity_type=recarea.
@@ -347,7 +351,7 @@ Searching deeper into campgrounds inside of Glacier National Park you might find
 Campground at a URL like https://www.recreation.gov/camping/campgrounds/232493. Here, we can see
 that this campground has a Campground ID of #232493.
 
-## Object Oriented Usage (Python)
+## Object-Oriented Usage (Python)
 
 ### Search for a Recreation.gov Campsite
 
@@ -497,6 +501,5 @@ ___________
 
 <br/>
 
-
-[<p align="center" ><img src="https://raw.githubusercontent.com/juftin/juftin/master/static/juftin.png" width="120" height="120"  alt="juftin logo"> </p>](https://github.com/juftin)
+[<p align="center" ><img src="https://raw.githubusercontent.com/juftin/juftin/main/static/juftin.png" width="120" height="120"  alt="juftin logo"> </p>](https://github.com/juftin)
 
