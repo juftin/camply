@@ -21,7 +21,7 @@ ___________
 ## Table of Contents
 
 - [Installation](#installation)
-    * [PyPi](#pypi)
+    * [PyPI](#pypi)
     * [Docker](#docker)
     * [Building Locally](#building-locally)
 - [Command Line Usage](#command-line-usage)
@@ -48,7 +48,7 @@ ___________
 
 ## Installation
 
-### PyPi
+### PyPI
 
 ```text
 pip install camply
