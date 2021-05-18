@@ -89,8 +89,8 @@ class CommandLineArguments:
     NOTIFY_FIRST_TRY_ARGUMENT: str = "--notify-first-try"
     NOTIFY_FIRST_TRY_DESTINATION: str = "notify_first_try"
     NOTIFY_FIRST_TRY_HELP: str = ("If --continuous is activated, whether to send a "
-                                  "non-silent notification if a matching "
-                                  "campsite is found on the first try. Defaults to false.")
+                                  "non-silent notification if more than 10 matching "
+                                  "campsites are found on the first try. Defaults to false.")
 
     SEARCH_FOREVER_ARGUMENT: str = "--search-forever"
     SEARCH_FOREVER_DESTINATION: str = "search_forever"
@@ -168,6 +168,7 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
                                           "Constant searching functionality can be enabled with "
                                           " `--continuous` and notifications via Email and "
                                           "Pushover can be enabled using `--notifications`.")
+
     COMMAND_CONFIGURE: str = "configure"
     COMMAND_CONFIGURE_HELP: str = "Set up camply configuration file with an interactive console"
     COMMAND_CONFIGURE_DESCRIPTION: str = (

@@ -14,3 +14,4 @@ class SearchConfig:
     POLLING_INTERVAL_MINIMUM: int = 5  # 5 MINUTES
     RECOMMENDED_POLLING_INTERVAL: int = 10  # 10 MINUTES
     ERROR_MESSAGE: str = "No search days configured. Exiting"
+    MINIMUM_CAMPSITES_FIRST_NOTIFY: int = 10

@@ -184,9 +184,11 @@ class BaseCampingSearch(ABC):
         elif retryer.statistics.get("attempt_number", 1) == 1 and notify_first_try is True:
             notifier.send_campsites(campsites=logged_campsites)
         else:
-            logger.warning("Found matching campsites on the first try! "
-                           "Using Silent Notifications. Go Get your campsite! 🏕")
-            if not isinstance(notifier, SilentNotifications):
+            if not isinstance(notifier, SilentNotifications) and \
+                    len(self.campsites_found) > SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY:
+                logger.warning(f"Found more than {SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} "
+                               "matching campsites on the first try! "
+                               "Using Silent Notifications. Go Get your campsite! 🏕")
                 notifier = SilentNotifications()
             notifier.send_campsites(campsites=logged_campsites)
         return list(self.campsites_found)

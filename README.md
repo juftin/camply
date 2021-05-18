@@ -142,8 +142,9 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       `email`, `pushover`, or `silent`. Defaults to `silent` - which just logs messages to
       console. [**_example_](#continuously-searching-for-a-campsite)
 * `--notify-first-try`
-    + If `--continuous` is activated, whether to send a non-silent notification if a matching
-      campsite is found on the first try. Defaults to false. [**_example_](#continuously-searching-for-a-campsite)
+    + If `--continuous` is activated, whether to send a non- silent notification if more than 10
+      matching campsites are found on the first try. Defaults to 
+      false. [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
@@ -249,13 +250,15 @@ camply campsites \
 
 #### Continuously Searching for A Campsite
 
-This version runs until found a match is found. It also sends a notification via `pushover`.
-Alternate notification methods are `email` and `silent` (default).
+Sometimes you want to look for campgrounds until an eventual match is found. The below snippet will
+search for matching campsites until it finds a match. It also sends a notification via `pushover`
+once matches are found. Alternate notification methods are `email` and `silent` (default).
 
-Important Note: When `camply` is told to run `--continuous` and it finds matching sites on the first
-try, it just logs the campsites silently and exits. It's always encouraged to perform an initial
-online search before setting up a `camply` search. To bypass this behavior and send notifications,
-pass the `--notify-first-try` argument.
+__Important Note__: When `camply` is told to run `--continuous` with non-silent notifications set up
+and it finds more than 10 matching campsites on the first try, it just logs the campsites silently at
+first. This is to prevent thousands of campsites flooding your notifications. It's always encouraged
+to perform an initial online search before setting up a `camply` search. To bypass this behavior and
+send all notifications, pass the `--notify-first-try` argument.
 
 ```text
 camply campsites \
@@ -425,7 +428,7 @@ The above script returns a list of any matching `AvailableCampsite` namedtuple o
 
 ### Continuously Search for Recreation.gov Campsites
 
-You'll notice that the `get_matching_campsites` function takes acceps parameter values very similar
+You'll notice that the `get_matching_campsites` function takes accepts parameter values very similar
 to the commandline arguments.
 
 ```python
@@ -462,7 +465,7 @@ docker run -d --rm \
   --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
   --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
   --env TZ="America/Denver" \
-  juftin/camply:latest \
+  juftin/camply \
   camply campsites \
       --rec-area 2991 \
       --start-date 2021-08-01 \
@@ -497,10 +500,9 @@ your [`.camply`](example.camply) file inside the docker container.
 ```text
 docker run -d --rm \
   --name camply \
-  --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
-  --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
   --env TZ="America/Denver" \
-  camply:latest \
+  --volume ${HOME}/.camply:/home/camply/.camply \
+  juftin/camply \
   camply campsites \
       --provider yellowstone \
       --start-date 2021-07-22 \
