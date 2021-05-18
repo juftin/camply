@@ -59,7 +59,7 @@ class CommandLineArguments:
 
     WEEKENDS_ARGUMENT: str = "--weekends"
     WEEKENDS_DESTINATION: str = "weekends"
-    WEEKENDS_HELP: str = "Only search for weekend bookings (Fri/Sat)"
+    WEEKENDS_HELP: str = "Only search for weekend bookings (Fri/Sat nights)"
 
     PROVIDER_ARGUMENT: str = "--provider"
     PROVIDER_DESTINATION: str = "provider"

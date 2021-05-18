@@ -91,7 +91,7 @@ class EmailNotifications(BaseNotifications, ABC):
 
         Parameters
         ----------
-        campsites: AvailableCampsite
+        campsites: List[AvailableCampsite]
         """
         master_email_body_list = list()
         for campsite in campsites:

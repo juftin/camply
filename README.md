@@ -60,7 +60,7 @@ pip install camply
 docker pull juftin/camply
 ```
 
-** _see [Running in Docker](#running-in-docker) below._
+**_see [Running in Docker](#running-in-docker) below._
 
 ### Building Locally
 
@@ -122,7 +122,7 @@ Find available Campsites using search criteria
 * `--end-date`: `END_DATE`
     + `YYYY-MM-DD`: End of Search window. You will be leaving the following day
 * `--weekends`
-    + Only search for weekend bookings (Fri/Sat)
+    + Only search for weekend bookings (Fri/Sat nights)
 * `--provider`: `PROVIDER`
     + Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
       to 'RecreationDotGov', not case-sensitive.
@@ -130,18 +130,18 @@ Find available Campsites using search criteria
     + Continuously check for a campsite to become available, and quit once at least one campsite is
       found.
 * `--polling-interval`: `POLLING_INTERVAL`
-    + If --continuous is activated, how often to wait in between checks (in minutes). Defaults to
+    + If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
       10, cannot be less than 5
 * `--notifications`: `NOTIFICATIONS`
-    + If --continuous is activated, types of notifications to receive. Options available are
+    + If `--continuous` is activated, types of notifications to receive. Options available are
       `email`, `pushover`, or `silent`. Defaults to `silent` - which just logs messages to console
 * `--notify-first-try`
-    + If --continuous is activated, whether to send a non-silent notification if a matching campsite
-      is found on the first try. Defaults to false
+    + If `--continuous` is activated, whether to send a non-silent notification if a matching
+      campsite is found on the first try. Defaults to false
 * `--search-forever`
-    + If --continuous is activated, this method continues to search after the first availability has
-      been found. The one caveat is that it will never notify about the same identical campsite for
-      the same booking date.
+    + If `--continuous` is activated, this method continues to search after the first availability
+      has been found. The one caveat is that it will never notify about the same identical campsite
+      for the same booking date.
 
 ```text
 camply campsites \
@@ -149,6 +149,8 @@ camply campsites \
     --start-date 2021-06-10 \
     --end-date 2021-06-17
 ```
+
+**_see the [examples](#searching-for-a-campsite) for more information_
 
 ### `recreation-areas`
 
@@ -165,6 +167,8 @@ National Forests that can contain one or many campgrounds.
 ```text
 camply recreation-areas --search "Yosemite National Park"
 ```
+
+**_see the [examples](#search-for-recreation-areas-by-query-string) for more information_
 
 ### `campgrounds`
 
@@ -186,6 +190,8 @@ like fire towers or cabins that might only contain a single 'campsite' to book
 ```text
 camply campgrounds --search "Fire Tower Lookout" --state CA
 ```
+
+**_see the [examples](#look-for-specific-campgrounds-by-query-string) for more information_
 
 ### `configure`
 
@@ -211,7 +217,9 @@ functionality of the different arguments provided to the CLI.
 
 The below search looks for campsites inside of Recreation Area ID #2725 (Glacier National Park)
 between 2021-06-10 and 2021-06-17. The search will be performed once and any results will be logged
-to the console.
+to the console. camply searches for campsites inside of search windows in increments of one night.
+`--start-date` and `--end-date` define the bounds of the search window, you will be leaving the day
+after `--end-date`
 
 ```text
 camply campsites \
@@ -422,7 +430,7 @@ camping_finder.get_matching_campsites(log=True, verbose=True,
 
 ## Running in Docker
 
-Here's an example of a detached container searching in the background (notice the --rm flag, the
+Here's an example of a detached container searching in the background (notice the `--rm` flag, the
 container will disappear after `camply` exits):
 
 ```text
