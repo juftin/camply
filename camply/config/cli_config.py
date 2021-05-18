@@ -35,31 +35,31 @@ class CommandLineArguments:
 
     STATE_ARGUMENT: str = "--state"
     STATE_DESTINATION: str = "state"
-    STATE_HELP: str = "Filter by US state code"
+    STATE_HELP: str = "Filter by US state code."
 
     REC_AREA_ID_ARGUMENT: str = "--rec-area"
     REC_AREA_ID_DESTINATION: str = "recreation_area_id"
-    REC_AREA_ID_HELP: str = "Add Recreation Areas (comprised of campgrounds) by ID"
+    REC_AREA_ID_HELP: str = "Add Recreation Areas (comprised of campgrounds) by ID."
 
     CAMPGROUND_LIST_ARGUMENT: str = "--campground"
     CAMPGROUND_LIST_DESTINATION: str = "campground_id"
-    CAMPGROUND_LIST_HELP: str = "Add individual Campgrounds by ID"
+    CAMPGROUND_LIST_HELP: str = "Add individual Campgrounds by ID."
 
     SEARCH_ARGUMENT: str = "--search"
     SEARCH_DESTINATION: str = "search"
-    SEARCH_HELP: str = "Search for Campgrounds or Recreation Areas by search string"
+    SEARCH_HELP: str = "Search for Campgrounds or Recreation Areas by search string."
 
     START_DATE_ARGUMENT: str = "--start-date"
     START_DATE_DESTINATION: str = "start_date"
-    START_DATE_HELP: str = "(YYYY-MM-DD) Start of Search window. You will be arriving this day"
+    START_DATE_HELP: str = "(YYYY-MM-DD) Start of Search window. You will be arriving this day."
 
     END_DATE_ARGUMENT: str = "--end-date"
     END_DATE_DESTINATION: str = "end_date"
-    END_DATE_HELP: str = "(YYYY-MM-DD) End of Search window. You will be leaving the following day"
+    END_DATE_HELP: str = "(YYYY-MM-DD) End of Search window. You will be leaving the following day."
 
     WEEKENDS_ARGUMENT: str = "--weekends"
     WEEKENDS_DESTINATION: str = "weekends"
-    WEEKENDS_HELP: str = "Only search for weekend bookings (Fri/Sat nights)"
+    WEEKENDS_HELP: str = "Only search for weekend bookings (Fri/Sat nights)."
 
     PROVIDER_ARGUMENT: str = "--provider"
     PROVIDER_DESTINATION: str = "provider"
@@ -76,7 +76,7 @@ class CommandLineArguments:
     POLLING_INTERVAL_DESTINATION: str = "polling_interval"
     POLLING_INTERVAL_DEFAULT: str = SearchConfig.RECOMMENDED_POLLING_INTERVAL
     POLLING_INTERVAL_HELP: str = ("If --continuous is activated, how often to wait in between "
-                                  "checks (in minutes). Defaults to 10, cannot be less than 5")
+                                  "checks (in minutes). Defaults to 10, cannot be less than 5.")
 
     NOTIFICATIONS_ARGUMENT: str = "--notifications"
     NOTIFICATIONS_DESTINATION: str = "notifications"
@@ -84,7 +84,7 @@ class CommandLineArguments:
     NOTIFICATIONS_HELP: str = ("If --continuous is activated, types of notifications to receive. "
                                "Options available are 'email', "
                                "'pushover', or 'silent'. Defaults to 'silent' - which just logs "
-                               "messages to console")
+                               "messages to console.")
 
     NOTIFY_FIRST_TRY_ARGUMENT: str = "--notify-first-try"
     NOTIFY_FIRST_TRY_DESTINATION: str = "notify_first_try"
@@ -106,13 +106,13 @@ class CommandLineValidation:
     """
     ERROR_NO_ARGUMENT_FOUND: str = "You must provide an argument to the Camply CLI"
     ERROR_MESSAGE_RECREATION_AREA: str = ("You must add a --search or --state parameter to search "
-                                          "for Recreation Areas")
+                                          "for Recreation Areas.")
     ERROR_MESSAGE_CAMPGROUNDS: str = ("You must add a --search, --state, or --rec-area "
-                                      " parameter to search for Campgrounds")
+                                      " parameter to search for Campgrounds.")
     ERROR_MESSAGE_REC_DOT_GOV: str = ("To search for Recreation.gov Campsites you must provide "
-                                      "either the --rec-area or the --campground parameters")
+                                      "either the --rec-area or the --campground parameters.")
     ERROR_MESSAGE_CAMPSITES: str = ("Campsite searches require the following mandatory search "
-                                    "parameters")
+                                    "parameters.")
 
 
 class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineValidation):
@@ -154,7 +154,7 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
                                             "that contain campsites. Most 'campgrounds' are areas "
                                             "made up of multiple campsites, others are "
                                             "facilities like fire towers or cabins that might only "
-                                            "contain a single 'campsite' to book")
+                                            "contain a single 'campsite' to book.")
 
     COMMAND_CAMPSITES: str = "campsites"
     COMMAND_CAMPSITES_HELP: str = "Find available Campsites using search criteria"
@@ -170,6 +170,11 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
                                           "Pushover can be enabled using `--notifications`.")
     COMMAND_CONFIGURE: str = "configure"
     COMMAND_CONFIGURE_HELP: str = "Set up camply configuration file with an interactive console"
-    COMMAND_CONFIGURE_DESCRIPTION: str = COMMAND_CONFIGURE_HELP
-
+    COMMAND_CONFIGURE_DESCRIPTION: str = (
+        "In order to send notifications through camply you must set up some authorization "
+        "values. Whether you need to set up pushover notifications (push notifications on "
+        "your phone, your pushover account can be set up at https://pushover.net) or Email "
+        "messages, everything can be done through the configure command. The end result "
+        "is a file called .camply in your home folder."
+    )
     RECREATION_DOT_GOV: str = "RecreationDotGov"

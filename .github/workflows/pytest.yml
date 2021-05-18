@@ -2,9 +2,9 @@ name: Tests
 
 on:
     push:
-        branches: [ camply ]
+        branches: [ "**" ]
     pull_request:
-        branches: [ camply ]
+        branches: [ main ]
 
 jobs:
     ubuntu:

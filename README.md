@@ -74,7 +74,7 @@ python setup.py install
 
 When installed, `camply`'s command line utility can be invoked with the command, `camply`. The CLI
 tool accepts one of four sub-arguments: `campsites`, `recreation-areas`, `campgrounds`,
-and `configure`
+and `configure`.
 
 ```text
 ❯ camply --help
@@ -104,25 +104,30 @@ optional arguments:
   --version             show program's version number and exit
 
 visit the camply documentation at https://github.com/juftin/camply
+
 2021-05-17 19:11:59,863 [  CAMPLY]: Exiting camply 👋
 ```
 
 ### `campsites`
 
-Find available Campsites using search criteria
+Search for a campsite within camply. Campsites are returned based on the search criteria provided.
+Campsites contain properties like booking date, site type (tent, RV, cabin, etc), capacity, price,
+and a link to make the booking. Required parameters include `--start-date`, `--end-date`,
+`--rec-area` / `--campground`. Constant searching functionality can be enabled with
+`--continuous` and notifications via Email and Pushover can be enabled using `--notifications`.
 
 #### Arguments:
 
 * `--rec-area`: `RECREATION_AREA_ID`
-    + Add Recreation Areas (comprised of campgrounds) by ID [**_example_](#searching-for-a-campsite)
+    + Add Recreation Areas (comprised of campgrounds) by ID. [**_example_](#searching-for-a-campsite)
 * `--campground`: `CAMPGROUND_ID`
-    + Add individual Campgrounds by ID [**_example_](#searching-for-a-campsite-by-campground-id)
+    + Add individual Campgrounds by ID. [**_example_](#searching-for-a-campsite-by-campground-id)
 * `--start-date`: `START_DATE`
-    + `YYYY-MM-DD`: Start of Search window. You will be arriving this day [**_example_](#searching-for-a-campsite)
+    + `YYYY-MM-DD`: Start of Search window. You will be arriving this day. [**_example_](#searching-for-a-campsite)
 * `--end-date`: `END_DATE`
-    + `YYYY-MM-DD`: End of Search window. You will be leaving the following day [**_example_](#searching-for-a-campsite)
+    + `YYYY-MM-DD`: End of Search window. You will be leaving the following day. [**_example_](#searching-for-a-campsite)
 * `--weekends`
-    + Only search for weekend bookings (Fri/Sat nights) [**_example_](#look-for-weekend-campsite-availabilities)
+    + Only search for weekend bookings (Fri/Sat nights). [**_example_](#look-for-weekend-campsite-availabilities)
 * `--provider`: `PROVIDER`
     + Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
       to 'RecreationDotGov', not case-sensitive. [**_example_](#look-for-a-campsite-inside-of-yellowstone)
@@ -131,14 +136,14 @@ Find available Campsites using search criteria
       found. [**_example_](#continuously-searching-for-a-campsite)
 * `--polling-interval`: `POLLING_INTERVAL`
     + If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
-      10, cannot be less than 5 [**_example_](#look-for-weekend-campsite-availabilities)
+      10, cannot be less than 5. [**_example_](#look-for-weekend-campsite-availabilities)
 * `--notifications`: `NOTIFICATIONS`
     + If `--continuous` is activated, types of notifications to receive. Options available are
       `email`, `pushover`, or `silent`. Defaults to `silent` - which just logs messages to
       console. [**_example_](#continuously-searching-for-a-campsite)
 * `--notify-first-try`
     + If `--continuous` is activated, whether to send a non-silent notification if a matching
-      campsite is found on the first try. Defaults to false [**_example_](#continuously-searching-for-a-campsite)
+      campsite is found on the first try. Defaults to false. [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
@@ -159,9 +164,9 @@ National Forests that can contain one or many campgrounds.
 #### Arguments:
 
 * `--search` `SEARCH`
-    + Search for Campgrounds or Recreation Areas by search string
+    + Search for Campgrounds or Recreation Areas by search string.
 * `--state` `STATE`
-    + Filter by US state code
+    + Filter by US state code.
 
 ```text
 camply recreation-areas --search "Yosemite National Park"
@@ -173,18 +178,18 @@ camply recreation-areas --search "Yosemite National Park"
 
 Search for Campgrounds and their IDs. Campgrounds are facilities inside of Recreation Areas that
 contain campsites. Most 'campgrounds' are areas made up of multiple campsites, others are facilities
-like fire towers or cabins that might only contain a single 'campsite' to book
+like fire towers or cabins that might only contain a single 'campsite' to book.
 
 #### Arguments:
 
 * `--search` `SEARCH`
-    + Search for Campgrounds or Recreation Areas by search string
+    + Search for Campgrounds or Recreation Areas by search string.
 * `--state` `STATE`
-    + Filter by US state code
+    + Filter by US state code.
 * `--rec-area`: `RECREATION_AREA_ID`
-    + Add Recreation Areas (comprised of campgrounds) by ID
+    + Add Recreation Areas (comprised of campgrounds) by ID.
 * `--campground`: `CAMPGROUND_ID`
-    + Add individual Campgrounds by ID
+    + Add individual Campgrounds by ID.
 
 ```text
 camply campgrounds --search "Fire Tower Lookout" --state CA
@@ -218,7 +223,7 @@ The below search looks for campsites inside of Recreation Area ID #2725 (Glacier
 between 2021-07-10 and 2021-07-17. The search will be performed once and any results will be logged
 to the console. camply searches for campsites inside of search windows in increments of one night.
 `--start-date` and `--end-date` define the bounds of the search window, you will be leaving the day
-after `--end-date`
+after `--end-date`.
 
 ```text
 camply campsites \
@@ -250,7 +255,7 @@ Alternate notification methods are `email` and `silent` (default).
 Important Note: When `camply` is told to run `--continuous` and it finds matching sites on the first
 try, it just logs the campsites silently and exits. It's always encouraged to perform an initial
 online search before setting up a `camply` search. To bypass this behavior and send notifications,
-pass the `--notify-first-try` argument
+pass the `--notify-first-try` argument.
 
 ```text
 camply campsites \
@@ -358,7 +363,8 @@ camply campgrounds --search "Fire Tower Lookout" --state CA
 You can uncover campground and recreation area IDs just by using the https://recreation.gov search
 functionality. Use the below example for a campground within Glacier National Park.
 
-First, perform your search on https://recreation.gov
+First, perform your search on https://recreation.gov.
+
 <div>
 <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/recreation_dot_gov.png" 
     width="500" alt="recreation_dot_gov search">
@@ -419,6 +425,9 @@ The above script returns a list of any matching `AvailableCampsite` namedtuple o
 
 ### Continuously Search for Recreation.gov Campsites
 
+You'll notice that the `get_matching_campsites` function takes acceps parameter values very similar
+to the commandline arguments.
+
 ```python
 from datetime import datetime
 import logging
@@ -445,7 +454,7 @@ camping_finder.get_matching_campsites(log=True, verbose=True,
 ## Running in Docker
 
 Here's an example of a detached container searching in the background (notice the `--rm` flag, the
-container will disappear after `camply` exits):
+container will disappear after `camply` exits).
 
 ```text
 docker run -d --rm \
@@ -483,7 +492,7 @@ The docker image accepts the following environment variables:
       logging, defaults to UTC)
 
 Alternatively, if you have already run `camply configure` locally, you can share
-your [`.camply`](example.camply) file inside the docker container:
+your [`.camply`](example.camply) file inside the docker container.
 
 ```text
 docker run -d --rm \
@@ -506,7 +515,7 @@ docker run -d --rm \
 dependencies:
 
 - [requests](https://docs.python-requests.org/en/master/)
-    - The `requests` package is used to fetch data from the APIs of Camping Booking Providers
+    - The `requests` package is used to fetch data from the APIs of Camping Booking Providers.
 - [pandas](https://pandas.pydata.org/)
     - The `pandas` package is to group and aggregate across large data sets of campsites,
       campgrounds, and recreation areas.
