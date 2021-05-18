@@ -1,6 +1,10 @@
 name: Camply Pylint
 
-on: [ push ]
+on:
+    push:
+        branches: [ camply ]
+    pull_request:
+        branches: [ camply ]
 
 jobs:
     build:
