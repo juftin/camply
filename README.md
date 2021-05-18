@@ -31,6 +31,7 @@ ___________
     * [`configure`](#configure)
     * [Examples](#examples)
         + [Searching for a Campsite](#searching-for-a-campsite)
+        + [Searching for a Campsite by Campground ID](#searching-for-a-campsite-by-campground-id)
         + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
         + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
         + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
@@ -40,7 +41,7 @@ ___________
         + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for Specific Campgrounds by Query String](#look-for-specific-campgrounds-by-query-string)
 - [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
-- [Object Oriented Usage](#object-oriented-usage-python)
+- [Object-Oriented Usage (Python)](#object-oriented-usage-python)
     * [Search for a Recreation.gov Campsite](#search-for-a-recreationgov-campsite)
     * [Continuously Search for Recreation.gov Campsites](#continuously-search-for-recreationgov-campsites)
 - [Running in Docker](#running-in-docker)
@@ -142,7 +143,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       `email`, `pushover`, or `silent`. Defaults to `silent` - which just logs messages to
       console. [**_example_](#continuously-searching-for-a-campsite)
 * `--notify-first-try`
-    + If `--continuous` is activated, whether to send a non- silent notification if more than 10
+    + If `--continuous` is activated, whether to send a non-silent notifications if more than 10
       matching campsites are found on the first try. Defaults to 
       false. [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
