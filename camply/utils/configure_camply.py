@@ -110,7 +110,7 @@ def write_config_to_file(config_dict: OrderedDict) -> None:
     """
     string_list = [
         "# CAMPLY CONFIGURATION FILE. ",
-        "# SEE https://github.com/juftin/camply/blob/camply/example.camply FOR MORE DETAILS",
+        "# SEE https://github.com/juftin/camply/blob/main/example.camply FOR MORE DETAILS",
         ""
     ]
     for config_key, config_value in config_dict.items():
@@ -127,7 +127,7 @@ def generate_dot_camply_file():
     """
     logger.info("Running camply configuration.")
     logger.info("This process generates a configuration file "
-                "(https://github.com/juftin/camply/blob/camply/example.camply)")
+                "(https://github.com/juftin/camply/blob/main/example.camply)")
     logger.info("Do not include quotes around values")
     logger.info("To skip a configuration field or keep it as default, just press <Enter>.")
     sleep(1.5)

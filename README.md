@@ -49,13 +49,13 @@ ___________
 
 ## Installation
 
-### PyPI
+### <a name="pypi"></a>[PyPI](https://pypi.python.org/pypi/camply/)
 
 ```text
 pip install camply
 ```
 
-### Docker
+### <a name="docker"></a>[Docker](https://hub.docker.com/r/juftin/camply)
 
 ```text
 docker pull juftin/camply
@@ -143,9 +143,9 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       `email`, `pushover`, or `silent`. Defaults to `silent` - which just logs messages to
       console. [**_example_](#continuously-searching-for-a-campsite)
 * `--notify-first-try`
-    + If `--continuous` is activated, whether to send a non-silent notifications if more than 10
-      matching campsites are found on the first try. Defaults to 
-      false. [**_example_](#continuously-searching-for-a-campsite)
+    + If `--continuous` is activated, whether to send all non-silent notifications if more than 10
+      matching campsites are found on the first try. Defaults to false which only sends the 
+      first 10. [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
@@ -256,10 +256,10 @@ search for matching campsites until it finds a match. It also sends a notificati
 once matches are found. Alternate notification methods are `email` and `silent` (default).
 
 __Important Note__: When `camply` is told to run `--continuous` with non-silent notifications set up
-and it finds more than 10 matching campsites on the first try, it just logs the campsites silently at
-first. This is to prevent thousands of campsites flooding your notifications. It's always encouraged
-to perform an initial online search before setting up a `camply` search. To bypass this behavior and
-send all notifications, pass the `--notify-first-try` argument.
+and it finds more than 10 matching campsites on the first try, it will only send notifications for
+the first 10 campsites. This is to prevent thousands of campsites flooding your notifications. It's
+always encouraged to perform an initial online search before setting up a `camply` search. To bypass
+this behavior and send all notifications, pass the `--notify-first-try` argument.
 
 ```text
 camply campsites \

@@ -155,8 +155,9 @@ class BaseCampingSearch(ABC):
             Used with `continuous=True`, Name of notification provider to use. Accepts "email",
             "pushover", and defaults to "silent"
         notify_first_try: bool
-            Used with `continuous=True`, whether to actually send notification if the
-            first search returns a result. Defaults to False
+            Used with `continuous=True`, whether to send all non-silent notifications if more
+            than 10 matching campsites are found on the first try. Defaults to false which
+            only sends the first 10.
 
         Returns
         -------
@@ -185,11 +186,16 @@ class BaseCampingSearch(ABC):
             notifier.send_campsites(campsites=logged_campsites)
         else:
             if not isinstance(notifier, SilentNotifications) and \
-                    len(self.campsites_found) > SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY:
-                logger.warning(f"Found more than {SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} "
-                               "matching campsites on the first try! "
-                               "Using Silent Notifications. Go Get your campsite! 🏕")
-                notifier = SilentNotifications()
+                    len(logged_campsites) > SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY:
+                error_message = (f"Found more than {SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} "
+                                 f"matching campsites ({len(logged_campsites)}) on the "
+                                 "first try. Try searching online instead. "
+                                 f"camply is only sending the first "
+                                 f"{SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} notifications "
+                                 "Go Get your campsite! 🏕")
+                logger.warning(error_message)
+                notifier.send_message(message=error_message)
+                logged_campsites = logged_campsites[:SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY]
             notifier.send_campsites(campsites=logged_campsites)
         return list(self.campsites_found)
 
@@ -214,8 +220,9 @@ class BaseCampingSearch(ABC):
             Used with `continuous=True`, Name of notification provider to use. Accepts "email",
             "pushover", and defaults to "silent"
         notify_first_try: bool
-            Used with `continuous=True`, whether to actually send notification if the
-            first search returns a result. Defaults to False
+            Used with `continuous=True`, whether to send all non-silent notifications if more
+            than 10 matching campsites are found on the first try. Defaults to false which
+            only sends the first 10.
         search_forever: bool
             Used with `continuous=True`, This option searches for new campsites forever, with
             the caveat being that it will never notify about the same campsite.
@@ -264,8 +271,9 @@ class BaseCampingSearch(ABC):
             Used with `continuous=True`, Name of notification provider to use. Accepts "email",
             "pushover", and defaults to "silent"
         notify_first_try: bool
-            Used with `continuous=True`, whether to actually send notification if the
-            first search returns a result. Defaults to False
+            Used with `continuous=True`, whether to send all non-silent notifications if more
+            than 10 matching campsites are found on the first try. Defaults to false which
+            only sends the first 10.
         search_forever: bool
             Used with `continuous=True`, This option searches for new campsites forever, with
             the caveat being that it will never notify about the same campsite.
