@@ -147,8 +147,8 @@ Find available Campsites using search criteria
 ```text
 camply campsites \
     --rec-area 2725 \
-    --start-date 2021-06-10 \
-    --end-date 2021-06-17
+    --start-date 2021-07-10 \
+    --end-date 2021-07-17
 ```
 
 ### `recreation-areas`
@@ -215,7 +215,7 @@ functionality of the different arguments provided to the CLI.
 #### Searching for a Campsite
 
 The below search looks for campsites inside of Recreation Area ID #2725 (Glacier National Park)
-between 2021-06-10 and 2021-06-17. The search will be performed once and any results will be logged
+between 2021-07-10 and 2021-07-17. The search will be performed once and any results will be logged
 to the console. camply searches for campsites inside of search windows in increments of one night.
 `--start-date` and `--end-date` define the bounds of the search window, you will be leaving the day
 after `--end-date`
@@ -223,14 +223,14 @@ after `--end-date`
 ```text
 camply campsites \
     --rec-area 2725 \
-    --start-date 2021-06-10 \
-    --end-date 2021-06-17
+    --start-date 2021-07-10 \
+    --end-date 2021-07-17
 ```
 
 #### Searching for a Campsite by Campground ID
 
 The below search looks for across three campgrounds (all inside Glacier National Park)
-between 2021-06-10 and 2021-06-17. Multiple Campgrounds (and Recreation Areas too) can be found by
+between 2021-07-10 and 2021-07-17. Multiple Campgrounds (and Recreation Areas too) can be found by
 supplying the arguments more than once.
 
 ```text
@@ -238,8 +238,8 @@ camply campsites \
     --campground 232493 \
     --campground 251869 \
     --campground 232492 \
-    --start-date 2021-06-10 \
-    --end-date 2021-06-17
+    --start-date 2021-07-10 \
+    --end-date 2021-07-17
 ```
 
 #### Continuously Searching for A Campsite
@@ -307,8 +307,8 @@ arguments.
 ```text
 camply campsites \
     --provider yellowstone \
-    --start-date 2021-06-09 \
-    --end-date 2021-06-16 \
+    --start-date 2021-07-09 \
+    --end-date 2021-07-16 \
     --continuous
 ```
 
@@ -322,8 +322,8 @@ arguments will overwrite all `--rec-area` arguments.
 camply campsites \
     --rec-area 2991 \
     --rec-area 1074 \
-    --start-date 2021-06-09 \
-    --end-date 2021-06-16
+    --start-date 2021-07-09 \
+    --end-date 2021-07-16
 ```
 
 #### Search for Recreation Areas by Query String
