@@ -122,7 +122,7 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
     """
 
     CAMPLY_APP_NAME: str = "camply"
-    CAMPLY_APP_VERSION: str = "0.1.0"
+    CAMPLY_APP_VERSION: str = "0.1.1"
     CAMPLY_DESCRIPTION: str = "camply, the campsite finder"
     CAMPLY_EXIT_MESSAGE: str = "Exiting camply 👋"
 

@@ -1,7 +1,7 @@
 FROM python:3.8-slim
 
 MAINTAINER Justin Flannery <juftin@juftin.com>
-LABEL version="0.1.0"
+LABEL version="0.1.1"
 LABEL description="camply, the campsite finder"
 
 COPY . /tmp/camply
