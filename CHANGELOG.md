@@ -16,6 +16,10 @@ versioning.
 
 ## [0.1.1] - 2021-05-18
 
+### Added
+
+- Updating Badges
+
 ### Fixed
 
 - Excluded `Lottery` sites from being returned
