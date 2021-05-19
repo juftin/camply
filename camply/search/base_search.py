@@ -156,8 +156,8 @@ class BaseCampingSearch(ABC):
             "pushover", and defaults to "silent"
         notify_first_try: bool
             Used with `continuous=True`, whether to send all non-silent notifications if more
-            than 10 matching campsites are found on the first try. Defaults to false which
-            only sends the first 10.
+            than 5 matching campsites are found on the first try. Defaults to false which
+            only sends the first 5.
 
         Returns
         -------
@@ -221,8 +221,8 @@ class BaseCampingSearch(ABC):
             "pushover", and defaults to "silent"
         notify_first_try: bool
             Used with `continuous=True`, whether to send all non-silent notifications if more
-            than 10 matching campsites are found on the first try. Defaults to false which
-            only sends the first 10.
+            than 5 matching campsites are found on the first try. Defaults to false which
+            only sends the first 5.
         search_forever: bool
             Used with `continuous=True`, This option searches for new campsites forever, with
             the caveat being that it will never notify about the same campsite.
@@ -272,8 +272,8 @@ class BaseCampingSearch(ABC):
             "pushover", and defaults to "silent"
         notify_first_try: bool
             Used with `continuous=True`, whether to send all non-silent notifications if more
-            than 10 matching campsites are found on the first try. Defaults to false which
-            only sends the first 10.
+            than 5 matching campsites are found on the first try. Defaults to false which
+            only sends the first 5.
         search_forever: bool
             Used with `continuous=True`, This option searches for new campsites forever, with
             the caveat being that it will never notify about the same campsite.

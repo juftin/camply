@@ -256,8 +256,8 @@ search for matching campsites until it finds a match. It also sends a notificati
 once matches are found. Alternate notification methods are `email` and `silent` (default).
 
 __Important Note__: When `camply` is told to run `--continuous` with non-silent notifications set up
-and it finds more than 10 matching campsites on the first try, it will only send notifications for
-the first 10 campsites. This is to prevent thousands of campsites flooding your notifications. It's
+and it finds more than 5 matching campsites on the first try, it will only send notifications for
+the first 5 campsites. This is to prevent thousands of campsites flooding your notifications. It's
 always encouraged to perform an initial online search before setting up a `camply` search. To bypass
 this behavior and send all notifications, pass the `--notify-first-try` argument.
 

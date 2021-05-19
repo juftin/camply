@@ -89,9 +89,9 @@ class CommandLineArguments:
     NOTIFY_FIRST_TRY_ARGUMENT: str = "--notify-first-try"
     NOTIFY_FIRST_TRY_DESTINATION: str = "notify_first_try"
     NOTIFY_FIRST_TRY_HELP: str = ("If --continuous is activated, whether to send all "
-                                  "non-silent notifications if more than 10 matching "
+                                  "non-silent notifications if more than 5 matching "
                                   "campsites are found on the first try. Defaults to false which "
-                                  "only sends the first 10.")
+                                  "only sends the first 5.")
 
     SEARCH_FOREVER_ARGUMENT: str = "--search-forever"
     SEARCH_FOREVER_DESTINATION: str = "search_forever"
