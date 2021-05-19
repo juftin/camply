@@ -1,5 +1,0 @@
-pandas
-python-dotenv
-pytz
-requests
-tenacity
