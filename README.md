@@ -143,9 +143,9 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       `email`, `pushover`, or `silent`. Defaults to `silent` - which just logs messages to
       console. [**_example_](#continuously-searching-for-a-campsite)
 * `--notify-first-try`
-    + If `--continuous` is activated, whether to send all non-silent notifications if more than 10
+    + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
       matching campsites are found on the first try. Defaults to false which only sends the 
-      first 10. [**_example_](#continuously-searching-for-a-campsite)
+      first 5. [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
