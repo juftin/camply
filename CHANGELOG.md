@@ -11,8 +11,14 @@ versioning.
 
 ### Fixed
 
-- Any bugs that surface will quickly have fixes quickly deployed before version 
+- Any bugs that surface will quickly have fixes quickly deployed before version
   `1.0.0` is released.
+
+## [0.1.1] - 2021-05-18
+
+### Fixed
+
+- Excluded `Lottery` sites from being returned
 
 ## [0.1.0] - 2021-05-18
 
@@ -24,5 +30,7 @@ versioning.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.1]: https://github.com/juftin/camply/compare/v0.1.0...v0.1.1
 
 [0.1.0]: https://github.com/juftin/camply/releases/tag/v0.1.0

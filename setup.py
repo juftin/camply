@@ -36,7 +36,7 @@ with open(path.join(root_directory, "README.md"), encoding="utf-8") as f:
 
 setup_kwargs = {
     "name": "camply",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "camply, the campsite finder",
     "long_description": long_description,
     "long_description_content_type": "text/markdown",

@@ -12,9 +12,9 @@ becomes available, camply sends you a notification to book your spot!
 ___________
 ___________
 
-[![Version](https://img.shields.io/static/v1?label=⛺️camply&message=0.1.0&color=blue)](https://github.com/juftin/camply)
+[![Version](https://img.shields.io/static/v1?label=⛺️camply&message=0.1.1&color=blue)](https://github.com/juftin/camply)
 [![Python Versions](https://img.shields.io/static/v1?label=Python&message=3.6%20|%203.7%20|%203.8%20|%203.9&color=blue&logo=python)](https://pypi.python.org/pypi/camply/)
-[![Docker Version](https://img.shields.io/static/v1?label=Docker&message=0.1.0&color=blue&logo=docker)](https://hub.docker.com/r/juftin/camply)
+[![Docker Version](https://img.shields.io/static/v1?label=Docker&message=0.1.1&color=blue&logo=docker)](https://hub.docker.com/r/juftin/camply)
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yml)
 [![License](https://img.shields.io/static/v1?label=License&message=MIT&color=blue)](https://github.com/juftin/camply/blob/main/LICENSE)
 

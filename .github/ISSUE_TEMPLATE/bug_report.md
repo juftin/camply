@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Environment (please complete the following information):**
 - OS: [e.g. Windows, Mac, Linux, Docker]
 - Python Version [e.g. 3.6, 3.9]
-- Camply Version [e.g. 0.1.0]
+- Camply Version [e.g. 0.1.1]
 
 **Additional context**
 Add any other context about the problem here.
