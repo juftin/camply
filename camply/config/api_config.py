@@ -102,7 +102,8 @@ class RecreationBookingConfig:
         "Not Available",
         "Not Reservable",
         "Not Reservable Management",
-        "Not Available Cutoff"
+        "Not Available Cutoff",
+        "Lottery"
     ]
 
     CAMPSITE_BASE: str = "campsites"
