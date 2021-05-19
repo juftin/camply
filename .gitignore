@@ -7,5 +7,10 @@ __pycache__/
 .idea/
 
 # .env File
-!examle.*.env
 *.env
+
+# BUILD FILES
+dist/
+build/
+poetry.lock
+*.egg-info
