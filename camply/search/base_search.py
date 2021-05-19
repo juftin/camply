@@ -10,6 +10,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
 import logging
 from os import getenv
+from random import shuffle
 from time import sleep
 from typing import List, Optional, Set, Union
 
@@ -191,11 +192,12 @@ class BaseCampingSearch(ABC):
                                  f"matching campsites ({len(logged_campsites)}) on the "
                                  "first try. Try searching online instead. "
                                  f"camply is only sending the first "
-                                 f"{SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} notifications "
+                                 f"{SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} notifications. "
                                  "Go Get your campsite! 🏕")
                 logger.warning(error_message)
                 notifier.send_message(message=error_message)
-                logged_campsites = logged_campsites[:SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY]
+                logged_campsites = shuffle(logged_campsites)[
+                                   :SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY]
             notifier.send_campsites(campsites=logged_campsites)
         return list(self.campsites_found)
 
