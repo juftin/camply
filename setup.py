@@ -11,6 +11,8 @@ from os import path
 
 from setuptools import setup
 
+from camply import __version__ as camply_version
+
 packages = ["camply",
             "camply.config",
             "camply.notifications",
@@ -36,7 +38,7 @@ with open(path.join(root_directory, "README.md"), encoding="utf-8") as f:
 
 setup_kwargs = {
     "name": "camply",
-    "version": "0.1.1",
+    "version": camply_version,
     "description": "camply, the campsite finder",
     "long_description": long_description,
     "long_description_content_type": "text/markdown",

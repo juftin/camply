@@ -14,6 +14,14 @@ versioning.
 - Any bugs that surface will quickly have fixes quickly deployed before version
   `1.0.0` is released.
 
+## [0.1.2] - 2021-05-24
+
+### Fixed
+
+- Filter out `Checkout-Only` campsites by excluding `Open` availability status
+- No longer trapping all errors with `exit(0)`
+- Email notifications now attempt login at start, to throw errors early.
+
 ## [0.1.1] - 2021-05-18
 
 ### Added
@@ -34,6 +42,8 @@ versioning.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.2]: https://github.com/juftin/camply/compare/v0.1.1...v0.1.2
 
 [0.1.1]: https://github.com/juftin/camply/compare/v0.1.0...v0.1.1
 
