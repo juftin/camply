@@ -11,6 +11,7 @@ from os import getenv
 
 from dotenv import load_dotenv
 
+from camply import __version__ as camply_version
 from camply.config.file_config import FileConfig
 from camply.config.search_config import SearchConfig
 
@@ -122,7 +123,7 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
     """
 
     CAMPLY_APP_NAME: str = "camply"
-    CAMPLY_APP_VERSION: str = "0.1.2"
+    CAMPLY_APP_VERSION: str = camply_version
     CAMPLY_DESCRIPTION: str = "camply, the campsite finder"
     CAMPLY_EXIT_MESSAGE: str = "Exiting camply 👋"
 
