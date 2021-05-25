@@ -14,5 +14,16 @@ jobs:
 
         steps:
             -   uses: actions/checkout@v2
+            -   name: Install dependencies
+                run:  |
+                      python -m pip install --upgrade pip
+                      python -m pip install poetry
             -   name: Build the Docker image
-                run:  docker build . --file Dockerfile --tag juftin/camply:$(date +%s)
+                run:  |
+                      CAMPLY_VERSION=$(grep -o  '__version__ = .*' camply/__init__.py | sed "s/__version__ = //g" | sed 's/"//g')
+                      docker build . --file Dockerfile --tag juftin/camply:$(date +%s) --tag juftin/camply:${CAMPLY_VERSION} --tag juftin/camply:latest
+            -   name: Build the Poetry Package
+                run:  |
+                      poetry update
+                      poetry install
+                      poetry build
