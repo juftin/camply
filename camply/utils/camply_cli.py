@@ -42,7 +42,6 @@ def main():
         logger.debug("Handling Exit Request")
     finally:
         logger.camply(CommandLineConfig.CAMPLY_EXIT_MESSAGE)
-        exit(0)
 
 
 class CommandLineError(Exception):

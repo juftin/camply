@@ -98,12 +98,13 @@ class RecreationBookingConfig:
     RATE_LIMITING: float = round(uniform(1.01, 1.51), 2)
 
     CAMPSITE_UNAVAILABLE_STRINGS: list = [
-        "Reserved",
-        "Not Available",
-        "Not Reservable",
-        "Not Reservable Management",
-        "Not Available Cutoff",
-        "Lottery"
+        "Reserved"
+        , "Not Available"
+        , "Not Reservable"
+        , "Not Reservable Management"
+        , "Not Available Cutoff"
+        , "Lottery"
+        , "Open"
     ]
 
     CAMPSITE_BASE: str = "campsites"
