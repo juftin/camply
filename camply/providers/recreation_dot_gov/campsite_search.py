@@ -310,7 +310,7 @@ class RecreationDotGov(BaseProvider):
         try:
             facility_state = facility[RIDBConfig.FACILITY_ADDRESS][0][
                 RIDBConfig.FACILITY_LOCATION_STATE].upper()
-        except IndexError:
+        except (KeyError, IndexError):
             facility_state = "USA"
         try:
             recreation_area = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
@@ -323,7 +323,7 @@ class RecreationDotGov(BaseProvider):
                                                      facility_id=facility_id,
                                                      recreation_area_id=recreation_area_id)
             return facility, campground_facility
-        except IndexError:
+        except (KeyError, IndexError):
             return facility, None
 
     @classmethod
