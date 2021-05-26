@@ -29,7 +29,10 @@ jobs:
                     password: ${{ secrets.DOCKER_PASSWORD }}
 
             -   name: Declare Version Variable
-                run:  echo CAMPLY_LATEST_VERSION="$(grep -o  '__version__ = .*' ${{ env.GITHUB_WORKSPACE }}/camply/__init__.py | sed "s/__version__ = //g" | sed 's/"//g')" >> $GITHUB_ENV
+                run:  |
+                      cd ${GITHUB_WORKSPACE}
+                      VERSION=$(grep -o  '__version__ = .*' camply/__init__.py | sed "s/__version__ = //g" | sed 's/"//g')
+                      echo CAMPLY_LATEST_VERSION=${VERSION} >> $GITHUB_ENV
 
             -   name: Docker Image Building
                 id:   docker_build
@@ -46,5 +49,5 @@ jobs:
                       python -m pip install --upgrade pip
                       python -m pip install poetry
                       poetry update
-                      cd ${{ env.GITHUB_WORKSPACE }} && poetry install
-                      cd ${{ env.GITHUB_WORKSPACE }} && poetry build
+                      cd ${GITHUB_WORKSPACE} && poetry install
+                      cd ${GITHUB_WORKSPACE} && poetry build
