@@ -5,14 +5,20 @@ versioning.
 
 ## [Unreleased]
 
+## [0.1.3] - 2021-05-25
+
 ### Added
 
-- Camply is brand new, awaiting feedback before making changes.
+- CI/CD for publishing camply to Docker Hub and PyPi
 
 ### Fixed
 
-- Any bugs that surface will quickly have fixes quickly deployed before version
-  `1.0.0` is released.
+- Addressed situations where campsites without addresses information were throwing a KeyError. (big
+  thanks to @grantland)
+    - This resolution presents an
+      interesting [discussion](https://github.com/juftin/camply/pull/14#issuecomment-848302948)
+      on whether campsites that have `Enabled` and `Reservable` = `False` should be searchable.
+- Empty Email notifications issue resolved
 
 ## [0.1.2] - 2021-05-24
 
@@ -42,6 +48,8 @@ versioning.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.3]: https://github.com/juftin/camply/compare/v0.1.2...v0.1.3
 
 [0.1.2]: https://github.com/juftin/camply/compare/v0.1.1...v0.1.2
 
