@@ -109,8 +109,8 @@ class CommandLineValidation:
     ERROR_NO_ARGUMENT_FOUND: str = "You must provide an argument to the Camply CLI"
     ERROR_MESSAGE_RECREATION_AREA: str = ("You must add a --search or --state parameter to search "
                                           "for Recreation Areas.")
-    ERROR_MESSAGE_CAMPGROUNDS: str = ("You must add a --search, --state, or --rec-area "
-                                      " parameter to search for Campgrounds.")
+    ERROR_MESSAGE_CAMPGROUNDS: str = ("You must add a --search, --state, --campground, or "
+                                      "--rec-area parameter to search for Campgrounds.")
     ERROR_MESSAGE_REC_DOT_GOV: str = ("To search for Recreation.gov Campsites you must provide "
                                       "either the --rec-area or the --campground parameters.")
     ERROR_MESSAGE_CAMPSITES: str = ("Campsite searches require the following mandatory search "

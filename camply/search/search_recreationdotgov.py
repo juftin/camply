@@ -67,7 +67,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         elif self._recreation_area_id is not None:
             searchable_campgrounds = self._get_campgrounds_by_recreation_area_id()
         else:
-            raise RuntimeError("You must provide a Camprground or Recreation Area ID")
+            raise RuntimeError("You must provide a Campground or Recreation Area ID")
         return searchable_campgrounds
 
     def _get_campgrounds_by_campground_id(self) -> List[CampgroundFacility]:
@@ -79,16 +79,9 @@ class SearchRecreationDotGov(BaseCampingSearch):
         returned_sites: List[int]
             List of searchable campground IDs
         """
-        returned_sites = list()
-        for campground_id in self._make_list(self._campground_object):
-            facility = self.campsite_finder.find_campgrounds(campground_id=campground_id)
-            campground_facility: CampgroundFacility
-            campground_data, campground_facility = \
-                self.campsite_finder.process_facilities_responses(facility=facility)
-            if campground_facility is not None:
-                self.campsite_finder.log_sorted_response(response_array=[campground_facility])
-                returned_sites.append(campground_facility)
-        return returned_sites
+        campground_list = self._make_list(self._campground_object)
+        facilities = self.campsite_finder.find_campgrounds(campground_id=campground_list)
+        return facilities
 
     def _get_campgrounds_by_recreation_area_id(self) -> List[CampgroundFacility]:
         """
@@ -96,20 +89,14 @@ class SearchRecreationDotGov(BaseCampingSearch):
 
         Returns
         -------
-        processed_array: List[int]
-            List of searchable campground IDs
+        campgrounds: List[CampgroundFacility]
         """
-        processed_array = list()
+        campgrounds = list()
         for rec_area in self._recreation_area_id:
             campground_array = self.campsite_finder.find_facilities_per_recreation_area(
                 rec_area_id=rec_area)
-            campground_facility: CampgroundFacility
-            for campground in campground_array:
-                campground_data, campground_facility = \
-                    self.campsite_finder.process_facilities_responses(facility=campground)
-                if campground_facility is not None:
-                    processed_array.append(campground_facility)
-        return processed_array
+            campgrounds += campground_array
+        return campgrounds
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """

@@ -94,9 +94,10 @@ class RecreationDotGov(BaseProvider):
 
     def find_campgrounds(self, search_string: str = None,
                          rec_area_id: Optional[List[int]] = None,
-                         campground_id: Optional[List[int]] = None, **kwargs) -> List[dict]:
+                         campground_id: Optional[List[int]] = None, **kwargs) -> \
+            List[CampgroundFacility]:
         """
-        Find Matching Campsites Based on Search String
+        Find Bookable Campgrounds Given a Set of Search Criteria
 
         Parameters
         ----------
@@ -109,42 +110,30 @@ class RecreationDotGov(BaseProvider):
 
         Returns
         -------
-        filtered_responses: List[dict]
+        facilities: List[CampgroundFacility]
             Array of Matching Campsites
         """
+
         if campground_id not in [None, list()]:
-            return self._ridb_get_data(path=f"{RIDBConfig.FACILITIES_API_PATH}/{campground_id}",
-                                       params=dict(full=True))
-        if rec_area_id is not None:
+            facilities = self._find_facilities_from_campgrounds(campground_id=campground_id)
+        elif rec_area_id is not None:
             facilities = list()
             for recreation_area in rec_area_id:
-                facilities += self.find_facilities_per_recreation_area(rec_area_id=recreation_area)
-            return facilities
+                facilities += self.find_facilities_per_recreation_area(
+                    rec_area_id=recreation_area)
         else:
             state_arg = kwargs.get("state", None)
             if state_arg is not None:
                 kwargs.update({"state": state_arg.upper()})
             if search_string in ["", None] and state_arg is None:
                 raise RuntimeError("You must provide a search query or state to find campsites")
-            facilities_response = self._ridb_get_paginate(path=RIDBConfig.FACILITIES_API_PATH,
-                                                          params=dict(query=search_string,
-                                                                      activity="CAMPING",
-                                                                      full="true",
-                                                                      **kwargs))
-            filtered_responses = self._filter_facilities_responses(responses=facilities_response)
-            logger.info(f"{len(filtered_responses)} Matching Campgrounds Found")
+            facilities = self._find_facilities_from_search(search=search_string, **kwargs)
+        return facilities
 
-            logging_messages = list()
-            for facility in filtered_responses:
-                _, campground_facility = self.process_facilities_responses(facility=facility)
-                if campground_facility is not None:
-                    logging_messages.append(campground_facility)
-            self.log_sorted_response(response_array=logging_messages)
-            return filtered_responses
-
-    def find_facilities_per_recreation_area(self, rec_area_id: int = None, **kwargs) -> List[dict]:
+    def find_facilities_per_recreation_area(self, rec_area_id: int = None, **kwargs) -> \
+            List[CampgroundFacility]:
         """
-        Find Matching Campsites Based on Search String
+        Find Matching Campsites Based from Recreation Area
 
         Parameters
         ----------
@@ -153,21 +142,76 @@ class RecreationDotGov(BaseProvider):
 
         Returns
         -------
-        filtered_responses: List[dict]
+        campgrounds: List[CampgroundFacility]
             Array of Matching Campsites
         """
         logger.info(f"Retrieving Facility Information for Recreation Area ID: `{rec_area_id}`.")
         api_path = f"{RIDBConfig.REC_AREA_API_PATH}/{rec_area_id}/{RIDBConfig.FACILITIES_API_PATH}"
         api_response = self._ridb_get_paginate(path=api_path, params=dict(full="true", **kwargs))
         filtered_facilities = self._filter_facilities_responses(responses=api_response)
-        logging_messages = list()
-        logger.info(f"{len(filtered_facilities)} camping facilities found")
+        campgrounds = list()
+        logger.info(f"{len(filtered_facilities)} Matching Campgrounds Found")
         for facility in filtered_facilities:
             _, campground_facility = self.process_facilities_responses(facility=facility)
             if campground_facility is not None:
-                logging_messages.append(campground_facility)
-        self.log_sorted_response(response_array=logging_messages)
-        return filtered_facilities
+                campgrounds.append(campground_facility)
+        self.log_sorted_response(response_array=campgrounds)
+        return campgrounds
+
+    def _find_facilities_from_campgrounds(self, campground_id: Union[int, List[int]]) -> \
+            List[CampgroundFacility]:
+        """
+        Find Matching Campsites from Campground ID
+
+        Parameters
+        ----------
+        campground_id: Union[int, List[int]]
+            ID of the Campsite
+        Returns
+        -------
+        filtered_responses: List[CampgroundFacility]
+            Array of Matching Campsites
+        """
+        campgrounds = list()
+        for campground_identifier in campground_id:
+            facility_data = self._ridb_get_data(
+                path=f"{RIDBConfig.FACILITIES_API_PATH}/{campground_identifier}",
+                params=dict(full=True))
+            filtered_facility = self._filter_facilities_responses(responses=[facility_data])
+            _, campground_facility = self.process_facilities_responses(
+                facility=filtered_facility[0])
+            if campground_facility is not None:
+                campgrounds.append(campground_facility)
+        logger.info(f"{len(campgrounds)} Matching Campgrounds Found")
+        self.log_sorted_response(response_array=campgrounds)
+        return campgrounds
+
+    def _find_facilities_from_search(self, search: str, **kwargs) -> List[dict]:
+        """
+        Find Matching Campgrounds Based on Search String
+
+        Parameters
+        ----------
+        search: str
+            Search String
+
+        Returns
+        -------
+        campgrounds: List[dict]
+            Array of Matching Campsites
+        """
+        facilities_response = self._ridb_get_paginate(path=RIDBConfig.FACILITIES_API_PATH,
+                                                      params=dict(query=search, activity="CAMPING",
+                                                                  full="true", **kwargs))
+        filtered_responses = self._filter_facilities_responses(responses=facilities_response)
+        logger.info(f"{len(filtered_responses)} Matching Campgrounds Found")
+        campgrounds = list()
+        for facility in filtered_responses:
+            _, campground_facility = self.process_facilities_responses(facility=facility)
+            if campground_facility is not None:
+                campgrounds.append(campground_facility)
+        self.log_sorted_response(response_array=campgrounds)
+        return campgrounds
 
     @classmethod
     def _ridb_get_endpoint(cls, path: str) -> str:

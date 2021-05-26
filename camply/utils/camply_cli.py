@@ -248,6 +248,7 @@ class CamplyCommandLine:
             logger.error(error_message)
             exit(1)
         self.arguments_validated = True
+        return self.arguments_validated
 
     def _validate_campsites(self) -> Tuple[Optional[str], Optional[ArgumentParser]]:
         """
@@ -285,7 +286,8 @@ class CamplyCommandLine:
         error_message = help_parser = None
         if all([self.cli_arguments.search is None,
                 self.cli_arguments.state is None,
-                self.cli_arguments.recreation_area_id is None]):
+                self.cli_arguments.recreation_area_id is None,
+                self.cli_arguments.campground_id is None]):
             error_message = CommandLineConfig.ERROR_MESSAGE_CAMPGROUNDS
             help_parser = self.campgrounds
         return error_message, help_parser
@@ -305,17 +307,13 @@ class CamplyCommandLine:
             help_parser = self.recreation_areas
         return error_message, help_parser
 
-    def execute_cli_arguments(self) -> Optional[object]:
+    def execute_cli_arguments(self) -> None:
         """
         Execute the CLI Arguments
 
-        Parameters
-        ----------
-        self
-
         Returns
         -------
-
+        None
         """
         assert self.arguments_validated is True
         assert self.arguments_executed is False
@@ -329,13 +327,13 @@ class CamplyCommandLine:
         elif self.cli_arguments.command == CommandLineConfig.COMMAND_CONFIGURE:
             configure_camply.generate_dot_camply_file()
 
-    def execute_recreation_areas(self):
+    def execute_recreation_areas(self) -> None:
         """
         Execute the `recreation-areas` command on the CLI
 
         Returns
         -------
-
+        None
         """
         camp_finder = RecreationDotGov()
         params = dict()
@@ -344,13 +342,13 @@ class CamplyCommandLine:
         camp_finder.find_recreation_areas(search_string=self.cli_arguments.search,
                                           **params)
 
-    def execute_campgrounds(self):
+    def execute_campgrounds(self) -> None:
         """
         Execute the `recreation-areas` command on the CLI
 
         Returns
         -------
-
+        None
         """
         camp_finder = RecreationDotGov()
         params = dict()
@@ -361,13 +359,13 @@ class CamplyCommandLine:
                                      campground_id=self.cli_arguments.campground_id,
                                      **params)
 
-    def execute_campsites(self):
+    def execute_campsites(self) -> None:
         """
         Execute the `recreation-areas` command on the CLI
 
         Returns
         -------
-
+        None
         """
         search_window = SearchWindow(
             start_date=datetime.strptime(self.cli_arguments.start_date, "%Y-%m-%d"),
