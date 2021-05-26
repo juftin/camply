@@ -37,7 +37,7 @@ jobs:
                     tags: juftin/camply:latest,juftin/camply:${CAMPLY_LATEST_VERSION}
 
             -   name: Image digest
-                run:  echo ${{ steps.docker_build.out*puts.digest }}
+                run:  echo ${{ steps.docker_build.outputs.digest }}
 
             -   name: Build the Poetry Package
                 run:  |
