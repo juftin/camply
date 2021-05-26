@@ -14,6 +14,8 @@ jobs:
 
         steps:
 
+            -   uses: actions/checkout@v2
+
             -   name: Set up QEMU
                 uses: docker/setup-qemu-action@v1
 
@@ -27,14 +29,14 @@ jobs:
                     password: ${{ secrets.DOCKER_PASSWORD }}
 
             -   name: Declare Version Variable
-                run:  echo CAMPLY_LATEST_VERSION="$(grep -o  '__version__ = .*' camply/__init__.py | sed "s/__version__ = //g" | sed 's/"//g')" >> $GITHUB_ENV
+                run:  echo CAMPLY_LATEST_VERSION="$(grep -o  '__version__ = .*' ${{ env.GITHUB_WORKSPACE }}/camply/__init__.py | sed "s/__version__ = //g" | sed 's/"//g')" >> $GITHUB_ENV
 
             -   name: Docker Image Building
                 id:   docker_build
                 uses: docker/build-push-action@v2
                 with:
                     push: False
-                    tags: juftin/camply:latest
+                    tags: juftin/camply:latest,juftin/camply:${{ env.CAMPLY_LATEST_VERSION }}
 
             -   name: Image digest
                 run:  echo ${{ steps.docker_build.outputs.digest }}
@@ -44,5 +46,5 @@ jobs:
                       python -m pip install --upgrade pip
                       python -m pip install poetry
                       poetry update
-                      poetry install
-                      poetry build
+                      cd ${{ env.GITHUB_WORKSPACE }} && poetry install
+                      cd ${{ env.GITHUB_WORKSPACE }} && poetry build
