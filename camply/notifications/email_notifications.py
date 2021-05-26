@@ -128,4 +128,5 @@ class EmailNotifications(BaseNotifications, ABC):
             composed_message = "\n".join(fields) + "\n\n"
             master_email_body_list.append(composed_message)
         master_email_body = "\n".join(master_email_body_list)
-        EmailNotifications.send_message(message=master_email_body)
+        if len(campsites) > 0:
+            EmailNotifications.send_message(message=master_email_body)
