@@ -5,6 +5,17 @@ versioning.
 
 ## [Unreleased]
 
+## [0.1.4] - 2021-06-01
+
+### Added
+
+- Pushbullet Notifications
+- YAML Search Configuration Files
+
+### Fixed
+
+- PyPi Publishing CI on Release
+
 ## [0.1.3] - 2021-05-25
 
 ### Added
@@ -48,6 +59,8 @@ versioning.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.4]: https://github.com/juftin/camply/compare/v0.1.3...v0.1.4
 
 [0.1.3]: https://github.com/juftin/camply/compare/v0.1.2...v0.1.3
 
