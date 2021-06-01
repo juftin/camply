@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 from camply.config.file_config import FileConfig
 
 logger = logging.getLogger(__name__)
-load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=True)
+load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=False)
 
 
 class PushoverConfig:

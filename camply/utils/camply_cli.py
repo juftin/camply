@@ -15,8 +15,7 @@ from camply.config import CommandLineConfig
 from camply.containers import SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search import CAMPSITE_SEARCH_PROVIDER
-from camply.search.base_search import SearchError
-from camply.utils import configure_camply
+from camply.utils import configure_camply, yaml_to_search
 from camply.utils import log_camply
 
 logging.Logger.camply = log_camply
@@ -207,6 +206,12 @@ class CamplyCommandLine:
                                     required=False,
                                     default=False,
                                     help=CommandLineConfig.SEARCH_FOREVER_HELP)
+        self.campsites.add_argument(CommandLineConfig.YAML_SEARCH_ARGUMENT,
+                                    action=CommandLineConfig.STORE,
+                                    dest=CommandLineConfig.YAML_SEARCH_DESTINATION,
+                                    required=False,
+                                    default=None,
+                                    help=CommandLineConfig.YAML_SEARCH_HELP)
         self.arguments_compiled = True
 
     def parse_arguments(self) -> Namespace:
@@ -261,7 +266,8 @@ class CamplyCommandLine:
         error_message = help_parser = None
         if self.cli_arguments.provider == CommandLineConfig.RECREATION_DOT_GOV and all(
                 [self.cli_arguments.recreation_area_id is None,
-                 len(self.cli_arguments.campground_id) == 0]):
+                 len(self.cli_arguments.campground_id) == 0,
+                 self.cli_arguments.yml_config is None]):
             error_message = CommandLineConfig.ERROR_MESSAGE_REC_DOT_GOV
             help_parser = self.campsites
         mandatory_parameters = [self.cli_arguments.start_date,
@@ -269,7 +275,7 @@ class CamplyCommandLine:
         mandatory_string_parameters = [CommandLineConfig.START_DATE_ARGUMENT,
                                        CommandLineConfig.END_DATE_ARGUMENT]
         for field in mandatory_parameters:
-            if field is None:
+            if field is None and self.cli_arguments.yml_config is None:
                 error_message = (f"{CommandLineConfig.ERROR_MESSAGE_CAMPSITES}: "
                                  f"{', '.join(mandatory_string_parameters)}")
                 help_parser = self.campsites
@@ -367,17 +373,19 @@ class CamplyCommandLine:
         -------
         None
         """
-        search_window = SearchWindow(
-            start_date=datetime.strptime(self.cli_arguments.start_date, "%Y-%m-%d"),
-            end_date=datetime.strptime(self.cli_arguments.end_date, "%Y-%m-%d"))
-        provider_class = {key.lower(): value for
-                          key, value in CAMPSITE_SEARCH_PROVIDER.items()}[
-            self.cli_arguments.provider.lower()]
-        camping_finder = provider_class(search_window=search_window,
-                                        recreation_area=self.cli_arguments.recreation_area_id,
-                                        campgrounds=self.cli_arguments.campground_id,
-                                        weekends_only=self.cli_arguments.weekends)
-        try:
+        if self.cli_arguments.yml_config is not None:
+            yaml_to_search(file_path=self.cli_arguments.yml_config)
+        else:
+            search_window = SearchWindow(
+                start_date=datetime.strptime(self.cli_arguments.start_date, "%Y-%m-%d"),
+                end_date=datetime.strptime(self.cli_arguments.end_date, "%Y-%m-%d"))
+            provider_class = {key.lower(): value for
+                              key, value in CAMPSITE_SEARCH_PROVIDER.items()}[
+                self.cli_arguments.provider.lower()]
+            camping_finder = provider_class(search_window=search_window,
+                                            recreation_area=self.cli_arguments.recreation_area_id,
+                                            campgrounds=self.cli_arguments.campground_id,
+                                            weekends_only=self.cli_arguments.weekends)
             camping_finder.get_matching_campsites(
                 log=True, verbose=True,
                 continuous=self.cli_arguments.continuous,
@@ -385,8 +393,6 @@ class CamplyCommandLine:
                 notify_first_try=self.cli_arguments.notify_first_try,
                 notification_provider=self.cli_arguments.notifications,
                 search_forever=self.cli_arguments.search_forever)
-        except SearchError:
-            exit(1)
 
     def run_cli(self) -> None:
         """

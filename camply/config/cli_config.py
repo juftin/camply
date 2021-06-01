@@ -15,7 +15,7 @@ from camply import __version__ as camply_version
 from camply.config.file_config import FileConfig
 from camply.config.search_config import SearchConfig
 
-load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=True)
+load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=False)
 
 
 class CommandLineActions:
@@ -100,6 +100,12 @@ class CommandLineArguments:
                                 "after the first availability has been found. The one caveat is "
                                 "that it will never notify about the same identical campsite for "
                                 "the same booking date.")
+
+    YAML_SEARCH_ARGUMENT: str = "--yml-config"
+    YAML_SEARCH_DESTINATION: str = "yml_config"
+    YAML_SEARCH_HELP: str = ("Rather than provide arguments to the command line utility, instead "
+                             "pass a file path to a YAML configuration file. See the documentation "
+                             "for more information on how to structure your configuration file.")
 
 
 class CommandLineValidation:

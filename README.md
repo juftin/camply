@@ -150,6 +150,10 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
       for the same booking date. [**_example_](#continue-looking-after-the-first-match-is-found)
+* `--yml-config`
+    + Rather than provide arguments to the command line utility, instead pass a file path to a YAML
+      configuration file. See the documentation for more information on how to structure your
+      configuration file. [**_example_](#using-a-yml-configuration-file-to-search-for-campsites)
 
 ```text
 camply campsites \
@@ -206,7 +210,7 @@ Set up `camply` configuration file with an interactive console
 In order to send notifications through `camply` you must set up some authorization values. Whether
 you need to set up pushover notifications (push notifications on your phone, your pushover account
 can be set up at https://pushover.net) or Email messages, everything can be done through the
-`configure` command. The end result is a file called [`.camply`](example.camply) in your home
+`configure` command. The end result is a file called [`.camply`](docs/examples/example.camply) in your home
 folder. See the [Running in Docker](#running-in-docker) section to see how you can use environment
 variables instead of a config file.
 
@@ -335,6 +339,31 @@ camply campsites \
     --end-date 2021-07-16
 ```
 
+#### Using a YML Configuration file to search for campsites
+
+Sometimes, using a YAML configuration file is easier to manage all of your search options. See the
+below YML example and corresponding camply command:
+
+```yaml
+provider:         RecreationDotGov # RecreationDotGov IF NOT PROVIDED
+recreation_area: # (LIST OR SINGLE ENTRY)
+    - 2991 # Yosemite National Park, CA (All Campgrounds)
+    - 1074 # Sierra National Forest, CA (All Campgrounds)
+campgrounds:      null # ENTIRE FIELD CAN BE OMITTED IF NOT USED. # (LIST OR SINGLE ENTRY)
+start_date:       2021-09-13 # YYYY-MM-DD
+end_date:         2021-09-13 # YYYY-MM-DD
+weekends:         False # FALSE BY DEFAULT
+continuous:       True # DEFAULTS TO TRUE
+polling_interval: 5 # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
+notifications:    email # (silent, email, pushover), DEFAULTS TO `silent`
+search_forever:   True # FALSE BY DEFAULT
+notify_first_try: False # FALSE BY DEFAULT
+```
+
+```text
+camply campsites --yml-config example_search.yml 
+```
+
 #### Search for Recreation Areas by Query String
 
 Just need to find what your local Recreation Area ID number is? This simple command allows you to
@@ -455,14 +484,29 @@ camping_finder.get_matching_campsites(log=True, verbose=True,
                                       notify_first_try=False)
 ```
 
+### Search using a YAML Config File
+
+Here's how you would use a YAML file to create a campsite search
+
+```python
+import logging
+
+from camply.utils import yaml_to_search
+
+logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
+                    level=logging.INFO)
+
+campsites = yaml_to_search(file_path="example_search.yml")
+```
+
 ## Running in Docker
 
-Here's an example of a detached container searching in the background (notice the `--rm` flag, the
-container will disappear after `camply` exits).
+Here's an example of a detached container searching in the background (notice the `-d` flag, the
+container will run detached).
 
 ```text
-docker run -d --rm \
-  --name camply \
+docker run -d \
+  --name camply-detached-example \
   --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
   --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
   --env TZ="America/Denver" \
@@ -496,11 +540,11 @@ The docker image accepts the following environment variables:
       logging, defaults to UTC)
 
 Alternatively, if you have already run `camply configure` locally, you can share
-your [`.camply`](example.camply) file inside the docker container.
+your [`.camply`](docs/examples/example.camply) file inside the docker container.
 
 ```text
-docker run -d --rm \
-  --name camply \
+docker run \
+  --name camply-file-share-example \
   --env TZ="America/Denver" \
   --volume ${HOME}/.camply:/home/camply/.camply \
   juftin/camply \
@@ -510,6 +554,22 @@ docker run -d --rm \
       --end-date 2021-07-26 \
       --continuous \
       --notifications email
+```
+
+To manage multiple searches (with different notification preferences) I like to use YML
+configuration files:
+
+```text
+docker run -d \
+  --name camply-email-example \
+  --env TZ="America/Denver" \
+  --env EMAIL_TO_ADDRESS=${EMAIL_TO_ADDRESS} \
+  --env EMAIL_USERNAME=${EMAIL_USERNAME} \
+  --env EMAIL_PASSWORD=${EMAIL_PASSWORD} \
+  --volume example_search.yml:/home/camply/example_search.yml \
+  juftin/camply:latest \
+  camply campsites \
+      --yml-config /home/camply/example_search.yml
 ```
 
 ## Dependencies
