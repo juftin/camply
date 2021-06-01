@@ -84,8 +84,8 @@ class CommandLineArguments:
     NOTIFICATIONS_DEFAULT: str = "silent"
     NOTIFICATIONS_HELP: str = ("If --continuous is activated, types of notifications to receive. "
                                "Options available are 'email', "
-                               "'pushover', or 'silent'. Defaults to 'silent' - which just logs "
-                               "messages to console.")
+                               "'pushover', 'pushbullet', or 'silent'. Defaults to 'silent' - "
+                               "which just logs messages to console.")
 
     NOTIFY_FIRST_TRY_ARGUMENT: str = "--notify-first-try"
     NOTIFY_FIRST_TRY_DESTINATION: str = "notify_first_try"
@@ -174,8 +174,8 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
                                           "Required parameters include `--start-date`, "
                                           "`--end-date`, `--rec-area` / `--campground`. "
                                           "Constant searching functionality can be enabled with "
-                                          " `--continuous` and notifications via Email and "
-                                          "Pushover can be enabled using `--notifications`.")
+                                          " `--continuous` and notifications "
+                                          "can be enabled using `--notifications`.")
 
     COMMAND_CONFIGURE: str = "configure"
     COMMAND_CONFIGURE_HELP: str = "Set up camply configuration file with an interactive console"

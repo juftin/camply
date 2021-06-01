@@ -133,7 +133,7 @@ def generate_dot_camply_file():
     sleep(1.5)
     if isfile(FileConfig.DOT_CAMPLY_FILE):
         logger.warning(f".camply file already exists on this machine: {FileConfig.DOT_CAMPLY_FILE}")
-        overwrite = double_check("Would you like to overwrite your `.campy` configuration file?")
+        overwrite = double_check("Would you like to overwrite your `.camply` configuration file?")
         if overwrite is False:
             exit(0)
     config = generate_configuration()

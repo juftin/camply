@@ -10,6 +10,6 @@ from .api_config import RecreationBookingConfig, RIDBConfig, STANDARD_HEADERS, U
 from .cli_config import CommandLineConfig
 from .data_columns import DataColumns
 from .file_config import FileConfig
-from .notification_config import EmailConfig, PushoverConfig
+from .notification_config import EmailConfig, PushbulletConfig, PushoverConfig
 from .search_config import SearchConfig
 from .yellowstone_config import YellowstoneConfig

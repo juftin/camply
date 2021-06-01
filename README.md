@@ -116,7 +116,8 @@ Search for a campsite within camply. Campsites are returned based on the search 
 Campsites contain properties like booking date, site type (tent, RV, cabin, etc), capacity, price,
 and a link to make the booking. Required parameters include `--start-date`, `--end-date`,
 `--rec-area` / `--campground`. Constant searching functionality can be enabled with
-`--continuous` and notifications via Email and Pushover can be enabled using `--notifications`.
+`--continuous` and notifications via Email, Pushover, and Pushbullet can be enabled using
+`--notifications`.
 
 #### Arguments:
 
@@ -141,8 +142,8 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       10, cannot be less than 5. [**_example_](#look-for-weekend-campsite-availabilities)
 * `--notifications`: `NOTIFICATIONS`
     + If `--continuous` is activated, types of notifications to receive. Options available are
-      `email`, `pushover`, or `silent`. Defaults to `silent` - which just logs messages to
-      console. [**_example_](#continuously-searching-for-a-campsite)
+      `email`, `pushover`, `pushbullet`, or `silent`. Defaults to `silent` - which just logs
+      messages to console. [**_example_](#continuously-searching-for-a-campsite)
 * `--notify-first-try`
     + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
       matching campsites are found on the first try. Defaults to false which only sends the 
@@ -209,11 +210,12 @@ camply campgrounds --search "Fire Tower Lookout" --state CA
 Set up `camply` configuration file with an interactive console
 
 In order to send notifications through `camply` you must set up some authorization values. Whether
-you need to set up pushover notifications (push notifications on your phone, your pushover account
-can be set up at https://pushover.net) or Email messages, everything can be done through the
-`configure` command. The end result is a file called [`.camply`](docs/examples/example.camply) in your home
-folder. See the [Running in Docker](#running-in-docker) section to see how you can use environment
-variables instead of a config file.
+you need to set up [Pushover notifications](https://pushover.net)
+, [PushBullet](https://www.pushbullet.com/#settings/account) or Email messages, everything can be
+done through the `configure` command. The end result is a file called
+[`.camply`](docs/examples/example.camply) in your home folder. See
+the [Running in Docker](#running-in-docker) section to see how you can use environment variables
+instead of a config file.
 
 ```text
 camply configure
@@ -258,7 +260,7 @@ camply campsites \
 
 Sometimes you want to look for campgrounds until an eventual match is found. The below snippet will
 search for matching campsites until it finds a match. It also sends a notification via `pushover`
-once matches are found. Alternate notification methods are `email` and `silent` (default).
+once matches are found. Alternate notification methods are `email`, `pushbullet`, and `silent` (default).
 
 __Important Note__: When `camply` is told to run `--continuous` with non-silent notifications set up
 and it finds more than 5 matching campsites on the first try, it will only send notifications for
@@ -343,7 +345,7 @@ camply campsites \
 #### Using a YML Configuration file to search for campsites
 
 Sometimes, using a YAML configuration file is easier to manage all of your search options. See the
-below YML example and corresponding camply command:
+below [YML example file](docs/examples/example_search.yml) and corresponding camply command:
 
 ```yaml
 provider:         RecreationDotGov # RecreationDotGov IF NOT PROVIDED

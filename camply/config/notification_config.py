@@ -58,3 +58,17 @@ class EmailConfig:
         f"EMAIL_FROM_ADDRESS (default: {DEFAULT_FROM_ADDRESS})",
         f'EMAIL_SUBJECT_LINE (default: "{DEFAULT_SUBJECT_LINE}")',
         f"EMAIL_SMTP_PORT (default: {DEFAULT_SMTP_PORT})"]
+
+
+class PushbulletConfig:
+    """
+    Pushbullet Notification Config Class
+    """
+
+    PUSHBULLET_API_ENDPOINT: str = "https://api.pushbullet.com/v2/pushes"
+    API_HEADERS: dict = {"Content-Type": "application/json"}
+
+    try:
+        API_TOKEN: str = environ["PUSHBULLET_API_TOKEN"]
+    except KeyError:
+        API_TOKEN = None
