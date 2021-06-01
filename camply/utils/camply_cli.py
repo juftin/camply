@@ -15,7 +15,7 @@ from camply.config import CommandLineConfig
 from camply.containers import SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search import CAMPSITE_SEARCH_PROVIDER
-from camply.utils import configure_camply, yaml_to_search
+from camply.utils import configure_camply, yaml_utils
 from camply.utils import log_camply
 
 logging.Logger.camply = log_camply
@@ -374,25 +374,28 @@ class CamplyCommandLine:
         None
         """
         if self.cli_arguments.yml_config is not None:
-            yaml_to_search(file_path=self.cli_arguments.yml_config)
+            provider, provider_kwargs, search_kwargs = yaml_utils.yaml_file_to_arguments(
+                file_path=self.cli_arguments.yml_config)
         else:
+            provider = self.cli_arguments.provider.lower()
             search_window = SearchWindow(
                 start_date=datetime.strptime(self.cli_arguments.start_date, "%Y-%m-%d"),
                 end_date=datetime.strptime(self.cli_arguments.end_date, "%Y-%m-%d"))
-            provider_class = {key.lower(): value for
-                              key, value in CAMPSITE_SEARCH_PROVIDER.items()}[
-                self.cli_arguments.provider.lower()]
-            camping_finder = provider_class(search_window=search_window,
-                                            recreation_area=self.cli_arguments.recreation_area_id,
-                                            campgrounds=self.cli_arguments.campground_id,
-                                            weekends_only=self.cli_arguments.weekends)
-            camping_finder.get_matching_campsites(
-                log=True, verbose=True,
-                continuous=self.cli_arguments.continuous,
-                polling_interval=float(self.cli_arguments.polling_interval),
-                notify_first_try=self.cli_arguments.notify_first_try,
-                notification_provider=self.cli_arguments.notifications,
-                search_forever=self.cli_arguments.search_forever)
+            provider_kwargs = dict(search_window=search_window,
+                                   recreation_area=self.cli_arguments.recreation_area_id,
+                                   campgrounds=self.cli_arguments.campground_id,
+                                   weekends_only=self.cli_arguments.weekends)
+            search_kwargs = dict(log=True, verbose=True,
+                                 continuous=self.cli_arguments.continuous,
+                                 polling_interval=float(self.cli_arguments.polling_interval),
+                                 notify_first_try=self.cli_arguments.notify_first_try,
+                                 notification_provider=self.cli_arguments.notifications,
+                                 search_forever=self.cli_arguments.search_forever)
+
+        provider_class = {key.lower(): value for key, value in CAMPSITE_SEARCH_PROVIDER.items()}[
+            provider.lower()]
+        camping_finder = provider_class(**provider_kwargs)
+        camping_finder.get_matching_campsites(**search_kwargs)
 
     def run_cli(self) -> None:
         """

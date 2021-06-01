@@ -10,13 +10,12 @@ from datetime import datetime
 import logging
 from os import getenv
 from re import compile
-from typing import Dict, List, Tuple
+from typing import Dict, Tuple
 
 from yaml import load, SafeLoader
 
 from camply.config import SearchConfig
-from camply.containers import AvailableCampsite, SearchWindow
-from camply.search import BaseCampingSearch, CAMPSITE_SEARCH_PROVIDER
+from camply.containers import SearchWindow
 
 logger = logging.getLogger(__name__)
 
@@ -69,7 +68,7 @@ def read_yml(path: str = None):
         return load(stream=conf_data, Loader=safe_loader)
 
 
-def _yaml_file_to_arguments(file_path: str) -> Tuple[BaseCampingSearch, Dict[str, object]]:
+def yaml_file_to_arguments(file_path: str) -> Tuple[str, Dict[str, object], Dict[str, object]]:
     """
     Convert YAML File into A Dictionary to be used as **kwargs
 
@@ -80,9 +79,8 @@ def _yaml_file_to_arguments(file_path: str) -> Tuple[BaseCampingSearch, Dict[str
 
     Returns
     -------
-    camping_finder, search_kwargs: Tuple[BaseCampingSearch, Dict[str, object]]
-        Tuple containing Search Object, and **kwargs as dict to provide to the
-        get_matching_campsites() function
+    provider, provider_kwargs, search_kwargs: Tuple[str, Dict[str, object], Dict[str, object]]
+        Tuple containing provider string, provider **kwargs, and search **kwargs
     """
     yaml_search = read_yml(path=file_path)
     provider = yaml_search.get("provider", "RecreationDotGov")
@@ -98,16 +96,12 @@ def _yaml_file_to_arguments(file_path: str) -> Tuple[BaseCampingSearch, Dict[str
     notification_provider = yaml_search.get("notifications", "silent")
     search_forever = yaml_search.get("search_forever", False)
 
-    search_window = SearchWindow(
-        start_date=start_date,
-        end_date=end_date)
-    provider_class = {key.lower(): value for
-                      key, value in CAMPSITE_SEARCH_PROVIDER.items()}[provider.lower()]
+    search_window = SearchWindow(start_date=start_date, end_date=end_date)
 
-    camping_finder = provider_class(search_window=search_window,
-                                    recreation_area=recreation_area,
-                                    campgrounds=campgrounds,
-                                    weekends_only=weekends_only)
+    provider_kwargs = dict(search_window=search_window,
+                           recreation_area=recreation_area,
+                           campgrounds=campgrounds,
+                           weekends_only=weekends_only)
     search_kwargs = dict(
         log=True, verbose=True,
         continuous=continuous,
@@ -115,20 +109,4 @@ def _yaml_file_to_arguments(file_path: str) -> Tuple[BaseCampingSearch, Dict[str
         notify_first_try=notify_first_try,
         notification_provider=notification_provider,
         search_forever=search_forever)
-    return camping_finder, search_kwargs
-
-
-def yaml_to_search(file_path: str) -> List[AvailableCampsite]:
-    """
-    Convert YAML File into A Dictionary to be used as **kwargs
-
-    Parameters
-    ----------
-    file_path: str
-        File Path to YAML
-
-    """
-    campsite_searcher: BaseCampingSearch
-    campsite_searcher, search_kwargs = _yaml_file_to_arguments(file_path=file_path)
-    campsites = campsite_searcher.get_matching_campsites(**search_kwargs)
-    return campsites
+    return provider, provider_kwargs, search_kwargs

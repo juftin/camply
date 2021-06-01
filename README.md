@@ -484,21 +484,6 @@ camping_finder.get_matching_campsites(log=True, verbose=True,
                                       notify_first_try=False)
 ```
 
-### Search using a YAML Config File
-
-Here's how you would use a YAML file to create a campsite search
-
-```python
-import logging
-
-from camply.utils import yaml_to_search
-
-logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
-                    level=logging.INFO)
-
-campsites = yaml_to_search(file_path="example_search.yml")
-```
-
 ## Running in Docker
 
 Here's an example of a detached container searching in the background (notice the `-d` flag, the

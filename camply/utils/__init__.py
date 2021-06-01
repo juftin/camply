@@ -8,4 +8,3 @@ Utils __init__ file
 
 from .api_utils import filter_json, generate_url
 from .logging_utils import log_camply
-from .yaml_utils import read_yml, yaml_to_search
