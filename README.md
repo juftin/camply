@@ -37,6 +37,7 @@ ___________
         + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
         + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
+        + [Using a YML Configuration file to search for campsites](#using-a-yml-configuration-file-to-search-for-campsites) 
         + [Search for Recreation Areas by Query String](#search-for-recreation-areas-by-query-string)
         + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for Specific Campgrounds by Query String](#look-for-specific-campgrounds-by-query-string)
