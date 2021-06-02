@@ -15,7 +15,7 @@ from camply import __version__ as camply_version
 from camply.config.file_config import FileConfig
 from camply.config.search_config import SearchConfig
 
-load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=True)
+load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=False)
 
 
 class CommandLineActions:
@@ -84,8 +84,8 @@ class CommandLineArguments:
     NOTIFICATIONS_DEFAULT: str = "silent"
     NOTIFICATIONS_HELP: str = ("If --continuous is activated, types of notifications to receive. "
                                "Options available are 'email', "
-                               "'pushover', or 'silent'. Defaults to 'silent' - which just logs "
-                               "messages to console.")
+                               "'pushover', 'pushbullet', or 'silent'. Defaults to 'silent' - "
+                               "which just logs messages to console.")
 
     NOTIFY_FIRST_TRY_ARGUMENT: str = "--notify-first-try"
     NOTIFY_FIRST_TRY_DESTINATION: str = "notify_first_try"
@@ -100,6 +100,12 @@ class CommandLineArguments:
                                 "after the first availability has been found. The one caveat is "
                                 "that it will never notify about the same identical campsite for "
                                 "the same booking date.")
+
+    YAML_SEARCH_ARGUMENT: str = "--yml-config"
+    YAML_SEARCH_DESTINATION: str = "yml_config"
+    YAML_SEARCH_HELP: str = ("Rather than provide arguments to the command line utility, instead "
+                             "pass a file path to a YAML configuration file. See the documentation "
+                             "for more information on how to structure your configuration file.")
 
 
 class CommandLineValidation:
@@ -168,8 +174,8 @@ class CommandLineConfig(CommandLineActions, CommandLineArguments, CommandLineVal
                                           "Required parameters include `--start-date`, "
                                           "`--end-date`, `--rec-area` / `--campground`. "
                                           "Constant searching functionality can be enabled with "
-                                          " `--continuous` and notifications via Email and "
-                                          "Pushover can be enabled using `--notifications`.")
+                                          " `--continuous` and notifications "
+                                          "can be enabled using `--notifications`.")
 
     COMMAND_CONFIGURE: str = "configure"
     COMMAND_CONFIGURE_HELP: str = "Set up camply configuration file with an interactive console"

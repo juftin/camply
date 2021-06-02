@@ -20,36 +20,6 @@ ___________
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 
-## Table of Contents
-
-- [Installation](#installation)
-    * [PyPI](#pypi)
-    * [Docker](#docker)
-    * [Building Locally](#building-locally)
-- [Command Line Usage](#command-line-usage)
-    * [`campsites`](#campsites)
-    * [`recreation-areas`](#recreation-areas)
-    * [`campgrounds`](#campgrounds)
-    * [`configure`](#configure)
-    * [Examples](#examples)
-        + [Searching for a Campsite](#searching-for-a-campsite)
-        + [Searching for a Campsite by Campground ID](#searching-for-a-campsite-by-campground-id)
-        + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
-        + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
-        + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
-        + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
-        + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
-        + [Using a YML Configuration file to search for campsites](#using-a-yml-configuration-file-to-search-for-campsites)
-        + [Search for Recreation Areas by Query String](#search-for-recreation-areas-by-query-string)
-        + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
-        + [Look for Specific Campgrounds by Query String](#look-for-specific-campgrounds-by-query-string)
-- [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
-- [Object-Oriented Usage (Python)](#object-oriented-usage-python)
-    * [Search for a Recreation.gov Campsite](#search-for-a-recreationgov-campsite)
-    * [Continuously Search for Recreation.gov Campsites](#continuously-search-for-recreationgov-campsites)
-- [Running in Docker](#running-in-docker)
-- [Dependencies](#dependencies)
-
 ## Installation
 
 ### <a name="pypi"></a>[PyPI](https://pypi.python.org/pypi/camply/)
@@ -72,6 +42,79 @@ docker pull juftin/camply
 git clone https://github.com/juftin/camply.git
 cd camply
 python setup.py install
+```
+
+## Running in Docker
+
+Here's an example of a detached container searching in the background (notice the `-d` flag, the
+container will run detached).
+
+```text
+docker run -d \
+  --name camply-detached-example \
+  --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
+  --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
+  --env TZ="America/Denver" \
+  juftin/camply \
+  camply campsites \
+      --rec-area 2991 \
+      --start-date 2021-08-01 \
+      --end-date 2021-08-31 \
+      --continuous \
+      --notifications pushover
+```
+
+The docker image accepts the following environment variables:
+
+- Pushover Notifications
+    * `PUSHOVER_PUSH_TOKEN`
+    * `PUSHOVER_PUSH_USER`
+- Email Notifications
+    * `EMAIL_TO_ADDRESS`
+    * `EMAIL_USERNAME`
+    * `EMAIL_PASSWORD`
+    * `EMAIL_FROM_ADDRESS` (defaults to "camply@juftin.com")
+    * `EMAIL_SUBJECT_LINE` (defaults to "camply Notification")
+    * `EMAIL_SMTP_SERVER` (defaults to "smtp.gmail.com")
+    * `EMAIL_SMTP_PORT` (defaults to 465)
+- Optional Environment Variables
+    * `LOG_LEVEL` (sets logging level, defaults to "INFO")
+    * `RIDB_API_KEY` (Personal API Key
+      for [Recreation.gov API](https://ridb.recreation.gov/profile))
+    * `TZ` ([TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
+      logging, defaults to UTC)
+
+Alternatively, if you have already run `camply configure` locally, you can share
+your [`.camply`](docs/examples/example.camply) file inside the docker container.
+
+```text
+docker run \
+  --name camply-file-share-example \
+  --env TZ="America/Denver" \
+  --volume ${HOME}/.camply:/home/camply/.camply \
+  juftin/camply \
+  camply campsites \
+      --provider yellowstone \
+      --start-date 2021-07-22 \
+      --end-date 2021-07-26 \
+      --continuous \
+      --notifications email
+```
+
+To manage multiple searches (with different notification preferences) I like to use YML
+configuration files:
+
+```text
+docker run -d \
+  --name camply-email-example \
+  --env TZ="America/Denver" \
+  --env EMAIL_TO_ADDRESS=${EMAIL_TO_ADDRESS} \
+  --env EMAIL_USERNAME=${EMAIL_USERNAME} \
+  --env EMAIL_PASSWORD=${EMAIL_PASSWORD} \
+  --volume example_search.yml:/home/camply/example_search.yml \
+  juftin/camply:latest \
+  camply campsites \
+      --yml-config /home/camply/example_search.yml
 ```
 
 ## Command Line Usage
@@ -149,7 +192,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 * `--notify-first-try`
     + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
       matching campsites are found on the first try. Defaults to false which only sends the first
-      5. [**_example_](#continuously-searching-for-a-campsite)
+        5. [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
@@ -488,79 +531,6 @@ camping_finder.get_matching_campsites(log=True, verbose=True,
                                       notification_provider="pushover",
                                       search_forever=True,
                                       notify_first_try=False)
-```
-
-## Running in Docker
-
-Here's an example of a detached container searching in the background (notice the `-d` flag, the
-container will run detached).
-
-```text
-docker run -d \
-  --name camply-detached-example \
-  --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
-  --env PUSHOVER_PUSH_USER=${PUSHOVER_PUSH_USER} \
-  --env TZ="America/Denver" \
-  juftin/camply \
-  camply campsites \
-      --rec-area 2991 \
-      --start-date 2021-08-01 \
-      --end-date 2021-08-31 \
-      --continuous \
-      --notifications pushover
-```
-
-The docker image accepts the following environment variables:
-
-- Pushover Notifications
-    * `PUSHOVER_PUSH_TOKEN`
-    * `PUSHOVER_PUSH_USER`
-- Email Notifications
-    * `EMAIL_TO_ADDRESS`
-    * `EMAIL_USERNAME`
-    * `EMAIL_PASSWORD`
-    * `EMAIL_FROM_ADDRESS` (defaults to "camply@juftin.com")
-    * `EMAIL_SUBJECT_LINE` (defaults to "camply Notification")
-    * `EMAIL_SMTP_SERVER` (defaults to "smtp.gmail.com")
-    * `EMAIL_SMTP_PORT` (defaults to 465)
-- Optional Environment Variables
-    * `LOG_LEVEL` (sets logging level, defaults to "INFO")
-    * `RIDB_API_KEY` (Personal API Key
-      for [Recreation.gov API](https://ridb.recreation.gov/profile))
-    * `TZ` ([TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
-      logging, defaults to UTC)
-
-Alternatively, if you have already run `camply configure` locally, you can share
-your [`.camply`](docs/examples/example.camply) file inside the docker container.
-
-```text
-docker run \
-  --name camply-file-share-example \
-  --env TZ="America/Denver" \
-  --volume ${HOME}/.camply:/home/camply/.camply \
-  juftin/camply \
-  camply campsites \
-      --provider yellowstone \
-      --start-date 2021-07-22 \
-      --end-date 2021-07-26 \
-      --continuous \
-      --notifications email
-```
-
-To manage multiple searches (with different notification preferences) I like to use YML
-configuration files:
-
-```text
-docker run -d \
-  --name camply-email-example \
-  --env TZ="America/Denver" \
-  --env EMAIL_TO_ADDRESS=${EMAIL_TO_ADDRESS} \
-  --env EMAIL_USERNAME=${EMAIL_USERNAME} \
-  --env EMAIL_PASSWORD=${EMAIL_PASSWORD} \
-  --volume example_search.yml:/home/camply/example_search.yml \
-  juftin/camply:latest \
-  camply campsites \
-      --yml-config /home/camply/example_search.yml
 ```
 
 ## Dependencies

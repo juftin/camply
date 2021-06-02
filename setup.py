@@ -24,7 +24,8 @@ packages = ["camply",
 
 package_data = {"": ["*"]}
 
-install_requires = ["pandas",
+install_requires = ["PyYAML",
+                    "pandas",
                     "python-dotenv",
                     "pytz",
                     "requests",

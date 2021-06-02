@@ -46,4 +46,4 @@ jobs:
                       poetry update
                       cd ${GITHUB_WORKSPACE} && poetry install
                       cd ${GITHUB_WORKSPACE} && poetry build
-                      cd ${GITHUB_WORKSPACE} && poetry publish --username ${PYPI_USERNAME} --password ${PYPI_PASSWORD}
+                      cd ${GITHUB_WORKSPACE} && poetry publish --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }}

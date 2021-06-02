@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "camply"
-version = "0.1.3"
+version = "0.1.4"
 description = "camply, the campsite finder ⛺️"
 authors = ["Justin Flannery <juftin@juftin.com>"]
 maintainers = ["Justin Flannery <juftin@juftin.com>"]
@@ -19,6 +19,7 @@ pandas = "*"
 tenacity = "*"
 python-dotenv = "*"
 pytz = "*"
+PyYAML = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

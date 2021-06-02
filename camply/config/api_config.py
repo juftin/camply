@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 from camply.config.file_config import FileConfig
 
-load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=True)
+load_dotenv(FileConfig.DOT_CAMPLY_FILE, override=False)
 
 USER_AGENTS: List[dict] = [
     {"User-Agent": ("Mozilla/5.0 (X11; Linux x86_64; rv:10.0) "
