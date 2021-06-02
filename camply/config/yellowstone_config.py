@@ -7,7 +7,7 @@ Project Configuration for Yellowstone Variables
 """
 
 import logging
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 from .data_columns import DataColumns
 
@@ -74,19 +74,11 @@ class YellowstoneConfig(DataColumns):
 
     YELLOWSTONE_TIMEZONE: str = "America/Denver"
 
-    @staticmethod
-    def get_polling_interval(interval: int) -> int:
-        """
-        Ensure the Polling Interval never exceeds the minimum set
-
-        Returns
-        -------
-        int
-        """
-        if interval < YellowstoneConfig.MINIMUM_POLLING_INTERVAL:
-            logger.warning("Polling interval is too short, setting "
-                           f"to {YellowstoneConfig.MINIMUM_POLLING_INTERVAL} minutes")
-            return_interval = YellowstoneConfig.MINIMUM_POLLING_INTERVAL
-        else:
-            return_interval = interval
-        return return_interval
+    # LODGES:  https://webapi.xanterra.net/v1/api/property/hotels/yellowstonenationalparklodges
+    CAMPGROUNDS: Dict[str, str] = {
+        "YLYC:RV": "Canyon Campground",
+        "YLYB:RV": "Bridge Bay Campground",
+        "YLYG:RV": "Grant Campground",
+        "YLYM:RV": "Madison Campground",
+        "YLYF:RV": "Fishing Bridge RV Park"
+    }  #
