@@ -1,7 +1,6 @@
 provider:    RecreationDotGov # RecreationDotGov IF NOT PROVIDED
 recreation_area: # (LIST OR SINGLE ENTRY)
-    - 2991 # Yosemite National Park, CA (All Campgrounds)
-    - 1074 # Sierra National Forest, CA (All Campgrounds)
+    - 2907 # ROCKY MOUNTAIN NATIONAL PARK
 campgrounds: null # OVERRIDES RECREATION AREA (LIST OR SINGLE ENTRY)
 start_date:  2021-09-10 # YYYY-MM-DD
 end_date:    2021-09-15 # YYYY-MM-DD
