@@ -340,8 +340,10 @@ camply campsites \
 
 Yellowstone doesn't use https://recreation.gov to manage its campgrounds, instead it uses its own
 proprietary system. In order to search the Yellowstone API for campsites, make sure to pass
-the `--provider "yellowstone"` argument. This flag disables `--rec-area` and `--campground`
-arguments.
+the `--provider "yellowstone"` argument. This flag disables `--rec-area` argument.
+
+To learn more about using `camply` to find campsites at Yellowstone, check out
+this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomment-783657).
 
 ```text
 camply campsites \
