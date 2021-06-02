@@ -1,6 +1,8 @@
 <div align="center">
+<a href="https://github.com/juftin/camply">
   <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg" 
     width="400" height="400" alt="camply">
+</a>
 </div>
 
 `camply`, the campsite finder ⛺️, is a tool to help you book a campground online. Finding
@@ -37,7 +39,7 @@ ___________
         + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
         + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
-        + [Using a YML Configuration file to search for campsites](#using-a-yml-configuration-file-to-search-for-campsites) 
+        + [Using a YML Configuration file to search for campsites](#using-a-yml-configuration-file-to-search-for-campsites)
         + [Search for Recreation Areas by Query String](#search-for-recreation-areas-by-query-string)
         + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for Specific Campgrounds by Query String](#look-for-specific-campgrounds-by-query-string)
@@ -122,18 +124,23 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 #### Arguments:
 
 * `--rec-area`: `RECREATION_AREA_ID`
-    + Add Recreation Areas (comprised of campgrounds) by ID. [**_example_](#searching-for-a-campsite)
+    + Add Recreation Areas (comprised of campgrounds) by ID. [**_
+      example_](#searching-for-a-campsite)
 * `--campground`: `CAMPGROUND_ID`
     + Add individual Campgrounds by ID. [**_example_](#searching-for-a-campsite-by-campground-id)
 * `--start-date`: `START_DATE`
-    + `YYYY-MM-DD`: Start of Search window. You will be arriving this day. [**_example_](#searching-for-a-campsite)
+    + `YYYY-MM-DD`: Start of Search window. You will be arriving this day. [**_
+      example_](#searching-for-a-campsite)
 * `--end-date`: `END_DATE`
-    + `YYYY-MM-DD`: End of Search window. You will be leaving the following day. [**_example_](#searching-for-a-campsite)
+    + `YYYY-MM-DD`: End of Search window. You will be leaving the following day. [**_
+      example_](#searching-for-a-campsite)
 * `--weekends`
-    + Only search for weekend bookings (Fri/Sat nights). [**_example_](#look-for-weekend-campsite-availabilities)
+    + Only search for weekend bookings (Fri/Sat nights). [**_
+      example_](#look-for-weekend-campsite-availabilities)
 * `--provider`: `PROVIDER`
     + Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
-      to 'RecreationDotGov', not case-sensitive. [**_example_](#look-for-a-campsite-inside-of-yellowstone)
+      to 'RecreationDotGov', not case-sensitive. [**_
+      example_](#look-for-a-campsite-inside-of-yellowstone)
 * `--continuous`
     + Continuously check for a campsite to become available, and quit once at least one campsite is
       found. [**_example_](#continuously-searching-for-a-campsite)
@@ -146,8 +153,8 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       messages to console. [**_example_](#continuously-searching-for-a-campsite)
 * `--notify-first-try`
     + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
-      matching campsites are found on the first try. Defaults to false which only sends the 
-      first 5. [**_example_](#continuously-searching-for-a-campsite)
+      matching campsites are found on the first try. Defaults to false which only sends the first
+      5. [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
@@ -260,7 +267,8 @@ camply campsites \
 
 Sometimes you want to look for campgrounds until an eventual match is found. The below snippet will
 search for matching campsites until it finds a match. It also sends a notification via `pushover`
-once matches are found. Alternate notification methods are `email`, `pushbullet`, and `silent` (default).
+once matches are found. Alternate notification methods are `email`, `pushbullet`, and `silent` (
+default).
 
 __Important Note__: When `camply` is told to run `--continuous` with non-silent notifications set up
 and it finds more than 5 matching campsites on the first try, it will only send notifications for
