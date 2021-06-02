@@ -5,6 +5,12 @@ versioning.
 
 ## [Unreleased]
 
+## [0.1.5] - 2021-12-31
+
+### Added
+
+### Fixed
+
 ## [0.1.4] - 2021-06-01
 
 ### Added
@@ -59,6 +65,8 @@ versioning.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.5]: https://github.com/juftin/camply/compare/v0.1.4...v0.1.5
 
 [0.1.4]: https://github.com/juftin/camply/compare/v0.1.3...v0.1.4
 
