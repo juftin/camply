@@ -64,14 +64,16 @@ class SearchYellowstone(BaseCampingSearch):
             campsites=all_campsites, searchable_campgrounds=searchable_campgrounds)
         return matching_campsites
 
-    def _get_searchable_campgrounds(self) -> Set[str]:
+    def _get_searchable_campgrounds(self) -> Optional[Set[str]]:
         """
         Return the Campgrounds for the Camping Search
 
         Returns
         -------
-
+        Optional[Set[str]]
         """
+        if self.campgrounds is None:
+            return None
         supported_campsites = set(YellowstoneConfig.CAMPGROUNDS.keys())
         selected_campsites = set(self.campgrounds)
         searchable_campgrounds = supported_campsites.intersection(selected_campsites)
@@ -81,7 +83,6 @@ class SearchYellowstone(BaseCampingSearch):
             error_message = ("You must supply a YellowstoneNationalParkLodges supported "
                              "campground ID. Current supported Campground IDs: "
                              f"{', '.join(campground_ids)}")
-
             logger.error(error_message)
             raise SearchError(error_message)
         logger.info(f"{len(searchable_campgrounds)} Matching Campgrounds Found")
