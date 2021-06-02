@@ -36,6 +36,7 @@ ___________
         + [Searching for a Campsite by Campground ID](#searching-for-a-campsite-by-campground-id)
         + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
         + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
+        + [Send a Push Notification](#send-a-push-notification) 
         + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
         + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
@@ -145,11 +146,11 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 * `--notifications`: `NOTIFICATIONS`
     + If `--continuous` is activated, types of notifications to receive. Options available are
       `email`, `pushover`, `pushbullet`, or `silent`. Defaults to `silent` - which just logs
-      messages to console. [**_example_](#continuously-searching-for-a-campsite)
+      messages to console. [**_example_](#send-a-push-notification)
 * `--notify-first-try`
     + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
-      matching campsites are found on the first try. Defaults to false which only sends the first
-      5. [**_example_](#continuously-searching-for-a-campsite)
+      matching campsites are found on the first try. Defaults to false which only sends 
+      the first 5. [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
@@ -297,6 +298,25 @@ camply campsites \
     --continuous \
     --notifications pushover \
     --search-forever
+```
+
+#### Send a Push Notification
+
+camply supports notifications via `Pushbullet`, `Pushover`, and `Email`. Pushbullet is a great
+option because it's
+a [free and easy service to sign up for](https://www.pushbullet.com/#settings/account)
+and it supports notifications across different devices and operating systems. Similar to `Pushover`,
+`Pushbullet` requires that you create an account and an API token, and share that token with camply
+through a [configuration file](docs/examples/example.camply) (via the `camply configure`
+command) or though environment variables (`PUSHBULLET_API_TOKEN`).
+
+```text
+camply campsites \
+    --rec-area 2991 \
+    --start-date 2021-09-10 \
+    --end-date 2021-09-20 \
+    --continuous \
+    --notifications pushbullet
 ```
 
 #### Look for Weekend Campsite Availabilities
