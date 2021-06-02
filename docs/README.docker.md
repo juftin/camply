@@ -396,12 +396,12 @@ recreation_area: # (LIST OR SINGLE ENTRY)
     - 2991 # Yosemite National Park, CA (All Campgrounds)
     - 1074 # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null # ENTIRE FIELD CAN BE OMITTED IF NOT USED. # (LIST OR SINGLE ENTRY)
-start_date:       2021-09-13 # YYYY-MM-DD
-end_date:         2021-09-13 # YYYY-MM-DD
+start_date:       2021-09-12 # YYYY-MM-DD
+end_date:         2021-09-12 # YYYY-MM-DD
 weekends:         False # FALSE BY DEFAULT
 continuous:       True # DEFAULTS TO TRUE
 polling_interval: 5 # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
-notifications:    email # (silent, email, pushover), DEFAULTS TO `silent`
+notifications:    email # (silent, email, pushover, pushbullet), DEFAULTS TO `silent`
 search_forever:   True # FALSE BY DEFAULT
 notify_first_try: False # FALSE BY DEFAULT
 ```
