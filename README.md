@@ -602,6 +602,8 @@ dependencies:
 - [python-dotenv](https://github.com/theskumar/python-dotenv)
     - The `python-dotenv` package reads key-value pairs from a `.env` file and can set them as
       environment variables - this helps with the `.camply` configuration file.
+- [PyYAML](https://pyyaml.org/)
+    - PyYAML is a YAML parsing library - this helps with the YAML file campsite searches.
 
 ___________
 ___________
