@@ -167,23 +167,18 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 #### Arguments:
 
 * `--rec-area`: `RECREATION_AREA_ID`
-    + Add Recreation Areas (comprised of campgrounds) by ID. [**_
-      example_](#searching-for-a-campsite)
+    + Add Recreation Areas (comprised of campgrounds) by ID. [**_example_](#searching-for-a-campsite)
 * `--campground`: `CAMPGROUND_ID`
     + Add individual Campgrounds by ID. [**_example_](#searching-for-a-campsite-by-campground-id)
 * `--start-date`: `START_DATE`
-    + `YYYY-MM-DD`: Start of Search window. You will be arriving this day. [**_
-      example_](#searching-for-a-campsite)
+    + `YYYY-MM-DD`: Start of Search window. You will be arriving this day. [**_example_](#searching-for-a-campsite)
 * `--end-date`: `END_DATE`
-    + `YYYY-MM-DD`: End of Search window. You will be leaving the following day. [**_
-      example_](#searching-for-a-campsite)
+    + `YYYY-MM-DD`: End of Search window. You will be leaving the following day. [**_example_](#searching-for-a-campsite)
 * `--weekends`
-    + Only search for weekend bookings (Fri/Sat nights). [**_
-      example_](#look-for-weekend-campsite-availabilities)
+    + Only search for weekend bookings (Fri/Sat nights). [**_example_](#look-for-weekend-campsite-availabilities)
 * `--provider`: `PROVIDER`
     + Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
-      to 'RecreationDotGov', not case-sensitive. [**_
-      example_](#look-for-a-campsite-inside-of-yellowstone)
+      to 'RecreationDotGov', not case-sensitive. [**_example_](#look-for-a-campsite-inside-of-yellowstone)
 * `--continuous`
     + Continuously check for a campsite to become available, and quit once at least one campsite is
       found. [**_example_](#continuously-searching-for-a-campsite)
