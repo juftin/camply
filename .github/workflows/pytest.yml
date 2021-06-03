@@ -13,6 +13,9 @@ jobs:
             fail-fast: false
             matrix:
                 python-version: [ 3.6, 3.7, 3.8, 3.9 ]
+        env:
+            LOG_LEVEL:    DEBUG
+            RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
         steps:
             -   uses: actions/checkout@v2
             -   name: Set up Python Environment ${{ matrix.python-version }}
