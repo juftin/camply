@@ -68,6 +68,7 @@ class YellowstoneConfig(DataColumns):
 
     YELLOWSTONE_RECREATION_AREA_ID: int = 1
     YELLOWSTONE_RECREATION_AREA_NAME: str = "Yellowstone"
+    YELLOWSTONE_RECREATION_AREA_FORMAL_NAME: str = "Yellowstone National Park, USA"
     YELLOWSTONE_LOOP_NAME: str = "N/A"
     CAMPSITE_AVAILABILITY_STATUS: str = "Available"
     YELLOWSTONE_CAMPGROUND_NAME_REPLACE: Tuple[str, str] = ("CG Internet Rate", "Campground")
@@ -75,10 +76,10 @@ class YellowstoneConfig(DataColumns):
     YELLOWSTONE_TIMEZONE: str = "America/Denver"
 
     # LODGES:  https://webapi.xanterra.net/v1/api/property/hotels/yellowstonenationalparklodges
-    CAMPGROUNDS: Dict[str, str] = {
+    YELLOWSTONE_CAMPGROUNDS: Dict[str, str] = {
         "YLYC:RV": "Canyon Campground",
         "YLYB:RV": "Bridge Bay Campground",
         "YLYG:RV": "Grant Campground",
         "YLYM:RV": "Madison Campground",
         "YLYF:RV": "Fishing Bridge RV Park"
-    }  #
+    }

@@ -74,12 +74,12 @@ class SearchYellowstone(BaseCampingSearch):
         """
         if self.campgrounds is None:
             return None
-        supported_campsites = set(YellowstoneConfig.CAMPGROUNDS.keys())
+        supported_campsites = set(YellowstoneConfig.YELLOWSTONE_CAMPGROUNDS.keys())
         selected_campsites = set(self.campgrounds)
         searchable_campgrounds = supported_campsites.intersection(selected_campsites)
         if len(searchable_campgrounds) == 0:
             campground_ids = [f"`{key}` ({value})" for key, value in
-                              YellowstoneConfig.CAMPGROUNDS.items()]
+                              YellowstoneConfig.YELLOWSTONE_CAMPGROUNDS.items()]
             error_message = ("You must supply a YellowstoneNationalParkLodges supported "
                              "campground ID. Current supported Campground IDs: "
                              f"{', '.join(campground_ids)}")
@@ -87,8 +87,9 @@ class SearchYellowstone(BaseCampingSearch):
             raise SearchError(error_message)
         logger.info(f"{len(searchable_campgrounds)} Matching Campgrounds Found")
         for campground in searchable_campgrounds:
-            logger.info(f"⛰  Yellowstone National Park, USA (#1) - 🏕  "
-                        f"{YellowstoneConfig.CAMPGROUNDS[campground]} ({campground})")
+            logger.info(f"⛰  {YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_FORMAL_NAME} "
+                        f"(#{YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_ID}) - 🏕  "
+                        f"{YellowstoneConfig.YELLOWSTONE_CAMPGROUNDS[campground]} ({campground})")
         return searchable_campgrounds
 
     def _filter_campsites_to_campgrounds(
