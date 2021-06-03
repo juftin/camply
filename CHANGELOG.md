@@ -13,9 +13,9 @@ place to go.
 
 ### Added
 
-Ability to filter on Yellowstone Campgrounds. See
-this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomment-783657) for more
-detail.
+- Ability to filter on Yellowstone Campgrounds. See
+  this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomment-783657) for
+  more detail.
 
 ## [0.1.4] - 2021-06-01
 
