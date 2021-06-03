@@ -17,6 +17,10 @@ place to go.
   this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomment-783657) for
   more detail.
 
+### Fixed
+
+- Allow endpoints to timeout after being unresponsive for 30 seconds
+
 ## [0.1.4] - 2021-06-01
 
 ### Added
