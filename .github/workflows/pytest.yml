@@ -6,12 +6,11 @@ on:
 
 jobs:
     pytest:
-        runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
         strategy:
             fail-fast:    false
             matrix:
                 python-version: [ 3.6, 3.7, 3.8, 3.9 ]
-                os: [ ubuntu-latest, windows-latest ]
             max-parallel: 1
         env:
             LOG_LEVEL:    DEBUG
