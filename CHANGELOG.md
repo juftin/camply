@@ -5,11 +5,17 @@ versioning.
 
 ## [Unreleased]
 
-## [0.1.5] - 2021-12-31
+To request new features or bugfixes the
+[Camply Feedback for v1.0.0 Discussion](https://github.com/juftin/camply/discussions/12) is the best
+place to go.
+
+## [0.1.5] - 2021-06-02
 
 ### Added
 
-### Fixed
+Ability to filter on Yellowstone Campgrounds. See
+this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomment-783657) for more
+detail.
 
 ## [0.1.4] - 2021-06-01
 
