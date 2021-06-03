@@ -1,0 +1,4 @@
+provider:         Yellowstone # RecreationDotGov IF NOT PROVIDED
+start_date:       2021-09-12 # YYYY-MM-DD
+end_date:         2021-09-12 # YYYY-MM-DD
+weekends:         False # FALSE BY DEFAULT

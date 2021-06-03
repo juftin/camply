@@ -42,6 +42,7 @@ jobs:
                       camply campsites --campground 252037 --start-date 2021-09-15 --end-date 2021-09-16
                       camply campsites --provider yellowstone --start-date 2021-09-10 --end-date 2021-09-15 --campground YLYC:RV
                       camply campsites --yml-config tests/yml/example_search.yml
+                      camply campsites --yml-config tests/yml/example_yellowstone_search.yml
 
     windows:
         runs-on: windows-latest
@@ -79,4 +80,7 @@ jobs:
                        camply campgrounds --search "Fire Tower Lookout" --state CA
                        camply campsites --rec-area 2991 --start-date 2021-09-15 --end-date 2021-09-16
                        camply campsites --campground 252037 --start-date 2021-09-15 --end-date 2021-09-16
+                       camply campsites --provider yellowstone --start-date 2021-09-10 --end-date 2021-09-15 --campground YLYC:RV
+                       camply campsites --yml-config tests/yml/example_search.yml
+                       camply campsites --yml-config tests/yml/example_yellowstone_search.yml
                 shell: cmd
