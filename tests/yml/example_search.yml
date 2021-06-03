@@ -1,0 +1,8 @@
+provider:    RecreationDotGov # RecreationDotGov IF NOT PROVIDED
+recreation_area: # (LIST OR SINGLE ENTRY)
+    - 2907 # ROCKY MOUNTAIN NATIONAL PARK
+campgrounds: null # OVERRIDES RECREATION AREA (LIST OR SINGLE ENTRY)
+start_date:  2021-09-10 # YYYY-MM-DD
+end_date:    2021-09-10 # YYYY-MM-DD
+weekends:    False # FALSE BY DEFAULT
+continuous:  False # DEFAULTS TO TRUE

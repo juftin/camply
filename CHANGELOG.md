@@ -5,6 +5,22 @@ versioning.
 
 ## [Unreleased]
 
+To request new features or bugfixes the
+[Camply Feedback for v1.0.0 Discussion](https://github.com/juftin/camply/discussions/12) is the best
+place to go.
+
+## [0.1.5] - 2021-06-02
+
+### Added
+
+- Ability to filter on Yellowstone Campgrounds. See
+  this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomment-783657) for
+  more detail.
+
+### Fixed
+
+- Allow endpoints to timeout after being unresponsive for 30 seconds
+
 ## [0.1.4] - 2021-06-01
 
 ### Added
@@ -59,6 +75,8 @@ versioning.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.5]: https://github.com/juftin/camply/compare/v0.1.4...v0.1.5
 
 [0.1.4]: https://github.com/juftin/camply/compare/v0.1.3...v0.1.4
 

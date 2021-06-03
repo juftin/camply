@@ -7,7 +7,7 @@ Project Configuration for Yellowstone Variables
 """
 
 import logging
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 from .data_columns import DataColumns
 
@@ -68,25 +68,18 @@ class YellowstoneConfig(DataColumns):
 
     YELLOWSTONE_RECREATION_AREA_ID: int = 1
     YELLOWSTONE_RECREATION_AREA_NAME: str = "Yellowstone"
+    YELLOWSTONE_RECREATION_AREA_FORMAL_NAME: str = "Yellowstone National Park, USA"
     YELLOWSTONE_LOOP_NAME: str = "N/A"
     CAMPSITE_AVAILABILITY_STATUS: str = "Available"
     YELLOWSTONE_CAMPGROUND_NAME_REPLACE: Tuple[str, str] = ("CG Internet Rate", "Campground")
 
     YELLOWSTONE_TIMEZONE: str = "America/Denver"
 
-    @staticmethod
-    def get_polling_interval(interval: int) -> int:
-        """
-        Ensure the Polling Interval never exceeds the minimum set
-
-        Returns
-        -------
-        int
-        """
-        if interval < YellowstoneConfig.MINIMUM_POLLING_INTERVAL:
-            logger.warning("Polling interval is too short, setting "
-                           f"to {YellowstoneConfig.MINIMUM_POLLING_INTERVAL} minutes")
-            return_interval = YellowstoneConfig.MINIMUM_POLLING_INTERVAL
-        else:
-            return_interval = interval
-        return return_interval
+    # LODGES:  https://webapi.xanterra.net/v1/api/property/hotels/yellowstonenationalparklodges
+    YELLOWSTONE_CAMPGROUNDS: Dict[str, str] = {
+        "YLYC:RV": "Canyon Campground",
+        "YLYB:RV": "Bridge Bay Campground",
+        "YLYG:RV": "Grant Campground",
+        "YLYM:RV": "Madison Campground",
+        "YLYF:RV": "Fishing Bridge RV Park"
+    }

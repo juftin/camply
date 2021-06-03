@@ -8,7 +8,8 @@ YAML Utilities for Camply
 
 from datetime import datetime
 import logging
-from os import getenv
+import os
+from pathlib import Path
 from re import compile
 from typing import Dict, Tuple
 
@@ -40,6 +41,7 @@ def read_yml(path: str = None):
         log_path: "/var/${LOG_PATH}"
         something_else: "${AWESOME_ENV_VAR}/var/${A_SECOND_AWESOME_VAR}"
     """
+    path = os.path.abspath(path)
     pattern = compile(r".*?\${(\w+)}.*?")
 
     safe_loader = SafeLoader
@@ -57,9 +59,9 @@ def read_yml(path: str = None):
         match = pattern.findall(string=value)
         if match:
             full_value = value
-            for g in match:
+            for item in match:
                 full_value = full_value.replace(
-                    "${{{key}}}".format(key=g), getenv(key=g, default=g))
+                    "${{{key}}}".format(key=item), os.getenv(key=item, default=item))
             return full_value
         return value
 
@@ -83,6 +85,7 @@ def yaml_file_to_arguments(file_path: str) -> Tuple[str, Dict[str, object], Dict
         Tuple containing provider string, provider **kwargs, and search **kwargs
     """
     yaml_search = read_yml(path=file_path)
+    logger.info(f"YML File Parsed: {Path(file_path).name}")
     provider = yaml_search.get("provider", "RecreationDotGov")
     start_date = datetime.strptime(str(yaml_search["start_date"]), "%Y-%m-%d")
     end_date = datetime.strptime(str(yaml_search["end_date"]), "%Y-%m-%d")

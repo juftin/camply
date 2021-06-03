@@ -256,7 +256,7 @@ class RecreationDotGov(BaseProvider):
         """
         api_endpoint = self._ridb_get_endpoint(path=path)
         response = requests.get(url=api_endpoint, headers=self._ridb_api_headers,
-                                params=params)
+                                params=params, timeout=30)
         try:
             assert response.status_code == 200
         except AssertionError:
@@ -482,7 +482,8 @@ class RecreationDotGov(BaseProvider):
             headers.update(choice(USER_AGENTS))
             headers.update(RecreationBookingConfig.API_REFERRERS)
             response = requests.get(url=api_endpoint, headers=headers,
-                                    params=dict(start_date=formatted_month))
+                                    params=dict(start_date=formatted_month),
+                                    timeout=30)
             assert response.status_code == 200
         except AssertionError:
             response_error = response.text

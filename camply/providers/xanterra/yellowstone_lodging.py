@@ -83,7 +83,7 @@ class YellowstoneLodging(BaseProvider):
         yellowstone_headers.update(YellowstoneConfig.API_REFERRERS)
         response = requests.get(url=endpoint,
                                 headers=yellowstone_headers,
-                                params=params)
+                                params=params, timeout=30)
         if response.status_code == 200 and response.text.strip() != "":
             return loads(response.content)
         else:
