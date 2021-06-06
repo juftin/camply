@@ -36,7 +36,7 @@ ___________
         + [Searching for a Campsite by Campground ID](#searching-for-a-campsite-by-campground-id)
         + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
         + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
-        + [Send a Push Notification](#send-a-push-notification) 
+        + [Send a Push Notification](#send-a-push-notification)
         + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
         + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
@@ -584,6 +584,9 @@ docker run -d \
   camply campsites \
       --yml-config /home/camply/example_search.yml
 ```
+
+Alternatively, a [docker-compose example](docs/examples/docker-compose.yml) of the above YML Config
+is also available.
 
 ## Dependencies
 
