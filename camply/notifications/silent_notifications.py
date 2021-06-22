@@ -60,12 +60,14 @@ class SilentNotifications(BaseNotifications, ABC):
         campsites: List[AvailableCampsite]
         """
         for campsite in campsites:
-            campsite_tuple = (campsite.booking_date.strftime("%Y-%m-%d"),
-                              campsite.campsite_type,
-                              campsite.campsite_site_name,
-                              campsite.recreation_area,
-                              campsite.facility_name,
-                              campsite.booking_url)
+            campsite_tuple = (
+                (f"{campsite.booking_date.strftime('%Y-%m-%d')}-"
+                 f"{campsite.booking_end_date.strftime('%Y-%m-%d')}"),
+                campsite.campsite_type,
+                campsite.campsite_site_name,
+                campsite.recreation_area,
+                campsite.facility_name,
+                campsite.booking_url)
             SilentNotifications.send_message(campsite_tuple)
             campsite_formatted = pformat(dict(campsite._asdict()))
             logger.debug("Campsite Info: " + campsite_formatted)

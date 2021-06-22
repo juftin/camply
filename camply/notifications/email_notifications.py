@@ -12,7 +12,7 @@ import logging
 from smtplib import SMTP_SSL
 from typing import List
 
-from camply.config import EmailConfig
+from camply.config import CampsiteContainerFields, EmailConfig
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
 
@@ -119,9 +119,10 @@ class EmailNotifications(BaseNotifications, ABC):
                 f"{campsite.booking_date.strftime('%Y-%m-%d')}:")
             fields.append(message_title)
             for key, value in campsite._asdict().items():
-                if key == "booking_date":
+                if key in [CampsiteContainerFields.BOOKING_DATE,
+                           CampsiteContainerFields.BOOKING_END_DATE]:
                     value: datetime = value.strftime("%Y-%m-%d")
-                elif key == "booking_url":
+                elif key == CampsiteContainerFields.BOOKING_URL:
                     key = "booking_link"
                 formatted_key = key.replace("_", " ").title()
                 fields.append(f"\t{formatted_key}: {value}")

@@ -7,6 +7,7 @@ Recreation.gov Web Searching Utilities
 """
 
 import logging
+from random import uniform
 from time import sleep
 from typing import List, Optional, Union
 
@@ -26,7 +27,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
     def __init__(self, search_window: Union[SearchWindow, List[SearchWindow]],
                  recreation_area: Optional[int] = None,
                  campgrounds: Optional[Union[List[int], int]] = None,
-                 weekends_only: bool = False) -> None:
+                 weekends_only: bool = False,
+                 nights: int = 1) -> None:
         """
         Initialize with Search Parameters
 
@@ -41,10 +43,13 @@ class SearchRecreationDotGov(BaseCampingSearch):
         weekends_only: bool
             Whether to only search for Camping availabilities on the weekends (Friday /
             Saturday nights)
+        nights: int
+            minimum number of consecutive nights to search per campsite,defaults to 1
         """
         super().__init__(provider=RecreationDotGov(),
                          search_window=search_window,
-                         weekends_only=weekends_only)
+                         weekends_only=weekends_only,
+                         nights=nights)
         self._recreation_area_id = self._make_list(recreation_area)
         self._campground_object = campgrounds
         self.weekends_only = weekends_only
@@ -119,14 +124,17 @@ class SearchRecreationDotGov(BaseCampingSearch):
                             f"{month.strftime('%B, %Y')}")
                 availabilities = self.campsite_finder.get_recdotgov_data(
                     campground_id=campground.facility_id, month=month)
-                campgrounds = self.campsite_finder.process_campsite_availability(
+                campsites = self.campsite_finder.process_campsite_availability(
                     availability=availabilities,
                     recreation_area=campground.recreation_area,
                     recreation_area_id=campground.recreation_area_id,
                     facility_name=campground.facility_name,
                     facility_id=campground.facility_id,
                     month=month)
-                found_campsites += campgrounds
+                found_campsites += campsites
                 if index + 1 < len(self.campgrounds):
-                    sleep(RecreationBookingConfig.RATE_LIMITING)
-        return found_campsites
+                    sleep(round(uniform(*RecreationBookingConfig.RATE_LIMITING), 2))
+        campsite_df = self.campsites_to_df(campsites=found_campsites)
+        compiled_campsite_df = self._consolidate_campsites(campsite_df=campsite_df)
+        compiled_campsites = self.df_to_campsites(campsite_df=compiled_campsite_df)
+        return compiled_campsites

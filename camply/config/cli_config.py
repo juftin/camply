@@ -62,6 +62,11 @@ class CommandLineArguments:
     WEEKENDS_DESTINATION: str = "weekends"
     WEEKENDS_HELP: str = "Only search for weekend bookings (Fri/Sat nights)."
 
+    NIGHTS_ARGUMENT: str = "--nights"
+    NIGHTS_DESTINATION: str = "nights"
+    NIGHTS_DEFAULT: int = 1
+    NIGHTS_HELP: str = "Search for stays with consecutive nights"
+
     PROVIDER_ARGUMENT: str = "--provider"
     PROVIDER_DESTINATION: str = "provider"
     PROVIDER_DEFAULT: str = "RecreationDotGov"
