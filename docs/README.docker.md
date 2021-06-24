@@ -187,7 +187,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 * `--nights`
     + Search for campsite stays with consecutive nights. Defaults to 1 which returns all campsites
       found.
-      [**_example_](#look-for-weekend-campsite-availabilities)
+      [**_example_](#look-for-consecutive-nights-at-the-same-campsite)
 * `--provider`: `PROVIDER`
     + Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
       to 'RecreationDotGov', not case-sensitive.
@@ -411,7 +411,6 @@ camply campsites \
     --rec-area 2991 \
     --start-date 2021-05-01 \
     --end-date 2021-07-31 \
-    --weekends \
     --nights 4
 ```
 
@@ -444,7 +443,7 @@ camply campsites \
     --rec-area 1074 \
     --start-date 2021-07-09 \
     --end-date 2021-07-16 \
-    --nights 8
+    --nights 5
 ```
 
 #### Using a YML Configuration file to search for campsites
