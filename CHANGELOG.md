@@ -9,7 +9,13 @@ To request new features or bugfixes the
 [Camply Feedback for v1.0.0 Discussion](https://github.com/juftin/camply/discussions/12) is the best
 place to go.
 
-## [0.1.6] - 2021-06-24
+## [0.1.7] - 2021-06-24
+
+### Fixed
+
+- Fixed bug that returned matching night stays outside of the search window.
+
+## [0.1.6] - 2021-06-23
 
 ### Added
 
@@ -81,6 +87,8 @@ place to go.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.7]: https://github.com/juftin/camply/compare/v0.1.6...v0.1.7
 
 [0.1.6]: https://github.com/juftin/camply/compare/v0.1.5...v0.1.6
 

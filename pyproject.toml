@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "camply"
-version = "0.1.6"
+version = "0.1.7"
 description = "camply, the campsite finder ⛺️"
 authors = ["Justin Flannery <juftin@juftin.com>"]
 maintainers = ["Justin Flannery <juftin@juftin.com>"]

@@ -135,7 +135,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
                 if index + 1 < len(self.campgrounds):
                     sleep(round(uniform(*RecreationBookingConfig.RATE_LIMITING), 2))
         campsite_df = self.campsites_to_df(campsites=found_campsites)
-        compiled_campsite_df = self._consolidate_campsites(campsite_df=campsite_df,
+        campsite_df_validated = self._filter_date_overlap(campsites=campsite_df)
+        compiled_campsite_df = self._consolidate_campsites(campsite_df=campsite_df_validated,
                                                            nights=self.nights)
         compiled_campsites = self.df_to_campsites(campsite_df=compiled_campsite_df)
         return compiled_campsites
