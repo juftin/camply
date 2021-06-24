@@ -31,6 +31,7 @@ class CampsiteContainerFields:
     String Variable Storage Class
     """
     CAMPSITE_ID: str = "campsite_id"
+    CAMPGROUND_ID: str = "facility_id"
     BOOKING_DATE: str = "booking_date"
     CAMPSITE_GROUP: str = "campsite_group"
     BOOKING_END_DATE: str = "booking_end_date"

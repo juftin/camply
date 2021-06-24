@@ -6,7 +6,7 @@
 Yellowstone Lodging Web Searching Utilities
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 from typing import List, Optional, Set, Union
 
@@ -70,7 +70,8 @@ class SearchYellowstone(BaseCampingSearch):
             campsites=all_campsites, searchable_campgrounds=searchable_campgrounds)
         campsite_df = self.campsites_to_df(campsites=matching_campsites)
         campsite_df_validated = self._filter_date_overlap(campsites=campsite_df)
-        compiled_campsite_df = self._consolidate_campsites(campsite_df=campsite_df_validated)
+        compiled_campsite_df = campsite_df_validated[
+            campsite_df_validated.booking_end_date <= max(self.search_days) + timedelta(days=1)]
         compiled_campsites = self.df_to_campsites(campsite_df=compiled_campsite_df)
         return compiled_campsites
 

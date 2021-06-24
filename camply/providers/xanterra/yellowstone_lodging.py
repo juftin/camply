@@ -364,16 +364,17 @@ class YellowstoneLodging(BaseProvider):
                                                      YellowstoneConfig.CAMPSITE_ID_COLUMN])
         merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN] = to_datetime(
             merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN])
-        merged_campsites[YellowstoneConfig.BOOKING_END_DATE_COLUMN] = \
-            merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN] + timedelta(days=1)
-        merged_campsites[YellowstoneConfig.BOOKING_NIGHTS_COLUMN] = 1
-        final_campsites = merged_campsites.merge(
-            campsite_data, on=YellowstoneConfig.FACILITY_ID_COLUMN).sort_values(
-            by=YellowstoneConfig.BOOKING_DATE_COLUMN)
         if nights is not None:
             nights_param = dict(nights=nights)
         else:
-            nights_param = None
+            nights_param = dict(nights=1)
+        booking_nights = nights_param.get("nights")
+        merged_campsites[YellowstoneConfig.BOOKING_END_DATE_COLUMN] = \
+            merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN] + timedelta(days=booking_nights)
+        merged_campsites[YellowstoneConfig.BOOKING_NIGHTS_COLUMN] = booking_nights
+        final_campsites = merged_campsites.merge(
+            campsite_data, on=YellowstoneConfig.FACILITY_ID_COLUMN).sort_values(
+            by=YellowstoneConfig.BOOKING_DATE_COLUMN)
         final_campsites[YellowstoneConfig.BOOKING_URL_COLUMN] = final_campsites.apply(
             lambda x: self._return_lodging_url(lodging_code=x.facility_id,
                                                month=x.booking_date,
