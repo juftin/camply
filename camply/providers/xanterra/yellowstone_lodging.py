@@ -6,7 +6,7 @@
 Python Class Check Yellowstone Campground Booking API for Availability
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from json import loads
 import logging
 from random import choice
@@ -41,7 +41,7 @@ class YellowstoneLodging(BaseProvider):
         """
         return "<YellowstoneLodging>"
 
-    def _get_monthly_availability(self, month: datetime) -> dict:
+    def _get_monthly_availability(self, month: datetime, nights: int = None) -> dict:
         """
         Check All Lodging in Yellowstone for Campground Data
 
@@ -53,6 +53,8 @@ class YellowstoneLodging(BaseProvider):
         query_dict = dict(date=self._ensure_current_month(month=month),
                           limit=31,
                           rate_code=YellowstoneConfig.RATE_CODE)
+        if nights is not None:
+            query_dict.update(dict(nights=nights))
         api_endpoint = self._get_api_endpoint(url_path=YellowstoneConfig.YELLOWSTONE_LODGING_PATH,
                                               query=None)
         logger.info(f"Searching for Yellowstone Lodging Availability: {month.strftime('%B, %Y')}")
@@ -131,7 +133,8 @@ class YellowstoneLodging(BaseProvider):
         return api_endpoint
 
     @classmethod
-    def _return_lodging_url(cls, lodging_code: str, month: datetime) -> str:
+    def _return_lodging_url(cls, lodging_code: str, month: datetime,
+                            params: Optional[dict] = "") -> str:
         """
         Return a Browser Loadable URL to book from
 
@@ -141,6 +144,8 @@ class YellowstoneLodging(BaseProvider):
             Lodging Code from API
         month: datetime
             Month to return bookings filtered to
+        params: Optional[dict]
+            Optional URL Parameters
 
         Returns
         -------
@@ -148,7 +153,10 @@ class YellowstoneLodging(BaseProvider):
             URL String
         """
         query = dict(dateFrom=month.strftime("%m-%d-%Y"))
+        if params is not None:
+            query.update(params)
         query_string = parse.urlencode(query=query)
+
         url_components = dict(scheme=YellowstoneConfig.API_SCHEME,
                               netloc=YellowstoneConfig.WEBUI_BASE_ENDPOINT,
                               url=f"{YellowstoneConfig.WEBUI_BOOKING_PATH}/{lodging_code}",
@@ -196,7 +204,8 @@ class YellowstoneLodging(BaseProvider):
                             campsite_occupancy=capacity,
                             recreation_area=YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_NAME,
                             recreation_area_id=YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_ID,
-                            facility_name=hotel_title,
+                            facility_name=hotel_title.replace(
+                                *YellowstoneConfig.YELLOWSTONE_CAMPGROUND_NAME_REPLACE),
                             facility_id=hotel_code)
                         available_campsites.append(campsite)
                 except (KeyError, TypeError):
@@ -205,8 +214,9 @@ class YellowstoneLodging(BaseProvider):
                     f"{len(available_campsites)} sites found.")
         return available_campsites
 
-    def _gather_campsite_specific_availability(
-            self, available_campsites: List[dict], month: datetime) -> List[dict]:
+    def _gather_campsite_specific_availability(self, available_campsites: List[dict],
+                                               month: datetime,
+                                               nights: Optional[int] = None) -> List[dict]:
         """
         Given a DataFrame of campsite availability, return updated Data with details about the
         actual campsites that are available (i.e Tent Size, RV Length, Etc)
@@ -231,6 +241,8 @@ class YellowstoneLodging(BaseProvider):
                 url_path=YellowstoneConfig.YELLOWSTONE_CAMPSITE_AVAILABILITY,
                 query=None)
             params = dict(date=self._ensure_current_month(month=month), limit=31)
+            if nights is not None:
+                params.update(dict(nights=nights))
             campsite_data = self.make_yellowstone_request(endpoint=f"{api_endpoint}/{facility_id}",
                                                           params=params)
             campsite_availability = campsite_data[YellowstoneConfig.BOOKING_AVAILABILITY]
@@ -312,7 +324,8 @@ class YellowstoneLodging(BaseProvider):
                 ))
         return property_info_array
 
-    def get_monthly_campsites(self, month: datetime):
+    def get_monthly_campsites(self, month: datetime,
+                              nights: Optional[int] = None) -> List[AvailableCampsite]:
         """
         Return All Campsites Available in a Given Month
 
@@ -320,47 +333,76 @@ class YellowstoneLodging(BaseProvider):
         ----------
         month: datetime
             Month to Search
+        nights: Optional[int]
+            Search for consecutive nights
 
         Returns
         -------
-
+        List[AvailableCampsite]
         """
-        all_monthly_campsite_array = list()
         now = datetime.now()
         search_date = month.replace(day=1)
         if month <= now:
             logger.info("Cannot input search dates before today, adjusting search parameters.")
             search_date = search_date.replace(year=now.year, month=now.month, day=now.day)
-        availability_found = self._get_monthly_availability(month=search_date)
+        availability_found = self._get_monthly_availability(month=search_date, nights=nights)
         monthly_campsites = self._compile_campground_availabilities(
             availability=availability_found[YellowstoneConfig.BOOKING_AVAILABILITY])
-        campsite_data = DataFrame(
-            monthly_campsites,
-            columns=YellowstoneConfig.CAMPSITE_DATA_COLUMNS).drop_duplicates()
+        campsite_data = DataFrame(monthly_campsites,
+                                  columns=YellowstoneConfig.CAMPSITE_DATA_COLUMNS).drop_duplicates()
         if campsite_data.empty is True:
-            return all_monthly_campsite_array
+            return list()
         available_room_array = self._gather_campsite_specific_availability(
-            available_campsites=monthly_campsites, month=month)
+            available_campsites=monthly_campsites, month=month,
+            nights=nights)
         available_rooms = DataFrame(available_room_array)
         property_info = self._get_property_information(
             available_rooms=available_room_array)
         properties = DataFrame(property_info)
-        merged_campsites = available_rooms.merge(
-            properties,
-            on=[YellowstoneConfig.FACILITY_ID_COLUMN, YellowstoneConfig.CAMPSITE_ID_COLUMN])
+        merged_campsites = available_rooms.merge(properties,
+                                                 on=[YellowstoneConfig.FACILITY_ID_COLUMN,
+                                                     YellowstoneConfig.CAMPSITE_ID_COLUMN])
         merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN] = to_datetime(
             merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN])
+        if nights is not None:
+            nights_param = dict(nights=nights)
+        else:
+            nights_param = dict(nights=1)
+        booking_nights = nights_param.get("nights")
+        merged_campsites[YellowstoneConfig.BOOKING_END_DATE_COLUMN] = \
+            merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN] + timedelta(days=booking_nights)
+        merged_campsites[YellowstoneConfig.BOOKING_NIGHTS_COLUMN] = booking_nights
         final_campsites = merged_campsites.merge(
             campsite_data, on=YellowstoneConfig.FACILITY_ID_COLUMN).sort_values(
             by=YellowstoneConfig.BOOKING_DATE_COLUMN)
         final_campsites[YellowstoneConfig.BOOKING_URL_COLUMN] = final_campsites.apply(
             lambda x: self._return_lodging_url(lodging_code=x.facility_id,
-                                               month=x.booking_date),
+                                               month=x.booking_date,
+                                               params=nights_param),
             axis=1)
-        for _, row in final_campsites.iterrows():
+        all_monthly_campsite_array = self._df_to_campsites(campsite_df=final_campsites)
+        return all_monthly_campsite_array
+
+    @classmethod
+    def _df_to_campsites(cls, campsite_df: DataFrame) -> List[AvailableCampsite]:
+        """
+        Transform a DataFrame into an array of AvailableCampsites
+
+        Parameters
+        ----------
+        campsite_df: DataFrame
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        all_monthly_campsite_array = list()
+        for _, row in campsite_df.iterrows():
             campsite = AvailableCampsite(
                 campsite_id=row[YellowstoneConfig.CAMPSITE_ID_COLUMN],
                 booking_date=row[YellowstoneConfig.BOOKING_DATE_COLUMN],
+                booking_end_date=row[YellowstoneConfig.BOOKING_END_DATE_COLUMN],
+                booking_nights=row[YellowstoneConfig.BOOKING_NIGHTS_COLUMN],
                 campsite_site_name=row[YellowstoneConfig.CAMPSITE_SITE_NAME_COLUMN],
                 campsite_loop_name=YellowstoneConfig.YELLOWSTONE_LOOP_NAME,
                 campsite_type=row[YellowstoneConfig.CAMPSITE_TYPE_COLUMN],
@@ -369,8 +411,7 @@ class YellowstoneLodging(BaseProvider):
                 availability_status=YellowstoneConfig.CAMPSITE_AVAILABILITY_STATUS,
                 recreation_area=YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_NAME,
                 recreation_area_id=YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_ID,
-                facility_name=row[YellowstoneConfig.FACILITY_NAME_COLUMN].replace(
-                    *YellowstoneConfig.YELLOWSTONE_CAMPGROUND_NAME_REPLACE),
+                facility_name=row[YellowstoneConfig.FACILITY_NAME_COLUMN],
                 facility_id=row[YellowstoneConfig.FACILITY_ID_COLUMN],
                 booking_url=row[YellowstoneConfig.BOOKING_URL_COLUMN])
             all_monthly_campsite_array.append(campsite)

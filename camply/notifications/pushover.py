@@ -13,7 +13,7 @@ from typing import List, Optional
 
 import requests
 
-from camply.config import FileConfig, PushoverConfig
+from camply.config import CampsiteContainerFields, PushoverConfig
 from .base_notifications import BaseNotifications
 from ..containers import AvailableCampsite
 
@@ -34,7 +34,6 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
                                "make sure to run `camply configure` or set the "
                                "proper environment variables: `PUSHOVER_PUSH_TOKEN`, "
                                "`PUSHOVER_PUSH_USER`.")
-            logger.critical(FileConfig.DOT_CAMPLY_FILE)
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
@@ -92,10 +91,11 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
         for campsite in campsites:
             fields = list()
             for key, value in campsite._asdict().items():
-                if key == "booking_url":
+                if key == CampsiteContainerFields.BOOKING_URL:
                     key = "Booking Link"
                     value = f"<a href='{value}'>{value}"
-                elif key == "booking_date":
+                elif key in [CampsiteContainerFields.BOOKING_DATE,
+                             CampsiteContainerFields.BOOKING_END_DATE]:
                     value: datetime = value.strftime("%Y-%m-%d")
                 formatted_key = key.replace("_", " ").title()
                 fields.append(f"<b>{formatted_key}:</b> {value}")

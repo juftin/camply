@@ -28,6 +28,8 @@ class AvailableCampsite(NamedTuple):
     """
     campsite_id: int
     booking_date: datetime
+    booking_end_date: datetime
+    booking_nights: int
     campsite_site_name: str
     campsite_loop_name: str
     campsite_type: str
