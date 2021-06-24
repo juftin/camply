@@ -13,7 +13,7 @@ from typing import List, Optional
 
 import requests
 
-from camply.config import FileConfig, PushbulletConfig
+from camply.config import CampsiteContainerFields, PushbulletConfig
 from .base_notifications import BaseNotifications
 from ..containers import AvailableCampsite
 
@@ -31,7 +31,6 @@ class PushbulletNotifications(BaseNotifications, ABC):
             warning_message = ("Pushbullet is not configured properly. To send Pushbullet messages "
                                "make sure to run `camply configure` or set the "
                                "proper environment variable: `PUSHBULLET_API_TOKEN`.")
-            logger.critical(FileConfig.DOT_CAMPLY_FILE)
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
@@ -78,9 +77,10 @@ class PushbulletNotifications(BaseNotifications, ABC):
         for campsite in campsites:
             fields = list()
             for key, value in campsite._asdict().items():
-                if key == "booking_url":
-                    key = "Booking Link"
-                elif key == "booking_date":
+                if key == CampsiteContainerFields.BOOKING_URL:
+                    key = "booking_link"
+                elif key in [CampsiteContainerFields.BOOKING_DATE,
+                             CampsiteContainerFields.BOOKING_END_DATE]:
                     value: datetime = value.strftime("%Y-%m-%d")
                 formatted_key = key.replace("_", " ").title()
                 fields.append(f"{formatted_key}: {value}")

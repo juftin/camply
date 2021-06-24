@@ -170,6 +170,12 @@ class CamplyCommandLine:
                                     default=False,
                                     required=False,
                                     help=CommandLineConfig.WEEKENDS_HELP)
+        self.campsites.add_argument(CommandLineConfig.NIGHTS_ARGUMENT,
+                                    action=CommandLineConfig.STORE,
+                                    dest=CommandLineConfig.NIGHTS_DESTINATION,
+                                    default=CommandLineConfig.NIGHTS_DEFAULT,
+                                    required=False,
+                                    help=CommandLineConfig.NIGHTS_HELP)
         self.campsites.add_argument(CommandLineConfig.PROVIDER_ARGUMENT,
                                     action=CommandLineConfig.STORE,
                                     dest=CommandLineConfig.PROVIDER_DESTINATION,
@@ -384,7 +390,8 @@ class CamplyCommandLine:
             provider_kwargs = dict(search_window=search_window,
                                    recreation_area=self.cli_arguments.recreation_area_id,
                                    campgrounds=self.cli_arguments.campground_id,
-                                   weekends_only=self.cli_arguments.weekends)
+                                   weekends_only=self.cli_arguments.weekends,
+                                   nights=int(self.cli_arguments.nights))
             search_kwargs = dict(log=True, verbose=True,
                                  continuous=self.cli_arguments.continuous,
                                  polling_interval=float(self.cli_arguments.polling_interval),

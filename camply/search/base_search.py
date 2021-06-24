@@ -8,15 +8,17 @@ Recreation.gov Web Searching Utilities
 
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
+from itertools import groupby, islice, tee
 import logging
+from operator import itemgetter
 from os import getenv
 from time import sleep
-from typing import List, Optional, Set, Union
+from typing import Generator, Iterable, List, Optional, Set, Union
 
-from pandas import DataFrame
+from pandas import concat, DataFrame, date_range, Series, Timedelta
 import tenacity
 
-from camply.config import DataColumns, SearchConfig
+from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea, SearchWindow
 from camply.notifications import CAMPSITE_NOTIFICATIONS, SilentNotifications
 from camply.providers import RecreationDotGov, YellowstoneLodging
@@ -45,7 +47,8 @@ class BaseCampingSearch(ABC):
     def __init__(self, provider: Union[RecreationDotGov,
                                        YellowstoneLodging],
                  search_window: Union[SearchWindow, List[SearchWindow]],
-                 weekends_only: bool = False) -> None:
+                 weekends_only: bool = False,
+                 nights: int = 1) -> None:
         """
         Initialize with Search Parameters
 
@@ -58,6 +61,8 @@ class BaseCampingSearch(ABC):
         weekends_only: bool
             Whether to only search for Camping availabilities on the weekends (Friday /
             Saturday nights)
+        nights: int
+            minimum number of consecutive nights to search per campsite,defaults to 1
         """
         self.campsite_finder: Union[RecreationDotGov, YellowstoneLodging] = provider
         # noinspection PyTypeChecker
@@ -65,6 +70,7 @@ class BaseCampingSearch(ABC):
         self.weekends_only: bool = weekends_only
         self.search_days: List[datetime] = self._get_search_days()
         self.search_months: List[datetime] = self._get_search_months()
+        self.nights = self._validate_consecutive_nights(nights=nights)
         self.campsites_found: Set[AvailableCampsite] = set()
 
     @abstractmethod
@@ -77,6 +83,60 @@ class BaseCampingSearch(ABC):
         -------
         List[AvailableCampsite]
         """
+
+    def _get_intersection_date_overlap(self, date: datetime, periods: int) -> bool:
+        """
+
+        Parameters
+        ----------
+        date: datetime
+        periods: int
+
+        Returns
+        -------
+        bool
+        """
+        campsite_date_range = set(date_range(start=date,
+                                             periods=periods))
+        intersection = campsite_date_range.intersection(self.search_days)
+        if intersection:
+            return True
+        else:
+            return False
+
+    def _compare_date_overlap(self, campsite: AvailableCampsite) -> bool:
+        """
+        See whether a campsite should be returned as found
+
+        Parameters
+        ----------
+        campsite: AvailableCampsite
+
+        Returns
+        -------
+        bool
+        """
+        intersection = self._get_intersection_date_overlap(date=campsite.booking_date,
+                                                           periods=campsite.booking_nights)
+        return intersection
+
+    def _filter_date_overlap(self, campsites: DataFrame) -> bool:
+        """
+        See whether a campsite should be returned as found
+
+        Parameters
+        ----------
+        campsites: DataFrame
+
+        Returns
+        -------
+        DataFrame
+        """
+        filtered_campsites = campsites[campsites.apply(
+            lambda x: self._get_intersection_date_overlap(date=x.booking_date,
+                                                          periods=x.booking_nights),
+            axis=1)].copy().reset_index(drop=True)
+        return filtered_campsites
 
     def _search_matching_campsites_available(self, log: bool = False,
                                              verbose: bool = False,
@@ -99,7 +159,8 @@ class BaseCampingSearch(ABC):
         """
         matching_campgrounds = list()
         for camp in self.get_all_campsites():
-            if camp.booking_date in self.search_days:
+            if all([self._compare_date_overlap(campsite=camp) is True,
+                    camp.booking_nights >= self.nights]):
                 matching_campgrounds.append(camp)
         logger.info(f"{(get_emoji(matching_campgrounds) + ' ') * 4}{len(matching_campgrounds)} "
                     "Reservable Campsites Matching Search Preferences")
@@ -353,6 +414,162 @@ class BaseCampingSearch(ABC):
             return sorted(list(truncated_months))
 
     @classmethod
+    def _consolidate_campsites(cls, campsite_df: DataFrame,
+                               nights: int) -> List[AvailableCampsite]:
+        """
+        Consolidate Single Night Campsites into Multiple Night Campsites
+
+        Parameters
+        ----------
+        campsite_df: DataFrame
+            DataFrame of AvailableCampsites
+
+        Returns
+        -------
+        DataFrame
+        """
+        composed_groupings = list()
+        for _, campsite_slice in campsite_df.groupby(
+                [CampsiteContainerFields.CAMPSITE_ID, CampsiteContainerFields.CAMPGROUND_ID]):
+            # SORT THE VALUES AND CREATE A COPIED SLICE
+            campsite_grouping = campsite_slice.sort_values(by=CampsiteContainerFields.BOOKING_DATE,
+                                                           ascending=True).copy()
+            # ASSEMBLE THE CAMPSITES AVAILABILITIES INTO GROUPS THAT ARE CONSECUTIVE
+            booking_date = campsite_grouping[CampsiteContainerFields.BOOKING_DATE]
+            date = Timedelta('1d')
+            consecutive_nights = booking_date.diff() != date
+            group_identifier = consecutive_nights.cumsum()
+            campsite_grouping[CampsiteContainerFields.CAMPSITE_GROUP] = group_identifier
+            # USE THE ASSEMBLED GROUPS TO CREATE UPDATED CAMPSITES AND REMOVE DUPLICATES
+            for campsite_group, campsite_group_slice in campsite_grouping.groupby(
+                    [CampsiteContainerFields.CAMPSITE_GROUP]):
+                composed_grouping = campsite_group_slice.sort_values(
+                    by=CampsiteContainerFields.BOOKING_DATE,
+                    ascending=True).copy()
+                composed_grouping.drop(columns=[CampsiteContainerFields.CAMPSITE_GROUP],
+                                       inplace=True)
+                nightly_breakouts = cls._find_consecutive_nights(dataframe=composed_grouping,
+                                                                 nights=nights)
+                composed_groupings.append(nightly_breakouts)
+        if len(composed_groupings) == 0:
+            composed_groupings = [DataFrame()]
+        return concat(composed_groupings, ignore_index=True)
+
+    @classmethod
+    def _consecutive_subseq(cls, iterable: Iterable, length: int) -> Generator:
+        """
+        Find All Sub Sequences by length Given a List
+
+        Parameters
+        ----------
+        iterable: Iterable
+        length: int
+
+        Returns
+        -------
+        Generator
+        """
+        for _, consec_run in groupby(enumerate(iterable), lambda x: x[0] - x[1]):
+            k_wise = tee(map(itemgetter(1), consec_run), length)
+            for n, it in enumerate(k_wise):
+                next(islice(it, n, n), None)
+            yield from zip(*k_wise)
+
+    @classmethod
+    def _find_consecutive_nights(cls, dataframe: DataFrame, nights: int) -> DataFrame:
+        """
+        Given a DataFrame of Consecutive Nightly Campsite Availabilities, explode it into
+        all unique possibilities given the length of the stay.
+
+        Parameters
+        ----------
+        dataframe: DataFrame
+        nights: int
+
+        Returns
+        -------
+        DataFrame
+        """
+        dataframe_slice = dataframe.copy().reset_index(drop=True)
+        nights_indexes = dataframe_slice.booking_date.index
+        consecutive_generator = cls._consecutive_subseq(iterable=nights_indexes, length=nights)
+        sequences = list(consecutive_generator)
+        concatted_data = list()
+        for sequence in sequences:
+            index_list = list(sequence)
+            data_copy = dataframe_slice.iloc[index_list].copy()
+            data_copy.booking_date = data_copy.booking_date.min()
+            data_copy.booking_end_date = data_copy.booking_end_date.max()
+            data_copy.booking_url = data_copy.booking_url.loc[index_list[0]]
+            data_copy.booking_nights = (data_copy.booking_end_date - data_copy.booking_date).dt.days
+            data_copy.drop_duplicates(inplace=True)
+            concatted_data.append(data_copy)
+        if len(concatted_data) == 0:
+            concatted_data = [DataFrame()]
+        return concat(concatted_data, ignore_index=True)
+
+    def _validate_consecutive_nights(self, nights: int) -> None:
+        """
+        Validate the number of consecutive nights to search
+
+        Parameters
+        ----------
+        nights : int
+            Number of nights to check
+
+        Returns
+        -------
+        int
+            The proper number of nights to search
+        """
+        search_days = Series(self.search_days)
+        consecutive_nights = search_days.diff() != Timedelta('1d')
+        largest_grouping = consecutive_nights.cumsum().value_counts().max()
+        if nights > 1:
+            logger.info(f"Searching for availabilities with {nights} consecutive night stays.")
+        if nights > largest_grouping:
+            logger.warning("Too many consecutive nights selected. "
+                           "The consecutive night parameter will be set to "
+                           f"the max possible, {largest_grouping}.")
+            return largest_grouping
+        else:
+            return nights
+
+    @staticmethod
+    def campsites_to_df(campsites: List[AvailableCampsite]) -> DataFrame:
+        """
+        Convert Campsite Array to
+
+        Parameters
+        ----------
+        campsites: List[AvailableCampsite]
+
+        Returns
+        -------
+        DataFrame
+        """
+        return DataFrame(data=campsites, columns=AvailableCampsite._fields)
+
+    @staticmethod
+    def df_to_campsites(campsite_df: DataFrame) -> List[AvailableCampsite]:
+        """
+        Convert Campsite DataFrame to array of AvailableCampsite objects
+
+        Parameters
+        ----------
+        campsite_df: DataFrame
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        composed_campsite_array = list()
+        composed_campsite_data_array = campsite_df.to_dict(orient="records")
+        for campsite_record in composed_campsite_data_array:
+            composed_campsite_array.append(AvailableCampsite(**campsite_record))
+        return composed_campsite_array
+
+    @classmethod
     def assemble_availabilities(cls, matching_data: List[AvailableCampsite], log: bool = True,
                                 verbose: bool = False) -> DataFrame:
         """
@@ -371,24 +588,43 @@ class BaseCampingSearch(ABC):
         -------
         availability_df: DataFrame
         """
-
-        availability_df = DataFrame(data=matching_data, columns=AvailableCampsite._fields)
+        availability_df = cls.campsites_to_df(campsites=matching_data)
         if log is True:
-            booking_date: datetime
-            for booking_date, available_sites in availability_df.groupby("booking_date"):
-                logger.info(f"📅 {booking_date.strftime('%a, %B %d')} "
-                            f"🏕  {len(available_sites)} sites")
-                location_tuple: tuple
-                for location_tuple, campground_availability in \
-                        available_sites.groupby([DataColumns.RECREATION_AREA_COLUMN,
-                                                 DataColumns.FACILITY_NAME_COLUMN]):
-                    logger.info(f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
-                                f"{len(campground_availability)} sites")
-                    if verbose is True:
-                        for booking_url in campground_availability[
-                            DataColumns.BOOKING_URL_COLUMN
-                        ].unique():
-                            logger.info(f"\t\t🔗 {booking_url}")
+            cls._log_availabilities(availability_df=availability_df, verbose=verbose)
+        return availability_df
+
+    @classmethod
+    def _log_availabilities(cls, availability_df: DataFrame, verbose: bool) -> None:
+        """
+        Log the Availabilities
+
+        Parameters
+        ----------
+        availability_df: DataFrame
+        verbose: bool
+
+        Returns
+        -------
+        None
+        """
+        booking_date: datetime
+        for booking_date, available_sites in availability_df.groupby("booking_date"):
+            logger.info(f"📅 {booking_date.strftime('%a, %B %d')} "
+                        f"🏕  {len(available_sites)} sites")
+            location_tuple: tuple
+            for location_tuple, campground_availability in \
+                    available_sites.groupby([DataColumns.RECREATION_AREA_COLUMN,
+                                             DataColumns.FACILITY_NAME_COLUMN]):
+                logger.info(f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
+                            f"{len(campground_availability)} sites")
+                if verbose is True:
+                    for booking_nights, nightly_availability in campground_availability.groupby(
+                            [DataColumns.BOOKING_NIGHTS_COLUMN]):
+                        unique_urls = nightly_availability[DataColumns.BOOKING_URL_COLUMN].unique()
+                        for booking_url in sorted(unique_urls):
+                            logger.info(f"\t\t🔗 {booking_url} "
+                                        f"({booking_nights} night"
+                                        f"{'s' if booking_nights > 1 else ''})")
         return availability_df
 
     @classmethod

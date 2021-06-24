@@ -7,7 +7,7 @@ Recreation.gov Web Searching Utilities
 """
 
 from base64 import b64decode
-from datetime import datetime
+from datetime import datetime, timedelta
 from json import loads
 import logging
 from random import choice
@@ -572,6 +572,8 @@ class RecreationDotGov(BaseProvider):
                     available_campsite = AvailableCampsite(
                         campsite_id=campsite_id,
                         booking_date=matching_date,
+                        booking_end_date=matching_date + timedelta(days=1),
+                        booking_nights=1,
                         campsite_site_name=campsite_name,
                         campsite_loop_name=campsite_loop,
                         campsite_type=campsite_type,

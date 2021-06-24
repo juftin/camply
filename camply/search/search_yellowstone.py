@@ -6,7 +6,7 @@
 Yellowstone Lodging Web Searching Utilities
 """
 
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 from typing import List, Optional, Set, Union
 
@@ -27,6 +27,7 @@ class SearchYellowstone(BaseCampingSearch):
     def __init__(self, search_window: Union[SearchWindow, List[SearchWindow]],
                  weekends_only: bool = False,
                  campgrounds: Optional[Union[List[str], str]] = None,
+                 nights: int = 1,
                  **kwargs) -> None:
         """
         Initialize with Search Parameters
@@ -40,10 +41,13 @@ class SearchYellowstone(BaseCampingSearch):
             Saturday nights)
         campgrounds: Optional[Union[List[str], str]]
             Campground ID or List of Campground IDs
+        nights: int
+            minimum number of consecutive nights to search per campsite,defaults to 1
         """
         super().__init__(provider=YellowstoneLodging(),
                          search_window=search_window,
-                         weekends_only=weekends_only)
+                         weekends_only=weekends_only,
+                         nights=nights)
         self.campgrounds = self._make_list(campgrounds)
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
@@ -59,10 +63,17 @@ class SearchYellowstone(BaseCampingSearch):
         this_month = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
         for month in self.search_months:
             if month >= this_month:
-                all_campsites += self.campsite_finder.get_monthly_campsites(month=month)
+                all_campsites += self.campsite_finder.get_monthly_campsites(
+                    month=month,
+                    nights=None if self.nights == 1 else self.nights)
         matching_campsites = self._filter_campsites_to_campgrounds(
             campsites=all_campsites, searchable_campgrounds=searchable_campgrounds)
-        return matching_campsites
+        campsite_df = self.campsites_to_df(campsites=matching_campsites)
+        campsite_df_validated = self._filter_date_overlap(campsites=campsite_df)
+        compiled_campsite_df = campsite_df_validated[
+            campsite_df_validated.booking_end_date <= max(self.search_days) + timedelta(days=1)]
+        compiled_campsites = self.df_to_campsites(campsite_df=compiled_campsite_df)
+        return compiled_campsites
 
     def _get_searchable_campgrounds(self) -> Optional[Set[str]]:
         """
@@ -72,7 +83,7 @@ class SearchYellowstone(BaseCampingSearch):
         -------
         Optional[Set[str]]
         """
-        if self.campgrounds is None:
+        if self.campgrounds in [None, []]:
             return None
         supported_campsites = set(YellowstoneConfig.YELLOWSTONE_CAMPGROUNDS.keys())
         selected_campsites = set(self.campgrounds)
@@ -107,7 +118,7 @@ class SearchYellowstone(BaseCampingSearch):
         -------
         List[AvailableCampsite]
         """
-        if self.campgrounds is None:
+        if self.campgrounds in [None, []]:
             return campsites
         matching_campsites = [campsite for campsite in campsites if
                               campsite.facility_id in searchable_campgrounds]

@@ -5,8 +5,8 @@
 """
 API Searching Configuration
 """
+
 from os import getenv
-from random import uniform
 from typing import List
 
 from dotenv import load_dotenv
@@ -94,18 +94,15 @@ class RecreationBookingConfig:
     API_REFERRERS: dict = {
         "Referer": "https://www.recreation.gov/"
     }
-    # WAIT BETWEEN 1.01 - 1.51 SECONDS BETWEEN REQUESTS - EXACT RATE LIMIT UNKNOWN
-    RATE_LIMITING: float = round(uniform(1.01, 1.51), 2)
 
-    CAMPSITE_UNAVAILABLE_STRINGS: list = [
-        "Reserved"
-        , "Not Available"
-        , "Not Reservable"
-        , "Not Reservable Management"
-        , "Not Available Cutoff"
-        , "Lottery"
-        , "Open"
-    ]
+    CAMPSITE_UNAVAILABLE_STRINGS: list = ["Reserved",
+                                          "Not Available",
+                                          "Not Reservable",
+                                          "Not Reservable Management",
+                                          "Not Available Cutoff",
+                                          "Lottery",
+                                          "Open"
+                                          ]
 
     CAMPSITE_BASE: str = "campsites"
     CAMPSITE_AVAILABILITIES_BASE: str = "availabilities"
@@ -122,3 +119,5 @@ class RecreationBookingConfig:
     CAMPSITE_INFO_TYPE_OF_USE: str = "type_of_use"
 
     CAMPSITE_BOOKING_URL: str = "https://www.recreation.gov/camping/campsites"
+
+    RATE_LIMITING = (1.01, 1.51)
