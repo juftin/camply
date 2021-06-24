@@ -5,6 +5,7 @@
 """
 API Searching Configuration
 """
+
 from os import getenv
 from typing import List
 
@@ -94,15 +95,14 @@ class RecreationBookingConfig:
         "Referer": "https://www.recreation.gov/"
     }
 
-    CAMPSITE_UNAVAILABLE_STRINGS: list = [
-        "Reserved"
-        , "Not Available"
-        , "Not Reservable"
-        , "Not Reservable Management"
-        , "Not Available Cutoff"
-        , "Lottery"
-        , "Open"
-    ]
+    CAMPSITE_UNAVAILABLE_STRINGS: list = ["Reserved",
+                                          "Not Available",
+                                          "Not Reservable",
+                                          "Not Reservable Management",
+                                          "Not Available Cutoff",
+                                          "Lottery",
+                                          "Open"
+                                          ]
 
     CAMPSITE_BASE: str = "campsites"
     CAMPSITE_AVAILABILITIES_BASE: str = "availabilities"

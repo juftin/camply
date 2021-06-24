@@ -134,7 +134,7 @@ class YellowstoneLodging(BaseProvider):
 
     @classmethod
     def _return_lodging_url(cls, lodging_code: str, month: datetime,
-                            params: Optional[dict] == "") -> str:
+                            params: Optional[dict] = "") -> str:
         """
         Return a Browser Loadable URL to book from
 
