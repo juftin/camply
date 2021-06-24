@@ -61,7 +61,7 @@ class SilentNotifications(BaseNotifications, ABC):
         """
         for campsite in campsites:
             campsite_tuple = (
-                (f"{campsite.booking_date.strftime('%Y-%m-%d')}-"
+                (f"{campsite.booking_date.strftime('%Y-%m-%d')} - "
                  f"{campsite.booking_end_date.strftime('%Y-%m-%d')}"),
                 campsite.campsite_type,
                 campsite.campsite_site_name,
