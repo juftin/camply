@@ -65,7 +65,8 @@ class CommandLineArguments:
     NIGHTS_ARGUMENT: str = "--nights"
     NIGHTS_DESTINATION: str = "nights"
     NIGHTS_DEFAULT: int = 1
-    NIGHTS_HELP: str = "Search for stays with consecutive nights"
+    NIGHTS_HELP: str = ("Search for campsite stays with consecutive nights. "
+                        "Defaults to 1 which returns all campsites found.")
 
     PROVIDER_ARGUMENT: str = "--provider"
     PROVIDER_DESTINATION: str = "provider"

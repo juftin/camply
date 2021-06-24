@@ -525,10 +525,12 @@ class BaseCampingSearch(ABC):
         search_days = Series(self.search_days)
         consecutive_nights = search_days.diff() != Timedelta('1d')
         largest_grouping = consecutive_nights.cumsum().value_counts().max()
+        if nights > 1:
+            logger.info(f"Searching for availabilities with {nights} consecutive night stays.")
         if nights > largest_grouping:
-            logger.warning("Selected number of nights to search is too large for "
-                           "your search window. The maximum number of consecutive nights is "
-                           f"{largest_grouping}.")
+            logger.warning("Too many consecutive nights selected. "
+                           "The consecutive night parameter will be set to "
+                           f"the max possible, {largest_grouping}.")
             return largest_grouping
         else:
             return nights

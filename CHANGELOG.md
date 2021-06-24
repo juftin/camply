@@ -9,6 +9,12 @@ To request new features or bugfixes the
 [Camply Feedback for v1.0.0 Discussion](https://github.com/juftin/camply/discussions/12) is the best
 place to go.
 
+## [0.1.6] - 2021-06-24
+
+### Added
+
+- Ability to search for campsites by number of consecutive night stays.
+
 ## [0.1.5] - 2021-06-02
 
 ### Added
@@ -75,6 +81,8 @@ place to go.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.6]: https://github.com/juftin/camply/compare/v0.1.5...v0.1.6
 
 [0.1.5]: https://github.com/juftin/camply/compare/v0.1.4...v0.1.5
 

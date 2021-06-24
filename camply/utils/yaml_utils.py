@@ -89,6 +89,7 @@ def yaml_file_to_arguments(file_path: str) -> Tuple[str, Dict[str, object], Dict
     provider = yaml_search.get("provider", "RecreationDotGov")
     start_date = datetime.strptime(str(yaml_search["start_date"]), "%Y-%m-%d")
     end_date = datetime.strptime(str(yaml_search["end_date"]), "%Y-%m-%d")
+    nights = int(yaml_search.get("nights", 1))
     recreation_area = yaml_search.get("recreation_area", None)
     campgrounds = yaml_search.get("campgrounds", None)
     weekends_only = yaml_search.get("weekends", False)
@@ -104,7 +105,8 @@ def yaml_file_to_arguments(file_path: str) -> Tuple[str, Dict[str, object], Dict
     provider_kwargs = dict(search_window=search_window,
                            recreation_area=recreation_area,
                            campgrounds=campgrounds,
-                           weekends_only=weekends_only)
+                           weekends_only=weekends_only,
+                           nights=nights)
     search_kwargs = dict(
         log=True, verbose=True,
         continuous=continuous,
