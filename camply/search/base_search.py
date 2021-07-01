@@ -368,7 +368,7 @@ class BaseCampingSearch(ABC):
         search_days = set()
         for window in self.search_window:
             generated_dates = set()
-            for index in range(0, (window.end_date - window.start_date).days + 1):
+            for index in range(0, (window.end_date - window.start_date).days):
                 search_day = window.start_date
                 search_day = search_day.replace(hour=0, minute=0, second=0,
                                                 microsecond=0) + timedelta(days=index)
@@ -383,7 +383,7 @@ class BaseCampingSearch(ABC):
                     search_days.remove(search_date)
         number_searches = len(search_days)
         if number_searches > 0:
-            logger.info(f"{len(search_days)} dates selected for search, "
+            logger.info(f"{len(search_days)} booking nights selected for search, "
                         f"ranging from {min(search_days).strftime('%Y-%m-%d')} to "
                         f"{max(search_days).strftime('%Y-%m-%d')}")
         else:
@@ -426,7 +426,7 @@ class BaseCampingSearch(ABC):
 
         Returns
         -------
-        DataFrame
+        List[AvailableCampsite]
         """
         composed_groupings = list()
         for _, campsite_slice in campsite_df.groupby(
@@ -508,7 +508,7 @@ class BaseCampingSearch(ABC):
             concatted_data = [DataFrame()]
         return concat(concatted_data, ignore_index=True)
 
-    def _validate_consecutive_nights(self, nights: int) -> None:
+    def _validate_consecutive_nights(self, nights: int) -> int:
         """
         Validate the number of consecutive nights to search
 
@@ -594,7 +594,7 @@ class BaseCampingSearch(ABC):
         return availability_df
 
     @classmethod
-    def _log_availabilities(cls, availability_df: DataFrame, verbose: bool) -> None:
+    def _log_availabilities(cls, availability_df: DataFrame, verbose: bool) -> DataFrame:
         """
         Log the Availabilities
 
@@ -605,7 +605,7 @@ class BaseCampingSearch(ABC):
 
         Returns
         -------
-        None
+        DataFrame
         """
         booking_date: datetime
         for booking_date, available_sites in availability_df.groupby("booking_date"):

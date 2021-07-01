@@ -59,7 +59,7 @@ docker run -d \
   camply campsites \
       --rec-area 2991 \
       --start-date 2021-08-01 \
-      --end-date 2021-08-31 \
+      --end-date 2021-09-01 \
       --continuous \
       --notifications pushover
 ```
@@ -96,7 +96,7 @@ docker run \
   camply campsites \
       --provider yellowstone \
       --start-date 2021-07-22 \
-      --end-date 2021-07-26 \
+      --end-date 2021-07-27 \
       --continuous \
       --notifications email
 ```
@@ -179,7 +179,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
     + `YYYY-MM-DD`: Start of Search window. You will be arriving this day.
       [**_example_](#searching-for-a-campsite)
 * `--end-date`: `END_DATE`
-    + `YYYY-MM-DD`: End of Search window. You will be leaving the following day.
+    + `YYYY-MM-DD`: End of Search window. You will be checking out this day..
       [**_example_](#searching-for-a-campsite)
 * `--weekends`
     + Only search for weekend bookings (Fri/Sat nights).
@@ -224,7 +224,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 camply campsites \
     --rec-area 2725 \
     --start-date 2021-07-10 \
-    --end-date 2021-07-17
+    --end-date 2021-07-18
 ```
 
 ### `recreation-areas`
@@ -276,7 +276,7 @@ In order to send notifications through `camply` you must set up some authorizati
 you need to set up [Pushover notifications](https://pushover.net)
 , [PushBullet](https://www.pushbullet.com/#settings/account) or Email messages, everything can be
 done through the `configure` command. The end result is a file called
-[`.camply`](docs/examples/example.camply) in your home folder. See
+[`.camply`](docs/e/example.camply) in your home folder. See
 the [Running in Docker](#running-in-docker) section to see how you can use environment variables
 instead of a config file.
 
@@ -301,7 +301,7 @@ after `--end-date`.
 camply campsites \
     --rec-area 2725 \
     --start-date 2021-07-10 \
-    --end-date 2021-07-17
+    --end-date 2021-07-18
 ```
 
 #### Searching for a Campsite by Campground ID
@@ -316,7 +316,7 @@ camply campsites \
     --campground 251869 \
     --campground 232492 \
     --start-date 2021-07-10 \
-    --end-date 2021-07-17
+    --end-date 2021-07-18
 ```
 
 #### Continuously Searching for A Campsite
@@ -336,7 +336,7 @@ this behavior and send all notifications, pass the `--notify-first-try` argument
 camply campsites \
     --rec-area 2725 \
     --start-date 2021-07-12 \
-    --end-date 2021-07-12 \
+    --end-date 2021-07-13 \
     --continuous \
     --notifications pushover \
     --notify-first-try
@@ -354,7 +354,7 @@ problematic when certain campsites become available more than once.
 camply campsites \
     --rec-area 2725 \
     --start-date 2021-07-01 \
-    --end-date 2021-07-31 \
+    --end-date 2021-08-01 \
     --continuous \
     --notifications pushover \
     --search-forever
@@ -374,7 +374,7 @@ command) or though environment variables (`PUSHBULLET_API_TOKEN`).
 camply campsites \
     --rec-area 2991 \
     --start-date 2021-09-10 \
-    --end-date 2021-09-20 \
+    --end-date 2021-09-21 \
     --continuous \
     --notifications pushbullet
 ```
@@ -389,7 +389,7 @@ checks every 5 minutes instead of the default 10 minutes.
 camply campsites \
     --rec-area 2991 \
     --start-date 2021-05-01 \
-    --end-date 2021-07-31 \
+    --end-date 2021-08-01 \
     --weekends \
     --continuous \
     --notifications email \
@@ -410,7 +410,7 @@ more than this your `--nights` parameter will be overwritten to 2.
 camply campsites \
     --rec-area 2991 \
     --start-date 2021-05-01 \
-    --end-date 2021-07-31 \
+    --end-date 2021-08-01 \
     --nights 4
 ```
 
@@ -427,7 +427,7 @@ this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomm
 camply campsites \
     --provider yellowstone \
     --start-date 2021-07-09 \
-    --end-date 2021-07-16 \
+    --end-date 2021-07-17 \
     --continuous
 ```
 
@@ -442,7 +442,7 @@ camply campsites \
     --rec-area 2991 \
     --rec-area 1074 \
     --start-date 2021-07-09 \
-    --end-date 2021-07-16 \
+    --end-date 2021-07-17 \
     --nights 5
 ```
 
@@ -458,7 +458,7 @@ recreation_area: # (LIST OR SINGLE ENTRY)
     - 1074 # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null # ENTIRE FIELD CAN BE OMITTED IF NOT USED. # (LIST OR SINGLE ENTRY)
 start_date:       2021-09-12 # YYYY-MM-DD
-end_date:         2021-09-12 # YYYY-MM-DD
+end_date:         2021-09-13 # YYYY-MM-DD
 weekends:         False # FALSE BY DEFAULT
 nights:           1 # 1 BY DEFAULT
 continuous:       True # DEFAULTS TO TRUE

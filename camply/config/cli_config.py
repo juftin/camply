@@ -56,7 +56,7 @@ class CommandLineArguments:
 
     END_DATE_ARGUMENT: str = "--end-date"
     END_DATE_DESTINATION: str = "end_date"
-    END_DATE_HELP: str = "(YYYY-MM-DD) End of Search window. You will be leaving the following day."
+    END_DATE_HELP: str = "(YYYY-MM-DD) End of Search window. You will be checking out this day."
 
     WEEKENDS_ARGUMENT: str = "--weekends"
     WEEKENDS_DESTINATION: str = "weekends"
