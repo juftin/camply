@@ -9,7 +9,7 @@ To request new features or bugfixes the
 [Camply Feedback for v1.0.0 Discussion](https://github.com/juftin/camply/discussions/12) is the best
 place to go.
 
-## [0.1.8] - 2021-12-31
+## [0.1.8] - 2021-07-20
 
 ### Added
 
