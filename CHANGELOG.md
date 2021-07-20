@@ -9,6 +9,12 @@ To request new features or bugfixes the
 [Camply Feedback for v1.0.0 Discussion](https://github.com/juftin/camply/discussions/12) is the best
 place to go.
 
+## [0.1.8] - 2021-07-20
+
+### Added
+
+- Converted `End Date` to be the checkout date instead of the final camping date.
+
 ## [0.1.7] - 2021-06-24
 
 ### Fixed
@@ -87,6 +93,8 @@ place to go.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.8]: https://github.com/juftin/camply/compare/v0.1.7...v0.1.8
 
 [0.1.7]: https://github.com/juftin/camply/compare/v0.1.6...v0.1.7
 

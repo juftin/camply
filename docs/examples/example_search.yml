@@ -4,7 +4,7 @@ recreation_area: # (LIST OR SINGLE ENTRY)
     - 1074 # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null # OVERRIDES RECREATION AREA (LIST OR SINGLE ENTRY)
 start_date:       2021-09-12 # YYYY-MM-DD
-end_date:         2021-09-12 # YYYY-MM-DD
+end_date:         2021-09-13 # YYYY-MM-DD
 weekends:         False # FALSE BY DEFAULT
 nights:           1 # 1 BY DEFAULT
 continuous:       False # DEFAULTS TO TRUE

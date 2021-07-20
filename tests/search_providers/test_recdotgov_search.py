@@ -32,7 +32,7 @@ def search_window() -> SearchWindow:
                                                                                  minute=0, second=0,
                                                                                  microsecond=0)
     search_window = SearchWindow(start_date=beginning_of_next_month,
-                                 end_date=beginning_of_next_month + timedelta(days=28))
+                                 end_date=beginning_of_next_month + timedelta(days=29))
     logger.info("Setting Up Search Window starting Next Month: "
                 f"{search_window.start_date.strftime('%B, %Y')}")
     return search_window
