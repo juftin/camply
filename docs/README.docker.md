@@ -179,7 +179,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
     + `YYYY-MM-DD`: Start of Search window. You will be arriving this day.
       [**_example_](#searching-for-a-campsite)
 * `--end-date`: `END_DATE`
-    + `YYYY-MM-DD`: End of Search window. You will be checking out this day..
+    + `YYYY-MM-DD`: End of Search window. You will be checking out this day.
       [**_example_](#searching-for-a-campsite)
 * `--weekends`
     + Only search for weekend bookings (Fri/Sat nights).
@@ -276,7 +276,7 @@ In order to send notifications through `camply` you must set up some authorizati
 you need to set up [Pushover notifications](https://pushover.net)
 , [PushBullet](https://www.pushbullet.com/#settings/account) or Email messages, everything can be
 done through the `configure` command. The end result is a file called
-[`.camply`](docs/e/example.camply) in your home folder. See
+[`.camply`](docs/examples/example.camply) in your home folder. See
 the [Running in Docker](#running-in-docker) section to see how you can use environment variables
 instead of a config file.
 
