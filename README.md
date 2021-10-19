@@ -17,7 +17,7 @@ ___________
 [![PyPI](https://img.shields.io/pypi/v/camply?color=blue&label=⛺️camply)](https://github.com/juftin/camply)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/camply)](https://pypi.python.org/pypi/camply/)
 [![Docker Image Version](https://img.shields.io/docker/v/juftin/camply?color=blue&label=docker&logo=docker)](https://hub.docker.com/r/juftin/camply)
-[![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yml)
+[![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 
 ## Table of Contents
@@ -179,8 +179,8 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 ```text
 camply campsites \
     --rec-area 2725 \
-    --start-date 2021-07-10 \
-    --end-date 2021-07-18
+    --start-date 2022-07-10 \
+    --end-date 2022-07-18
 ```
 
 ### `recreation-areas`
@@ -248,7 +248,7 @@ functionality of the different arguments provided to the CLI.
 #### Searching for a Campsite
 
 The below search looks for campsites inside of Recreation Area ID #2725 (Glacier National Park)
-between 2021-07-10 and 2021-07-17. The search will be performed once and any results will be logged
+between 2022-07-10 and 2022-07-17. The search will be performed once and any results will be logged
 to the console. camply searches for campsites inside of search windows in increments of one night.
 `--start-date` and `--end-date` define the bounds of the search window, you will be leaving the day
 after `--end-date`.
@@ -256,14 +256,14 @@ after `--end-date`.
 ```text
 camply campsites \
     --rec-area 2725 \
-    --start-date 2021-07-10 \
-    --end-date 2021-07-18
+    --start-date 2022-07-10 \
+    --end-date 2022-07-18
 ```
 
 #### Searching for a Campsite by Campground ID
 
 The below search looks for across three campgrounds (all inside Glacier National Park)
-between 2021-07-10 and 2021-07-17. Multiple Campgrounds (and Recreation Areas too) can be found by
+between 2022-07-10 and 2022-07-17. Multiple Campgrounds (and Recreation Areas too) can be found by
 supplying the arguments more than once.
 
 ```text
@@ -271,8 +271,8 @@ camply campsites \
     --campground 232493 \
     --campground 251869 \
     --campground 232492 \
-    --start-date 2021-07-10 \
-    --end-date 2021-07-18
+    --start-date 2022-07-10 \
+    --end-date 2022-07-18
 ```
 
 #### Continuously Searching for A Campsite
@@ -291,8 +291,8 @@ this behavior and send all notifications, pass the `--notify-first-try` argument
 ```text
 camply campsites \
     --rec-area 2725 \
-    --start-date 2021-07-12 \
-    --end-date 2021-07-13 \
+    --start-date 2022-07-12 \
+    --end-date 2022-07-13 \
     --continuous \
     --notifications pushover \
     --notify-first-try
@@ -309,8 +309,8 @@ problematic when certain campsites become available more than once.
 ```text
 camply campsites \
     --rec-area 2725 \
-    --start-date 2021-07-01 \
-    --end-date 2021-08-01 \
+    --start-date 2022-07-01 \
+    --end-date 2022-08-01 \
     --continuous \
     --notifications pushover \
     --search-forever
@@ -329,8 +329,8 @@ command) or though environment variables (`PUSHBULLET_API_TOKEN`).
 ```text
 camply campsites \
     --rec-area 2991 \
-    --start-date 2021-09-10 \
-    --end-date 2021-09-21 \
+    --start-date 2022-09-10 \
+    --end-date 2022-09-21 \
     --continuous \
     --notifications pushbullet
 ```
@@ -344,8 +344,8 @@ checks every 5 minutes instead of the default 10 minutes.
 ```text
 camply campsites \
     --rec-area 2991 \
-    --start-date 2021-05-01 \
-    --end-date 2021-08-01 \
+    --start-date 2022-05-01 \
+    --end-date 2022-08-01 \
     --weekends \
     --continuous \
     --notifications email \
@@ -365,8 +365,8 @@ more than this your `--nights` parameter will be overwritten to 2.
 ```text
 camply campsites \
     --rec-area 2991 \
-    --start-date 2021-05-01 \
-    --end-date 2021-08-01 \
+    --start-date 2022-05-01 \
+    --end-date 2022-08-01 \
     --nights 4
 ```
 
@@ -382,8 +382,8 @@ this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomm
 ```text
 camply campsites \
     --provider yellowstone \
-    --start-date 2021-07-09 \
-    --end-date 2021-07-17 \
+    --start-date 2022-07-09 \
+    --end-date 2022-07-17 \
     --continuous
 ```
 
@@ -397,8 +397,8 @@ arguments will overwrite all `--rec-area` arguments.
 camply campsites \
     --rec-area 2991 \
     --rec-area 1074 \
-    --start-date 2021-07-09 \
-    --end-date 2021-07-17 \
+    --start-date 2022-07-09 \
+    --end-date 2022-07-17 \
     --nights 5
 ```
 
@@ -413,8 +413,8 @@ recreation_area: # (LIST OR SINGLE ENTRY)
     - 2991 # Yosemite National Park, CA (All Campgrounds)
     - 1074 # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null # ENTIRE FIELD CAN BE OMITTED IF NOT USED. # (LIST OR SINGLE ENTRY)
-start_date:       2021-09-12 # YYYY-MM-DD
-end_date:         2021-09-13 # YYYY-MM-DD
+start_date:       2022-09-12 # YYYY-MM-DD
+end_date:         2022-09-13 # YYYY-MM-DD
 weekends:         False # FALSE BY DEFAULT
 nights:           1 # 1 BY DEFAULT
 continuous:       True # DEFAULTS TO TRUE
@@ -491,8 +491,8 @@ from camply.search import SearchRecreationDotGov
 logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
                     level=logging.INFO)
 
-month_of_june = SearchWindow(start_date=datetime(year=2021, month=6, day=1),
-                             end_date=datetime(year=2021, month=6, day=30))
+month_of_june = SearchWindow(start_date=datetime(year=2022, month=6, day=1),
+                             end_date=datetime(year=2022, month=6, day=30))
 camping_finder = SearchRecreationDotGov(search_window=month_of_june,
                                         recreation_area=2725,  # Glacier Ntl Park
                                         weekends_only=False,
@@ -506,7 +506,7 @@ The above script returns a list of any matching `AvailableCampsite` namedtuple o
 ```python
 [
     AvailableCampsite(campsite_id="5391",
-                      booking_date=datetime.datetime(2021, 6, 13, 0, 0),
+                      booking_date=datetime.datetime(2022, 6, 13, 0, 0),
                       campsite_site_name="B37",
                       campsite_loop_name="Loop B",
                       campsite_type="STANDARD NONELECTRIC",
@@ -536,8 +536,8 @@ from camply.search import SearchRecreationDotGov
 logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
                     level=logging.INFO)
 
-month_of_june = SearchWindow(start_date=datetime(year=2021, month=6, day=1),
-                             end_date=datetime(year=2021, month=6, day=30))
+month_of_june = SearchWindow(start_date=datetime(year=2022, month=6, day=1),
+                             end_date=datetime(year=2022, month=6, day=30))
 camping_finder = SearchRecreationDotGov(search_window=month_of_june,
                                         recreation_area=[2991, 1074],  # Multiple Rec Areas
                                         weekends_only=False,
@@ -564,8 +564,8 @@ docker run -d \
   juftin/camply \
   camply campsites \
       --rec-area 2991 \
-      --start-date 2021-08-01 \
-      --end-date 2021-09-01 \
+      --start-date 2022-08-01 \
+      --end-date 2022-09-01 \
       --continuous \
       --notifications pushover
 ```
@@ -601,8 +601,8 @@ docker run \
   juftin/camply \
   camply campsites \
       --provider yellowstone \
-      --start-date 2021-07-22 \
-      --end-date 2021-07-27 \
+      --start-date 2022-07-22 \
+      --end-date 2022-07-27 \
       --continuous \
       --notifications email
 ```

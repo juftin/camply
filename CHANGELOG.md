@@ -9,6 +9,14 @@ To request new features or bugfixes the
 [Camply Feedback for v1.0.0 Discussion](https://github.com/juftin/camply/discussions/12) is the best
 place to go.
 
+## [0.1.9] - 2021-10-18
+
+### Added
+
+- Improved CI/CD
+- Use setuptools for building
+- Bumped Dockerfile Python version to 3.9
+
 ## [0.1.8] - 2021-07-20
 
 ### Added
@@ -93,6 +101,8 @@ place to go.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.9]: https://github.com/juftin/camply/compare/v0.1.8...v0.1.9
 
 [0.1.8]: https://github.com/juftin/camply/compare/v0.1.7...v0.1.8
 
