@@ -1,58 +1,34 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
 
 """
-Camply Installation setup.py File
+Python Packaging Configuration File
+Package Settings configured and inferred from setup.cfg
 """
-
-from os import path
 
 from setuptools import setup
 
-from camply import __version__ as camply_version
 
-packages = ["camply",
-            "camply.config",
-            "camply.notifications",
-            "camply.providers",
-            "camply.providers.recreation_dot_gov",
-            "camply.providers.xanterra",
-            "camply.search",
-            "camply.utils"]
+def parse_requirements_file(filename: str) -> list:
+    """
+    Parse a Requirements File Into Package Dependency List
+    while ignoring comments (on their own line or after the dependency)
+    and empty lines
+    """
+    requirements_list = []
+    try:
+        with open(filename, "r", encoding="utf-8") as text_stream:
+            requirements_body = text_stream.read()
+    except FileNotFoundError:
+        return []
+    for requirement in requirements_body.splitlines():
+        text_requirement = str(requirement).strip()
+        if "#" in text_requirement and not text_requirement.startswith("#"):
+            text_requirement = text_requirement.split("#")[0].strip()
+        if text_requirement != "" and not text_requirement.startswith("#"):
+            requirements_list.append(requirement)
+    return requirements_list
 
-package_data = {"": ["*"]}
 
-install_requires = ["PyYAML",
-                    "pandas",
-                    "python-dotenv",
-                    "pytz",
-                    "requests",
-                    "tenacity"]
-
-entry_points = {"console_scripts": ["camply = camply.utils.camply_cli:main"]}
-
-root_directory = path.abspath(path.dirname(__file__))
-with open(path.join(root_directory, "README.md"), encoding="utf-8") as f:
-    long_description = f.read()
-
-setup_kwargs = {
-    "name": "camply",
-    "version": camply_version,
-    "description": "camply, the campsite finder",
-    "long_description": long_description,
-    "long_description_content_type": "text/markdown",
-    "author": "Justin Flannery",
-    "author_email": "juftin@juftin.com",
-    "maintainer": "Justin Flannery",
-    "maintainer_email": "juftin@juftin.com",
-    "url": "https://github.com/juftin/camply",
-    "packages": packages,
-    "package_data": package_data,
-    "install_requires": install_requires,
-    "entry_points": entry_points,
-    "python_requires": ">=3.6",
-}
-
-setup(**setup_kwargs)
+setup(
+    install_requires=parse_requirements_file("requirements.txt"),
+)

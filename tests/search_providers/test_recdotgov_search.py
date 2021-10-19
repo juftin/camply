@@ -15,6 +15,7 @@ import pytest
 
 from camply.containers import AvailableCampsite, SearchWindow
 from camply.search import SearchRecreationDotGov
+from tests.conftest import camply_cassette
 
 logger = logging.getLogger(__name__)
 
@@ -70,6 +71,7 @@ def recdotgov_campground_finder(search_window) -> SearchRecreationDotGov:
     return recdotgov_finder
 
 
+@camply_cassette
 def test_get_searchable_campgrounds_recarea(recdotgov_recarea_finder) -> List[AvailableCampsite]:
     """
     Retrieve Campground Information for a Recreation Area
@@ -83,6 +85,7 @@ def test_get_searchable_campgrounds_recarea(recdotgov_recarea_finder) -> List[Av
     return all_campsites
 
 
+@camply_cassette
 def test_get_searchable_campgrounds_campground(
         recdotgov_campground_finder) -> List[AvailableCampsite]:
     """
@@ -97,6 +100,7 @@ def test_get_searchable_campgrounds_campground(
     return all_campsites
 
 
+@camply_cassette
 def test_get_all_campsites_recarea(recdotgov_recarea_finder) -> List[AvailableCampsite]:
     """
     Get all of the Yellowstone Campsites
@@ -112,6 +116,7 @@ def test_get_all_campsites_recarea(recdotgov_recarea_finder) -> List[AvailableCa
     return all_campsites
 
 
+@camply_cassette
 def test_get_all_campsites_campground(recdotgov_campground_finder) -> List[AvailableCampsite]:
     """
     Get all of the Yellowstone Campsites

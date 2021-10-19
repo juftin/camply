@@ -1,35 +1,6 @@
-[tool.poetry]
-name = "camply"
-version = "0.1.8"
-description = "camply, the campsite finder ⛺️"
-authors = ["Justin Flannery <juftin@juftin.com>"]
-maintainers = ["Justin Flannery <juftin@juftin.com>"]
-license = "MIT"
-readme = "README.md"
-repository = "https://github.com/juftin/camply"
-keywords = ["python", "notifications", "camping", "national-parks", "reservations"]
-
-[tool.poetry.scripts]
-camply = "camply.utils.camply_cli:main"
-
-[tool.poetry.dependencies]
-python = "3.6.* || 3.7.* || 3.8.* || 3.9.*"
-requests = "*"
-pandas = "*"
-tenacity = "*"
-python-dotenv = "*"
-pytz = "*"
-PyYAML = "*"
-
-[tool.poetry.dev-dependencies]
-pytest = "*"
-
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.urls]
-"Bug Tracker" = "https://github.com/juftin/camply/issues"
-"Documentation" = "https://github.com/juftin/camply/blob/main/README.md"
-"Changelog" = "https://github.com/juftin/camply/blob/main/CHANGELOG.md"
-"Docker" = "https://hub.docker.com/r/juftin/camply"
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"
