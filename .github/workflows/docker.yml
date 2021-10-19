@@ -4,7 +4,7 @@ on:
     pull_request:
         branches: [ "**" ]
 jobs:
-    test-suite:
+    docker:
         runs-on: ubuntu-latest
         steps:
             -   name: Set up Github Workspace
