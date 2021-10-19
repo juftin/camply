@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 MAINTAINER Justin Flannery <juftin@juftin.com>
 LABEL description="camply, the campsite finder"

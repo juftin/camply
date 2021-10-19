@@ -15,6 +15,7 @@ place to go.
 
 - Improved CI/CD
 - Use setuptools for building
+- Bumped Dockerfile Python version to 3.9
 
 ## [0.1.8] - 2021-07-20
 
