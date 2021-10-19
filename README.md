@@ -17,7 +17,7 @@ ___________
 [![PyPI](https://img.shields.io/pypi/v/camply?color=blue&label=⛺️camply)](https://github.com/juftin/camply)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/camply)](https://pypi.python.org/pypi/camply/)
 [![Docker Image Version](https://img.shields.io/docker/v/juftin/camply?color=blue&label=docker&logo=docker)](https://hub.docker.com/r/juftin/camply)
-[![Testing Status](https://github.com/juftin/camply/actions/workflows/pytest.yml/badge.svg?branch=camply)](https://github.com/juftin/camply/actions/workflows/pytest.yml)
+[![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 
 ## Table of Contents
