@@ -9,6 +9,12 @@ To request new features or bugfixes the
 [Camply Feedback for v1.0.0 Discussion](https://github.com/juftin/camply/discussions/12) is the best
 place to go.
 
+## [0.1.10] - 2021-11-3
+
+### Bug Fix
+
+- Refreshed Casettes for Testing
+
 ## [0.1.9] - 2021-10-18
 
 ### Added
@@ -101,6 +107,8 @@ place to go.
 - Integrations with https://recreation.gov and https://yellowstonenationalparklodges.com
 
 [unreleased]: https://github.com/juftin/camply/compare/main...integration
+
+[0.1.10]: https://github.com/juftin/camply/compare/v0.1.9...v0.1.10
 
 [0.1.9]: https://github.com/juftin/camply/compare/v0.1.8...v0.1.9
 
