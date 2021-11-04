@@ -1,0 +1,312 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+      apikey:
+      - XXXXXXXXXX
+    method: GET
+    uri: https://ridb.recreation.gov/api/v1/facilities/232493?full=True
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Cache-Control:
+      - max_age=600,public,stale-if-error=3600
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'child-src ''self'' blob:; connect-src https://www.google-analytics.com https://siteintercept.qualtrics.com
+        ''self''; default-src https://manage-cdn.recreation.gov https://manage.recreation.gov
+        ''self''; font-src https://manage-cdn.recreation.gov https://manage.recreation.gov
+        https://*.manage.recreation.gov https://use.fontawesome.com https://fonts.gstatic.com;
+        frame-src https://tagmanager.google.com https://www.googletagmanager.com ''self''
+        blob:; img-src https://cdn.recreation.gov https://manage-cdn.recreation.gov
+        https://manage.recreation.gov https://*.manage.recreation.gov https://recreation.gov
+        https://*.recreation.gov https://www.google-analytics.com ''self'' data:  blob:
+        ; media-src https://www.nps.gov https://youtu.be https://www.youtube.com ''self'';
+        object-src ''self'' blob: ; script-src https://ridb.recreation.gov https://manage-cdn.recreation.gov
+        https://manage.recreation.gov https://*.manage.recreation.gov https://www.google.com/recaptcha/
+        https://tagmanager.google.com https://www.googletagmanager.com https://www.google-analytics.com
+        https://*.gstatic.com https://mapbox.com https://*.mapbox.com https://cdn.ravenjs.com
+        https://recaptcha.net https://sentry.io https://siteintercept.qualtrics.com
+        https://*.siteintercept.qualtrics.com ''unsafe-eval'' ''unsafe-inline''; style-src
+        https://ridb.recreation.gov https://manage.recreation.gov https://*.manage.recreation.gov
+        https://manage-cdn.recreation.gov https://use.fontawesome.com https://tagmanager.google.com
+        https://fonts.googleapis.com https://*.mapbox.com https://mapbox.com ''unsafe-inline'';
+        worker-src ''self'' blob: ;'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 04 Nov 2021 04:37:52 GMT
+      Server:
+      - Server
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; always
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 5539e869b7b6ea60eddee5f69c9a0d9c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 7jGKx4K8LFEP6TAaCLGDUxSZizrBNp3kH7eJmLL6w9J6Vd8psuV41w==
+      X-Amz-Cf-Pop:
+      - DEN52-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+      access-control-allow-methods:
+      - '*'
+      access-control-allow-origin:
+      - '*'
+      x-amz-apigw-id:
+      - IQyA1Gw5vHcF3ew=
+      x-amzn-requestid:
+      - 279c5664-5e31-45c7-ab84-14088a6eca4d
+      x-amzn-trace-id:
+      - Root=1-6183639e-764f6c7ac4a8336b005aa5d2;Sampled=0
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.26.0
+      accept:
+      - application/json
+      apikey:
+      - XXXXXXXXXX
+    method: GET
+    uri: https://ridb.recreation.gov/api/v1/facilities/232493?full=True
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Cache-Control:
+      - max_age=600,public,stale-if-error=3600
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'child-src ''self'' blob:; connect-src https://www.google-analytics.com https://siteintercept.qualtrics.com
+        ''self''; default-src https://manage-cdn.recreation.gov https://manage.recreation.gov
+        ''self''; font-src https://manage-cdn.recreation.gov https://manage.recreation.gov
+        https://*.manage.recreation.gov https://use.fontawesome.com https://fonts.gstatic.com;
+        frame-src https://tagmanager.google.com https://www.googletagmanager.com ''self''
+        blob:; img-src https://cdn.recreation.gov https://manage-cdn.recreation.gov
+        https://manage.recreation.gov https://*.manage.recreation.gov https://recreation.gov
+        https://*.recreation.gov https://www.google-analytics.com ''self'' data:  blob:
+        ; media-src https://www.nps.gov https://youtu.be https://www.youtube.com ''self'';
+        object-src ''self'' blob: ; script-src https://ridb.recreation.gov https://manage-cdn.recreation.gov
+        https://manage.recreation.gov https://*.manage.recreation.gov https://www.google.com/recaptcha/
+        https://tagmanager.google.com https://www.googletagmanager.com https://www.google-analytics.com
+        https://*.gstatic.com https://mapbox.com https://*.mapbox.com https://cdn.ravenjs.com
+        https://recaptcha.net https://sentry.io https://siteintercept.qualtrics.com
+        https://*.siteintercept.qualtrics.com ''unsafe-eval'' ''unsafe-inline''; style-src
+        https://ridb.recreation.gov https://manage.recreation.gov https://*.manage.recreation.gov
+        https://manage-cdn.recreation.gov https://use.fontawesome.com https://tagmanager.google.com
+        https://fonts.googleapis.com https://*.mapbox.com https://mapbox.com ''unsafe-inline'';
+        worker-src ''self'' blob: ;'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 04 Nov 2021 04:37:53 GMT
+      Server:
+      - Server
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; always
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 5950a1c2bfcf1f3e07bedbb2efad39f3.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 9APPdOVybGbAwqNjShC3fjO7TMG_VMRMnwO0dVyar-s7Eoqjlafjfg==
+      X-Amz-Cf-Pop:
+      - DEN52-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-XSS-Protection:
+      - 1; mode=block
+      access-control-allow-methods:
+      - '*'
+      access-control-allow-origin:
+      - '*'
+      x-amz-apigw-id:
+      - IQyBGHEuvHcFpqA=
+      x-amzn-requestid:
+      - 58f472e9-8c07-4809-ad51-b7aa1ceba413
+      x-amzn-trace-id:
+      - Root=1-618363a0-d1f5b884a5c016a05bc7844a;Sampled=0
+    status:
+      code: 200
+      message: OK
+version: 1
