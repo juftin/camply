@@ -20,6 +20,7 @@ jobs:
             ENV:  "staging"
           - name: "[Prod]"
             ENV:  "production"
+            link: ${{ secrets.PYPI_USERNAME }}
     steps:
       - uses: actions/checkout@v1
       - name: "${{ matrix.name }} Get Run Conditions"
@@ -40,4 +41,4 @@ jobs:
       - name: "${{ matrix.name }} Say Something"
         if:   ${{ env.SHOULD_RUN  == 'true' }}
         run:  |
-              echo "${{ matrix.ENV }} x ${{ github.event_name }}"
+              echo "${{ matrix.ENV }} x ${{ github.event_name }} x ${{ matrix.link }}"
