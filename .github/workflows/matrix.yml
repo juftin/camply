@@ -1,0 +1,43 @@
+name: matrix
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+
+  matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - name: "[Dev]"
+            ENV:  "dev"
+          - name: "[Staging]"
+            ENV:  "staging"
+          - name: "[Prod]"
+            ENV:  "production"
+    steps:
+      - uses: actions/checkout@v1
+      - name: "${{ matrix.name }} Get Run Conditions"
+        run:  |
+              ENVIRONMENT="${{ matrix.ENV }}"
+              EVENT_NAME="${{ github.event_name }}"
+              if [[ "${ENVIRONMENT}" != "production" ]]; then
+                SHOULD_RUN="true"
+              elif [[ "${ENVIRONMENT}" == "production" && "${EVENT_NAME}" == "push" ]]; then
+                SHOULD_RUN="true"
+              elif [[ "${ENVIRONMENT}" == "production" && "${EVENT_NAME}" == "pull_request" ]]; then
+                SHOULD_RUN="false"
+              else
+                echo "Unknown Configuration: ${ENVIRONMENT} x ${EVENT_NAME}"
+                exit 1
+              fi
+              echo "SHOULD_RUN=${SHOULD_RUN}" >> ${GITHUB_ENV}
+      - name: "${{ matrix.name }} Say Something"
+        if:   ${{ env.SHOULD_RUN  == "true" }}
+        run:  |
+              echo "${{ matrix.ENV }} x ${{ github.event_name }}"
