@@ -15,11 +15,11 @@ jobs:
       fail-fast: true
       matrix:
         include:
-          - name: "[Dev]"
-            ENV:  dev
+          - name:        "[Dev]"
+            ENV:         dev
             secret_name: DOCKER_USERNAME
-          - name: "[Staging]"
-            ENV:  staging
+          - name:        "[Staging]"
+            ENV:         staging
             secret_name: PYPI_USERNAME
           - name:        "[Prod]"
             ENV:         production
@@ -44,4 +44,4 @@ jobs:
       - name: "${{ matrix.name }} Say Something"
         if:   ${{ env.SHOULD_RUN  == 'true' }}
         run:  |
-              echo "${{ matrix.ENV }} x ${{ github.event_name }} x ${{ secrets[matrix.link] }}"
+              echo "${{ matrix.ENV }} x ${{ github.event_name }} x ${{ secrets[matrix.secret_name] }}"
