@@ -19,7 +19,7 @@ jobs:
                     - { name: 'Python 3.8', python: '3.8', tox: py38 }
                     - { name: 'Python 3.7', python: '3.7', tox: py37 }
                     - { name: 'Python 3.6', python: '3.6', tox: py36 }
-            max-parallel: 2
+            max-parallel: 1
         env:
             LOG_LEVEL:    DEBUG
             RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}

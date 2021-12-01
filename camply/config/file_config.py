@@ -25,7 +25,6 @@ class FileConfig:
     ROOT_DIRECTORY = CAMPLY_DIRECTORY.parent
 
     DOT_CAMPLY_FIELDS: List[str] = OrderedDict(
-        PUSHOVER_PUSH_TOKEN=dict(default="", notes="Enables Pushover Notifications"),
         PUSHOVER_PUSH_USER=dict(default="", notes="Enables Pushover Notifications"),
         PUSHBULLET_API_TOKEN=dict(default="", notes="Enables Pushbullet Notifications"),
         EMAIL_TO_ADDRESS=dict(default="", notes="Email Notifications will be sent here"),
@@ -38,5 +37,7 @@ class FileConfig:
                                 notes="Email Notifications Will Come From this Email"),
         EMAIL_SUBJECT_LINE=dict(default="Camply Notification",
                                 notes="Email Notifications Will Have This Subject Line"),
+        PUSHOVER_PUSH_TOKEN=dict(default="", notes="Pushover Notifications From Your Custom App "
+                                                   "(not required)"),
         RIDB_API_KEY=dict(default="", notes="Personal Recreation.gov API Key (not required)")
     )

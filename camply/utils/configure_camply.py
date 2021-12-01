@@ -110,7 +110,7 @@ def write_config_to_file(config_dict: OrderedDict) -> None:
     """
     string_list = [
         "# CAMPLY CONFIGURATION FILE. ",
-        "# SEE https://github.com/juftin/camply/blob/main/example.camply FOR MORE DETAILS",
+        "# SEE https://github.com/juftin/camply/blob/main/docs/examples/example.camply ""FOR MORE DETAILS",
         ""
     ]
     for config_key, config_value in config_dict.items():
@@ -133,7 +133,8 @@ def generate_dot_camply_file():
     sleep(1.5)
     if isfile(FileConfig.DOT_CAMPLY_FILE):
         logger.warning(f".camply file already exists on this machine: {FileConfig.DOT_CAMPLY_FILE}")
-        overwrite = double_check("Would you like to overwrite your `.camply` configuration file?")
+        overwrite = double_check("Would you like to overwrite your `.camply` "
+                                 "configuration file? (y/n)")
         if overwrite is False:
             exit(0)
     config = generate_configuration()

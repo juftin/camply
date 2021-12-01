@@ -573,7 +573,6 @@ docker run -d \
 The docker image accepts the following environment variables:
 
 - Pushover Notifications
-    * `PUSHOVER_PUSH_TOKEN`
     * `PUSHOVER_PUSH_USER`
 - Email Notifications
     * `EMAIL_TO_ADDRESS`
@@ -585,6 +584,7 @@ The docker image accepts the following environment variables:
     * `EMAIL_SMTP_PORT` (defaults to 465)
 - Optional Environment Variables
     * `LOG_LEVEL` (sets logging level, defaults to "INFO")
+    * `PUSHOVER_PUSH_TOKEN` (Personal Pushover App Token)
     * `RIDB_API_KEY` (Personal API Key
       for [Recreation.gov API](https://ridb.recreation.gov/profile))
     * `TZ` ([TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
