@@ -41,7 +41,7 @@ jobs:
                 exit 1
               fi
               echo "SHOULD_RUN=${SHOULD_RUN}" >> ${GITHUB_ENV}
-      - name: "${{ matrix.name }} Say Something"
+      - name: ${{ matrix.name }} Say Something
         if:   ${{ env.SHOULD_RUN  == 'true' }}
         run:  |
               echo "${{ matrix.ENV }} x ${{ github.event_name }} x ${{ secrets[matrix.secret_name] }}"
