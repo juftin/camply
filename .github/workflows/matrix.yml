@@ -10,17 +10,20 @@ jobs:
 
   matrix:
     runs-on: ubuntu-latest
+
     strategy:
       fail-fast: true
       matrix:
         include:
           - name: "[Dev]"
-            ENV:  "dev"
+            ENV:  dev
+            secret_name: DOCKER_USERNAME
           - name: "[Staging]"
-            ENV:  "staging"
-          - name: "[Prod]"
-            ENV:  "production"
-            link: "${{ secrets.PYPI_USERNAME }}"
+            ENV:  staging
+            secret_name: PYPI_USERNAME
+          - name:        "[Prod]"
+            ENV:         production
+            secret_name: PYPI_USERNAME
     steps:
       - uses: actions/checkout@v1
       - name: "${{ matrix.name }} Get Run Conditions"
@@ -41,4 +44,4 @@ jobs:
       - name: "${{ matrix.name }} Say Something"
         if:   ${{ env.SHOULD_RUN  == 'true' }}
         run:  |
-              echo "${{ matrix.ENV }} x ${{ github.event_name }} x ${{ matrix.link }}"
+              echo "${{ matrix.ENV }} x ${{ github.event_name }} x ${{ secrets[matrix.link] }}"
