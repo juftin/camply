@@ -20,7 +20,7 @@ jobs:
             ENV:  "staging"
           - name: "[Prod]"
             ENV:  "production"
-            link: ${{ secrets.PYPI_USERNAME }}
+            link: "${{ secrets.PYPI_USERNAME }}"
     steps:
       - uses: actions/checkout@v1
       - name: "${{ matrix.name }} Get Run Conditions"
