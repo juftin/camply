@@ -41,7 +41,6 @@ class RecreationDotGov(BaseProvider):
         else:
             _api_key: str = api_key
         self._ridb_api_headers: dict = dict(accept="application/json", apikey=_api_key)
-        self._recreation_gov_headers: List[dict] = USER_AGENTS
 
     def __repr__(self):
         """
@@ -255,7 +254,9 @@ class RecreationDotGov(BaseProvider):
         Union[dict, list]
         """
         api_endpoint = self._ridb_get_endpoint(path=path)
-        response = requests.get(url=api_endpoint, headers=self._ridb_api_headers,
+        headers = self._ridb_api_headers.copy()
+        headers.update(choice(USER_AGENTS))
+        response = requests.get(url=api_endpoint, headers=headers,
                                 params=params, timeout=30)
         try:
             assert response.status_code == 200
@@ -478,7 +479,7 @@ class RecreationDotGov(BaseProvider):
             api_endpoint = self._rec_availability_get_endpoint(
                 path=f"{campground_id}/{RecreationBookingConfig.API_MONTH_PATH}")
             # BUILD THE HEADERS EXPECTED FROM THE API
-            headers = STANDARD_HEADERS
+            headers = STANDARD_HEADERS.copy()
             headers.update(choice(USER_AGENTS))
             headers.update(RecreationBookingConfig.API_REFERRERS)
             response = requests.get(url=api_endpoint, headers=headers,
