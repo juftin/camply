@@ -5,10 +5,13 @@ Python Packaging Configuration File
 Package Settings configured and inferred from setup.cfg
 """
 
+from pathlib import Path
+from typing import List
+
 from setuptools import setup
 
 
-def parse_requirements_file(filename: str) -> list:
+def parse_requirements_file(filename: str) -> List[str]:
     """
     Parse a Requirements File Into Package Dependency List
     while ignoring comments (on their own line or after the dependency)
@@ -29,6 +32,7 @@ def parse_requirements_file(filename: str) -> list:
     return requirements_list
 
 
-setup(
-    install_requires=parse_requirements_file("requirements.txt"),
-)
+_requirements_file = Path(__file__).resolve().parent.joinpath("requirements.txt")
+_install_requires = parse_requirements_file(filename=str(_requirements_file))
+
+setup(install_requires=_install_requires)
