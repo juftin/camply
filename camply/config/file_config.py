@@ -9,13 +9,13 @@ Project Configuration for Yellowstone Variables
 from collections import OrderedDict
 from os.path import abspath, join
 from pathlib import Path
-from typing import List
 
 
 class FileConfig:
     """
     File Path Storage Class
     """
+
     HOME_PATH = abspath(Path.home())
     DOT_CAMPLY_FILE = join(HOME_PATH, ".camply")
     _file_config_file = Path(abspath(__file__))
@@ -24,7 +24,7 @@ class FileConfig:
     CAMPLY_DIRECTORY = _config_dir.parent
     ROOT_DIRECTORY = CAMPLY_DIRECTORY.parent
 
-    DOT_CAMPLY_FIELDS: List[str] = OrderedDict(
+    DOT_CAMPLY_FIELDS = OrderedDict(
         PUSHOVER_PUSH_USER=dict(default="", notes="Enables Pushover Notifications"),
         PUSHBULLET_API_TOKEN=dict(default="", notes="Enables Pushbullet Notifications"),
         EMAIL_TO_ADDRESS=dict(default="", notes="Email Notifications will be sent here"),

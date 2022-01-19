@@ -55,20 +55,25 @@ class YellowstoneLodging(BaseProvider):
                           rate_code=YellowstoneConfig.RATE_CODE)
         if nights is not None:
             query_dict.update(dict(nights=nights))
-        api_endpoint = self._get_api_endpoint(url_path=YellowstoneConfig.YELLOWSTONE_LODGING_PATH,
-                                              query=None)
-        logger.info(f"Searching for Yellowstone Lodging Availability: {month.strftime('%B, %Y')}")
-        all_resort_availability_data = self.make_yellowstone_request(endpoint=api_endpoint,
-                                                                     params=query_dict)
+        api_endpoint = self._get_api_endpoint(
+            url_path=YellowstoneConfig.YELLOWSTONE_LODGING_PATH,
+            query=None)
+        logger.info(
+            f"Searching for Yellowstone Lodging Availability: {month.strftime('%B, %Y')}")
+        all_resort_availability_data = self.make_yellowstone_request(
+            endpoint=api_endpoint,
+            params=query_dict)
         return all_resort_availability_data
 
     @staticmethod
     @tenacity.retry(wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
                     stop=tenacity.stop.stop_after_delay(6000))
-    def _try_retry_get_data(endpoint: str, params: Optional[dict] = None):
+    def _try_retry_get_data(endpoint: str, params: Optional[dict] = None) -> dict:
         """
-        Try and Retry Fetching Data from the Yellowstone API. Unfortunately this is a required
-        method to request the data since the Yellowstone API doesn't always return data.
+        Try and Retry Fetching Data from the Yellowstone API.
+
+        Unfortunately this is a required method to request the data since the
+        Yellowstone API doesn't always return data.
 
         Parameters
         ----------
@@ -78,7 +83,7 @@ class YellowstoneLodging(BaseProvider):
 
         Returns
         -------
-
+        dict
         """
         yellowstone_headers = choice(USER_AGENTS)
         yellowstone_headers.update(STANDARD_HEADERS)
@@ -95,10 +100,12 @@ class YellowstoneLodging(BaseProvider):
             raise RuntimeError(error_message)
 
     @staticmethod
-    def make_yellowstone_request(endpoint: str, params: Optional[dict] = None):
+    def make_yellowstone_request(endpoint: str, params: Optional[dict] = None) -> dict:
         """
-        Try and Retry Fetching Data from the Yellowstone API. Unfortunately this is a required
-        method to request the data since the Yellowstone API doesn't always return data.
+        Try and Retry Fetching Data from the Yellowstone API.
+
+        Unfortunately this is a required method to request the data since the
+        Yellowstone API doesn't always return data.
 
         Parameters
         ----------
@@ -108,10 +115,11 @@ class YellowstoneLodging(BaseProvider):
 
         Returns
         -------
-
+        dict
         """
         try:
-            content = YellowstoneLodging._try_retry_get_data(endpoint=endpoint, params=params)
+            content = YellowstoneLodging._try_retry_get_data(endpoint=endpoint,
+                                                             params=params)
         except RuntimeError as re:
             raise RuntimeError(f"error_message: {re}")
         return content
@@ -214,12 +222,16 @@ class YellowstoneLodging(BaseProvider):
                     f"{len(available_campsites)} sites found.")
         return available_campsites
 
-    def _gather_campsite_specific_availability(self, available_campsites: List[dict],
-                                               month: datetime,
-                                               nights: Optional[int] = None) -> List[dict]:
+    def _gather_campsite_specific_availability(
+            self,
+            available_campsites: List[dict],
+            month: datetime,
+            nights: Optional[int] = None) -> List[dict]:
         """
-        Given a DataFrame of campsite availability, return updated Data with details about the
-        actual campsites that are available (i.e Tent Size, RV Length, Etc)
+        Get campsite extra information
+
+        Given a DataFrame of campsite availability, return updated Data with details
+        about the actual campsites that are available (i.e Tent Size, RV Length, Etc)
 
         Parameters
         ----------
@@ -236,15 +248,17 @@ class YellowstoneLodging(BaseProvider):
         availability_df = DataFrame(data=available_campsites)
         if availability_df.empty is True:
             return available_room_array
-        for facility_id, facility_df in availability_df.groupby(YellowstoneConfig.FACILITY_ID):
+        for facility_id, _facility_df in availability_df.groupby(
+                YellowstoneConfig.FACILITY_ID):
             api_endpoint = self._get_api_endpoint(
                 url_path=YellowstoneConfig.YELLOWSTONE_CAMPSITE_AVAILABILITY,
                 query=None)
             params = dict(date=self._ensure_current_month(month=month), limit=31)
             if nights is not None:
                 params.update(dict(nights=nights))
-            campsite_data = self.make_yellowstone_request(endpoint=f"{api_endpoint}/{facility_id}",
-                                                          params=params)
+            campsite_data = self.make_yellowstone_request(
+                endpoint=f"{api_endpoint}/{facility_id}",
+                params=params)
             campsite_availability = campsite_data[YellowstoneConfig.BOOKING_AVAILABILITY]
             booking_dates = campsite_availability.keys()
             availabilities = self._process_daily_availability(
@@ -256,7 +270,8 @@ class YellowstoneLodging(BaseProvider):
 
     @classmethod
     def _process_daily_availability(cls, booking_dates: List[str],
-                                    campsite_availability: dict, facility_id: str) -> List[dict]:
+                                    campsite_availability: dict, facility_id: str) -> \
+            List[dict]:
         """
         Process Monthly Availability
 
@@ -285,7 +300,8 @@ class YellowstoneLodging(BaseProvider):
                             booking_date=booking_date_str,
                             facility_id=facility_id,
                             campsite_code=room[YellowstoneConfig.FACILITY_ROOM_CODE],
-                            available=room[YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER],
+                            available=room[
+                                YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER],
                             price=room[YellowstoneConfig.FACILITY_PRICE]))
         return daily_availabilities
 
@@ -310,7 +326,8 @@ class YellowstoneLodging(BaseProvider):
             api_endpoint = self._get_api_endpoint(
                 url_path=YellowstoneConfig.YELLOWSTONE_PROPERTY_INFO,
                 query=None)
-            campsite_info = self.make_yellowstone_request(endpoint=f"{api_endpoint}/{facility_id}")
+            campsite_info = self.make_yellowstone_request(
+                endpoint=f"{api_endpoint}/{facility_id}")
             campsite_codes = campsite_info.keys()
             for campsite_code in campsite_codes:
                 campsite_data = campsite_info[campsite_code]
@@ -343,9 +360,11 @@ class YellowstoneLodging(BaseProvider):
         now = datetime.now()
         search_date = month.replace(day=1)
         if month <= now:
-            logger.info("Cannot input search dates before today, adjusting search parameters.")
+            logger.info(
+                "Cannot input search dates before today, adjusting search parameters.")
             search_date = search_date.replace(year=now.year, month=now.month, day=now.day)
-        availability_found = self._get_monthly_availability(month=search_date, nights=nights)
+        availability_found = self._get_monthly_availability(month=search_date,
+                                                            nights=nights)
         monthly_campsites = self._compile_campground_availabilities(
             availability=availability_found[YellowstoneConfig.BOOKING_AVAILABILITY])
         campsite_data = DataFrame(monthly_campsites,
@@ -370,7 +389,8 @@ class YellowstoneLodging(BaseProvider):
             nights_param = dict(nights=1)
         booking_nights = nights_param.get("nights")
         merged_campsites[YellowstoneConfig.BOOKING_END_DATE_COLUMN] = \
-            merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN] + timedelta(days=booking_nights)
+            merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN] + timedelta(
+                days=booking_nights)
         merged_campsites[YellowstoneConfig.BOOKING_NIGHTS_COLUMN] = booking_nights
         final_campsites = merged_campsites.merge(
             campsite_data, on=YellowstoneConfig.FACILITY_ID_COLUMN).sort_values(
@@ -432,7 +452,8 @@ class YellowstoneLodging(BaseProvider):
         """
         yellowstone_timezone = timezone(YellowstoneConfig.YELLOWSTONE_TIMEZONE)
         yellowstone_current_time = datetime.now(yellowstone_timezone)
-        today = datetime(year=yellowstone_current_time.year, month=yellowstone_current_time.month,
+        today = datetime(year=yellowstone_current_time.year,
+                         month=yellowstone_current_time.month,
                          day=yellowstone_current_time.day)
         if today > month:
             month = today

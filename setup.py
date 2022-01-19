@@ -2,6 +2,7 @@
 
 """
 Python Packaging Configuration File
+
 Package Settings configured and inferred from setup.cfg
 """
 
@@ -14,7 +15,8 @@ from setuptools import setup
 def parse_requirements_file(filename: str) -> List[str]:
     """
     Parse a Requirements File Into Package Dependency List
-    while ignoring comments (on their own line or after the dependency)
+
+    Ignore comments (on their own line or after the dependency)
     and empty lines
     """
     requirements_list = []

@@ -61,6 +61,9 @@ class EmailNotifications(BaseNotifications, ABC):
         _email_server.quit()
 
     def __repr__(self):
+        """
+        String Representation
+        """
         return "<EmailNotifications>"
 
     @staticmethod

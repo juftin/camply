@@ -9,7 +9,7 @@ Silent Notifications
 from abc import ABC
 import logging
 from pprint import pformat
-from typing import List
+from typing import Iterable, List
 
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
@@ -29,16 +29,19 @@ class SilentNotifications(BaseNotifications, ABC):
         logger.info(f"{self} enabled. I hope you're watching these logs.")
 
     def __repr__(self):
+        """
+        String Representation
+        """
         return "<SilentNotifications>"
 
     @staticmethod
-    def send_message(message: str, **kwargs) -> None:
+    def send_message(message: Iterable, **kwargs) -> None:
         """
         Send a message via Email
 
         Parameters
         ----------
-        message: str
+        message: Iterable
             Email Body
         **kwargs
             kwargs are disregarded

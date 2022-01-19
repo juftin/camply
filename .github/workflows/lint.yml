@@ -19,20 +19,27 @@ jobs:
             -   name: Setup Node Dependency
                 uses: actions/setup-node@v2
             -   name: Install Python Dependencies
-                run: |
-                    python -m pip install --upgrade pip wheel
-                    python -m pip install tox
+                run:  |
+                      python -m pip install --upgrade pip wheel
+                      python -m pip install tox
             -   name: Install Node Dependencies
-                run: |
-                    npm i -g eslint eslint-plugin-markdown
-                    npm install eslint-plugin-markdown@latest --save-dev
-            -   name: Lint with Flake8
-                id: flake8
+                run:  |
+                      npm i -g eslint eslint-plugin-markdown
+                      npm install eslint-plugin-markdown@latest --save-dev
+            -   name:              Lint with ESLint
+                id:                eslint
                 continue-on-error: true
-                run: |
-                    echo "::add-matcher::.github/matchers/flake8.json"
-                    tox -e flake8
-                    echo "::remove-matcher owner=flake8::"
+                run:               |
+                                   echo "::add-matcher::.github/matchers/eslint.json"
+                                   eslint . --config "${{ github.workspace }}/.github/config/.eslintrc.js"
+                                   echo "::remove-matcher owner=eslint::"
+            -   name:              Lint with Flake8
+                id:                flake8
+                continue-on-error: true
+                run:               |
+                                   echo "::add-matcher::.github/matchers/flake8.json"
+                                   tox -e flake8
+                                   echo "::remove-matcher owner=flake8::"
             -   name: Lint with YAML-Lint
                 id: yamllint
                 continue-on-error: true
@@ -47,22 +54,15 @@ jobs:
                     echo "::add-matcher::.github/matchers/mypy.json"
                     tox -e mypy
                     echo "::remove-matcher owner=mypy::"
-            -   name: Lint with ESLint
-                id: eslint
-                continue-on-error: true
-                run: |
-                    echo "::add-matcher::.github/matchers/eslint.json"
-                    eslint . --config "${{ github.workspace }}/.github/config/.eslintrc.js"
-                    echo "::remove-matcher owner=eslint::"
-            -   name: (Don't actualy) Raise Errors For Linting Failures
-                if: |
-                    steps.flake8.outcome != 'success' ||
-                      steps.yamllint.outcome != 'success'  ||
-                      steps.mypy.outcome != 'success' ||
-                      steps.eslint.outcome != 'success'
-                run: |
-                    echo "Flake8: ${{ steps.flake8.outcome }}"
-                    echo "YAML-Lint: ${{ steps.yamllint.outcome }}"
-                    echo "MyPy: ${{ steps.mypy.outcome }}"
-                    echo "ESLint: ${{ steps.eslint.outcome }}"
-                    echo "I Should be Raising an Error"
+            -   name: Raise Errors For Linting Failures
+                if:   |
+                      steps.flake8.outcome != 'success' ||
+                        steps.yamllint.outcome != 'success'  ||
+                        steps.eslint.outcome != 'success'
+                run:  |
+                      echo "Flake8: ${{ steps.flake8.outcome }}"
+                      echo "MyPy: ${{ steps.mypy.outcome }}"
+                      echo "YamlLint: ${{ steps.yamllint.outcome }}"
+                      echo "EsLint: ${{ steps.eslint.outcome }}"
+                      echo "I Should Really Be Enforcing MyPy Errors
+                      exit 1

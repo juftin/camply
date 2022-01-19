@@ -112,7 +112,6 @@ class RecreationDotGov(BaseProvider):
         facilities: List[CampgroundFacility]
             Array of Matching Campsites
         """
-
         if campground_id not in [None, list()]:
             facilities = self._find_facilities_from_campgrounds(campground_id=campground_id)
         elif rec_area_id is not None:
@@ -242,8 +241,6 @@ class RecreationDotGov(BaseProvider):
 
         Parameters
         ----------
-        Parameters
-        ----------
         path: str
             URL Endpoint, see https://ridb.recreation.gov/docs
         params: Optional[dict]
@@ -323,7 +320,7 @@ class RecreationDotGov(BaseProvider):
 
         Returns
         -------
-
+        List[dict]
         """
         filtered_responses = list()
         for possible_match in responses:
@@ -465,6 +462,7 @@ class RecreationDotGov(BaseProvider):
     def _make_recdotgov_request(self, campground_id: int, month: datetime) -> requests.Response:
         """
         Make a request to the RecreationDotGov API - Handle Exponential Backoff
+
         Parameters
         ----------
         campground_id
@@ -472,7 +470,7 @@ class RecreationDotGov(BaseProvider):
 
         Returns
         -------
-        Returns
+        requests.Response
         """
         try:
             formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")

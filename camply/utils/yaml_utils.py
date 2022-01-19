@@ -23,16 +23,19 @@ logger = logging.getLogger(__name__)
 
 def read_yml(path: str = None):
     """
+    Read a YAML File
+
     Load a yaml configuration file_path (path) or data object (data)
     and resolve any environment variables. The environment
     variables must be in this format to be parsed: ${VAR_NAME}.
+
     Parameters
     ----------
     path: str
         File Path of YAML Object to Read
 
     Examples
-    ----------
+    --------
     database:
         host: ${HOST}
         port: ${PORT}
@@ -50,8 +53,10 @@ def read_yml(path: str = None):
     def env_var_constructor(safe_loader: object, node: object):
         """
         Extracts the environment variable from the node's value
+
         :param yaml.Loader safe_loader: the yaml loader
         :param node: the current node in the yaml
+
         :return: the parsed string that contains the value of the environment
         variable
         """

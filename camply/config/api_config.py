@@ -7,7 +7,7 @@ API Searching Configuration
 """
 
 from os import getenv
-from typing import Dict, List
+from typing import Dict, List, Union
 
 from dotenv import load_dotenv
 
@@ -187,9 +187,10 @@ class RIDBConfig:
 
     https://ridb.recreation.gov/docs
     """
+
     _camply_ridb_service_account_api_token: bytes = \
         b'YTc0MTY0NzEtMWI1ZC00YTY0LWFkM2QtYTIzM2U3Y2I1YzQ0'
-    _api_key: str = getenv("RIDB_API_KEY", _camply_ridb_service_account_api_token)
+    _api_key: Union[str, bytes] = getenv("RIDB_API_KEY", _camply_ridb_service_account_api_token)
     API_KEY = _camply_ridb_service_account_api_token if _api_key == "" else _api_key
 
     RIDB_SCHEME: str = "https"
@@ -229,6 +230,7 @@ class RecreationBookingConfig:
     """
     Variable Storage Class for Recreation.gov Booking API
     """
+
     API_SCHEME: str = "https"
     API_NET_LOC = "www.recreation.gov"
     API_BASE_PATH: str = "api/camps/availability/campground/"

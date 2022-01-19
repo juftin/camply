@@ -11,6 +11,7 @@ class DataColumns:
     """
     Variable Storage Class
     """
+
     CAMPSITE_ID_COLUMN: str = "campsite_code"
     BOOKING_DATE_COLUMN: str = "booking_date"
     BOOKING_END_DATE_COLUMN: str = "booking_end_date"
@@ -30,6 +31,7 @@ class CampsiteContainerFields:
     """
     String Variable Storage Class
     """
+
     CAMPSITE_ID: str = "campsite_id"
     CAMPGROUND_ID: str = "facility_id"
     BOOKING_DATE: str = "booking_date"

@@ -38,6 +38,9 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
             raise EnvironmentError(warning_message)
 
     def __repr__(self):
+        """
+        String Representation
+        """
         return "<PushoverNotifications>"
 
     @staticmethod
