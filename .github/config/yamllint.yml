@@ -18,5 +18,3 @@ rules:
         max:                                 120
     truthy:
         check-keys: false
-ignore:  |
-         tests/models/cassettes/

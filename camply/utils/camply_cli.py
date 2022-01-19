@@ -24,11 +24,12 @@ logger = logging.getLogger(__name__)
 
 def main():
     """
-    Run the Camply CLI. The CLI is wrapped in a main() function to
-    interface with Poetry
+    Run the Camply CLI.
+
+    The CLI is wrapped in a main() function to interface with entrypoints
 
     Returns
-    ------
+    -------
     None
     """
     logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
@@ -47,7 +48,6 @@ class CommandLineError(Exception):
     """
     Generic CLI Error
     """
-    pass
 
 
 class CamplyCommandLine:
@@ -62,7 +62,6 @@ class CamplyCommandLine:
         """
         Initialized CLI
         """
-
         self.parser = ArgumentParser(description=CommandLineConfig.CAMPLY_LONG_DESCRIPTION,
                                      prog=self.__name__,
                                      epilog=CommandLineConfig.CAMPLY_EPILOG)

@@ -39,6 +39,7 @@ class EmailConfig:
     """
     Email Notification Config Class
     """
+
     EMAIL_TO_ADDRESS: str = getenv("EMAIL_TO_ADDRESS", None)
     DEFAULT_FROM_ADDRESS: str = "camply@juftin.com"
     EMAIL_FROM_ADDRESS: str = getenv("EMAIL_FROM_ADDRESS", DEFAULT_FROM_ADDRESS)

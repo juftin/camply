@@ -16,6 +16,7 @@ class FileConfig:
     """
     File Path Storage Class
     """
+
     HOME_PATH = abspath(Path.home())
     DOT_CAMPLY_FILE = join(HOME_PATH, ".camply")
     _file_config_file = Path(abspath(__file__))

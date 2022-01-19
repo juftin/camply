@@ -29,6 +29,9 @@ class SilentNotifications(BaseNotifications, ABC):
         logger.info(f"{self} enabled. I hope you're watching these logs.")
 
     def __repr__(self):
+        """
+        String Representation
+        """
         return "<SilentNotifications>"
 
     @staticmethod

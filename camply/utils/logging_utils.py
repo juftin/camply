@@ -35,7 +35,9 @@ def get_emoji(obj: list) -> str:
 def log_camply(self: logging.Logger, message: str, *args, **kwargs) -> None:
     """
     Custom Logging Notification Level for Pushover Logging
-    between logging.ERROR and logging.CRITICAL (45)
+
+    Between logging.ERROR and logging.CRITICAL (45)
+
     Parameters
     ----------
     self: logging.Logger

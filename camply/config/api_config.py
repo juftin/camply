@@ -187,6 +187,7 @@ class RIDBConfig:
 
     https://ridb.recreation.gov/docs
     """
+
     _camply_ridb_service_account_api_token: bytes = \
         b'YTc0MTY0NzEtMWI1ZC00YTY0LWFkM2QtYTIzM2U3Y2I1YzQ0'
     _api_key: str = getenv("RIDB_API_KEY", _camply_ridb_service_account_api_token)
@@ -229,6 +230,7 @@ class RecreationBookingConfig:
     """
     Variable Storage Class for Recreation.gov Booking API
     """
+
     API_SCHEME: str = "https"
     API_NET_LOC = "www.recreation.gov"
     API_BASE_PATH: str = "api/camps/availability/campground/"

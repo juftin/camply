@@ -59,8 +59,10 @@ class SearchRecreationDotGov(BaseCampingSearch):
 
     def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:
         """
-        Return a List of Campgrounds to search, this handles scenarios
-        where a recreation area is provided instead of a campground list
+        Return a List of Campgrounds to search
+
+        This handles scenarios where a recreation area is provided instead
+        of a campground list
 
         Returns
         -------
@@ -119,9 +121,10 @@ class SearchRecreationDotGov(BaseCampingSearch):
         logger.info(f"Searching across {len(self.campgrounds)} campgrounds")
         for index, campground in enumerate(self.campgrounds):
             for month in self.search_months:
-                logger.info(f"Searching {campground.facility_name}, {campground.recreation_area} "
-                            f"({campground.facility_id}) for availability: "
-                            f"{month.strftime('%B, %Y')}")
+                logger.info(
+                    f"Searching {campground.facility_name}, {campground.recreation_area} "
+                    f"({campground.facility_id}) for availability: "
+                    f"{month.strftime('%B, %Y')}")
                 availabilities = self.campsite_finder.get_recdotgov_data(
                     campground_id=campground.facility_id, month=month)
                 campsites = self.campsite_finder.process_campsite_availability(
@@ -136,7 +139,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
                     sleep(round(uniform(*RecreationBookingConfig.RATE_LIMITING), 2))
         campsite_df = self.campsites_to_df(campsites=found_campsites)
         campsite_df_validated = self._filter_date_overlap(campsites=campsite_df)
-        compiled_campsite_df = self._consolidate_campsites(campsite_df=campsite_df_validated,
-                                                           nights=self.nights)
+        compiled_campsite_df = self._consolidate_campsites(
+            campsite_df=campsite_df_validated,
+            nights=self.nights)
         compiled_campsites = self.df_to_campsites(campsite_df=compiled_campsite_df)
         return compiled_campsites

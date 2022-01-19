@@ -22,6 +22,7 @@ class CommandLineActions:
     """
     ArgParse Actions
     """
+
     VERSION: str = "version"
     STORE: str = "store"
     STORE_TRUE: str = "store_true"
@@ -32,6 +33,7 @@ class CommandLineArguments:
     """
     Argument Config
     """
+
     VERSION_ARGUMENT: str = "--version"
 
     STATE_ARGUMENT: str = "--state"
@@ -118,6 +120,7 @@ class CommandLineValidation:
     """
     Camply CLI Validation Config
     """
+
     ERROR_NO_ARGUMENT_FOUND: str = "You must provide an argument to the Camply CLI"
     ERROR_MESSAGE_RECREATION_AREA: str = ("You must add a --search or --state parameter to search "
                                           "for Recreation Areas.")

@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 def get_log_input(message: str):
     """
     Create a log message with a nice log format :)
+
     Parameters
     ----------
     message: str
@@ -60,8 +61,9 @@ def double_check(message: str) -> bool:
 
 def check_dot_camply_file() -> bool:
     """
-    Check to see if the `.camply` file already exists, and return the
-    file existence status
+    Check to see if the `.camply` file already exists
+
+    Return the file existence status
 
     Returns
     -------
@@ -110,7 +112,7 @@ def write_config_to_file(config_dict: OrderedDict) -> None:
     """
     string_list = [
         "# CAMPLY CONFIGURATION FILE. ",
-        "# SEE https://github.com/juftin/camply/blob/main/docs/examples/example.camply ""FOR MORE DETAILS",
+        "# SEE https://github.com/juftin/camply/blob/main/docs/examples/example.camply",
         ""
     ]
     for config_key, config_value in config_dict.items():

@@ -33,7 +33,7 @@ class SearchError(Exception):
     """
 
 
-class CampsiteNotFound(SearchError):
+class CampsiteNotFoundError(SearchError):
     """
     Campsite not found Error
     """
@@ -76,7 +76,9 @@ class BaseCampingSearch(ABC):
     @abstractmethod
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """
-        Perform the Search and Return Matching Availabilities. This method must be implemented
+        Perform the Search and Return Matching Availabilities.
+
+        This method must be implemented
         on all sub-classes.
 
         Returns
@@ -86,6 +88,7 @@ class BaseCampingSearch(ABC):
 
     def _get_intersection_date_overlap(self, date: datetime, periods: int) -> bool:
         """
+        Find Date Overlap
 
         Parameters
         ----------
@@ -169,7 +172,7 @@ class BaseCampingSearch(ABC):
         if len(matching_campgrounds) == 0 and raise_error is True:
             campsite_availability_message = "No Campsites were found, we'll continue checking"
             logger.info(campsite_availability_message)
-            raise CampsiteNotFound(campsite_availability_message)
+            raise CampsiteNotFoundError(campsite_availability_message)
         return matching_campgrounds
 
     @classmethod
@@ -230,7 +233,7 @@ class BaseCampingSearch(ABC):
         logger.info(f"Searching for campsites every {polling_interval_minutes} minutes. "
                     f"Notifications active via {notifier}")
         retryer = tenacity.Retrying(
-            retry=tenacity.retry_if_exception_type(CampsiteNotFound),
+            retry=tenacity.retry_if_exception_type(CampsiteNotFoundError),
             wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60))
         matching_campsites = retryer.__call__(self._search_matching_campsites_available,
                                               False, False, True)
@@ -441,7 +444,7 @@ class BaseCampingSearch(ABC):
             group_identifier = consecutive_nights.cumsum()
             campsite_grouping[CampsiteContainerFields.CAMPSITE_GROUP] = group_identifier
             # USE THE ASSEMBLED GROUPS TO CREATE UPDATED CAMPSITES AND REMOVE DUPLICATES
-            for campsite_group, campsite_group_slice in campsite_grouping.groupby(
+            for _campsite_group, campsite_group_slice in campsite_grouping.groupby(
                     [CampsiteContainerFields.CAMPSITE_GROUP]):
                 composed_grouping = campsite_group_slice.sort_values(
                     by=CampsiteContainerFields.BOOKING_DATE,
@@ -478,8 +481,9 @@ class BaseCampingSearch(ABC):
     @classmethod
     def _find_consecutive_nights(cls, dataframe: DataFrame, nights: int) -> DataFrame:
         """
-        Given a DataFrame of Consecutive Nightly Campsite Availabilities, explode it into
-        all unique possibilities given the length of the stay.
+        Explode a DataFrame of Consecutive Nightly Campsite Availabilities,
+
+        Expand to all unique possibilities given the length of the stay.
 
         Parameters
         ----------
