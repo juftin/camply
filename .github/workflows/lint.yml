@@ -62,5 +62,7 @@ jobs:
                 run:  |
                       echo "Flake8: ${{ steps.flake8.outcome }}"
                       echo "MyPy: ${{ steps.mypy.outcome }}"
-                      echo "I Should Really Be Checking with MyPy
+                      echo "YamlLint: ${{ steps.yamllint.outcome }}"
+                      echo "EsLint: ${{ steps.eslint.outcome }}"
+                      echo "I Should Really Be Enforcing MyPy Errors
                       exit 1
