@@ -83,7 +83,7 @@ class CommandLineArguments:
 
     POLLING_INTERVAL_ARGUMENT: str = "--polling-interval"
     POLLING_INTERVAL_DESTINATION: str = "polling_interval"
-    POLLING_INTERVAL_DEFAULT: str = SearchConfig.RECOMMENDED_POLLING_INTERVAL
+    POLLING_INTERVAL_DEFAULT: int = SearchConfig.RECOMMENDED_POLLING_INTERVAL
     POLLING_INTERVAL_HELP: str = ("If --continuous is activated, how often to wait in between "
                                   "checks (in minutes). Defaults to 10, cannot be less than 5.")
 

@@ -8,7 +8,7 @@ Project Configuration for Pushover Variables
 
 import logging
 from os import environ, getenv
-from typing import List
+from typing import List, Optional
 
 from dotenv import load_dotenv
 
@@ -40,15 +40,15 @@ class EmailConfig:
     Email Notification Config Class
     """
 
-    EMAIL_TO_ADDRESS: str = getenv("EMAIL_TO_ADDRESS", None)
+    EMAIL_TO_ADDRESS: Optional[str] = getenv("EMAIL_TO_ADDRESS", None)
     DEFAULT_FROM_ADDRESS: str = "camply@juftin.com"
     EMAIL_FROM_ADDRESS: str = getenv("EMAIL_FROM_ADDRESS", DEFAULT_FROM_ADDRESS)
     DEFAULT_SUBJECT_LINE: str = "Camply Notification"
     EMAIL_SUBJECT_LINE: str = getenv("EMAIL_SUBJECT_LINE", DEFAULT_SUBJECT_LINE)
     DEFAULT_SMTP_SERVER: str = "smtp.gmail.com"
     EMAIL_SMTP_SERVER: str = getenv("EMAIL_SMTP_SERVER", DEFAULT_SMTP_SERVER)
-    EMAIL_USERNAME: str = getenv("EMAIL_USERNAME", None)
-    EMAIL_PASSWORD: str = getenv("EMAIL_PASSWORD", None)
+    EMAIL_USERNAME: Optional[str] = getenv("EMAIL_USERNAME", None)
+    EMAIL_PASSWORD: Optional[str] = getenv("EMAIL_PASSWORD", None)
     DEFAULT_SMTP_PORT: int = 465
     EMAIL_SMTP_PORT: int = int(getenv("EMAIL_SMTP_PORT", DEFAULT_SMTP_PORT))
 

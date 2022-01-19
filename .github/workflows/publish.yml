@@ -65,5 +65,5 @@ jobs:
                 id:   docker_build
                 uses: docker/build-push-action@v2
                 with:
-                    push: True
+                    push: true
                     tags: juftin/camply:latest,juftin/camply:${{ env.CAMPLY_VERSION }}

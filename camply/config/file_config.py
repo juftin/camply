@@ -25,7 +25,7 @@ class FileConfig:
     CAMPLY_DIRECTORY = _config_dir.parent
     ROOT_DIRECTORY = CAMPLY_DIRECTORY.parent
 
-    DOT_CAMPLY_FIELDS: List[str] = OrderedDict(
+    DOT_CAMPLY_FIELDS = OrderedDict(
         PUSHOVER_PUSH_USER=dict(default="", notes="Enables Pushover Notifications"),
         PUSHBULLET_API_TOKEN=dict(default="", notes="Enables Pushbullet Notifications"),
         EMAIL_TO_ADDRESS=dict(default="", notes="Email Notifications will be sent here"),
