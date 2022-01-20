@@ -22,12 +22,6 @@ class SilentNotifications(BaseNotifications, ABC):
     Silent Notifications
     """
 
-    def __init__(self):
-        """
-        Initialize Silent Notifications
-        """
-        logger.info(f"{self} enabled. I hope you're watching these logs.")
-
     def __repr__(self):
         """
         String Representation

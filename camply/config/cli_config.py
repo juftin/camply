@@ -8,6 +8,7 @@ Command Line Configuration
 
 import logging
 from os import getenv
+from typing import List
 
 from dotenv import load_dotenv
 
@@ -89,7 +90,7 @@ class CommandLineArguments:
 
     NOTIFICATIONS_ARGUMENT: str = "--notifications"
     NOTIFICATIONS_DESTINATION: str = "notifications"
-    NOTIFICATIONS_DEFAULT: str = "silent"
+    NOTIFICATIONS_DEFAULT: List[str] = ["silent"]
     NOTIFICATIONS_HELP: str = ("If --continuous is activated, types of notifications to receive. "
                                "Options available are 'email', "
                                "'pushover', 'pushbullet', or 'silent'. Defaults to 'silent' - "

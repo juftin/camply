@@ -37,6 +37,7 @@ ___________
         + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
         + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
         + [Send a Push Notification](#send-a-push-notification)
+        + [Send a Notification to Different Services](#send-a-notification-to-different-services)
         + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for Consecutive Nights at the Same Campsite](#look-for-consecutive-nights-at-the-same-campsite)
         + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
@@ -333,6 +334,32 @@ camply campsites \
     --end-date 2022-09-21 \
     --continuous \
     --notifications pushbullet
+```
+
+#### Send a Notification to Different Services
+
+camply supports notifications from different providers. To send notifications to multiple providers
+just separate them with a comma. If you're adding spaces between the commas make sure to quote
+everything. You can also pass the --notifications parameter multiple times. YAML config entries also
+accept an array as well.
+
+```text
+camply campsites \
+    --rec-area 2991 \
+    --start-date 2022-09-10 \
+    --end-date 2022-09-21 \
+    --continuous \
+    --notifications pushover,email
+```
+
+```text
+camply campsites \
+    --rec-area 2991 \
+    --start-date 2022-09-10 \
+    --end-date 2022-09-21 \
+    --continuous \
+    --notifications email \
+    --notifications pushover
 ```
 
 #### Look for Weekend Campsite Availabilities

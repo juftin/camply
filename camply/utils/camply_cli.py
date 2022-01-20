@@ -194,7 +194,7 @@ class CamplyCommandLine:
                                     required=False,
                                     help=CommandLineConfig.POLLING_INTERVAL_HELP)
         self.campsites.add_argument(CommandLineConfig.NOTIFICATIONS_ARGUMENT,
-                                    action=CommandLineConfig.STORE,
+                                    action=CommandLineConfig.APPEND,
                                     dest=CommandLineConfig.NOTIFICATIONS_DESTINATION,
                                     required=False,
                                     default=CommandLineConfig.NOTIFICATIONS_DEFAULT,

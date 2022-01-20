@@ -19,8 +19,10 @@ from pandas import concat, DataFrame, date_range, Series, Timedelta
 import tenacity
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
-from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea, SearchWindow
-from camply.notifications import CAMPSITE_NOTIFICATIONS, SilentNotifications
+from camply.containers import (AvailableCampsite, CampgroundFacility, RecreationArea,
+                               SearchWindow)
+from camply.notifications.base_notifications import BaseNotifications
+from camply.notifications.multi_provider_notifications import MultiNotifierProvider
 from camply.providers import RecreationDotGov, YellowstoneLodging
 from camply.utils.logging_utils import get_emoji
 
@@ -197,10 +199,11 @@ class BaseCampingSearch(ABC):
         polling_interval_minutes = int(round(float(polling_interval), 2))
         return polling_interval_minutes
 
-    def _continuous_search_retry(self, log: bool, verbose: bool, polling_interval: int,
-                                 continuous_search_attempts: int,
-                                 notification_provider: str,
-                                 notify_first_try: bool) -> List[AvailableCampsite]:
+    def _continuous_search_retry(
+            self, log: bool, verbose: bool, polling_interval: int,
+            continuous_search_attempts: int,
+            notification_provider: Union[str, List[str], BaseNotifications, None],
+            notify_first_try: bool) -> List[AvailableCampsite]:
         """
         Search for Campsites until at least one is found
 
@@ -215,9 +218,10 @@ class BaseCampingSearch(ABC):
             Defaults to 10 if not provided, cannot be less than 5
         continuous_search_attempts: int
             Number of preexisting search attempts
-        notification_provider: str
-            Used with `continuous=True`, Name of notification provider to use. Accepts "email",
-            "pushover", and defaults to "silent"
+        notification_provider: provider: Union[str, List[str]]
+            Used with `continuous=True`, Name of notification provider to use. Accepts
+            "email", "pushover", and defaults to "silent". Also accepts a list or commma
+            separated string of these options or even a notification provider object itself
         notify_first_try: bool
             Used with `continuous=True`, whether to send all non-silent notifications if more
             than 5 matching campsites are found on the first try. Defaults to false which
@@ -228,10 +232,9 @@ class BaseCampingSearch(ABC):
         List[AvailableCampsite]
         """
         polling_interval_minutes = self._get_polling_minutes(polling_interval=polling_interval)
-        notifier = CAMPSITE_NOTIFICATIONS.get(notification_provider.lower(),
-                                              SilentNotifications)()
-        logger.info(f"Searching for campsites every {polling_interval_minutes} minutes. "
-                    f"Notifications active via {notifier}")
+        notifier = MultiNotifierProvider(provider=notification_provider)
+        logger.info(f"Searching for campsites every {polling_interval_minutes} minutes. ")
+        notifier.log_providers()
         retryer = tenacity.Retrying(
             retry=tenacity.retry_if_exception_type(CampsiteNotFoundError),
             wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60))
@@ -249,7 +252,7 @@ class BaseCampingSearch(ABC):
         elif retryer.statistics.get("attempt_number", 1) == 1 and notify_first_try is True:
             notifier.send_campsites(campsites=logged_campsites)
         else:
-            if not isinstance(notifier, SilentNotifications) and \
+            if len(notifier.providers) > 1 and \
                     len(logged_campsites) > SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY:
                 error_message = (f"Found more than {SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} "
                                  f"matching campsites ({len(logged_campsites)}) on the "
@@ -281,8 +284,9 @@ class BaseCampingSearch(ABC):
             Used with `continuous=True`, the amount of time to wait between searches.
             Defaults to 10 if not provided, cannot be less than 5
         notification_provider: str
-            Used with `continuous=True`, Name of notification provider to use. Accepts "email",
-            "pushover", and defaults to "silent"
+            Used with `continuous=True`, Name of notification provider to use. Accepts
+            "email", "pushover", and defaults to "silent". Also accepts a list or commma
+            separated string of these options or even a notification provider object itself
         notify_first_try: bool
             Used with `continuous=True`, whether to send all non-silent notifications if more
             than 5 matching campsites are found on the first try. Defaults to false which
@@ -332,8 +336,9 @@ class BaseCampingSearch(ABC):
             Used with `continuous=True`, the amount of time to wait between searches.
             Defaults to 10 if not provided, cannot be less than 5
         notification_provider: str
-            Used with `continuous=True`, Name of notification provider to use. Accepts "email",
-            "pushover", and defaults to "silent"
+            Used with `continuous=True`, Name of notification provider to use. Accepts
+            "email", "pushover", and defaults to "silent". Also accepts a list or commma
+            separated string of these options or even a notification provider object itself
         notify_first_try: bool
             Used with `continuous=True`, whether to send all non-silent notifications if more
             than 5 matching campsites are found on the first try. Defaults to false which
