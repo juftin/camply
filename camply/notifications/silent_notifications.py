@@ -66,5 +66,5 @@ class SilentNotifications(BaseNotifications, ABC):
                 campsite.facility_name,
                 campsite.booking_url)
             SilentNotifications.send_message(campsite_tuple)
-            campsite_formatted = pformat(dict(campsite._asdict()))
+            campsite_formatted = pformat(campsite.dict())
             logger.debug("Campsite Info: " + campsite_formatted)
