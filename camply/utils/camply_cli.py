@@ -122,6 +122,14 @@ class CamplyCommandLine:
                                          default=list(),
                                          help=CommandLineConfig.CAMPGROUND_LIST_HELP)
 
+        campsite_argument = ArgumentParser(add_help=False)
+        campsite_argument.add_argument(CommandLineConfig.CAMPSITE_ID_ARGUMENT,
+                                       action=CommandLineConfig.APPEND,
+                                       dest=CommandLineConfig.CAMPSITE_ID_DESTINATION,
+                                       required=False,
+                                       default=list(),
+                                       help=CommandLineConfig.CAMPSITE_ID_HELP)
+
         search_argument = ArgumentParser(add_help=False)
         search_argument.add_argument(CommandLineConfig.SEARCH_ARGUMENT,
                                      action=CommandLineConfig.STORE,
@@ -133,7 +141,9 @@ class CamplyCommandLine:
             name=CommandLineConfig.COMMAND_CAMPSITES,
             help=CommandLineConfig.COMMAND_CAMPSITES_HELP,
             description=CommandLineConfig.COMMAND_CAMPSITES_DESCRIPTION,
-            parents=[recreation_area_id_argument, campground_argument])
+            parents=[recreation_area_id_argument,
+                     campground_argument,
+                     campsite_argument])
 
         self.recreation_areas = subparsers.add_parser(
             name=CommandLineConfig.COMMAND_RECREATION_AREA,
@@ -146,7 +156,9 @@ class CamplyCommandLine:
             help=CommandLineConfig.COMMAND_CAMPGROUNDS_HELP,
             description=CommandLineConfig.COMMAND_CAMPGROUNDS_DESCRIPTION,
             parents=[search_argument, state_argument,
-                     recreation_area_id_argument, campground_argument])
+                     recreation_area_id_argument,
+                     campground_argument,
+                     campsite_argument])
 
         subparsers.add_parser(
             name=CommandLineConfig.COMMAND_CONFIGURE,
@@ -272,6 +284,7 @@ class CamplyCommandLine:
         if self.cli_arguments.provider == CommandLineConfig.RECREATION_DOT_GOV and all(
                 [self.cli_arguments.recreation_area_id is None,
                  len(self.cli_arguments.campground_id) == 0,
+                 len(self.cli_arguments.campsite_id) == 0,
                  self.cli_arguments.yml_config is None]):
             error_message = CommandLineConfig.ERROR_MESSAGE_REC_DOT_GOV
             help_parser = self.campsites
@@ -368,6 +381,7 @@ class CamplyCommandLine:
         camp_finder.find_campgrounds(search_string=self.cli_arguments.search,
                                      rec_area_id=self.cli_arguments.recreation_area_id,
                                      campground_id=self.cli_arguments.campground_id,
+                                     campsite_id=self.cli_arguments.campsite_id,
                                      **params)
 
     def execute_campsites(self) -> None:
@@ -389,6 +403,7 @@ class CamplyCommandLine:
             provider_kwargs = dict(search_window=search_window,
                                    recreation_area=self.cli_arguments.recreation_area_id,
                                    campgrounds=self.cli_arguments.campground_id,
+                                   campsites=self.cli_arguments.campsite_id,
                                    weekends_only=self.cli_arguments.weekends,
                                    nights=int(self.cli_arguments.nights))
             search_kwargs = dict(log=True, verbose=True,

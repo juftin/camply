@@ -97,7 +97,9 @@ class RecreationDotGov(BaseProvider):
 
     def find_campgrounds(self, search_string: str = None,
                          rec_area_id: Optional[List[int]] = None,
-                         campground_id: Optional[List[int]] = None, **kwargs) -> \
+                         campground_id: Optional[List[int]] = None,
+                         campsite_id: Optional[List[int]] = None,
+                         **kwargs) -> \
             List[CampgroundFacility]:
         """
         Find Bookable Campgrounds Given a Set of Search Criteria
@@ -109,6 +111,8 @@ class RecreationDotGov(BaseProvider):
         rec_area_id: Optional[List[int]]
             Recreation Area ID to filter with
         campground_id: Optional[List[int]]
+            ID of the Campground
+        campground_id: Optional[List[int]]
             ID of the Campsite
 
         Returns
@@ -116,7 +120,10 @@ class RecreationDotGov(BaseProvider):
         facilities: List[CampgroundFacility]
             Array of Matching Campsites
         """
-        if campground_id not in [None, list()]:
+        if campsite_id not in [None, list()]:
+            facility_ids = self.get_campground_ids_by_campsites(campsite_ids=campsite_id)
+            facilities = self._find_facilities_from_campgrounds(campground_id=facility_ids)
+        elif campground_id not in [None, list()]:
             facilities = self._find_facilities_from_campgrounds(campground_id=campground_id)
         elif rec_area_id is not None:
             facilities = list()

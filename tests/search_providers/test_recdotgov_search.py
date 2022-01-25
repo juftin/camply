@@ -13,7 +13,7 @@ from typing import List
 from dateutil.relativedelta import relativedelta
 import pytest
 
-from camply.containers import AvailableCampsite, SearchWindow
+from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.search import SearchRecreationDotGov
 
 logger = logging.getLogger(__name__)
@@ -65,6 +65,22 @@ def recdotgov_campground_finder(search_window) -> SearchRecreationDotGov:
     """
     recdotgov_finder = SearchRecreationDotGov(search_window=search_window,
                                               campgrounds=232493)  # Fish Creek, Glacier Ntl Park
+    logger.info("RecreationDotGov Campground Searcher Established.")
+    logger.info(f"Search Months: {recdotgov_finder.search_months}")
+    return recdotgov_finder
+
+
+@pytest.fixture
+def recdotgov_campsite_finder(search_window) -> SearchRecreationDotGov:
+    """
+    Assemble The Searching Class
+
+    Returns
+    -------
+    SearchYellowstone
+    """
+    recdotgov_finder = SearchRecreationDotGov(search_window=search_window,
+                                              campsites=40107)  # Fish Creek, Glacier Ntl Park
     logger.info("RecreationDotGov Campground Searcher Established.")
     logger.info(f"Search Months: {recdotgov_finder.search_months}")
     return recdotgov_finder
@@ -122,6 +138,26 @@ def test_get_all_campsites_campground(recdotgov_campground_finder) -> List[Avail
     """
     logger.info("Searching for Campground Specific Campsites")
     all_campsites = recdotgov_campground_finder.get_all_campsites()
+    SearchRecreationDotGov.assemble_availabilities(matching_data=all_campsites, log=True,
+                                                   verbose=False)
+    return all_campsites
+
+
+def test_get_campsite_specific_campgrounds(recdotgov_campsite_finder) -> List[CampgroundFacility]:
+    """
+    Get all of the Related Campgrounds
+    """
+    logger.info("Searching for Campground Specific Campsites")
+    campgrounds = recdotgov_campsite_finder._get_campgrounds_by_campsite_id()
+    return campgrounds
+
+
+def test_get_campsite_specific_results(recdotgov_campsite_finder) -> List[AvailableCampsite]:
+    """
+    Get the related Campsite's availability
+    """
+    logger.info("Searching for Campground Specific Campsites")
+    all_campsites = recdotgov_campsite_finder.get_all_campsites()
     SearchRecreationDotGov.assemble_availabilities(matching_data=all_campsites, log=True,
                                                    verbose=False)
     return all_campsites

@@ -49,6 +49,10 @@ class CommandLineArguments:
     CAMPGROUND_LIST_DESTINATION: str = "campground_id"
     CAMPGROUND_LIST_HELP: str = "Add individual Campgrounds by ID."
 
+    CAMPSITE_ID_ARGUMENT: str = "--campsite"
+    CAMPSITE_ID_DESTINATION: str = "campsite_id"
+    CAMPSITE_ID_HELP: str = "Add individual Campsites by ID."
+
     SEARCH_ARGUMENT: str = "--search"
     SEARCH_DESTINATION: str = "search"
     SEARCH_HELP: str = "Search for Campgrounds or Recreation Areas by search string."
@@ -128,7 +132,8 @@ class CommandLineValidation:
     ERROR_MESSAGE_CAMPGROUNDS: str = ("You must add a --search, --state, --campground, or "
                                       "--rec-area parameter to search for Campgrounds.")
     ERROR_MESSAGE_REC_DOT_GOV: str = ("To search for Recreation.gov Campsites you must provide "
-                                      "either the --rec-area or the --campground parameters.")
+                                      "either the --rec-area, --campground, or --campsite "
+                                      "parameters.")
     ERROR_MESSAGE_CAMPSITES: str = ("Campsite searches require the following mandatory search "
                                     "parameters.")
 
