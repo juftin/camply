@@ -159,13 +159,10 @@ class SearchRecreationDotGov(BaseCampingSearch):
                     facility_name=campground.facility_name,
                     facility_id=campground.facility_id,
                     month=month)
-                id_matching_campsites = [
-                    campsite_obj for campsite_obj in campsites if any([
-                        self.campsites in [None, []],
-                        int(campsite_obj.campsite_id) in self.campsites
-                    ])
-                ]
-                found_campsites += id_matching_campsites
+                if self.campsites not in [None, []]:
+                    campsites = [campsite_obj for campsite_obj in campsites if
+                                 int(campsite_obj.campsite_id) in self.campsites]
+                found_campsites += campsites
                 if index + 1 < len(self.campgrounds):
                     sleep(round(uniform(*RecreationBookingConfig.RATE_LIMITING), 2))
         campsite_df = self.campsites_to_df(campsites=found_campsites)
