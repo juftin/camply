@@ -198,32 +198,12 @@ class RIDBConfig:
     RIDB_BASE_PATH: str = "api/v1/"
 
     # FACILITIES_API_PATH FIELDS
-
     FACILITIES_API_PATH: str = "facilities"
-    FACILITY_DATA: str = "RECDATA"
-    FACILITY_METADATA: str = "METADATA"
-    FACILITY_METADATA_RESULTS: str = "RESULTS"
-
-    PAGINATE_RESULT_COUNT: str = "CURRENT_COUNT"
-    PAGINATE_TOTAL_COUNT: str = "TOTAL_COUNT"
-
-    CAMPGROUND_FACILITY_FIELD: str = "FacilityTypeDescription"
     CAMPGROUND_FACILITY_FIELD_QUALIFIER: str = "Campground"
-    CAMPGROUND_FACILITY_RESERVABLE_FIELD: str = "Reservable"
-    CAMPGROUND_FACILITY_ENABLED_FIELD: str = "Enabled"
-    FACILITY_ID: str = "FacilityID"
-    FACILITY_NAME: str = "FacilityName"
-    CAMPGROUND_RECREATION_AREA: str = "RECAREA"
-    RECREATION_AREA_NAME: str = "RecAreaName"
-    FACILITY_ADDRESS: str = "FACILITYADDRESS"
-    FACILITY_LOCATION_STATE: str = "AddressStateCode"
-
     # RECREATION AREA FIELDS
     REC_AREA_API_PATH: str = "recareas"
-    REC_AREA_ID: str = "RecAreaID"
-    REC_AREA_NAME: str = "RecAreaName"
-    REC_AREA_ADDRESS: str = "RECAREAADDRESS"
-    REC_AREA_STATE: str = "AddressStateCode"
+    # CAMPSITE DETAILS
+    CAMPSITE_API_PATH: str = "campsites"
 
 
 class RecreationBookingConfig:
@@ -248,19 +228,8 @@ class RecreationBookingConfig:
                                           "Open"
                                           ]
 
-    CAMPSITE_BASE: str = "campsites"
-    CAMPSITE_AVAILABILITIES_BASE: str = "availabilities"
-
-    CAMPSITE_LOCATION_LOOP: str = "loop"
     CAMPSITE_LOCATION_LOOP_DEFAULT: str = "Default Loop"
-
-    CAMPSITE_LOCATION_SITE: str = "site"
     CAMPSITE_LOCATION_SITE_DEFAULT: str = "Default Site"
-
-    CAMPSITE_INFO_TYPE: str = "campsite_type"
-    CAMPSITE_INFO_MAX_PEOPLE: str = "max_num_people"
-    CAMPSITE_INFO_MIN_PEOPLE: str = "min_num_people"
-    CAMPSITE_INFO_TYPE_OF_USE: str = "type_of_use"
 
     CAMPSITE_BOOKING_URL: str = "https://www.recreation.gov/camping/campsites"
 
