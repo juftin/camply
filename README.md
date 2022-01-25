@@ -655,7 +655,7 @@ available.
 
 ## Dependencies
 
-`camply` is compatible with any Python version >= `3.6`. Currently, there are four required
+`camply` is compatible with any Python version >= `3.6`. Currently, there are six required
 dependencies:
 
 - [requests](https://docs.python-requests.org/en/master/)
@@ -670,11 +670,11 @@ dependencies:
 - [python-dotenv](https://github.com/theskumar/python-dotenv)
     - The `python-dotenv` package reads key-value pairs from a `.env` file and can set them as
       environment variables - this helps with the `.camply` configuration file.
-- [pydantic](https://pyyaml.org/)
-    - PyYAML is a YAML parsing library - this helps with the YAML file campsite searches.
+- [pydantic](https://github.com/samuelcolvin/pydantic)
+    - The `pydantic` package performs data validation against API responses and assists with fancy
+      data containers for `camply` objects.
 - [PyYAML](https://pyyaml.org/)
-    - The `pydantic` package performs data validation against API responses and assists with fancy data containers
-      for `camply` objects.
+    - PyYAML is a YAML parsing library - this helps with the YAML file campsite searches.
 
 <br/>
 
