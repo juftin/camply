@@ -45,6 +45,7 @@ def log_camply(self: logging.Logger, message: str, *args, **kwargs) -> None:
         Message String
     args
     kwargs
+
     Returns
     -------
     None

@@ -101,7 +101,7 @@ class BaseCampingSearch(ABC):
         -------
         bool
         """
-        campsite_date_range = set(date_range(start=date,
+        campsite_date_range = set(date_range(start=date.to_pydatetime(),
                                              periods=periods))
         intersection = campsite_date_range.intersection(self.search_days)
         if intersection:
@@ -557,7 +557,9 @@ class BaseCampingSearch(ABC):
         -------
         DataFrame
         """
-        return DataFrame(data=campsites, columns=AvailableCampsite._fields)
+        campsite_df = DataFrame(data=[campsite.__dict__ for campsite in campsites],
+                                columns=AvailableCampsite.__fields__)
+        return campsite_df
 
     @staticmethod
     def df_to_campsites(campsite_df: DataFrame) -> List[AvailableCampsite]:

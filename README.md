@@ -437,8 +437,8 @@ below [YML example file](docs/examples/example_search.yml) and corresponding cam
 ```yaml
 provider:         RecreationDotGov # RecreationDotGov IF NOT PROVIDED
 recreation_area: # (LIST OR SINGLE ENTRY)
-    - 2991 # Yosemite National Park, CA (All Campgrounds)
-    - 1074 # Sierra National Forest, CA (All Campgrounds)
+  - 2991 # Yosemite National Park, CA (All Campgrounds)
+  - 1074 # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null # ENTIRE FIELD CAN BE OMITTED IF NOT USED. # (LIST OR SINGLE ENTRY)
 start_date:       2022-09-12 # YYYY-MM-DD
 end_date:         2022-09-13 # YYYY-MM-DD
@@ -528,7 +528,7 @@ matches: List[AvailableCampsite] = camping_finder.get_matching_campsites(log=Tru
                                                                          continuous=False)
 ```
 
-The above script returns a list of any matching `AvailableCampsite` namedtuple objects:
+The above script returns a list of any matching `AvailableCampsite` pydantic objects:
 
 ```python
 [
@@ -670,8 +670,11 @@ dependencies:
 - [python-dotenv](https://github.com/theskumar/python-dotenv)
     - The `python-dotenv` package reads key-value pairs from a `.env` file and can set them as
       environment variables - this helps with the `.camply` configuration file.
-- [PyYAML](https://pyyaml.org/)
+- [pydantic](https://pyyaml.org/)
     - PyYAML is a YAML parsing library - this helps with the YAML file campsite searches.
+- [PyYAML](https://pyyaml.org/)
+    - The `pydantic` package performs data validation against API responses and assists with fancy data containers
+      for `camply` objects.
 
 <br/>
 
