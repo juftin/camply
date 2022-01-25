@@ -15,6 +15,12 @@ from camply.containers import AvailableCampsite
 logger = logging.getLogger(__name__)
 
 
+class NotificationError(Exception):
+    """
+    Notification Exceptions
+    """
+
+
 class BaseNotifications(ABC):
     """
     Base Notifications
