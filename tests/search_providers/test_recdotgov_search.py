@@ -143,13 +143,9 @@ def test_get_all_campsites_campground(recdotgov_campground_finder) -> List[Avail
     return all_campsites
 
 
-def test_get_campsite_specific_results(recdotgov_campsite_finder) -> List[CampgroundFacility]:
+def test_get_campsite_specific_campgrounds(recdotgov_campsite_finder) -> List[CampgroundFacility]:
     """
-    Get all of the Yellowstone Campsites
-
-    Returns
-    -------
-    List[AvailableCampsite]
+    Get all of the Related Campgrounds
     """
     logger.info("Searching for Campground Specific Campsites")
     campgrounds = recdotgov_campsite_finder._get_campgrounds_by_campsite_id()
@@ -158,11 +154,7 @@ def test_get_campsite_specific_results(recdotgov_campsite_finder) -> List[Campgr
 
 def test_get_campsite_specific_results(recdotgov_campsite_finder) -> List[AvailableCampsite]:
     """
-    Get all of the Yellowstone Campsites
-
-    Returns
-    -------
-    List[AvailableCampsite]
+    Get the related Campsite's availability
     """
     logger.info("Searching for Campground Specific Campsites")
     all_campsites = recdotgov_campsite_finder.get_all_campsites()
