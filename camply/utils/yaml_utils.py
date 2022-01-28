@@ -97,6 +97,7 @@ def yaml_file_to_arguments(file_path: str) -> Tuple[str, Dict[str, object], Dict
     nights = int(yaml_search.get("nights", 1))
     recreation_area = yaml_search.get("recreation_area", None)
     campgrounds = yaml_search.get("campgrounds", None)
+    campsites = yaml_search.get("campsites", None)
     weekends_only = yaml_search.get("weekends", False)
     continuous = yaml_search.get("continuous", True)
     polling_interval = yaml_search.get("polling_interval",
@@ -110,6 +111,7 @@ def yaml_file_to_arguments(file_path: str) -> Tuple[str, Dict[str, object], Dict
     provider_kwargs = dict(search_window=search_window,
                            recreation_area=recreation_area,
                            campgrounds=campgrounds,
+                           campsites=campsites,
                            weekends_only=weekends_only,
                            nights=nights)
     search_kwargs = dict(
