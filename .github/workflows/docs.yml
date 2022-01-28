@@ -4,7 +4,7 @@ on:
       pull_request
 
 jobs:
-  Release:
+  make-docs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Github Workspace
@@ -24,8 +24,8 @@ jobs:
               cat README.md | grep -v readthedocs > docs/source/usage.md
               tox -e sphinx
       - name: Commit Changes
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v8
         with:
-          default_author: github_actions
-          message:        "Sphinx Documentation"
-          add:            "docs"
+          default_author: github_actor
+          message:        Sphinx Documentation
+          add:            docs
