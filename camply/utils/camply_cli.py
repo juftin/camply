@@ -432,5 +432,18 @@ class CamplyCommandLine:
         self.execute_cli_arguments()
 
 
+def _get_parser_object() -> ArgumentParser:
+    """
+    Get an Argument Parser Object for Documentation
+
+    Returns
+    -------
+    argparse.ArgumentParser
+    """
+    camply_cli = CamplyCommandLine()
+    camply_cli.assemble_cli_arguments()
+    return camply_cli.parser
+
+
 if __name__ == "__main__":
     main()
