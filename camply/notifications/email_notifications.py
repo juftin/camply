@@ -121,7 +121,7 @@ class EmailNotifications(BaseNotifications, ABC):
                 f"{campsite.recreation_area} | {campsite.facility_name} | "
                 f"{campsite.booking_date.strftime('%Y-%m-%d')}:")
             fields.append(message_title)
-            for key, value in campsite._asdict().items():
+            for key, value in campsite.dict().items():
                 if key in [CampsiteContainerFields.BOOKING_DATE,
                            CampsiteContainerFields.BOOKING_END_DATE]:
                     value: datetime = value.strftime("%Y-%m-%d")
