@@ -23,7 +23,7 @@ jobs:
               python -m pip install tox
       - name: Tox Sphinx Genration
         run:  |
-              cp README.md docs/source/usage.md
+              cat README.md | grep -v readthedocs > docs/source/usage.md
               tox -e sphinx
       - name: Commit Changes
         uses: EndBug/add-and-commit@v7
