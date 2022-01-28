@@ -20,7 +20,6 @@ ___________
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 
-## [Check Out The ReadTheDocs](https://camply.readthedocs.io/en/latest/)
 
 ## Table of Contents
 
@@ -665,7 +664,6 @@ dependencies:
 - [pandas](https://pandas.pydata.org/)
     - The `pandas` package is to group and aggregate across large data sets of campsites,
       campgrounds, and recreation areas.
-- [tenacity](https://tenacity.readthedocs.io/en/latest/)
     - The `tenacity` package is used for retrying data searches on the underlying campsite APIs.
       This retrying methodology handles exceptions allowing for API downtime and facilitating
       exponential backoff.
