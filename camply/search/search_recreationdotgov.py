@@ -24,9 +24,11 @@ class SearchRecreationDotGov(BaseCampingSearch):
     Camping Search Object
     """
 
-    def __init__(self, search_window: Union[SearchWindow, List[SearchWindow]],
+    def __init__(self,
+                 search_window: Union[SearchWindow, List[SearchWindow]],
                  recreation_area: Optional[int] = None,
                  campgrounds: Optional[Union[List[int], int]] = None,
+                 campsites: Optional[Union[List[int], int]] = None,
                  weekends_only: bool = False,
                  nights: int = 1) -> None:
         """
@@ -40,6 +42,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
             ID of Recreation Area (i.e. 2907 - Rocky Mountain National Park)
         campgrounds: Optional[Union[List[int], int]]
             Campground ID or List of Campground IDs
+        campsites: Optional[Union[List[int], int]]
+            Campsite ID or List of Campsite IDs
         weekends_only: bool
             Whether to only search for Camping availabilities on the weekends (Friday /
             Saturday nights)
@@ -53,8 +57,13 @@ class SearchRecreationDotGov(BaseCampingSearch):
         self._recreation_area_id = self._make_list(recreation_area)
         self._campground_object = campgrounds
         self.weekends_only = weekends_only
-        assert any([campgrounds not in [[], None], recreation_area is not None]) is True
+        assert any([
+            campsites not in [[], None],
+            campgrounds not in [[], None],
+            recreation_area is not None
+        ]) is True
         self.campsite_finder: RecreationDotGov
+        self.campsites = self._make_list(campsites)
         self.campgrounds = self._get_searchable_campgrounds()
 
     def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:
@@ -69,7 +78,10 @@ class SearchRecreationDotGov(BaseCampingSearch):
         searchable_campgrounds: List[int]
             List of searchable campground IDs
         """
-        if self._campground_object not in [[], None]:
+        if self.campsites not in [[], None]:
+            self.campsites = [int(campsite_id) for campsite_id in self.campsites]
+            searchable_campgrounds = self._get_campgrounds_by_campsite_id()
+        elif self._campground_object not in [[], None]:
             searchable_campgrounds = self._get_campgrounds_by_campground_id()
         elif self._recreation_area_id is not None:
             searchable_campgrounds = self._get_campgrounds_by_recreation_area_id()
@@ -88,6 +100,19 @@ class SearchRecreationDotGov(BaseCampingSearch):
         """
         campground_list = self._make_list(self._campground_object)
         facilities = self.campsite_finder.find_campgrounds(campground_id=campground_list)
+        return facilities
+
+    def _get_campgrounds_by_campsite_id(self) -> List[CampgroundFacility]:
+        """
+        Return a List of Campgrounds to search when provided with Campsite IDs
+
+        Returns
+        -------
+        returned_sites: List[int]
+            List of searchable campground IDs
+        """
+        campsite_list = self._make_list(self.campsites)
+        facilities = self.campsite_finder.find_campgrounds(campsite_id=campsite_list)
         return facilities
 
     def _get_campgrounds_by_recreation_area_id(self) -> List[CampgroundFacility]:
@@ -134,6 +159,9 @@ class SearchRecreationDotGov(BaseCampingSearch):
                     facility_name=campground.facility_name,
                     facility_id=campground.facility_id,
                     month=month)
+                if self.campsites not in [None, []]:
+                    campsites = [campsite_obj for campsite_obj in campsites if
+                                 int(campsite_obj.campsite_id) in self.campsites]
                 found_campsites += campsites
                 if index + 1 < len(self.campgrounds):
                     sleep(round(uniform(*RecreationBookingConfig.RATE_LIMITING), 2))

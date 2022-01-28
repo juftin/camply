@@ -8,6 +8,7 @@ Command Line Configuration
 
 import logging
 from os import getenv
+from typing import List
 
 from dotenv import load_dotenv
 
@@ -47,6 +48,10 @@ class CommandLineArguments:
     CAMPGROUND_LIST_ARGUMENT: str = "--campground"
     CAMPGROUND_LIST_DESTINATION: str = "campground_id"
     CAMPGROUND_LIST_HELP: str = "Add individual Campgrounds by ID."
+
+    CAMPSITE_ID_ARGUMENT: str = "--campsite"
+    CAMPSITE_ID_DESTINATION: str = "campsite_id"
+    CAMPSITE_ID_HELP: str = "Add individual Campsites by ID."
 
     SEARCH_ARGUMENT: str = "--search"
     SEARCH_DESTINATION: str = "search"
@@ -89,7 +94,7 @@ class CommandLineArguments:
 
     NOTIFICATIONS_ARGUMENT: str = "--notifications"
     NOTIFICATIONS_DESTINATION: str = "notifications"
-    NOTIFICATIONS_DEFAULT: str = "silent"
+    NOTIFICATIONS_DEFAULT: List[str] = ["silent"]
     NOTIFICATIONS_HELP: str = ("If --continuous is activated, types of notifications to receive. "
                                "Options available are 'email', "
                                "'pushover', 'pushbullet', or 'silent'. Defaults to 'silent' - "
@@ -127,7 +132,8 @@ class CommandLineValidation:
     ERROR_MESSAGE_CAMPGROUNDS: str = ("You must add a --search, --state, --campground, or "
                                       "--rec-area parameter to search for Campgrounds.")
     ERROR_MESSAGE_REC_DOT_GOV: str = ("To search for Recreation.gov Campsites you must provide "
-                                      "either the --rec-area or the --campground parameters.")
+                                      "either the --rec-area, --campground, or --campsite "
+                                      "parameters.")
     ERROR_MESSAGE_CAMPSITES: str = ("Campsite searches require the following mandatory search "
                                     "parameters.")
 

@@ -1,37 +1,35 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Storage Containers for the Application
 """
 
-from datetime import datetime
+import datetime
 import logging
-from typing import NamedTuple, Tuple
+from typing import Tuple, Union
+
+from camply.containers.base_container import CamplyModel
 
 logger = logging.getLogger(__name__)
 
 
-class SearchWindow(NamedTuple):
+class SearchWindow(CamplyModel):
     """
     Search Window for Campsite Search
     """
 
-    start_date: datetime
-    end_date: datetime
+    start_date: datetime.datetime
+    end_date: datetime.datetime
 
 
-class AvailableCampsite(NamedTuple):
+class AvailableCampsite(CamplyModel):
     """
     Campsite Storage
 
     This container should be universal regardless of API Provider
     """
 
-    campsite_id: int
-    booking_date: datetime
-    booking_end_date: datetime
+    campsite_id: Union[int, str]
+    booking_date: datetime.datetime
+    booking_end_date: datetime.datetime
     booking_nights: int
     campsite_site_name: str
     campsite_loop_name: str
@@ -42,11 +40,11 @@ class AvailableCampsite(NamedTuple):
     recreation_area: str
     recreation_area_id: int
     facility_name: str
-    facility_id: int
+    facility_id: Union[int, str]
     booking_url: str
 
 
-class CampgroundFacility(NamedTuple):
+class CampgroundFacility(CamplyModel):
     """
     Campground Facility Data Storage
     """
@@ -57,7 +55,7 @@ class CampgroundFacility(NamedTuple):
     recreation_area_id: int
 
 
-class RecreationArea(NamedTuple):
+class RecreationArea(CamplyModel):
     """
     Recreation Area Data Storage
     """

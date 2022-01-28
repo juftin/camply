@@ -22,12 +22,6 @@ class SilentNotifications(BaseNotifications, ABC):
     Silent Notifications
     """
 
-    def __init__(self):
-        """
-        Initialize Silent Notifications
-        """
-        logger.info(f"{self} enabled. I hope you're watching these logs.")
-
     def __repr__(self):
         """
         String Representation
@@ -72,5 +66,5 @@ class SilentNotifications(BaseNotifications, ABC):
                 campsite.facility_name,
                 campsite.booking_url)
             SilentNotifications.send_message(campsite_tuple)
-            campsite_formatted = pformat(dict(campsite._asdict()))
+            campsite_formatted = pformat(campsite.dict())
             logger.debug("Campsite Info: " + campsite_formatted)

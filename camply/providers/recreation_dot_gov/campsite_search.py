@@ -14,12 +14,20 @@ from random import choice
 from typing import List, Optional, Tuple, Union
 from urllib import parse
 
+from pydantic import ValidationError
 import requests
 import tenacity
 
-from camply.config import RecreationBookingConfig, RIDBConfig, STANDARD_HEADERS, USER_AGENTS
+from camply.config import (RecreationBookingConfig,
+                           RIDBConfig,
+                           STANDARD_HEADERS,
+                           USER_AGENTS)
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
-from camply.providers.base_provider import BaseProvider
+from camply.containers.api_responses import (CampsiteAvailabilityResponse,
+                                             CampsiteResponse, FacilityResponse,
+                                             GenericResponse,
+                                             RecreationAreaResponse)
+from camply.providers.base_provider import BaseProvider, ProviderSearchError
 from camply.utils import api_utils, logging_utils
 
 logger = logging.getLogger(__name__)
@@ -93,7 +101,9 @@ class RecreationDotGov(BaseProvider):
 
     def find_campgrounds(self, search_string: str = None,
                          rec_area_id: Optional[List[int]] = None,
-                         campground_id: Optional[List[int]] = None, **kwargs) -> \
+                         campground_id: Optional[List[int]] = None,
+                         campsite_id: Optional[List[int]] = None,
+                         **kwargs) -> \
             List[CampgroundFacility]:
         """
         Find Bookable Campgrounds Given a Set of Search Criteria
@@ -105,6 +115,8 @@ class RecreationDotGov(BaseProvider):
         rec_area_id: Optional[List[int]]
             Recreation Area ID to filter with
         campground_id: Optional[List[int]]
+            ID of the Campground
+        campsite_id: Optional[List[int]]
             ID of the Campsite
 
         Returns
@@ -112,8 +124,12 @@ class RecreationDotGov(BaseProvider):
         facilities: List[CampgroundFacility]
             Array of Matching Campsites
         """
-        if campground_id not in [None, list()]:
-            facilities = self._find_facilities_from_campgrounds(campground_id=campground_id)
+        if campsite_id not in [None, list()]:
+            facilities = self._process_specific_campsites_provided(
+                campsite_id=campsite_id)
+        elif campground_id not in [None, list()]:
+            facilities = self._find_facilities_from_campgrounds(
+                campground_id=campground_id)
         elif rec_area_id is not None:
             facilities = list()
             for recreation_area in rec_area_id:
@@ -258,7 +274,6 @@ class RecreationDotGov(BaseProvider):
         try:
             assert response.status_code == 200
         except AssertionError:
-            logger.info(self._ridb_api_headers)
             error_message = f"Receiving bad data from Recreation.gov API: {response.text}"
             logger.error(error_message)
             raise ConnectionError(error_message)
@@ -291,14 +306,11 @@ class RecreationDotGov(BaseProvider):
         while data_incomplete is True:
             params.update(offset=offset)
             data_response = self._ridb_get_data(path=path, params=params)
-            actual_data = data_response[RIDBConfig.FACILITY_DATA]
-            paginated_response += actual_data
-            metadata = data_response[RIDBConfig.FACILITY_METADATA]
-            result_count = metadata[RIDBConfig.FACILITY_METADATA_RESULTS][
-                RIDBConfig.PAGINATE_RESULT_COUNT]
+            response_object = GenericResponse(**data_response)
+            paginated_response += response_object.RECDATA
+            result_count = response_object.METADATA.RESULTS.CURRENT_COUNT
             historical_results += result_count
-            total_count = metadata[RIDBConfig.FACILITY_METADATA_RESULTS][
-                RIDBConfig.PAGINATE_TOTAL_COUNT]
+            total_count = response_object.METADATA.RESULTS.TOTAL_COUNT
             if offset >= 500:
                 logger.info(f"Too Many Results returned ({total_count}), "
                             "try performing a more specific search")
@@ -324,11 +336,17 @@ class RecreationDotGov(BaseProvider):
         """
         filtered_responses = list()
         for possible_match in responses:
-            facility_type = possible_match[RIDBConfig.CAMPGROUND_FACILITY_FIELD]
+            try:
+                facility = FacilityResponse(**possible_match)
+            except ValidationError as e:
+                logger.error("That doesn't look like a valid Campground Facility")
+                logger.error(possible_match)
+                logger.exception(e)
+                raise ProviderSearchError("Invalid Campground Facility Returned")
             if all([
-                facility_type == RIDBConfig.CAMPGROUND_FACILITY_FIELD_QUALIFIER,
-                possible_match[RIDBConfig.CAMPGROUND_FACILITY_ENABLED_FIELD] is True,
-                possible_match[RIDBConfig.CAMPGROUND_FACILITY_RESERVABLE_FIELD] is True
+                facility.FacilityTypeDescription == RIDBConfig.CAMPGROUND_FACILITY_FIELD_QUALIFIER,
+                facility.Enabled is True,
+                facility.Reservable is True
             ]):
                 filtered_responses.append(possible_match)
         return filtered_responses
@@ -347,23 +365,20 @@ class RecreationDotGov(BaseProvider):
         -------
         Tuple[dict, CampgroundFacility]
         """
-        facility_id = facility[RIDBConfig.FACILITY_ID]
-        facility_name = facility[RIDBConfig.FACILITY_NAME]
+        facility_object = FacilityResponse(**facility)
         try:
-            facility_state = facility[RIDBConfig.FACILITY_ADDRESS][0][
-                RIDBConfig.FACILITY_LOCATION_STATE].upper()
+            facility_state = facility_object.FACILITYADDRESS[0].AddressStateCode.upper()
         except (KeyError, IndexError):
             facility_state = "USA"
         try:
-            recreation_area = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
-                RIDBConfig.RECREATION_AREA_NAME]
-            recreation_area_id = facility[RIDBConfig.CAMPGROUND_RECREATION_AREA][0][
-                RIDBConfig.REC_AREA_ID]
+            recreation_area = facility_object.RECAREA[0].RecAreaName
+            recreation_area_id = facility_object.RECAREA[0].RecAreaID
             formatted_recreation_area = f"{recreation_area}, {facility_state}"
-            campground_facility = CampgroundFacility(facility_name=facility_name.title(),
-                                                     recreation_area=formatted_recreation_area,
-                                                     facility_id=facility_id,
-                                                     recreation_area_id=recreation_area_id)
+            campground_facility = CampgroundFacility(
+                facility_name=facility_object.FacilityName.title(),
+                recreation_area=formatted_recreation_area,
+                facility_id=facility_object.FacilityID,
+                recreation_area_id=recreation_area_id)
             return facility, campground_facility
         except (KeyError, IndexError):
             return facility, None
@@ -382,14 +397,13 @@ class RecreationDotGov(BaseProvider):
         -------
         Tuple[dict, RecreationArea]
         """
-        recreation_area_id = recreation_area[RIDBConfig.REC_AREA_ID]
-        recreation_area_name = recreation_area[RIDBConfig.RECREATION_AREA_NAME]
+        rec_area_response = RecreationAreaResponse(**recreation_area)
         try:
-            recreation_area_location = recreation_area[RIDBConfig.REC_AREA_ADDRESS][0][
-                RIDBConfig.REC_AREA_STATE]
+            recreation_area_location = rec_area_response.RECAREAADDRESS[
+                0].AddressStateCode
             recreation_area_tuple = RecreationArea(
-                recreation_area=recreation_area_name,
-                recreation_area_id=recreation_area_id,
+                recreation_area=rec_area_response.RecAreaName,
+                recreation_area_id=rec_area_response.RecAreaID,
                 recreation_area_location=recreation_area_location)
             return recreation_area, recreation_area_tuple
         except IndexError:
@@ -544,28 +558,9 @@ class RecreationDotGov(BaseProvider):
             Any monthly availabilities
         """
         total_campsite_availability: List[Optional[AvailableCampsite]] = list()
-        campsite_data = availability[RecreationBookingConfig.CAMPSITE_BASE]
-        for campsite_id, site_related_data in campsite_data.items():
-            campsite_availabilities = site_related_data[
-                RecreationBookingConfig.CAMPSITE_AVAILABILITIES_BASE]
-            campsite_loop = site_related_data.get(
-                RecreationBookingConfig.CAMPSITE_LOCATION_LOOP,
-                RecreationBookingConfig.CAMPSITE_LOCATION_LOOP_DEFAULT)
-            campsite_type = site_related_data.get(
-                RecreationBookingConfig.CAMPSITE_INFO_TYPE, None)
-            campsite_max = site_related_data.get(
-                RecreationBookingConfig.CAMPSITE_INFO_MAX_PEOPLE, 1)
-            campsite_min = site_related_data.get(
-                RecreationBookingConfig.CAMPSITE_INFO_MIN_PEOPLE, 1)
-            campsite_use_type = site_related_data.get(
-                RecreationBookingConfig.CAMPSITE_INFO_TYPE_OF_USE, None)
-            campsite_name = site_related_data.get(
-                RecreationBookingConfig.CAMPSITE_LOCATION_SITE,
-                RecreationBookingConfig.CAMPSITE_LOCATION_SITE_DEFAULT)
-            if campsite_availabilities is None:
-                campsite_availabilities = {}
-            for date_string, availability_status in campsite_availabilities.items():
-                matching_date = datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%SZ")
+        campsite_data = CampsiteAvailabilityResponse(**availability)
+        for campsite_id, site_related_data in campsite_data.campsites.items():
+            for matching_date, availability_status in site_related_data.availabilities.items():
                 if availability_status not in RecreationBookingConfig.CAMPSITE_UNAVAILABLE_STRINGS:
                     booking_url = f"{RecreationBookingConfig.CAMPSITE_BOOKING_URL}/{campsite_id}"
                     available_campsite = AvailableCampsite(
@@ -573,11 +568,12 @@ class RecreationDotGov(BaseProvider):
                         booking_date=matching_date,
                         booking_end_date=matching_date + timedelta(days=1),
                         booking_nights=1,
-                        campsite_site_name=campsite_name,
-                        campsite_loop_name=campsite_loop,
-                        campsite_type=campsite_type,
-                        campsite_occupancy=(campsite_min, campsite_max),
-                        campsite_use_type=campsite_use_type,
+                        campsite_site_name=site_related_data.site,
+                        campsite_loop_name=site_related_data.loop,
+                        campsite_type=site_related_data.campsite_type,
+                        campsite_occupancy=(site_related_data.min_num_people,
+                                            site_related_data.max_num_people),
+                        campsite_use_type=site_related_data.type_of_use,
                         availability_status=availability_status,
                         recreation_area=recreation_area,
                         recreation_area_id=recreation_area_id,
@@ -590,3 +586,73 @@ class RecreationDotGov(BaseProvider):
                     f"{len(total_campsite_availability)} total sites found in month of "
                     f"{month.strftime('%B')}")
         return total_campsite_availability
+
+    def get_campsite_by_id(self, campsite_id: int) -> CampsiteResponse:
+        """
+        Get a Campsite's Details
+
+        Parameters
+        ----------
+        campsite_id: int
+
+        Returns
+        -------
+        CampsiteResponse
+        """
+        data = self._ridb_get_data(path=f"{RIDBConfig.CAMPSITE_API_PATH}/{campsite_id}")
+        try:
+            response = CampsiteResponse(**data[0])
+        except IndexError:
+            raise ProviderSearchError(f"Campsite with ID #{campsite_id} not found.")
+        return response
+
+    def get_campground_ids_by_campsites(
+            self, campsite_ids: List[int]
+    ) -> Tuple[List[int], List[CampsiteResponse]]:
+        """
+        Retrieve a list of FacilityIDs, and Facilities from a Campsite ID List
+
+        Parameters
+        ----------
+        campsite_ids: List[int]
+            List of Campsite IDs
+
+        Returns
+        -------
+        Tuple[List[int], List[CampsiteResponse]]
+        """
+        campground_ids = list()
+        campgrounds = list()
+        for campsite_id in campsite_ids:
+            campsite = self.get_campsite_by_id(campsite_id=campsite_id)
+            campgrounds.append(campsite)
+            campground_ids.append(campsite.FacilityID)
+        return list(set(campground_ids)), list(campgrounds)
+
+    def _process_specific_campsites_provided(
+            self,
+            campsite_id: List[int] = None
+    ) -> List[CampgroundFacility]:
+        """
+        Process Requests for Campgrounds into Facilities
+
+        Parameters
+        ----------
+        campsite_id: Optional[List[int]]
+
+        Returns
+        -------
+        List[CampgroundFacility]
+        """
+        facility_ids, campsites = self.get_campground_ids_by_campsites(
+            campsite_ids=campsite_id)
+        facilities = list()
+        for campsite in campsites:
+            facility = self._find_facilities_from_campgrounds(
+                campground_id=[campsite.FacilityID])[0]
+            facilities.append(facility)
+            logger.info("Searching Specific Campsite: ⛺️ "
+                        f"{campsite.CampsiteName} (#{campsite.CampsiteID}) - "
+                        f"{facility.facility_name}, {facility.recreation_area}"
+                        )
+        return facilities
