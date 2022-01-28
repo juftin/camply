@@ -57,7 +57,6 @@ jobs:
             -   name: Raise Errors For Linting Failures
                 if:   |
                       steps.flake8.outcome != 'success' ||
-                        steps.yamllint.outcome != 'success'  ||
                         steps.eslint.outcome != 'success'
                 run:  |
                       echo "Flake8: ${{ steps.flake8.outcome }}"
