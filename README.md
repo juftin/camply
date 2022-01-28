@@ -283,12 +283,14 @@ camply campsites \
 #### Searching for a Specific Campsite by ID
 
 Sometimes you have a favorite campsite inside your favorite campground. To search for just a
-specific campsite (and not any campsite within a campground) you can give its ID to `camply`. For
-example, site `R035` in Many Glacier is close to a trailhead. Its URL
+specific campsite (and not just all campsites within a campground) you can give its ID to `camply`
+with the `--campsite` argument. For example, site `R035` in Many Glacier Campground, MT is close to
+a trailhead. Its URL
 is [https://www.recreation.gov/camping/campsites/98363](https://www.recreation.gov/camping/campsites/98363)
 , here we can see that it's ID is `98363`. You can search for one or many campsites by ID by
 supplying the `--campsite` argument. You can provide the `--campsite` argument once or multiple
-times to search for different campsites. Note, `--campsite` arguments override any `--rec-area` or `--campground` parameters provided.
+times to search for different campsites. Note, `--campsite` arguments override any `--rec-area`
+or `--campground` parameters provided.
 
 ```shell
 camply campsites \
@@ -458,8 +460,8 @@ below [YML example file](docs/examples/example_search.yml) and corresponding cam
 ```yaml
 provider:         RecreationDotGov # RecreationDotGov IF NOT PROVIDED
 recreation_area: # (LIST OR SINGLE ENTRY)
-  - 2991 # Yosemite National Park, CA (All Campgrounds)
-  - 1074 # Sierra National Forest, CA (All Campgrounds)
+    - 2991 # Yosemite National Park, CA (All Campgrounds)
+    - 1074 # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null # ENTIRE FIELD CAN BE OMITTED IF NOT USED. # (LIST OR SINGLE ENTRY)
 start_date:       2022-09-12 # YYYY-MM-DD
 end_date:         2022-09-13 # YYYY-MM-DD

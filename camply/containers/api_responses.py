@@ -140,8 +140,8 @@ class FacilityResponse(CamplyModel):
     FacilityTypeDescription: str
     Enabled: bool
     Reservable: bool
-    FACILITYADDRESS: List[_FacilityAddress]
-    RECAREA: List[_FacilityRecArea]
+    FACILITYADDRESS: Optional[List[_FacilityAddress]]
+    RECAREA: Optional[List[_FacilityRecArea]]
 
 
 class _PaginationCountResponse(CamplyModel):
