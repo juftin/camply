@@ -81,7 +81,7 @@ class PushbulletNotifications(BaseNotifications, ABC):
         """
         for campsite in campsites:
             fields = list()
-            for key, value in campsite._asdict().items():
+            for key, value in campsite.dict().items():
                 if key == CampsiteContainerFields.BOOKING_URL:
                     key = "booking_link"
                 elif key in [CampsiteContainerFields.BOOKING_DATE,
