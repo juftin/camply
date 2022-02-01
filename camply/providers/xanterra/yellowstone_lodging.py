@@ -160,9 +160,12 @@ class YellowstoneLodging(BaseProvider):
         str
             URL String
         """
-        query = dict(dateFrom=month.strftime("%m-%d-%Y"),
-                     adults=1,
-                     destination=lodging_code)
+        query = dict(
+            dateFrom=month.strftime("%m-%d-%Y"),
+            adults=1,
+            destination=lodging_code,
+            children=0,
+        )
         if params is not None:
             query.update(params)
         query_string = parse.urlencode(query=query)
