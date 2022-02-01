@@ -160,14 +160,19 @@ class YellowstoneLodging(BaseProvider):
         str
             URL String
         """
-        query = dict(dateFrom=month.strftime("%m-%d-%Y"))
+        query = dict(
+            dateFrom=month.strftime("%m-%d-%Y"),
+            adults=1,
+            destination=lodging_code,
+            children=0,
+        )
         if params is not None:
             query.update(params)
         query_string = parse.urlencode(query=query)
 
         url_components = dict(scheme=YellowstoneConfig.API_SCHEME,
                               netloc=YellowstoneConfig.WEBUI_BASE_ENDPOINT,
-                              url=f"{YellowstoneConfig.WEBUI_BOOKING_PATH}/{lodging_code}",
+                              url=YellowstoneConfig.WEBUI_BOOKING_PATH,
                               params="", query=query_string, fragment="")
         webui_endpoint = parse.urlunparse(tuple(url_components.values()))
         return webui_endpoint
