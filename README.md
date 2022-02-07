@@ -75,9 +75,18 @@ docker pull juftin/camply
 ### Building Locally
 
 ```shell
-git clone https://github.com/juftin/camply.git
+git clone https://github.com/juftin/camply.git 
 cd camply
 python setup.py install
+For Windows:
+Download and install latest python: https://www.python.org/downloads/
+Update PIP: py -m pip install --upgrade pip
+Create virtual environent venv: py -m venv <directory> i.e 'py -m venv c:\venv'
+          * If Virtualenv is not install use this: py -m pip install --user virtualenv
+Activate virtualenv: c:\venv\scripts\activate
+Install camply: pip install camply
+
+
 ```
 
 ## Command Line Usage
