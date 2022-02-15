@@ -24,7 +24,7 @@ class PushoverConfig:
     """
 
     PUSHOVER_API_ENDPOINT: str = "https://api.pushover.net/1/messages.json"
-    PUSHOVER_DEFAULT_API_TOKEN: bytes = b"YXAycjN2aW9tcXVmNzRnM3A4YWptbjc2YXlzbngz"
+    PUSHOVER_DEFAULT_API_TOKEN: bytes = b"YWpjN3M1a2hhYTRlOG1zYWhncnFnaHduZGdtbmI3"
     API_HEADERS: dict = {"Content-Type": "application/json"}
 
     try:
