@@ -247,24 +247,90 @@ class BaseCampingSearch(ABC):
         logger.info(f"{len(new_campsites)} New Campsites Found.")
         self.campsites_found.update(new_campsites)
         logged_campsites = list(new_campsites)
-        if max([retryer.statistics.get("attempt_number", 1), continuous_search_attempts]) > 1:
+        self._handle_notifications(retryer=retryer, notifier=notifier,
+                                   logged_campsites=logged_campsites,
+                                   continuous_search_attempts=continuous_search_attempts,
+                                   notify_first_try=notify_first_try)
+        return list(self.campsites_found)
+
+    @classmethod
+    def _handle_notifications(cls,
+                              retryer: tenacity.Retrying,
+                              notifier: MultiNotifierProvider,
+                              logged_campsites: List[AvailableCampsite],
+                              continuous_search_attempts: int,
+                              notify_first_try: bool,
+                              ) -> None:
+        """
+        Handle sending notifications
+
+        Parameters
+        ----------
+        retryer: tenacity.Retrying
+        notifier: MultiNotifierProvider
+        logged_campsites: List[AvailableCampsite]
+        continuous_search_attempts: int
+        notify_first_try: bool
+
+        Returns
+        -------
+        None
+        """
+        attempt_number = retryer.statistics.get("attempt_number", 1)
+        minimum_first_notify = SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY
+        if max([attempt_number, continuous_search_attempts]) > 1:
+            logged_campsites = cls._handle_too_many_campsites_found(
+                notifier=notifier,
+                logged_campsites=logged_campsites)
             notifier.send_campsites(campsites=logged_campsites)
-        elif retryer.statistics.get("attempt_number", 1) == 1 and notify_first_try is True:
+        elif attempt_number == 1 and notify_first_try is True:
+            logged_campsites = cls._handle_too_many_campsites_found(
+                notifier=notifier,
+                logged_campsites=logged_campsites)
             notifier.send_campsites(campsites=logged_campsites)
         else:
             if len(notifier.providers) > 1 and \
-                    len(logged_campsites) > SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY:
-                error_message = (f"Found more than {SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} "
+                    len(logged_campsites) > minimum_first_notify:
+                error_message = (f"Found more than {minimum_first_notify} "
                                  f"matching campsites ({len(logged_campsites)}) on the "
                                  "first try. Try searching online instead. "
                                  f"camply is only sending the first "
-                                 f"{SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY} notifications. "
+                                 f"{minimum_first_notify} notifications. "
                                  "Go Get your campsite! 🏕")
                 logger.warning(error_message)
                 notifier.send_message(message=error_message)
-                logged_campsites = logged_campsites[:SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY]
+                logged_campsites = logged_campsites[:minimum_first_notify]
             notifier.send_campsites(campsites=logged_campsites)
-        return list(self.campsites_found)
+
+    @classmethod
+    def _handle_too_many_campsites_found(
+            cls, notifier: MultiNotifierProvider,
+            logged_campsites: List[AvailableCampsite]) -> List[AvailableCampsite]:
+        """
+        Handle Scenarios Where Too Many Campsites are Found
+
+        Parameters
+        ----------
+        notifier: MultiNotifierProvider
+        logged_campsites: List[AvailableCampsite]
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        limit = SearchConfig.MAXIMUM_NOTIFICATION_BATCH_SIZE
+        number_campsites = len(logged_campsites)
+        if number_campsites > limit:
+            warning_message = (
+                f"Too many campsites were found during the search ({number_campsites} "
+                f"total). camply will only send you the first {limit} notifications."
+            )
+            logger.warning(warning_message)
+            restricted_campsites = logged_campsites[:limit]
+            notifier.send_message(warning_message)
+        else:
+            restricted_campsites = logged_campsites
+        return restricted_campsites
 
     def _search_campsites_continuous(self, log: bool = True, verbose: bool = False,
                                      polling_interval: Optional[int] = None,
