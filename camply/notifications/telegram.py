@@ -44,18 +44,22 @@ class TelegramNotifications(BaseNotifications, ABC):
         return "<TelegramNotifications>"
 
     @staticmethod
-    def send_message(message: str, **kwargs) -> Optional[requests.Response]:
+    def send_message(message: str, escaped=False, **kwargs) -> Optional[requests.Response]:
         """
         Send a message via Telegram - if environment variables are configured
 
         Parameters
         ----------
         message: str
+        escaped: bool
 
         Returns
         -------
         Response
         """
+        if not escaped:
+            message = TelegramNotifications.escape_text(message)
+
         telegram_headers = TelegramConfig.API_HEADERS.copy()
         message_json = TelegramConfig.API_CONTENT.copy()
         message_json.update({"text": message})
@@ -112,4 +116,4 @@ class TelegramNotifications(BaseNotifications, ABC):
                        f"\| {TelegramNotifications.escape_text(campsite.facility_name)} "
                        f"\| {TelegramNotifications.escape_text(campsite.booking_date.strftime('%Y-%m-%d'))}*"
                        f"\n{message_fields}")
-            TelegramNotifications.send_message(message)
+            TelegramNotifications.send_message(message, escaped=True)
