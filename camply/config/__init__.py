@@ -10,7 +10,7 @@ from .api_config import RecreationBookingConfig, RIDBConfig, STANDARD_HEADERS, U
 from .cli_config import CommandLineConfig
 from .data_columns import CampsiteContainerFields, DataColumns
 from .file_config import FileConfig
-from .notification_config import EmailConfig, PushbulletConfig, PushoverConfig
+from .notification_config import EmailConfig, PushbulletConfig, PushoverConfig, TelegramConfig
 from .search_config import SearchConfig
 from .yellowstone_config import YellowstoneConfig
 
@@ -26,6 +26,7 @@ __all__ = [
     "EmailConfig",
     "PushbulletConfig",
     "PushoverConfig",
+    "TelegramConfig",
     "SearchConfig",
     "YellowstoneConfig",
 ]

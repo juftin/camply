@@ -11,6 +11,7 @@ from camply.notifications.base_notifications import BaseNotifications, Notificat
 from camply.notifications.email_notifications import EmailNotifications
 from camply.notifications.pushbullet import PushbulletNotifications
 from camply.notifications.pushover import PushoverNotifications
+from camply.notifications.telegram import TelegramNotifications
 from camply.notifications.silent_notifications import SilentNotifications
 
 logger = logging.getLogger(__name__)
@@ -19,7 +20,8 @@ CAMPSITE_NOTIFICATIONS: dict = {
     "pushover": PushoverNotifications,
     "email": EmailNotifications,
     "silent": SilentNotifications,
-    "pushbullet": PushbulletNotifications
+    "pushbullet": PushbulletNotifications,
+    "telegram": TelegramNotifications
 }
 
 

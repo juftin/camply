@@ -27,6 +27,8 @@ class FileConfig:
     DOT_CAMPLY_FIELDS = OrderedDict(
         PUSHOVER_PUSH_USER=dict(default="", notes="Enables Pushover Notifications"),
         PUSHBULLET_API_TOKEN=dict(default="", notes="Enables Pushbullet Notifications"),
+        TELEGRAM_BOT_TOKEN=dict(default="", notes="Enables Telegram Notifications"),
+        TELEGRAM_CHAT_ID=dict(default="", notes="Telegram Notification will be sent here"),
         EMAIL_TO_ADDRESS=dict(default="", notes="Email Notifications will be sent here"),
         EMAIL_USERNAME=dict(default="", notes="Email Authorization Login Username"),
         EMAIL_PASSWORD=dict(default="", notes="Email Authorization Login Password"),

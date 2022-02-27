@@ -96,8 +96,8 @@ class CommandLineArguments:
     NOTIFICATIONS_DESTINATION: str = "notifications"
     NOTIFICATIONS_DEFAULT: List[str] = ["silent"]
     NOTIFICATIONS_HELP: str = ("If --continuous is activated, types of notifications to receive. "
-                               "Options available are 'email', "
-                               "'pushover', 'pushbullet', or 'silent'. Defaults to 'silent' - "
+                               "Options available are 'email', 'pushover', "
+                               "'pushbullet', 'telegram', or 'silent'. Defaults to 'silent' - "
                                "which just logs messages to console.")
 
     NOTIFY_FIRST_TRY_ARGUMENT: str = "--notify-first-try"
