@@ -86,9 +86,10 @@ class TelegramNotifications(BaseNotifications, ABC):
         -------
         String
         """
-        fields = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
+        fields = ['_', '*', '[', ']', '(', ')', '~', '`', '>',
+                  '#', '+', '-', '=', '|', '{', '}', '.', '!']
         for f in fields:
-            message = message.replace(f, f"\{f}")
+            message = message.replace(f, f'\\{f}')
         return message
 
     @staticmethod
@@ -112,8 +113,7 @@ class TelegramNotifications(BaseNotifications, ABC):
                 formatted_value = TelegramNotifications.escape_text(str(value))
                 fields.append(f"{formatted_key}: {formatted_value}")
             message_fields = "\n".join(fields)
-            message = (f"*{TelegramNotifications.escape_text(campsite.recreation_area)} "
-                       f"\| {TelegramNotifications.escape_text(campsite.facility_name)} "
-                       f"\| {TelegramNotifications.escape_text(campsite.booking_date.strftime('%Y-%m-%d'))}*"
-                       f"\n{message_fields}")
+            header = ' | '.join([campsite.recreation_area, campsite.facility_name,
+                                 campsite.booking_date.strftime("%Y-%m-%d")])
+            message = (f"*{TelegramNotifications.escape_text(header)}*\n{message_fields}")
             TelegramNotifications.send_message(message, escaped=True)

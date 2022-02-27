@@ -75,6 +75,7 @@ class PushbulletConfig:
     except KeyError:
         API_TOKEN = None
 
+
 class TelegramConfig:
     """
     Telegram Notification Config Class
