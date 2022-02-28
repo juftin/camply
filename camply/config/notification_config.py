@@ -74,3 +74,27 @@ class PushbulletConfig:
         API_TOKEN: str = environ["PUSHBULLET_API_TOKEN"]
     except KeyError:
         API_TOKEN = None
+
+
+class TelegramConfig:
+    """
+    Telegram Notification Config Class
+    """
+
+    try:
+        BOT_TOKEN: str = environ["TELEGRAM_BOT_TOKEN"]
+    except KeyError:
+        BOT_TOKEN = None
+
+    try:
+        CHAT_ID: str = environ["TELEGRAM_CHAT_ID"]
+    except KeyError:
+        CHAT_ID = None
+
+    API_ENDPOINT: str = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    API_HEADERS: dict = {"Content-Type": "application/json"}
+    API_CONTENT: dict = {
+        "chat_id": CHAT_ID,
+        "parse_mode": "MarkdownV2",
+        "disable_web_page_preview": "true"
+    }

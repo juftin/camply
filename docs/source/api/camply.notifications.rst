@@ -44,6 +44,14 @@ camply.notifications.pushover module
    :undoc-members:
    :show-inheritance:
 
+camply.notifications.telegram module
+------------------------------------
+
+.. automodule:: camply.notifications.telegram
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 camply.notifications.silent\_notifications module
 -------------------------------------------------
 

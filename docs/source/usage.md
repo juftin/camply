@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://github.com/juftin/camply">
-  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg" 
+  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg"
     width="400" height="400" alt="camply">
 </a>
 </div>
@@ -123,7 +123,7 @@ Search for a campsite within camply. Campsites are returned based on the search 
 Campsites contain properties like booking date, site type (tent, RV, cabin, etc), capacity, price,
 and a link to make the booking. Required parameters include `--start-date`, `--end-date`,
 `--rec-area` / `--campground` / `--campsite`. Constant searching functionality can be enabled with
-`--continuous` and notifications via Email, Pushover, and Pushbullet can be enabled using
+`--continuous` and notifications via Email, Pushover, Pushbullet, and Telegram can be enabled using
 `--notifications`.
 
 #### Arguments:
@@ -164,7 +164,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       [**_example_](#look-for-weekend-campsite-availabilities)
 * `--notifications`: `NOTIFICATIONS`
     + If `--continuous` is activated, types of notifications to receive. Options available
-      are`email`, `pushover`, `pushbullet`, or `silent`. Defaults to `silent` - which just logs
+      are`email`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
       messages to console.
       [**_example_](#send-a-push-notification)
 * `--notify-first-try`
@@ -236,8 +236,8 @@ Set up `camply` configuration file with an interactive console
 
 In order to send notifications through `camply` you must set up some authorization values. Whether
 you need to set up [Pushover notifications](https://pushover.net)
-, [PushBullet](https://www.pushbullet.com/#settings/account) or Email messages, everything can be
-done through the `configure` command. The end result is a file called
+, [PushBullet](https://www.pushbullet.com/#settings/account), [Telegram](https://core.telegram.org/bots),
+or Email messages, everything can be done through the `configure` command. The end result is a file called
 [`.camply`](docs/examples/example.camply) in your home folder. See
 the [Running in Docker](#running-in-docker) section to see how you can use environment variables
 instead of a config file.
@@ -304,7 +304,7 @@ camply campsites \
 
 Sometimes you want to look for campgrounds until an eventual match is found. The below snippet will
 search for matching campsites until it finds a match. It also sends a notification via `pushover`
-once matches are found. Alternate notification methods are `email`, `pushbullet`, and `silent` (
+once matches are found. Alternate notification methods are `email`, `pushbullet`, `telegram`, and `silent` (
 default).
 
 __Important Note__: When `camply` is told to run `--continuous` with non-silent notifications set up
@@ -471,13 +471,13 @@ weekends:         false  # FALSE BY DEFAULT
 nights:           1  # 1 BY DEFAULT
 continuous:       true  # DEFAULTS TO TRUE
 polling_interval: 5  # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
-notifications:    email  # (silent, email, pushover, pushbullet), DEFAULTS TO `silent`
+notifications:    email  # (silent, email, pushover, pushbullet, telegram), DEFAULTS TO `silent`
 search_forever:   true  # FALSE BY DEFAULT
 notify_first_try: false  # FALSE BY DEFAULT
 ```
 
 ```shell
-camply campsites --yml-config example_search.yml 
+camply campsites --yml-config example_search.yml
 ```
 
 #### Search for Recreation Areas by Query String
@@ -515,7 +515,7 @@ functionality. Use the below example for a campground within Glacier National Pa
 First, perform your search on https://recreation.gov.
 
 <div>
-<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/recreation_dot_gov.png" 
+<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/recreation_dot_gov.png"
     width="500" alt="recreation_dot_gov search">
 </div>
 
