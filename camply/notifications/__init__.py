@@ -10,11 +10,13 @@ from .email_notifications import EmailNotifications
 from .multi_provider_notifications import CAMPSITE_NOTIFICATIONS, MultiNotifierProvider
 from .pushbullet import PushbulletNotifications
 from .pushover import PushoverNotifications
+from .telegram import TelegramNotifications
 from .silent_notifications import SilentNotifications
 
 __all__ = [
     "PushbulletNotifications",
     "PushoverNotifications",
+    "TelegramNotifications",
     "EmailNotifications",
     "SilentNotifications",
     "MultiNotifierProvider",

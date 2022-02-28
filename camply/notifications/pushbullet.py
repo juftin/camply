@@ -9,13 +9,13 @@ Push Notifications via Pushbullet
 from abc import ABC
 from datetime import datetime
 import logging
-from typing import List, Optional
+from typing import List
 
 import requests
 
 from camply.config import CampsiteContainerFields, PushbulletConfig
-from .base_notifications import BaseNotifications
-from ..containers import AvailableCampsite
+from camply.containers import AvailableCampsite
+from camply.notifications.base_notifications import BaseNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,7 @@ class PushbulletNotifications(BaseNotifications, ABC):
         return "<PushbulletNotifications>"
 
     @staticmethod
-    def send_message(message: str, **kwargs) -> Optional[requests.Response]:
+    def send_message(message: str, **kwargs) -> requests.Response:
         """
         Send a message via PushBullet - if environment variables are configured
 
@@ -52,7 +52,7 @@ class PushbulletNotifications(BaseNotifications, ABC):
 
         Returns
         -------
-        Response
+        requests.Response
         """
         pushbullet_headers = PushbulletConfig.API_HEADERS.copy()
         pushbullet_headers.update({"Access-Token": PushbulletConfig.API_TOKEN})
@@ -64,10 +64,12 @@ class PushbulletNotifications(BaseNotifications, ABC):
         response = requests.post(url=PushbulletConfig.PUSHBULLET_API_ENDPOINT,
                                  headers=pushbullet_headers,
                                  json=message_json)
-        if response.status_code != 200:
+        try:
+            response.raise_for_status()
+        except requests.HTTPError as he:
             logger.warning("Notifications weren't able to be sent to Pushbullet. "
                            "Your configuration might be incorrect.")
-            logger.debug(response.text)
+            raise ConnectionError(response.text) from he
         return response
 
     @staticmethod
