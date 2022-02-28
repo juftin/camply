@@ -343,7 +343,7 @@ camply campsites \
 
 #### Send a Push Notification
 
-camply supports notifications via `Pushbullet`, `Pushover`, and `Email`. Pushbullet is a great
+camply supports notifications via `Pushbullet`, `Pushover`, `Telegram`, and `Email`. Pushbullet is a great
 option because it's
 a [free and easy service to sign up for](https://www.pushbullet.com/#settings/account)
 and it supports notifications across different devices and operating systems. Similar to `Pushover`,
@@ -471,7 +471,7 @@ weekends:         false  # FALSE BY DEFAULT
 nights:           1  # 1 BY DEFAULT
 continuous:       true  # DEFAULTS TO TRUE
 polling_interval: 5  # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
-notifications:    email  # (silent, email, pushover, pushbullet, telegram), DEFAULTS TO `silent`
+notifications:    email  # (silent, email, pushover, pushbullet, and telegram), DEFAULTS TO `silent`
 search_forever:   true  # FALSE BY DEFAULT
 notify_first_try: false  # FALSE BY DEFAULT
 ```
