@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Push Notifications via Telegram
 """
@@ -9,13 +5,13 @@ Push Notifications via Telegram
 from abc import ABC
 from datetime import datetime
 import logging
-from typing import List, Optional
+from typing import List
 
 import requests
 
 from camply.config import CampsiteContainerFields, TelegramConfig
-from .base_notifications import BaseNotifications
-from ..containers import AvailableCampsite
+from camply.containers import AvailableCampsite
+from camply.notifications.base_notifications import BaseNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -44,7 +40,7 @@ class TelegramNotifications(BaseNotifications, ABC):
         return "<TelegramNotifications>"
 
     @staticmethod
-    def send_message(message: str, escaped=False, **kwargs) -> Optional[requests.Response]:
+    def send_message(message: str, escaped=False, **kwargs) -> requests.Response:
         """
         Send a message via Telegram - if environment variables are configured
 
@@ -55,7 +51,7 @@ class TelegramNotifications(BaseNotifications, ABC):
 
         Returns
         -------
-        Response
+        requests.Response
         """
         if not escaped:
             message = TelegramNotifications.escape_text(message)
@@ -67,10 +63,12 @@ class TelegramNotifications(BaseNotifications, ABC):
         response = requests.post(url=TelegramConfig.API_ENDPOINT,
                                  headers=telegram_headers,
                                  json=message_json)
-        if response.status_code != 200:
+        try:
+            response.raise_for_status()
+        except requests.HTTPError as he:
             logger.warning("Notifications weren't able to be sent to Telegram. "
                            "Your configuration might be incorrect.")
-            logger.debug(response.text)
+            raise ConnectionError(response.text) from he
         return response
 
     @staticmethod

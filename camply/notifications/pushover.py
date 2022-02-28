@@ -15,8 +15,8 @@ from typing import List, Optional
 import requests
 
 from camply.config import CampsiteContainerFields, PushoverConfig
-from .base_notifications import BaseNotifications
-from ..containers import AvailableCampsite
+from camply.containers import AvailableCampsite
+from camply.notifications.base_notifications import BaseNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -44,7 +44,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
         return "<PushoverNotifications>"
 
     @staticmethod
-    def send_message(message: str, **kwargs) -> Optional[requests.Response]:
+    def send_message(message: str, **kwargs) -> requests.Response:
         """
         Send a message via Pushover - if environment variables are configured
 
@@ -54,7 +54,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
 
         Returns
         -------
-        Response
+        requests.Response
         """
         token = PushoverConfig.PUSH_TOKEN if PushoverConfig.PUSH_TOKEN not in [None, ""] \
             else base64.b64decode(PushoverConfig.PUSHOVER_DEFAULT_API_TOKEN).decode("utf-8")
@@ -65,10 +65,12 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
                                              message=message,
                                              **kwargs)
                                  )
-        if response.status_code != 200:
+        try:
+            response.raise_for_status()
+        except requests.HTTPError as he:
             logger.warning("Notifications weren't able to be sent to Pushover. "
                            "Your configuration might be incorrect.")
-            raise ConnectionError(response.text)
+            raise ConnectionError(response.text) from he
         return response
 
     def emit(self, record: logging.LogRecord):
