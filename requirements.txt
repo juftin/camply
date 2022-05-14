@@ -5,4 +5,5 @@ pytz
 requests
 tenacity
 pydantic
+click
 rich
