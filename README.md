@@ -696,6 +696,8 @@ dependencies:
     - The `tenacity` package is used for retrying data searches on the underlying campsite APIs.
       This retrying methodology handles exceptions allowing for API downtime and facilitating
       exponential backoff.
+- [rich](https://github.com/textualize/rich)
+    - Colorizing the CLI
 - [python-dotenv](https://github.com/theskumar/python-dotenv)
     - The `python-dotenv` package reads key-value pairs from a `.env` file and can set them as
       environment variables - this helps with the `.camply` configuration file.

@@ -5,3 +5,4 @@ pytz
 requests
 tenacity
 pydantic
+rich

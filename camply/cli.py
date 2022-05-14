@@ -8,6 +8,7 @@ from os import getenv
 from typing import List, Optional
 
 import click
+from rich.logging import RichHandler
 
 from camply import __camply__, __version__
 from camply.config import SearchConfig
@@ -296,8 +297,16 @@ def cli():
     """
     camply Command Line Utility Wrapper
     """
-    logging.basicConfig(format="%(asctime)s [%(levelname)8s]: %(message)s",
-                        level=logging.getLevelName(getenv("LOG_LEVEL", "INFO").upper()))
+    logging_handler = RichHandler(level=logging.getLevelName(getenv("LOG_LEVEL", "INFO").upper()),
+                                  rich_tracebacks=True,
+                                  omit_repeated_times=False,
+                                  show_path=False)
+    logging.basicConfig(format="%(message)s",
+                        level=logging.NOTSET,
+                        datefmt="[%Y-%m-%d %H:%M:%S]",
+                        handlers=[
+                            logging_handler,
+                        ])
     try:
         logger.camply(f"camply, the campsite finder ⛺️")
         camply_command_line()
