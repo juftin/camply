@@ -5,7 +5,7 @@ Camply Command Line Interface
 from datetime import datetime
 import logging
 from os import getenv
-from typing import List, Optional
+from typing import List, Optional, Union
 
 import click
 from rich.logging import RichHandler
@@ -247,7 +247,7 @@ def campsites(rec_area: Optional[int] = None,
               provider: str = "RecreationDotGov",
               continuous: bool = False,
               polling_interval: int = SearchConfig.RECOMMENDED_POLLING_INTERVAL,
-              notifications: List[str] = ["silent"],
+              notifications: Union[str, List[str]] = "silent",
               notify_first_try: bool = False,
               search_forever: bool = False,
               yml_config: Optional[str] = None,
@@ -262,6 +262,7 @@ def campsites(rec_area: Optional[int] = None,
     functionality can be enabled with  `--continuous` and notifications can be enabled using
     `--notifications`.
     """
+    notifications = make_list(notifications)
     _validate_campsites(rec_area=rec_area, campground=campground, campsite=campsite,
                         start_date=start_date, end_date=end_date, weekends=weekends,
                         nights=nights, provider=provider, continuous=continuous,
@@ -295,7 +296,7 @@ def campsites(rec_area: Optional[int] = None,
 
 def cli():
     """
-    camply Command Line Utility Wrapper
+    Camply Command Line Utility Wrapper
     """
     logging_handler = RichHandler(level=logging.getLevelName(getenv("LOG_LEVEL", "INFO").upper()),
                                   rich_tracebacks=True,
@@ -308,7 +309,7 @@ def cli():
                             logging_handler,
                         ])
     try:
-        logger.camply(f"camply, the campsite finder ⛺️")
+        logger.camply("camply, the campsite finder ⛺️")
         camply_command_line()
     except KeyboardInterrupt:
         logger.debug("Handling Exit Request")
