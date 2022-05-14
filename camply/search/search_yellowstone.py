@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Yellowstone Lodging Web Searching Utilities
 """
@@ -10,10 +6,13 @@ from datetime import datetime, timedelta
 import logging
 from typing import List, Optional, Set, Union
 
+import pandas as pd
+
 from camply.config import YellowstoneConfig
 from camply.containers import AvailableCampsite, SearchWindow
 from camply.providers import YellowstoneLodging
 from camply.search.base_search import BaseCampingSearch, SearchError
+from camply.utils import make_list
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +47,7 @@ class SearchYellowstone(BaseCampingSearch):
                          search_window=search_window,
                          weekends_only=weekends_only,
                          nights=nights)
-        self.campgrounds = self._make_list(campgrounds)
+        self.campgrounds = make_list(campgrounds)
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """
@@ -60,7 +59,7 @@ class SearchYellowstone(BaseCampingSearch):
         """
         all_campsites = list()
         searchable_campgrounds = self._get_searchable_campgrounds()
-        this_month = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        this_month = datetime.now().date().replace(day=1)
         for month in self.search_months:
             if month >= this_month:
                 all_campsites += self.campsite_finder.get_monthly_campsites(
@@ -70,8 +69,10 @@ class SearchYellowstone(BaseCampingSearch):
             campsites=all_campsites, searchable_campgrounds=searchable_campgrounds)
         campsite_df = self.campsites_to_df(campsites=matching_campsites)
         campsite_df_validated = self._filter_date_overlap(campsites=campsite_df)
+        time_window_end = max(self.search_days) + timedelta(days=1)
         compiled_campsite_df = campsite_df_validated[
-            campsite_df_validated.booking_end_date <= max(self.search_days) + timedelta(days=1)]
+            campsite_df_validated.booking_end_date <= pd.Timestamp(time_window_end)
+            ]
         compiled_campsites = self.df_to_campsites(campsite_df=compiled_campsite_df)
         return compiled_campsites
 

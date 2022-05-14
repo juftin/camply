@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Recreation.gov Web Searching Utilities
 """
@@ -15,6 +11,7 @@ from camply.config import RecreationBookingConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search.base_search import BaseCampingSearch, SearchError
+from camply.utils import make_list
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +23,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
 
     def __init__(self,
                  search_window: Union[SearchWindow, List[SearchWindow]],
-                 recreation_area: Optional[int] = None,
+                 recreation_area: Optional[Union[List[int], int]] = None,
                  campgrounds: Optional[Union[List[int], int]] = None,
                  campsites: Optional[Union[List[int], int]] = None,
                  weekends_only: bool = False,
@@ -38,7 +35,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         ----------
         search_window: Union[SearchWindow, List[SearchWindow]]
             Search Window tuple containing start date and End Date
-        recreation_area: int
+        recreation_area: Optional[Union[List[int], int]]
             ID of Recreation Area (i.e. 2907 - Rocky Mountain National Park)
         campgrounds: Optional[Union[List[int], int]]
             Campground ID or List of Campground IDs
@@ -54,7 +51,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
                          search_window=search_window,
                          weekends_only=weekends_only,
                          nights=nights)
-        self._recreation_area_id = self._make_list(recreation_area)
+        self._recreation_area_id = make_list(recreation_area)
         self._campground_object = campgrounds
         self.weekends_only = weekends_only
         assert any([
@@ -63,7 +60,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
             recreation_area is not None
         ]) is True
         self.campsite_finder: RecreationDotGov
-        self.campsites = self._make_list(campsites)
+        self.campsites = make_list(campsites)
         self.campgrounds = self._get_searchable_campgrounds()
 
     def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:
@@ -78,12 +75,12 @@ class SearchRecreationDotGov(BaseCampingSearch):
         searchable_campgrounds: List[int]
             List of searchable campground IDs
         """
-        if self.campsites not in [[], None]:
+        if self.campsites not in [(), [], None]:
             self.campsites = [int(campsite_id) for campsite_id in self.campsites]
             searchable_campgrounds = self._get_campgrounds_by_campsite_id()
-        elif self._campground_object not in [[], None]:
+        elif self._campground_object not in [(), [], None]:
             searchable_campgrounds = self._get_campgrounds_by_campground_id()
-        elif self._recreation_area_id is not None:
+        elif self._recreation_area_id not in [(), [], None]:
             searchable_campgrounds = self._get_campgrounds_by_recreation_area_id()
         else:
             raise RuntimeError("You must provide a Campground or Recreation Area ID")
@@ -98,7 +95,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         returned_sites: List[int]
             List of searchable campground IDs
         """
-        campground_list = self._make_list(self._campground_object)
+        campground_list = make_list(self._campground_object)
         facilities = self.campsite_finder.find_campgrounds(campground_id=campground_list)
         return facilities
 
@@ -111,7 +108,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         returned_sites: List[int]
             List of searchable campground IDs
         """
-        campsite_list = self._make_list(self.campsites)
+        campsite_list = make_list(self.campsites)
         facilities = self.campsite_finder.find_campgrounds(campsite_id=campsite_list)
         return facilities
 

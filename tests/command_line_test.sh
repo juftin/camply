@@ -13,3 +13,9 @@ camply campsites --provider yellowstone --start-date 2022-10-10 --end-date 2022-
 camply campsites --campsite 40107 --start-date 2022-09-15 --end-date 2022-09-17
 camply campgrounds --campsite 40107
 camply campsites --yml-config tests/yml/example_campsite_search.yml
+
+camply campsites \
+  --provider yellowstone \
+  --start-date 2022-09-01 \
+  --end-date 2022-09-14 \
+  --campground YLYF:RV

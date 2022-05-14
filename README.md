@@ -684,6 +684,9 @@ available.
 `camply` is compatible with any Python version >= `3.6`. Currently, there are six required
 dependencies:
 
+- [click](https://docs.python-requests.org/en/master/)
+    - The `click` package is used to leverage it's simple Command Line Interface 
+      API for camply
 - [requests](https://docs.python-requests.org/en/master/)
     - The `requests` package is used to fetch data from the APIs of Camping Booking Providers.
 - [pandas](https://pandas.pydata.org/)

@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Recreation.gov Web Searching Utilities
 """
@@ -124,13 +120,13 @@ class RecreationDotGov(BaseProvider):
         facilities: List[CampgroundFacility]
             Array of Matching Campsites
         """
-        if campsite_id not in [None, list()]:
+        if campsite_id not in (None, [], ()):
             facilities = self._process_specific_campsites_provided(
                 campsite_id=campsite_id)
-        elif campground_id not in [None, list()]:
+        elif campground_id not in (None, [], ()):
             facilities = self._find_facilities_from_campgrounds(
                 campground_id=campground_id)
-        elif rec_area_id is not None:
+        elif rec_area_id not in (None, [], ()):
             facilities = list()
             for recreation_area in rec_area_id:
                 facilities += self.find_facilities_per_recreation_area(

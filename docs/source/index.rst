@@ -18,7 +18,8 @@ becomes available, camply sends you a notification to book your spot!
    :maxdepth: 1
 
    usage.md
-   API Documentation <api/camply.rst>
+   cli.rst
+   API Documentation <api/modules.rst>
 
 
 .. image:: https://raw.githubusercontent.com/juftin/juftin/main/static/juftin.png

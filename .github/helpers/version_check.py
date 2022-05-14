@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Compare two Versions Using SemVer comparison
 Make sure the `CURRENT_VERSION` and `MAIN_VERSION` environment variables are set
