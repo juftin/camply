@@ -40,6 +40,7 @@ extensions = [
     "sphinx_click",
 ]
 
+myst_heading_anchors = 5
 myst_enable_extensions = [
     "amsmath",
     "colon_fence",

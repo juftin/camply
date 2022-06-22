@@ -58,17 +58,21 @@ ___________
 
 ## Installation
 
-### <a name="pypi"></a>[PyPI](https://pypi.python.org/pypi/camply/)
+### PyPI
 
 ```shell
 pip install camply
 ```
 
-### <a name="docker"></a>[Docker](https://hub.docker.com/r/juftin/camply)
+[PyPI Link](https://pypi.python.org/pypi/camply/)
+
+### Docker
 
 ```shell
 docker pull juftin/camply
 ```
+
+[Docker Hub Link](https://hub.docker.com/r/juftin/camply)
 
 **_see [Running in Docker](#running-in-docker) below._
 
@@ -462,8 +466,8 @@ below [YML example file](docs/examples/example_search.yml) and corresponding cam
 ```yaml
 provider:         RecreationDotGov  # RecreationDotGov IF NOT PROVIDED
 recreation_area:  # (LIST OR SINGLE ENTRY)
-    - 2991  # Yosemite National Park, CA (All Campgrounds)
-    - 1074  # Sierra National Forest, CA (All Campgrounds)
+  - 2991  # Yosemite National Park, CA (All Campgrounds)
+  - 1074  # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null  # ENTIRE FIELD CAN BE OMITTED IF NOT USED - (LIST OR SINGLE ENTRY)
 campsites:        null   # OVERRIDES CAMPGROUNDS / RECREATION AREA - (LIST OR SINGLE ENTRY)
 start_date:       2022-09-12  # YYYY-MM-DD
@@ -685,7 +689,7 @@ available.
 dependencies:
 
 - [click](https://docs.python-requests.org/en/master/)
-    - The `click` package is used to leverage it's simple Command Line Interface 
+    - The `click` package is used to leverage it's simple Command Line Interface
       API for camply
 - [requests](https://docs.python-requests.org/en/master/)
     - The `requests` package is used to fetch data from the APIs of Camping Booking Providers.
@@ -717,4 +721,3 @@ ___________
 <br/>
 
 [<p align="center" ><img src="https://raw.githubusercontent.com/juftin/juftin/main/static/juftin.png" width="120" height="120"  alt="juftin logo"> </p>](https://github.com/juftin)
-

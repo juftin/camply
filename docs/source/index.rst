@@ -17,7 +17,7 @@ becomes available, camply sends you a notification to book your spot!
 .. toctree::
    :maxdepth: 1
 
-   usage.md
+   README.md
    cli.rst
    API Documentation <api/modules.rst>
 

@@ -5,7 +5,7 @@ Camply General Utilities
 import logging
 from typing import Callable, List, Optional
 
-from pydantic import BaseModel
+from camply.containers.base_container import CamplyModel
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ def make_list(obj, coerce: Optional[Callable] = None) -> Optional[List]:
     """
     if obj is None:
         return None
-    elif isinstance(obj, BaseModel):
+    elif isinstance(obj, CamplyModel):
         return [coerce(obj) if coerce is not None else obj]
     elif isinstance(obj, (set, list, tuple)):
         if coerce is True:

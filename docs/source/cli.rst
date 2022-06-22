@@ -4,8 +4,8 @@ camply CLI
 
 .. code-block:: console
 
-    ❯ camply
-    2022-04-27 00:48:04,415 [  CAMPLY]: camply, the campsite finder ⛺️
+    ❯ camply --help
+    [2022-06-22 11:01:43] CAMPLY   camply, the campsite finder ⛺️
     Usage: camply [OPTIONS] COMMAND [ARGS]...
 
       Welcome to camply, the campsite finder.
@@ -27,9 +27,8 @@ camply CLI
       campgrounds       Search for Campgrounds (inside of Recreation Areas)...
       campsites         Find available Campsites using search criteria
       configure         Set up camply configuration file with an interactive...
-      recreation-areas  Search for Recreation Areas and list them
-
-    2022-04-27 00:48:04,416 [  CAMPLY]: Exiting camply 👋
+      recreation-areas  Search for Recreation Areas and list them'
+    [2022-06-22 11:01:43] CAMPLY   Exiting camply 👋
 
 
 ******************
