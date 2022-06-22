@@ -156,7 +156,7 @@ provider_argument = click.option(
          "'RecreationDotGov'. Defaults to 'RecreationDotGov', not case-sensitive.")
 continuous_argument = click.option(
     "--continuous",
-    show_default=True, default=False,
+    is_flag=True, show_default=True, default=False,
     help="Continuously check for a campsite to become available, and quit once "
          "at least one campsite is found.")
 polling_interval_argument = click.option(

@@ -681,7 +681,7 @@ available.
 
 ## Dependencies
 
-`camply` is compatible with any Python version >= `3.6`. Currently, there are six required
+`camply` is compatible with any Python version >= `3.6`. Currently, there are eight required
 dependencies:
 
 - [click](https://docs.python-requests.org/en/master/)

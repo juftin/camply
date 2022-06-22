@@ -69,7 +69,7 @@ def generate_configuration() -> OrderedDict:
                        f"[bold green]{field_note}[/bold green]")
         message = f"Enter value for [bold blue]{field}[/bold blue]"
         if default_value != "":
-            message += f" (default: `[bold purple]{field}[/bold purple]`)"
+            message += f" (default: `[bold purple]{default_value}[/bold purple]`)"
         logged_input = Prompt.ask(prompt=message)
         config_value = logged_input if logged_input != '' else default_value
         config_dict[field] = config_value
