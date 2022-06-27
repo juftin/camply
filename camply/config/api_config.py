@@ -215,14 +215,16 @@ class RecreationBookingConfig:
         "Referer": "https://www.recreation.gov/"
     }
 
-    CAMPSITE_UNAVAILABLE_STRINGS: list = ["Reserved",
-                                          "Not Available",
-                                          "Not Reservable",
-                                          "Not Reservable Management",
-                                          "Not Available Cutoff",
-                                          "Lottery",
-                                          "Open"
-                                          ]
+    CAMPSITE_UNAVAILABLE_STRINGS: list = [
+        "Reserved",
+        "Not Available",
+        "Not Reservable",
+        "Not Reservable Management",
+        "Not Available Cutoff",
+        "Lottery",
+        "Open",
+        "NYR",
+    ]
 
     CAMPSITE_LOCATION_LOOP_DEFAULT: str = "Default Loop"
     CAMPSITE_LOCATION_SITE_DEFAULT: str = "Default Site"
