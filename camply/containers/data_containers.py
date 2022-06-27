@@ -62,7 +62,7 @@ class CampgroundFacility(CamplyModel):
 
     facility_name: str
     recreation_area: str
-    facility_id: int
+    facility_id: Union[int, str]
     recreation_area_id: int
 
 

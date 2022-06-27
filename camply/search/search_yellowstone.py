@@ -2,8 +2,8 @@
 Yellowstone Lodging Web Searching Utilities
 """
 
-from datetime import datetime, timedelta
 import logging
+from datetime import datetime, timedelta
 from typing import List, Optional, Set, Union
 
 import pandas as pd
@@ -13,6 +13,7 @@ from camply.containers import AvailableCampsite, SearchWindow
 from camply.providers import YellowstoneLodging
 from camply.search.base_search import BaseCampingSearch, SearchError
 from camply.utils import make_list
+from camply.utils.logging_utils import log_sorted_response
 
 logger = logging.getLogger(__name__)
 
@@ -124,3 +125,10 @@ class SearchYellowstone(BaseCampingSearch):
         matching_campsites = [campsite for campsite in campsites if
                               campsite.facility_id in searchable_campgrounds]
         return matching_campsites
+
+    @staticmethod
+    def print_campgrounds() -> None:
+        """
+        Print the Campgrounds inside of Yellowstone
+        """
+        log_sorted_response(YellowstoneConfig.YELLOWSTONE_CAMPGROUND_OBJECTS)

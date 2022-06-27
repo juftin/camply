@@ -2,19 +2,20 @@
 Camply Command Line Interface
 """
 
-from datetime import datetime
 import logging
+from datetime import datetime
 from os import getenv
 from typing import List, Optional, Union
 
 import click
+import rich.traceback
 from rich.logging import RichHandler
 
 from camply import __camply__, __version__
 from camply.config import SearchConfig
 from camply.containers import SearchWindow
 from camply.providers import RecreationDotGov
-from camply.search import CAMPSITE_SEARCH_PROVIDER
+from camply.search import CAMPSITE_SEARCH_PROVIDER, SearchYellowstone
 from camply.utils import configure_camply, log_camply, make_list, yaml_utils
 
 logging.Logger.camply = log_camply
@@ -69,6 +70,11 @@ rec_area_argument = click.option("--rec-area",
 campground_argument = click.option("--campground",
                                    default=None, multiple=True,
                                    help="Add individual Campgrounds by ID.")
+provider_argument = click.option(
+    "--provider",
+    show_default=True, default="RecreationDotGov",
+    help="Camping Search Provider. Options available are 'Yellowstone' and "
+         "'RecreationDotGov'. Defaults to 'RecreationDotGov', not case-sensitive.")
 
 
 @search_argument
@@ -98,12 +104,14 @@ def recreation_areas(search: Optional[str],
 @rec_area_argument
 @campground_argument
 @campsite_id_argument
+@provider_argument
 @camply_command_line.command()
 def campgrounds(search: Optional[str] = None,
                 state: Optional[str] = None,
                 rec_area: Optional[int] = None,
                 campground: Optional[int] = None,
-                campsite: Optional[int] = None) -> None:
+                campsite: Optional[int] = None,
+                provider: Optional[str] = "RecreationDotGov") -> None:
     """
     Search for Campgrounds (inside of Recreation Areas) and list them
 
@@ -112,6 +120,9 @@ def campgrounds(search: Optional[str] = None,
     multiple campsites, others are facilities like fire towers or cabins that might only
     contain a single 'campsite' to book.
     """
+    if provider.lower() == "yellowstone":
+        SearchYellowstone.print_campgrounds()
+        exit(0)
     if all([search is None,
             state is None,
             len(rec_area) == 0,
@@ -149,11 +160,6 @@ nights_argument = click.option(
     show_default=True, default=1,
     help="Search for campsite stays with consecutive nights. "
          "Defaults to 1 which returns all campsites found.")
-provider_argument = click.option(
-    "--provider",
-    show_default=True, default="RecreationDotGov",
-    help="Camping Search Provider. Options available are 'Yellowstone' and "
-         "'RecreationDotGov'. Defaults to 'RecreationDotGov', not case-sensitive.")
 continuous_argument = click.option(
     "--continuous",
     is_flag=True, show_default=True, default=False,
@@ -308,13 +314,14 @@ def cli():
                         handlers=[
                             logging_handler,
                         ])
+    rich.traceback.install(show_locals=False)
     try:
-        logger.camply("camply, the campsite finder ⛺️")
+        logger.camply("camply, the campsite finder ⛺️") # noqa
         camply_command_line()
     except KeyboardInterrupt:
         logger.debug("Handling Exit Request")
     finally:
-        logger.camply("Exiting camply 👋")
+        logger.camply("Exiting camply 👋") # noqa
 
 
 if __name__ == "__main__":

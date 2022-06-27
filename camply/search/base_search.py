@@ -2,17 +2,17 @@
 Recreation.gov Web Searching Utilities
 """
 
+import logging
 from abc import ABC, abstractmethod
 from datetime import datetime
 from itertools import groupby, islice, tee
-import logging
 from operator import itemgetter
 from os import getenv
 from time import sleep
 from typing import Generator, Iterable, List, Optional, Set, Union
 
-from pandas import concat, DataFrame, date_range, Series, Timedelta
 import tenacity
+from pandas import concat, DataFrame, date_range, Series, Timedelta
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
@@ -96,8 +96,10 @@ class BaseCampingSearch(ABC):
         -------
         bool
         """
-        campsite_date_range = set(date_range(start=date.to_pydatetime(),
-                                             periods=periods))
+        campsite_timestamp_range = set(date_range(start=date.to_pydatetime(),
+                                                  periods=periods))
+        campsite_date_range = {item.to_pydatetime().date() for item in
+                               campsite_timestamp_range}
         intersection = campsite_date_range.intersection(self.search_days)
         if intersection:
             return True

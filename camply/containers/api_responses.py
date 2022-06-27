@@ -135,7 +135,7 @@ class FacilityResponse(CamplyModel):
     /api/v1/facilities/<Facility ID>
     """
 
-    FacilityID: int
+    FacilityID: Union[int, str]
     FacilityName: str
     FacilityTypeDescription: str
     Enabled: bool

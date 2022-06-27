@@ -25,6 +25,7 @@ from camply.containers.api_responses import (CampsiteAvailabilityResponse,
                                              RecreationAreaResponse)
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
 from camply.utils import api_utils, logging_utils
+from camply.utils.logging_utils import log_sorted_response
 
 logger = logging.getLogger(__name__)
 
@@ -92,7 +93,7 @@ class RecreationDotGov(BaseProvider):
                 recreation_area=recreation_area_object)
             if recreation_area is not None:
                 logging_messages.append(recreation_area)
-        self.log_sorted_response(response_array=logging_messages)
+        log_sorted_response(response_array=logging_messages)
         return api_response
 
     def find_campgrounds(self, search_string: str = None,
@@ -165,7 +166,7 @@ class RecreationDotGov(BaseProvider):
             _, campground_facility = self.process_facilities_responses(facility=facility)
             if campground_facility is not None:
                 campgrounds.append(campground_facility)
-        self.log_sorted_response(response_array=campgrounds)
+        log_sorted_response(response_array=campgrounds)
         return campgrounds
 
     def _find_facilities_from_campgrounds(self, campground_id: Union[int, List[int]]) -> \
@@ -193,7 +194,7 @@ class RecreationDotGov(BaseProvider):
             if campground_facility is not None:
                 campgrounds.append(campground_facility)
         logger.info(f"{len(campgrounds)} Matching Campgrounds Found")
-        self.log_sorted_response(response_array=campgrounds)
+        log_sorted_response(response_array=campgrounds)
         return campgrounds
 
     def _find_facilities_from_search(self, search: str, **kwargs) -> List[dict]:
@@ -220,7 +221,7 @@ class RecreationDotGov(BaseProvider):
             _, campground_facility = self.process_facilities_responses(facility=facility)
             if campground_facility is not None:
                 campgrounds.append(campground_facility)
-        self.log_sorted_response(response_array=campgrounds)
+        log_sorted_response(response_array=campgrounds)
         return campgrounds
 
     @classmethod
@@ -404,47 +405,6 @@ class RecreationDotGov(BaseProvider):
             return recreation_area, recreation_area_tuple
         except IndexError:
             return recreation_area, None
-
-    @classmethod
-    def _generate_response_string(cls,
-                                  response: Union[CampgroundFacility, RecreationArea, str]) -> str:
-        """
-        Generate a formatted string for logging
-
-        Parameters
-        ----------
-        response: Union[CampgroundFacility]
-
-        Returns
-        -------
-        str
-        """
-        if isinstance(response, CampgroundFacility):
-            return (f"⛰  {response.recreation_area} (#{response.recreation_area_id}) - "
-                    f"🏕  {response.facility_name} (#{response.facility_id})")
-        elif isinstance(response, RecreationArea):
-            return (f"⛰  {response.recreation_area}, {response.recreation_area_location} "
-                    f"(#{response.recreation_area_id})")
-        else:
-            return response
-
-    @staticmethod
-    def log_sorted_response(response_array: List[object]) -> None:
-        """
-        Log Some Statements in a Nice Sorted way
-
-        Parameters
-        ----------
-        response_array: List[str]
-
-        Returns
-        -------
-        None
-        """
-        log_array = [RecreationDotGov._generate_response_string(obj) for obj in response_array]
-        sorted_logs = sorted(log_array)
-        for log_response in sorted_logs:
-            logger.info(log_response)
 
     @classmethod
     def _rec_availability_get_endpoint(cls, path: str) -> str:
