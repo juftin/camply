@@ -1,8 +1,8 @@
 """
-Python __main__: Pointer to CLI
+camply __main__.py CLI Wrapper
 """
 
-from camply.utils.camply_cli import main
+from camply.cli import cli
 
 if __name__ == "__main__":
-    main()
+    cli()

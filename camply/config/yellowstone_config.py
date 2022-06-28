@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Project Configuration for Yellowstone Variables
 """
@@ -9,7 +5,8 @@ Project Configuration for Yellowstone Variables
 import logging
 from typing import Dict, List, Tuple
 
-from .data_columns import DataColumns
+from camply.config.data_columns import DataColumns
+from camply.containers import CampgroundFacility
 
 logger = logging.getLogger(__name__)
 
@@ -83,3 +80,14 @@ class YellowstoneConfig(DataColumns):
         "YLYM:RV": "Madison Campground",
         "YLYF:RV": "Fishing Bridge RV Park"
     }
+
+    YELLOWSTONE_CAMPGROUND_OBJECTS: List[CampgroundFacility] = []
+    for key, value in YELLOWSTONE_CAMPGROUNDS.items():
+        YELLOWSTONE_CAMPGROUND_OBJECTS.append(
+            CampgroundFacility(
+                recreation_area_id=YELLOWSTONE_RECREATION_AREA_ID,
+                recreation_area=YELLOWSTONE_RECREATION_AREA_FORMAL_NAME,
+                facility_name=value,
+                facility_id=str(key),
+            )
+        )

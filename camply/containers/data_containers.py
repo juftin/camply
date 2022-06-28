@@ -4,7 +4,7 @@ Storage Containers for the Application
 
 import datetime
 import logging
-from typing import Tuple, Union
+from typing import List, Tuple, Union
 
 from camply.containers.base_container import CamplyModel
 
@@ -16,8 +16,19 @@ class SearchWindow(CamplyModel):
     Search Window for Campsite Search
     """
 
-    start_date: datetime.datetime
-    end_date: datetime.datetime
+    start_date: datetime.date
+    end_date: datetime.date
+
+    def get_date_range(self) -> List[datetime.date]:
+        """
+        Generate a List of Dates Between two Dates
+
+        Returns
+        -------
+        List[datetime.date]
+        """
+        return [self.start_date + datetime.timedelta(days=x) for x in
+                range((self.end_date - self.start_date).days)]
 
 
 class AvailableCampsite(CamplyModel):
@@ -51,7 +62,7 @@ class CampgroundFacility(CamplyModel):
 
     facility_name: str
     recreation_area: str
-    facility_id: int
+    facility_id: Union[int, str]
     recreation_area_id: int
 
 

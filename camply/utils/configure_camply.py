@@ -1,35 +1,18 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Camply Configuration Script
 """
 
 from collections import OrderedDict
-from datetime import datetime
 import logging
 from os.path import isfile
 from time import sleep
 
+import rich
+from rich.prompt import Confirm, Prompt
+
 from camply.config import FileConfig
 
 logger = logging.getLogger(__name__)
-
-
-def get_log_input(message: str):
-    """
-    Create a log message with a nice log format :)
-
-    Parameters
-    ----------
-    message: str
-        The message you'd like to print before getting input
-    """
-    datetime_string = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S,%f')[:-3]
-    input_string = f"{datetime_string} [   INPUT]: {message} : "
-    value = input(input_string)
-    return value
 
 
 def double_check(message: str) -> bool:
@@ -41,22 +24,13 @@ def double_check(message: str) -> bool:
     message: str
         Message to log in interactive shell
     """
-    operation_eval = True
-    while operation_eval:
-        first_confirmation = get_log_input(message=message)
-        if first_confirmation.lower() == "y":
-            second_confirmation = get_log_input("Are you sure? (y/n)")
-            if second_confirmation.lower() != "y":
-                logging.info("Okay, skipping")
-                return False
-            elif second_confirmation.lower() == "y":
-                return True
-        elif first_confirmation.lower() == "n":
-            logging.info("Okay, skipping")
-            return False
-        else:
-            logging.warning("Make sure to enter a 'y' or 'n'")
-            operation_eval = True
+    first_confirmation = Confirm.ask(prompt=message)
+    if first_confirmation is True:
+        second_confirmation = Confirm.ask(prompt="Are you sure?")
+        return second_confirmation
+    else:
+        logging.info("Okay, skipping")
+        return False
 
 
 def check_dot_camply_file() -> bool:
@@ -91,11 +65,12 @@ def generate_configuration() -> OrderedDict:
         default_value = field_dict["default"]
         field_note = field_dict['notes']
         if field_note is not None:
-            logger.info(f"{field}: {field_note}")
-        message = f"Enter value for `{field}`"
+            rich.print(f"[bold blue]{field}:[/bold blue] "
+                       f"[bold green]{field_note}[/bold green]")
+        message = f"Enter value for [bold blue]{field}[/bold blue]"
         if default_value != "":
-            message += f" (default: `{default_value}`)"
-        logged_input = get_log_input(message=message).strip()
+            message += f" (default: `[bold purple]{default_value}[/bold purple]`)"
+        logged_input = Prompt.ask(prompt=message)
         config_value = logged_input if logged_input != '' else default_value
         config_dict[field] = config_value
     return config_dict
@@ -135,11 +110,13 @@ def generate_dot_camply_file():
     sleep(1.5)
     if isfile(FileConfig.DOT_CAMPLY_FILE):
         logger.warning(f".camply file already exists on this machine: {FileConfig.DOT_CAMPLY_FILE}")
-        overwrite = double_check("Would you like to overwrite your `.camply` "
-                                 "configuration file? (y/n)")
+        overwrite = double_check("Would you like to overwrite your "
+                                 "[bold yellow].camply[/bold yellow] "
+                                 "configuration file?")
         if overwrite is False:
             exit(0)
     config = generate_configuration()
-    if double_check(f"Are you ready to publish this to a file at {FileConfig.DOT_CAMPLY_FILE}"):
+    if double_check("Are you ready to publish this to a file at "
+                    f"[bold yellow]{FileConfig.DOT_CAMPLY_FILE}[/bold yellow]"):
         write_config_to_file(config_dict=config)
         logger.info(f"`.camply` file written to machine: {FileConfig.DOT_CAMPLY_FILE}")

@@ -1,32 +1,59 @@
-name: Documentation Generator
+name: Documentation
 
 on:
-    pull_request
-
+    push:
+        branches: [ main ]
+    pull_request:
+        types: [ opened, synchronize, reopened ]
+        paths:
+            - "camply/**"
+            - "docs/**"
 jobs:
-    docs:
+    github-pages-publish:
         runs-on: ubuntu-latest
         steps:
-            - name: Set up Github Workspace
-              uses: actions/checkout@v2
-              with:
-                  fetch-depth: 0
-                  token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-            - name: Set up Python Environment
-              uses: actions/setup-python@v2
-              with:
-                  python-version: "3.9"
-            - name: Install Test Dependencies
-              run: |
-                    python -m pip install --upgrade pip wheel
-                    python -m pip install tox
-            - name: Tox Sphinx Genration
-              run: |
-                    cat README.md | grep -v readthedocs > docs/source/usage.md
-                    tox -e sphinx
-            - name: Commit Changes
-              uses: EndBug/add-and-commit@v7
-              with:
-                  default_author: github_actions
-                  message: Sphinx Documentation
-                  add: docs
+            -   name: Checkout Latest Changes
+                uses: actions/checkout@v2
+                with:
+                    path:        ${{ github.workspace }}/main
+                    ref:         ${{ github.ref }}
+                    fetch-depth: 0
+            -   name: Checkout gh-pages Branch
+                uses: actions/checkout@v2
+                with:
+                    path:        ${{ github.workspace }}/github-pages
+                    ref:         gh-pages
+                    fetch-depth: 0
+            -   name: Set up Python Environment
+                uses: actions/setup-python@v2
+                with:
+                    python-version: "3.9"
+            -   name: Install Test Dependencies
+                run:  |
+                      python -m pip install --upgrade pip wheel
+                      python -m pip install tox
+            -   name:              Tox Sphinx Generation
+                working-directory: ${{ github.workspace }}/main
+                run:               |
+                                   tox -e sphinx
+            -   name: Setup Git Config
+#                if:   ${{ github.event_name == 'push' }}
+                run:  |
+                      git config --global user.name "github-actions[bot]"
+                      git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            -   name:              Get Commit SHA from main
+#                if:                ${{ github.event_name == 'push' }}
+                working-directory: ${{ github.workspace }}/main
+                run:               |
+                                   COMMIT_SHA=$(git rev-parse HEAD)
+                                   echo "COMMIT_SHA=${COMMIT_SHA}" >> ${GITHUB_ENV}
+            -   name:              Commit Changes to gh-pages Branch
+#                if:                ${{ github.event_name == 'push' }}
+                working-directory: ${{ github.workspace }}/github-pages
+                run:               |
+                                   git rm -rf . || true
+                                   cp -R ${{ github.workspace }}/main/docs/_build/html/* ${PWD}
+                                   touch .nojekyll
+                                   git add .
+                                   git diff-index --quiet HEAD || git commit -m "GitHub Pages - ${{ env.COMMIT_SHA }}"
+                                   git push origin gh-pages --force

@@ -1,29 +1,25 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Recreation.gov Web Searching Utilities
 """
 
-from abc import ABC, abstractmethod
-from datetime import datetime, timedelta
-from itertools import groupby, islice, tee
 import logging
+from abc import ABC, abstractmethod
+from datetime import datetime
+from itertools import groupby, islice, tee
 from operator import itemgetter
 from os import getenv
 from time import sleep
 from typing import Generator, Iterable, List, Optional, Set, Union
 
-from pandas import concat, DataFrame, date_range, Series, Timedelta
 import tenacity
+from pandas import concat, DataFrame, date_range, Series, Timedelta
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
-from camply.containers import (AvailableCampsite, CampgroundFacility, RecreationArea,
-                               SearchWindow)
+from camply.containers import AvailableCampsite, SearchWindow
 from camply.notifications.base_notifications import BaseNotifications
 from camply.notifications.multi_provider_notifications import MultiNotifierProvider
 from camply.providers import RecreationDotGov, YellowstoneLodging
+from camply.utils import make_list
 from camply.utils.logging_utils import get_emoji
 
 logger = logging.getLogger(__name__)
@@ -67,8 +63,7 @@ class BaseCampingSearch(ABC):
             minimum number of consecutive nights to search per campsite,defaults to 1
         """
         self.campsite_finder: Union[RecreationDotGov, YellowstoneLodging] = provider
-        # noinspection PyTypeChecker
-        self.search_window: List[SearchWindow] = self._make_list(search_window)
+        self.search_window: List[SearchWindow] = make_list(search_window)
         self.weekends_only: bool = weekends_only
         self.search_days: List[datetime] = self._get_search_days()
         self.search_months: List[datetime] = self._get_search_months()
@@ -101,8 +96,10 @@ class BaseCampingSearch(ABC):
         -------
         bool
         """
-        campsite_date_range = set(date_range(start=date.to_pydatetime(),
-                                             periods=periods))
+        campsite_timestamp_range = set(date_range(start=date.to_pydatetime(),
+                                                  periods=periods))
+        campsite_date_range = {item.to_pydatetime().date() for item in
+                               campsite_timestamp_range}
         intersection = campsite_date_range.intersection(self.search_days)
         if intersection:
             return True
@@ -180,7 +177,7 @@ class BaseCampingSearch(ABC):
     @classmethod
     def _get_polling_minutes(cls, polling_interval: Optional[int]) -> int:
         """
-        Return the Nu,ber of Minutes to Search
+        Return the Number of Minutes to Search
 
         Parameters
         ----------
@@ -437,33 +434,21 @@ class BaseCampingSearch(ABC):
         search_days: List[datetime]
             Datetime days to search for reservations
         """
-        now = datetime.now()
-        current_date = datetime(year=now.year, month=now.month, day=now.day)
-        search_days = set()
+        current_date = datetime.now().date()
+        search_nights = set()
         for window in self.search_window:
-            generated_dates = set()
-            for index in range(0, (window.end_date - window.start_date).days):
-                search_day = window.start_date
-                search_day = search_day.replace(hour=0, minute=0, second=0,
-                                                microsecond=0) + timedelta(days=index)
-                if search_day >= current_date:
-                    generated_dates.add(search_day)
-            search_days.update(generated_dates)
-
+            generated_dates = {date for date in window.get_date_range() if date >= current_date}
+            search_nights.update(generated_dates)
         if self.weekends_only is True:
             logger.info("Limiting Search of Campgrounds to Weekend Availabilities")
-            for search_date in list(search_days):
-                if search_date.weekday() not in [4, 5]:
-                    search_days.remove(search_date)
-        number_searches = len(search_days)
-        if number_searches > 0:
-            logger.info(f"{len(search_days)} booking nights selected for search, "
-                        f"ranging from {min(search_days).strftime('%Y-%m-%d')} to "
-                        f"{max(search_days).strftime('%Y-%m-%d')}")
+            search_nights = {x for x in search_nights if x.weekday() in [4, 5]}
+        if len(search_nights) > 0:
+            logger.info(f"{len(search_nights)} booking nights selected for search, "
+                        f"ranging from {min(search_nights)} to {max(search_nights)}")
         else:
             logger.info(SearchConfig.ERROR_MESSAGE)
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
-        return list(sorted(search_days))
+        return list(sorted(search_nights))
 
     def _get_search_months(self) -> List[datetime]:
         """
@@ -474,12 +459,10 @@ class BaseCampingSearch(ABC):
         search_months: List[datetime]
             Datetime Months to search for reservations
         """
-        search_days = self.search_days.copy()
-        truncated_months = set([day.replace(day=1) for day in search_days])
+        truncated_months = set([day.replace(day=1) for day in self.search_days])
         if len(truncated_months) > 1:
             logger.info(f"{len(truncated_months)} different months selected for search, "
-                        f"ranging from {min(search_days).strftime('%Y-%m-%d')} to "
-                        f"{max(search_days).strftime('%Y-%m-%d')}")
+                        f"ranging from {min(self.search_days)} to {max(self.search_days)}")
             return sorted(list(truncated_months))
         elif len(truncated_months) == 0:
             logger.info(SearchConfig.ERROR_MESSAGE)
@@ -510,7 +493,7 @@ class BaseCampingSearch(ABC):
                                                            ascending=True).copy()
             # ASSEMBLE THE CAMPSITES AVAILABILITIES INTO GROUPS THAT ARE CONSECUTIVE
             booking_date = campsite_grouping[CampsiteContainerFields.BOOKING_DATE]
-            date = Timedelta('1d')
+            date = Timedelta("1d")
             consecutive_nights = booking_date.diff() != date
             group_identifier = consecutive_nights.cumsum()
             campsite_grouping[CampsiteContainerFields.CAMPSITE_GROUP] = group_identifier
@@ -533,6 +516,8 @@ class BaseCampingSearch(ABC):
     def _consecutive_subseq(cls, iterable: Iterable, length: int) -> Generator:
         """
         Find All Sub Sequences by length Given a List
+
+        See https://tinyurl.com/5av5unjd
 
         Parameters
         ----------
@@ -598,7 +583,7 @@ class BaseCampingSearch(ABC):
             The proper number of nights to search
         """
         search_days = Series(self.search_days)
-        consecutive_nights = search_days.diff() != Timedelta('1d')
+        consecutive_nights = search_days.diff() != Timedelta("1d")
         largest_grouping = consecutive_nights.cumsum().value_counts().max()
         if nights > 1:
             logger.info(f"Searching for availabilities with {nights} consecutive night stays.")
@@ -647,7 +632,9 @@ class BaseCampingSearch(ABC):
         return composed_campsite_array
 
     @classmethod
-    def assemble_availabilities(cls, matching_data: List[AvailableCampsite], log: bool = True,
+    def assemble_availabilities(cls,
+                                matching_data: List[AvailableCampsite],
+                                log: bool = True,
                                 verbose: bool = False) -> DataFrame:
         """
         Prepare a Pandas DataFrame from Array of AvailableCampsite objects
@@ -703,25 +690,3 @@ class BaseCampingSearch(ABC):
                                         f"({booking_nights} night"
                                         f"{'s' if booking_nights > 1 else ''})")
         return availability_df
-
-    @classmethod
-    def _make_list(cls, obj) -> Optional[List]:
-        """
-        Make Anything An Iterable Instance
-
-        Parameters
-        ----------
-        obj: object
-
-        Returns
-        -------
-        List[object]
-        """
-        if obj is None:
-            return None
-        elif isinstance(obj, (SearchWindow, AvailableCampsite, RecreationArea, CampgroundFacility)):
-            return [obj]
-        elif isinstance(obj, (set, list, tuple)):
-            return obj
-        else:
-            return [obj]

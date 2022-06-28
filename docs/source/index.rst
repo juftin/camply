@@ -17,8 +17,9 @@ becomes available, camply sends you a notification to book your spot!
 .. toctree::
    :maxdepth: 1
 
-   usage.md
-   API Documentation <api/camply.rst>
+   README.md
+   cli.rst
+   API Documentation <api/modules.rst>
 
 
 .. image:: https://raw.githubusercontent.com/juftin/juftin/main/static/juftin.png

@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-# Author::    Justin Flannery  (mailto:juftin@juftin.com)
-
 """
 Python Class Check Yellowstone Campground Booking API for Availability
 """
@@ -362,7 +358,7 @@ class YellowstoneLodging(BaseProvider):
         -------
         List[AvailableCampsite]
         """
-        now = datetime.now()
+        now = datetime.now().date()
         search_date = month.replace(day=1)
         if month <= now:
             logger.info(
@@ -456,10 +452,10 @@ class YellowstoneLodging(BaseProvider):
         datetime
         """
         yellowstone_timezone = timezone(YellowstoneConfig.YELLOWSTONE_TIMEZONE)
-        yellowstone_current_time = datetime.now(yellowstone_timezone)
+        yellowstone_current_time = datetime.now(yellowstone_timezone).date()
         today = datetime(year=yellowstone_current_time.year,
                          month=yellowstone_current_time.month,
-                         day=yellowstone_current_time.day)
+                         day=yellowstone_current_time.day).date()
         if today > month:
             month = today
         return month
