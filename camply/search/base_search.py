@@ -12,7 +12,7 @@ from time import sleep
 from typing import Generator, Iterable, List, Optional, Set, Union
 
 import tenacity
-from pandas import concat, DataFrame, date_range, Series, Timedelta
+from pandas import DataFrame, Series, Timedelta, Timestamp, concat, date_range
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
@@ -42,11 +42,13 @@ class BaseCampingSearch(ABC):
     Camping Search Object
     """
 
-    def __init__(self, provider: Union[RecreationDotGov,
-                                       YellowstoneLodging],
-                 search_window: Union[SearchWindow, List[SearchWindow]],
-                 weekends_only: bool = False,
-                 nights: int = 1) -> None:
+    def __init__(
+        self,
+        provider: Union[RecreationDotGov, YellowstoneLodging],
+        search_window: Union[SearchWindow, List[SearchWindow]],
+        weekends_only: bool = False,
+        nights: int = 1,
+    ) -> None:
         """
         Initialize with Search Parameters
 
@@ -83,23 +85,23 @@ class BaseCampingSearch(ABC):
         List[AvailableCampsite]
         """
 
-    def _get_intersection_date_overlap(self, date: datetime, periods: int) -> bool:
+    def _get_intersection_date_overlap(self, date: Timestamp, periods: int) -> bool:
         """
         Find Date Overlap
 
         Parameters
         ----------
-        date: datetime
+        date: Timestamp
         periods: int
 
         Returns
         -------
         bool
         """
-        campsite_timestamp_range = set(date_range(start=date.to_pydatetime(),
-                                                  periods=periods))
-        campsite_date_range = {item.to_pydatetime().date() for item in
-                               campsite_timestamp_range}
+        timestamp_range: List[Timestamp] = date_range(
+            start=date.to_pydatetime(), periods=periods
+        )
+        campsite_date_range = {item.date() for item in timestamp_range}
         intersection = campsite_date_range.intersection(self.search_days)
         if intersection:
             return True
@@ -118,8 +120,9 @@ class BaseCampingSearch(ABC):
         -------
         bool
         """
-        intersection = self._get_intersection_date_overlap(date=campsite.booking_date,
-                                                           periods=campsite.booking_nights)
+        intersection = self._get_intersection_date_overlap(
+            date=campsite.booking_date, periods=campsite.booking_nights
+        )
         return intersection
 
     def _filter_date_overlap(self, campsites: DataFrame) -> bool:
@@ -134,15 +137,18 @@ class BaseCampingSearch(ABC):
         -------
         DataFrame
         """
-        filtered_campsites = campsites[campsites.apply(
-            lambda x: self._get_intersection_date_overlap(date=x.booking_date,
-                                                          periods=x.booking_nights),
-            axis=1)].copy().reset_index(drop=True)
+        matches = campsites.apply(
+            lambda x: self._get_intersection_date_overlap(
+                date=x.booking_date, periods=x.booking_nights
+            ),
+            axis=1,
+        )
+        filtered_campsites = campsites[matches].copy().reset_index(drop=True)
         return filtered_campsites
 
-    def _search_matching_campsites_available(self, log: bool = False,
-                                             verbose: bool = False,
-                                             raise_error: bool = False) -> List[AvailableCampsite]:
+    def _search_matching_campsites_available(
+        self, log: bool = False, verbose: bool = False, raise_error: bool = False
+    ) -> List[AvailableCampsite]:
         """
         Perform the Search and Return Matching Availabilities
 
@@ -161,15 +167,24 @@ class BaseCampingSearch(ABC):
         """
         matching_campgrounds = list()
         for camp in self.get_all_campsites():
-            if all([self._compare_date_overlap(campsite=camp) is True,
-                    camp.booking_nights >= self.nights]):
+            if all(
+                [
+                    self._compare_date_overlap(campsite=camp) is True,
+                    camp.booking_nights >= self.nights,
+                ]
+            ):
                 matching_campgrounds.append(camp)
-        logger.info(f"{(get_emoji(matching_campgrounds) + ' ') * 4}{len(matching_campgrounds)} "
-                    "Reservable Campsites Matching Search Preferences")
-        self.assemble_availabilities(matching_data=matching_campgrounds,
-                                     log=log, verbose=verbose)
+        logger.info(
+            f"{(get_emoji(matching_campgrounds) + ' ') * 4}{len(matching_campgrounds)} "
+            "Reservable Campsites Matching Search Preferences"
+        )
+        self.assemble_availabilities(
+            matching_data=matching_campgrounds, log=log, verbose=verbose
+        )
         if len(matching_campgrounds) == 0 and raise_error is True:
-            campsite_availability_message = "No Campsites were found, we'll continue checking"
+            campsite_availability_message = (
+                "No Campsites were found, we'll continue checking"
+            )
             logger.info(campsite_availability_message)
             raise CampsiteNotFoundError(campsite_availability_message)
         return matching_campgrounds
@@ -190,17 +205,23 @@ class BaseCampingSearch(ABC):
         int
         """
         if polling_interval is None:
-            polling_interval = getenv("POLLING_INTERVAL", SearchConfig.RECOMMENDED_POLLING_INTERVAL)
+            polling_interval = getenv(
+                "POLLING_INTERVAL", SearchConfig.RECOMMENDED_POLLING_INTERVAL
+            )
         if int(polling_interval) < SearchConfig.POLLING_INTERVAL_MINIMUM:
             polling_interval = SearchConfig.POLLING_INTERVAL_MINIMUM
         polling_interval_minutes = int(round(float(polling_interval), 2))
         return polling_interval_minutes
 
     def _continuous_search_retry(
-            self, log: bool, verbose: bool, polling_interval: int,
-            continuous_search_attempts: int,
-            notification_provider: Union[str, List[str], BaseNotifications, None],
-            notify_first_try: bool) -> List[AvailableCampsite]:
+        self,
+        log: bool,
+        verbose: bool,
+        polling_interval: int,
+        continuous_search_attempts: int,
+        notification_provider: Union[str, List[str], BaseNotifications, None],
+        notify_first_try: bool,
+    ) -> List[AvailableCampsite]:
         """
         Search for Campsites until at least one is found
 
@@ -228,36 +249,47 @@ class BaseCampingSearch(ABC):
         -------
         List[AvailableCampsite]
         """
-        polling_interval_minutes = self._get_polling_minutes(polling_interval=polling_interval)
+        polling_interval_minutes = self._get_polling_minutes(
+            polling_interval=polling_interval
+        )
         notifier = MultiNotifierProvider(provider=notification_provider)
-        logger.info(f"Searching for campsites every {polling_interval_minutes} minutes. ")
+        logger.info(
+            f"Searching for campsites every {polling_interval_minutes} minutes. "
+        )
         notifier.log_providers()
         retryer = tenacity.Retrying(
             retry=tenacity.retry_if_exception_type(CampsiteNotFoundError),
-            wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60))
-        matching_campsites = retryer.__call__(self._search_matching_campsites_available,
-                                              False, False, True)
+            wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60),
+        )
+        matching_campsites = retryer.__call__(
+            self._search_matching_campsites_available, False, False, True
+        )
         found_campsites = set(matching_campsites)
         new_campsites = found_campsites.difference(self.campsites_found)
-        self.assemble_availabilities(matching_data=list(new_campsites), log=log,
-                                     verbose=verbose)
+        self.assemble_availabilities(
+            matching_data=list(new_campsites), log=log, verbose=verbose
+        )
         logger.info(f"{len(new_campsites)} New Campsites Found.")
         self.campsites_found.update(new_campsites)
         logged_campsites = list(new_campsites)
-        self._handle_notifications(retryer=retryer, notifier=notifier,
-                                   logged_campsites=logged_campsites,
-                                   continuous_search_attempts=continuous_search_attempts,
-                                   notify_first_try=notify_first_try)
+        self._handle_notifications(
+            retryer=retryer,
+            notifier=notifier,
+            logged_campsites=logged_campsites,
+            continuous_search_attempts=continuous_search_attempts,
+            notify_first_try=notify_first_try,
+        )
         return list(self.campsites_found)
 
     @classmethod
-    def _handle_notifications(cls,
-                              retryer: tenacity.Retrying,
-                              notifier: MultiNotifierProvider,
-                              logged_campsites: List[AvailableCampsite],
-                              continuous_search_attempts: int,
-                              notify_first_try: bool,
-                              ) -> None:
+    def _handle_notifications(
+        cls,
+        retryer: tenacity.Retrying,
+        notifier: MultiNotifierProvider,
+        logged_campsites: List[AvailableCampsite],
+        continuous_search_attempts: int,
+        notify_first_try: bool,
+    ) -> None:
         """
         Handle sending notifications
 
@@ -277,23 +309,27 @@ class BaseCampingSearch(ABC):
         minimum_first_notify = SearchConfig.MINIMUM_CAMPSITES_FIRST_NOTIFY
         if max([attempt_number, continuous_search_attempts]) > 1:
             logged_campsites = cls._handle_too_many_campsites_found(
-                notifier=notifier,
-                logged_campsites=logged_campsites)
+                notifier=notifier, logged_campsites=logged_campsites
+            )
             notifier.send_campsites(campsites=logged_campsites)
         elif attempt_number == 1 and notify_first_try is True:
             logged_campsites = cls._handle_too_many_campsites_found(
-                notifier=notifier,
-                logged_campsites=logged_campsites)
+                notifier=notifier, logged_campsites=logged_campsites
+            )
             notifier.send_campsites(campsites=logged_campsites)
         else:
-            if len(notifier.providers) > 1 and \
-                    len(logged_campsites) > minimum_first_notify:
-                error_message = (f"Found more than {minimum_first_notify} "
-                                 f"matching campsites ({len(logged_campsites)}) on the "
-                                 "first try. Try searching online instead. "
-                                 f"camply is only sending the first "
-                                 f"{minimum_first_notify} notifications. "
-                                 "Go Get your campsite! 🏕")
+            if (
+                len(notifier.providers) > 1
+                and len(logged_campsites) > minimum_first_notify
+            ):
+                error_message = (
+                    f"Found more than {minimum_first_notify} "
+                    f"matching campsites ({len(logged_campsites)}) on the "
+                    "first try. Try searching online instead. "
+                    f"camply is only sending the first "
+                    f"{minimum_first_notify} notifications. "
+                    "Go Get your campsite! 🏕"
+                )
                 logger.warning(error_message)
                 notifier.send_message(message=error_message)
                 logged_campsites = logged_campsites[:minimum_first_notify]
@@ -301,8 +337,8 @@ class BaseCampingSearch(ABC):
 
     @classmethod
     def _handle_too_many_campsites_found(
-            cls, notifier: MultiNotifierProvider,
-            logged_campsites: List[AvailableCampsite]) -> List[AvailableCampsite]:
+        cls, notifier: MultiNotifierProvider, logged_campsites: List[AvailableCampsite]
+    ) -> List[AvailableCampsite]:
         """
         Handle Scenarios Where Too Many Campsites are Found
 
@@ -329,11 +365,15 @@ class BaseCampingSearch(ABC):
             restricted_campsites = logged_campsites
         return restricted_campsites
 
-    def _search_campsites_continuous(self, log: bool = True, verbose: bool = False,
-                                     polling_interval: Optional[int] = None,
-                                     notification_provider: str = "silent",
-                                     notify_first_try: bool = False,
-                                     search_forever: bool = False):
+    def _search_campsites_continuous(
+        self,
+        log: bool = True,
+        verbose: bool = False,
+        polling_interval: Optional[int] = None,
+        notification_provider: str = "silent",
+        notify_first_try: bool = False,
+        search_forever: bool = False,
+    ):
         """
         Continuously Search For Campsites
 
@@ -362,15 +402,20 @@ class BaseCampingSearch(ABC):
         -------
         List[AvailableCampsite]
         """
-        polling_interval_minutes = self._get_polling_minutes(polling_interval=polling_interval)
+        polling_interval_minutes = self._get_polling_minutes(
+            polling_interval=polling_interval
+        )
         continuous_search = True
         continuous_search_attempts = 1
         while continuous_search is True:
-            self._continuous_search_retry(log=log, verbose=verbose,
-                                          polling_interval=polling_interval,
-                                          notification_provider=notification_provider,
-                                          notify_first_try=notify_first_try,
-                                          continuous_search_attempts=continuous_search_attempts)
+            self._continuous_search_retry(
+                log=log,
+                verbose=verbose,
+                polling_interval=polling_interval,
+                notification_provider=notification_provider,
+                notify_first_try=notify_first_try,
+                continuous_search_attempts=continuous_search_attempts,
+            )
             continuous_search_attempts += 1
             if search_forever is True:
                 sleep(int(polling_interval_minutes) * 60)
@@ -378,12 +423,16 @@ class BaseCampingSearch(ABC):
                 continuous_search = False
         return list(self.campsites_found)
 
-    def get_matching_campsites(self, log: bool = True, verbose: bool = False,
-                               continuous: bool = False,
-                               polling_interval: Optional[int] = None,
-                               notification_provider: str = "silent",
-                               notify_first_try: bool = False,
-                               search_forever: bool = False) -> List[AvailableCampsite]:
+    def get_matching_campsites(
+        self,
+        log: bool = True,
+        verbose: bool = False,
+        continuous: bool = False,
+        polling_interval: Optional[int] = None,
+        notification_provider: str = "silent",
+        notify_first_try: bool = False,
+        search_forever: bool = False,
+    ) -> List[AvailableCampsite]:
         """
         Perform the Search and Return Matching Availabilities
 
@@ -415,13 +464,18 @@ class BaseCampingSearch(ABC):
         List[AvailableCampsite]
         """
         if continuous is True:
-            self._search_campsites_continuous(log=log, verbose=verbose,
-                                              polling_interval=polling_interval,
-                                              notification_provider=notification_provider,
-                                              notify_first_try=notify_first_try,
-                                              search_forever=search_forever)
+            self._search_campsites_continuous(
+                log=log,
+                verbose=verbose,
+                polling_interval=polling_interval,
+                notification_provider=notification_provider,
+                notify_first_try=notify_first_try,
+                search_forever=search_forever,
+            )
         else:
-            matching_campsites = self._search_matching_campsites_available(log=log, verbose=True)
+            matching_campsites = self._search_matching_campsites_available(
+                log=log, verbose=True
+            )
             self.campsites_found.update(set(matching_campsites))
         return list(self.campsites_found)
 
@@ -437,14 +491,18 @@ class BaseCampingSearch(ABC):
         current_date = datetime.now().date()
         search_nights = set()
         for window in self.search_window:
-            generated_dates = {date for date in window.get_date_range() if date >= current_date}
+            generated_dates = {
+                date for date in window.get_date_range() if date >= current_date
+            }
             search_nights.update(generated_dates)
         if self.weekends_only is True:
             logger.info("Limiting Search of Campgrounds to Weekend Availabilities")
             search_nights = {x for x in search_nights if x.weekday() in [4, 5]}
         if len(search_nights) > 0:
-            logger.info(f"{len(search_nights)} booking nights selected for search, "
-                        f"ranging from {min(search_nights)} to {max(search_nights)}")
+            logger.info(
+                f"{len(search_nights)} booking nights selected for search, "
+                f"ranging from {min(search_nights)} to {max(search_nights)}"
+            )
         else:
             logger.info(SearchConfig.ERROR_MESSAGE)
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
@@ -461,8 +519,10 @@ class BaseCampingSearch(ABC):
         """
         truncated_months = set([day.replace(day=1) for day in self.search_days])
         if len(truncated_months) > 1:
-            logger.info(f"{len(truncated_months)} different months selected for search, "
-                        f"ranging from {min(self.search_days)} to {max(self.search_days)}")
+            logger.info(
+                f"{len(truncated_months)} different months selected for search, "
+                f"ranging from {min(self.search_days)} to {max(self.search_days)}"
+            )
             return sorted(list(truncated_months))
         elif len(truncated_months) == 0:
             logger.info(SearchConfig.ERROR_MESSAGE)
@@ -471,8 +531,9 @@ class BaseCampingSearch(ABC):
             return sorted(list(truncated_months))
 
     @classmethod
-    def _consolidate_campsites(cls, campsite_df: DataFrame,
-                               nights: int) -> List[AvailableCampsite]:
+    def _consolidate_campsites(
+        cls, campsite_df: DataFrame, nights: int
+    ) -> List[AvailableCampsite]:
         """
         Consolidate Single Night Campsites into Multiple Night Campsites
 
@@ -487,10 +548,12 @@ class BaseCampingSearch(ABC):
         """
         composed_groupings = list()
         for _, campsite_slice in campsite_df.groupby(
-                [CampsiteContainerFields.CAMPSITE_ID, CampsiteContainerFields.CAMPGROUND_ID]):
+            [CampsiteContainerFields.CAMPSITE_ID, CampsiteContainerFields.CAMPGROUND_ID]
+        ):
             # SORT THE VALUES AND CREATE A COPIED SLICE
-            campsite_grouping = campsite_slice.sort_values(by=CampsiteContainerFields.BOOKING_DATE,
-                                                           ascending=True).copy()
+            campsite_grouping = campsite_slice.sort_values(
+                by=CampsiteContainerFields.BOOKING_DATE, ascending=True
+            ).copy()
             # ASSEMBLE THE CAMPSITES AVAILABILITIES INTO GROUPS THAT ARE CONSECUTIVE
             booking_date = campsite_grouping[CampsiteContainerFields.BOOKING_DATE]
             date = Timedelta("1d")
@@ -499,14 +562,17 @@ class BaseCampingSearch(ABC):
             campsite_grouping[CampsiteContainerFields.CAMPSITE_GROUP] = group_identifier
             # USE THE ASSEMBLED GROUPS TO CREATE UPDATED CAMPSITES AND REMOVE DUPLICATES
             for _campsite_group, campsite_group_slice in campsite_grouping.groupby(
-                    [CampsiteContainerFields.CAMPSITE_GROUP]):
+                [CampsiteContainerFields.CAMPSITE_GROUP]
+            ):
                 composed_grouping = campsite_group_slice.sort_values(
-                    by=CampsiteContainerFields.BOOKING_DATE,
-                    ascending=True).copy()
-                composed_grouping.drop(columns=[CampsiteContainerFields.CAMPSITE_GROUP],
-                                       inplace=True)
-                nightly_breakouts = cls._find_consecutive_nights(dataframe=composed_grouping,
-                                                                 nights=nights)
+                    by=CampsiteContainerFields.BOOKING_DATE, ascending=True
+                ).copy()
+                composed_grouping.drop(
+                    columns=[CampsiteContainerFields.CAMPSITE_GROUP], inplace=True
+                )
+                nightly_breakouts = cls._find_consecutive_nights(
+                    dataframe=composed_grouping, nights=nights
+                )
                 composed_groupings.append(nightly_breakouts)
         if len(composed_groupings) == 0:
             composed_groupings = [DataFrame()]
@@ -552,7 +618,9 @@ class BaseCampingSearch(ABC):
         """
         dataframe_slice = dataframe.copy().reset_index(drop=True)
         nights_indexes = dataframe_slice.booking_date.index
-        consecutive_generator = cls._consecutive_subseq(iterable=nights_indexes, length=nights)
+        consecutive_generator = cls._consecutive_subseq(
+            iterable=nights_indexes, length=nights
+        )
         sequences = list(consecutive_generator)
         concatted_data = list()
         for sequence in sequences:
@@ -561,7 +629,9 @@ class BaseCampingSearch(ABC):
             data_copy.booking_date = data_copy.booking_date.min()
             data_copy.booking_end_date = data_copy.booking_end_date.max()
             data_copy.booking_url = data_copy.booking_url.loc[index_list[0]]
-            data_copy.booking_nights = (data_copy.booking_end_date - data_copy.booking_date).dt.days
+            data_copy.booking_nights = (
+                data_copy.booking_end_date - data_copy.booking_date
+            ).dt.days
             data_copy.drop_duplicates(inplace=True)
             concatted_data.append(data_copy)
         if len(concatted_data) == 0:
@@ -586,11 +656,15 @@ class BaseCampingSearch(ABC):
         consecutive_nights = search_days.diff() != Timedelta("1d")
         largest_grouping = consecutive_nights.cumsum().value_counts().max()
         if nights > 1:
-            logger.info(f"Searching for availabilities with {nights} consecutive night stays.")
+            logger.info(
+                f"Searching for availabilities with {nights} consecutive night stays."
+            )
         if nights > largest_grouping:
-            logger.warning("Too many consecutive nights selected. "
-                           "The consecutive night parameter will be set to "
-                           f"the max possible, {largest_grouping}.")
+            logger.warning(
+                "Too many consecutive nights selected. "
+                "The consecutive night parameter will be set to "
+                f"the max possible, {largest_grouping}."
+            )
             return largest_grouping
         else:
             return nights
@@ -608,8 +682,10 @@ class BaseCampingSearch(ABC):
         -------
         DataFrame
         """
-        campsite_df = DataFrame(data=[campsite.__dict__ for campsite in campsites],
-                                columns=AvailableCampsite.__fields__)
+        campsite_df = DataFrame(
+            data=[campsite.__dict__ for campsite in campsites],
+            columns=AvailableCampsite.__fields__,
+        )
         return campsite_df
 
     @staticmethod
@@ -632,10 +708,12 @@ class BaseCampingSearch(ABC):
         return composed_campsite_array
 
     @classmethod
-    def assemble_availabilities(cls,
-                                matching_data: List[AvailableCampsite],
-                                log: bool = True,
-                                verbose: bool = False) -> DataFrame:
+    def assemble_availabilities(
+        cls,
+        matching_data: List[AvailableCampsite],
+        log: bool = True,
+        verbose: bool = False,
+    ) -> DataFrame:
         """
         Prepare a Pandas DataFrame from Array of AvailableCampsite objects
 
@@ -658,7 +736,9 @@ class BaseCampingSearch(ABC):
         return availability_df
 
     @classmethod
-    def _log_availabilities(cls, availability_df: DataFrame, verbose: bool) -> DataFrame:
+    def _log_availabilities(
+        cls, availability_df: DataFrame, verbose: bool
+    ) -> DataFrame:
         """
         Log the Availabilities
 
@@ -673,20 +753,32 @@ class BaseCampingSearch(ABC):
         """
         booking_date: datetime
         for booking_date, available_sites in availability_df.groupby("booking_date"):
-            logger.info(f"📅 {booking_date.strftime('%a, %B %d')} "
-                        f"🏕  {len(available_sites)} sites")
+            logger.info(
+                f"📅 {booking_date.strftime('%a, %B %d')} "
+                f"🏕  {len(available_sites)} sites"
+            )
             location_tuple: tuple
-            for location_tuple, campground_availability in \
-                    available_sites.groupby([DataColumns.RECREATION_AREA_COLUMN,
-                                             DataColumns.FACILITY_NAME_COLUMN]):
-                logger.info(f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
-                            f"{len(campground_availability)} sites")
+            for location_tuple, campground_availability in available_sites.groupby(
+                [DataColumns.RECREATION_AREA_COLUMN, DataColumns.FACILITY_NAME_COLUMN]
+            ):
+                logger.info(
+                    f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
+                    f"{len(campground_availability)} sites"
+                )
                 if verbose is True:
-                    for booking_nights, nightly_availability in campground_availability.groupby(
-                            [DataColumns.BOOKING_NIGHTS_COLUMN]):
-                        unique_urls = nightly_availability[DataColumns.BOOKING_URL_COLUMN].unique()
+                    for (
+                        booking_nights,
+                        nightly_availability,
+                    ) in campground_availability.groupby(
+                        [DataColumns.BOOKING_NIGHTS_COLUMN]
+                    ):
+                        unique_urls = nightly_availability[
+                            DataColumns.BOOKING_URL_COLUMN
+                        ].unique()
                         for booking_url in sorted(unique_urls):
-                            logger.info(f"\t\t🔗 {booking_url} "
-                                        f"({booking_nights} night"
-                                        f"{'s' if booking_nights > 1 else ''})")
+                            logger.info(
+                                f"\t\t🔗 {booking_url} "
+                                f"({booking_nights} night"
+                                f"{'s' if booking_nights > 1 else ''})"
+                            )
         return availability_df

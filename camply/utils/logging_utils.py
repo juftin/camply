@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 
 def _generate_response_string(
-        response: Union[CampgroundFacility, RecreationArea, str]
+    response: Union[CampgroundFacility, RecreationArea, str]
 ) -> str:
     """
     Generate a formatted string for logging
@@ -34,11 +34,15 @@ def _generate_response_string(
             facil = f"#{response.facility_id}"
         else:
             facil = response.facility_id
-        return (f"⛰  {response.recreation_area} (#{response.recreation_area_id}) - "
-                f"🏕  {response.facility_name} ({facil})")
+        return (
+            f"⛰  {response.recreation_area} (#{response.recreation_area_id}) - "
+            f"🏕  {response.facility_name} ({facil})"
+        )
     elif isinstance(response, RecreationArea):
-        return (f"⛰  {response.recreation_area}, {response.recreation_area_location} "
-                f"(#{response.recreation_area_id})")
+        return (
+            f"⛰  {response.recreation_area}, {response.recreation_area_location} "
+            f"(#{response.recreation_area_id})"
+        )
     elif isinstance(response, str):
         return response
     else:
@@ -57,8 +61,7 @@ def log_sorted_response(response_array: List[object]) -> None:
     -------
     None
     """
-    log_array = [_generate_response_string(obj) for obj in
-                 response_array]
+    log_array = [_generate_response_string(obj) for obj in response_array]
     sorted_logs = sorted(log_array)
     for log_response in sorted_logs:
         logger.info(log_response)

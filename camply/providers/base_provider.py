@@ -2,8 +2,8 @@
 BaseProvider Base Class
 """
 
-from abc import ABC
 import logging
+from abc import ABC
 
 logger = logging.getLogger(__name__)
 

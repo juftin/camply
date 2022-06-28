@@ -2,8 +2,8 @@
 Silent Notifications
 """
 
-from abc import ABC
 import logging
+from abc import ABC
 from pprint import pformat
 from typing import Iterable, List
 
@@ -54,13 +54,16 @@ class SilentNotifications(BaseNotifications, ABC):
         """
         for campsite in campsites:
             campsite_tuple = (
-                (f"{campsite.booking_date.strftime('%Y-%m-%d')} - "
-                 f"{campsite.booking_end_date.strftime('%Y-%m-%d')}"),
+                (
+                    f"{campsite.booking_date.strftime('%Y-%m-%d')} - "
+                    f"{campsite.booking_end_date.strftime('%Y-%m-%d')}"
+                ),
                 campsite.campsite_type,
                 campsite.campsite_site_name,
                 campsite.recreation_area,
                 campsite.facility_name,
-                campsite.booking_url)
+                campsite.booking_url,
+            )
             SilentNotifications.send_message(campsite_tuple)
             campsite_formatted = pformat(campsite.dict())
             logger.debug("Campsite Info: " + campsite_formatted)

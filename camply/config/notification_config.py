@@ -48,14 +48,17 @@ class EmailConfig:
     DEFAULT_SMTP_PORT: int = 465
     EMAIL_SMTP_PORT: int = int(getenv("EMAIL_SMTP_PORT", DEFAULT_SMTP_PORT))
 
-    ENVIRONMENT_VARIABLE_NAMES: List[str] = ["EMAIL_TO_ADDRESS",
-                                             "EMAIL_USERNAME",
-                                             "EMAIL_PASSWORD"]
+    ENVIRONMENT_VARIABLE_NAMES: List[str] = [
+        "EMAIL_TO_ADDRESS",
+        "EMAIL_USERNAME",
+        "EMAIL_PASSWORD",
+    ]
     OPTIONAL_ENVIRONMENT_VARIABLE: List[str] = [
         f"EMAIL_SMTP_SERVER (default: {DEFAULT_SMTP_SERVER})",
         f"EMAIL_FROM_ADDRESS (default: {DEFAULT_FROM_ADDRESS})",
         f'EMAIL_SUBJECT_LINE (default: "{DEFAULT_SUBJECT_LINE}")',
-        f"EMAIL_SMTP_PORT (default: {DEFAULT_SMTP_PORT})"]
+        f"EMAIL_SMTP_PORT (default: {DEFAULT_SMTP_PORT})",
+    ]
 
 
 class PushbulletConfig:
@@ -92,5 +95,5 @@ class TelegramConfig:
     API_CONTENT: dict = {
         "chat_id": CHAT_ID,
         "parse_mode": "MarkdownV2",
-        "disable_web_page_preview": "true"
+        "disable_web_page_preview": "true",
     }

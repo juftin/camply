@@ -1,10 +1,10 @@
 """
 Push Notifications via Pushover
 """
+import logging
 from abc import ABC
 from datetime import datetime
 from email.message import EmailMessage
-import logging
 from smtplib import SMTP_SSL
 from typing import List
 
@@ -36,24 +36,35 @@ class EmailNotifications(BaseNotifications, ABC):
             Accepts: from, to, subject, username, password, server, port
         """
         # PERFORM SOME VALIDATION
-        if any([EmailConfig.EMAIL_TO_ADDRESS in [None, ""],
+        if any(
+            [
+                EmailConfig.EMAIL_TO_ADDRESS in [None, ""],
                 EmailConfig.EMAIL_USERNAME in [None, ""],
-                EmailConfig.EMAIL_PASSWORD in [None, ""]]):
+                EmailConfig.EMAIL_PASSWORD in [None, ""],
+            ]
+        ):
             variable_names = "\n\t".join(EmailConfig.ENVIRONMENT_VARIABLE_NAMES)
             optional_variable_names = "\n\t".join(
-                EmailConfig.OPTIONAL_ENVIRONMENT_VARIABLE)
-            error_message = ("Email Notification Auth Parameters not set. Run `camply configure` "
-                             f"or set the following Environment Variables:\n\t{variable_names}"
-                             "\nOptional Environment Variables:\n\t"
-                             f"{optional_variable_names}")
+                EmailConfig.OPTIONAL_ENVIRONMENT_VARIABLE
+            )
+            error_message = (
+                "Email Notification Auth Parameters not set. Run `camply configure` "
+                f"or set the following Environment Variables:\n\t{variable_names}"
+                "\nOptional Environment Variables:\n\t"
+                f"{optional_variable_names}"
+            )
             logger.error(error_message)
             raise EnvironmentError(error_message)
         # ATTEMPT AN EMAIL LOGIN AT INIT TO THROW ERRORS EARLY
-        _email_server = SMTP_SSL(EmailNotifications.email_smtp_server,
-                                 EmailNotifications.email_smtp_server_port)
+        _email_server = SMTP_SSL(
+            EmailNotifications.email_smtp_server,
+            EmailNotifications.email_smtp_server_port,
+        )
         _email_server.ehlo()
-        _email_server.login(user=EmailNotifications.email_username,
-                            password=EmailNotifications._email_password)
+        _email_server.login(
+            user=EmailNotifications.email_username,
+            password=EmailNotifications._email_password,
+        )
         _email_server.quit()
 
     def __repr__(self):
@@ -84,17 +95,18 @@ class EmailNotifications(BaseNotifications, ABC):
         email["From"] = kwargs.get("from", EmailNotifications.email_from)
         email["To"] = kwargs.get("to", EmailNotifications.email_to)
         email_server_user = kwargs.get("username", EmailNotifications.email_username)
-        email_server_password = kwargs.get("password",
-                                           EmailNotifications._email_password)
-        email_server_smtp_server = kwargs.get("server",
-                                              EmailNotifications.email_smtp_server)
-        email_server_smtp_server_port = kwargs.get("port",
-                                                   EmailNotifications.email_smtp_server_port)
-        email_server = SMTP_SSL(email_server_smtp_server,
-                                email_server_smtp_server_port)
+        email_server_password = kwargs.get(
+            "password", EmailNotifications._email_password
+        )
+        email_server_smtp_server = kwargs.get(
+            "server", EmailNotifications.email_smtp_server
+        )
+        email_server_smtp_server_port = kwargs.get(
+            "port", EmailNotifications.email_smtp_server_port
+        )
+        email_server = SMTP_SSL(email_server_smtp_server, email_server_smtp_server_port)
         email_server.ehlo()
-        email_server.login(user=email_server_user,
-                           password=email_server_password)
+        email_server.login(user=email_server_user, password=email_server_password)
         logger.info(f"Sending Email to {email['To']}: {email['Subject']}")
         response = email_server.send_message(email)
         logger.info("Email sent successfully")
@@ -115,11 +127,14 @@ class EmailNotifications(BaseNotifications, ABC):
             fields = list()
             message_title = (
                 f"{campsite.recreation_area} | {campsite.facility_name} | "
-                f"{campsite.booking_date.strftime('%Y-%m-%d')}:")
+                f"{campsite.booking_date.strftime('%Y-%m-%d')}:"
+            )
             fields.append(message_title)
             for key, value in campsite.dict().items():
-                if key in [CampsiteContainerFields.BOOKING_DATE,
-                           CampsiteContainerFields.BOOKING_END_DATE]:
+                if key in [
+                    CampsiteContainerFields.BOOKING_DATE,
+                    CampsiteContainerFields.BOOKING_END_DATE,
+                ]:
                     value: datetime = value.strftime("%Y-%m-%d")
                 elif key == CampsiteContainerFields.BOOKING_URL:
                     key = "booking_link"

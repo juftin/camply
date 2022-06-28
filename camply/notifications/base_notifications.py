@@ -2,8 +2,8 @@
 Push Notifications Template
 """
 
-from abc import ABC, abstractmethod
 import logging
+from abc import ABC, abstractmethod
 from typing import List
 
 from camply.containers import AvailableCampsite

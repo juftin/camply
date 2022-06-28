@@ -2,9 +2,9 @@
 Push Notifications via Pushbullet
 """
 
+import logging
 from abc import ABC
 from datetime import datetime
-import logging
 from typing import List
 
 import requests
@@ -22,12 +22,12 @@ class PushbulletNotifications(BaseNotifications, ABC):
     """
 
     def __init__(self):
-        if any([PushbulletConfig.API_TOKEN is None,
-                PushbulletConfig.API_TOKEN == ""]):
+        if any([PushbulletConfig.API_TOKEN is None, PushbulletConfig.API_TOKEN == ""]):
             warning_message = (
                 "Pushbullet is not configured properly. To send Pushbullet messages "
                 "make sure to run `camply configure` or set the "
-                "proper environment variable: `PUSHBULLET_API_TOKEN`.")
+                "proper environment variable: `PUSHBULLET_API_TOKEN`."
+            )
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
@@ -54,17 +54,22 @@ class PushbulletNotifications(BaseNotifications, ABC):
         pushbullet_headers.update({"Access-Token": PushbulletConfig.API_TOKEN})
         message_type = kwargs.pop("type", "note")
         message_title = kwargs.pop("title", "Camply Notification")
-        message_json = dict(type=message_type, title=message_title, body=message,
-                            **kwargs)
+        message_json = dict(
+            type=message_type, title=message_title, body=message, **kwargs
+        )
         logger.debug(message_json)
-        response = requests.post(url=PushbulletConfig.PUSHBULLET_API_ENDPOINT,
-                                 headers=pushbullet_headers,
-                                 json=message_json)
+        response = requests.post(
+            url=PushbulletConfig.PUSHBULLET_API_ENDPOINT,
+            headers=pushbullet_headers,
+            json=message_json,
+        )
         try:
             response.raise_for_status()
         except requests.HTTPError as he:
-            logger.warning("Notifications weren't able to be sent to Pushbullet. "
-                           "Your configuration might be incorrect.")
+            logger.warning(
+                "Notifications weren't able to be sent to Pushbullet. "
+                "Your configuration might be incorrect."
+            )
             raise ConnectionError(response.text) from he
         return response
 
@@ -82,14 +87,18 @@ class PushbulletNotifications(BaseNotifications, ABC):
             for key, value in campsite.dict().items():
                 if key == CampsiteContainerFields.BOOKING_URL:
                     key = "booking_link"
-                elif key in [CampsiteContainerFields.BOOKING_DATE,
-                             CampsiteContainerFields.BOOKING_END_DATE]:
+                elif key in [
+                    CampsiteContainerFields.BOOKING_DATE,
+                    CampsiteContainerFields.BOOKING_END_DATE,
+                ]:
                     value: datetime = value.strftime("%Y-%m-%d")
                 formatted_key = key.replace("_", " ").title()
                 fields.append(f"{formatted_key}: {value}")
             composed_message = "\n".join(fields)
-            message_title = (f"{campsite.recreation_area} | {campsite.facility_name} | "
-                             f"{campsite.booking_date.strftime('%Y-%m-%d')}")
-            PushbulletNotifications.send_message(message=composed_message,
-                                                 title=message_title,
-                                                 type="note")
+            message_title = (
+                f"{campsite.recreation_area} | {campsite.facility_name} | "
+                f"{campsite.booking_date.strftime('%Y-%m-%d')}"
+            )
+            PushbulletNotifications.send_message(
+                message=composed_message, title=message_title, type="note"
+            )

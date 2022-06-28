@@ -2,12 +2,12 @@
 Yellowstone Testing Provider
 """
 
-from datetime import datetime, timedelta
 import logging
+from datetime import datetime, timedelta
 from typing import List
 
-from dateutil.relativedelta import relativedelta
 import pytest
+from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, SearchWindow
 from camply.search import SearchYellowstone
@@ -24,13 +24,17 @@ def search_window() -> SearchWindow:
     -------
     SearchWindow
     """
-    beginning_of_next_month = (datetime.now() + relativedelta(months=1)).replace(day=1, hour=0,
-                                                                                 minute=0, second=0,
-                                                                                 microsecond=0)
-    search_window = SearchWindow(start_date=beginning_of_next_month,
-                                 end_date=beginning_of_next_month + timedelta(days=15))
-    logger.info("Setting Up Search Window starting Next Month: "
-                f"{search_window.start_date.strftime('%B, %Y')}")
+    beginning_of_next_month = (datetime.now() + relativedelta(months=1)).replace(
+        day=1, hour=0, minute=0, second=0, microsecond=0
+    )
+    search_window = SearchWindow(
+        start_date=beginning_of_next_month,
+        end_date=beginning_of_next_month + timedelta(days=15),
+    )
+    logger.info(
+        "Setting Up Search Window starting Next Month: "
+        f"{search_window.start_date.strftime('%B, %Y')}"
+    )
     return search_window
 
 

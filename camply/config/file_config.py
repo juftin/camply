@@ -24,18 +24,31 @@ class FileConfig:
         PUSHOVER_PUSH_USER=dict(default="", notes="Enables Pushover Notifications"),
         PUSHBULLET_API_TOKEN=dict(default="", notes="Enables Pushbullet Notifications"),
         TELEGRAM_BOT_TOKEN=dict(default="", notes="Enables Telegram Notifications"),
-        TELEGRAM_CHAT_ID=dict(default="", notes="Telegram Notification will be sent here"),
-        EMAIL_TO_ADDRESS=dict(default="", notes="Email Notifications will be sent here"),
+        TELEGRAM_CHAT_ID=dict(
+            default="", notes="Telegram Notification will be sent here"
+        ),
+        EMAIL_TO_ADDRESS=dict(
+            default="", notes="Email Notifications will be sent here"
+        ),
         EMAIL_USERNAME=dict(default="", notes="Email Authorization Login Username"),
         EMAIL_PASSWORD=dict(default="", notes="Email Authorization Login Password"),
-        EMAIL_SMTP_SERVER=dict(default="smtp.gmail.com",
-                               notes="Email Authorization SMTP Server Address"),
+        EMAIL_SMTP_SERVER=dict(
+            default="smtp.gmail.com", notes="Email Authorization SMTP Server Address"
+        ),
         EMAIL_SMTP_PORT=dict(default=465, notes="Email Authorization SMTP Server Port"),
-        EMAIL_FROM_ADDRESS=dict(default="camply@juftin.com",
-                                notes="Email Notifications Will Come From this Email"),
-        EMAIL_SUBJECT_LINE=dict(default="Camply Notification",
-                                notes="Email Notifications Will Have This Subject Line"),
-        PUSHOVER_PUSH_TOKEN=dict(default="", notes="Pushover Notifications From Your Custom App "
-                                                   "(not required)"),
-        RIDB_API_KEY=dict(default="", notes="Personal Recreation.gov API Key (not required)")
+        EMAIL_FROM_ADDRESS=dict(
+            default="camply@juftin.com",
+            notes="Email Notifications Will Come From this Email",
+        ),
+        EMAIL_SUBJECT_LINE=dict(
+            default="Camply Notification",
+            notes="Email Notifications Will Have This Subject Line",
+        ),
+        PUSHOVER_PUSH_TOKEN=dict(
+            default="",
+            notes="Pushover Notifications From Your Custom App " "(not required)",
+        ),
+        RIDB_API_KEY=dict(
+            default="", notes="Personal Recreation.gov API Key (not required)"
+        ),
     )

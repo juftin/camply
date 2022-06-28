@@ -27,8 +27,10 @@ class SearchWindow(CamplyModel):
         -------
         List[datetime.date]
         """
-        return [self.start_date + datetime.timedelta(days=x) for x in
-                range((self.end_date - self.start_date).days)]
+        return [
+            self.start_date + datetime.timedelta(days=x)
+            for x in range((self.end_date - self.start_date).days)
+        ]
 
 
 class AvailableCampsite(CamplyModel):

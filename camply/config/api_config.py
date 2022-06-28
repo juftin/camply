@@ -184,9 +184,12 @@ class RIDBConfig:
     https://ridb.recreation.gov/docs
     """
 
-    _camply_ridb_service_account_api_token: bytes = \
-        b'YTc0MTY0NzEtMWI1ZC00YTY0LWFkM2QtYTIzM2U3Y2I1YzQ0'
-    _api_key: Union[str, bytes] = getenv("RIDB_API_KEY", _camply_ridb_service_account_api_token)
+    _camply_ridb_service_account_api_token: bytes = (
+        b"YTc0MTY0NzEtMWI1ZC00YTY0LWFkM2QtYTIzM2U3Y2I1YzQ0"
+    )
+    _api_key: Union[str, bytes] = getenv(
+        "RIDB_API_KEY", _camply_ridb_service_account_api_token
+    )
     API_KEY = _camply_ridb_service_account_api_token if _api_key == "" else _api_key
 
     RIDB_SCHEME: str = "https"
@@ -211,9 +214,7 @@ class RecreationBookingConfig:
     API_NET_LOC = "www.recreation.gov"
     API_BASE_PATH: str = "api/camps/availability/campground/"
     API_MONTH_PATH: str = "month"
-    API_REFERRERS: dict = {
-        "Referer": "https://www.recreation.gov/"
-    }
+    API_REFERRERS: dict = {"Referer": "https://www.recreation.gov/"}
 
     CAMPSITE_UNAVAILABLE_STRINGS: list = [
         "Reserved",

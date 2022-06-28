@@ -10,7 +10,7 @@ from .search_yellowstone import SearchYellowstone
 
 CAMPSITE_SEARCH_PROVIDER: Dict[str, object] = {
     "RecreationDotGov": SearchRecreationDotGov,
-    "Yellowstone": SearchYellowstone
+    "Yellowstone": SearchYellowstone,
 }
 
 __all__ = [

@@ -19,6 +19,7 @@ becomes available, camply sends you a notification to book your spot!
 
    README.md
    cli.rst
+   contributing.md
    API Documentation <api/modules.rst>
 
 
