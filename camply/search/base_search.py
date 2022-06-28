@@ -11,8 +11,8 @@ from os import getenv
 from time import sleep
 from typing import Generator, Iterable, List, Optional, Set, Union
 
+from pandas import concat, DataFrame, date_range, Series, Timedelta, Timestamp
 import tenacity
-from pandas import concat, DataFrame, date_range, Series, Timedelta
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
@@ -83,23 +83,22 @@ class BaseCampingSearch(ABC):
         List[AvailableCampsite]
         """
 
-    def _get_intersection_date_overlap(self, date: datetime, periods: int) -> bool:
+    def _get_intersection_date_overlap(self, date: Timestamp, periods: int) -> bool:
         """
         Find Date Overlap
 
         Parameters
         ----------
-        date: datetime
+        date: Timestamp
         periods: int
 
         Returns
         -------
         bool
         """
-        campsite_timestamp_range = set(date_range(start=date.to_pydatetime(),
-                                                  periods=periods))
-        campsite_date_range = {item.to_pydatetime().date() for item in
-                               campsite_timestamp_range}
+        timestamp_range: List[Timestamp] = date_range(start=date.to_pydatetime(),
+                                                      periods=periods)
+        campsite_date_range = {item.date() for item in timestamp_range}
         intersection = campsite_date_range.intersection(self.search_days)
         if intersection:
             return True
@@ -134,10 +133,11 @@ class BaseCampingSearch(ABC):
         -------
         DataFrame
         """
-        filtered_campsites = campsites[campsites.apply(
+        matches = campsites.apply(
             lambda x: self._get_intersection_date_overlap(date=x.booking_date,
                                                           periods=x.booking_nights),
-            axis=1)].copy().reset_index(drop=True)
+            axis=1)
+        filtered_campsites = campsites[matches].copy().reset_index(drop=True)
         return filtered_campsites
 
     def _search_matching_campsites_available(self, log: bool = False,

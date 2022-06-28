@@ -7,6 +7,8 @@ These are JSON Responses from APIs
 import datetime
 from typing import Any, Dict, Iterator, List, Optional, Union
 
+from pydantic import validator
+
 from camply.config.api_config import RecreationBookingConfig
 from camply.containers.base_container import CamplyModel
 
@@ -168,3 +170,67 @@ class GenericResponse(CamplyModel):
 
     RECDATA: Any
     METADATA: _PaginationMetadataResponse
+
+
+class XantPerGuest(CamplyModel):
+    """
+    PerGuest Objects
+    """
+
+    a2: Optional[Union[int, str]]
+    b: Optional[Union[int, str]]
+    b2: Optional[Union[int, str]]
+    m: Optional[Union[int, str]]
+    m2: Optional[Union[int, str]]
+    r: Optional[Union[int, str]]
+    r2: Optional[Union[int, str]]
+    s: Optional[Union[int, str]]
+
+
+class XantRates(CamplyModel):
+    """
+    Yellowstone Rates Object
+    """
+
+    code: str
+    title: str
+    description: str
+    category: str
+    minstay: int
+    start: datetime.date
+    available: Dict[int, int]
+    mins: Dict[int, int]
+    min: int
+
+    @validator("start", pre=True)
+    def parse_datetime(cls, value):
+        return datetime.datetime.strptime(value, "%m/%d/%Y").date()
+
+
+class XantCampgroundDetails(CamplyModel):
+    """
+    Yellowstone Campground Details OBject
+    """
+
+    hotelCode: str
+    status: str
+    message: str
+    min: str
+    max: str
+    perGuests: Dict[int, XantPerGuest]
+    rates: Dict[str, XantRates]
+    rates2: Optional[Dict[str, XantRates]]
+
+
+class XantResortData(CamplyModel):
+    """
+    Main Yellowstone API Response Wrapper
+    """
+
+    availability: Dict[datetime.date, Dict[str, XantCampgroundDetails]]
+
+    @validator("availability", pre=True)
+    def parse_datetime(cls, value):
+        return {
+            datetime.datetime.strptime(x, "%m/%d/%Y").date(): y for x, y in value.items()
+        }

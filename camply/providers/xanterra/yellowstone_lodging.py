@@ -16,6 +16,7 @@ import tenacity
 
 from camply.config import STANDARD_HEADERS, USER_AGENTS, YellowstoneConfig
 from camply.containers import AvailableCampsite
+from camply.containers.api_responses import XantResortData
 from camply.providers.base_provider import BaseProvider
 from camply.utils import logging_utils
 
@@ -174,13 +175,13 @@ class YellowstoneLodging(BaseProvider):
         return webui_endpoint
 
     @classmethod
-    def _compile_campground_availabilities(cls, availability: dict) -> List[dict]:
+    def _compile_campground_availabilities(cls, availability: XantResortData) -> List[dict]:
         """
         Gather Data about campground availabilities within a JSON Availability Objet
 
         Parameters
         ----------
-        availability: dict
+        availability: ResortData
             JSON Availability Object
 
         Returns
@@ -189,23 +190,17 @@ class YellowstoneLodging(BaseProvider):
             List of Availabilities as JSON
         """
         available_campsites = list()
-        for date_string in availability.keys():
-            booking_date = datetime.strptime(date_string, "%m/%d/%Y")
-            daily_data = availability[date_string]
+        for booking_date, daily_data in availability.availability.items():
             camping_keys = [key for key in daily_data.keys() if
                             YellowstoneConfig.LODGING_CAMPGROUND_QUALIFIER in key]
             for hotel_code in camping_keys:
                 hotel_data = daily_data[hotel_code]
                 try:
-                    hotel_title = hotel_data[YellowstoneConfig.LODGING_RATES][
-                        YellowstoneConfig.RATE_CODE][
-                        YellowstoneConfig.LODGING_TITLE]
-                    hotel_rate_mins = hotel_data[YellowstoneConfig.LODGING_RATES][
-                        YellowstoneConfig.RATE_CODE][
-                        YellowstoneConfig.LODGING_BASE_PRICES]
-                    if hotel_rate_mins != {"1": 0}:
-                        min_capacity = int(min(hotel_rate_mins.keys()))
-                        max_capacity = int(max(hotel_rate_mins.keys()))
+                    hotel_title = hotel_data.rates[YellowstoneConfig.RATE_CODE].title
+                    hotel_rate_mins = hotel_data.rates[YellowstoneConfig.RATE_CODE].mins
+                    if hotel_rate_mins != {1: 0}:
+                        min_capacity = min(hotel_rate_mins.keys())
+                        max_capacity = max(hotel_rate_mins.keys())
                         capacity = (min_capacity, max_capacity)
                         campsite = dict(
                             campsite_id=None,
@@ -217,8 +212,8 @@ class YellowstoneLodging(BaseProvider):
                                 *YellowstoneConfig.YELLOWSTONE_CAMPGROUND_NAME_REPLACE),
                             facility_id=hotel_code)
                         available_campsites.append(campsite)
-                except (KeyError, TypeError):
-                    _ = hotel_data[YellowstoneConfig.LODGING_ERROR_MESSAGE]
+                except KeyError:
+                    pass
         logger.info(f"\t{logging_utils.get_emoji(available_campsites)}\t"
                     f"{len(available_campsites)} sites found.")
         return available_campsites
@@ -342,7 +337,8 @@ class YellowstoneLodging(BaseProvider):
                 ))
         return property_info_array
 
-    def get_monthly_campsites(self, month: datetime,
+    def get_monthly_campsites(self,
+                              month: datetime,
                               nights: Optional[int] = None) -> List[AvailableCampsite]:
         """
         Return All Campsites Available in a Given Month
@@ -366,14 +362,15 @@ class YellowstoneLodging(BaseProvider):
             search_date = search_date.replace(year=now.year, month=now.month, day=now.day)
         availability_found = self._get_monthly_availability(month=search_date,
                                                             nights=nights)
-        monthly_campsites = self._compile_campground_availabilities(
-            availability=availability_found[YellowstoneConfig.BOOKING_AVAILABILITY])
+        availability = XantResortData(**availability_found)
+        monthly_campsites = self._compile_campground_availabilities(availability=availability)
         campsite_data = DataFrame(monthly_campsites,
                                   columns=YellowstoneConfig.CAMPSITE_DATA_COLUMNS).drop_duplicates()
         if campsite_data.empty is True:
             return list()
         available_room_array = self._gather_campsite_specific_availability(
-            available_campsites=monthly_campsites, month=month,
+            available_campsites=monthly_campsites,
+            month=month,
             nights=nights)
         available_rooms = DataFrame(available_room_array)
         property_info = self._get_property_information(

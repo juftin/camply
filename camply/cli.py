@@ -2,14 +2,14 @@
 Camply Command Line Interface
 """
 
-import logging
 from datetime import datetime
+import logging
 from os import getenv
 from typing import List, Optional, Union
 
 import click
-import rich.traceback
 from rich.logging import RichHandler
+import rich.traceback
 
 from camply import __camply__, __version__
 from camply.config import SearchConfig
