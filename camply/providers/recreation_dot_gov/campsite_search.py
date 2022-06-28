@@ -7,12 +7,13 @@ from base64 import b64decode
 from datetime import datetime, timedelta
 from json import loads
 from random import choice
-from typing import List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from urllib import parse
 
 import requests
 import tenacity
 from pydantic import ValidationError
+from ratelimit import limits
 
 from camply.config import (
     STANDARD_HEADERS,
@@ -325,7 +326,9 @@ class RecreationDotGov(BaseProvider):
         return loads(response.content)
 
     def _ridb_get_paginate(
-        self, path: str, params: Optional[dict] = None
+        self,
+        path: str,
+        params: Optional[dict] = None,
     ) -> List[dict]:
         """
         Return the Paginated Response from the RIDP
@@ -489,12 +492,43 @@ class RecreationDotGov(BaseProvider):
         endpoint_url = parse.urljoin(base_url, path)
         return endpoint_url
 
+    @classmethod
+    def make_request(
+        cls,
+        url: str,
+        method: str = "GET",
+        params: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ) -> requests.Response:
+        """
+        Make a Raw Request to RecreationDotGov
+        Parameters
+        ----------
+        url: str
+        method: str
+        params: Optional[Dict[str, Any]]
+
+        Returns
+        -------
+        requests.Response
+        """
+        # BUILD THE HEADERS EXPECTED FROM THE API
+        headers = STANDARD_HEADERS.copy()
+        headers.update(choice(USER_AGENTS))
+        headers.update(RecreationBookingConfig.API_REFERRERS)
+        response = requests.request(
+            method=method, url=url, headers=headers, params=params, timeout=30, **kwargs
+        )
+        return response
+
     @tenacity.retry(
         wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
         stop=tenacity.stop.stop_after_delay(6000),
     )
     def _make_recdotgov_request(
-        self, campground_id: int, month: datetime
+        self,
+        campground_id: int,
+        month: datetime,
     ) -> requests.Response:
         """
         Make a request to the RecreationDotGov API - Handle Exponential Backoff
@@ -509,19 +543,15 @@ class RecreationDotGov(BaseProvider):
         requests.Response
         """
         try:
-            formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
             api_endpoint = self._rec_availability_get_endpoint(
                 path=f"{campground_id}/{RecreationBookingConfig.API_MONTH_PATH}"
             )
-            # BUILD THE HEADERS EXPECTED FROM THE API
-            headers = STANDARD_HEADERS.copy()
-            headers.update(choice(USER_AGENTS))
-            headers.update(RecreationBookingConfig.API_REFERRERS)
-            response = requests.get(
+            formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
+            query_params = dict(start_date=formatted_month)
+            response = self.make_request(
+                method="GET",
                 url=api_endpoint,
-                headers=headers,
-                params=dict(start_date=formatted_month),
-                timeout=30,
+                params=query_params,
             )
             assert response.status_code == 200
         except AssertionError:
@@ -634,6 +664,25 @@ class RecreationDotGov(BaseProvider):
             f"{month.strftime('%B')}"
         )
         return total_campsite_availability
+
+    def get_campsites_by_facility(self, facility_id: int) -> List[CampsiteResponse]:
+        """
+        Get a Campsite's Details
+
+        Parameters
+        ----------
+        campsite_id: int
+
+        Returns
+        -------
+        CampsiteResponse
+        """
+        data = self._ridb_get_paginate(
+            path=f"{RIDBConfig.FACILITIES_API_PATH}/{facility_id}/"
+            f"{RIDBConfig.CAMPSITE_API_PATH}/",
+            params=dict(limit=50),
+        )
+        return [CampsiteResponse(**record) for record in data]
 
     def get_campsite_by_id(self, campsite_id: int) -> CampsiteResponse:
         """

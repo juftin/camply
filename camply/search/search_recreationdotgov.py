@@ -29,6 +29,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
         campsites: Optional[Union[List[int], int]] = None,
         weekends_only: bool = False,
         nights: int = 1,
+        equipment: Optional[List[str]] = None,
+        **kwargs,
     ) -> None:
         """
         Initialize with Search Parameters
@@ -48,8 +50,11 @@ class SearchRecreationDotGov(BaseCampingSearch):
             Saturday nights)
         nights: int
             minimum number of consecutive nights to search per campsite,defaults to 1
+        equipment: Optional[List[str]]
+            Types of equipment to search for. Acceptable values are `Tent`, `RV`, `Trailer`.
         """
-        super().__init__(
+        self.campsite_finder: RecreationDotGov
+        super(SearchRecreationDotGov, self).__init__(
             provider=RecreationDotGov(),
             search_window=search_window,
             weekends_only=weekends_only,
@@ -68,9 +73,11 @@ class SearchRecreationDotGov(BaseCampingSearch):
             )
             is True
         )
-        self.campsite_finder: RecreationDotGov
         self.campsites = make_list(campsites)
         self.campgrounds = self._get_searchable_campgrounds()
+        self.equipment: List[str] = []
+        if isinstance(equipment, list):
+            self.equipment += equipment
 
     def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:
         """

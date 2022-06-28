@@ -11,7 +11,7 @@ _project_path = Path(__file__).resolve().parent.parent.parent
 _project_dir = str(_project_path)
 sys.path.insert(0, _project_dir)
 
-from camply import __version__, __camply__ # noqa
+from camply import __version__, __camply__  # noqa
 
 _author = "Justin Flannery"
 project = __camply__
@@ -27,10 +27,8 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
     "sphinx.ext.autosectionlabel",
-
     "sphinxcontrib.apidoc",
     "sphinxcontrib.autodoc_pydantic",
-
     "autodocsumm",
     "myst_parser",
     "autoclasstoc",
