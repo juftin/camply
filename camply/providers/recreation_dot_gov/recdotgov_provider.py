@@ -496,7 +496,7 @@ class RecreationDotGov(BaseProvider):
         return endpoint_url
 
     @classmethod
-    def make_request(
+    def make_recdotgov_request(
         cls,
         url: str,
         method: str = "GET",
@@ -549,7 +549,7 @@ class RecreationDotGov(BaseProvider):
         )
         campsites = []
         while continue_paginate is True:
-            response = self.make_request(
+            response = self.make_recdotgov_request(
                 method="GET",
                 url=endpoint_url,
                 params=params,
@@ -590,7 +590,7 @@ class RecreationDotGov(BaseProvider):
             )
             formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
             query_params = dict(start_date=formatted_month)
-            response = self.make_request(
+            response = self.make_recdotgov_request(
                 method="GET",
                 url=api_endpoint,
                 params=query_params,
@@ -733,25 +733,6 @@ class RecreationDotGov(BaseProvider):
             f"{month.strftime('%B')}"
         )
         return total_campsite_availability
-
-    def get_campsites_by_facility(self, facility_id: int) -> List[CampsiteResponse]:
-        """
-        Get a Campsite's Details
-
-        Parameters
-        ----------
-        campsite_id: int
-
-        Returns
-        -------
-        CampsiteResponse
-        """
-        data = self._ridb_get_paginate(
-            path=f"{RIDBConfig.FACILITIES_API_PATH}/{facility_id}/"
-            f"{RIDBConfig.CAMPSITE_API_PATH}/",
-            params=dict(limit=50),
-        )
-        return [CampsiteResponse(**record) for record in data]
 
     def get_campsite_by_id(self, campsite_id: int) -> CampsiteResponse:
         """
