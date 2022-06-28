@@ -10,7 +10,11 @@ from typing import Any, Dict, Iterator, List, Optional, Union
 from pydantic import validator
 
 from camply.config.api_config import RecreationBookingConfig
-from camply.containers.base_container import CamplyModel
+from camply.containers.base_container import (
+    CamplyModel,
+    RecDotGovAttribute,
+    RecDotGovEquipment,
+)
 
 
 class _CampsiteEquipment(CamplyModel):
@@ -241,3 +245,48 @@ class XantResortData(CamplyModel):
             datetime.datetime.strptime(x, "%m/%d/%Y").date(): y
             for x, y in value.items()
         }
+
+
+class RecDotGovCampsite(CamplyModel):
+    """
+    Recreation.gov Campsite Object
+    """
+
+    accessible: bool
+    asset_id: int
+    asset_type = str
+    attributes: List[RecDotGovAttribute]
+    average_rating: Optional[int]
+    campsite_id: int
+    campsite_reserve_type: str
+    city: Optional[str]
+    country_code: Optional[str]
+    fee_templates: Dict[str, Any]
+    latitude: Optional[float]
+    longitude: Optional[float]
+    loop: str
+    name: str
+    number_of_ratings = int
+    org_id: int
+    org_name: str
+    parent_asset_id: int
+    parent_asset_name: str
+    parent_asset_type: str
+    permitted_equipment: List[RecDotGovEquipment]
+    preview_image_url: Optional[str]
+    reservable: bool
+    state_code: Optional[str]
+    type: str
+    type_of_use: str
+
+
+class RecDotGovCampsiteResponse(CamplyModel):
+    """
+    Parent Response from Campsite Metadata
+    """
+
+    campsites: List[RecDotGovCampsite]
+    size: int
+    spelling_autocorrected: Any
+    start: int
+    total: int

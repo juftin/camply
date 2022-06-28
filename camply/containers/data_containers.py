@@ -4,9 +4,13 @@ Storage Containers for the Application
 
 import datetime
 import logging
-from typing import List, Tuple, Union
+from typing import List, Optional, Tuple, Union
 
-from camply.containers.base_container import CamplyModel
+from camply.containers.base_container import (
+    CamplyModel,
+    RecDotGovAttribute,
+    RecDotGovEquipment,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -55,6 +59,11 @@ class AvailableCampsite(CamplyModel):
     facility_name: str
     facility_id: Union[int, str]
     booking_url: str
+
+    permitted_equipment: Optional[List[RecDotGovEquipment]]
+    campsite_attributes: Optional[List[RecDotGovAttribute]]
+
+    __unhashable__ = ["permitted_equipment", "campsite_attributes"]
 
 
 class CampgroundFacility(CamplyModel):

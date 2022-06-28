@@ -11,6 +11,7 @@ from os import getenv
 from time import sleep
 from typing import Generator, Iterable, List, Optional, Set, Union
 
+import pandas as pd
 import tenacity
 from pandas import DataFrame, Series, Timedelta, Timestamp, concat, date_range
 
@@ -125,17 +126,17 @@ class BaseCampingSearch(ABC):
         )
         return intersection
 
-    def _filter_date_overlap(self, campsites: DataFrame) -> bool:
+    def _filter_date_overlap(self, campsites: DataFrame) -> pd.DataFrame:
         """
         See whether a campsite should be returned as found
 
         Parameters
         ----------
-        campsites: DataFrame
+        campsites: pd.DataFrame
 
         Returns
         -------
-        DataFrame
+        pd.DataFrame
         """
         matches = campsites.apply(
             lambda x: self._get_intersection_date_overlap(
@@ -616,6 +617,9 @@ class BaseCampingSearch(ABC):
         -------
         DataFrame
         """
+        duplicate_subset = set(dataframe.columns) - set(
+            AvailableCampsite.__unhashable__
+        )
         dataframe_slice = dataframe.copy().reset_index(drop=True)
         nights_indexes = dataframe_slice.booking_date.index
         consecutive_generator = cls._consecutive_subseq(
@@ -632,7 +636,7 @@ class BaseCampingSearch(ABC):
             data_copy.booking_nights = (
                 data_copy.booking_end_date - data_copy.booking_date
             ).dt.days
-            data_copy.drop_duplicates(inplace=True)
+            data_copy.drop_duplicates(inplace=True, subset=duplicate_subset)
             concatted_data.append(data_copy)
         if len(concatted_data) == 0:
             concatted_data = [DataFrame()]

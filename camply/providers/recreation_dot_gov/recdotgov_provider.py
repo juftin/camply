@@ -2,6 +2,7 @@
 Recreation.gov Web Searching Utilities
 """
 
+import json
 import logging
 from base64 import b64decode
 from datetime import datetime, timedelta
@@ -10,10 +11,10 @@ from random import choice
 from typing import Any, Dict, List, Optional, Tuple, Union
 from urllib import parse
 
+import pandas as pd
 import requests
 import tenacity
 from pydantic import ValidationError
-from ratelimit import limits
 
 from camply.config import (
     STANDARD_HEADERS,
@@ -27,6 +28,8 @@ from camply.containers.api_responses import (
     CampsiteResponse,
     FacilityResponse,
     GenericResponse,
+    RecDotGovCampsite,
+    RecDotGovCampsiteResponse,
     RecreationAreaResponse,
 )
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
@@ -521,6 +524,45 @@ class RecreationDotGov(BaseProvider):
         )
         return response
 
+    def paginate_recdotgov_campsites(
+        self, facility_id: int, equipment: Optional[List[str]] = None
+    ) -> List[RecDotGovCampsite]:
+        """
+        Paginate through the RecDotGov Campsite Metadata
+        """
+        results = 0
+        continue_paginate = True
+        endpoint_url = api_utils.generate_url(
+            scheme=RecreationBookingConfig.API_SCHEME,
+            netloc=RecreationBookingConfig.API_NET_LOC,
+            path="api/search/campsites",
+        )
+        fq_list = [f"asset_id:{facility_id}"]
+        if isinstance(equipment, list) and len(equipment) > 0:
+            for item in equipment:
+                fq_list.append(f"campsite_equipment_name:{item}")
+        params = dict(
+            start=0,
+            size=1000,
+            fq=fq_list,
+            include_non_site_specific_campsites=True,
+        )
+        campsites = []
+        while continue_paginate is True:
+            response = self.make_request(
+                method="GET",
+                url=endpoint_url,
+                params=params,
+            )
+            returned_data = json.loads(response.content)
+            campsite_response = RecDotGovCampsiteResponse(**returned_data)
+            campsites += campsite_response.campsites
+            results += campsite_response.size
+            params.update(start=results)
+            if results == campsite_response.total:
+                continue_paginate = False
+        return campsites
+
     @tenacity.retry(
         wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
         stop=tenacity.stop.stop_after_delay(6000),
@@ -591,6 +633,25 @@ class RecreationDotGov(BaseProvider):
         return loads(response.content)
 
     @classmethod
+    def _get_equipment_and_attributes(
+        cls,
+        campsite_id: int,
+        campsite_metadata: pd.DataFrame,
+    ):
+        """
+        Index a DataFrame in a Complicated Way\
+        """
+        try:
+            equipment = campsite_metadata.at[campsite_id, "permitted_equipment"]
+        except LookupError:
+            equipment = None
+        try:
+            attributes = campsite_metadata.at[campsite_id, "attributes"]
+        except LookupError:
+            attributes = None
+        return equipment, attributes
+
+    @classmethod
     def process_campsite_availability(
         cls,
         availability: dict,
@@ -599,6 +660,7 @@ class RecreationDotGov(BaseProvider):
         facility_name: str,
         facility_id: int,
         month: datetime,
+        campsite_metadata: pd.DataFrame,
     ) -> List[Optional[AvailableCampsite]]:
         """
         Parse the JSON Response and return availabilities
@@ -617,6 +679,8 @@ class RecreationDotGov(BaseProvider):
             Campground Facility ID
         month: datetime
             Month to Process
+        campsite_metadata: pd.DataFrame
+            Metadata Fetched from the Recreation.gov API about the Campsites
 
         Returns
         -------
@@ -637,6 +701,9 @@ class RecreationDotGov(BaseProvider):
                     booking_url = (
                         f"{RecreationBookingConfig.CAMPSITE_BOOKING_URL}/{campsite_id}"
                     )
+                    equipment, attributes = cls._get_equipment_and_attributes(
+                        campsite_id=campsite_id, campsite_metadata=campsite_metadata
+                    )
                     available_campsite = AvailableCampsite(
                         campsite_id=campsite_id,
                         booking_date=matching_date,
@@ -656,6 +723,8 @@ class RecreationDotGov(BaseProvider):
                         facility_name=facility_name,
                         facility_id=facility_id,
                         booking_url=booking_url,
+                        permitted_equipment=equipment,
+                        campsite_attributes=attributes,
                     )
                     total_campsite_availability.append(available_campsite)
         logger.info(
@@ -755,3 +824,17 @@ class RecreationDotGov(BaseProvider):
                 f"{facility.facility_name}, {facility.recreation_area}"
             )
         return facilities
+
+    def get_internal_campsite_metadata(self, facility_ids: List[int]) -> pd.DataFrame:
+        """
+        Retrieve Metadata About all of the underlying Campsites to Search
+        """
+        all_campsites: List[RecDotGovCampsite] = []
+        for facility_id in facility_ids:
+            all_campsites += self.paginate_recdotgov_campsites(facility_id=facility_id)
+        all_campsite_df = pd.DataFrame(
+            [item.dict() for item in all_campsites],
+            columns=RecDotGovCampsite.__fields__,
+        )
+        all_campsite_df.set_index("campsite_id", inplace=True)
+        return all_campsite_df

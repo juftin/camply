@@ -7,6 +7,8 @@ from random import uniform
 from time import sleep
 from typing import List, Optional, Union
 
+import pandas as pd
+
 from camply.config import RecreationBookingConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.providers import RecreationDotGov
@@ -75,6 +77,11 @@ class SearchRecreationDotGov(BaseCampingSearch):
         )
         self.campsites = make_list(campsites)
         self.campgrounds = self._get_searchable_campgrounds()
+        self.campsite_metadata: pd.DataFrame = (
+            self.campsite_finder.get_internal_campsite_metadata(
+                facility_ids=[facil.facility_id for facil in self.campgrounds]
+            )
+        )
         self.equipment: List[str] = []
         if isinstance(equipment, list):
             self.equipment += equipment
@@ -177,6 +184,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
                     facility_name=campground.facility_name,
                     facility_id=campground.facility_id,
                     month=month,
+                    campsite_metadata=self.campsite_metadata,
                 )
                 if self.campsites not in [None, []]:
                     campsites = [
