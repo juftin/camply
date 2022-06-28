@@ -219,7 +219,7 @@ class RecreationDotGov(BaseProvider):
         """
         campgrounds = list()
         for campground_identifier in campground_id:
-            facility_data = self._ridb_get_data(
+            facility_data = self.get_ridb_data(
                 path=f"{RIDBConfig.FACILITIES_API_PATH}/{campground_identifier}",
                 params=dict(full=True),
             )
@@ -295,7 +295,7 @@ class RecreationDotGov(BaseProvider):
         wait=tenacity.wait_random_exponential(multiplier=2, max=10),
         stop=tenacity.stop.stop_after_delay(15),
     )
-    def _ridb_get_data(
+    def get_ridb_data(
         self, path: str, params: Optional[dict] = None
     ) -> Union[dict, list]:
         """
@@ -358,7 +358,7 @@ class RecreationDotGov(BaseProvider):
 
         while data_incomplete is True:
             params.update(offset=offset)
-            data_response = self._ridb_get_data(path=path, params=params)
+            data_response = self.get_ridb_data(path=path, params=params)
             response_object = GenericResponse(**data_response)
             paginated_response += response_object.RECDATA
             result_count = response_object.METADATA.RESULTS.CURRENT_COUNT
@@ -746,7 +746,7 @@ class RecreationDotGov(BaseProvider):
         -------
         CampsiteResponse
         """
-        data = self._ridb_get_data(path=f"{RIDBConfig.CAMPSITE_API_PATH}/{campsite_id}")
+        data = self.get_ridb_data(path=f"{RIDBConfig.CAMPSITE_API_PATH}/{campsite_id}")
         try:
             response = CampsiteResponse(**data[0])
         except IndexError:
