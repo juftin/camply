@@ -204,6 +204,9 @@ class XantRates(CamplyModel):
 
     @validator("start", pre=True)
     def parse_datetime(cls, value):
+        """
+        Parse Poorly Formatted Date Strings
+        """
         return datetime.datetime.strptime(value, "%m/%d/%Y").date()
 
 
@@ -231,6 +234,9 @@ class XantResortData(CamplyModel):
 
     @validator("availability", pre=True)
     def parse_datetime(cls, value):
+        """
+        Parse Poorly Formatted Date Strings
+        """
         return {
             datetime.datetime.strptime(x, "%m/%d/%Y").date(): y
             for x, y in value.items()
