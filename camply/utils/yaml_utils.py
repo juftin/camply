@@ -2,14 +2,14 @@
 YAML Utilities for Camply
 """
 
-from datetime import datetime
 import logging
 import os
+from datetime import datetime
 from pathlib import Path
 from re import compile
 from typing import Dict, Tuple
 
-from yaml import load, SafeLoader
+from yaml import SafeLoader, load
 
 from camply.config import SearchConfig
 from camply.containers import SearchWindow
@@ -62,7 +62,8 @@ def read_yml(path: str = None):
             full_value = value
             for item in match:
                 full_value = full_value.replace(
-                    "${{{key}}}".format(key=item), os.getenv(key=item, default=item))
+                    "${{{key}}}".format(key=item), os.getenv(key=item, default=item)
+                )
             return full_value
         return value
 
@@ -71,7 +72,9 @@ def read_yml(path: str = None):
         return load(stream=conf_data, Loader=safe_loader)
 
 
-def yaml_file_to_arguments(file_path: str) -> Tuple[str, Dict[str, object], Dict[str, object]]:
+def yaml_file_to_arguments(
+    file_path: str,
+) -> Tuple[str, Dict[str, object], Dict[str, object]]:
     """
     Convert YAML File into A Dictionary to be used as **kwargs
 
@@ -96,25 +99,30 @@ def yaml_file_to_arguments(file_path: str) -> Tuple[str, Dict[str, object], Dict
     campsites = yaml_search.get("campsites", None)
     weekends_only = yaml_search.get("weekends", False)
     continuous = yaml_search.get("continuous", True)
-    polling_interval = yaml_search.get("polling_interval",
-                                       SearchConfig.RECOMMENDED_POLLING_INTERVAL)
+    polling_interval = yaml_search.get(
+        "polling_interval", SearchConfig.RECOMMENDED_POLLING_INTERVAL
+    )
     notify_first_try = yaml_search.get("notify_first_try", False)
     notification_provider = yaml_search.get("notifications", "silent")
     search_forever = yaml_search.get("search_forever", False)
 
     search_window = SearchWindow(start_date=start_date, end_date=end_date)
 
-    provider_kwargs = dict(search_window=search_window,
-                           recreation_area=recreation_area,
-                           campgrounds=campgrounds,
-                           campsites=campsites,
-                           weekends_only=weekends_only,
-                           nights=nights)
+    provider_kwargs = dict(
+        search_window=search_window,
+        recreation_area=recreation_area,
+        campgrounds=campgrounds,
+        campsites=campsites,
+        weekends_only=weekends_only,
+        nights=nights,
+    )
     search_kwargs = dict(
-        log=True, verbose=True,
+        log=True,
+        verbose=True,
         continuous=continuous,
         polling_interval=polling_interval,
         notify_first_try=notify_first_try,
         notification_provider=notification_provider,
-        search_forever=search_forever)
+        search_forever=search_forever,
+    )
     return provider, provider_kwargs, search_kwargs

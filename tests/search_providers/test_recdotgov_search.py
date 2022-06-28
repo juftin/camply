@@ -2,12 +2,12 @@
 Yellowstone Testing Provider
 """
 
-from datetime import datetime, timedelta
 import logging
+from datetime import datetime, timedelta
 from typing import List
 
-from dateutil.relativedelta import relativedelta
 import pytest
+from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.search import SearchRecreationDotGov
@@ -24,13 +24,17 @@ def search_window() -> SearchWindow:
     -------
     SearchWindow
     """
-    beginning_of_next_month = (datetime.now() + relativedelta(months=2)).replace(day=1, hour=0,
-                                                                                 minute=0, second=0,
-                                                                                 microsecond=0)
-    search_window = SearchWindow(start_date=beginning_of_next_month,
-                                 end_date=beginning_of_next_month + timedelta(days=29))
-    logger.info("Setting Up Search Window starting Next Month: "
-                f"{search_window.start_date.strftime('%B, %Y')}")
+    beginning_of_next_month = (datetime.now() + relativedelta(months=2)).replace(
+        day=1, hour=0, minute=0, second=0, microsecond=0
+    )
+    search_window = SearchWindow(
+        start_date=beginning_of_next_month,
+        end_date=beginning_of_next_month + timedelta(days=29),
+    )
+    logger.info(
+        "Setting Up Search Window starting Next Month: "
+        f"{search_window.start_date.strftime('%B, %Y')}"
+    )
     return search_window
 
 
@@ -43,8 +47,9 @@ def recdotgov_recarea_finder(search_window) -> SearchRecreationDotGov:
     -------
     SearchYellowstone
     """
-    recdotgov_finder = SearchRecreationDotGov(search_window=search_window,
-                                              recreation_area=2907)  # Rocky Mtn / Arapahoe
+    recdotgov_finder = SearchRecreationDotGov(
+        search_window=search_window, recreation_area=2907
+    )  # Rocky Mtn / Arapahoe
     logger.info("RecreationDotGov Recreation Area Searcher Established.")
     logger.info(f"Search Months: {recdotgov_finder.search_months}")
     return recdotgov_finder
@@ -59,8 +64,9 @@ def recdotgov_campground_finder(search_window) -> SearchRecreationDotGov:
     -------
     SearchYellowstone
     """
-    recdotgov_finder = SearchRecreationDotGov(search_window=search_window,
-                                              campgrounds=232493)  # Fish Creek, Glacier Ntl Park
+    recdotgov_finder = SearchRecreationDotGov(
+        search_window=search_window, campgrounds=232493
+    )  # Fish Creek, Glacier Ntl Park
     logger.info("RecreationDotGov Campground Searcher Established.")
     logger.info(f"Search Months: {recdotgov_finder.search_months}")
     return recdotgov_finder
@@ -75,14 +81,17 @@ def recdotgov_campsite_finder(search_window) -> SearchRecreationDotGov:
     -------
     SearchYellowstone
     """
-    recdotgov_finder = SearchRecreationDotGov(search_window=search_window,
-                                              campsites=40107)  # Fish Creek, Glacier Ntl Park
+    recdotgov_finder = SearchRecreationDotGov(
+        search_window=search_window, campsites=40107
+    )  # Fish Creek, Glacier Ntl Park
     logger.info("RecreationDotGov Campground Searcher Established.")
     logger.info(f"Search Months: {recdotgov_finder.search_months}")
     return recdotgov_finder
 
 
-def test_get_searchable_campgrounds_recarea(recdotgov_recarea_finder) -> List[AvailableCampsite]:
+def test_get_searchable_campgrounds_recarea(
+    recdotgov_recarea_finder,
+) -> List[AvailableCampsite]:
     """
     Retrieve Campground Information for a Recreation Area
 
@@ -96,7 +105,8 @@ def test_get_searchable_campgrounds_recarea(recdotgov_recarea_finder) -> List[Av
 
 
 def test_get_searchable_campgrounds_campground(
-        recdotgov_campground_finder) -> List[AvailableCampsite]:
+    recdotgov_campground_finder,
+) -> List[AvailableCampsite]:
     """
     Retrieve Campground Information for a Campground ID
 
@@ -119,12 +129,15 @@ def test_get_all_campsites_recarea(recdotgov_recarea_finder) -> List[AvailableCa
     """
     logger.info("Searching for All Recreation Area Campsites")
     all_campsites = recdotgov_recarea_finder.get_all_campsites()
-    SearchRecreationDotGov.assemble_availabilities(matching_data=all_campsites, log=True,
-                                                   verbose=False)
+    SearchRecreationDotGov.assemble_availabilities(
+        matching_data=all_campsites, log=True, verbose=False
+    )
     return all_campsites
 
 
-def test_get_all_campsites_campground(recdotgov_campground_finder) -> List[AvailableCampsite]:
+def test_get_all_campsites_campground(
+    recdotgov_campground_finder,
+) -> List[AvailableCampsite]:
     """
     Get all of the Yellowstone Campsites
 
@@ -134,12 +147,15 @@ def test_get_all_campsites_campground(recdotgov_campground_finder) -> List[Avail
     """
     logger.info("Searching for Campground Specific Campsites")
     all_campsites = recdotgov_campground_finder.get_all_campsites()
-    SearchRecreationDotGov.assemble_availabilities(matching_data=all_campsites, log=True,
-                                                   verbose=False)
+    SearchRecreationDotGov.assemble_availabilities(
+        matching_data=all_campsites, log=True, verbose=False
+    )
     return all_campsites
 
 
-def test_get_campsite_specific_campgrounds(recdotgov_campsite_finder) -> List[CampgroundFacility]:
+def test_get_campsite_specific_campgrounds(
+    recdotgov_campsite_finder,
+) -> List[CampgroundFacility]:
     """
     Get all of the Related Campgrounds
     """
@@ -148,12 +164,15 @@ def test_get_campsite_specific_campgrounds(recdotgov_campsite_finder) -> List[Ca
     return campgrounds
 
 
-def test_get_campsite_specific_results(recdotgov_campsite_finder) -> List[AvailableCampsite]:
+def test_get_campsite_specific_results(
+    recdotgov_campsite_finder,
+) -> List[AvailableCampsite]:
     """
     Get the related Campsite's availability
     """
     logger.info("Searching for Campground Specific Campsites")
     all_campsites = recdotgov_campsite_finder.get_all_campsites()
-    SearchRecreationDotGov.assemble_availabilities(matching_data=all_campsites, log=True,
-                                                   verbose=False)
+    SearchRecreationDotGov.assemble_availabilities(
+        matching_data=all_campsites, log=True, verbose=False
+    )
     return all_campsites

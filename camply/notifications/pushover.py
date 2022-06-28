@@ -2,10 +2,10 @@
 Push Notifications via Pushover
 """
 
-from abc import ABC
 import base64
-from datetime import datetime
 import logging
+from abc import ABC
+from datetime import datetime
 from typing import List, Optional
 
 import requests
@@ -26,10 +26,12 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
         logging.StreamHandler.__init__(self)
         self.setLevel(level=level)
         if any([PushoverConfig.PUSH_USER is None, PushoverConfig.PUSH_USER == ""]):
-            warning_message = ("Pushover is not configured properly. To send pushover messages "
-                               "make sure to run `camply configure` or set the "
-                               "proper environment variables: `PUSHOVER_PUSH_USER`, "
-                               "`PUSHOVER_PUSH_TOKEN`.")
+            warning_message = (
+                "Pushover is not configured properly. To send pushover messages "
+                "make sure to run `camply configure` or set the "
+                "proper environment variables: `PUSHOVER_PUSH_USER`, "
+                "`PUSHOVER_PUSH_TOKEN`."
+            )
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
@@ -52,20 +54,27 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
         -------
         requests.Response
         """
-        token = PushoverConfig.PUSH_TOKEN if PushoverConfig.PUSH_TOKEN not in [None, ""] \
-            else base64.b64decode(PushoverConfig.PUSHOVER_DEFAULT_API_TOKEN).decode("utf-8")
-        response = requests.post(url=PushoverConfig.PUSHOVER_API_ENDPOINT,
-                                 headers=PushoverConfig.API_HEADERS,
-                                 params=dict(token=token,
-                                             user=PushoverConfig.PUSH_USER,
-                                             message=message,
-                                             **kwargs)
-                                 )
+        token = (
+            PushoverConfig.PUSH_TOKEN
+            if PushoverConfig.PUSH_TOKEN not in [None, ""]
+            else base64.b64decode(PushoverConfig.PUSHOVER_DEFAULT_API_TOKEN).decode(
+                "utf-8"
+            )
+        )
+        response = requests.post(
+            url=PushoverConfig.PUSHOVER_API_ENDPOINT,
+            headers=PushoverConfig.API_HEADERS,
+            params=dict(
+                token=token, user=PushoverConfig.PUSH_USER, message=message, **kwargs
+            ),
+        )
         try:
             response.raise_for_status()
         except requests.HTTPError as he:
-            logger.warning("Notifications weren't able to be sent to Pushover. "
-                           "Your configuration might be incorrect.")
+            logger.warning(
+                "Notifications weren't able to be sent to Pushover. "
+                "Your configuration might be incorrect."
+            )
             raise ConnectionError(response.text) from he
         return response
 
@@ -78,8 +87,9 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
         record: str
             Message to log
         """
-        log_formatted_message = "[{:>10}]: {}".format(record.levelname.upper(),
-                                                      record.msg)
+        log_formatted_message = "[{:>10}]: {}".format(
+            record.levelname.upper(), record.msg
+        )
         title = f"Pushover {record.levelname.title()} Message"
         self.send_message(message=log_formatted_message, title=title)
 
@@ -98,13 +108,18 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
                 if key == CampsiteContainerFields.BOOKING_URL:
                     key = "Booking Link"
                     value = f"<a href='{value}'>{value}"
-                elif key in [CampsiteContainerFields.BOOKING_DATE,
-                             CampsiteContainerFields.BOOKING_END_DATE]:
+                elif key in [
+                    CampsiteContainerFields.BOOKING_DATE,
+                    CampsiteContainerFields.BOOKING_END_DATE,
+                ]:
                     value: datetime = value.strftime("%Y-%m-%d")
                 formatted_key = key.replace("_", " ").title()
                 fields.append(f"<b>{formatted_key}:</b> {value}")
             composed_message = "\n".join(fields)
-            message_title = (f"{campsite.recreation_area} | {campsite.facility_name} | "
-                             f"{campsite.booking_date.strftime('%Y-%m-%d')}")
-            PushoverNotifications.send_message(message=composed_message, title=message_title,
-                                               html=1)
+            message_title = (
+                f"{campsite.recreation_area} | {campsite.facility_name} | "
+                f"{campsite.booking_date.strftime('%Y-%m-%d')}"
+            )
+            PushoverNotifications.send_message(
+                message=composed_message, title=message_title, html=1
+            )

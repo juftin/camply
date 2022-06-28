@@ -232,5 +232,6 @@ class XantResortData(CamplyModel):
     @validator("availability", pre=True)
     def parse_datetime(cls, value):
         return {
-            datetime.datetime.strptime(x, "%m/%d/%Y").date(): y for x, y in value.items()
+            datetime.datetime.strptime(x, "%m/%d/%Y").date(): y
+            for x, y in value.items()
         }

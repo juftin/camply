@@ -23,12 +23,16 @@ class YellowstoneConfig(DataColumns):
     YELLOWSTONE_PARK_PATH: str = "yellowstonenationalparklodges"
     YELLOWSTONE_LODGING_PATH: str = f"{LODGING_PATH}/{YELLOWSTONE_PARK_PATH}"
     CAMPSITE_AVAILABILITY: str = f"{API_BASE_PATH}/availability/rooms"
-    YELLOWSTONE_CAMPSITE_AVAILABILITY: str = f"{CAMPSITE_AVAILABILITY}/{YELLOWSTONE_PARK_PATH}"
-    YELLOWSTONE_PROPERTY_INFO: str = f"{API_BASE_PATH}/property/rooms/{YELLOWSTONE_PARK_PATH}"
+    YELLOWSTONE_CAMPSITE_AVAILABILITY: str = (
+        f"{CAMPSITE_AVAILABILITY}/{YELLOWSTONE_PARK_PATH}"
+    )
+    YELLOWSTONE_PROPERTY_INFO: str = (
+        f"{API_BASE_PATH}/property/rooms/{YELLOWSTONE_PARK_PATH}"
+    )
     API_REFERRERS: dict = {
         "Host": "webapi.xanterra.net",
         "Origin": "https://secure.yellowstonenationalparklodges.com",
-        "Referer": "https://secure.yellowstonenationalparklodges.com/"
+        "Referer": "https://secure.yellowstonenationalparklodges.com/",
     }
 
     LODGING_CAMPGROUND_QUALIFIER: str = ":RV"
@@ -68,7 +72,10 @@ class YellowstoneConfig(DataColumns):
     YELLOWSTONE_RECREATION_AREA_FORMAL_NAME: str = "Yellowstone National Park, USA"
     YELLOWSTONE_LOOP_NAME: str = "N/A"
     CAMPSITE_AVAILABILITY_STATUS: str = "Available"
-    YELLOWSTONE_CAMPGROUND_NAME_REPLACE: Tuple[str, str] = ("CG Internet Rate", "Campground")
+    YELLOWSTONE_CAMPGROUND_NAME_REPLACE: Tuple[str, str] = (
+        "CG Internet Rate",
+        "Campground",
+    )
 
     YELLOWSTONE_TIMEZONE: str = "America/Denver"
 
@@ -78,7 +85,7 @@ class YellowstoneConfig(DataColumns):
         "YLYB:RV": "Bridge Bay Campground",
         "YLYG:RV": "Grant Campground",
         "YLYM:RV": "Madison Campground",
-        "YLYF:RV": "Fishing Bridge RV Park"
+        "YLYF:RV": "Fishing Bridge RV Park",
     }
 
     YELLOWSTONE_CAMPGROUND_OBJECTS: List[CampgroundFacility] = []

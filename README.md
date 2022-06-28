@@ -19,8 +19,10 @@ ___________
 [![Docker Image Version](https://img.shields.io/docker/v/juftin/camply?color=blue&label=docker&logo=docker)](https://hub.docker.com/r/juftin/camply)
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
+[![Black Codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)]()
 
-## [Check Out The ReadTheDocs](https://camply.readthedocs.io/en/latest/)
+
+## [Check Out The Docs](https://juftin.com/camply/)
 
 ## Table of Contents
 
@@ -29,10 +31,10 @@ ___________
     * [Docker](#docker)
     * [Building Locally](#building-locally)
 - [Command Line Usage](#command-line-usage)
-    * [`campsites`](#campsites)
-    * [`recreation-areas`](#recreation-areas)
-    * [`campgrounds`](#campgrounds)
-    * [`configure`](#configure)
+    * [campsites](#campsites)
+    * [recreation-areas](#recreation-areas)
+    * [campgrounds](#campgrounds)
+    * [configure](#configure)
     * [Examples](#examples)
         + [Searching for a Campsite](#searching-for-a-campsite)
         + [Searching for a Campsite by Campground ID](#searching-for-a-campsite-by-campground-id)

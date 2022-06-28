@@ -2,8 +2,8 @@
 Default Notifier: Silent + Extras
 """
 
-from abc import ABC
 import logging
+from abc import ABC
 from typing import List, Union
 
 from camply.containers import AvailableCampsite
@@ -11,8 +11,8 @@ from camply.notifications.base_notifications import BaseNotifications, Notificat
 from camply.notifications.email_notifications import EmailNotifications
 from camply.notifications.pushbullet import PushbulletNotifications
 from camply.notifications.pushover import PushoverNotifications
-from camply.notifications.telegram import TelegramNotifications
 from camply.notifications.silent_notifications import SilentNotifications
+from camply.notifications.telegram import TelegramNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +21,7 @@ CAMPSITE_NOTIFICATIONS: dict = {
     "email": EmailNotifications,
     "silent": SilentNotifications,
     "pushbullet": PushbulletNotifications,
-    "telegram": TelegramNotifications
+    "telegram": TelegramNotifications,
 }
 
 
@@ -52,7 +52,8 @@ class MultiNotifierProvider(BaseNotifications, ABC):
                 notifier = None
             else:
                 raise NotificationError(
-                    "You must provide a proper Notification Identifier")
+                    "You must provide a proper Notification Identifier"
+                )
             if notifier is not None and not isinstance(notifier, SilentNotifications):
                 self.providers.append(notifier)
 
@@ -92,5 +93,7 @@ class MultiNotifierProvider(BaseNotifications, ABC):
         provider_names = [str(provider) for provider in self.providers]
         logger.info(f"Notifications active via: {', '.join(provider_names)}")
         if len(self.providers) == 1:
-            logger.info(f"Only {self.providers[0]} enabled. "
-                        "I hope you're watching these logs.")
+            logger.info(
+                f"Only {self.providers[0]} enabled. "
+                "I hope you're watching these logs."
+            )
