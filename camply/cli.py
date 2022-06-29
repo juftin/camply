@@ -5,10 +5,9 @@ Camply Command Line Interface
 import logging
 from datetime import datetime
 from os import getenv
-from typing import List, Optional, Union
+from typing import List, Optional, Tuple, Union
 
 import click
-import rich.traceback
 from rich.logging import RichHandler
 
 from camply import __camply__, __version__
@@ -241,10 +240,30 @@ yml_config_argument = click.option(
 equipment_argument = click.option(
     "--equipment",
     default=None,
+    nargs=2,
     multiple=True,
-    help="Search for campsites compatible with your camping equipment. Accepted values "
-    "are `Tent`, `RV`, and `Trailer`. Defaults to any equipment.",
+    help="Search for campsites compatible with your camping equipment. "
+    "This argument accepts two options, the equipment name and its length "
+    "If you don't want to filter based on length provide a length of 0. Accepted "
+    "equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are "
+    "not case-sensitive.",
 )
+
+
+def _get_equipment(equipment: Optional[List[str]]) -> List[Tuple[str, Optional[int]]]:
+    """
+    Parse Equipment from CLI Args
+    """
+    equipment_list = []
+    for (equipment_name, equipment_length) in equipment:
+        try:
+            equipment_length = round(float(equipment_length), 0)
+            if equipment_length == 0:
+                equipment_length = None
+        except ValueError:
+            equipment_length = None
+        equipment_list.append((equipment_name, equipment_length))
+    return equipment_list
 
 
 def _validate_campsites(

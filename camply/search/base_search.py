@@ -687,7 +687,7 @@ class BaseCampingSearch(ABC):
         DataFrame
         """
         campsite_df = DataFrame(
-            data=[campsite.__dict__ for campsite in campsites],
+            data=[campsite.dict() for campsite in campsites],
             columns=AvailableCampsite.__fields__,
         )
         return campsite_df
