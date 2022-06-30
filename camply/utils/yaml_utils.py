@@ -48,7 +48,7 @@ def read_yml(path: str = None):
     safe_loader = SafeLoader
     safe_loader.add_implicit_resolver(tag=None, regexp=pattern, first=None)
 
-    def env_var_constructor(safe_loader: yaml.Loader, node: Any) -> str:
+    def env_var_constructor(safe_loader: yaml.Loader, node: Any) -> Any:
         """
         Extracts the environment variable from the node's value
 
@@ -60,7 +60,7 @@ def read_yml(path: str = None):
 
         Returns
         -------
-        str
+        Any
             the parsed string that contains the value of the environment variable
         """
         value = safe_loader.construct_scalar(node=node)
