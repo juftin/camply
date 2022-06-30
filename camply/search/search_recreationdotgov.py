@@ -10,7 +10,7 @@ from typing import List, Optional, Tuple, Union
 import pandas as pd
 
 from camply.config import RecreationBookingConfig
-from camply.config.search_config import EquipmentConfig
+from camply.config.search_config import EquipmentConfig, EquipmentOptions
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search.base_search import BaseCampingSearch, SearchError
@@ -85,8 +85,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         self.campgrounds = self._get_searchable_campgrounds()
         self.campsite_metadata: Optional[pd.DataFrame] = None
         self.equipment: List[Tuple[str, Optional[int]]] = []
-        if isinstance(equipment, (list, tuple)):
-            self.equipment += equipment
+        self.equipment = self._get_searchable_equipment(equipment=equipment)
 
     def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:
         """
@@ -110,6 +109,45 @@ class SearchRecreationDotGov(BaseCampingSearch):
         else:
             raise RuntimeError("You must provide a Campground or Recreation Area ID")
         return searchable_campgrounds
+
+    @classmethod
+    def _get_searchable_equipment(
+        cls, equipment: Optional[List[Tuple[str, Optional[int]]]]
+    ) -> Optional[List[Tuple[str, Optional[int]]]]:
+        """
+        Sort through and validate Equipment
+
+        Parameters
+        ----------
+        equipment: Optional[List[Tuple[str, Optional[int]]]]
+
+        Returns
+        -------
+        Optional[List[Tuple[str, Optional[int]]]]
+        """
+        equipment_names = []
+        final_equipment = None
+        if isinstance(equipment, (list, tuple)):
+            final_equipment = []
+            for equipment_name, equipment_length in equipment:
+                if (
+                    equipment_name.lower()
+                    not in EquipmentOptions.__all_accepted_equipment__
+                ):
+                    logger.warning(
+                        f"Equipment name not recognized: {equipment_name}. This won't "
+                        "be used for filtering."
+                        "Acceptable options are: "
+                        f"{', '.join(EquipmentOptions.__all_accepted_equipment__)}"
+                    )
+                else:
+                    final_equipment.append((equipment_name, equipment_length))
+                    equipment_names.append(equipment_name)
+            if len(final_equipment) > 0:
+                logger.info(
+                    f"Filtering Campsites based on Equipment: {' | '.join(equipment_names)}"
+                )
+        return final_equipment
 
     def _get_campgrounds_by_campground_id(self) -> List[CampgroundFacility]:
         """
@@ -221,7 +259,18 @@ class SearchRecreationDotGov(BaseCampingSearch):
         return compiled_campsites
 
     def filter_campsites_to_equipment(self, campsites: pd.DataFrame) -> pd.DataFrame:
-        if len(self.equipment) == 0 or len(campsites) == 0:
+        """
+        Filter a Campsite DataFrame down to specified equipment
+
+        Parameters
+        ----------
+        campsites: pd.DataFrame
+
+        Returns
+        -------
+        pd.DataFrame
+        """
+        if self.equipment is None or len(self.equipment) == 0 or len(campsites) == 0:
             return campsites
         column_names = ["campsite_id", "permitted_equipment"]
         exploded_data = campsites[column_names].explode("permitted_equipment")

@@ -4,12 +4,11 @@ Push Notifications via Telegram
 
 import logging
 from abc import ABC
-from datetime import datetime
 from typing import List
 
 import requests
 
-from camply.config import CampsiteContainerFields, TelegramConfig
+from camply.config import TelegramConfig
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
 

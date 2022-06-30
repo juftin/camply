@@ -505,6 +505,7 @@ class RecreationDotGov(BaseProvider):
     ) -> requests.Response:
         """
         Make a Raw Request to RecreationDotGov
+
         Parameters
         ----------
         url: str

@@ -5,12 +5,11 @@ Push Notifications via Pushover
 import base64
 import logging
 from abc import ABC
-from datetime import datetime
 from typing import List, Optional
 
 import requests
 
-from camply.config import CampsiteContainerFields, PushoverConfig
+from camply.config import PushoverConfig
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
 

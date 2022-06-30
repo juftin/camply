@@ -48,6 +48,7 @@ ___________
         + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
         + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
         + [Using a YML Configuration file to search for campsites](#using-a-yml-configuration-file-to-search-for-campsites)
+        + [Searching for a Campsite That Fits Your Equipment](#searching-for-a-campsite-that-fits-your-equipment)
         + [Search for Recreation Areas by Query String](#search-for-recreation-areas-by-query-string)
         + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for Specific Campgrounds by Query String](#look-for-specific-campgrounds-by-query-string)
@@ -485,6 +486,49 @@ notify_first_try: false  # FALSE BY DEFAULT
 
 ```shell
 camply campsites --yml-config example_search.yml
+```
+
+#### Searching for a Campsite That Fits Your Equipment
+
+Camply can help you filter campsites to fit your specific equipment, like a Trailer or an RV.
+Most likely, you care that the campsite fits the length of your RV so you can specify that as well.
+To search for specific equipment and its length provide the `--equipment` option with two arguments,
+the equipment name and the equipment length. If you don't want to filter based on length provide a
+length of zero. If you provide multiple `--equipment` options, sites matching any of your search
+equipment will be returned.
+
+Current supported equipment names are `Vehicle`, `Tent`, `RV`, and `Trailer`.
+
+```shell
+camply campsites \
+    --rec-area 2991 \
+    --start-date 2022-07-09 \
+    --end-date 2022-07-17 \
+    --nights 5 \
+    --equipment RV 25
+```
+
+Here's what the above search would look like on a YAML Config:
+
+```yaml
+recreation_area:
+    - 2991
+start_date:       2022-07-09
+end_date:         2022-07-17
+nights:           5
+equipment:
+    - [RV, 25]
+```
+
+Finally, here's a search that accommodates trailers of all lengths:
+
+```shell
+camply campsites \
+    --rec-area 2991 \
+    --start-date 2022-07-09 \
+    --end-date 2022-07-17 \
+    --nights 5 \
+    --equipment Trailer 0
 ```
 
 #### Search for Recreation Areas by Query String

@@ -30,6 +30,8 @@ class EquipmentOptions(str, Enum):
     vehicle = "vehicle"
     other = "other"
 
+    __all_accepted_equipment__ = [tent, rv, trailer, vehicle]
+
 
 class EquipmentConfig:
     """
