@@ -552,7 +552,8 @@ class RecreationDotGov(BaseProvider):
         """
         response = cls.make_recdotgov_request(url=url,
                                               method=method,
-                                              params=params)
+                                              params=params,
+                                              **kwargs)
         response.raise_for_status()
         return response
 
