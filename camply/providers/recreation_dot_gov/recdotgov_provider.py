@@ -568,7 +568,7 @@ class RecreationDotGov(BaseProvider):
         wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
         stop=tenacity.stop.stop_after_delay(6000),
     )
-    def _make_recdotgov_request(
+    def _make_recdotgov_availability_request(
         self,
         campground_id: int,
         month: datetime,
@@ -623,7 +623,7 @@ class RecreationDotGov(BaseProvider):
         Union[dict, list]
         """
         try:
-            response = self._make_recdotgov_request(
+            response = self._make_recdotgov_availability_request(
                 campground_id=campground_id, month=month
             )
         except tenacity.RetryError:
