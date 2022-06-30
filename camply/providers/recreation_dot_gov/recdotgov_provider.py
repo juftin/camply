@@ -525,6 +525,37 @@ class RecreationDotGov(BaseProvider):
         )
         return response
 
+    @classmethod
+    @tenacity.retry(
+        wait=tenacity.wait_random_exponential(multiplier=2, max=10),
+        stop=tenacity.stop.stop_after_delay(15),
+    )
+    def make_recdotgov_request_retry(
+            cls,
+            url: str,
+            method: str = "GET",
+            params: Optional[Dict[str, Any]] = None,
+            **kwargs,
+    ) -> requests.Response:
+        """
+        Make a Raw Request to RecreationDotGov - But Handle 404
+
+        Parameters
+        ----------
+        url: str
+        method: str
+        params: Optional[Dict[str, Any]]
+
+        Returns
+        -------
+        requests.Response
+        """
+        response = cls.make_recdotgov_request(url=url,
+                                              method=method,
+                                              params=params)
+        response.raise_for_status()
+        return response
+
     def paginate_recdotgov_campsites(
         self, facility_id: int, equipment: Optional[List[str]] = None
     ) -> List[RecDotGovCampsite]:
@@ -550,7 +581,7 @@ class RecreationDotGov(BaseProvider):
         )
         campsites = []
         while continue_paginate is True:
-            response = self.make_recdotgov_request(
+            response = self.make_recdotgov_request_retry(
                 method="GET",
                 url=endpoint_url,
                 params=params,
