@@ -2,14 +2,16 @@
 Recreation.gov Web Searching Utilities
 """
 
+import json
 import logging
 from base64 import b64decode
 from datetime import datetime, timedelta
 from json import loads
 from random import choice
-from typing import List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 from urllib import parse
 
+import pandas as pd
 import requests
 import tenacity
 from pydantic import ValidationError
@@ -26,6 +28,8 @@ from camply.containers.api_responses import (
     CampsiteResponse,
     FacilityResponse,
     GenericResponse,
+    RecDotGovCampsite,
+    RecDotGovCampsiteResponse,
     RecreationAreaResponse,
 )
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
@@ -215,7 +219,7 @@ class RecreationDotGov(BaseProvider):
         """
         campgrounds = list()
         for campground_identifier in campground_id:
-            facility_data = self._ridb_get_data(
+            facility_data = self.get_ridb_data(
                 path=f"{RIDBConfig.FACILITIES_API_PATH}/{campground_identifier}",
                 params=dict(full=True),
             )
@@ -291,7 +295,7 @@ class RecreationDotGov(BaseProvider):
         wait=tenacity.wait_random_exponential(multiplier=2, max=10),
         stop=tenacity.stop.stop_after_delay(15),
     )
-    def _ridb_get_data(
+    def get_ridb_data(
         self, path: str, params: Optional[dict] = None
     ) -> Union[dict, list]:
         """
@@ -325,7 +329,9 @@ class RecreationDotGov(BaseProvider):
         return loads(response.content)
 
     def _ridb_get_paginate(
-        self, path: str, params: Optional[dict] = None
+        self,
+        path: str,
+        params: Optional[dict] = None,
     ) -> List[dict]:
         """
         Return the Paginated Response from the RIDP
@@ -352,7 +358,7 @@ class RecreationDotGov(BaseProvider):
 
         while data_incomplete is True:
             params.update(offset=offset)
-            data_response = self._ridb_get_data(path=path, params=params)
+            data_response = self.get_ridb_data(path=path, params=params)
             response_object = GenericResponse(**data_response)
             paginated_response += response_object.RECDATA
             result_count = response_object.METADATA.RESULTS.CURRENT_COUNT
@@ -489,12 +495,114 @@ class RecreationDotGov(BaseProvider):
         endpoint_url = parse.urljoin(base_url, path)
         return endpoint_url
 
+    @classmethod
+    def make_recdotgov_request(
+        cls,
+        url: str,
+        method: str = "GET",
+        params: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ) -> requests.Response:
+        """
+        Make a Raw Request to RecreationDotGov
+
+        Parameters
+        ----------
+        url: str
+        method: str
+        params: Optional[Dict[str, Any]]
+
+        Returns
+        -------
+        requests.Response
+        """
+        # BUILD THE HEADERS EXPECTED FROM THE API
+        headers = STANDARD_HEADERS.copy()
+        headers.update(choice(USER_AGENTS))
+        headers.update(RecreationBookingConfig.API_REFERRERS)
+        response = requests.request(
+            method=method, url=url, headers=headers, params=params, timeout=30, **kwargs
+        )
+        return response
+
+    @classmethod
+    @tenacity.retry(
+        wait=tenacity.wait_random_exponential(multiplier=2, max=10),
+        stop=tenacity.stop.stop_after_delay(15),
+    )
+    def make_recdotgov_request_retry(
+        cls,
+        url: str,
+        method: str = "GET",
+        params: Optional[Dict[str, Any]] = None,
+        **kwargs,
+    ) -> requests.Response:
+        """
+        Make a Raw Request to RecreationDotGov - But Handle 404
+
+        Parameters
+        ----------
+        url: str
+        method: str
+        params: Optional[Dict[str, Any]]
+
+        Returns
+        -------
+        requests.Response
+        """
+        response = cls.make_recdotgov_request(
+            url=url, method=method, params=params, **kwargs
+        )
+        response.raise_for_status()
+        return response
+
+    def paginate_recdotgov_campsites(
+        self, facility_id: int, equipment: Optional[List[str]] = None
+    ) -> List[RecDotGovCampsite]:
+        """
+        Paginate through the RecDotGov Campsite Metadata
+        """
+        results = 0
+        continue_paginate = True
+        endpoint_url = api_utils.generate_url(
+            scheme=RecreationBookingConfig.API_SCHEME,
+            netloc=RecreationBookingConfig.API_NET_LOC,
+            path="api/search/campsites",
+        )
+        fq_list = [f"asset_id:{facility_id}"]
+        if isinstance(equipment, list) and len(equipment) > 0:
+            for item in equipment:
+                fq_list.append(f"campsite_equipment_name:{item}")
+        params = dict(
+            start=0,
+            size=1000,
+            fq=fq_list,
+            include_non_site_specific_campsites=True,
+        )
+        campsites = []
+        while continue_paginate is True:
+            response = self.make_recdotgov_request_retry(
+                method="GET",
+                url=endpoint_url,
+                params=params,
+            )
+            returned_data = json.loads(response.content)
+            campsite_response = RecDotGovCampsiteResponse(**returned_data)
+            campsites += campsite_response.campsites
+            results += campsite_response.size
+            params.update(start=results)
+            if results == campsite_response.total:
+                continue_paginate = False
+        return campsites
+
     @tenacity.retry(
         wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
         stop=tenacity.stop.stop_after_delay(6000),
     )
-    def _make_recdotgov_request(
-        self, campground_id: int, month: datetime
+    def _make_recdotgov_availability_request(
+        self,
+        campground_id: int,
+        month: datetime,
     ) -> requests.Response:
         """
         Make a request to the RecreationDotGov API - Handle Exponential Backoff
@@ -509,19 +617,15 @@ class RecreationDotGov(BaseProvider):
         requests.Response
         """
         try:
-            formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
             api_endpoint = self._rec_availability_get_endpoint(
                 path=f"{campground_id}/{RecreationBookingConfig.API_MONTH_PATH}"
             )
-            # BUILD THE HEADERS EXPECTED FROM THE API
-            headers = STANDARD_HEADERS.copy()
-            headers.update(choice(USER_AGENTS))
-            headers.update(RecreationBookingConfig.API_REFERRERS)
-            response = requests.get(
+            formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
+            query_params = dict(start_date=formatted_month)
+            response = self.make_recdotgov_request(
+                method="GET",
                 url=api_endpoint,
-                headers=headers,
-                params=dict(start_date=formatted_month),
-                timeout=30,
+                params=query_params,
             )
             assert response.status_code == 200
         except AssertionError:
@@ -550,7 +654,7 @@ class RecreationDotGov(BaseProvider):
         Union[dict, list]
         """
         try:
-            response = self._make_recdotgov_request(
+            response = self._make_recdotgov_availability_request(
                 campground_id=campground_id, month=month
             )
         except tenacity.RetryError:
@@ -561,6 +665,25 @@ class RecreationDotGov(BaseProvider):
         return loads(response.content)
 
     @classmethod
+    def _get_equipment_and_attributes(
+        cls,
+        campsite_id: int,
+        campsite_metadata: pd.DataFrame,
+    ):
+        """
+        Index a DataFrame in a Complicated Way\
+        """
+        try:
+            equipment = campsite_metadata.at[campsite_id, "permitted_equipment"]
+        except LookupError:
+            equipment = None
+        try:
+            attributes = campsite_metadata.at[campsite_id, "attributes"]
+        except LookupError:
+            attributes = None
+        return equipment, attributes
+
+    @classmethod
     def process_campsite_availability(
         cls,
         availability: dict,
@@ -569,6 +692,7 @@ class RecreationDotGov(BaseProvider):
         facility_name: str,
         facility_id: int,
         month: datetime,
+        campsite_metadata: pd.DataFrame,
     ) -> List[Optional[AvailableCampsite]]:
         """
         Parse the JSON Response and return availabilities
@@ -587,6 +711,8 @@ class RecreationDotGov(BaseProvider):
             Campground Facility ID
         month: datetime
             Month to Process
+        campsite_metadata: pd.DataFrame
+            Metadata Fetched from the Recreation.gov API about the Campsites
 
         Returns
         -------
@@ -607,6 +733,9 @@ class RecreationDotGov(BaseProvider):
                     booking_url = (
                         f"{RecreationBookingConfig.CAMPSITE_BOOKING_URL}/{campsite_id}"
                     )
+                    equipment, attributes = cls._get_equipment_and_attributes(
+                        campsite_id=campsite_id, campsite_metadata=campsite_metadata
+                    )
                     available_campsite = AvailableCampsite(
                         campsite_id=campsite_id,
                         booking_date=matching_date,
@@ -626,6 +755,8 @@ class RecreationDotGov(BaseProvider):
                         facility_name=facility_name,
                         facility_id=facility_id,
                         booking_url=booking_url,
+                        permitted_equipment=equipment,
+                        campsite_attributes=attributes,
                     )
                     total_campsite_availability.append(available_campsite)
         logger.info(
@@ -647,7 +778,7 @@ class RecreationDotGov(BaseProvider):
         -------
         CampsiteResponse
         """
-        data = self._ridb_get_data(path=f"{RIDBConfig.CAMPSITE_API_PATH}/{campsite_id}")
+        data = self.get_ridb_data(path=f"{RIDBConfig.CAMPSITE_API_PATH}/{campsite_id}")
         try:
             response = CampsiteResponse(**data[0])
         except IndexError:
@@ -706,3 +837,17 @@ class RecreationDotGov(BaseProvider):
                 f"{facility.facility_name}, {facility.recreation_area}"
             )
         return facilities
+
+    def get_internal_campsite_metadata(self, facility_ids: List[int]) -> pd.DataFrame:
+        """
+        Retrieve Metadata About all of the underlying Campsites to Search
+        """
+        all_campsites: List[RecDotGovCampsite] = []
+        for facility_id in facility_ids:
+            all_campsites += self.paginate_recdotgov_campsites(facility_id=facility_id)
+        all_campsite_df = pd.DataFrame(
+            [item.dict() for item in all_campsites],
+            columns=RecDotGovCampsite.__fields__,
+        )
+        all_campsite_df.set_index("campsite_id", inplace=True)
+        return all_campsite_df

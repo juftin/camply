@@ -5,10 +5,10 @@ Camply Command Line Interface
 import logging
 from datetime import datetime
 from os import getenv
-from typing import List, Optional, Union
+from typing import List, Optional, Tuple, Union
 
 import click
-import rich.traceback
+from rich import traceback
 from rich.logging import RichHandler
 
 from camply import __camply__, __version__
@@ -238,6 +238,33 @@ yml_config_argument = click.option(
     "pass a file path to a YAML configuration file. See the documentation "
     "for more information on how to structure your configuration file.",
 )
+equipment_argument = click.option(
+    "--equipment",
+    default=None,
+    nargs=2,
+    multiple=True,
+    help="Search for campsites compatible with your camping equipment. "
+    "This argument accepts two options, the equipment name and its length "
+    "If you don't want to filter based on length provide a length of 0. Accepted "
+    "equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are "
+    "not case-sensitive.",
+)
+
+
+def _get_equipment(equipment: Optional[List[str]]) -> List[Tuple[str, Optional[int]]]:
+    """
+    Parse Equipment from CLI Args
+    """
+    equipment_list = []
+    for (equipment_name, equipment_length) in equipment:
+        try:
+            equipment_length = round(float(equipment_length), 0)
+            if equipment_length == 0:
+                equipment_length = None
+        except ValueError:
+            equipment_length = None
+        equipment_list.append((equipment_name, equipment_length))
+    return equipment_list
 
 
 def _validate_campsites(
@@ -285,6 +312,7 @@ def _validate_campsites(
 @polling_interval_argument
 @continuous_argument
 @provider_argument
+@equipment_argument
 @nights_argument
 @weekends_argument
 @end_date_argument
@@ -308,6 +336,7 @@ def campsites(
     notify_first_try: bool = False,
     search_forever: bool = False,
     yml_config: Optional[str] = None,
+    equipment: Optional[List[str]] = None,
 ) -> None:
     """
     Find available Campsites using search criteria
@@ -353,6 +382,7 @@ def campsites(
             campsites=make_list(campsite),
             weekends_only=weekends,
             nights=int(nights),
+            equipment=make_list(equipment),
         )
         search_kwargs = dict(
             log=True,
@@ -388,7 +418,7 @@ def cli():
             logging_handler,
         ],
     )
-    rich.traceback.install(show_locals=False)
+    traceback.install(show_locals=False)
     try:
         logger.camply("camply, the campsite finder ⛺️")  # noqa
         camply_command_line()

@@ -19,3 +19,10 @@ camply campsites \
   --start-date 2022-09-01 \
   --end-date 2022-09-14 \
   --campground YLYF:RV
+
+camply campsites \
+    --rec-area 2018 \
+    --start-date 2022-09-09 \
+    --end-date 2022-09-17 \
+    --nights 3 \
+    --equipment RV 25

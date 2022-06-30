@@ -2,6 +2,7 @@
 camply Data Storage Objects
 """
 
+from .base_container import CamplyModel
 from .data_containers import (
     AvailableCampsite,
     CampgroundFacility,
@@ -10,6 +11,7 @@ from .data_containers import (
 )
 
 __all__ = [
+    "CamplyModel",
     "AvailableCampsite",
     "CampgroundFacility",
     "RecreationArea",

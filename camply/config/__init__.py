@@ -16,7 +16,7 @@ from .notification_config import (
     PushoverConfig,
     TelegramConfig,
 )
-from .search_config import SearchConfig
+from .search_config import EquipmentOptions, SearchConfig
 from .yellowstone_config import YellowstoneConfig
 
 __all__ = [
@@ -33,4 +33,5 @@ __all__ = [
     "TelegramConfig",
     "SearchConfig",
     "YellowstoneConfig",
+    "EquipmentOptions",
 ]

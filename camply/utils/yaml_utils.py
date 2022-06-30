@@ -7,12 +7,14 @@ import os
 from datetime import datetime
 from pathlib import Path
 from re import compile
-from typing import Dict, Tuple
+from typing import Any, Dict, Tuple
 
+import yaml
 from yaml import SafeLoader, load
 
 from camply.config import SearchConfig
 from camply.containers import SearchWindow
+from camply.utils import make_list
 
 logger = logging.getLogger(__name__)
 
@@ -46,15 +48,20 @@ def read_yml(path: str = None):
     safe_loader = SafeLoader
     safe_loader.add_implicit_resolver(tag=None, regexp=pattern, first=None)
 
-    def env_var_constructor(safe_loader: object, node: object):
+    def env_var_constructor(safe_loader: yaml.Loader, node: Any) -> Any:
         """
         Extracts the environment variable from the node's value
 
-        :param yaml.Loader safe_loader: the yaml loader
-        :param node: the current node in the yaml
+        Parameters
+        ----------
+        safe_loader: yaml.Loader
+        node: Any
+            The current node in the yaml
 
-        :return: the parsed string that contains the value of the environment
-        variable
+        Returns
+        -------
+        Any
+            the parsed string that contains the value of the environment variable
         """
         value = safe_loader.construct_scalar(node=node)
         match = pattern.findall(string=value)
@@ -105,6 +112,10 @@ def yaml_file_to_arguments(
     notify_first_try = yaml_search.get("notify_first_try", False)
     notification_provider = yaml_search.get("notifications", "silent")
     search_forever = yaml_search.get("search_forever", False)
+    equipment = yaml_search.get("equipment", None)
+    equipment = make_list(equipment)
+    if isinstance(equipment, list):
+        equipment = [tuple(equip) for equip in equipment]
 
     search_window = SearchWindow(start_date=start_date, end_date=end_date)
 
@@ -115,6 +126,7 @@ def yaml_file_to_arguments(
         campsites=campsites,
         weekends_only=weekends_only,
         nights=nights,
+        equipment=equipment,
     )
     search_kwargs = dict(
         log=True,
