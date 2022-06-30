@@ -1,7 +1,8 @@
 """
 Base Pydantic Object for Containers
 """
-from typing import Any
+
+from typing import Any, List
 
 from pydantic import BaseModel
 
@@ -11,7 +12,7 @@ class CamplyModel(BaseModel):
     Hashable Pydantic Model
     """
 
-    __unhashable__ = []
+    __unhashable__: List[str] = []
 
     def __hash__(self):
         """
