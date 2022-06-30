@@ -134,7 +134,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 `--continuous` and notifications via Email, Pushover, Pushbullet, and Telegram can be enabled using
 `--notifications`.
 
-#### Arguments:
+#### Arguments
 
 * `--rec-area`: `RECREATION_AREA_ID`
     + Add Recreation Areas (comprised of campgrounds) by ID.
@@ -166,24 +166,30 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
     + Continuously check for a campsite to become available, and quit once at least one campsite is
       found.
       [**_example_](#continuously-searching-for-a-campsite)
-* `--polling-interval`: `POLLING_INTERVAL`
-    + If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
-      10, cannot be less than 5.
-      [**_example_](#look-for-weekend-campsite-availabilities)
-* `--notifications`: `NOTIFICATIONS`
-    + If `--continuous` is activated, types of notifications to receive. Options available
-      are`email`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
-      messages to console.
-      [**_example_](#send-a-push-notification)
-* `--notify-first-try`
-    + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
-      matching campsites are found on the first try. Defaults to false which only sends the first5.
-      [**_example_](#continuously-searching-for-a-campsite)
 * `--search-forever`
     + If `--continuous` is activated, this method continues to search after the first availability
       has been found. The one caveat is that it will never notify about the same identical campsite
       for the same booking date.
       [**_example_](#continue-looking-after-the-first-match-is-found)
+* `--notifications`: `NOTIFICATIONS`
+    + If `--continuous` is activated, types of notifications to receive. Options available
+      are`email`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
+      messages to console.
+      [**_example_](#send-a-push-notification)
+* `--equipment`
+    + Search for campsites compatible with your camping equipment. This argument accepts two
+      options, the equipment name and its length If you don't want to filter based on length provide
+      a length of 0. Accepted equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are
+      not case-sensitive.
+      [**_example_](#searching-for-a-campsite-that-fits-your-equipment)
+* `--notify-first-try`
+    + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
+      matching campsites are found on the first try. Defaults to false which only sends the first5.
+      [**_example_](#continuously-searching-for-a-campsite)
+* `--polling-interval`: `POLLING_INTERVAL`
+    + If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
+      10, cannot be less than 5.
+      [**_example_](#look-for-weekend-campsite-availabilities)
 * `--yml-config`
     + Rather than provide arguments to the command line utility, instead pass a file path to a YAML
       configuration file. See the documentation for more information on how to structure your
@@ -468,7 +474,7 @@ below [YML example file](docs/examples/example_search.yml) and corresponding cam
 
 ```yaml
 provider:         RecreationDotGov  # RecreationDotGov IF NOT PROVIDED
-recreation_area:  # (LIST OR SINGLE ENTRY)
+recreation_area: # (LIST OR SINGLE ENTRY)
   - 2991  # Yosemite National Park, CA (All Campgrounds)
   - 1074  # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null  # ENTIRE FIELD CAN BE OMITTED IF NOT USED - (LIST OR SINGLE ENTRY)
@@ -482,6 +488,7 @@ polling_interval: 5  # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
 notifications:    email  # (silent, email, pushover, pushbullet, and telegram), DEFAULTS TO `silent`
 search_forever:   true  # FALSE BY DEFAULT
 notify_first_try: false  # FALSE BY DEFAULT
+equipment:        null # Array of Equipment Search Lists - DEFAULTS TO `null`
 ```
 
 ```shell
