@@ -531,11 +531,11 @@ class RecreationDotGov(BaseProvider):
         stop=tenacity.stop.stop_after_delay(15),
     )
     def make_recdotgov_request_retry(
-            cls,
-            url: str,
-            method: str = "GET",
-            params: Optional[Dict[str, Any]] = None,
-            **kwargs,
+        cls,
+        url: str,
+        method: str = "GET",
+        params: Optional[Dict[str, Any]] = None,
+        **kwargs,
     ) -> requests.Response:
         """
         Make a Raw Request to RecreationDotGov - But Handle 404
@@ -550,10 +550,9 @@ class RecreationDotGov(BaseProvider):
         -------
         requests.Response
         """
-        response = cls.make_recdotgov_request(url=url,
-                                              method=method,
-                                              params=params,
-                                              **kwargs)
+        response = cls.make_recdotgov_request(
+            url=url, method=method, params=params, **kwargs
+        )
         response.raise_for_status()
         return response
 
