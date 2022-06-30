@@ -504,7 +504,9 @@ the equipment name and the equipment length. If you don't want to filter based o
 length of zero. If you provide multiple `--equipment` options, sites matching any of your search
 equipment will be returned.
 
-Current supported equipment names are `Vehicle`, `Tent`, `RV`, and `Trailer`.
+Current supported equipment names are `Vehicle`, `Tent`, `RV`, and `Trailer`. Be careful when
+filtering on `Tents` and `Vehicle` length, sometimes Recreation.gov doesn't provide that information,
+it is safer to set length to 0.
 
 ```shell
 camply campsites \
