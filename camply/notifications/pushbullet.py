@@ -4,12 +4,11 @@ Push Notifications via Pushbullet
 
 import logging
 from abc import ABC
-from datetime import datetime
 from typing import List
 
 import requests
 
-from camply.config import CampsiteContainerFields, PushbulletConfig
+from camply.config import PushbulletConfig
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
 
@@ -73,8 +72,8 @@ class PushbulletNotifications(BaseNotifications, ABC):
             raise ConnectionError(response.text) from he
         return response
 
-    @staticmethod
-    def send_campsites(campsites: List[AvailableCampsite], **kwargs):
+    @classmethod
+    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs):
         """
         Send a message with a campsite object
 
@@ -83,22 +82,13 @@ class PushbulletNotifications(BaseNotifications, ABC):
         campsites: AvailableCampsite
         """
         for campsite in campsites:
-            fields = list()
-            for key, value in campsite.dict().items():
-                if key == CampsiteContainerFields.BOOKING_URL:
-                    key = "booking_link"
-                elif key in [
-                    CampsiteContainerFields.BOOKING_DATE,
-                    CampsiteContainerFields.BOOKING_END_DATE,
-                ]:
-                    value: datetime = value.strftime("%Y-%m-%d")
-                formatted_key = key.replace("_", " ").title()
-                fields.append(f"{formatted_key}: {value}")
-            composed_message = "\n".join(fields)
-            message_title = (
-                f"{campsite.recreation_area} | {campsite.facility_name} | "
-                f"{campsite.booking_date.strftime('%Y-%m-%d')}"
+            message_title, formatted_dict = cls.format_standard_campsites(
+                campsite=campsite,
             )
+            fields = []
+            for key, value in formatted_dict.items():
+                fields.append(f"{key}: {value}")
+            composed_message = "\n".join(fields)
             PushbulletNotifications.send_message(
                 message=composed_message, title=message_title, type="note"
             )

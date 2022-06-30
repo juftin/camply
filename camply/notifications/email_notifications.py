@@ -3,12 +3,11 @@ Push Notifications via Pushover
 """
 import logging
 from abc import ABC
-from datetime import datetime
 from email.message import EmailMessage
 from smtplib import SMTP_SSL
 from typing import List
 
-from camply.config import CampsiteContainerFields, EmailConfig
+from camply.config import EmailConfig
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
 
@@ -113,8 +112,8 @@ class EmailNotifications(BaseNotifications, ABC):
         email_server.quit()
         return response
 
-    @staticmethod
-    def send_campsites(campsites: List[AvailableCampsite], **kwargs) -> None:
+    @classmethod
+    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs) -> None:
         """
         Send a message with a campsite object
 
@@ -124,22 +123,14 @@ class EmailNotifications(BaseNotifications, ABC):
         """
         master_email_body_list = list()
         for campsite in campsites:
-            fields = list()
-            message_title = (
-                f"{campsite.recreation_area} | {campsite.facility_name} | "
-                f"{campsite.booking_date.strftime('%Y-%m-%d')}:"
+            message_title, formatted_dict = cls.format_standard_campsites(
+                campsite=campsite,
             )
-            fields.append(message_title)
-            for key, value in campsite.dict().items():
-                if key in [
-                    CampsiteContainerFields.BOOKING_DATE,
-                    CampsiteContainerFields.BOOKING_END_DATE,
-                ]:
-                    value: datetime = value.strftime("%Y-%m-%d")
-                elif key == CampsiteContainerFields.BOOKING_URL:
-                    key = "booking_link"
-                formatted_key = key.replace("_", " ").title()
-                fields.append(f"\t{formatted_key}: {value}")
+            fields = [message_title]
+            for key, value in formatted_dict.items():
+                if key == "Permitted Equipment":
+                    value = value.replace("\n  - ", "\n  \t  - ")
+                fields.append(f"\t{key}: {value}")
             composed_message = "\n".join(fields) + "\n\n"
             master_email_body_list.append(composed_message)
         master_email_body = "\n".join(master_email_body_list)

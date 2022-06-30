@@ -93,8 +93,8 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
         title = f"Pushover {record.levelname.title()} Message"
         self.send_message(message=log_formatted_message, title=title)
 
-    @staticmethod
-    def send_campsites(campsites: List[AvailableCampsite], **kwargs):
+    @classmethod
+    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs):
         """
         Send a message with a campsite object
 
@@ -103,23 +103,15 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
         campsites: AvailableCampsite
         """
         for campsite in campsites:
-            fields = list()
-            for key, value in campsite.dict().items():
-                if key == CampsiteContainerFields.BOOKING_URL:
-                    key = "Booking Link"
-                    value = f"<a href='{value}'>{value}"
-                elif key in [
-                    CampsiteContainerFields.BOOKING_DATE,
-                    CampsiteContainerFields.BOOKING_END_DATE,
-                ]:
-                    value: datetime = value.strftime("%Y-%m-%d")
-                formatted_key = key.replace("_", " ").title()
-                fields.append(f"<b>{formatted_key}:</b> {value}")
-            composed_message = "\n".join(fields)
-            message_title = (
-                f"{campsite.recreation_area} | {campsite.facility_name} | "
-                f"{campsite.booking_date.strftime('%Y-%m-%d')}"
+            message_title, formatted_dict = cls.format_standard_campsites(
+                campsite=campsite,
             )
+            fields = []
+            for key, value in formatted_dict.items():
+                if key == "Booking Link":
+                    value = f"<a href='{value}'>{value}</a>"
+                fields.append(f"<b>{key}:</b> {value}")
+            composed_message = "\n".join(fields)
             PushoverNotifications.send_message(
                 message=composed_message, title=message_title, html=1
             )

@@ -8,6 +8,7 @@ from os import getenv
 from typing import List, Optional, Tuple, Union
 
 import click
+from rich import traceback
 from rich.logging import RichHandler
 
 from camply import __camply__, __version__
@@ -417,7 +418,7 @@ def cli():
             logging_handler,
         ],
     )
-    rich.traceback.install(show_locals=False)
+    traceback.install(show_locals=False)
     try:
         logger.camply("camply, the campsite finder ⛺️")  # noqa
         camply_command_line()

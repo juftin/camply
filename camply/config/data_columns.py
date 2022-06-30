@@ -34,3 +34,6 @@ class CampsiteContainerFields:
     CAMPSITE_GROUP: str = "campsite_group"
     BOOKING_END_DATE: str = "booking_end_date"
     BOOKING_URL: str = "booking_url"
+
+    PERMITTED_EQUIPMENT: str = "permitted_equipment"
+    CAMPSITE_ATTRIBUTES: str = "campsite_attributes"

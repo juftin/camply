@@ -115,8 +115,8 @@ class TelegramNotifications(BaseNotifications, ABC):
             message = message.replace(f, f"\\{f}")
         return message
 
-    @staticmethod
-    def send_campsites(campsites: List[AvailableCampsite], **kwargs):
+    @classmethod
+    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs):
         """
         Send a message with a campsite object
 
@@ -125,27 +125,12 @@ class TelegramNotifications(BaseNotifications, ABC):
         campsites: AvailableCampsite
         """
         for campsite in campsites:
-            fields = list()
-            for key, value in campsite.dict().items():
-                if key == CampsiteContainerFields.BOOKING_URL:
-                    key = "booking_link"
-                elif key in [
-                    CampsiteContainerFields.BOOKING_DATE,
-                    CampsiteContainerFields.BOOKING_END_DATE,
-                ]:
-                    value: datetime = value.strftime("%Y-%m-%d")
-                formatted_key = TelegramNotifications.escape_text(
-                    key.replace("_", " ").title()
-                )
-                formatted_value = TelegramNotifications.escape_text(str(value))
-                fields.append(f"{formatted_key}: {formatted_value}")
-            message_fields = "\n".join(fields)
-            header = " | ".join(
-                [
-                    campsite.recreation_area,
-                    campsite.facility_name,
-                    campsite.booking_date.strftime("%Y-%m-%d"),
-                ]
+            message_title, formatted_dict = cls.format_standard_campsites(
+                campsite=campsite,
             )
-            message = f"*{TelegramNotifications.escape_text(header)}*\n{message_fields}"
+            fields = []
+            for key, value in formatted_dict.items():
+                fields.append(cls.escape_text(f"{key}: {value}"))
+            message_fields = "\n".join(fields)
+            message = f"*{TelegramNotifications.escape_text(message_title)}*\n{message_fields}"
             TelegramNotifications.send_message(message, escaped=True)
