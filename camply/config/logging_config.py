@@ -27,7 +27,7 @@ _log_dict = {
     "python": standard_handler,
 }
 log_handler_name = os.getenv("CAMPLY_LOG_HANDLER", "rich")
-log_handler = _log_dict[log_handler_name.lower()]
+log_handler = _log_dict.get(log_handler_name.lower(), rich_handler)
 
 
 def set_up_logging() -> None:
