@@ -10,4 +10,6 @@ ENV HOME=/home/camply
 RUN mkdir ${HOME}
 WORKDIR ${HOME}
 
+ENV CAMPLY_LOG_HANDLER="PYTHON"
+
 CMD camply
