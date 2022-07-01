@@ -4,15 +4,14 @@ Camply Command Line Interface
 
 import logging
 from datetime import datetime
-from os import getenv
 from typing import List, Optional, Tuple, Union
 
 import click
 from rich import traceback
-from rich.logging import RichHandler
 
 from camply import __camply__, __version__
 from camply.config import SearchConfig
+from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
 from camply.providers import RecreationDotGov
 from camply.search import CAMPSITE_SEARCH_PROVIDER, SearchYellowstone
@@ -404,20 +403,7 @@ def cli():
     """
     Camply Command Line Utility Wrapper
     """
-    logging_handler = RichHandler(
-        level=logging.getLevelName(getenv("LOG_LEVEL", "INFO").upper()),
-        rich_tracebacks=True,
-        omit_repeated_times=False,
-        show_path=False,
-    )
-    logging.basicConfig(
-        format="%(message)s",
-        level=logging.NOTSET,
-        datefmt="[%Y-%m-%d %H:%M:%S]",
-        handlers=[
-            logging_handler,
-        ],
-    )
+    set_up_logging()
     traceback.install(show_locals=False)
     try:
         logger.camply("camply, the campsite finder ⛺️")  # noqa

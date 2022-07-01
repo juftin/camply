@@ -25,8 +25,9 @@ jobs:
                     - { name: 'Python 3.6', python: '3.6', tox: py36 }
             max-parallel: 1
         env:
-            LOG_LEVEL:    DEBUG
-            RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
+            LOG_LEVEL:          DEBUG
+            RIDB_API_KEY:       ${{ secrets.RIDB_API_KEY }}
+            CAMPLY_LOG_HANDLER: PYTHON
         steps:
             -   name: Set up Github Workspace
                 uses: actions/checkout@v2
