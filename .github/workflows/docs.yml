@@ -1,13 +1,9 @@
 name: Documentation
 
 on:
-    push:
-        branches: [ main ]
-    pull_request:
-        types: [ opened, synchronize, reopened ]
-        paths:
-            - "camply/**"
-            - "docs/**"
+    release:
+        types: [published]
+
 jobs:
     github-pages-publish:
         runs-on: ubuntu-latest
@@ -37,18 +33,15 @@ jobs:
                 run:               |
                                    tox -e sphinx
             -   name: Setup Git Config
-#                if:   ${{ github.event_name == 'push' }}
                 run:  |
                       git config --global user.name "github-actions[bot]"
                       git config --global user.email "github-actions[bot]@users.noreply.github.com"
             -   name:              Get Commit SHA from main
-#                if:                ${{ github.event_name == 'push' }}
                 working-directory: ${{ github.workspace }}/main
                 run:               |
                                    COMMIT_SHA=$(git rev-parse HEAD)
                                    echo "COMMIT_SHA=${COMMIT_SHA}" >> ${GITHUB_ENV}
             -   name:              Commit Changes to gh-pages Branch
-#                if:                ${{ github.event_name == 'push' }}
                 working-directory: ${{ github.workspace }}/github-pages
                 run:               |
                                    git rm -rf . || true
