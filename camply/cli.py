@@ -3,17 +3,24 @@ Camply Command Line Interface
 """
 
 import logging
+import os
+
+# TODO: DO NOT CHECK IN
+import sys
 from datetime import datetime
 from typing import List, Optional, Tuple, Union
 
 import click
 from rich import traceback
 
+cwd = sys.path.append(os.getcwd())
+
+
 from camply import __camply__, __version__
 from camply.config import SearchConfig
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
-from camply.providers import RecreationDotGov
+from camply.providers import GoingToCampProvider, RecreationDotGov
 from camply.search import CAMPSITE_SEARCH_PROVIDER, SearchYellowstone
 from camply.utils import configure_camply, log_camply, make_list, yaml_utils
 
@@ -79,32 +86,53 @@ provider_argument = click.option(
     "--provider",
     show_default=True,
     default="RecreationDotGov",
-    help="Camping Search Provider. Options available are 'Yellowstone' and "
-    "'RecreationDotGov'. Defaults to 'RecreationDotGov', not case-sensitive.",
+    help="Camping Search Provider. Options available are 'Yellowstone', "
+    "'RecreationDotGov', and 'GoingToCamp'. Not case-sensitive.",
 )
 
 
 @search_argument
 @state_argument
+@provider_argument
 @camply_command_line.command()
-def recreation_areas(search: Optional[str], state: Optional[str]) -> None:
+def recreation_areas(
+    search: Optional[str], state: Optional[str], provider: Optional[str]
+) -> None:
     """
     Search for Recreation Areas and list them
 
     Search for Recreation Areas and their IDs. Recreation Areas are places like
     National Parks and National Forests that can contain one or many campgrounds.
     """
-    if all([search is None, state is None]):
+    provider = provider.lower()
+    if all([search is None, state is None, provider == "recreationdotgov"]):
         logger.error(
-            "You must add a --search or --state parameter to search "
-            "for Recreation Areas."
+            "You must add a --search, --state, or --provider parameter "
+            "to search for Recreation Areas."
         )
         exit(1)
-    camp_finder = RecreationDotGov()
+    if all([search is None, state is not None, provider == "goingtocamp"]):
+        logger.error(
+            "GoingToCamp does not support filtering recreation areas by state. Leave --state blank."
+        )
+        exit(1)
+
+    provider_instance = None
+    if provider == "recreationdotgov":
+        provider_instance = RecreationDotGov()
+    elif provider == "goingtocamp":
+        provider_instance = GoingToCampProvider()
+    else:
+        logger.error(
+            "The provider you specified does not exist, please see --help for available providers"
+        )
+        exit(1)
+
     params = dict()
     if state is not None:
         params.update(dict(state=state))
-    camp_finder.find_recreation_areas(search_string=search, **params)
+
+    provider_instance.find_recreation_areas(search_string=search, **params)
 
 
 @search_argument
@@ -132,6 +160,11 @@ def campgrounds(
     """
     if provider.lower() == "yellowstone":
         SearchYellowstone.print_campgrounds()
+        exit(0)
+    if provider.lower() == "goingtocamp":
+        # TODO: Ensure a rec area is selected
+        rec_area_id = int(rec_area[0])
+        GoingToCampProvider().find_facilities_per_recreation_area(rec_area_id)
         exit(0)
     if all(
         [
