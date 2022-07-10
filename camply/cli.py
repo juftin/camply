@@ -3,6 +3,7 @@ Camply Command Line Interface
 """
 
 import logging
+import os
 import sys
 from dataclasses import dataclass
 from datetime import datetime
@@ -12,12 +13,13 @@ import click
 from rich import traceback
 
 from camply import __application__, __version__
-from camply.config import SearchConfig
+from camply.config import EquipmentOptions, SearchConfig
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
-from camply.providers import RecreationDotGov
+from camply.providers import GoingToCampProvider, RecreationDotGov
 from camply.search import CAMPSITE_SEARCH_PROVIDER, SearchYellowstone
 from camply.utils import configure_camply, log_camply, make_list, yaml_utils
+from camply.utils.logging_utils import log_sorted_response
 
 logging.Logger.camply = log_camply
 logger = logging.getLogger(__name__)
@@ -129,6 +131,31 @@ campground_argument = click.option(
 
 
 @camply_command_line.command()
+@rec_area_argument
+@click.pass_obj
+def equipment_types(context: CamplyContext, rec_area: Optional[int] = None) -> None:
+    """
+    Retrieve a list of equipment supported by the current provider/recreaton area
+
+    Equipment are camping equipment that can be used at a campsite. Different providers
+    and recreation areas have different types of equipment for which reservations can be made.
+    """
+    provider = context.provider.lower()
+    if not rec_area and provider == "goingtocamp":
+        logger.error(
+            "This provider requires --rec-area to be specified when listing equipment types"
+        )
+        exit(1)
+
+    if provider == "goingtocamp":
+        GoingToCampProvider().list_equipment_types(rec_area[0])
+    else:
+        log_sorted_response(response_array=EquipmentOptions.__all_accepted_equipment__)
+
+    exit(0)
+
+
+@camply_command_line.command()
 @search_argument
 @state_argument
 @debug_option
@@ -145,17 +172,41 @@ def recreation_areas(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
-    if all([search is None, state is None]):
+
+    provider = context.provider.lower()
+
+    # Recreation dot gov and yellowstone require state or search, but going to
+    # camp does not, since all of its "rec areas" are a very small list
+    # TODO: Replace with 'goingtocamp' constant
+    if all([search is None, state is None, provider != "goingtocamp"]):
         logger.error(
-            "You must add a --search or --state parameter to search "
-            "for Recreation Areas."
+            "You must add a --search, --state, or --provider parameter "
+            "to search for Recreation Areas."
         )
         exit(1)
-    camp_finder = RecreationDotGov()
+    if all([search is None, state is not None, provider == "goingtocamp"]):
+        logger.error(
+            "GoingToCamp does not support filtering recreation areas by state. Leave --state blank."
+        )
+        exit(1)
+
+    camp_provider = None
+    if provider == "recreationdotgov":
+        camp_provider = RecreationDotGov()
+    elif provider == "goingtocamp":
+        camp_provider = GoingToCampProvider()
+    else:
+        logger.error(
+            "The provider you specified does not exist or does not support listing recreation areas. "
+            "See --help for available providers"
+        )
+        exit(1)
+
     params = dict()
     if state is not None:
         params.update(dict(state=state))
-    camp_finder.find_recreation_areas(search_string=search, **params)
+
+    camp_provider.find_recreation_areas(search_string=search, **params)
 
 
 @camply_command_line.command()
@@ -191,6 +242,9 @@ def campgrounds(
     if context.provider is None:
         context.provider = provider
     provider = DEFAULT_CAMPLY_PROVIDER if context.provider is None else context.provider
+    # TODO: Not clear if making DEFAULT_CAMPLY_PROVIDER.lower() is valid here.
+    # Probably not. Find what bad things this causes
+    provider = provider.lower()
     if provider.lower() == "yellowstone":
         SearchYellowstone.print_campgrounds()
         exit(0)
@@ -208,6 +262,21 @@ def campgrounds(
             "or --rec-area parameter to search for Campgrounds."
         )
         exit(1)
+
+    provider = context.provider.lower()
+    if provider == "yellowstone":
+        SearchYellowstone.print_campgrounds()
+        exit(0)
+    if provider == "goingtocamp":
+        if len(rec_area) == 0:
+            logger.error("You must specify at least one --rec-area")
+            exit(1)
+        rec_area_id = int(rec_area[0])
+        GoingToCampProvider().find_facilities_per_recreation_area(
+            rec_area_id=rec_area_id, campground_id=campground, search_string=search
+        )
+        exit(0)
+
     camp_finder = RecreationDotGov()
     params = dict()
     if state is not None:
@@ -302,14 +371,22 @@ yaml_config_argument = click.option(
 equipment_argument = click.option(
     "--equipment",
     default=None,
-    nargs=2,
-    multiple=True,
     help="Search for campsites compatible with your camping equipment. "
-    "This argument accepts two options, the equipment name and its length "
-    "If you don't want to filter based on length provide a length of 0. Accepted "
-    "equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are "
-    "not case-sensitive.",
+    "Different Camply providers and recreation areas accept different "
+    "types of equipment. RecreationDotGov, the default Camply provider "
+    "accepts the following equipment names: `Tent`, `RV`. `Trailer`,  "
+    "`Vehicle` and are not case-sensitive. "
+    "Use the following to get a list of equipment for a specific provider "
+    "and rec area:"
+    "`camply equipment-types --provider <PROVIDER> --rec-area <AREA ID>",
 )
+equipment_length_argument = click.option(
+    "--equipment-length",
+    default=0,
+    help="Search for campsites filtered by the length of your camping equipment. "
+    "Defaults to any length",
+)
+
 offline_search_argument = click.option(
     "--offline-search",
     is_flag=True,
@@ -359,7 +436,7 @@ def _validate_campsites(
     """
     Validate the campsites portion of the CLI
     """
-    if provider.lower() == "recreationdotgov" and all(
+    if provider == "recreationdotgov" and all(
         [
             len(rec_area) == 0,
             len(campground) == 0,
@@ -401,8 +478,8 @@ def _validate_campsites(
 @notifications_argument
 @polling_interval_argument
 @continuous_argument
-@provider_argument
 @equipment_argument
+@equipment_length_argument
 @nights_argument
 @weekends_argument
 @end_date_argument
@@ -422,16 +499,16 @@ def campsites(
     end_date: Optional[str] = None,
     weekends: bool = False,
     nights: int = 1,
-    provider: str = "RecreationDotGov",
     continuous: bool = False,
     polling_interval: int = SearchConfig.RECOMMENDED_POLLING_INTERVAL,
     notifications: Union[str, List[str]] = "silent",
     notify_first_try: bool = False,
     search_forever: bool = False,
     yaml_config: Optional[str] = None,
-    equipment: Optional[List[str]] = None,
     offline_search: bool = False,
     offline_search_path: Optional[str] = None,
+    equipment: Optional[Union[str, int]] = None,
+    equipment_length: Optional[int] = None,
 ) -> None:
     """
     Find available Campsites using search criteria
@@ -471,7 +548,7 @@ def campsites(
             file_path=yaml_config
         )
     else:
-        provider = provider.lower()
+        provider = provider
         search_window = SearchWindow(
             start_date=datetime.strptime(start_date, "%Y-%m-%d"),
             end_date=datetime.strptime(end_date, "%Y-%m-%d"),
@@ -483,9 +560,10 @@ def campsites(
             campsites=make_list(campsite),
             weekends_only=weekends,
             nights=int(nights),
-            equipment=make_list(equipment),
             offline_search=offline_search,
             offline_search_path=offline_search_path,
+            equipment=equipment,
+            equipment_length=equipment_length,
         )
         search_kwargs = dict(
             log=True,
@@ -498,7 +576,7 @@ def campsites(
         )
     provider_class = {
         key.lower(): value for key, value in CAMPSITE_SEARCH_PROVIDER.items()
-    }[provider.lower()]
+    }[provider]
     camping_finder = provider_class(**provider_kwargs)
     camping_finder.get_matching_campsites(**search_kwargs)
 

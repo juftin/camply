@@ -75,6 +75,7 @@ class CampgroundFacility(CamplyModel):
     recreation_area: str
     facility_id: Union[int, str]
     recreation_area_id: int
+    map_id: Optional[int]
 
 
 class RecreationArea(CamplyModel):
@@ -85,3 +86,12 @@ class RecreationArea(CamplyModel):
     recreation_area: str
     recreation_area_id: int
     recreation_area_location: str
+
+
+class AvailableResource(CamplyModel):
+    """
+    A resource that is available for booking
+    """
+
+    resource_id: int
+    map_id: int
