@@ -302,7 +302,7 @@ def _validate_campsites(
         exit(1)
 
     mandatory_parameters = [start_date, end_date]
-    mandatory_string_parameters = ["--start_date", "--end-date"]
+    mandatory_string_parameters = ["--start-date", "--end-date"]
     for field in mandatory_parameters:
         if field is None and yml_config is None:
             logger.error(
