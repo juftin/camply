@@ -293,6 +293,14 @@ def _validate_campsites(
             "parameters."
         )
         exit(1)
+
+    if not kwargs.get("notifications") == ["silent"] and not kwargs.get("continuous"):
+        logger.error(
+            "To receive notifications about campsites you must search "
+            "continuously by passing the --continuous option."
+        )
+        exit(1)
+
     mandatory_parameters = [start_date, end_date]
     mandatory_string_parameters = ["--start-date", "--end-date"]
     for field in mandatory_parameters:
