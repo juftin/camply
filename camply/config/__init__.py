@@ -14,6 +14,7 @@ from .notification_config import (
     EmailConfig,
     PushbulletConfig,
     PushoverConfig,
+    SlackConfig,
     TelegramConfig,
 )
 from .search_config import EquipmentOptions, SearchConfig
@@ -30,6 +31,7 @@ __all__ = [
     "EmailConfig",
     "PushbulletConfig",
     "PushoverConfig",
+    "SlackConfig",
     "TelegramConfig",
     "SearchConfig",
     "YellowstoneConfig",

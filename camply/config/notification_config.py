@@ -68,6 +68,17 @@ class PushbulletConfig:
     API_TOKEN = getenv("PUSHBULLET_API_TOKEN", None)
 
 
+class SlackConfig:
+    """
+    Slack Notification Config Class
+    """
+
+    try:
+        SLACK_WEBHOOK: str = environ["SLACK_WEBHOOK"]
+    except KeyError:
+        SLACK_WEBHOOK = None
+
+
 class TelegramConfig:
     """
     Telegram Notification Config Class
