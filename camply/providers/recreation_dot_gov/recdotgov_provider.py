@@ -6,6 +6,7 @@ import json
 import logging
 from base64 import b64decode
 from datetime import datetime, timedelta
+from itertools import chain
 from json import loads
 from random import choice
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -669,9 +670,9 @@ class RecreationDotGov(BaseProvider):
         cls,
         campsite_id: int,
         campsite_metadata: pd.DataFrame,
-    ):
+    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
         """
-        Index a DataFrame in a Complicated Way\
+        Index a DataFrame in a Complicated Way
         """
         try:
             equipment = campsite_metadata.at[campsite_id, "permitted_equipment"]
@@ -681,6 +682,12 @@ class RecreationDotGov(BaseProvider):
             attributes = campsite_metadata.at[campsite_id, "attributes"]
         except LookupError:
             attributes = None
+        if isinstance(equipment, pd.Series):
+            equipment = list(chain.from_iterable(equipment.drop_duplicates().tolist()))
+        if isinstance(attributes, pd.Series):
+            attributes = list(
+                chain.from_iterable(attributes.drop_duplicates().tolist())
+            )
         return equipment, attributes
 
     @classmethod
