@@ -5,7 +5,7 @@ camply CLI
 .. code-block:: console
 
     ❯ camply --help
-    [2022-06-22 11:01:43] CAMPLY   camply, the campsite finder ⛺️
+
     Usage: camply [OPTIONS] COMMAND [ARGS]...
 
       Welcome to camply, the campsite finder.
@@ -20,15 +20,15 @@ camply CLI
       visit the camply documentation at https://github.com/juftin/camply
 
     Options:
-      --version  Show the version and exit.
-      --help     Show this message and exit.
+      --version             Show the version and exit.
+      --debug / --no-debug  Enable extra debugging output.
+      --help                Show this message and exit.
 
     Commands:
       campgrounds       Search for Campgrounds (inside of Recreation Areas)...
       campsites         Find available Campsites using search criteria
       configure         Set up camply configuration file with an interactive...
-      recreation-areas  Search for Recreation Areas and list them'
-    [2022-06-22 11:01:43] CAMPLY   Exiting camply 👋
+      recreation-areas  Search for Recreation Areas and list them
 
 
 ******************

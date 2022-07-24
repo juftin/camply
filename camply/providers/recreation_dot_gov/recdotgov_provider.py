@@ -6,6 +6,7 @@ import json
 import logging
 from base64 import b64decode
 from datetime import datetime, timedelta
+from itertools import chain
 from json import loads
 from random import choice
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -665,13 +666,29 @@ class RecreationDotGov(BaseProvider):
         return loads(response.content)
 
     @classmethod
+    def _items_to_unique_dicts(
+        cls, item: Union[List[Dict[str, Any]], pd.Series]
+    ) -> List[Dict[str, Any]]:
+        """
+        Ensure the proper items are parsed for equipment and attributes
+        """
+        if isinstance(item, pd.Series):
+            list_of_dicts = list(chain.from_iterable(item.tolist()))
+            unique_list_of_dicts = [
+                dict(s) for s in set(frozenset(d.items()) for d in list_of_dicts)
+            ]
+            return unique_list_of_dicts
+        else:
+            return item
+
+    @classmethod
     def _get_equipment_and_attributes(
         cls,
         campsite_id: int,
         campsite_metadata: pd.DataFrame,
-    ):
+    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
         """
-        Index a DataFrame in a Complicated Way\
+        Index a DataFrame in a Complicated Way
         """
         try:
             equipment = campsite_metadata.at[campsite_id, "permitted_equipment"]
@@ -681,6 +698,8 @@ class RecreationDotGov(BaseProvider):
             attributes = campsite_metadata.at[campsite_id, "attributes"]
         except LookupError:
             attributes = None
+        equipment = cls._items_to_unique_dicts(item=equipment)
+        attributes = cls._items_to_unique_dicts(item=attributes)
         return equipment, attributes
 
     @classmethod

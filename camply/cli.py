@@ -23,8 +23,11 @@ logger = logging.getLogger(__name__)
 
 @click.group()
 @click.version_option(version=__version__, prog_name=__camply__)
+@click.option(
+    "--debug/--no-debug", default=False, help="Enable extra debugging output."
+)
 @click.pass_context
-def camply_command_line(ctx: click.core.Context) -> None:
+def camply_command_line(ctx: click.core.Context, debug: bool) -> None:
     """
     Welcome to camply, the campsite finder.
 
@@ -37,6 +40,11 @@ def camply_command_line(ctx: click.core.Context) -> None:
     visit the camply documentation at https://github.com/juftin/camply
     """
     ctx.ensure_object(dict)
+    ctx.obj["DEBUG"] = debug
+    set_up_logging(log_level=None if debug is False else logging.DEBUG)
+    if debug is True:
+        logger.debug("Setting up camply debugging")
+    traceback.install(show_locals=debug)
 
 
 @camply_command_line.command()
@@ -411,8 +419,6 @@ def cli():
     """
     Camply Command Line Utility Wrapper
     """
-    set_up_logging()
-    traceback.install(show_locals=False)
     try:
         logger.camply("camply, the campsite finder ⛺️")  # noqa
         camply_command_line()
