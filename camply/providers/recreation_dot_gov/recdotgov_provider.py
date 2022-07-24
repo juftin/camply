@@ -666,6 +666,22 @@ class RecreationDotGov(BaseProvider):
         return loads(response.content)
 
     @classmethod
+    def _items_to_unique_dicts(
+        cls, item: Union[List[Dict[str, Any]], pd.Series]
+    ) -> List[Dict[str, Any]]:
+        """
+        Ensure the proper items are parsed for equipment and attributes
+        """
+        if isinstance(item, pd.Series):
+            list_of_dicts = list(chain.from_iterable(item.tolist()))
+            unique_list_of_dicts = [
+                dict(s) for s in set(frozenset(d.items()) for d in list_of_dicts)
+            ]
+            return unique_list_of_dicts
+        else:
+            return item
+
+    @classmethod
     def _get_equipment_and_attributes(
         cls,
         campsite_id: int,
@@ -682,12 +698,8 @@ class RecreationDotGov(BaseProvider):
             attributes = campsite_metadata.at[campsite_id, "attributes"]
         except LookupError:
             attributes = None
-        if isinstance(equipment, pd.Series):
-            equipment = list(chain.from_iterable(equipment.drop_duplicates().tolist()))
-        if isinstance(attributes, pd.Series):
-            attributes = list(
-                chain.from_iterable(attributes.drop_duplicates().tolist())
-            )
+        equipment = cls._items_to_unique_dicts(item=equipment)
+        attributes = cls._items_to_unique_dicts(item=attributes)
         return equipment, attributes
 
     @classmethod
