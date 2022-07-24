@@ -2,27 +2,39 @@
 
 set -ex
 
-camply recreation-areas --search "Yosemite National Park"
-camply campgrounds --rec-area 2991
-camply campgrounds --search "Fire Tower Lookout" --state CA
-camply campsites --rec-area 2991 --start-date 2022-09-15 --end-date 2022-09-17
-camply campsites --campground 252037 --start-date 2022-09-15 --end-date 2022-09-17
-camply campsites --yml-config tests/yml/example_search.yml
-camply campsites --campground 232045 --start-date 2022-07-15 --end-date 2022-10-01 --nights 5
-camply campsites --provider yellowstone --start-date 2022-10-10 --end-date 2022-10-16
-camply campsites --campsite 40107 --start-date 2022-09-15 --end-date 2022-09-17
-camply campgrounds --campsite 40107
-camply campsites --yml-config tests/yml/example_campsite_search.yml
+camply --debug recreation-areas --search "Yosemite National Park"
+camply --debug campgrounds --rec-area 2991
+camply --debug campgrounds --search "Fire Tower Lookout" --state CA
+camply --debug campsites --rec-area 2991 --start-date 2022-09-15 --end-date 2022-09-17
+camply --debug campsites --campground 252037 --start-date 2022-09-15 --end-date 2022-09-17
+camply --debug campsites --yml-config tests/yml/example_search.yml
+camply --debug campsites --campground 232045 --start-date 2022-07-15 --end-date 2022-10-01 --nights 5
+camply --debug campsites --provider yellowstone --start-date 2022-10-10 --end-date 2022-10-16
+camply --debug campsites --campsite 40107 --start-date 2022-09-15 --end-date 2022-09-17
+camply --debug campgrounds --campsite 40107
+camply --debug campsites --yml-config tests/yml/example_campsite_search.yml
 
-camply campsites \
+camply \
+  --debug \
+  campsites \
   --provider yellowstone \
   --start-date 2022-09-01 \
   --end-date 2022-09-14 \
   --campground YLYF:RV
 
-camply campsites \
+camply \
+    --debug \
+    campsites \
     --rec-area 2018 \
     --start-date 2022-09-09 \
     --end-date 2022-09-17 \
     --nights 3 \
     --equipment RV 25
+
+camply \
+  --debug \
+  campsites \
+  --campsite 84865 \
+  --campsite 84001 \
+  --start-date 2022-09-27 \
+  --end-date 2022-09-28

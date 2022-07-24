@@ -108,7 +108,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
             searchable_campgrounds = self._get_campgrounds_by_recreation_area_id()
         else:
             raise RuntimeError("You must provide a Campground or Recreation Area ID")
-        return searchable_campgrounds
+        return list(set(searchable_campgrounds))
 
     @classmethod
     def _get_searchable_equipment(
