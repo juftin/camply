@@ -3,6 +3,7 @@ Camply Command Line Interface
 """
 
 import logging
+import sys
 from datetime import datetime
 from typing import List, Optional, Tuple, Union
 
@@ -44,6 +45,9 @@ def camply_command_line(ctx: click.core.Context, debug: bool) -> None:
     set_up_logging(log_level=None if debug is False else logging.DEBUG)
     if debug is True:
         logger.debug("Setting up camply debugging")
+        logger.debug("Camply Version: %s", __version__)
+        logger.debug("Python Version: %s", sys.version.split(" ")[0])
+        logger.debug("Platform: %s", sys.platform)
     traceback.install(show_locals=debug)
 
 
