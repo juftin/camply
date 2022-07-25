@@ -23,12 +23,8 @@ class PushoverConfig:
     PUSHOVER_DEFAULT_API_TOKEN: bytes = b"YWpjN3M1a2hhYTRlOG1zYWhncnFnaHduZGdtbmI3"
     API_HEADERS: dict = {"Content-Type": "application/json"}
 
-    try:
-        PUSH_TOKEN: str = environ["PUSHOVER_PUSH_TOKEN"]
-        PUSH_USER: str = environ["PUSHOVER_PUSH_USER"]
-    except KeyError:
-        PUSH_TOKEN = None
-        PUSH_USER = None
+    PUSH_TOKEN: str = getenv("PUSHOVER_PUSH_TOKEN", None)
+    PUSH_USER: str = getenv("PUSHOVER_PUSH_USER", None)
 
 
 class EmailConfig:
