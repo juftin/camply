@@ -1,34 +1,38 @@
 ---
 name: Bug Report
-about: Create a report to help us improve
+about: Create a report to help improve camply
 title: ''
-labels: ''
-assignees: ''
+labels: 'bug'
+assignees: 'juftin'
 
 ---
 
 **Describe the bug**
-A clear and concise description of what the bug is.
 
-**To Reproduce**
-Steps to reproduce the behavior - all of these are helpful:
+< A clear and concise description of what the bug is. >
 
-1. Your original camply command
-    - Even better, supply your camply command and output with the debug
-      command `camply --debug campsites ...`
-2. Your .camply file (minus any sensitive information)
+**Original Camply Command (with `--debug`)**
+
+<!-- Replace the below command with your personal camply command, make sure to include the `--debug` -->
+<!-- if the output is too long you can attach a text file or omit the `--debug` if needed -->
+
+```console
+camply --debug campsites \
+    --campground 232338 \
+    --start-date 2022-09-09 \
+    --end-date 2022-09-32 \
+    --nights 3
+```
 
 **Expected behavior**
-A clear and concise description of what you expected to happen.
+< A clear and concise description of what you expected to happen. >
 
-**Screenshots**
-If applicable, add screenshots or copy and paste your 
-terminal output to help explain your problem.
+**Console Output (with `--debug`)**
 
-**Environment (please complete the following information):**
-- OS: [e.g. Windows, Mac, Linux, Docker]
-- Python Version [e.g. 3.6, 3.9]
-- Camply Version [e.g. 0.4.7]
+```
+<Add your console output here>
+```
 
 **Additional context**
-Add any other context about the problem here.
+
+< Add any other context about the problem here. >
