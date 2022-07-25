@@ -3,7 +3,7 @@ Project Configuration for Pushover Variables
 """
 
 import logging
-from os import environ, getenv
+from os import getenv
 from typing import List, Optional
 
 from dotenv import load_dotenv
@@ -65,10 +65,7 @@ class PushbulletConfig:
     PUSHBULLET_API_ENDPOINT: str = "https://api.pushbullet.com/v2/pushes"
     API_HEADERS: dict = {"Content-Type": "application/json"}
 
-    try:
-        API_TOKEN: str = environ["PUSHBULLET_API_TOKEN"]
-    except KeyError:
-        API_TOKEN = None
+    API_TOKEN = getenv("PUSHBULLET_API_TOKEN", None)
 
 
 class TelegramConfig:
@@ -76,15 +73,8 @@ class TelegramConfig:
     Telegram Notification Config Class
     """
 
-    try:
-        BOT_TOKEN: str = environ["TELEGRAM_BOT_TOKEN"]
-    except KeyError:
-        BOT_TOKEN = None
-
-    try:
-        CHAT_ID: str = environ["TELEGRAM_CHAT_ID"]
-    except KeyError:
-        CHAT_ID = None
+    BOT_TOKEN = getenv("TELEGRAM_BOT_TOKEN", None)
+    CHAT_ID = getenv("TELEGRAM_CHAT_ID", None)
 
     API_ENDPOINT: str = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     API_HEADERS: dict = {"Content-Type": "application/json"}
