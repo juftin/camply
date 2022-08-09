@@ -1,0 +1,107 @@
+name: Release
+
+on:
+    pull_request:
+        types:
+        -   closed
+        branches:
+        -   main
+
+jobs:
+
+    version-bump:
+        name: version-bump
+        runs-on: ubuntu-latest
+        if: github.event.pull_request.merged == true
+        steps:
+        -   name: Check out the repository
+            uses: actions/checkout@v3
+            with:
+                fetch-depth: 2
+                ref: main
+        -   name: Set up Python
+            uses: actions/setup-python@v4
+            with:
+                python-version: '3.9'
+        -   name: Upgrade pip
+            run: |
+                pip install --upgrade pip
+                pip --version
+        -   name: Install Poetry
+            run: |
+                pip install poetry
+                poetry --version
+        -   name: Check if there is a parent commit
+            id: check-parent-commit
+            run: |
+                echo "::set-output name=sha::$(git rev-parse --verify --quiet HEAD^)"
+        -   name: Version Bump - MAJOR
+            if: contains( github.event.pull_request.labels.*.name, 'BUMP_MAJOR')
+            run: |
+                poetry version major
+        -   name: Version Bump - MINOR
+            if: contains( github.event.pull_request.labels.*.name, 'BUMP_MINOR')
+            run: |
+                poetry version minor
+        -   name: Version Bump - PATCH
+            if: contains( github.event.pull_request.labels.*.name, 'BUMP_PATCH')
+            run: |
+                poetry version patch
+        -   name: Setup Git Config
+            run: |
+                git config --global user.name "github-actions[bot]"
+                git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        -   name: Update Version Variable
+            run: |
+                PROJECT_VERSION=$(poetry version --short)
+                REPLACED_VERSION_FILE_TEXT=$(grep -F -v "__version__" camply/_version.py)
+                echo "${REPLACED_VERSION_FILE_TEXT}" > camply/_version.py
+                echo "__version__ = \""${PROJECT_VERSION}\""" >> camply/_version.py
+                git add camply/_version.py
+                git add pyproject.toml
+                git commit -m "Version Bump - ${PROJECT_VERSION}" || true
+                git push
+
+    github-release:
+        name: github-release
+        runs-on: ubuntu-latest
+        if: github.event.pull_request.merged == true
+        needs: version-bump
+        steps:
+        -   name: Check out the repository
+            uses: actions/checkout@v3
+            with:
+                fetch-depth: 2
+                ref: main
+        -   name: Set up Python
+            uses: actions/setup-python@v4
+            with:
+                python-version: '3.9'
+        -   name: Upgrade pip
+            run: |
+                pip install --upgrade pip
+                pip --version
+        -   name: Install Poetry
+            run: |
+                pip install poetry
+                poetry --version
+        -   name: Declare Version Variable
+            run: |
+                PROJECT_VERSION=$(poetry version --short)
+                PROJECT_NAME=$(poetry version | awk '{ print $1 }')
+                echo PROJECT_VERSION=${PROJECT_VERSION} >> $GITHUB_ENV
+                echo PROJECT_NAME=${PROJECT_NAME} >> $GITHUB_ENV
+        -   name: Tag Setter
+            run: |
+                echo PROJECT_TAG='v${{ env.PROJECT_VERSION }}' >> ${GITHUB_ENV}
+                echo PROJECT_RELEASE='${{ env.PROJECT_NAME }} v${{ env.PROJECT_VERSION }}' >> ${GITHUB_ENV}
+        -   name: Draft a Release
+            uses: release-drafter/release-drafter@v5
+            with:
+                config-name: release-drafter.yaml
+                name: ${{ env.PROJECT_RELEASE }}
+                version: ${{ env.PROJECT_VERSION }}
+                tag: ${{ env.PROJECT_TAG }}
+                publish: true
+            env:
+                GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
