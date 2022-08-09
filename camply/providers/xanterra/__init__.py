@@ -1,3 +1,0 @@
-"""
-Xanterra __init__
-"""

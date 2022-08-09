@@ -1,3 +1,0 @@
-"""
-RecreationDotGov __init__
-"""
