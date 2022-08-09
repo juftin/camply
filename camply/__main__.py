@@ -1,8 +1,8 @@
 """
-Command-line interface
+camply __main__.py CLI Wrapper
 """
 
-from camply._cli import command_line_interface as main
+from camply.cli import cli
 
 if __name__ == "__main__":
-    main()
+    cli()
