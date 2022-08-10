@@ -33,7 +33,9 @@ jobs:
                 python -m pip install --upgrade pip wheel setuptools
                 python -m pip install tox
         -   name: Tox Test Suite
+            if: false
             run: |
                 echo "::add-matcher::.github/matchers/python.json"
                 tox -e ${{ matrix.tox }}
                 echo "::remove-matcher owner=python::"
+                tox -e commandline
