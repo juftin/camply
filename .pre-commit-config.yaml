@@ -1,3 +1,4 @@
+exclude: docs|.git|.tox
 default_stages: [commit]
 fail_fast: false
 

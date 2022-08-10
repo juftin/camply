@@ -28,3 +28,12 @@ Contributing 👥 <contributing.md>
 GitHub 🛠 <https://github.com/juftin/camply>
 Changelog 📝 <https://github.com/juftin/camply/releases>
 ```
+
+```{eval-rst}
+.. image:: https://raw.githubusercontent.com/juftin/juftin/main/static/juftin.png
+    :width: 60
+    :height: 60
+    :align: center
+    :alt: juftin
+    :target: https://github.com/juftin
+```
