@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "camply"
 description = "camply, the campsite finder 🏕"
-version = "0.4.8"
+version = "0.4.9"
 authors = ["Justin Flannery <juftin@juftin.com>"]
 license = "MIT"
 readme = "README.md"
@@ -32,13 +32,13 @@ keywords = [
 
 [tool.poetry.dependencies]
 python = ">=3.7.1,<4.0"
-PyYAML = "*"
-pandas = "~1.3"
-python-dotenv = "*"
-pytz = "*"
-requests = "*"
-tenacity = "*"
-pydantic = "*"
+PyYAML = ">=5.1<7.0"
+python-dotenv = ">=0.10.4<21.0"
+pytz = ">=2019.1"
+pandas = ">=1.2<1.4"
+requests = ">=2.26.0"
+tenacity = ">=5.1.0"
+pydantic = "^1.2"
 click = ">=8.0.1"
 rich = ">=10.0.0"
 pytest = { version = ">=6.2.5", optional = true }
