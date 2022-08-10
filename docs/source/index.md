@@ -1,16 +1,27 @@
-```{include} ../../README.md
-:relative-docs: docs/
-:relative-images:
+# camply
+
+```{eval-rst}
+.. image:: https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg
+    :width: 400
+    :align: center
+    :alt: camply
+    :target: https://github.com/juftin/camply
 ```
+
+**camply**, the campsite finder ⛺️, is a tool to help you book a campground online. Finding
+reservations at sold out campgrounds can be tough. That's where camply comes in. It searches the
+APIs of booking services like https://recreation.gov (which indexes thousands of campgrounds across
+the USA) to continuously check for cancellations and availabilities to pop up. Once a campsite
+becomes available, camply sends you a notification to book your spot!
+
 
 ```{toctree}
 ---
-maxdepth: 1
-glob:
+maxdepth: 0
 hidden:
 ---
 
-camply 🏠 <self>
+camply 🏠 <README.md>
 Command Line Interface ⌨️ <cli.md>
 API Documentation 🤖 <api/modules.rst>
 Contributing 👥 <contributing.md>

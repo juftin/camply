@@ -10,7 +10,7 @@ from typing import List, Optional, Tuple, Union
 import click
 from rich import traceback
 
-from camply import __camply__, __version__
+from camply import __application__, __version__
 from camply.config import SearchConfig
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 @click.group()
-@click.version_option(version=__version__, prog_name=__camply__)
+@click.version_option(version=__version__, prog_name=__application__)
 @click.option(
     "--debug/--no-debug", default=False, help="Enable extra debugging output."
 )
