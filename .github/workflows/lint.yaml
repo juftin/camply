@@ -38,8 +38,7 @@ jobs:
                 echo "::remove-matcher owner=mypy::"
         -   name: Raise Errors For Linting Failures
             if: |
-                steps.flake8.outcome != 'success' ||
-                  steps.eslint.outcome != 'success'
+                steps.flake8.outcome != 'success'
             run: |
                 echo "Flake8: ${{ steps.flake8.outcome }}"
                 echo "MyPy: ${{ steps.mypy.outcome }}"
