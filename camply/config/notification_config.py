@@ -4,6 +4,7 @@ Project Configuration for Pushover Variables
 
 import logging
 from os import getenv
+from pickle import NONE
 from typing import List, Optional
 
 from dotenv import load_dotenv
@@ -72,11 +73,8 @@ class SlackConfig:
     """
     Slack Notification Config Class
     """
-
-    try:
-        SLACK_WEBHOOK: str = environ["SLACK_WEBHOOK"]
-    except KeyError:
-        SLACK_WEBHOOK = None
+    
+    SLACK_WEBHOOK: Optional[str] = getenv("SLACK_WEBHOOK", None)
 
 
 class TelegramConfig:
