@@ -43,6 +43,7 @@ def camply_command_line(ctx: click.core.Context, debug: bool) -> None:
     ctx.ensure_object(dict)
     ctx.obj["DEBUG"] = debug
     set_up_logging(log_level=None if debug is False else logging.DEBUG)
+    logger.camply("camply, the campsite finder ⛺️")  # noqa
     if debug is True:
         logger.debug("Setting up camply debugging")
         logger.debug("Camply Version: %s", __version__)
@@ -424,7 +425,6 @@ def cli():
     Camply Command Line Utility Wrapper
     """
     try:
-        logger.camply("camply, the campsite finder ⛺️")  # noqa
         camply_command_line()
     except KeyboardInterrupt:
         logger.debug("Handling Exit Request")

@@ -4,7 +4,7 @@ dev = ["pytest", "flake8", "coverage", "mypy", "tox"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7.1,<4.0"
-content-hash = "e2bb14024f8a44441190c790015658fb2ccbfa6cceaadd5ddbbb32215ea50267"
+content-hash = "d15cd3f2075bdf4e178e1fd9436ef36c1320d00387dcfdb1a6e1c45719a2e5d4"
 
 [metadata.files]
 atomicwrites = [
