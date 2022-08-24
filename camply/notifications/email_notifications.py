@@ -2,7 +2,6 @@
 Push Notifications via Pushover
 """
 import logging
-from abc import ABC
 from email.message import EmailMessage
 from smtplib import SMTP_SSL
 from typing import List
@@ -14,7 +13,7 @@ from camply.notifications.base_notifications import BaseNotifications
 logger = logging.getLogger(__name__)
 
 
-class EmailNotifications(BaseNotifications, ABC):
+class EmailNotifications(BaseNotifications):
     """
     Notifications via Email
     """
