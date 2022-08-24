@@ -10,6 +10,9 @@ on:
     -   cron: 0 12 1 * *
 jobs:
     test-suite:
+        concurrency:
+            group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+            cancel-in-progress: true
         runs-on: ubuntu-latest
         strategy:
             fail-fast: true
