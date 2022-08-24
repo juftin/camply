@@ -26,13 +26,6 @@ jobs:
                 run:  |
                       npm i -g eslint eslint-plugin-markdown
                       npm install eslint-plugin-markdown@latest --save-dev
-            -   name:              Lint with ESLint
-                id:                eslint
-                continue-on-error: true
-                run:               |
-                                   echo "::add-matcher::.github/matchers/eslint.json"
-                                   eslint . --config "${{ github.workspace }}/.github/config/.eslintrc.js"
-                                   echo "::remove-matcher owner=eslint::"
             -   name:              Lint with Flake8
                 id:                flake8
                 continue-on-error: true
@@ -40,13 +33,6 @@ jobs:
                                    echo "::add-matcher::.github/matchers/flake8.json"
                                    tox -e flake8
                                    echo "::remove-matcher owner=flake8::"
-            -   name: Lint with YAML-Lint
-                id: yamllint
-                continue-on-error: true
-                run: |
-                    echo "::add-matcher::.github/matchers/yamllint.json"
-                    tox -e yamllint
-                    echo "::remove-matcher owner=yamllint::"
             -   name: Lint with MyPy
                 id: mypy
                 continue-on-error: true
@@ -56,13 +42,9 @@ jobs:
                     echo "::remove-matcher owner=mypy::"
             -   name: Raise Errors For Linting Failures
                 if:   |
-                      steps.flake8.outcome != 'success' ||
-                        steps.yamllint.outcome != 'success'  ||
-                        steps.eslint.outcome != 'success'
+                      steps.flake8.outcome != 'success'
                 run:  |
                       echo "Flake8: ${{ steps.flake8.outcome }}"
                       echo "MyPy: ${{ steps.mypy.outcome }}"
-                      echo "YamlLint: ${{ steps.yamllint.outcome }}"
-                      echo "EsLint: ${{ steps.eslint.outcome }}"
                       echo "I Should Really Be Enforcing MyPy Errors
                       exit 1
