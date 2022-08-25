@@ -1,7 +1,7 @@
 # camply
 
 ```{eval-rst}
-.. image:: https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg
+.. image:: https://raw.githubusercontent.com/juftin/camply/main/docs/source/_static/camply.svg
     :width: 400
     :align: center
     :alt: camply

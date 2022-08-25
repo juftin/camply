@@ -7,12 +7,12 @@ camply --debug campgrounds --rec-area 2991
 camply --debug campgrounds --search "Fire Tower Lookout" --state CA
 camply --debug campsites --rec-area 2991 --start-date 2022-09-15 --end-date 2022-09-17
 camply --debug campsites --campground 252037 --start-date 2022-09-15 --end-date 2022-09-17
-camply --debug campsites --yml-config tests/yml/example_search.yml
+camply --debug campsites --yaml-config tests/yaml/example_search.yaml
 camply --debug campsites --campground 232045 --start-date 2022-07-15 --end-date 2022-10-01 --nights 5
 camply --debug campsites --provider yellowstone --start-date 2022-10-10 --end-date 2022-10-16
 camply --debug campsites --campsite 40107 --start-date 2022-09-15 --end-date 2022-09-17
 camply --debug campgrounds --campsite 40107
-camply --debug campsites --yml-config tests/yml/example_campsite_search.yml
+camply --debug campsites --yaml-config tests/yaml/example_campsite_search.yaml
 
 camply \
   --debug \

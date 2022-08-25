@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://github.com/juftin/camply">
-  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg"
+  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/source/_static/camply.svg"
     width="400" height="400" alt="camply">
 </a>
 </div>
@@ -17,7 +17,7 @@ ___________
 [![PyPI](https://img.shields.io/pypi/v/camply?color=blue&label=⛺️camply)](https://github.com/juftin/camply)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/camply)](https://pypi.python.org/pypi/camply/)
 [![Docker Image Version](https://img.shields.io/docker/v/juftin/camply?color=blue&label=docker&logo=docker)](https://hub.docker.com/r/juftin/camply)
-[![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yml)
+[![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yaml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 [![Black Codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)]()
 
@@ -47,7 +47,7 @@ ___________
         + [Look for Consecutive Nights at the Same Campsite](#look-for-consecutive-nights-at-the-same-campsite)
         + [Look for a Campsite Inside of Yellowstone](#look-for-a-campsite-inside-of-yellowstone)
         + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
-        + [Using a YML Configuration file to search for campsites](#using-a-yml-configuration-file-to-search-for-campsites)
+        + [Using a YAML Configuration file to search for campsites](#using-a-yaml-configuration-file-to-search-for-campsites)
         + [Searching for a Campsite That Fits Your Equipment](#searching-for-a-campsite-that-fits-your-equipment)
         + [Search for Recreation Areas by Query String](#search-for-recreation-areas-by-query-string)
         + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
@@ -189,11 +189,11 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
     + If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
       10, cannot be less than 5.
       [**_example_](#look-for-weekend-campsite-availabilities)
-* `--yml-config`
+* `--yaml-config`
     + Rather than provide arguments to the command line utility, instead pass a file path to a YAML
       configuration file. See the documentation for more information on how to structure your
       configuration file.
-      [**_example_](#using-a-yml-configuration-file-to-search-for-campsites)
+      [**_example_](#using-a-yaml-configuration-file-to-search-for-campsites)
 
 ```shell
 camply campsites \
@@ -466,10 +466,10 @@ camply campsites \
     --nights 5
 ```
 
-#### Using a YML Configuration file to search for campsites
+#### Using a YAML Configuration file to search for campsites
 
 Sometimes, using a YAML configuration file is easier to manage all of your search options. See the
-below [YML example file](docs/examples/example_search.yml) and corresponding camply command:
+below [YAML example file](docs/examples/example_search.yaml) and corresponding camply command:
 
 ```yaml
 provider:         RecreationDotGov  # RecreationDotGov IF NOT PROVIDED
@@ -491,7 +491,7 @@ equipment:        null # Array of Equipment Search Lists - DEFAULTS TO `null`
 ```
 
 ```shell
-camply campsites --yml-config example_search.yml
+camply campsites --yaml-config example_search.yaml
 ```
 
 #### Searching for a Campsite That Fits Your Equipment
@@ -574,7 +574,7 @@ functionality. Use the below example for a campground within Glacier National Pa
 First, perform your search on https://recreation.gov.
 
 <div>
-<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/recreation_dot_gov.png"
+<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/source/_static/recreation_dot_gov.png"
     width="500" alt="recreation_dot_gov search">
 </div>
 
@@ -718,7 +718,7 @@ docker run \
       --notifications email
 ```
 
-To manage multiple searches (with different notification preferences) I like to use YML
+To manage multiple searches (with different notification preferences) I like to use YAML
 configuration files:
 
 ```shell
@@ -728,13 +728,13 @@ docker run -d \
   --env EMAIL_TO_ADDRESS=${EMAIL_TO_ADDRESS} \
   --env EMAIL_USERNAME=${EMAIL_USERNAME} \
   --env EMAIL_PASSWORD=${EMAIL_PASSWORD} \
-  --volume example_search.yml:/home/camply/example_search.yml \
+  --volume example_search.yaml:/home/camply/example_search.yaml \
   juftin/camply:latest \
   camply campsites \
-      --yml-config /home/camply/example_search.yml
+      --yaml-config /home/camply/example_search.yaml
 ```
 
-A [docker-compose example](docs/examples/docker-compose.yml) of the above YML Config is also
+A [docker-compose example](docs/examples/docker-compose.yaml) of the above YAML Config is also
 available.
 
 ## Dependencies
