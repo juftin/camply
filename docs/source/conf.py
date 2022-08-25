@@ -3,7 +3,6 @@ Sphinx Documentation Generator
 """
 
 import sys
-
 from datetime import datetime
 from pathlib import Path
 
@@ -11,10 +10,10 @@ _project_path = Path(__file__).resolve().parent.parent.parent
 _project_dir = str(_project_path)
 sys.path.insert(0, _project_dir)
 
-from camply import __version__, __camply__  # noqa
+from camply._version import __application__, __author__, __version__  # noqa
 
-_author = "Justin Flannery"
-project = __camply__
+_author = __author__
+project = __application__
 copyright = f"{datetime.now().year}, {_author}"
 author = _author
 release = version = __version__

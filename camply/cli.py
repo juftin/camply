@@ -10,7 +10,7 @@ from typing import List, Optional, Tuple, Union
 import click
 from rich import traceback
 
-from camply import __camply__, __version__
+from camply import __application__, __version__
 from camply.config import SearchConfig
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 
 @click.group()
-@click.version_option(version=__version__, prog_name=__camply__)
+@click.version_option(version=__version__, prog_name=__application__)
 @click.option(
     "--debug/--no-debug", default=False, help="Enable extra debugging output."
 )
@@ -43,6 +43,7 @@ def camply_command_line(ctx: click.core.Context, debug: bool) -> None:
     ctx.ensure_object(dict)
     ctx.obj["DEBUG"] = debug
     set_up_logging(log_level=None if debug is False else logging.DEBUG)
+    logger.camply("camply, the campsite finder ⛺️")  # noqa
     if debug is True:
         logger.debug("Setting up camply debugging")
         logger.debug("Camply Version: %s", __version__)
@@ -424,7 +425,6 @@ def cli():
     Camply Command Line Utility Wrapper
     """
     try:
-        logger.camply("camply, the campsite finder ⛺️")  # noqa
         camply_command_line()
     except KeyboardInterrupt:
         logger.debug("Handling Exit Request")

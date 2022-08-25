@@ -3,14 +3,15 @@ BaseProvider Base Class
 """
 
 import logging
-from abc import ABC
 
 logger = logging.getLogger(__name__)
 
 
-class BaseProvider(ABC):
+class BaseProvider:
     """
     Base Provider Class
+
+    This should ideally be an AbstractBaseClass
     """
 
 

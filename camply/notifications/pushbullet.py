@@ -3,7 +3,6 @@ Push Notifications via Pushbullet
 """
 
 import logging
-from abc import ABC
 from typing import List
 
 import requests
@@ -15,7 +14,7 @@ from camply.notifications.base_notifications import BaseNotifications
 logger = logging.getLogger(__name__)
 
 
-class PushbulletNotifications(BaseNotifications, ABC):
+class PushbulletNotifications(BaseNotifications):
     """
     Push Notifications via PushBullet
     """
