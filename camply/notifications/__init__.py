@@ -7,6 +7,7 @@ from .multi_provider_notifications import CAMPSITE_NOTIFICATIONS, MultiNotifierP
 from .pushbullet import PushbulletNotifications
 from .pushover import PushoverNotifications
 from .silent_notifications import SilentNotifications
+from .slack import SlackNotifications
 from .telegram import TelegramNotifications
 
 __all__ = [
@@ -15,6 +16,7 @@ __all__ = [
     "TelegramNotifications",
     "EmailNotifications",
     "SilentNotifications",
+    "SlackNotifications",
     "MultiNotifierProvider",
     "CAMPSITE_NOTIFICATIONS",
 ]

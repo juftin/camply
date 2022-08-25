@@ -23,6 +23,7 @@ class FileConfig:
     DOT_CAMPLY_FIELDS = OrderedDict(
         PUSHOVER_PUSH_USER=dict(default="", notes="Enables Pushover Notifications"),
         PUSHBULLET_API_TOKEN=dict(default="", notes="Enables Pushbullet Notifications"),
+        SLACK_WEBHOOK=dict(default="", notes="Enables Slack Notifications"),
         TELEGRAM_BOT_TOKEN=dict(default="", notes="Enables Telegram Notifications"),
         TELEGRAM_CHAT_ID=dict(
             default="", notes="Telegram Notification will be sent here"
