@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://github.com/juftin/camply">
-  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/camply.svg"
+  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/source/_static/camply.svg"
     width="400" height="400" alt="camply">
 </a>
 </div>
@@ -574,7 +574,7 @@ functionality. Use the below example for a campground within Glacier National Pa
 First, perform your search on https://recreation.gov.
 
 <div>
-<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/static/recreation_dot_gov.png"
+<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/source/_static/recreation_dot_gov.png"
     width="500" alt="recreation_dot_gov search">
 </div>
 
