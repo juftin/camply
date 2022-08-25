@@ -11,7 +11,7 @@ on:
 jobs:
     test-suite:
         concurrency:
-            group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+            group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}-${{ matrix.python }}
             cancel-in-progress: true
         runs-on: ubuntu-latest
         strategy:
