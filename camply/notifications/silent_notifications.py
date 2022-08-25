@@ -3,7 +3,6 @@ Silent Notifications
 """
 
 import logging
-from abc import ABC
 from pprint import pformat
 from typing import Iterable, List
 
@@ -13,7 +12,7 @@ from camply.notifications.base_notifications import BaseNotifications
 logger = logging.getLogger(__name__)
 
 
-class SilentNotifications(BaseNotifications, ABC):
+class SilentNotifications(BaseNotifications):
     """
     Silent Notifications
     """

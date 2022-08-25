@@ -1,12 +1,12 @@
-version: "3.7"
+version: '3.7'
 services:
     camply:
         container_name: camply-docker-compose-example
-        image:          juftin/camply:latest
+        image: juftin/camply:latest
         environment:
             TZ: America/Denver
         volumes:
-            - ${PWD}/example.camply:/home/camply/.camply
-            - ${PWD}/example_search.yml:/home/camply/search.yml
-        command:        camply campsites --yml-config /home/camply/search.yml
-        restart:        unless-stopped
+        -   ${PWD}/example.camply:/home/camply/.camply
+        -   ${PWD}/example_search.yml:/home/camply/search.yml
+        command: camply campsites --yml-config /home/camply/search.yml
+        restart: unless-stopped

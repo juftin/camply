@@ -3,7 +3,6 @@ Push Notifications via Telegram
 """
 
 import logging
-from abc import ABC
 from typing import List
 
 import requests
@@ -15,7 +14,7 @@ from camply.notifications.base_notifications import BaseNotifications
 logger = logging.getLogger(__name__)
 
 
-class TelegramNotifications(BaseNotifications, ABC):
+class TelegramNotifications(BaseNotifications):
     """
     Push Notifications via Telegram
     """

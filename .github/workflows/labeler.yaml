@@ -1,0 +1,121 @@
+name: Labeler
+
+on:
+    push:
+        branches:
+        -   main
+    issues:
+        types: [opened]
+    pull_request:
+        types:
+        -   opened
+        -   reopened
+        -   synchronize
+        -   labeled
+        -   unlabeled
+        branches:
+        -   main
+
+jobs:
+
+    label-sync:
+        if: github.event_name == 'push'
+        runs-on: ubuntu-latest
+        steps:
+        -   name: Check out the repository
+            uses: actions/checkout@v3
+        -   name: Run Labeler
+            uses: crazy-max/ghaction-github-labeler@v4.0.0
+            with:
+                yaml-file: .github/labels.yaml
+                skip-delete: false
+                dry-run: false
+
+    version-label-check:
+        if: |
+            github.event_name == 'pull_request' &&
+            github.actor != 'dependabot[bot]' &&
+            (
+                contains( github.event.labels.*.name, 'BUMP_MAJOR' ) ||
+                contains( github.event.pull_request.labels.*.name, 'BUMP_MINOR' ) ||
+                contains( github.event.pull_request.labels.*.name, 'BUMP_PATCH' ) ||
+                join(github.event.issue.labels) == '' ||
+                (
+                    !contains( github.event.labels.*.name, 'BUMP_MAJOR' ) &&
+                    !contains( github.event.pull_request.labels.*.name, 'BUMP_MINOR' ) &&
+                    !contains( github.event.pull_request.labels.*.name, 'BUMP_PATCH')
+                )
+            )
+        runs-on: ubuntu-latest
+        concurrency:
+            group: ${{ github.ref }}
+        steps:
+        -   uses: actions/github-script@v6
+            id: script
+            with:
+                script: |
+                    var total_labels = 0
+                    const labels = await github.rest.issues.listLabelsOnIssue({
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      issue_number: context.issue.number,
+                    })
+                    console.log(labels.data)
+                    for (const label of labels.data) {
+                      if (label.name === 'BUMP_PATCH') {
+                        total_labels += 1
+                        var version = 'patch'
+                      } else if (label.name === 'BUMP_MINOR') {
+                        total_labels += 1
+                        var version = 'minor'
+                      } else if (label.name === 'BUMP_MAJOR') {
+                        total_labels += 1
+                        var version = 'major'
+                      }
+                    }
+                    console.log(total_labels)
+                    if (total_labels != 1) {
+                      var status = 'error'
+                    } else {
+                      var status = 'success'
+                    }
+                    console.log(status)
+                    core.setOutput('status', status)
+                    console.log(version)
+                    core.setOutput('version', version)
+        -   uses: marocchino/sticky-pull-request-comment@v2
+            if: steps.script.outputs.status != 'success'
+            with:
+                header: improper-version-labels
+                message: |
+                    # Improper Version Labels
+                    You don't have the proper labels on this Pull Request to increment the version.
+
+                    You must provide one and only one of the following labels to increment the version number:
+                      - `BUMP_MAJOR`
+                      - `BUMP_MINOR`
+                      - `BUMP_PATCH`
+                delete: true
+        -   uses: marocchino/sticky-pull-request-comment@v2
+            if: steps.script.outputs.status == 'success'
+            with:
+                header: improper-version-labels
+                delete: true
+        -   if: steps.script.outputs.status != 'success'
+            run: |
+                echo "Incompatible Version Bump Labels Applied"
+                exit 1
+
+    apply-triage-label:
+        if: github.event_name == 'issues'
+        runs-on: ubuntu-latest
+        steps:
+        -   uses: actions/github-script@v6
+            with:
+                script: |
+                    github.rest.issues.addLabels({
+                      issue_number: context.issue.number,
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      labels: ['triage']
+                    })

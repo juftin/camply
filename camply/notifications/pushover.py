@@ -4,7 +4,6 @@ Push Notifications via Pushover
 
 import base64
 import logging
-from abc import ABC
 from typing import List, Optional
 
 import requests
@@ -16,7 +15,7 @@ from camply.notifications.base_notifications import BaseNotifications
 logger = logging.getLogger(__name__)
 
 
-class PushoverNotifications(BaseNotifications, logging.StreamHandler, ABC):
+class PushoverNotifications(BaseNotifications, logging.StreamHandler):
     """
     Push Notifications via Pushover + a Logging Handler
     """

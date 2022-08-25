@@ -3,7 +3,6 @@ Default Notifier: Silent + Extras
 """
 
 import logging
-from abc import ABC
 from typing import List, Union
 
 from camply.containers import AvailableCampsite
@@ -27,7 +26,7 @@ CAMPSITE_NOTIFICATIONS: dict = {
 }
 
 
-class MultiNotifierProvider(BaseNotifications, ABC):
+class MultiNotifierProvider(BaseNotifications):
     """
     Notifications Supported from Multiple Providers
     """

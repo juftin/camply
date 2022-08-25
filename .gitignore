@@ -128,8 +128,8 @@ docs/source/_autosummary
 .dmypy.json
 dmypy.json
 
-# Pyre type checker
-.pyre/
+# Mac Files
+.DS_Store
 
 # IDE Files
 .idea/
