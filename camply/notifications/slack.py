@@ -3,7 +3,6 @@ Push Notifications via Slack
 """
 
 import logging
-from abc import ABC
 from typing import List
 
 import requests
@@ -15,7 +14,7 @@ from camply.notifications.base_notifications import BaseNotifications
 logger = logging.getLogger(__name__)
 
 
-class SlackNotifications(BaseNotifications, ABC):
+class SlackNotifications(BaseNotifications):
     """
     Push Notifications via Slack
     """
@@ -123,7 +122,7 @@ class SlackNotifications(BaseNotifications, ABC):
                 blocks.append(
                     {
                         "type": "section",
-                        "fields": fields[chunk : chunk + 10],
+                        "fields": fields[chunk: chunk + 10],
                     }
                 )
             SlackNotifications.send_message(
