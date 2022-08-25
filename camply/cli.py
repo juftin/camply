@@ -243,8 +243,9 @@ search_forever_argument = click.option(
     "that it will never notify about the same identical campsite for "
     "the same booking date.",
 )
-yml_config_argument = click.option(
-    "--yml-config",
+yaml_config_argument = click.option(
+    "--yaml-config",
+    "--yaml-config",
     default=None,
     help="Rather than provide arguments to the command line utility, instead "
     "pass a file path to a YAML configuration file. See the documentation "
@@ -286,7 +287,7 @@ def _validate_campsites(
     start_date: Optional[str],
     end_date: Optional[str],
     provider: str,
-    yml_config: Optional[str],
+    yaml_config: Optional[str],
     **kwargs,
 ) -> None:
     """
@@ -297,7 +298,7 @@ def _validate_campsites(
             len(rec_area) == 0,
             len(campground) == 0,
             len(campsite) == 0,
-            yml_config is None,
+            yaml_config is None,
         ]
     ):
         logger.error(
@@ -317,7 +318,7 @@ def _validate_campsites(
     mandatory_parameters = [start_date, end_date]
     mandatory_string_parameters = ["--start-date", "--end-date"]
     for field in mandatory_parameters:
-        if field is None and yml_config is None:
+        if field is None and yaml_config is None:
             logger.error(
                 "Campsite searches require the following mandatory search parameters: "
                 f"{', '.join(mandatory_string_parameters)}"
@@ -325,7 +326,7 @@ def _validate_campsites(
             exit(1)
 
 
-@yml_config_argument
+@yaml_config_argument
 @search_forever_argument
 @notify_first_try_argument
 @notifications_argument
@@ -355,7 +356,7 @@ def campsites(
     notifications: Union[str, List[str]] = "silent",
     notify_first_try: bool = False,
     search_forever: bool = False,
-    yml_config: Optional[str] = None,
+    yaml_config: Optional[str] = None,
     equipment: Optional[List[str]] = None,
 ) -> None:
     """
@@ -383,11 +384,11 @@ def campsites(
         notifications=notifications,
         notify_first_try=notify_first_try,
         search_forever=search_forever,
-        yml_config=yml_config,
+        yaml_config=yaml_config,
     )
-    if yml_config is not None:
+    if yaml_config is not None:
         provider, provider_kwargs, search_kwargs = yaml_utils.yaml_file_to_arguments(
-            file_path=yml_config
+            file_path=yaml_config
         )
     else:
         provider = provider.lower()

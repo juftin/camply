@@ -19,7 +19,7 @@ from camply.utils import make_list
 logger = logging.getLogger(__name__)
 
 
-def read_yml(path: str = None):
+def read_yaml(path: str = None):
     """
     Read a YAML File
 
@@ -95,8 +95,8 @@ def yaml_file_to_arguments(
     provider, provider_kwargs, search_kwargs: Tuple[str, Dict[str, object], Dict[str, object]]
         Tuple containing provider string, provider **kwargs, and search **kwargs
     """
-    yaml_search = read_yml(path=file_path)
-    logger.info(f"YML File Parsed: {Path(file_path).name}")
+    yaml_search = read_yaml(path=file_path)
+    logger.info(f"YAML File Parsed: {Path(file_path).name}")
     provider = yaml_search.get("provider", "RecreationDotGov")
     start_date = datetime.strptime(str(yaml_search["start_date"]), "%Y-%m-%d")
     end_date = datetime.strptime(str(yaml_search["end_date"]), "%Y-%m-%d")
