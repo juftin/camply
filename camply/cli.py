@@ -245,7 +245,7 @@ search_forever_argument = click.option(
 )
 yaml_config_argument = click.option(
     "--yaml-config",
-    "--yaml-config",
+    "--yml-config",
     default=None,
     help="Rather than provide arguments to the command line utility, instead "
     "pass a file path to a YAML configuration file. See the documentation "
