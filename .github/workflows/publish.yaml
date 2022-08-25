@@ -27,18 +27,6 @@ jobs:
             run: |
                 pip install poetry
                 poetry --version
-        -   name: Set up Python
-            uses: actions/setup-python@v4
-            with:
-                python-version: '3.9'
-        -   name: Upgrade pip
-            run: |
-                pip install --upgrade pip
-                pip --version
-        -   name: Install Poetry
-            run: |
-                pip install poetry
-                poetry --version
         -   name: Build package
             run: |
                 poetry build --ansi
@@ -56,6 +44,18 @@ jobs:
             uses: actions/checkout@v3
             with:
                 fetch-depth: 2
+        -   name: Set up Python
+            uses: actions/setup-python@v4
+            with:
+                python-version: '3.9'
+        -   name: Upgrade pip
+            run: |
+                pip install --upgrade pip
+                pip --version
+        -   name: Install Poetry
+            run: |
+                pip install poetry
+                poetry --version
         -   name: Set up QEMU
             uses: docker/setup-qemu-action@v1
         -   name: Set up Docker Buildx
