@@ -51,6 +51,7 @@ jobs:
         -   name: Update Version Variable
             run: |
                 PROJECT_VERSION=$(poetry version --short)
+                echo PROJECT_VERSION=${PROJECT_VERSION} >> $GITHUB_ENV
                 REPLACED_VERSION_FILE_TEXT=$(grep -F -v "__version__" camply/_version.py)
                 echo "${REPLACED_VERSION_FILE_TEXT}" > camply/_version.py
                 echo "__version__ = \""${PROJECT_VERSION}\""" >> camply/_version.py
