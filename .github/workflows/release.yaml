@@ -1,9 +1,7 @@
 name: Release
 
 on:
-    pull_request:
-        types:
-        -   closed
+    push:
         branches:
         -   main
 
@@ -12,14 +10,21 @@ jobs:
     version-bump:
         name: version-bump
         runs-on: ubuntu-latest
-        if: github.event.pull_request.merged == true
         steps:
         -   name: Check out the repository
             uses: actions/checkout@v3
             with:
                 fetch-depth: 2
                 ref: main
-                token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        - name: Fetch Related Pull Request Information
+          uses: 8BitJonny/gh-get-current-pr@2.1.1
+          id: PR
+        - name: Fetch Related Pull Request Labels
+          run: |
+            echo PR_LABELS='${{ steps.PR.outputs.pr_labels }}' >> ${GITHUB_ENV}            
+            echo "LABELS: ${{ steps.PR.outputs.pr_labels }}"
+            echo "NUMBER: ${{ steps.PR.outputs.number }}"
+            echo "URL: ${{ steps.PR.outputs.pr_url }}"
         -   name: Set up Python
             uses: actions/setup-python@v4
             with:
@@ -32,21 +37,26 @@ jobs:
             run: |
                 pip install poetry
                 poetry --version
-        -   name: Check if there is a parent commit
-            id: check-parent-commit
-            run: |
-                echo "::set-output name=sha::$(git rev-parse --verify --quiet HEAD^)"
         -   name: Version Bump - MAJOR
-            if: contains( github.event.pull_request.labels.*.name, 'BUMP_MAJOR')
+            if: contains(env.PR_LABELS, 'BUMP_MAJOR')
             run: |
                 poetry version major
         -   name: Version Bump - MINOR
-            if: contains( github.event.pull_request.labels.*.name, 'BUMP_MINOR')
+            if: contains(env.PR_LABELS, 'BUMP_MINOR')
             run: |
                 poetry version minor
         -   name: Version Bump - PATCH
-            if: contains( github.event.pull_request.labels.*.name, 'BUMP_PATCH')
+            if: contains(env.PR_LABELS, 'BUMP_PATCH')
             run: |
+                poetry version patch
+        -   name: Version Bump - DEFAULT PATCH
+            if: |
+                !contains(env.PR_LABELS, 'BUMP_MAJOR')
+                  && !contains(env.PR_LABELS, 'BUMP_MINOR')
+                  && !contains(env.PR_LABELS, 'BUMP_PATCH')
+            run: |
+                echo "Uh Oh, this doesn't look like it originated from a PR - or the PR was missing labels"
+                echo "Proceeding with default version bump: PATCH"
                 poetry version patch
         -   name: Update Version Variable
             run: |
