@@ -16,6 +16,7 @@ jobs:
             with:
                 fetch-depth: 2
                 ref: main
+                token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         - name: Fetch Related Pull Request Information
           uses: 8BitJonny/gh-get-current-pr@2.1.1
           id: PR
