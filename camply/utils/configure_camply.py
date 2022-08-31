@@ -109,7 +109,7 @@ def generate_dot_camply_file():
     logger.info("Running camply configuration.")
     logger.info(
         "This process generates a configuration file "
-        "(https://github.com/juftin/camply/blob/main/example.camply)"
+        "(https://github.com/juftin/camply/blob/main/docs/examples/example.camply)"
     )
     logger.info("Do not include quotes around values")
     logger.info(
