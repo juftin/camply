@@ -4,6 +4,10 @@ on:
     push:
         branches:
         -   main
+        paths:
+        -   camply/**
+        -   pyproject.toml
+        -   .github/workflows/tests.yaml
     pull_request:
         branches: ['**']
     schedule:
