@@ -64,6 +64,8 @@ html_theme_options = {
 }
 html_show_sphinx = False
 html_show_sourcelink = False
+# html_logo = "https://raw.githubusercontent.com/juftin/juftin/main/static/juftin.png"
+html_favicon = "https://juftin.com/favicon.ico"
 
 source_suffix = {
     ".rst": "restructuredtext",
@@ -88,5 +90,3 @@ autodoc_pydantic_settings_show_json = False
 
 always_document_default_args = True
 docstring_default_arg_substitution = "**[Default]:**"
-
-html_favicon = "https://juftin.com/favicon.ico"

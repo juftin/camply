@@ -3,6 +3,11 @@ name: Docker CI/CD
 on:
     pull_request:
         branches: ['**']
+        paths:
+        -   camply/**
+        -   pyproject.toml
+        -   .github/workflows/docker.yaml
+        -   Dockerfile
 jobs:
     docker-ci-test:
         runs-on: ubuntu-latest
