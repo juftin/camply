@@ -74,7 +74,6 @@ jobs:
     github-release:
         name: github-release
         runs-on: ubuntu-latest
-        if: github.event.pull_request.merged == true
         needs: version-bump
         steps:
         -   name: Check out the repository
