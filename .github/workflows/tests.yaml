@@ -6,6 +6,10 @@ on:
         -   main
     pull_request:
         branches: ['**']
+        paths:
+        -   camply/**
+        -   pyproject.toml
+        -   .github/workflows/tests.yaml
     schedule:
     -   cron: 0 12 1 * *
 jobs:

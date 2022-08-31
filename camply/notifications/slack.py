@@ -119,10 +119,11 @@ class SlackNotifications(BaseNotifications):
             )
             # Slack only allows 10 fields (k+v) per section
             for chunk in range(0, len(fields) + 1, 10):
+                chunk_max = chunk + 10
                 blocks.append(
                     {
                         "type": "section",
-                        "fields": fields[chunk: chunk + 10],
+                        "fields": fields[chunk:chunk_max],
                     }
                 )
             SlackNotifications.send_message(
