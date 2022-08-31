@@ -122,7 +122,7 @@ class SlackNotifications(BaseNotifications):
                 blocks.append(
                     {
                         "type": "section",
-                        "fields": fields[chunk: chunk + 10],
+                        "fields": fields[chunk : chunk + 10],
                     }
                 )
             SlackNotifications.send_message(
