@@ -10,7 +10,7 @@ jobs:
     version-bump:
         name: version-bump
         runs-on: ubuntu-latest
-        if: ${{ !startsWith( github.event.head_commit.message, 'Version Bump 🤖' ) }}
+        if: ${{ !(startsWith( github.event.head_commit.message, 'Version Bump 🤖' ) && github.event.head_commit.author.username == 'github-actions[bot]') }}
         steps:
         -   name: Check out the repository
             uses: actions/checkout@v3
@@ -18,15 +18,6 @@ jobs:
                 fetch-depth: 2
                 ref: main
                 token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        -   name: Fetch Related Pull Request Information
-            uses: 8BitJonny/gh-get-current-pr@2.1.1
-            id: PR
-        -   name: Fetch Related Pull Request Labels
-            run: |
-                echo PR_LABELS='${{ steps.PR.outputs.pr_labels }}' >> ${GITHUB_ENV}
-                echo "LABELS: ${{ steps.PR.outputs.pr_labels }}"
-                echo "NUMBER: ${{ steps.PR.outputs.number }}"
-                echo "URL: ${{ steps.PR.outputs.pr_url }}"
         -   name: Set up Python
             uses: actions/setup-python@v4
             with:
@@ -39,6 +30,15 @@ jobs:
             run: |
                 pip install poetry
                 poetry --version
+        -   name: Fetch Related Pull Request Information
+            uses: 8BitJonny/gh-get-current-pr@2.1.1
+            id: PR
+        -   name: Fetch Related Pull Request Labels
+            run: |
+                echo PR_LABELS='${{ steps.PR.outputs.pr_labels }}' >> ${GITHUB_ENV}
+                echo "LABELS: ${{ steps.PR.outputs.pr_labels }}"
+                echo "NUMBER: ${{ steps.PR.outputs.number }}"
+                echo "URL: ${{ steps.PR.outputs.pr_url }}"
         -   name: Version Bump - MAJOR
             if: contains(env.PR_LABELS, 'BUMP_MAJOR')
             run: |
@@ -57,7 +57,7 @@ jobs:
                   && !contains(env.PR_LABELS, 'BUMP_MINOR')
                   && !contains(env.PR_LABELS, 'BUMP_PATCH')
             run: |
-                echo "Uh Oh, this doesn't look like it originated from a PR - or the PR was missing labels"
+                echo "It doesn't look like it originated from a PR - or the PR was missing labels"
                 echo "Proceeding with default version bump: PATCH"
                 poetry version patch
         -   name: Update Version Variable
@@ -76,7 +76,6 @@ jobs:
         name: github-release
         runs-on: ubuntu-latest
         needs: version-bump
-        if: ${{ !startsWith( github.event.head_commit.message, 'Version Bump 🤖' ) }}
         steps:
         -   name: Check out the repository
             uses: actions/checkout@v3
