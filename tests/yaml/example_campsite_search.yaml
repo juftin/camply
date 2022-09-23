@@ -4,7 +4,7 @@ recreation_area:  # (LIST OR SINGLE ENTRY)
 campsites:
 -   40107
 -   177
-start_date: 2022-09-10   # YYYY-MM-DD
-end_date: 2022-09-11     # YYYY-MM-DD
+start_date: 2023-09-10   # YYYY-MM-DD
+end_date: 2023-09-11     # YYYY-MM-DD
 weekends: false     # FALSE BY DEFAULT
 continuous: false   # DEFAULTS TO TRUE
