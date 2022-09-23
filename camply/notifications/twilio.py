@@ -20,7 +20,7 @@ class TwilioNotifications(BaseNotifications):
     """
 
     def __init__(self):
-        if any([TwilioConfig.ACCOUNT_SID is None, TwilioConfig.AUTH_TOKEN == ""]):
+        if any([TwilioConfig.ACCOUNT_SID == '', TwilioConfig.AUTH_TOKEN == '']):
             warning_message = (
                 "Twilio is not configured properly. To send Twilio messages "
                 "make sure to run `camply configure` or set the "
@@ -70,10 +70,8 @@ class TwilioNotifications(BaseNotifications):
             message_title, formatted_dict = cls.format_standard_campsites(
                 campsite=campsite,
             )
-            fields = []
+            fields = [message_title]
             for key, value in formatted_dict.items():
                 fields.append(f"{key}: {value}")
             composed_message = "\n".join(fields)
-            TwilioNotifications.send_message(
-                message=composed_message, title=message_title, type="note"
-            )
+            TwilioNotifications.send_message(message=composed_message)
