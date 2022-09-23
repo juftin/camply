@@ -77,7 +77,7 @@ class TwilioConfig:
     AUTH_TOKEN = getenv("TWILIO_AUTH_TOKEN", None)
     SOURCE_NUMBER = getenv("TWILIO_SOURCE_NUMBER", None)
     # comma separated set of phone numbers
-    PHONE_NUMBERS = getenv("TWILIO_PHONE_NUMBERS", None)
+    DEST_NUMBERS = getenv("TWILIO_DEST_NUMBERS", None)
 
 
 class SlackConfig:

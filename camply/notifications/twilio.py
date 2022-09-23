@@ -29,7 +29,7 @@ class TwilioNotifications(BaseNotifications):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
-        phone_nums = TwilioConfig.PHONE_NUMBERS.split(',')
+        phone_nums = TwilioConfig.DEST_NUMBERS.split(',')
         logger.info('Twilio: will notify these phone numbers: ' + ', '.join(phone_nums))
 
     def __repr__(self):
@@ -49,7 +49,7 @@ class TwilioNotifications(BaseNotifications):
         """
         client = Client(TwilioConfig.ACCOUNT_SID, TwilioConfig.AUTH_TOKEN)
 
-        phone_nums = TwilioConfig.PHONE_NUMBERS.split(',')
+        phone_nums = TwilioConfig.DEST_NUMBERS.split(',')
 
         for phone_num in phone_nums:
             client.messages.create(
