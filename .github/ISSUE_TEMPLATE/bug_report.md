@@ -19,8 +19,8 @@ assignees: 'juftin'
 ```console
 camply --debug campsites \
     --campground 232338 \
-    --start-date 2022-09-09 \
-    --end-date 2022-09-32 \
+    --start-date 2023-09-09 \
+    --end-date 2023-09-32 \
     --nights 3
 ```
 
