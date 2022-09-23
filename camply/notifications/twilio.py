@@ -5,8 +5,6 @@ Push Notifications via Twilio
 import logging
 from typing import List
 
-from twilio.rest import Client
-
 from camply.config import TwilioConfig
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
@@ -20,6 +18,13 @@ class TwilioNotifications(BaseNotifications):
     """
 
     def __init__(self):
+        try:
+            from twilio.rest import Client
+        except ImportError:
+            raise RuntimeError(
+                "Looks like `twilio` isn't installed. Install it with `pip install camply[twilio]`"
+            )
+
         if any([TwilioConfig.ACCOUNT_SID == "", TwilioConfig.AUTH_TOKEN == ""]):
             warning_message = (
                 "Twilio is not configured properly. To send Twilio messages "
@@ -29,8 +34,13 @@ class TwilioNotifications(BaseNotifications):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
-        phone_nums = TwilioConfig.DEST_NUMBERS.split(",")
-        logger.info("Twilio: will notify these phone numbers: " + ", ".join(phone_nums))
+        TwilioNotifications.client = Client(
+            TwilioConfig.ACCOUNT_SID, TwilioConfig.AUTH_TOKEN
+        )
+        TwilioNotifications.phone_nums = TwilioConfig.DEST_NUMBERS.split(",")
+        logger.info(
+            "Twilio: will notify these phone numbers: " + ", ".join(self.phone_nums)
+        )
 
     def __repr__(self):
         """
@@ -38,8 +48,8 @@ class TwilioNotifications(BaseNotifications):
         """
         return "<TwilioNotifications>"
 
-    @staticmethod
-    def send_message(message: str, **kwargs):
+    @classmethod
+    def send_message(cls, message: str, **kwargs):
         """
         Send a message via Twilio - if environment variables are configured
 
@@ -47,12 +57,8 @@ class TwilioNotifications(BaseNotifications):
         ----------
         message: str
         """
-        client = Client(TwilioConfig.ACCOUNT_SID, TwilioConfig.AUTH_TOKEN)
-
-        phone_nums = TwilioConfig.DEST_NUMBERS.split(",")
-
-        for phone_num in phone_nums:
-            client.messages.create(
+        for phone_num in TwilioNotifications.phone_nums:
+            TwilioNotifications.client.messages.create(
                 to=phone_num, from_=TwilioConfig.SOURCE_NUMBER, body=message
             )
 
@@ -73,4 +79,4 @@ class TwilioNotifications(BaseNotifications):
             for key, value in formatted_dict.items():
                 fields.append(f"{key}: {value}")
             composed_message = "\n".join(fields)
-            TwilioNotifications.send_message(message=composed_message)
+            cls.send_message(message=composed_message)

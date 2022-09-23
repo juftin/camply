@@ -61,7 +61,8 @@ dev = [
     "flake8",
     "coverage",
     "mypy",
-    "tox"
+    "tox",
+    "twilio"
 ]
 twilio = [
     "twilio"
