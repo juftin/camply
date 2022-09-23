@@ -75,8 +75,13 @@ class BaseNotifications(ABC):
             elif key == CampsiteContainerFields.BOOKING_URL:
                 key = "booking_link"
             elif key == CampsiteContainerFields.PERMITTED_EQUIPMENT:
+                equipment = (
+                    []
+                    if campsite.permitted_equipment is None
+                    else campsite.permitted_equipment
+                )
                 value = "\n  - " + "\n  - ".join(
-                    set(item.equipment_name for item in campsite.permitted_equipment)
+                    set(item.equipment_name for item in equipment)
                 )
             if key not in [CampsiteContainerFields.CAMPSITE_ATTRIBUTES]:
                 formatted_key = key.replace("_", " ").title()
