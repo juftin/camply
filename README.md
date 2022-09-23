@@ -376,18 +376,8 @@ camply campsites \
 #### Send a Notification to Different Services
 
 camply supports notifications from different providers. To send notifications to multiple providers
-just separate them with a comma. If you're adding spaces between the commas make sure to quote
-everything. You can also pass the --notifications parameter multiple times. YAML config entries also
+you can pass the --notifications parameter multiple times. YAML config entries also
 accept an array as well.
-
-```shell
-camply campsites \
-    --rec-area 2991 \
-    --start-date 2023-09-10 \
-    --end-date 2023-09-21 \
-    --continuous \
-    --notifications pushover,email
-```
 
 ```shell
 camply campsites \
