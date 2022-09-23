@@ -28,6 +28,10 @@ class FileConfig:
         TELEGRAM_CHAT_ID=dict(
             default="", notes="Telegram Notification will be sent here"
         ),
+        TWILIO_ACCOUNT_SID=dict(default="", notes="Twilio Account SID"),
+        TWILIO_AUTH_TOKEN=dict(default="", notes="Twilio Auth Token"),
+        TWILIO_SOURCE_NUMBER=dict(default="", notes="Twilio Source number"),
+        TWILIO_PHONE_NUMBERS=dict(default="", notes="Comma-separated list of phone numbers."),
         EMAIL_TO_ADDRESS=dict(
             default="", notes="Email Notifications will be sent here"
         ),

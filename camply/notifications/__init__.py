@@ -9,11 +9,13 @@ from .pushover import PushoverNotifications
 from .silent_notifications import SilentNotifications
 from .slack import SlackNotifications
 from .telegram import TelegramNotifications
+from .twilio import TwilioNotifications
 
 __all__ = [
     "PushbulletNotifications",
     "PushoverNotifications",
     "TelegramNotifications",
+    "TwilioNotifications",
     "EmailNotifications",
     "SilentNotifications",
     "SlackNotifications",

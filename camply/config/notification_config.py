@@ -68,6 +68,18 @@ class PushbulletConfig:
     API_TOKEN = getenv("PUSHBULLET_API_TOKEN", None)
 
 
+class TwilioConfig:
+    """
+    Twilio Notification Config Class
+    """
+
+    ACCOUNT_SID = getenv("TWILIO_ACCOUNT_SID", None)
+    AUTH_TOKEN = getenv("TWILIO_AUTH_TOKEN", None)
+    SOURCE_NUMBER = getenv("TWILIO_SOURCE_NUMBER", '+16507778978')
+    # comma separated set of phone numbers
+    PHONE_NUMBERS = getenv("TWILIO_PHONE_NUMBERS", None)
+
+
 class SlackConfig:
     """
     Slack Notification Config Class
