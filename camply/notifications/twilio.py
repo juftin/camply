@@ -5,11 +5,11 @@ Push Notifications via Twilio
 import logging
 from typing import List
 
+from twilio.rest import Client
+
 from camply.config import TwilioConfig
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
-
-from twilio.rest import Client
 
 logger = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ class TwilioNotifications(BaseNotifications):
     """
 
     def __init__(self):
-        if any([TwilioConfig.ACCOUNT_SID == '', TwilioConfig.AUTH_TOKEN == '']):
+        if any([TwilioConfig.ACCOUNT_SID == "", TwilioConfig.AUTH_TOKEN == ""]):
             warning_message = (
                 "Twilio is not configured properly. To send Twilio messages "
                 "make sure to run `camply configure` or set the "
@@ -29,8 +29,8 @@ class TwilioNotifications(BaseNotifications):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
-        phone_nums = TwilioConfig.DEST_NUMBERS.split(',')
-        logger.info('Twilio: will notify these phone numbers: ' + ', '.join(phone_nums))
+        phone_nums = TwilioConfig.DEST_NUMBERS.split(",")
+        logger.info("Twilio: will notify these phone numbers: " + ", ".join(phone_nums))
 
     def __repr__(self):
         """
@@ -49,13 +49,12 @@ class TwilioNotifications(BaseNotifications):
         """
         client = Client(TwilioConfig.ACCOUNT_SID, TwilioConfig.AUTH_TOKEN)
 
-        phone_nums = TwilioConfig.DEST_NUMBERS.split(',')
+        phone_nums = TwilioConfig.DEST_NUMBERS.split(",")
 
         for phone_num in phone_nums:
             client.messages.create(
-                to=phone_num,
-                from_=TwilioConfig.SOURCE_NUMBER,
-                body=message)
+                to=phone_num, from_=TwilioConfig.SOURCE_NUMBER, body=message
+            )
 
     @classmethod
     def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs):
