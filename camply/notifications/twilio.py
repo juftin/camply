@@ -25,7 +25,14 @@ class TwilioNotifications(BaseNotifications):
                 "Looks like `twilio` isn't installed. Install it with `pip install camply[twilio]`"
             )
 
-        if any([TwilioConfig.ACCOUNT_SID == "", TwilioConfig.AUTH_TOKEN == ""]):
+        if any(
+            [
+                TwilioConfig.ACCOUNT_SID is None,
+                TwilioConfig.ACCOUNT_SID == "",
+                TwilioConfig.AUTH_TOKEN is None,
+                TwilioConfig.AUTH_TOKEN == "",
+            ]
+        ):
             warning_message = (
                 "Twilio is not configured properly. To send Twilio messages "
                 "make sure to run `camply configure` or set the "
@@ -33,6 +40,9 @@ class TwilioNotifications(BaseNotifications):
             )
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
+
+        # Twilio's logger is a little noisy. Limit it to ERROR or higher.
+        logging.getLogger("twilio").setLevel(logging.ERROR)
 
         TwilioNotifications.client = Client(
             TwilioConfig.ACCOUNT_SID, TwilioConfig.AUTH_TOKEN
