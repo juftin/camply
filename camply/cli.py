@@ -220,7 +220,7 @@ notifications_argument = click.option(
     default=["silent"],
     help="If --continuous is activated, types of notifications to receive. "
     "Options available are 'email', 'pushover', "
-    "'pushbullet', 'telegram', or 'silent'. Defaults to 'silent' - "
+    "'pushbullet', 'telegram', 'twilio', or 'silent'. Defaults to 'silent' - "
     "which just logs messages to console.",
 )
 notify_first_try_argument = click.option(
