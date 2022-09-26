@@ -43,6 +43,7 @@ class MultiNotifierProvider(BaseNotifications):
             Provider String, Comma Separated Provider String, or list of provider
             strings
         """
+        super().__init__()
         self.providers = [SilentNotifications()]
         if isinstance(provider, str):
             provider = [prov_string.strip() for prov_string in provider.split(",")]

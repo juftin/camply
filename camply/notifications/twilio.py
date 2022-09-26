@@ -10,6 +10,7 @@ from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
 
 logger = logging.getLogger(__name__)
+logging.getLogger("twilio").setLevel(logging.ERROR)
 
 
 class TwilioNotifications(BaseNotifications):
@@ -18,6 +19,7 @@ class TwilioNotifications(BaseNotifications):
     """
 
     def __init__(self):
+        super().__init__()
         try:
             from twilio.rest import Client
         except ImportError:
@@ -40,26 +42,13 @@ class TwilioNotifications(BaseNotifications):
             )
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
-
-        # Twilio's logger is a little noisy. Limit it to ERROR or higher.
-        logging.getLogger("twilio").setLevel(logging.ERROR)
-
-        TwilioNotifications.client = Client(
-            TwilioConfig.ACCOUNT_SID, TwilioConfig.AUTH_TOKEN
-        )
-        TwilioNotifications.phone_nums = TwilioConfig.DEST_NUMBERS.split(",")
+        self.client = Client(TwilioConfig.ACCOUNT_SID, TwilioConfig.AUTH_TOKEN)
+        self.phone_nums = TwilioConfig.DEST_NUMBERS.split(",")
         logger.info(
             "Twilio: will notify these phone numbers: " + ", ".join(self.phone_nums)
         )
 
-    def __repr__(self):
-        """
-        String Representation
-        """
-        return "<TwilioNotifications>"
-
-    @classmethod
-    def send_message(cls, message: str, **kwargs):
+    def send_message(self, message: str, **kwargs):
         """
         Send a message via Twilio - if environment variables are configured
 
@@ -67,13 +56,12 @@ class TwilioNotifications(BaseNotifications):
         ----------
         message: str
         """
-        for phone_num in TwilioNotifications.phone_nums:
-            TwilioNotifications.client.messages.create(
+        for phone_num in self.phone_nums:
+            self.client.messages.create(
                 to=phone_num, from_=TwilioConfig.SOURCE_NUMBER, body=message
             )
 
-    @classmethod
-    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs):
+    def send_campsites(self, campsites: List[AvailableCampsite], **kwargs):
         """
         Send a message with a campsite object
 
@@ -82,11 +70,13 @@ class TwilioNotifications(BaseNotifications):
         campsites: AvailableCampsite
         """
         for campsite in campsites:
-            message_title, formatted_dict = cls.format_standard_campsites(
+            message_title, formatted_dict = self.format_standard_campsites(
                 campsite=campsite,
             )
-            fields = [message_title]
+            fields = [f"🏕{message_title}", ""]
             for key, value in formatted_dict.items():
                 fields.append(f"{key}: {value}")
+            fields.append("")
+            fields.append("camply, the campsite finder ⛺️")
             composed_message = "\n".join(fields)
-            cls.send_message(message=composed_message)
+            self.send_message(message=composed_message)
