@@ -20,6 +20,8 @@ class SlackNotifications(BaseNotifications):
     """
 
     def __init__(self):
+        super().__init__()
+        self.session.headers.update({"Content-Type": "application/json"})
         if any([SlackConfig.SLACK_WEBHOOK is None, SlackConfig.SLACK_WEBHOOK == ""]):
             warning_message = (
                 "Slack is not configured properly. To send Slack messages "
@@ -29,14 +31,7 @@ class SlackNotifications(BaseNotifications):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
-    def __repr__(self):
-        """
-        String Representation
-        """
-        return "<SlackNotifications>"
-
-    @staticmethod
-    def send_message(message: str, **kwargs) -> requests.Response:
+    def send_message(self, message: str, **kwargs) -> requests.Response:
         """
         Send a message via Slack - if environment variables are configured.
 
@@ -49,8 +44,6 @@ class SlackNotifications(BaseNotifications):
         -------
         requests.Response
         """
-        slack_headers = {"Content-Type": "application/json"}
-
         message_blocks = kwargs.pop("blocks", [])
         message_json = {
             "text": message,
@@ -60,9 +53,8 @@ class SlackNotifications(BaseNotifications):
                 "blocks": message_blocks,
             }
         logger.debug(message_json)
-        response = requests.post(
+        response = self.session.post(
             url=SlackConfig.SLACK_WEBHOOK,
-            headers=slack_headers,
             json=message_json,
         )
         try:
@@ -75,8 +67,7 @@ class SlackNotifications(BaseNotifications):
             raise ConnectionError(response.text) from he
         return response
 
-    @classmethod
-    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs):
+    def send_campsites(self, campsites: List[AvailableCampsite], **kwargs):
         """
         Send a message with a campsite object
 
@@ -85,7 +76,7 @@ class SlackNotifications(BaseNotifications):
         campsites: AvailableCampsite
         """
         for campsite in campsites:
-            message_title, formatted_dict = cls.format_standard_campsites(
+            message_title, formatted_dict = self.format_standard_campsites(
                 campsite=campsite,
             )
             fields = []
@@ -126,7 +117,7 @@ class SlackNotifications(BaseNotifications):
                         "fields": fields[chunk:chunk_max],
                     }
                 )
-            SlackNotifications.send_message(
+            self.send_message(
                 message=message_title,
                 blocks=blocks,
             )

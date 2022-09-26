@@ -6,7 +6,7 @@ LABEL description="camply, the campsite finder"
 COPY pyproject.toml /tmp/camply/pyproject.toml
 COPY camply/ /tmp/camply/camply/
 COPY README.md /tmp/camply/README.md
-RUN cd /tmp/camply/ && python -m pip install /tmp/camply/ && rm -rf /tmp/camply/
+RUN cd /tmp/camply/ && python -m pip install "/tmp/camply/[all]" && rm -rf /tmp/camply/
 
 ENV HOME=/home/camply
 RUN mkdir ${HOME}

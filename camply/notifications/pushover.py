@@ -21,6 +21,8 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
     """
 
     def __init__(self, level: Optional[int] = logging.INFO):
+        super().__init__()
+        self.session.headers.update(PushoverConfig.API_HEADERS)
         logging.StreamHandler.__init__(self)
         self.setLevel(level=level)
         if any([PushoverConfig.PUSH_USER is None, PushoverConfig.PUSH_USER == ""]):
@@ -33,14 +35,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
-    def __repr__(self):
-        """
-        String Representation
-        """
-        return "<PushoverNotifications>"
-
-    @staticmethod
-    def send_message(message: str, **kwargs) -> requests.Response:
+    def send_message(self, message: str, **kwargs) -> requests.Response:
         """
         Send a message via Pushover - if environment variables are configured
 
@@ -59,9 +54,8 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
                 "utf-8"
             )
         )
-        response = requests.post(
+        response = self.session.post(
             url=PushoverConfig.PUSHOVER_API_ENDPOINT,
-            headers=PushoverConfig.API_HEADERS,
             params=dict(
                 token=token, user=PushoverConfig.PUSH_USER, message=message, **kwargs
             ),
@@ -91,8 +85,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
         title = f"Pushover {record.levelname.title()} Message"
         self.send_message(message=log_formatted_message, title=title)
 
-    @classmethod
-    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs):
+    def send_campsites(self, campsites: List[AvailableCampsite], **kwargs):
         """
         Send a message with a campsite object
 
@@ -101,7 +94,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
         campsites: AvailableCampsite
         """
         for campsite in campsites:
-            message_title, formatted_dict = cls.format_standard_campsites(
+            message_title, formatted_dict = self.format_standard_campsites(
                 campsite=campsite,
             )
             fields = []
@@ -110,6 +103,4 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
                     value = f"<a href='{value}'>{value}</a>"
                 fields.append(f"<b>{key}:</b> {value}")
             composed_message = "\n".join(fields)
-            PushoverNotifications.send_message(
-                message=composed_message, title=message_title, html=1
-            )
+            self.send_message(message=composed_message, title=message_title, html=1)
