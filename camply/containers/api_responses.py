@@ -145,7 +145,6 @@ class _FacilityOrganization(CamplyModel):
     OrgID: int
 
 
-
 class FacilityResponse(CamplyModel):
     """
     /api/v1/facilities/<Facility ID>
