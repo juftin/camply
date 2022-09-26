@@ -38,3 +38,8 @@ camply \
   --campsite 84001 \
   --start-date 2023-09-27 \
   --end-date 2023-09-28
+
+camply --debug campsites \
+  --start-date 2023-10-01 \
+  --end-date 2023-10-02 \
+  --campground 234779
