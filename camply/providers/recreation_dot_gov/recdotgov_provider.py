@@ -432,9 +432,9 @@ class RecreationDotGov(BaseProvider):
             facility_state = "USA"
         try:
             if len(facility_object.RECAREA) == 0:
-                recreation_area_id = 0
+                recreation_area_id = facility_object.ParentRecAreaID
                 formatted_recreation_area = (
-                    f"{facility_object.FacilityName.title()}, {facility_state}"
+                    f"{facility_object.ORGANIZATION[0].OrgName}, {facility_state}"
                 )
             else:
                 recreation_area = facility_object.RECAREA[0].RecAreaName
