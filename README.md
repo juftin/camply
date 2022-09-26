@@ -42,6 +42,7 @@ ___________
         + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
         + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
         + [Send a Push Notification](#send-a-push-notification)
+        + [Send a Text Message](#send-a-text-message)
         + [Send a Notification to Different Services](#send-a-notification-to-different-services)
         + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for Consecutive Nights at the Same Campsite](#look-for-consecutive-nights-at-the-same-campsite)
@@ -124,7 +125,7 @@ Commands:
   recreation-areas  Search for Recreation Areas and list them
 ```
 
-### `campsites`
+### campsites
 
 Search for a campsite within camply. Campsites are returned based on the search criteria provided.
 Campsites contain properties like booking date, site type (tent, RV, cabin, etc), capacity, price,
@@ -202,7 +203,7 @@ camply campsites \
     --end-date 2023-07-18
 ```
 
-### `recreation-areas`
+### recreation-areas
 
 Search for Recreation Areas and their IDs. Recreation Areas are places like National Parks and
 National Forests that can contain one or many campgrounds.
@@ -220,7 +221,7 @@ camply recreation-areas --search "Yosemite National Park"
 
 **_see the [examples](#search-for-recreation-areas-by-query-string) for more information_
 
-### `campgrounds`
+### campgrounds
 
 Search for Campgrounds and their IDs. Campgrounds are facilities inside of Recreation Areas that
 contain campsites. Most 'campgrounds' are areas made up of multiple campsites, others are facilities
@@ -243,7 +244,7 @@ camply campgrounds --search "Fire Tower Lookout" --state CA
 
 **_see the [examples](#look-for-specific-campgrounds-by-query-string) for more information_
 
-### `configure`
+### configure
 
 Set up `camply` configuration file with an interactive console
 
@@ -373,12 +374,18 @@ camply campsites \
     --notifications pushbullet
 ```
 
-#### Send a Notification to Different Services
+#### Send a Text Message
 
-camply supports notifications from different providers. To send notifications to multiple providers
-just separate them with a comma. If you're adding spaces between the commas make sure to quote
-everything. You can also pass the --notifications parameter multiple times. YAML config entries also
-accept an array as well.
+If you want to sign up for a [Twilio](https://www.twilio.com/try-twilio) account, camply also supports
+sending text messages via SMS. You can set up your Twilio configuration via `camply configure`. You will need
+to set the following config values for Twilio: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`,
+`TWILIO_SOURCE_NUMBER`, `TWILIO_DEST_NUMBERS`.
+
+Sending text messages via Twilio also requires the `twilio` extras:
+
+```
+pip install camply[twilio]
+```
 
 ```shell
 camply campsites \
@@ -386,8 +393,14 @@ camply campsites \
     --start-date 2023-09-10 \
     --end-date 2023-09-21 \
     --continuous \
-    --notifications pushover,email
+    --notifications twilio
 ```
+
+#### Send a Notification to Different Services
+
+camply supports notifications from different providers. To send notifications to multiple providers
+you can pass the --notifications parameter multiple times. YAML config entries also
+accept an array as well.
 
 ```shell
 camply campsites \

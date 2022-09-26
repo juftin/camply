@@ -33,6 +33,7 @@ class EmailNotifications(BaseNotifications):
         **kwargs
             Accepts: from, to, subject, username, password, server, port
         """
+        super().__init__()
         # PERFORM SOME VALIDATION
         if any(
             [
@@ -55,24 +56,17 @@ class EmailNotifications(BaseNotifications):
             raise EnvironmentError(error_message)
         # ATTEMPT AN EMAIL LOGIN AT INIT TO THROW ERRORS EARLY
         _email_server = SMTP_SSL(
-            EmailNotifications.email_smtp_server,
-            EmailNotifications.email_smtp_server_port,
+            self.email_smtp_server,
+            self.email_smtp_server_port,
         )
         _email_server.ehlo()
         _email_server.login(
-            user=EmailNotifications.email_username,
-            password=EmailNotifications._email_password,
+            user=self.email_username,
+            password=self._email_password,
         )
         _email_server.quit()
 
-    def __repr__(self):
-        """
-        String Representation
-        """
-        return "<EmailNotifications>"
-
-    @staticmethod
-    def send_message(message: str, **kwargs) -> object:
+    def send_message(self, message: str, **kwargs) -> None:
         """
         Send a message via Email
 
@@ -89,30 +83,22 @@ class EmailNotifications(BaseNotifications):
         """
         email = EmailMessage()
         email.set_content(message)
-        email["Subject"] = kwargs.get("subject", EmailNotifications.email_subject)
-        email["From"] = kwargs.get("from", EmailNotifications.email_from)
-        email["To"] = kwargs.get("to", EmailNotifications.email_to)
-        email_server_user = kwargs.get("username", EmailNotifications.email_username)
-        email_server_password = kwargs.get(
-            "password", EmailNotifications._email_password
-        )
-        email_server_smtp_server = kwargs.get(
-            "server", EmailNotifications.email_smtp_server
-        )
-        email_server_smtp_server_port = kwargs.get(
-            "port", EmailNotifications.email_smtp_server_port
-        )
+        email["Subject"] = kwargs.get("subject", self.email_subject)
+        email["From"] = kwargs.get("from", self.email_from)
+        email["To"] = kwargs.get("to", self.email_to)
+        email_server_user = kwargs.get("username", self.email_username)
+        email_server_password = kwargs.get("password", self._email_password)
+        email_server_smtp_server = kwargs.get("server", self.email_smtp_server)
+        email_server_smtp_server_port = kwargs.get("port", self.email_smtp_server_port)
         email_server = SMTP_SSL(email_server_smtp_server, email_server_smtp_server_port)
         email_server.ehlo()
         email_server.login(user=email_server_user, password=email_server_password)
         logger.info(f"Sending Email to {email['To']}: {email['Subject']}")
-        response = email_server.send_message(email)
+        email_server.send_message(email)
         logger.info("Email sent successfully")
         email_server.quit()
-        return response
 
-    @classmethod
-    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs) -> None:
+    def send_campsites(self, campsites: List[AvailableCampsite], **kwargs) -> None:
         """
         Send a message with a campsite object
 
@@ -122,7 +108,7 @@ class EmailNotifications(BaseNotifications):
         """
         master_email_body_list = list()
         for campsite in campsites:
-            message_title, formatted_dict = cls.format_standard_campsites(
+            message_title, formatted_dict = self.format_standard_campsites(
                 campsite=campsite,
             )
             fields = [message_title]
@@ -134,4 +120,4 @@ class EmailNotifications(BaseNotifications):
             master_email_body_list.append(composed_message)
         master_email_body = "\n".join(master_email_body_list)
         if len(campsites) > 0:
-            EmailNotifications.send_message(message=master_email_body)
+            self.send_message(message=master_email_body)

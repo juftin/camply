@@ -20,6 +20,8 @@ class TelegramNotifications(BaseNotifications):
     """
 
     def __init__(self):
+        super().__init__()
+        self.session.headers.update(TelegramConfig.API_HEADERS)
         if any(
             [
                 TelegramConfig.BOT_TOKEN is None,
@@ -36,14 +38,7 @@ class TelegramNotifications(BaseNotifications):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
-    def __repr__(self):
-        """
-        String Representation
-        """
-        return "<TelegramNotifications>"
-
-    @staticmethod
-    def send_message(message: str, escaped=False, **kwargs) -> requests.Response:
+    def send_message(self, message: str, escaped=False, **kwargs) -> requests.Response:
         """
         Send a message via Telegram - if environment variables are configured
 
@@ -57,15 +52,11 @@ class TelegramNotifications(BaseNotifications):
         requests.Response
         """
         if not escaped:
-            message = TelegramNotifications.escape_text(message)
-
-        telegram_headers = TelegramConfig.API_HEADERS.copy()
+            message = self.escape_text(message)
         message_json = TelegramConfig.API_CONTENT.copy()
         message_json.update({"text": message})
         logger.debug(message_json)
-        response = requests.post(
-            url=TelegramConfig.API_ENDPOINT, headers=telegram_headers, json=message_json
-        )
+        response = self.session.post(url=TelegramConfig.API_ENDPOINT, json=message_json)
         try:
             response.raise_for_status()
         except requests.HTTPError as he:
@@ -113,8 +104,7 @@ class TelegramNotifications(BaseNotifications):
             message = message.replace(f, f"\\{f}")
         return message
 
-    @classmethod
-    def send_campsites(cls, campsites: List[AvailableCampsite], **kwargs):
+    def send_campsites(self, campsites: List[AvailableCampsite], **kwargs):
         """
         Send a message with a campsite object
 
@@ -123,12 +113,12 @@ class TelegramNotifications(BaseNotifications):
         campsites: AvailableCampsite
         """
         for campsite in campsites:
-            message_title, formatted_dict = cls.format_standard_campsites(
+            message_title, formatted_dict = self.format_standard_campsites(
                 campsite=campsite,
             )
             fields = []
             for key, value in formatted_dict.items():
-                fields.append(cls.escape_text(f"{key}: {value}"))
+                fields.append(self.escape_text(f"{key}: {value}"))
             message_fields = "\n".join(fields)
-            message = f"*{TelegramNotifications.escape_text(message_title)}*\n{message_fields}"
-            TelegramNotifications.send_message(message, escaped=True)
+            message = f"*{self.escape_text(message_title)}*\n{message_fields}"
+            self.send_message(message, escaped=True)
