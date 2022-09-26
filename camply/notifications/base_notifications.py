@@ -29,7 +29,6 @@ class BaseNotifications(ABC):
         """
         Instantiate with a Requests Session
         """
-
         self.session = requests.Session()
 
     def __repr__(self) -> str:
