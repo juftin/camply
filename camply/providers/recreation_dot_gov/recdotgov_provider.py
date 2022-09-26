@@ -431,9 +431,15 @@ class RecreationDotGov(BaseProvider):
         except (KeyError, IndexError):
             facility_state = "USA"
         try:
-            recreation_area = facility_object.RECAREA[0].RecAreaName
-            recreation_area_id = facility_object.RECAREA[0].RecAreaID
-            formatted_recreation_area = f"{recreation_area}, {facility_state}"
+            if len(facility_object.RECAREA) == 0:
+                recreation_area_id = 0
+                formatted_recreation_area = (
+                    f"{facility_object.FacilityName.title()}, {facility_state}"
+                )
+            else:
+                recreation_area = facility_object.RECAREA[0].RecAreaName
+                recreation_area_id = facility_object.RECAREA[0].RecAreaID
+                formatted_recreation_area = f"{recreation_area}, {facility_state}"
             campground_facility = CampgroundFacility(
                 facility_name=facility_object.FacilityName.title(),
                 recreation_area=formatted_recreation_area,
