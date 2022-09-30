@@ -1,8 +1,10 @@
 """
 Recreation.gov Web Searching Utilities
 """
-
+import json
 import logging
+import pathlib
+import pickle
 from abc import ABC, abstractmethod
 from datetime import datetime
 from itertools import groupby, islice, tee
@@ -12,8 +14,10 @@ from time import sleep
 from typing import Generator, Iterable, List, Optional, Set, Union
 
 import pandas as pd
+import rich
 import tenacity
 from pandas import DataFrame, Series, Timedelta, Timestamp, concat, date_range
+from rich import inspect
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
@@ -49,6 +53,9 @@ class BaseCampingSearch(ABC):
         search_window: Union[SearchWindow, List[SearchWindow]],
         weekends_only: bool = False,
         nights: int = 1,
+        offline_search: bool = False,
+        offline_search_path: Optional[str] = None,
+        **kwargs,
     ) -> None:
         """
         Initialize with Search Parameters
@@ -64,6 +71,13 @@ class BaseCampingSearch(ABC):
             Saturday nights)
         nights: int
             minimum number of consecutive nights to search per campsite,defaults to 1
+        offline_search: bool
+            When set to True, the campsite search will both save the results of the
+            campsites it's found, but also load those campsites before beginning a
+            search for other campsites.
+        offline_search_path: Optional[str]
+            When offline search is set to True, this is the name of the file to be saved/loaded.
+            When not specified, the filename will default to `camply_campsites.pkl`
         """
         self.campsite_finder: Union[RecreationDotGov, YellowstoneLodging] = provider
         self.search_window: List[SearchWindow] = make_list(search_window)
@@ -71,7 +85,19 @@ class BaseCampingSearch(ABC):
         self.search_days: List[datetime] = self._get_search_days()
         self.search_months: List[datetime] = self._get_search_months()
         self.nights = self._validate_consecutive_nights(nights=nights)
+        self.offline_search = offline_search
+        self.offline_search_path = self._set_offline_search_path(
+            file_path=offline_search_path
+        )
         self.campsites_found: Set[AvailableCampsite] = set()
+        if self.offline_search is True:
+            logger.info(
+                "Campsite search is configured to save offline: %s",
+                self.offline_search_path,
+            )
+            self.campsites_found: Set[
+                AvailableCampsite
+            ] = self.load_campsites_from_file()
 
     @abstractmethod
     def get_all_campsites(self) -> List[AvailableCampsite]:
@@ -418,6 +444,8 @@ class BaseCampingSearch(ABC):
                 continuous_search_attempts=continuous_search_attempts,
             )
             continuous_search_attempts += 1
+            if self.offline_search is True:
+                self.unload_campsites_to_file()
             if search_forever is True:
                 sleep(int(polling_interval_minutes) * 60)
             else:
@@ -478,6 +506,8 @@ class BaseCampingSearch(ABC):
                 log=log, verbose=True
             )
             self.campsites_found.update(set(matching_campsites))
+            if self.offline_search is True:
+                self.unload_campsites_to_file()
         return list(self.campsites_found)
 
     def _get_search_days(self) -> List[datetime]:
@@ -786,3 +816,77 @@ class BaseCampingSearch(ABC):
                                 f"{'s' if booking_nights > 1 else ''})"
                             )
         return availability_df
+
+    def unload_campsites_to_file(self) -> pathlib.Path:
+        """
+        Unload a BaseSearch Object's campsites to a serialized Pickle file.
+
+        Returns
+        -------
+        pathlib.Path
+        """
+        pickle.dump(
+            obj=self.campsites_found,
+            file=self.offline_search_path.open(mode="wb"),
+            protocol=4,
+            fix_imports=True,
+        )
+        return self.offline_search_path
+
+    def load_campsites_from_file(self) -> Set[AvailableCampsite]:
+        """
+        Load a BaseSearch Object's campsites from a serialized Pickle file.
+
+        Returns
+        -------
+        Set[AvailableCampsite]
+        """
+        if self.offline_search_path.exists():
+            campsites: Set[AvailableCampsite] = pickle.load(
+                file=self.offline_search_path.open(mode="rb"), fix_imports=True
+            )
+            if len(campsites) > 0:
+                logger.info(
+                    "%s campsites loaded from file: %s",
+                    len(campsites),
+                    self.offline_search_path,
+                )
+                # campsite_dicts = set([c.json() for c in campsites])
+                # campstr = []
+                # for d in campsite_dicts:
+                #     js = json.loads(d)
+                #     js.pop("permitted_equipment")
+                #     js.pop("campsite_attributes")
+                #     rich.print(js)
+                #     campstr.append(json.dumps(js, indent=4, sort_keys=True))
+                # rich.print(set(campstr))
+
+        else:
+            campsites = set()
+        return campsites
+
+    @staticmethod
+    def _set_offline_search_path(file_path: Optional[str]) -> pathlib.Path:
+        default_file_path = "camply_campsites.pkl"
+        if file_path is None:
+            file_path = default_file_path
+        returned_path = pathlib.Path(file_path).resolve()
+        parent_dir = pathlib.Path.cwd()
+        if all(
+            [
+                returned_path.exists(),
+                returned_path.is_file(),
+                set(returned_path.suffixes).issubset({".pkl", ".pickle"}),
+            ]
+        ):
+            path_obj = returned_path
+        elif all(
+            [
+                returned_path.exists(),
+                returned_path.is_dir(),
+            ]
+        ):
+            path_obj = returned_path.joinpath(default_file_path)
+        else:
+            path_obj = parent_dir.joinpath(file_path)
+        return path_obj

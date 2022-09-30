@@ -262,6 +262,22 @@ equipment_argument = click.option(
     "equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are "
     "not case-sensitive.",
 )
+offline_search_argument = click.option(
+    "--offline-search",
+    is_flag=True,
+    show_default=True,
+    default=False,
+    help="When set to True, the campsite search will both save the results of the "
+    "campsites it's found, but also load those campsites before beginning a"
+    "search for other campsites. Campsites are saved as a serialized pickle file.",
+)
+offline_search_path_argument = click.option(
+    "--offline-search-path",
+    show_default=True,
+    default=None,
+    help="When offline search is set to True, this is the name of the file to be saved/loaded. "
+    " When not specified, the filename will default to `camply_campsites.pkl`",
+)
 
 
 def _get_equipment(equipment: Optional[List[str]]) -> List[Tuple[str, Optional[int]]]:
@@ -327,6 +343,8 @@ def _validate_campsites(
 
 
 @yaml_config_argument
+@offline_search_path_argument
+@offline_search_argument
 @search_forever_argument
 @notify_first_try_argument
 @notifications_argument
@@ -358,6 +376,8 @@ def campsites(
     search_forever: bool = False,
     yaml_config: Optional[str] = None,
     equipment: Optional[List[str]] = None,
+    offline_search: bool = False,
+    offline_search_path: Optional[str] = None,
 ) -> None:
     """
     Find available Campsites using search criteria
@@ -404,6 +424,8 @@ def campsites(
             weekends_only=weekends,
             nights=int(nights),
             equipment=make_list(equipment),
+            offline_search=offline_search,
+            offline_search_path=offline_search_path,
         )
         search_kwargs = dict(
             log=True,

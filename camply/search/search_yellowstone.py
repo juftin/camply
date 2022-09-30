@@ -30,6 +30,8 @@ class SearchYellowstone(BaseCampingSearch):
         weekends_only: bool = False,
         campgrounds: Optional[Union[List[str], str]] = None,
         nights: int = 1,
+        offline_search: bool = False,
+        offline_search_path: Optional[str] = None,
         **kwargs,
     ) -> None:
         """
@@ -46,12 +48,21 @@ class SearchYellowstone(BaseCampingSearch):
             Campground ID or List of Campground IDs
         nights: int
             minimum number of consecutive nights to search per campsite,defaults to 1
+        offline_search: bool
+            When set to True, the campsite search will both save the results of the
+            campsites it's found, but also load those campsites before beginning a
+            search for other campsites.
+        offline_search_path: Optional[str]
+            When offline search is set to True, this is the name of the file to be saved/loaded.
+            When not specified, the filename will default to `camply_campsites.pkl`
         """
         super().__init__(
             provider=YellowstoneLodging(),
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
+            offline_search=offline_search,
+            offline_search_path=offline_search_path,
         )
         self.campgrounds = make_list(campgrounds)
 

@@ -18,11 +18,8 @@ class CamplyModel(BaseModel):
         """
         Hash Method for Pydantic BaseModels
         """
-        values_to_hash = tuple(
-            getattr(self, key)
-            for key in self.__fields__
-            if key not in self.__unhashable__
-        )
+        fields_to_hash = sorted(list(set(self.__fields__) - set(self.__unhashable__)))
+        values_to_hash = tuple(getattr(self, key) for key in fields_to_hash)
         return hash((type(self),) + values_to_hash)
 
 
