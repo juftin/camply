@@ -136,6 +136,15 @@ class _FacilityRecArea(CamplyModel):
     RecAreaName: str
 
 
+class _FacilityOrganization(CamplyModel):
+    """
+    Organization inside of Facility
+    """
+
+    OrgName: str
+    OrgID: int
+
+
 class FacilityResponse(CamplyModel):
     """
     /api/v1/facilities/<Facility ID>
@@ -148,6 +157,8 @@ class FacilityResponse(CamplyModel):
     Reservable: bool
     FACILITYADDRESS: Optional[List[_FacilityAddress]]
     RECAREA: Optional[List[_FacilityRecArea]]
+    ORGANIZATION: Optional[List[_FacilityOrganization]]
+    ParentRecAreaID: Optional[int]
 
 
 class _PaginationCountResponse(CamplyModel):

@@ -42,6 +42,7 @@ ___________
         + [Continuously Searching for A Campsite](#continuously-searching-for-a-campsite)
         + [Continue Looking After The First Match Is Found](#continue-looking-after-the-first-match-is-found)
         + [Send a Push Notification](#send-a-push-notification)
+        + [Send a Text Message](#send-a-text-message)
         + [Send a Notification to Different Services](#send-a-notification-to-different-services)
         + [Look for Weekend Campsite Availabilities](#look-for-weekend-campsite-availabilities)
         + [Look for Consecutive Nights at the Same Campsite](#look-for-consecutive-nights-at-the-same-campsite)
@@ -124,7 +125,7 @@ Commands:
   recreation-areas  Search for Recreation Areas and list them
 ```
 
-### `campsites`
+### campsites
 
 Search for a campsite within camply. Campsites are returned based on the search criteria provided.
 Campsites contain properties like booking date, site type (tent, RV, cabin, etc), capacity, price,
@@ -198,11 +199,11 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 ```shell
 camply campsites \
     --rec-area 2725 \
-    --start-date 2022-07-10 \
-    --end-date 2022-07-18
+    --start-date 2023-07-10 \
+    --end-date 2023-07-18
 ```
 
-### `recreation-areas`
+### recreation-areas
 
 Search for Recreation Areas and their IDs. Recreation Areas are places like National Parks and
 National Forests that can contain one or many campgrounds.
@@ -220,7 +221,7 @@ camply recreation-areas --search "Yosemite National Park"
 
 **_see the [examples](#search-for-recreation-areas-by-query-string) for more information_
 
-### `campgrounds`
+### campgrounds
 
 Search for Campgrounds and their IDs. Campgrounds are facilities inside of Recreation Areas that
 contain campsites. Most 'campgrounds' are areas made up of multiple campsites, others are facilities
@@ -243,7 +244,7 @@ camply campgrounds --search "Fire Tower Lookout" --state CA
 
 **_see the [examples](#look-for-specific-campgrounds-by-query-string) for more information_
 
-### `configure`
+### configure
 
 Set up `camply` configuration file with an interactive console
 
@@ -267,7 +268,7 @@ functionality of the different arguments provided to the CLI.
 #### Searching for a Campsite
 
 The below search looks for campsites inside of Recreation Area ID #2725 (Glacier National Park)
-between 2022-07-10 and 2022-07-17. The search will be performed once and any results will be logged
+between 2023-07-10 and 2023-07-17. The search will be performed once and any results will be logged
 to the console. camply searches for campsites inside of search windows in increments of one night.
 `--start-date` and `--end-date` define the bounds of the search window, you will be leaving the day
 after `--end-date`.
@@ -275,14 +276,14 @@ after `--end-date`.
 ```shell
 camply campsites \
     --rec-area 2725 \
-    --start-date 2022-07-10 \
-    --end-date 2022-07-18
+    --start-date 2023-07-10 \
+    --end-date 2023-07-18
 ```
 
 #### Searching for a Campsite by Campground ID
 
 The below search looks for across three campgrounds (all inside Glacier National Park)
-between 2022-07-10 and 2022-07-17. Multiple Campgrounds (and Recreation Areas too) can be found by
+between 2023-07-10 and 2023-07-17. Multiple Campgrounds (and Recreation Areas too) can be found by
 supplying the arguments more than once.
 
 ```shell
@@ -290,8 +291,8 @@ camply campsites \
     --campground 232493 \
     --campground 251869 \
     --campground 232492 \
-    --start-date 2022-07-10 \
-    --end-date 2022-07-18
+    --start-date 2023-07-10 \
+    --end-date 2023-07-18
 ```
 
 #### Searching for a Specific Campsite by ID
@@ -309,8 +310,8 @@ or `--campground` parameters provided.
 ```shell
 camply campsites \
     --campsite 98363 \
-    --start-date 2022-07-10 \
-    --end-date 2022-07-18
+    --start-date 2023-07-10 \
+    --end-date 2023-07-18
 ```
 
 #### Continuously Searching for A Campsite
@@ -329,8 +330,8 @@ this behavior and send all notifications, pass the `--notify-first-try` argument
 ```shell
 camply campsites \
     --rec-area 2725 \
-    --start-date 2022-07-12 \
-    --end-date 2022-07-13 \
+    --start-date 2023-07-12 \
+    --end-date 2023-07-13 \
     --continuous \
     --notifications pushover \
     --notify-first-try
@@ -347,8 +348,8 @@ problematic when certain campsites become available more than once.
 ```shell
 camply campsites \
     --rec-area 2725 \
-    --start-date 2022-07-01 \
-    --end-date 2022-08-01 \
+    --start-date 2023-07-01 \
+    --end-date 2023-08-01 \
     --continuous \
     --notifications pushover \
     --search-forever
@@ -367,33 +368,45 @@ command) or though environment variables (`PUSHBULLET_API_TOKEN`).
 ```shell
 camply campsites \
     --rec-area 2991 \
-    --start-date 2022-09-10 \
-    --end-date 2022-09-21 \
+    --start-date 2023-09-10 \
+    --end-date 2023-09-21 \
     --continuous \
     --notifications pushbullet
+```
+
+#### Send a Text Message
+
+If you want to sign up for a [Twilio](https://www.twilio.com/try-twilio) account, camply also supports
+sending text messages via SMS. You can set up your Twilio configuration via `camply configure`. You will need
+to set the following config values for Twilio: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`,
+`TWILIO_SOURCE_NUMBER`, `TWILIO_DEST_NUMBERS`.
+
+Sending text messages via Twilio also requires the `twilio` extras:
+
+```
+pip install camply[twilio]
+```
+
+```shell
+camply campsites \
+    --rec-area 2991 \
+    --start-date 2023-09-10 \
+    --end-date 2023-09-21 \
+    --continuous \
+    --notifications twilio
 ```
 
 #### Send a Notification to Different Services
 
 camply supports notifications from different providers. To send notifications to multiple providers
-just separate them with a comma. If you're adding spaces between the commas make sure to quote
-everything. You can also pass the --notifications parameter multiple times. YAML config entries also
+you can pass the --notifications parameter multiple times. YAML config entries also
 accept an array as well.
 
 ```shell
 camply campsites \
     --rec-area 2991 \
-    --start-date 2022-09-10 \
-    --end-date 2022-09-21 \
-    --continuous \
-    --notifications pushover,email
-```
-
-```shell
-camply campsites \
-    --rec-area 2991 \
-    --start-date 2022-09-10 \
-    --end-date 2022-09-21 \
+    --start-date 2023-09-10 \
+    --end-date 2023-09-21 \
     --continuous \
     --notifications email \
     --notifications pushover
@@ -408,8 +421,8 @@ checks every 5 minutes instead of the default 10 minutes.
 ```shell
 camply campsites \
     --rec-area 2991 \
-    --start-date 2022-05-01 \
-    --end-date 2022-08-01 \
+    --start-date 2023-05-01 \
+    --end-date 2023-08-01 \
     --weekends \
     --continuous \
     --notifications email \
@@ -429,8 +442,8 @@ more than this your `--nights` parameter will be overwritten to 2.
 ```shell
 camply campsites \
     --rec-area 2991 \
-    --start-date 2022-05-01 \
-    --end-date 2022-08-01 \
+    --start-date 2023-05-01 \
+    --end-date 2023-08-01 \
     --nights 4
 ```
 
@@ -446,8 +459,8 @@ this [discussion](https://github.com/juftin/camply/discussions/15#discussioncomm
 ```shell
 camply campsites \
     --provider yellowstone \
-    --start-date 2022-07-09 \
-    --end-date 2022-07-17 \
+    --start-date 2023-07-09 \
+    --end-date 2023-07-17 \
     --continuous
 ```
 
@@ -461,8 +474,8 @@ arguments will overwrite all `--rec-area` arguments.
 camply campsites \
     --rec-area 2991 \
     --rec-area 1074 \
-    --start-date 2022-07-09 \
-    --end-date 2022-07-17 \
+    --start-date 2023-07-09 \
+    --end-date 2023-07-17 \
     --nights 5
 ```
 
@@ -478,8 +491,8 @@ recreation_area: # (LIST OR SINGLE ENTRY)
   - 1074  # Sierra National Forest, CA (All Campgrounds)
 campgrounds:      null  # ENTIRE FIELD CAN BE OMITTED IF NOT USED - (LIST OR SINGLE ENTRY)
 campsites:        null   # OVERRIDES CAMPGROUNDS / RECREATION AREA - (LIST OR SINGLE ENTRY)
-start_date:       2022-09-12  # YYYY-MM-DD
-end_date:         2022-09-13  # YYYY-MM-DD
+start_date:       2023-09-12  # YYYY-MM-DD
+end_date:         2023-09-13  # YYYY-MM-DD
 weekends:         false  # FALSE BY DEFAULT
 nights:           1  # 1 BY DEFAULT
 continuous:       true  # DEFAULTS TO TRUE
@@ -510,8 +523,8 @@ it is safer to set length to 0.
 ```shell
 camply campsites \
     --rec-area 2991 \
-    --start-date 2022-07-09 \
-    --end-date 2022-07-17 \
+    --start-date 2023-07-09 \
+    --end-date 2023-07-17 \
     --nights 5 \
     --equipment RV 25
 ```
@@ -521,8 +534,8 @@ Here's what the above search would look like on a YAML Config:
 ```yaml
 recreation_area:
     - 2991
-start_date:       2022-07-09
-end_date:         2022-07-17
+start_date:       2023-07-09
+end_date:         2023-07-17
 nights:           5
 equipment:
     - [RV, 25]
@@ -533,8 +546,8 @@ Finally, here's a search that accommodates trailers of all lengths:
 ```shell
 camply campsites \
     --rec-area 2991 \
-    --start-date 2022-07-09 \
-    --end-date 2022-07-17 \
+    --start-date 2023-07-09 \
+    --end-date 2023-07-17 \
     --nights 5 \
     --equipment Trailer 0
 ```
@@ -675,8 +688,8 @@ docker run -d \
   juftin/camply \
   camply campsites \
       --rec-area 2991 \
-      --start-date 2022-08-01 \
-      --end-date 2022-09-01 \
+      --start-date 2023-08-01 \
+      --end-date 2023-09-01 \
       --continuous \
       --notifications pushover
 ```
@@ -712,8 +725,8 @@ docker run \
   juftin/camply \
   camply campsites \
       --provider yellowstone \
-      --start-date 2022-07-22 \
-      --end-date 2022-07-27 \
+      --start-date 2023-07-22 \
+      --end-date 2023-07-27 \
       --continuous \
       --notifications email
 ```

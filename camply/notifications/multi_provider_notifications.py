@@ -13,6 +13,7 @@ from camply.notifications.pushover import PushoverNotifications
 from camply.notifications.silent_notifications import SilentNotifications
 from camply.notifications.slack import SlackNotifications
 from camply.notifications.telegram import TelegramNotifications
+from camply.notifications.twilio import TwilioNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +24,7 @@ CAMPSITE_NOTIFICATIONS: dict = {
     "pushbullet": PushbulletNotifications,
     "slack": SlackNotifications,
     "telegram": TelegramNotifications,
+    "twilio": TwilioNotifications,
 }
 
 
@@ -41,6 +43,7 @@ class MultiNotifierProvider(BaseNotifications):
             Provider String, Comma Separated Provider String, or list of provider
             strings
         """
+        super().__init__()
         self.providers = [SilentNotifications()]
         if isinstance(provider, str):
             provider = [prov_string.strip() for prov_string in provider.split(",")]

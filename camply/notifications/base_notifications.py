@@ -6,6 +6,8 @@ import logging
 from abc import ABC, abstractmethod
 from typing import Dict, List, Tuple
 
+import requests
+
 from camply.config import CampsiteContainerFields
 from camply.containers import AvailableCampsite
 
@@ -23,9 +25,20 @@ class BaseNotifications(ABC):
     Base Notifications
     """
 
-    @staticmethod
+    def __init__(self) -> None:
+        """
+        Instantiate with a Requests Session
+        """
+        self.session = requests.Session()
+
+    def __repr__(self) -> str:
+        """
+        String Representation
+        """
+        return f"<{self.__class__.__name__}>"
+
     @abstractmethod
-    def send_message(message: str, **kwargs):
+    def send_message(self, message: str, **kwargs):
         """
         Send a message
 
@@ -38,9 +51,8 @@ class BaseNotifications(ABC):
         """
         pass
 
-    @staticmethod
     @abstractmethod
-    def send_campsites(campsites: List[AvailableCampsite], **kwargs):
+    def send_campsites(self, campsites: List[AvailableCampsite], **kwargs):
         """
         Send a message with a campsite object
 
@@ -75,8 +87,13 @@ class BaseNotifications(ABC):
             elif key == CampsiteContainerFields.BOOKING_URL:
                 key = "booking_link"
             elif key == CampsiteContainerFields.PERMITTED_EQUIPMENT:
+                equipment = (
+                    []
+                    if campsite.permitted_equipment is None
+                    else campsite.permitted_equipment
+                )
                 value = "\n  - " + "\n  - ".join(
-                    set(item.equipment_name for item in campsite.permitted_equipment)
+                    set(item.equipment_name for item in equipment)
                 )
             if key not in [CampsiteContainerFields.CAMPSITE_ATTRIBUTES]:
                 formatted_key = key.replace("_", " ").title()
