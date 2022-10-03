@@ -22,6 +22,12 @@ class CamplyModel(BaseModel):
         values_to_hash = tuple(getattr(self, key) for key in fields_to_hash)
         return hash((type(self),) + values_to_hash)
 
+    def __eq__(self, other: Any) -> bool:
+        """
+        Use __hash__ to determine Equality
+        """
+        return hash(self) == hash(other)
+
 
 ############################
 # RecDotGov Base Containers

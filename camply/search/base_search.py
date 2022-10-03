@@ -11,13 +11,12 @@ from itertools import groupby, islice, tee
 from operator import itemgetter
 from os import getenv
 from time import sleep
-from typing import Generator, Iterable, List, Optional, Set, Union
+from typing import Any, Dict, Generator, Iterable, List, Optional, Set, Union
 
 import pandas as pd
-import rich
 import tenacity
 from pandas import DataFrame, Series, Timedelta, Timestamp, concat, date_range
-from rich import inspect
+from pydantic.json import pydantic_encoder
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
@@ -30,7 +29,13 @@ from camply.utils.logging_utils import get_emoji
 logger = logging.getLogger(__name__)
 
 
-class SearchError(Exception):
+class CamplyError(Exception):
+    """
+    Base Camply Error
+    """
+
+
+class SearchError(CamplyError):
     """
     Generic Search Error
     """
@@ -77,7 +82,7 @@ class BaseCampingSearch(ABC):
             search for other campsites.
         offline_search_path: Optional[str]
             When offline search is set to True, this is the name of the file to be saved/loaded.
-            When not specified, the filename will default to `camply_campsites.pkl`
+            When not specified, the filename will default to `camply_campsites.json`
         """
         self.campsite_finder: Union[RecreationDotGov, YellowstoneLodging] = provider
         self.search_window: List[SearchWindow] = make_list(search_window)
@@ -90,6 +95,15 @@ class BaseCampingSearch(ABC):
             file_path=offline_search_path
         )
         self.campsites_found: Set[AvailableCampsite] = set()
+        self.loaded_campsites: Set[AvailableCampsite] = set()
+        if self.offline_search_path.suffixes[-1] == ".json":
+            self.offline_mode: str = "json"
+        elif self.offline_search_path.suffixes[-1] in [".pkl", ".pickle"]:
+            self.offline_mode: str = "pickle"
+        else:
+            raise CamplyError(
+                "You must provide a `.json` or a `.pickle` / `.pkl` file name for offline searches"
+            )
         if self.offline_search is True:
             logger.info(
                 "Campsite search is configured to save offline: %s",
@@ -98,6 +112,7 @@ class BaseCampingSearch(ABC):
             self.campsites_found: Set[
                 AvailableCampsite
             ] = self.load_campsites_from_file()
+            self.loaded_campsites: Set[AvailableCampsite] = self.campsites_found.copy()
 
     @abstractmethod
     def get_all_campsites(self) -> List[AvailableCampsite]:
@@ -208,7 +223,17 @@ class BaseCampingSearch(ABC):
         self.assemble_availabilities(
             matching_data=matching_campgrounds, log=log, verbose=verbose
         )
-        if len(matching_campgrounds) == 0 and raise_error is True:
+        if (
+            self.offline_search is True
+            and self.loaded_campsites.issuperset(matching_campgrounds)
+            and raise_error is True
+        ):
+            campsite_availability_message = (
+                "No new Campsites were found, we'll continue checking"
+            )
+            logger.info(campsite_availability_message)
+            raise CampsiteNotFoundError(campsite_availability_message)
+        elif len(matching_campgrounds) == 0 and raise_error is True:
             campsite_availability_message = (
                 "No Campsites were found, we'll continue checking"
             )
@@ -825,11 +850,25 @@ class BaseCampingSearch(ABC):
         -------
         pathlib.Path
         """
-        pickle.dump(
-            obj=self.campsites_found,
-            file=self.offline_search_path.open(mode="wb"),
-            protocol=4,
-            fix_imports=True,
+        if self.offline_mode == "pickle":
+            pickle.dump(
+                obj=self.campsites_found,
+                file=self.offline_search_path.open(mode="wb"),
+                protocol=4,
+                fix_imports=True,
+            )
+        elif self.offline_mode == "json":
+            json.dump(
+                obj=self.campsites_found,
+                fp=self.offline_search_path.open(mode="w"),
+                sort_keys=True,
+                default=pydantic_encoder,
+                indent=4,
+            )
+        logger.debug(
+            "%s campsites saved to file: %s",
+            len(self.campsites_found),
+            self.offline_search_path,
         )
         return self.offline_search_path
 
@@ -842,32 +881,30 @@ class BaseCampingSearch(ABC):
         Set[AvailableCampsite]
         """
         if self.offline_search_path.exists():
-            campsites: Set[AvailableCampsite] = pickle.load(
-                file=self.offline_search_path.open(mode="rb"), fix_imports=True
-            )
+            if self.offline_mode == "pickle":
+                campsites: Set[AvailableCampsite] = pickle.load(
+                    file=self.offline_search_path.open(mode="rb"), fix_imports=True
+                )
+            elif self.offline_mode == "json":
+                campsites_dicts: List[Dict[str, Any]] = json.load(
+                    self.offline_search_path.open(mode="r"),
+                )
+                campsites: Set[AvailableCampsite] = set(
+                    [AvailableCampsite(**json_dict) for json_dict in campsites_dicts]
+                )
             if len(campsites) > 0:
                 logger.info(
                     "%s campsites loaded from file: %s",
                     len(campsites),
                     self.offline_search_path,
                 )
-                # campsite_dicts = set([c.json() for c in campsites])
-                # campstr = []
-                # for d in campsite_dicts:
-                #     js = json.loads(d)
-                #     js.pop("permitted_equipment")
-                #     js.pop("campsite_attributes")
-                #     rich.print(js)
-                #     campstr.append(json.dumps(js, indent=4, sort_keys=True))
-                # rich.print(set(campstr))
-
         else:
             campsites = set()
         return campsites
 
     @staticmethod
     def _set_offline_search_path(file_path: Optional[str]) -> pathlib.Path:
-        default_file_path = "camply_campsites.pkl"
+        default_file_path = "camply_campsites.json"
         if file_path is None:
             file_path = default_file_path
         returned_path = pathlib.Path(file_path).resolve()
@@ -876,7 +913,7 @@ class BaseCampingSearch(ABC):
             [
                 returned_path.exists(),
                 returned_path.is_file(),
-                set(returned_path.suffixes).issubset({".pkl", ".pickle"}),
+                set(returned_path.suffixes).issubset({".pkl", ".pickle", ".json"}),
             ]
         ):
             path_obj = returned_path

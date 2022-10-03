@@ -268,15 +268,17 @@ offline_search_argument = click.option(
     show_default=True,
     default=False,
     help="When set to True, the campsite search will both save the results of the "
-    "campsites it's found, but also load those campsites before beginning a"
-    "search for other campsites. Campsites are saved as a serialized pickle file.",
+    "campsites it's found, but also load those campsites before beginning a "
+    "search for other campsites.",
 )
 offline_search_path_argument = click.option(
     "--offline-search-path",
     show_default=True,
     default=None,
     help="When offline search is set to True, this is the name of the file to be saved/loaded. "
-    " When not specified, the filename will default to `camply_campsites.pkl`",
+    "Campsites can be saved as a serialized pickle file or "
+    "a JSON file, depending on the file extension. When not specified, "
+    "the filename will default to `camply_campsites.json`",
 )
 
 

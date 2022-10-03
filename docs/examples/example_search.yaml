@@ -14,3 +14,5 @@ notifications: email     # (silent, email, pushover, pushbullet, and telegram), 
 search_forever: true    # FALSE BY DEFAULT
 notify_first_try: false  # FALSE BY DEFAULT
 equipment:             # Array of Equipment Search Lists - DEFAULTS TO `null`
+offline_search: false    # FALSE BY DEFAULT
+offline_search_path: camply_campsites.json # Defaults to `camply_campsites.json`

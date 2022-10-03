@@ -50,6 +50,7 @@ ___________
         + [Look for a Campsite Across Multiple Recreation areas](#look-for-a-campsite-across-multiple-recreation-areas)
         + [Using a YAML Configuration file to search for campsites](#using-a-yaml-configuration-file-to-search-for-campsites)
         + [Searching for a Campsite That Fits Your Equipment](#searching-for-a-campsite-that-fits-your-equipment)
+        + [Saving the Results of a Search](#saving-the-results-of-a-search)
         + [Search for Recreation Areas by Query String](#search-for-recreation-areas-by-query-string)
         + [Look for Specific Campgrounds Within a Recreation Area](#look-for-specific-campgrounds-within-a-recreation-area)
         + [Look for Specific Campgrounds by Query String](#look-for-specific-campgrounds-by-query-string)
@@ -501,6 +502,8 @@ notifications:    email  # (silent, email, pushover, pushbullet, and telegram), 
 search_forever:   true  # FALSE BY DEFAULT
 notify_first_try: false  # FALSE BY DEFAULT
 equipment:        null # Array of Equipment Search Lists - DEFAULTS TO `null`
+offline_search: false    # FALSE BY DEFAULT
+offline_search_path: camply_campsites.json # Defaults to `camply_campsites.json`
 ```
 
 ```shell
@@ -550,6 +553,39 @@ camply campsites \
     --end-date 2023-07-17 \
     --nights 5 \
     --equipment Trailer 0
+```
+
+#### Saving the Results of a Search
+
+In some cases, you might want to save all the campsites found during one
+search and load them into a new search, so you don't receive duplicate notifications.
+This can be achieved by passing the `--offline-search` flag. By default, camply will save
+the results in a file called `camply_campsites.json`.
+
+Optionally, you can also path the `--offline-search-path` flag to specify a certain file
+path to save the results as. When a file path with a `.json` extension is passed
+camply will export the results as a JSON file. When the `.pkl` or `.pickle` extension is
+used, camply will use a serialized Pickle file.
+
+```shell
+camply \
+  campsites \
+  --campground 232064 \
+  --start-date 2023-09-01 \
+  --end-date 2023-10-01 \
+  --continuous \
+  --offline-search
+```
+
+```shell
+camply \
+  campsites \
+  --campground 232064 \
+  --start-date 2023-09-01 \
+  --end-date 2023-10-01 \
+  --continuous \
+  --offline-search \
+  --offline-search-path campsites.pkl
 ```
 
 #### Search for Recreation Areas by Query String

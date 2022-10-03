@@ -54,7 +54,7 @@ class SearchYellowstone(BaseCampingSearch):
             search for other campsites.
         offline_search_path: Optional[str]
             When offline search is set to True, this is the name of the file to be saved/loaded.
-            When not specified, the filename will default to `camply_campsites.pkl`
+            When not specified, the filename will default to `camply_campsites.json`
         """
         super().__init__(
             provider=YellowstoneLodging(),
