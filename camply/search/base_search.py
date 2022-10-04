@@ -229,7 +229,7 @@ class BaseCampingSearch(ABC):
             and raise_error is True
         ):
             campsite_availability_message = (
-                "No new Campsites were found, we'll continue checking"
+                "No New Campsites were found, we'll continue checking"
             )
             logger.info(campsite_availability_message)
             raise CampsiteNotFoundError(campsite_availability_message)
@@ -460,6 +460,7 @@ class BaseCampingSearch(ABC):
         continuous_search = True
         continuous_search_attempts = 1
         while continuous_search is True:
+            starting_count = len(self.campsites_found)
             self._continuous_search_retry(
                 log=log,
                 verbose=verbose,
@@ -468,8 +469,9 @@ class BaseCampingSearch(ABC):
                 notify_first_try=notify_first_try,
                 continuous_search_attempts=continuous_search_attempts,
             )
+            ending_count = len(self.campsites_found)
             continuous_search_attempts += 1
-            if self.offline_search is True:
+            if self.offline_search is True and ending_count > starting_count:
                 self.unload_campsites_to_file()
             if search_forever is True:
                 sleep(int(polling_interval_minutes) * 60)
@@ -672,9 +674,7 @@ class BaseCampingSearch(ABC):
         -------
         DataFrame
         """
-        duplicate_subset = set(dataframe.columns) - set(
-            AvailableCampsite.__unhashable__
-        )
+        duplicate_subset = set(dataframe.columns) - AvailableCampsite.__unhashable__
         dataframe_slice = dataframe.copy().reset_index(drop=True)
         nights_indexes = dataframe_slice.booking_date.index
         consecutive_generator = cls._consecutive_subseq(

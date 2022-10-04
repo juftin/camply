@@ -2,7 +2,7 @@
 Base Pydantic Object for Containers
 """
 
-from typing import Any, List
+from typing import Any, Set
 
 from pydantic import BaseModel
 
@@ -12,21 +12,30 @@ class CamplyModel(BaseModel):
     Hashable Pydantic Model
     """
 
-    __unhashable__: List[str] = []
+    __unhashable__: Set[str] = set()
 
     def __hash__(self):
         """
         Hash Method for Pydantic BaseModels
         """
-        fields_to_hash = sorted(list(set(self.__fields__) - set(self.__unhashable__)))
-        values_to_hash = tuple(getattr(self, key) for key in fields_to_hash)
-        return hash((type(self),) + values_to_hash)
+        return hash(self.__class__) + hash(
+            tuple(
+                value
+                for key, value in self.__dict__.items()
+                if key not in self.__unhashable__
+            )
+        )
 
     def __eq__(self, other: Any) -> bool:
         """
-        Use __hash__ to determine Equality
+        Exclude Unhashable Fields When Evaluating Equality
         """
-        return hash(self) == hash(other)
+        if isinstance(other, CamplyModel):
+            return self.dict(exclude=self.__unhashable__) == other.dict(
+                exclude=other.__unhashable__
+            )
+        else:
+            return self.dict(exclude=self.__unhashable__) == other
 
 
 ############################
