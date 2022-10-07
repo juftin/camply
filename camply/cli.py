@@ -21,12 +21,29 @@ from camply.utils import configure_camply, log_camply, make_list, yaml_utils
 logging.Logger.camply = log_camply
 logger = logging.getLogger(__name__)
 
+debug_option = click.option(
+    "--debug/--no-debug", default=None, help="Enable extra debugging output"
+)
+
+
+def _set_up_debug(debug: Optional[bool] = None) -> None:
+    """
+    Set up the Camply Debugging Mode
+    """
+    if debug is None:
+        debug = False
+    if debug is True:
+        set_up_logging(log_level=logging.DEBUG)
+        logger.debug("Setting up camply debugging")
+        logger.debug("Camply Version: %s", __version__)
+        logger.debug("Python Version: %s", sys.version.split(" ")[0])
+        logger.debug("Platform: %s", sys.platform)
+    traceback.install(show_locals=debug)
+
 
 @click.group()
 @click.version_option(version=__version__, prog_name=__application__)
-@click.option(
-    "--debug/--no-debug", default=False, help="Enable extra debugging output."
-)
+@debug_option
 @click.pass_context
 def camply_command_line(ctx: click.core.Context, debug: bool) -> None:
     """
@@ -40,20 +57,17 @@ def camply_command_line(ctx: click.core.Context, debug: bool) -> None:
 
     visit the camply documentation at https://github.com/juftin/camply
     """
+    set_up_logging(log_level=None if debug is False else logging.INFO)
+    logger.camply("camply, the campsite finder ⛺️")  # noqa
     ctx.ensure_object(dict)
     ctx.obj["DEBUG"] = debug
-    set_up_logging(log_level=None if debug is False else logging.DEBUG)
-    logger.camply("camply, the campsite finder ⛺️")  # noqa
-    if debug is True:
-        logger.debug("Setting up camply debugging")
-        logger.debug("Camply Version: %s", __version__)
-        logger.debug("Python Version: %s", sys.version.split(" ")[0])
-        logger.debug("Platform: %s", sys.platform)
-    traceback.install(show_locals=debug)
+    _set_up_debug(debug=debug)
 
 
 @camply_command_line.command()
-def configure() -> None:
+@debug_option
+@click.pass_context
+def configure(ctx: click.core.Context, debug: bool) -> None:
     """
     Set up camply configuration file with an interactive console
 
@@ -63,6 +77,9 @@ def configure() -> None:
     can be done through the configure command. The end result is a file called .camply in your
     home folder.
     """
+    if ctx.obj["DEBUG"] is None:
+        ctx.obj["DEBUG"] = debug
+        _set_up_debug(debug=ctx.obj["DEBUG"])
     configure_camply.generate_dot_camply_file()
 
 
@@ -97,16 +114,23 @@ provider_argument = click.option(
 )
 
 
+@camply_command_line.command()
 @search_argument
 @state_argument
-@camply_command_line.command()
-def recreation_areas(search: Optional[str], state: Optional[str]) -> None:
+@debug_option
+@click.pass_context
+def recreation_areas(
+    ctx: click.core.Context, search: Optional[str], state: Optional[str], debug: bool
+) -> None:
     """
     Search for Recreation Areas and list them
 
     Search for Recreation Areas and their IDs. Recreation Areas are places like
     National Parks and National Forests that can contain one or many campgrounds.
     """
+    if ctx.obj["DEBUG"] is None:
+        ctx.obj["DEBUG"] = debug
+        _set_up_debug(debug=ctx.obj["DEBUG"])
     if all([search is None, state is None]):
         logger.error(
             "You must add a --search or --state parameter to search "
@@ -120,14 +144,18 @@ def recreation_areas(search: Optional[str], state: Optional[str]) -> None:
     camp_finder.find_recreation_areas(search_string=search, **params)
 
 
+@camply_command_line.command()
 @search_argument
 @state_argument
 @rec_area_argument
 @campground_argument
 @campsite_id_argument
 @provider_argument
-@camply_command_line.command()
+@debug_option
+@click.pass_context
 def campgrounds(
+    ctx: click.core.Context,
+    debug: bool,
     search: Optional[str] = None,
     state: Optional[str] = None,
     rec_area: Optional[int] = None,
@@ -143,6 +171,9 @@ def campgrounds(
     multiple campsites, others are facilities like fire towers or cabins that might only
     contain a single 'campsite' to book.
     """
+    if ctx.obj["DEBUG"] is None:
+        ctx.obj["DEBUG"] = debug
+        _set_up_debug(debug=ctx.obj["DEBUG"])
     if provider.lower() == "yellowstone":
         SearchYellowstone.print_campgrounds()
         exit(0)
@@ -326,6 +357,7 @@ def _validate_campsites(
             exit(1)
 
 
+@camply_command_line.command()
 @yaml_config_argument
 @search_forever_argument
 @notify_first_try_argument
@@ -341,8 +373,11 @@ def _validate_campsites(
 @campsite_id_argument
 @campground_argument
 @rec_area_argument
-@camply_command_line.command()
+@debug_option
+@click.pass_context
 def campsites(
+    ctx: click.core.Context,
+    debug: bool,
     rec_area: Optional[int] = None,
     campground: Optional[int] = None,
     campsite: Optional[int] = None,
@@ -369,6 +404,9 @@ def campsites(
     functionality can be enabled with  `--continuous` and notifications can be enabled using
     `--notifications`.
     """
+    if ctx.obj["DEBUG"] is None:
+        ctx.obj["DEBUG"] = debug
+        _set_up_debug(debug=ctx.obj["DEBUG"])
     notifications = make_list(notifications)
     _validate_campsites(
         rec_area=rec_area,

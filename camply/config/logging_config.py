@@ -62,14 +62,11 @@ def set_up_logging(log_level: Optional[int] = None) -> None:
     log_handler, handler_level = get_log_handler(log_level=log_level)
     if isinstance(log_handler, RichHandler):
         kwargs["datefmt"] = "[%Y-%m-%d %H:%M:%S]"
-        kwargs["format"] = "%(message)s"
+        kwargs["fmt"] = "%(message)s"
         level = logging.NOTSET
     else:
         level = handler_level
-    logging.basicConfig(
-        level=level,
-        handlers=[
-            log_handler,
-        ],
-        **kwargs,
-    )
+    formatter = logging.Formatter(**kwargs)
+    log_handler.setFormatter(formatter)
+    logging.root.handlers = [log_handler]
+    logging.root.level = level
