@@ -63,7 +63,7 @@ class AvailableCampsite(CamplyModel):
     permitted_equipment: Optional[List[RecDotGovEquipment]]
     campsite_attributes: Optional[List[RecDotGovAttribute]]
 
-    __unhashable__ = ["permitted_equipment", "campsite_attributes"]
+    __unhashable__ = {"permitted_equipment", "campsite_attributes"}
 
 
 class CampgroundFacility(CamplyModel):

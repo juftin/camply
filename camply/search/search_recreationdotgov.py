@@ -33,6 +33,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
         weekends_only: bool = False,
         nights: int = 1,
         equipment: Optional[List[Tuple[str, Optional[int]]]] = None,
+        offline_search: bool = False,
+        offline_search_path: Optional[str] = None,
         **kwargs,
     ) -> None:
         """
@@ -60,6 +62,13 @@ class SearchRecreationDotGov(BaseCampingSearch):
             to 20 feet. Tuples contain the Equipment name and an optional equipment
             length, otherwise provide None. Equipment names include `Tent`, `RV`,
             `Trailer`, `Vehicle` and are not case-sensitive.
+        offline_search: bool
+            When set to True, the campsite search will both save the results of the
+            campsites it's found, but also load those campsites before beginning a
+            search for other campsites.
+        offline_search_path: Optional[str]
+            When offline search is set to True, this is the name of the file to be saved/loaded.
+            When not specified, the filename will default to `camply_campsites.json`
         """
         self.campsite_finder: RecreationDotGov
         super(SearchRecreationDotGov, self).__init__(
@@ -67,6 +76,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
+            offline_search=offline_search,
+            offline_search_path=offline_search_path,
         )
         self._recreation_area_id = make_list(recreation_area)
         self._campground_object = campgrounds
