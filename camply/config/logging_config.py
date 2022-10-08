@@ -12,7 +12,7 @@ from rich.logging import RichHandler
 
 def get_log_handler(
     log_level: Optional[int] = None,
-) -> Tuple[logging.Handler, Union[int, Any]]:
+) -> Tuple[logging.Handler, Union[int, str]]:
     """
     Determine which logging handler should be used
 
@@ -24,7 +24,7 @@ def get_log_handler(
 
     Returns
     -------
-    Tuple[logging.Handler, Union[int, Any]]
+    Tuple[logging.Handler, Union[int, str]]
     """
     if log_level is None:
         log_level = logging.getLevelName(getenv("LOG_LEVEL", "INFO").upper())
@@ -57,12 +57,12 @@ def set_up_logging(log_level: Optional[int] = None) -> None:
         Which logging level should be used. If none is provided the LOG_LEVEL environment
         variable will be used, defaulting to "INFO".
     """
-    log_handler, handler_level = get_log_handler(log_level=log_level)
+    log_handler, level_to_log = get_log_handler(log_level=log_level)
     logging.root.handlers = [log_handler]
     if isinstance(log_handler, RichHandler):
         rich_formatter = logging.Formatter(
             datefmt="[%Y-%m-%d %H:%M:%S]", fmt="%(message)s"
         )
         logging.root.handlers[0].setFormatter(rich_formatter)
-        log_level = logging.NOTSET
-    logging.root.setLevel(log_level)
+        level_to_log = logging.NOTSET
+    logging.root.setLevel(level_to_log)
