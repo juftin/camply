@@ -396,7 +396,7 @@ class RecreationDotGov(BaseProvider):
                 facility = FacilityResponse(**possible_match)
             except ValidationError as e:
                 logger.error("That doesn't look like a valid Campground Facility")
-                logger.error(possible_match)
+                logger.error(json.dumps(possible_match))
                 logger.exception(e)
                 raise ProviderSearchError("Invalid Campground Facility Returned")
             if all(
