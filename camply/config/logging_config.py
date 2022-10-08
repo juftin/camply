@@ -5,7 +5,7 @@ Dynamic Logging Configuration
 import logging
 import os
 from os import getenv
-from typing import Any, Optional, Tuple, Union
+from typing import Optional, Tuple, Union
 
 from rich.logging import RichHandler
 
