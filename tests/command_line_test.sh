@@ -43,3 +43,6 @@ camply --debug campsites \
   --start-date 2023-10-01 \
   --end-date 2023-10-02 \
   --campground 234779
+
+camply --debug campgrounds --provider Yellowstone
+camply --provider Yellowstone campgrounds --debug

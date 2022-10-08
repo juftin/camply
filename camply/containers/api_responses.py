@@ -160,6 +160,15 @@ class FacilityResponse(CamplyModel):
     ORGANIZATION: Optional[List[_FacilityOrganization]]
     ParentRecAreaID: Optional[int]
 
+    @validator("ParentRecAreaID", pre=True, always=False)
+    def validate_parentrecid(cls, val: Any) -> Optional[int]:
+        """
+        Validate Empty Strings as Null
+        """
+        if val == "":
+            return None
+        return val
+
 
 class _PaginationCountResponse(CamplyModel):
     """
