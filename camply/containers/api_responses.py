@@ -161,7 +161,10 @@ class FacilityResponse(CamplyModel):
     ParentRecAreaID: Optional[int]
 
     @validator("ParentRecAreaID", pre=True, always=False)
-    def validate_parentrecid(cls, val):
+    def validate_parentrecid(cls, val: Any) -> Optional[int]:
+        """
+        Validate Empty Strings as Null
+        """
         if val == "":
             return None
         return val
