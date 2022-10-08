@@ -20,7 +20,7 @@ ___________
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yaml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 [![Black Codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)]()
-
+[![Discord Chat](https://img.shields.io/static/v1?label=chat&message=discord&color=blue&logo=discord)](https://discord.gg/qZDr78kKvB)
 
 ## [Check Out The Docs](https://juftin.com/camply/)
 
