@@ -4,6 +4,7 @@ Camply Command Line Interface
 
 import logging
 import sys
+from dataclasses import dataclass
 from datetime import datetime
 from typing import List, Optional, Tuple, Union
 
@@ -21,14 +22,52 @@ from camply.utils import configure_camply, log_camply, make_list, yaml_utils
 logging.Logger.camply = log_camply
 logger = logging.getLogger(__name__)
 
+DEFAULT_CAMPLY_PROVIDER: str = "RecreationDotGov"
+
+
+@dataclass
+class CamplyContext:
+    """
+    Context Object Passed Around Application
+    """
+
+    debug: Optional[bool] = None
+    provider: Optional[str] = None
+
+
+provider_argument = click.option(
+    "--provider",
+    show_default=False,
+    default=None,
+    help="Camping Search Provider. Options available are 'Yellowstone' and "
+    "'RecreationDotGov'. Defaults to 'RecreationDotGov', not case-sensitive.",
+)
+debug_option = click.option(
+    "--debug/--no-debug", default=None, help="Enable extra debugging output"
+)
+
+
+def _set_up_debug(debug: Optional[bool] = None) -> None:
+    """
+    Set up the Camply Debugging Mode
+    """
+    if debug is None:
+        debug = False
+    if debug is True:
+        set_up_logging(log_level=logging.DEBUG)
+        logger.debug("Setting up camply debugging")
+        logger.debug("Camply Version: %s", __version__)
+        logger.debug("Python Version: %s", sys.version.split(" ")[0])
+        logger.debug("Platform: %s", sys.platform)
+    traceback.install(show_locals=debug)
+
 
 @click.group()
 @click.version_option(version=__version__, prog_name=__application__)
-@click.option(
-    "--debug/--no-debug", default=False, help="Enable extra debugging output."
-)
+@provider_argument
+@debug_option
 @click.pass_context
-def camply_command_line(ctx: click.core.Context, debug: bool) -> None:
+def camply_command_line(ctx: click.core.Context, provider: str, debug: bool) -> None:
     """
     Welcome to camply, the campsite finder.
 
@@ -40,20 +79,16 @@ def camply_command_line(ctx: click.core.Context, debug: bool) -> None:
 
     visit the camply documentation at https://github.com/juftin/camply
     """
-    ctx.ensure_object(dict)
-    ctx.obj["DEBUG"] = debug
-    set_up_logging(log_level=None if debug is False else logging.DEBUG)
+    set_up_logging(log_level=None if debug is False else logging.INFO)
     logger.camply("camply, the campsite finder ⛺️")  # noqa
-    if debug is True:
-        logger.debug("Setting up camply debugging")
-        logger.debug("Camply Version: %s", __version__)
-        logger.debug("Python Version: %s", sys.version.split(" ")[0])
-        logger.debug("Platform: %s", sys.platform)
-    traceback.install(show_locals=debug)
+    ctx.obj = CamplyContext(debug=debug, provider=provider)
+    _set_up_debug(debug=debug)
 
 
 @camply_command_line.command()
-def configure() -> None:
+@debug_option
+@click.pass_obj
+def configure(context: CamplyContext, debug: bool) -> None:
     """
     Set up camply configuration file with an interactive console
 
@@ -63,6 +98,9 @@ def configure() -> None:
     can be done through the configure command. The end result is a file called .camply in your
     home folder.
     """
+    if context.debug is None:
+        context.debug = debug
+        _set_up_debug(debug=context.debug)
     configure_camply.generate_dot_camply_file()
 
 
@@ -88,25 +126,25 @@ campground_argument = click.option(
     multiple=True,
     help="Add individual Campgrounds by ID.",
 )
-provider_argument = click.option(
-    "--provider",
-    show_default=True,
-    default="RecreationDotGov",
-    help="Camping Search Provider. Options available are 'Yellowstone' and "
-    "'RecreationDotGov'. Defaults to 'RecreationDotGov', not case-sensitive.",
-)
 
 
+@camply_command_line.command()
 @search_argument
 @state_argument
-@camply_command_line.command()
-def recreation_areas(search: Optional[str], state: Optional[str]) -> None:
+@debug_option
+@click.pass_obj
+def recreation_areas(
+    context: CamplyContext, search: Optional[str], state: Optional[str], debug: bool
+) -> None:
     """
     Search for Recreation Areas and list them
 
     Search for Recreation Areas and their IDs. Recreation Areas are places like
     National Parks and National Forests that can contain one or many campgrounds.
     """
+    if context.debug is None:
+        context.debug = debug
+        _set_up_debug(debug=context.debug)
     if all([search is None, state is None]):
         logger.error(
             "You must add a --search or --state parameter to search "
@@ -120,14 +158,18 @@ def recreation_areas(search: Optional[str], state: Optional[str]) -> None:
     camp_finder.find_recreation_areas(search_string=search, **params)
 
 
+@camply_command_line.command()
 @search_argument
 @state_argument
 @rec_area_argument
 @campground_argument
 @campsite_id_argument
 @provider_argument
-@camply_command_line.command()
+@debug_option
+@click.pass_obj
 def campgrounds(
+    context: CamplyContext,
+    debug: bool,
     search: Optional[str] = None,
     state: Optional[str] = None,
     rec_area: Optional[int] = None,
@@ -143,6 +185,12 @@ def campgrounds(
     multiple campsites, others are facilities like fire towers or cabins that might only
     contain a single 'campsite' to book.
     """
+    if context.debug is None:
+        context.debug = debug
+        _set_up_debug(debug=context.debug)
+    if context.provider is None:
+        context.provider = provider
+    provider = DEFAULT_CAMPLY_PROVIDER if context.provider is None else context.provider
     if provider.lower() == "yellowstone":
         SearchYellowstone.print_campgrounds()
         exit(0)
@@ -262,6 +310,24 @@ equipment_argument = click.option(
     "equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are "
     "not case-sensitive.",
 )
+offline_search_argument = click.option(
+    "--offline-search",
+    is_flag=True,
+    show_default=True,
+    default=False,
+    help="When set to True, the campsite search will both save the results of the "
+    "campsites it's found, but also load those campsites before beginning a "
+    "search for other campsites.",
+)
+offline_search_path_argument = click.option(
+    "--offline-search-path",
+    show_default=True,
+    default=None,
+    help="When offline search is set to True, this is the name of the file to be saved/loaded. "
+    "Campsites can be saved as a serialized pickle file or "
+    "a JSON file, depending on the file extension. When not specified, "
+    "the filename will default to `camply_campsites.json`",
+)
 
 
 def _get_equipment(equipment: Optional[List[str]]) -> List[Tuple[str, Optional[int]]]:
@@ -326,7 +392,10 @@ def _validate_campsites(
             exit(1)
 
 
+@camply_command_line.command()
 @yaml_config_argument
+@offline_search_path_argument
+@offline_search_argument
 @search_forever_argument
 @notify_first_try_argument
 @notifications_argument
@@ -341,8 +410,11 @@ def _validate_campsites(
 @campsite_id_argument
 @campground_argument
 @rec_area_argument
-@camply_command_line.command()
+@debug_option
+@click.pass_obj
 def campsites(
+    context: CamplyContext,
+    debug: bool,
     rec_area: Optional[int] = None,
     campground: Optional[int] = None,
     campsite: Optional[int] = None,
@@ -358,6 +430,8 @@ def campsites(
     search_forever: bool = False,
     yaml_config: Optional[str] = None,
     equipment: Optional[List[str]] = None,
+    offline_search: bool = False,
+    offline_search_path: Optional[str] = None,
 ) -> None:
     """
     Find available Campsites using search criteria
@@ -369,6 +443,12 @@ def campsites(
     functionality can be enabled with  `--continuous` and notifications can be enabled using
     `--notifications`.
     """
+    if context.debug is None:
+        context.debug = debug
+        _set_up_debug(debug=context.debug)
+    if context.provider is None:
+        context.provider = provider
+    provider = DEFAULT_CAMPLY_PROVIDER if context.provider is None else context.provider
     notifications = make_list(notifications)
     _validate_campsites(
         rec_area=rec_area,
@@ -404,6 +484,8 @@ def campsites(
             weekends_only=weekends,
             nights=int(nights),
             equipment=make_list(equipment),
+            offline_search=offline_search,
+            offline_search_path=offline_search_path,
         )
         search_kwargs = dict(
             log=True,

@@ -116,6 +116,8 @@ def yaml_file_to_arguments(
     equipment = make_list(equipment)
     if isinstance(equipment, list):
         equipment = [tuple(equip) for equip in equipment]
+    offline_search = yaml_search.get("offline_search", False)
+    offline_search_path = yaml_search.get("offline_search_path", None)
 
     search_window = SearchWindow(start_date=start_date, end_date=end_date)
 
@@ -127,6 +129,8 @@ def yaml_file_to_arguments(
         weekends_only=weekends_only,
         nights=nights,
         equipment=equipment,
+        offline_search=offline_search,
+        offline_search_path=offline_search_path,
     )
     search_kwargs = dict(
         log=True,

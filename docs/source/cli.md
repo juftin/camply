@@ -18,7 +18,10 @@ Usage: camply [OPTIONS] COMMAND [ARGS]...
 
 Options:
   --version             Show the version and exit.
-  --debug / --no-debug  Enable extra debugging output.
+  --provider TEXT       Camping Search Provider. Options available are
+                        'Yellowstone' and 'RecreationDotGov'. Defaults to
+                        'RecreationDotGov', not case-sensitive.
+  --debug / --no-debug  Enable extra debugging output
   --help                Show this message and exit.
 
 Commands:

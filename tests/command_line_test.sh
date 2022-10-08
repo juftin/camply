@@ -38,3 +38,51 @@ camply \
   --campsite 84001 \
   --start-date 2023-09-27 \
   --end-date 2023-09-28
+
+camply --debug campsites \
+  --start-date 2023-10-01 \
+  --end-date 2023-10-02 \
+  --campground 234779
+
+camply --debug campgrounds --provider Yellowstone
+camply --provider Yellowstone campgrounds --debug
+
+camply \
+  --debug \
+  campsites \
+  --campground 232064 \
+  --start-date 2023-09-01 \
+  --end-date 2023-10-01 \
+  --offline-search \
+  --offline-search-path test_file.json
+
+camply \
+  --debug \
+  campsites \
+  --campground 232064 \
+  --start-date 2023-09-01 \
+  --end-date 2023-10-01 \
+  --offline-search \
+  --offline-search-path test_file.json
+
+rm test_file.json
+
+camply \
+  --debug \
+  campsites \
+  --campground 232064 \
+  --start-date 2023-09-01 \
+  --end-date 2023-10-01 \
+  --offline-search \
+  --offline-search-path test_file.pickle
+
+camply \
+  --debug \
+  campsites \
+  --campground 232064 \
+  --start-date 2023-09-01 \
+  --end-date 2023-10-01 \
+  --offline-search \
+  --offline-search-path test_file.pickle
+
+rm test_file.pickle
