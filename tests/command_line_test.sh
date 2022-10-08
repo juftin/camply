@@ -43,3 +43,6 @@ camply --debug campsites \
   --start-date 2023-10-01 \
   --end-date 2023-10-02 \
   --campground 234779
+
+poetry run camply --debug campgrounds --provider Yellowstone
+poetry run camply --provider Yellowstone campgrounds --debug
