@@ -529,11 +529,13 @@ class BaseCampingSearch(ABC):
                 search_forever=search_forever,
             )
         else:
+            starting_count = len(self.campsites_found)
             matching_campsites = self._search_matching_campsites_available(
                 log=log, verbose=True
             )
             self.campsites_found.update(set(matching_campsites))
-            if self.offline_search is True:
+            ending_count = len(self.campsites_found)
+            if self.offline_search is True and ending_count > starting_count:
                 self.unload_campsites_to_file()
         return list(self.campsites_found)
 
