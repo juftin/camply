@@ -31,7 +31,7 @@ jobs:
                 pip install poetry
                 poetry --version
         -   name: Fetch Related Pull Request Information
-            uses: 8BitJonny/gh-get-current-pr@2.1.2
+            uses: 8BitJonny/gh-get-current-pr@2.1.3
             id: PR
         -   name: Fetch Related Pull Request Labels
             run: |
