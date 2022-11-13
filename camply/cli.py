@@ -37,10 +37,8 @@ class CamplyContext:
 
 provider_argument = click.option(
     "--provider",
-    show_default=False,
-    default=None,
-    help="Camping Search Provider. Options available are 'Yellowstone' and "
-    "'RecreationDotGov'. Defaults to 'RecreationDotGov', not case-sensitive.",
+    type=click.Choice(CAMPSITE_SEARCH_PROVIDER.keys(), case_sensitive=False),
+    help="Camping Search Provider. Defaults to 'RecreationDotGov', not case-sensitive.",
 )
 debug_option = click.option(
     "--debug/--no-debug", default=None, help="Enable extra debugging output"
@@ -175,7 +173,7 @@ def campgrounds(
     rec_area: Optional[int] = None,
     campground: Optional[int] = None,
     campsite: Optional[int] = None,
-    provider: Optional[str] = "RecreationDotGov",
+    provider: Optional[str] = DEFAULT_CAMPLY_PROVIDER,
 ) -> None:
     """
     Search for Campgrounds (inside of Recreation Areas) and list them
@@ -208,7 +206,10 @@ def campgrounds(
             "or --rec-area parameter to search for Campgrounds."
         )
         exit(1)
-    camp_finder = RecreationDotGov()
+    search_provider_class = {
+        key.lower(): value for key, value in CAMPSITE_SEARCH_PROVIDER.items()
+    }[provider.lower()]
+    camp_finder = search_provider_class.provider_class()
     params = dict()
     if state is not None:
         params.update(dict(state=state))
@@ -359,7 +360,7 @@ def _validate_campsites(
     """
     Validate the campsites portion of the CLI
     """
-    if provider.lower() == "recreationdotgov" and all(
+    if provider.lower() != "yellowstone" and all(
         [
             len(rec_area) == 0,
             len(campground) == 0,
@@ -422,7 +423,7 @@ def campsites(
     end_date: Optional[str] = None,
     weekends: bool = False,
     nights: int = 1,
-    provider: str = "RecreationDotGov",
+    provider: str = DEFAULT_CAMPLY_PROVIDER,
     continuous: bool = False,
     polling_interval: int = SearchConfig.RECOMMENDED_POLLING_INTERVAL,
     notifications: Union[str, List[str]] = "silent",
