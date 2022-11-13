@@ -26,13 +26,13 @@ from camply.config import (
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
 from camply.containers.api_responses import (
     CampsiteAvailabilityResponse,
-    CampsiteResponse,
     FacilityResponse,
     GenericResponse,
     RecDotGovCampsite,
     RecDotGovCampsiteResponse,
     RecreationAreaResponse,
 )
+from camply.containers.base_container import CamplyModel
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
 from camply.utils import api_utils, logging_utils
 from camply.utils.logging_utils import log_sorted_response
@@ -40,10 +40,11 @@ from camply.utils.logging_utils import log_sorted_response
 logger = logging.getLogger(__name__)
 
 
-class RecreationDotGov(BaseProvider):
+class RecreationDotGovBase(BaseProvider):
     """
     Python Class for Working with Recreation.gov API / NPS APIs
     """
+    activity_name = None
 
     def __init__(self, api_key: str = None):
         """
@@ -163,6 +164,8 @@ class RecreationDotGov(BaseProvider):
                 raise RuntimeError(
                     "You must provide a search query or state to find campsites"
                 )
+            if self.activity_name:
+                kwargs["activity"] = self.activity_name
             facilities = self._find_facilities_from_search(
                 search=search_string, **kwargs
             )
@@ -252,7 +255,7 @@ class RecreationDotGov(BaseProvider):
         """
         facilities_response = self._ridb_get_paginate(
             path=RIDBConfig.FACILITIES_API_PATH,
-            params=dict(query=search, activity="CAMPING", full="true", **kwargs),
+            params=dict(query=search, full="true", **kwargs),
         )
         filtered_responses = self._filter_facilities_responses(
             responses=facilities_response
@@ -401,8 +404,7 @@ class RecreationDotGov(BaseProvider):
                 raise ProviderSearchError("Invalid Campground Facility Returned")
             if all(
                 [
-                    facility.FacilityTypeDescription
-                    == RIDBConfig.CAMPGROUND_FACILITY_FIELD_QUALIFIER,
+                    facility.FacilityTypeDescription == cls.facility_type,
                     facility.Enabled is True,
                     facility.Reservable is True,
                 ]
@@ -497,7 +499,7 @@ class RecreationDotGov(BaseProvider):
         base_url = api_utils.generate_url(
             scheme=RecreationBookingConfig.API_SCHEME,
             netloc=RecreationBookingConfig.API_NET_LOC,
-            path=RecreationBookingConfig.API_BASE_PATH,
+            path=cls.api_base_path,
         )
         endpoint_url = parse.urljoin(base_url, path)
         return endpoint_url
@@ -563,45 +565,6 @@ class RecreationDotGov(BaseProvider):
         response.raise_for_status()
         return response
 
-    def paginate_recdotgov_campsites(
-        self, facility_id: int, equipment: Optional[List[str]] = None
-    ) -> List[RecDotGovCampsite]:
-        """
-        Paginate through the RecDotGov Campsite Metadata
-        """
-        results = 0
-        continue_paginate = True
-        endpoint_url = api_utils.generate_url(
-            scheme=RecreationBookingConfig.API_SCHEME,
-            netloc=RecreationBookingConfig.API_NET_LOC,
-            path="api/search/campsites",
-        )
-        fq_list = [f"asset_id:{facility_id}"]
-        if isinstance(equipment, list) and len(equipment) > 0:
-            for item in equipment:
-                fq_list.append(f"campsite_equipment_name:{item}")
-        params = dict(
-            start=0,
-            size=1000,
-            fq=fq_list,
-            include_non_site_specific_campsites=True,
-        )
-        campsites = []
-        while continue_paginate is True:
-            response = self.make_recdotgov_request_retry(
-                method="GET",
-                url=endpoint_url,
-                params=params,
-            )
-            returned_data = json.loads(response.content)
-            campsite_response = RecDotGovCampsiteResponse(**returned_data)
-            campsites += campsite_response.campsites
-            results += campsite_response.size
-            params.update(start=results)
-            if results == campsite_response.total:
-                continue_paginate = False
-        return campsites
-
     @tenacity.retry(
         wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
         stop=tenacity.stop.stop_after_delay(6000),
@@ -624,16 +587,7 @@ class RecreationDotGov(BaseProvider):
         requests.Response
         """
         try:
-            api_endpoint = self._rec_availability_get_endpoint(
-                path=f"{campground_id}/{RecreationBookingConfig.API_MONTH_PATH}"
-            )
-            formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
-            query_params = dict(start_date=formatted_month)
-            response = self.make_recdotgov_request(
-                method="GET",
-                url=api_endpoint,
-                params=query_params,
-            )
+            response = self.make_recdotgov_availability_request(campground_id, month)
             assert response.status_code == 200
         except AssertionError:
             response_error = response.text
@@ -671,127 +625,7 @@ class RecreationDotGov(BaseProvider):
             )
         return loads(response.content)
 
-    @classmethod
-    def _items_to_unique_dicts(
-        cls, item: Union[List[Dict[str, Any]], pd.Series]
-    ) -> List[Dict[str, Any]]:
-        """
-        Ensure the proper items are parsed for equipment and attributes
-        """
-        if isinstance(item, pd.Series):
-            list_of_dicts = list(chain.from_iterable(item.tolist()))
-            unique_list_of_dicts = [
-                dict(s) for s in set(frozenset(d.items()) for d in list_of_dicts)
-            ]
-            return unique_list_of_dicts
-        else:
-            return item
-
-    @classmethod
-    def _get_equipment_and_attributes(
-        cls,
-        campsite_id: int,
-        campsite_metadata: pd.DataFrame,
-    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
-        """
-        Index a DataFrame in a Complicated Way
-        """
-        try:
-            equipment = campsite_metadata.at[campsite_id, "permitted_equipment"]
-        except LookupError:
-            equipment = None
-        try:
-            attributes = campsite_metadata.at[campsite_id, "attributes"]
-        except LookupError:
-            attributes = None
-        equipment = cls._items_to_unique_dicts(item=equipment)
-        attributes = cls._items_to_unique_dicts(item=attributes)
-        return equipment, attributes
-
-    @classmethod
-    def process_campsite_availability(
-        cls,
-        availability: dict,
-        recreation_area: str,
-        recreation_area_id: int,
-        facility_name: str,
-        facility_id: int,
-        month: datetime,
-        campsite_metadata: pd.DataFrame,
-    ) -> List[Optional[AvailableCampsite]]:
-        """
-        Parse the JSON Response and return availabilities
-
-        Parameters
-        ----------
-        availability: dict
-            API Response
-        recreation_area: str
-            Name of Recreation Area
-        recreation_area_id: int
-            ID of Recreation Area
-        facility_name: str
-            Campground Facility Name
-        facility_id: int
-            Campground Facility ID
-        month: datetime
-            Month to Process
-        campsite_metadata: pd.DataFrame
-            Metadata Fetched from the Recreation.gov API about the Campsites
-
-        Returns
-        -------
-        total_campsite_availability: List[Optional[AvailableCampsite]]
-            Any monthly availabilities
-        """
-        total_campsite_availability: List[Optional[AvailableCampsite]] = list()
-        campsite_data = CampsiteAvailabilityResponse(**availability)
-        for campsite_id, site_related_data in campsite_data.campsites.items():
-            for (
-                matching_date,
-                availability_status,
-            ) in site_related_data.availabilities.items():
-                if (
-                    availability_status
-                    not in RecreationBookingConfig.CAMPSITE_UNAVAILABLE_STRINGS
-                ):
-                    booking_url = (
-                        f"{RecreationBookingConfig.CAMPSITE_BOOKING_URL}/{campsite_id}"
-                    )
-                    equipment, attributes = cls._get_equipment_and_attributes(
-                        campsite_id=campsite_id, campsite_metadata=campsite_metadata
-                    )
-                    available_campsite = AvailableCampsite(
-                        campsite_id=campsite_id,
-                        booking_date=matching_date,
-                        booking_end_date=matching_date + timedelta(days=1),
-                        booking_nights=1,
-                        campsite_site_name=site_related_data.site,
-                        campsite_loop_name=site_related_data.loop,
-                        campsite_type=site_related_data.campsite_type,
-                        campsite_occupancy=(
-                            site_related_data.min_num_people,
-                            site_related_data.max_num_people,
-                        ),
-                        campsite_use_type=site_related_data.type_of_use,
-                        availability_status=availability_status,
-                        recreation_area=recreation_area,
-                        recreation_area_id=recreation_area_id,
-                        facility_name=facility_name,
-                        facility_id=facility_id,
-                        booking_url=booking_url,
-                        permitted_equipment=equipment,
-                        campsite_attributes=attributes,
-                    )
-                    total_campsite_availability.append(available_campsite)
-        logger.info(
-            f"\t{logging_utils.get_emoji(total_campsite_availability)}\t"
-            f"{len(total_campsite_availability)} total sites found in month of "
-            f"{month.strftime('%B')}"
-        )
-        return total_campsite_availability
-
-    def get_campsite_by_id(self, campsite_id: int) -> CampsiteResponse:
+    def get_campsite_by_id(self, campsite_id: int) -> CamplyModel:
         """
         Get a Campsite's Details
 
@@ -801,18 +635,18 @@ class RecreationDotGov(BaseProvider):
 
         Returns
         -------
-        CampsiteResponse
+        CamplyModel
         """
-        data = self.get_ridb_data(path=f"{RIDBConfig.CAMPSITE_API_PATH}/{campsite_id}")
+        data = self.get_ridb_data(path=f"{self.resource_api_path}/{campsite_id}")
         try:
-            response = CampsiteResponse(**data[0])
+            response = self.api_response_class(**data[0])
         except IndexError:
             raise ProviderSearchError(f"Campsite with ID #{campsite_id} not found.")
         return response
 
     def get_campground_ids_by_campsites(
         self, campsite_ids: List[int]
-    ) -> Tuple[List[int], List[CampsiteResponse]]:
+    ) -> Tuple[List[int], List[CamplyModel]]:
         """
         Retrieve a list of FacilityIDs, and Facilities from a Campsite ID List
 
@@ -823,7 +657,7 @@ class RecreationDotGov(BaseProvider):
 
         Returns
         -------
-        Tuple[List[int], List[CampsiteResponse]]
+        Tuple[List[int], List[CamplyModel]]
         """
         campground_ids = list()
         campgrounds = list()
@@ -858,8 +692,7 @@ class RecreationDotGov(BaseProvider):
             facilities.append(facility)
             logger.info(
                 "Searching Specific Campsite: ⛺️ "
-                f"{campsite.CampsiteName} (#{campsite.CampsiteID}) - "
-                f"{facility.facility_name}, {facility.recreation_area}"
+                f"{campsite} - {facility.facility_name}, {facility.recreation_area}"
             )
         return facilities
 
@@ -872,7 +705,7 @@ class RecreationDotGov(BaseProvider):
             all_campsites += self.paginate_recdotgov_campsites(facility_id=facility_id)
         all_campsite_df = pd.DataFrame(
             [item.dict() for item in all_campsites],
-            columns=RecDotGovCampsite.__fields__,
+            columns=self.api_search_result_class.__fields__,
         )
-        all_campsite_df.set_index("campsite_id", inplace=True)
+        all_campsite_df.set_index(self.api_search_result_key, inplace=True)
         return all_campsite_df
