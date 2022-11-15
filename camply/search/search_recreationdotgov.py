@@ -12,7 +12,7 @@ import pandas as pd
 from camply.config import RecreationBookingConfig
 from camply.config.search_config import EquipmentConfig, EquipmentOptions
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
-from camply.providers import RecreationDotGov, RecreationDotGovTicket, RecreationDotGovTimedEntry
+from camply.providers import RecreationDotGov
 from camply.search.base_search import BaseCampingSearch, SearchError
 from camply.utils import make_list, logging_utils
 
@@ -323,9 +323,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
         return original_campsites
 
 
-class SearchRecreationDotGovTicket(SearchRecreationDotGov):
-    provider_class = RecreationDotGovTicket
-
-
-class SearchRecreationDotGovTimedEntry(SearchRecreationDotGov):
-    provider_class = RecreationDotGovTimedEntry
+def SearchRecreationDotGovFor(provider):
+    class SearchRecreationDotGovClass(SearchRecreationDotGov):
+        provider_class = provider
+    return SearchRecreationDotGovClass

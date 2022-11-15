@@ -137,6 +137,41 @@ class UnawareDatetime(datetime.datetime):
             raise ValueError("You Must Provide a Parsable Datetime String or Object")
 
 
+class AwareDatetime(datetime.datetime):
+    """
+    Datetime Aware Timestamp Parsing
+    """
+
+    @classmethod
+    def __get_validators__(cls) -> Iterator:
+        """
+        Generate Validators
+        """
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v: Union[str, datetime.datetime]) -> datetime.datetime:
+        """
+        Validate Date Strings Into
+
+        Parameters
+        ----------
+        v: Union[str, datetime.datetime]
+
+        Returns
+        -------
+        datetime.datetime
+        """
+        if isinstance(v, str):
+            return datetime.datetime.strptime(v, "%Y-%m-%dT%H:%M:%S%z")
+        elif isinstance(v, datetime.datetime):
+            if v.tzinfo is None:
+                raise ValueError("You Must Provide a Parsable Datetime Object with tzinfo")
+            return v
+        else:
+            raise ValueError("You Must Provide a Parsable Datetime String or Object")
+
+
 class _CampsiteAvailabilityCampsiteResponse(CamplyModel):
     """
     https://ridb.recreation.gov/api/v1/campsites/<CAMPSITE ID>
@@ -189,6 +224,39 @@ class TourMonthlyAvailabilityResponse(CamplyModel):
     """
 
     facility_availability_summary_view_by_local_date: Dict[Date, _TourMonthlyAvailabilityDateResponse]
+
+
+class TourDailyAvailabilityBookingWindow(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    open_timestamp: AwareDatetime
+    close_timestamp: AwareDatetime
+
+
+class TourDailyAvailabilityBookingWindows(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    PRIMARY: Optional[TourDailyAvailabilityBookingWindow]
+    SECONDARY: Optional[TourDailyAvailabilityBookingWindow]
+
+
+class TourDailyAvailabilityResponse(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    facility_id: int
+    booking_windows: TourDailyAvailabilityBookingWindows
+    inventory_count: Dict[str, int]
+    reservation_count: Dict[str, int]
+    status: str
+    tour_date: Date
+    tour_id: int
+    tour_time: str
 
 
 class _RecAreaAddress(CamplyModel):
