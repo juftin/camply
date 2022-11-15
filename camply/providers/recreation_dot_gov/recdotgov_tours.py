@@ -1,6 +1,6 @@
 import json
 import logging
-from datetime import date, datetime, time, timedelta
+from datetime import date, datetime, time, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import pandas as pd
@@ -11,10 +11,11 @@ from camply.containers import AvailableCampsite
 from camply.containers.api_responses import (
     RecDotGovSearchResponse,
     RecDotGovSearchResult,
+    TourDailyAvailabilityResponse,
     TourMonthlyAvailabilityResponse,
     TourResponse,
 )
-from camply.containers.base_container import CamplyModel
+from camply.containers.base_container import CamplyModel, RecDotGovEquipment
 from camply.providers.base_provider import ProviderSearchError
 from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
 from camply.utils import api_utils
@@ -248,6 +249,125 @@ class RecreationDotGovTours(RecreationDotGovBase):
         return campground_ids_unique, list(campgrounds)
 
 
+class RecreationDotGovDailyMixin:
+
+    @classmethod
+    def get_search_months(cls, search_days) -> List[datetime]:
+        return search_days
+
+    def make_recdotgov_availability_request(
+        self,
+        campground_id: int,
+        month: datetime,
+    ) -> requests.Response:
+        """
+        Make a request to the RecreationDotGov API
+
+        Parameters
+        ----------
+        campground_id
+        month
+
+        Returns
+        -------
+        requests.Response
+        """
+        api_endpoint = self._rec_availability_get_endpoint(
+            path=f"{campground_id}"
+        )
+        query_params = dict(
+            date=month.strftime("%Y-%m-%d"),
+        )
+        return self.make_recdotgov_request(
+            method="GET",
+            url=api_endpoint,
+            params=query_params,
+        )
+
+    @classmethod
+    def process_campsite_availability(
+        cls,
+        availability: dict,
+        recreation_area: str,
+        recreation_area_id: int,
+        facility_name: str,
+        facility_id: int,
+        month: datetime,
+        campsite_metadata: pd.DataFrame,
+    ) -> List[Optional[AvailableCampsite]]:
+        """
+        Parse the JSON Response and return availabilities
+
+        Parameters
+        ----------
+        availability: dict
+            API Response
+        recreation_area: str
+            Name of Recreation Area
+        recreation_area_id: int
+            ID of Recreation Area
+        facility_name: str
+            Campground Facility Name
+        facility_id: int
+            Campground Facility ID
+        month: datetime
+            Month to Process
+        campsite_metadata: pd.DataFrame
+            Metadata Fetched from the Recreation.gov API about the Campsites
+
+        Returns
+        -------
+        total_campsite_availability: List[Optional[AvailableCampsite]]
+            Any monthly availabilities
+        """
+        total_campsite_availability: List[Optional[AvailableCampsite]] = list()
+        now = datetime.now(timezone.utc)
+        availabilities = {}
+        for slot in availability:
+            slot_data = TourDailyAvailabilityResponse(**slot)
+            tour_key = (slot_data.tour_date, slot_data.tour_id)
+            count_keys = set(slot_data.inventory_count.keys()) & set(slot_data.reservation_count.keys())
+            for count_key in count_keys:
+                window = None
+                if '_SECONDARY' in count_key:
+                    window = slot_data.booking_windows.SECONDARY
+                else:
+                    window = slot_data.booking_windows.PRIMARY
+                if not window or now < window.open_timestamp or now >= window.close_timestamp:
+                    continue
+                inventory_count = slot_data.inventory_count[count_key]
+                reservation_count = slot_data.reservation_count[count_key]
+                if inventory_count <= reservation_count:
+                    continue
+                tour_data = availabilities.setdefault(tour_key, {'': slot_data})
+                tour_data[slot_data.tour_time] = tour_data.get(slot_data.tour_time, 0) + inventory_count - reservation_count
+        for tour_date, tour_id in availabilities:
+            tour_data = availabilities[tour_date, tour_id]
+            slot_data = tour_data.pop('')
+            fields = cls.make_campsite_availability_fields(
+                tour_id,
+                vars(slot_data),
+                tour_date,
+                campsite_metadata,
+            )
+            available_campsite = AvailableCampsite(
+                campsite_occupancy=(1, sum(tour_data.values())),
+                availability_status=slot_data.status,
+                recreation_area=recreation_area,
+                recreation_area_id=recreation_area_id,
+                facility_name=facility_name,
+                facility_id=facility_id,
+                permitted_equipment=[RecDotGovEquipment(
+                    equipment_name=tour_time,
+                    max_length=available_count,
+                ) for tour_time, available_count in tour_data.items()],
+                campsite_attributes=[],
+                **fields,
+            )
+            total_campsite_availability.append(available_campsite)
+        return total_campsite_availability
+
+
 class RecreationDotGovTicket(RecreationDotGovTours):
     facility_type = RIDBConfig.TICKET_FACILITY_FIELD_QUALIFIER
     api_search_fq = "entity_type:tour"
@@ -260,3 +380,11 @@ class RecreationDotGovTimedEntry(RecreationDotGovTours):
     api_search_fq = "entity_type:timedentry_tour"
     api_base_path = "api/timedentry/availability/facility/"
     booking_url = "https://www.recreation.gov/timed-entry/{facility_id}/ticket/{tour_id}"
+
+
+class RecreationDotGovDailyTicket(RecreationDotGovDailyMixin, RecreationDotGovTicket):
+    pass
+
+
+class RecreationDotGovDailyTimedEntry(RecreationDotGovDailyMixin, RecreationDotGovTimedEntry):
+    pass
