@@ -2,7 +2,7 @@
 
 <div align="center">
 <a href="https://github.com/juftin/camply">
-  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/source/_static/camply.svg"
+  <img src="https://raw.githubusercontent.com/juftin/camply/main/docs/_static/camply.svg"
     width="400" height="400" alt="camply">
 </a>
 </div>

@@ -6,7 +6,7 @@ functionality. Use the below example for a campground within Glacier National Pa
 First, perform your search on https://recreation.gov.
 
 <div>
-<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/source/_static/recreation_dot_gov.png"
+<img src="https://raw.githubusercontent.com/juftin/camply/main/docs/_static/recreation_dot_gov.png"
     width="500" alt="recreation_dot_gov search">
 </div>
 
