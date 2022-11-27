@@ -25,6 +25,11 @@ ___________
 ## [Check Out The Docs](https://juftin.com/camply/)
 ## [Looking to Contribute?](docs/contributing.md)
 
+```commandline
+pip install camply
+camply --help
+```
+
 ## Table of Contents
 
 - [Installation](docs/installation.md)

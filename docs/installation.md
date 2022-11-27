@@ -27,4 +27,4 @@ docker pull juftin/camply
 
 [Docker Hub Link](https://hub.docker.com/r/juftin/camply)
 
-**_see [Running in Docker](#running-in-docker)._
+**_see [Running in Docker](docker.md#running-in-docker)._
