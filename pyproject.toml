@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "camply"
 description = "camply, the campsite finder 🏕"
-version = "0.7.2"
+version = "0.7.3"
 authors = ["Justin Flannery <juftin@juftin.com>"]
 license = "MIT"
 readme = "README.md"
