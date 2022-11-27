@@ -129,7 +129,7 @@ National Forests that can contain one or many campgrounds.
 camply recreation-areas --search "Yosemite National Park"
 ```
 
-**_see the [examples](#search-for-recreation-areas-by-query-string) for more informatio
+**_see the [examples](#search-for-recreation-areas-by-query-string) for more information_
 
 ## campgrounds
 

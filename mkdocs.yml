@@ -32,20 +32,16 @@ site_author: juftin
 remote_branch: gh-pages
 copyright: Copyright &copy; 2020 Justin Flannery
 nav:
-  #  - Introduction:
--   index.md
--   installation.md
-  #  - Usage:
--   command_line_usage.md
--   recreationdotgov.md
--   python.md
--   docker.md
-  #  - Reference:
--   cli.md
+-   camply ⛺: index.md
+-   Installation ☀️: installation.md
+-   Usage 📝: command_line_usage.md
+-   Finding Campsites on Recreation.gov 🌲: recreationdotgov.md
+-   Object Oriented Usage 🐍: python.md
+-   Docker ⛴: docker.md
+-   Command Line Interface ⌨️: cli.md
 -   API Documentation 🤖: reference/
--   dependencies.md
-    #  - Contributing:
--   contributing.md
+-   Dependencies ♻️: dependencies.md
+-   Contributing 👥: contributing.md
 -   GitHub 🛠: https://github.com/juftin/camply
 -   Changelog 📝: https://github.com/juftin/camply/releases
 extra:
