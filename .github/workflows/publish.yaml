@@ -73,7 +73,7 @@ jobs:
                 echo PACKAGE_NAME=${PACKAGE_NAME} >> $GITHUB_ENV
         -   name: Docker Image Building and Publishing
             id: docker_build
-            uses: docker/build-push-action@v2
+            uses: docker/build-push-action@v3
             with:
                 push: true
                 tags: juftin/${{ env.PACKAGE_NAME }}:latest,juftin/${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }}
