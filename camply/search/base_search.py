@@ -1,6 +1,7 @@
 """
 Recreation.gov Web Searching Utilities
 """
+
 import json
 import logging
 import pathlib
@@ -88,7 +89,9 @@ class BaseCampingSearch(ABC):
         self.search_window: List[SearchWindow] = make_list(search_window)
         self.weekends_only: bool = weekends_only
         self.search_days: List[datetime] = self._get_search_days()
-        self.search_months: List[datetime] = provider.get_search_months(self.search_days)
+        self.search_months: List[datetime] = provider.get_search_months(
+            self.search_days
+        )
         self.nights = self._validate_consecutive_nights(nights=nights)
         self.offline_search = offline_search
         self.offline_search_path = self._set_offline_search_path(

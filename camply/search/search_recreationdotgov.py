@@ -3,27 +3,42 @@ Recreation.gov Web Searching Utilities
 """
 
 import logging
+from abc import ABC, abstractmethod
 from random import uniform
 from time import sleep
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple, Type, Union
 
 import pandas as pd
 
 from camply.config import RecreationBookingConfig
 from camply.config.search_config import EquipmentConfig, EquipmentOptions
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
-from camply.providers import RecreationDotGov
+from camply.providers import (
+    RecreationDotGov,
+    RecreationDotGovDailyTicket,
+    RecreationDotGovDailyTimedEntry,
+    RecreationDotGovTicket,
+    RecreationDotGovTimedEntry,
+)
+from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
 from camply.search.base_search import BaseCampingSearch, SearchError
-from camply.utils import make_list, logging_utils
+from camply.utils import logging_utils, make_list
 
 logger = logging.getLogger(__name__)
 
 
-class SearchRecreationDotGov(BaseCampingSearch):
+class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
     """
     Camping Search Object
     """
-    provider_class = RecreationDotGov
+
+    @property
+    @abstractmethod
+    def provider_class(self) -> Type[RecreationDotGovBase]:
+        """
+        Attach a corresponding provider Implementation
+        """
+        pass
 
     def __init__(
         self,
@@ -72,7 +87,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
             When not specified, the filename will default to `camply_campsites.json`
         """
         self.campsite_finder: RecreationDotGov
-        super(SearchRecreationDotGov, self).__init__(
+        super(SearchRecreationDotGovBase, self).__init__(
             provider=self.provider_class(),
             search_window=search_window,
             weekends_only=weekends_only,
@@ -323,7 +338,41 @@ class SearchRecreationDotGov(BaseCampingSearch):
         return original_campsites
 
 
-def SearchRecreationDotGovFor(provider):
-    class SearchRecreationDotGovClass(SearchRecreationDotGov):
-        provider_class = provider
-    return SearchRecreationDotGovClass
+class SearchRecreationDotGov(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for Campsites
+    """
+
+    provider_class = RecreationDotGov
+
+
+class SearchRecreationDotGovDailyTicket(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovDailyTicket Object
+    """
+
+    provider_class = RecreationDotGovDailyTicket
+
+
+class SearchRecreationDotGovDailyTimedEntry(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovDailyTimedEntry Object
+    """
+
+    provider_class = RecreationDotGovDailyTimedEntry
+
+
+class SearchRecreationDotGovTicket(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovTicket Object
+    """
+
+    provider_class = RecreationDotGovTicket
+
+
+class SearchRecreationDotGovTimedEntry(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovTimedEntry Object
+    """
+
+    provider_class = RecreationDotGovTimedEntry

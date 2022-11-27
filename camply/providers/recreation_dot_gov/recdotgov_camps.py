@@ -1,3 +1,7 @@
+"""
+Campsite Searching: Recreation.gov
+"""
+
 import json
 import logging
 from datetime import datetime, timedelta
@@ -7,30 +11,26 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import pandas as pd
 import requests
 
-from camply.config import (
-    STANDARD_HEADERS,
-    USER_AGENTS,
-    RecreationBookingConfig,
-    RIDBConfig,
-)
-from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
+from camply.config import RecreationBookingConfig, RIDBConfig
+from camply.containers import AvailableCampsite
 from camply.containers.api_responses import (
     CampsiteAvailabilityResponse,
     CampsiteResponse,
-    FacilityResponse,
-    GenericResponse,
     RecDotGovCampsite,
     RecDotGovCampsiteResponse,
-    RecreationAreaResponse,
 )
 from camply.containers.base_container import CamplyModel
 from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
-from camply.utils import api_utils, logging_utils
+from camply.utils import api_utils
 
 logger = logging.getLogger(__name__)
 
 
 class RecreationDotGov(RecreationDotGovBase):
+    """
+    Recreation.gov: Campsite Searcher
+    """
+
     facility_type = RIDBConfig.CAMPGROUND_FACILITY_FIELD_QUALIFIER
     resource_api_path = RIDBConfig.CAMPSITE_API_PATH
     activity_name = "CAMPING"
@@ -146,7 +146,7 @@ class RecreationDotGov(RecreationDotGovBase):
     @classmethod
     def process_campsite_availability(
         cls,
-        availability: dict,
+        availability: Dict[str, Any],
         recreation_area: str,
         recreation_area_id: int,
         facility_name: str,
@@ -159,7 +159,7 @@ class RecreationDotGov(RecreationDotGovBase):
 
         Parameters
         ----------
-        availability: dict
+        availability: Dict[str, Any]
             API Response
         recreation_area: str
             Name of Recreation Area

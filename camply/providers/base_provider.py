@@ -3,6 +3,7 @@ BaseProvider Base Class
 """
 
 import logging
+from abc import ABC
 from datetime import datetime
 from typing import List
 
@@ -11,11 +12,9 @@ from camply.config import SearchConfig
 logger = logging.getLogger(__name__)
 
 
-class BaseProvider:
+class BaseProvider(ABC):
     """
     Base Provider Class
-
-    This should ideally be an AbstractBaseClass
     """
 
     @classmethod

@@ -4,12 +4,12 @@ Recreation.gov Web Searching Utilities
 
 import json
 import logging
+from abc import ABC, abstractmethod
 from base64 import b64decode
-from datetime import datetime, timedelta
-from itertools import chain
+from datetime import datetime
 from json import loads
 from random import choice
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Type, Union
 from urllib import parse
 
 import pandas as pd
@@ -23,28 +23,28 @@ from camply.config import (
     RecreationBookingConfig,
     RIDBConfig,
 )
-from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
+from camply.containers import CampgroundFacility, RecreationArea
 from camply.containers.api_responses import (
-    CampsiteAvailabilityResponse,
+    CampsiteResponse,
+    CoreRecDotGovResponse,
     FacilityResponse,
     GenericResponse,
     RecDotGovCampsite,
-    RecDotGovCampsiteResponse,
     RecreationAreaResponse,
+    TourResponse,
 )
 from camply.containers.base_container import CamplyModel
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
-from camply.utils import api_utils, logging_utils
+from camply.utils import api_utils
 from camply.utils.logging_utils import log_sorted_response
 
 logger = logging.getLogger(__name__)
 
 
-class RecreationDotGovBase(BaseProvider):
+class RecreationDotGovBase(BaseProvider, ABC):
     """
     Python Class for Working with Recreation.gov API / NPS APIs
     """
-    activity_name = None
 
     def __init__(self, api_key: str = None):
         """
@@ -57,6 +57,62 @@ class RecreationDotGovBase(BaseProvider):
         else:
             _api_key: str = api_key
         self._ridb_api_headers: dict = dict(accept="application/json", apikey=_api_key)
+
+    @property
+    @abstractmethod
+    def api_search_result_key(self) -> str:
+        """
+        # TODO: Document this
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def activity_name(self) -> str:
+        """
+        # TODO: Document this
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def api_search_result_class(self) -> Type[CamplyModel]:
+        """
+        # TODO: Document this
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def facility_type(self) -> str:
+        """
+        # TODO: Document this
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def resource_api_path(self) -> str:
+        """
+        # TODO: Document this
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def api_base_path(self) -> str:
+        """
+        # TODO: Document this
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def api_response_class(self) -> Type[CoreRecDotGovResponse]:
+        """
+        # TODO: Document this
+        """
+        pass
 
     def __repr__(self):
         """
@@ -625,7 +681,9 @@ class RecreationDotGovBase(BaseProvider):
             )
         return loads(response.content)
 
-    def get_campsite_by_id(self, campsite_id: int) -> CamplyModel:
+    def get_campsite_by_id(
+        self, campsite_id: int
+    ) -> Union[CampsiteResponse, TourResponse]:
         """
         Get a Campsite's Details
 
