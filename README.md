@@ -23,11 +23,21 @@ ___________
 [![Discord Chat](https://img.shields.io/static/v1?label=chat&message=discord&color=blue&logo=discord)](https://discord.gg/qZDr78kKvB)
 
 ## [Check Out The Docs](https://juftin.com/camply/)
-## [Looking to Contribute?](docs/contributing.md)
+
+## Installing
+
+Install camply via pip:
+
+```
+pip install camply
+```
+
+## Documentation
+
+Head over to the [camply documentation](https://juftin.com/camply/) to see what you can do!
 
 ```commandline
-❯ pip install camply
-❯ camply --help
+camply --help
 
 Usage: camply [OPTIONS] COMMAND [ARGS]...
 
@@ -56,6 +66,12 @@ Commands:
   configure         Set up camply configuration file with an interactive...
   recreation-areas  Search for Recreation Areas and list them
 ```
+
+## Contributing
+
+Camply doesn't support your favorite campsite booking privder yet? Consider
+[contributing](docs/contributing.md) 😉.
+
 
 ## Table of Contents
 
