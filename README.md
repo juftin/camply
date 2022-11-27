@@ -69,8 +69,8 @@ Commands:
 
 ## Contributing
 
-Camply doesn't support your favorite campsite booking privder yet? Consider
-[contributing](docs/contributing.md) 😉.
+Camply doesn't support your favorite campsite booking provider yet? Consider
+[contributing](https://juftin.com/camply/contributing/) 😉.
 
 
 ## Table of Contents
@@ -108,6 +108,7 @@ Camply doesn't support your favorite campsite booking privder yet? Consider
     * [Continuously Search for Recreation.gov Campsites](docs/python.md#continuously-search-for-recreationgov-campsites)
 - [Running in Docker](docs/docker.md)
 - [Dependencies](docs/dependencies.md)
+- [Contributing](docs/contributing.md)
 
 <br/>
 
