@@ -500,12 +500,8 @@ class GoingToCampProvider(BaseProvider):
         availability_details = {
             search_filter["mapId"]: results["resourceAvailabilities"]
         }
-        for map_id in results["mapLinkAvailabilities"].keys():
-            search_filter["mapId"] = map_id
-            avail = self._find_matching_resources(rec_area_id, search_filter)
-            availability_details.update(avail)
 
-        return availability_details
+        return availability_details, list(results["mapLinkAvailabilities"].keys())
 
     def list_equipment_types(self, rec_area_id: int) -> Dict[str, int]:
         """
@@ -546,7 +542,7 @@ class GoingToCampProvider(BaseProvider):
         Retrieve the Availability for all Sites in a Camp Area
 
         Sites are filtered on the provided date range and compatible
-        equipment selected Equipment within a date range.
+        equipment.
 
         Returns
         -------
@@ -568,9 +564,18 @@ class GoingToCampProvider(BaseProvider):
         if equipment_type_id:
             search_filter["subEquipmentCategoryId"] = equipment_type_id
 
-        resources = self._find_matching_resources(
+        resources, additional_resources = self._find_matching_resources(
             campground.recreation_area_id, search_filter
         )
+
+        # Resources are often deeply nested; fetch nested resources
+        for map_id in additional_resources:
+            search_filter["mapId"] = map_id
+            avail, _ = self._find_matching_resources(
+                campground.recreation_area_id, search_filter
+            )
+            resources.update(avail)
+
         availabilities = []
         for map_id, resource_details in resources.items():
             for resource_id, availability_details in resource_details.items():

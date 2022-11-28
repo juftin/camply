@@ -23,7 +23,7 @@ class SearchGoingToCamp(BaseCampingSearch):
     def __init__(
         self,
         search_window: Union[SearchWindow, List[SearchWindow]],
-        recreation_area: Optional[Union[List[int], int]] = None,
+        recreation_area: List[int],
         campsites: Optional[Union[List[int], int]] = None,
         weekends_only: bool = False,
         campgrounds: Optional[Union[List[str], str]] = None,
@@ -38,10 +38,14 @@ class SearchGoingToCamp(BaseCampingSearch):
         ----------
         search_window: Union[SearchWindow, List[SearchWindow]]
             Search Window tuple containing start date and End Date
+        recreation_area: List[int]
+            The ID of the recreation area to be searched. This type of this is a
+            List[int], but only for compatability with the BaseCampingSeach API.
+            This list is validated to contain a single recreation area.
         weekends_only: bool
             Whether to only search for Camping availabilities on the weekends (Friday /
             Saturday nights)
-        campgrounds: Optional[Union[List[str], str]]
+        campgrounds: Union[List[int], int]
             Campground ID or List of Campground IDs
         nights: int
             minimum number of consecutive nights to search per campsite,defaults to 1
@@ -74,12 +78,12 @@ class SearchGoingToCamp(BaseCampingSearch):
         self.campgrounds = self._get_searchable_campgrounds()
 
     @classmethod
-    def _validate_rec_area(cls, recreation_area: List[int]) -> int:
+    def _validate_rec_area(cls, recreation_area: int) -> int:
         if recreation_area in [(), [], None]:
             logger.error("At least one --rec-area must be provided")
             exit(1)
 
-        if len(recreation_area) > 1:
+        if not isinstance(recreation_area, List) or len(recreation_area) > 1:
             logger.error(
                 "Going To Camp only allows a single recreation area to be searched at a time"
             )
@@ -112,7 +116,12 @@ class SearchGoingToCamp(BaseCampingSearch):
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """
-        Search for all campsites matching search criteria
+        Search for all campsites matching search criteria.
+
+        Because Going To Camp has no efficient way of filtering
+        campsites for multiple campgrounds, this function is limited to listeing
+        all campsites _within_ a cammpground. Iterating through all sites for
+        all campgrounds would likely lead to a buse complaints.
 
         Returns
         -------
@@ -185,8 +194,11 @@ class SearchGoingToCamp(BaseCampingSearch):
         searchable_campgrounds: List[CampgroundFacility]
             List of searchable campgrounds
         """
-        if self._campgrounds in [(), [], None] and not self._recreation_area_id:
-            logger.error("You must provide a Campground or Recreation Area")
+        if self._campgrounds in [(), [], None] or not self._recreation_area_id:
+            logger.error(
+                "You must provide a Campground and Recreation Area to"
+                " search campsites with this provider"
+            )
             exit(1)
 
         if self.campsites not in [(), [], None]:
