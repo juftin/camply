@@ -481,6 +481,7 @@ def _validate_campsites(
 @equipment_argument
 @equipment_length_argument
 @nights_argument
+@provider_argument
 @weekends_argument
 @end_date_argument
 @start_date_argument
@@ -499,6 +500,7 @@ def campsites(
     end_date: Optional[str] = None,
     weekends: bool = False,
     nights: int = 1,
+    provider: str = "RecreationDotGov",
     continuous: bool = False,
     polling_interval: int = SearchConfig.RECOMMENDED_POLLING_INTERVAL,
     notifications: Union[str, List[str]] = "silent",
