@@ -159,9 +159,14 @@ def equipment_types(context: CamplyContext, rec_area: Optional[int] = None) -> N
 @search_argument
 @state_argument
 @debug_option
+@provider_argument
 @click.pass_obj
 def recreation_areas(
-    context: CamplyContext, search: Optional[str], state: Optional[str], debug: bool
+    context: CamplyContext,
+    search: Optional[str],
+    state: Optional[str],
+    debug: bool,
+    provider: Optional[str] = "RecreationDotGov",
 ) -> None:
     """
     Search for Recreation Areas and list them
@@ -172,6 +177,9 @@ def recreation_areas(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
+
+    if context.provider is None:
+        context.provider = provider
 
     provider = context.provider.lower()
 
