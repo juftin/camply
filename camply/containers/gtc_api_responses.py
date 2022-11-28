@@ -1,4 +1,7 @@
-from typing import Any, List, Optional
+"""
+GoingToCamp provider containers
+"""
+from typing import List, Optional
 
 from camply.containers.base_container import CamplyModel
 

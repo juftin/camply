@@ -69,5 +69,9 @@ class RecDotGovEquipment(CamplyModel):
 
 
 class GoingToCampEquipment(CamplyModel):
+    """
+    Model of GoingToCamp provider equipment
+    """
+
     equipment_name: str
     equipment_type_id: int

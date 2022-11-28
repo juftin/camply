@@ -2,8 +2,8 @@
 Going To Camp API search utilities
 """
 import logging
-from datetime import datetime, time, timedelta
-from typing import List, Optional, Tuple, Union
+from datetime import datetime, time
+from typing import List, Optional, Union
 
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.providers import GoingToCampProvider

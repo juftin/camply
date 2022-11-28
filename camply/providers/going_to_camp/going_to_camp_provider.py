@@ -6,7 +6,7 @@ import json
 import logging
 from datetime import datetime
 from random import choice
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import requests
 from pydantic import ValidationError
@@ -207,6 +207,21 @@ class GoingToCampProvider(BaseProvider):
                     )
 
     def get_site_details(self, rec_area_id: int, resource_id: int):
+        """
+        Get the details about a site in a recreation area
+
+        Parameters
+        ----------
+        search_string: str
+            Search Keyword(s)
+        rec_area_id: Optional[List[int]]
+            Recreation Area ID by which to filter
+
+        Returns
+        -------
+        details: dict[str, str]
+            The details about the site
+        """
         if not hasattr(self, "_attribute_details"):
             self._attribute_details = self._api_request(
                 rec_area_id, "ATTRIBUTE_DETAILS"
@@ -237,6 +252,7 @@ class GoingToCampProvider(BaseProvider):
 
             site_attributes[attribute_name] = ",".join(attribute_values)
         site_details["site_attributes"] = site_attributes
+
         return site_details
 
     def get_reservation_link(
@@ -252,14 +268,26 @@ class GoingToCampProvider(BaseProvider):
     ):
         """
         Generate a URL which a site can be booked
-        :return:
-            The url
+
+        Returns
+        -------
+        url: str
+            The reservation link URL
+
         """
         if not sub_equipment_id:
             sub_equipment_id = ""
 
         return (
-            "https://%s/create-booking/results?mapId=%s&bookingCategoryId=0&startDate=%s&endDate=%s&isReserving=true&equipmentId=%s&subEquipmentId=%s&partySize=%s&resourceLocationId=%s"
+            "https://%s/create-booking/results?mapId=%s"
+            "&bookingCategoryId=0"
+            "&startDate=%s"
+            "&endDate=%s"
+            "&isReserving=true"
+            "&equipmentId=%s"
+            "&subEquipmentId=%s"
+            "&partySize=%s"
+            "&resourceLocationId=%s"
             % (
                 rec_area_domain_name,
                 map_id,
@@ -353,8 +381,14 @@ class GoingToCampProvider(BaseProvider):
         return None
 
     def _api_request(
-        self, rec_area_id: int, endpoint_name: str, params: dict[str, str] = dict()
+        self,
+        rec_area_id: int,
+        endpoint_name: str,
+        params: Optional[Dict[str, str]] = None,
     ) -> str:
+        if params is None:
+            params = dict()
+
         hostname = self._hostname_for(rec_area_id)
         endpoint = ENDPOINTS.get(endpoint_name)
         url = None
@@ -367,7 +401,8 @@ class GoingToCampProvider(BaseProvider):
         try:
             assert response.status_code == 200
         except AssertionError:
-            error_message = f"Receiving bad data from GoingToCamp API: status_code: {response.status_code}: {response.text}"
+            error_message = "Receiving bad data from GoingToCamp API: status_code: "
+            f"{response.status_code}: {response.text}"
             logger.error(error_message)
             raise ConnectionError(error_message)
 
@@ -459,7 +494,7 @@ class GoingToCampProvider(BaseProvider):
         )
         return facility, campground_facility
 
-    def _find_matching_resources(self, rec_area_id: int, search_filter: dict[str, any]):
+    def _find_matching_resources(self, rec_area_id: int, search_filter: Dict[str, any]):
         results = self._api_request(rec_area_id, "MAPDATA", search_filter)
 
         availability_details = {
@@ -472,11 +507,11 @@ class GoingToCampProvider(BaseProvider):
 
         return availability_details
 
-    def list_equipment_types(self, rec_area_id: int) -> dict[str, int]:
+    def list_equipment_types(self, rec_area_id: int) -> Dict[str, int]:
         """
         List equipment types available for a recreation area
 
-        returns
+        Returns
         -------
         types: list[GoingToCampEquipment]
             A list of equipment types available to this rec area
@@ -508,8 +543,15 @@ class GoingToCampProvider(BaseProvider):
         equipment_type_id: Optional[str],
     ) -> List[AvailableResource]:
         """
-        Retrieve the Availability for all Sites in a Camp Area which can host the selected Equipment within a date range
-        :return:
+        Retrieve the Availability for all Sites in a Camp Area
+
+        Sites are filtered on the provided date range and compatible
+        equipment selected Equipment within a date range.
+
+        Returns
+        -------
+        available_sites: List[AvailableResource]
+            The list of available sites
         """
         search_filter = {
             "mapId": campground.map_id,
@@ -542,7 +584,9 @@ class GoingToCampProvider(BaseProvider):
 def _fetch_nested_key(obj: Union[dict, list, object], *keys: str) -> Any:
     """
     Fetch nested keys from dictionaries/lists if the keys exist
-    Example:
+
+    Example
+    -------
         mydict = {
             'foo': {
                 'bar': 'baz'

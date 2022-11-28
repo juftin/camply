@@ -5,7 +5,7 @@ Recreation.gov Web Searching Utilities
 import logging
 from random import uniform
 from time import sleep
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Union
 
 import pandas as pd
 
@@ -93,7 +93,9 @@ class SearchRecreationDotGov(BaseCampingSearch):
         self.campgrounds = self._get_searchable_campgrounds()
         self.campsite_metadata: Optional[pd.DataFrame] = None
         self.equipment: Optional[str] = None
-        self.equipment = self._get_searchable_equipment(equipment=equipment)
+        self.equipment = (
+            self._get_searchable_equipment(equipment=equipment) if equipment else None
+        )
         self.equipment_length = equipment_length
 
     def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:

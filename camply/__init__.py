@@ -18,4 +18,5 @@ __all__ = [
     "SearchWindow",
     "AvailableCampsite",
     "EquipmentOptions",
+    "GoingToCampProvider",
 ]
