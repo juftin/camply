@@ -6,7 +6,7 @@ import json
 import logging
 from datetime import datetime
 from random import choice
-from typing import Any, List, Optional, Tuple
+from typing import Any, List, Optional, Tuple, Union
 
 import requests
 from pydantic import ValidationError
@@ -539,7 +539,7 @@ class GoingToCampProvider(BaseProvider):
         return availabilities
 
 
-def _fetch_nested_key(obj: dict | list | object, *keys: str) -> Any:
+def _fetch_nested_key(obj: Union[dict, list, object], *keys: str) -> Any:
     """
     Fetch nested keys from dictionaries/lists if the keys exist
     Example:
