@@ -137,9 +137,7 @@ class SearchRecreationDotGov(BaseCampingSearch):
             and equipment.lower() not in EquipmentOptions.__all_accepted_equipment__
         ):
             logger.warning(
-                f"Equipment name not recognized: {equipment_name}. This won't "
-                "be used for filtering."
-                "Acceptable options are: "
+                f"Equipment name not recognized: {equipment}. Acceptable options are: "
                 f"{', '.join(EquipmentOptions.__all_accepted_equipment__)}"
             )
             return None
