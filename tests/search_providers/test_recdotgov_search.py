@@ -11,6 +11,7 @@ from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.search import SearchRecreationDotGov
+from tests.conftest import vcr_cassette
 
 logger = logging.getLogger(__name__)
 
@@ -89,84 +90,79 @@ def recdotgov_campsite_finder(search_window) -> SearchRecreationDotGov:
     return recdotgov_finder
 
 
+@vcr_cassette
 def test_get_searchable_campgrounds_recarea(
     recdotgov_recarea_finder,
-) -> List[AvailableCampsite]:
+) -> None:
     """
     Retrieve Campground Information for a Recreation Area
-
-    Returns
-    -------
-    List[AvailableCampsite]
     """
     logger.info("Searching for Matching Recreation Area Campgrounds")
-    all_campsites = recdotgov_recarea_finder._get_searchable_campgrounds()
-    return all_campsites
+    campgrounds = recdotgov_recarea_finder._get_searchable_campgrounds()
+    for camp in campgrounds:
+        assert isinstance(camp, CampgroundFacility)
 
 
+@vcr_cassette
 def test_get_searchable_campgrounds_campground(
     recdotgov_campground_finder,
-) -> List[AvailableCampsite]:
+) -> None:
     """
     Retrieve Campground Information for a Campground ID
-
-    Returns
-    -------
-    List[AvailableCampsite]
     """
     logger.info("Searching for Matching Campgrounds to Campground ID")
-    all_campsites = recdotgov_campground_finder._get_searchable_campgrounds()
-    return all_campsites
+    campgrounds = recdotgov_campground_finder._get_searchable_campgrounds()
+    for camp in campgrounds:
+        assert isinstance(camp, CampgroundFacility)
 
 
-def test_get_all_campsites_recarea(recdotgov_recarea_finder) -> List[AvailableCampsite]:
+@vcr_cassette
+def test_get_all_campsites_recarea(recdotgov_recarea_finder) -> None:
     """
     Get all of the Yellowstone Campsites
-
-    Returns
-    -------
-    List[AvailableCampsite]
     """
     logger.info("Searching for All Recreation Area Campsites")
     all_campsites = recdotgov_recarea_finder.get_all_campsites()
     SearchRecreationDotGov.assemble_availabilities(
         matching_data=all_campsites, log=True, verbose=False
     )
-    return all_campsites
+    for camp in all_campsites:
+        assert isinstance(camp, AvailableCampsite)
 
 
+@vcr_cassette
 def test_get_all_campsites_campground(
     recdotgov_campground_finder,
-) -> List[AvailableCampsite]:
+) -> None:
     """
     Get all of the Yellowstone Campsites
-
-    Returns
-    -------
-    List[AvailableCampsite]
     """
     logger.info("Searching for Campground Specific Campsites")
     all_campsites = recdotgov_campground_finder.get_all_campsites()
     SearchRecreationDotGov.assemble_availabilities(
         matching_data=all_campsites, log=True, verbose=False
     )
-    return all_campsites
+    for camp in all_campsites:
+        assert isinstance(camp, AvailableCampsite)
 
 
+@vcr_cassette
 def test_get_campsite_specific_campgrounds(
     recdotgov_campsite_finder,
-) -> List[CampgroundFacility]:
+) -> None:
     """
     Get all of the Related Campgrounds
     """
     logger.info("Searching for Campground Specific Campsites")
     campgrounds = recdotgov_campsite_finder._get_campgrounds_by_campsite_id()
-    return campgrounds
+    for camp in campgrounds:
+        assert isinstance(camp, CampgroundFacility)
 
 
+@vcr_cassette
 def test_get_campsite_specific_results(
     recdotgov_campsite_finder,
-) -> List[AvailableCampsite]:
+) -> None:
     """
     Get the related Campsite's availability
     """
@@ -175,4 +171,5 @@ def test_get_campsite_specific_results(
     SearchRecreationDotGov.assemble_availabilities(
         matching_data=all_campsites, log=True, verbose=False
     )
-    return all_campsites
+    for camp in all_campsites:
+        assert isinstance(camp, AvailableCampsite)

@@ -11,6 +11,7 @@ from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, SearchWindow
 from camply.search import SearchYellowstone
+from tests.conftest import vcr_cassette
 
 logger = logging.getLogger(__name__)
 
@@ -53,7 +54,8 @@ def yellowstone_finder(search_window) -> SearchYellowstone:
     return yellowstone_finder
 
 
-def test_get_all_campsites(yellowstone_finder) -> List[AvailableCampsite]:
+@vcr_cassette
+def test_get_all_campsites(yellowstone_finder) -> None:
     """
     Get all of the Yellowstone Campsites
 
@@ -63,4 +65,5 @@ def test_get_all_campsites(yellowstone_finder) -> List[AvailableCampsite]:
     """
     logger.info("Searching for Campsites")
     all_campsites = yellowstone_finder.get_all_campsites()
-    return all_campsites
+    for camp in all_campsites:
+        assert isinstance(camp, AvailableCampsite)
