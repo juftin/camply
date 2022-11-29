@@ -5,7 +5,7 @@ Recreation.gov Web Searching Utilities
 import logging
 from random import uniform
 from time import sleep
-from typing import List, Optional, Union
+from typing import List, Optional, Tuple, Union
 
 import pandas as pd
 
@@ -32,10 +32,9 @@ class SearchRecreationDotGov(BaseCampingSearch):
         campsites: Optional[Union[List[int], int]] = None,
         weekends_only: bool = False,
         nights: int = 1,
+        equipment: Optional[List[Tuple[str, Optional[int]]]] = None,
         offline_search: bool = False,
         offline_search_path: Optional[str] = None,
-        equipment: Optional[str] = None,
-        equipment_length: Optional[int] = None,
         **kwargs,
     ) -> None:
         """
@@ -56,9 +55,13 @@ class SearchRecreationDotGov(BaseCampingSearch):
             Saturday nights)
         nights: int
             minimum number of consecutive nights to search per campsite,defaults to 1
-        equipment: Optional[str]
-            The name of the equipment to search for. Accepted equipment names include
-            `Tent`, `RV`, `Trailer`, `Vehicle` and are not case-sensitive.
+        equipment: Optional[List[Tuple[str, Optional[int]]]]
+            List of Tuples of Equipment to Search for. An equipment tuple array looks
+            like this: `[("Tent", None), ("RV", 20)]` - meaning the selected search
+            looks for sites to accommodate any tent size and RVs less than or equal
+            to 20 feet. Tuples contain the Equipment name and an optional equipment
+            length, otherwise provide None. Equipment names include `Tent`, `RV`,
+            `Trailer`, `Vehicle` and are not case-sensitive.
         offline_search: bool
             When set to True, the campsite search will both save the results of the
             campsites it's found, but also load those campsites before beginning a
@@ -92,11 +95,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
         self.campsites = make_list(campsites)
         self.campgrounds = self._get_searchable_campgrounds()
         self.campsite_metadata: Optional[pd.DataFrame] = None
-        self.equipment: Optional[str] = None
-        self.equipment = (
-            self._get_searchable_equipment(equipment=equipment) if equipment else None
-        )
-        self.equipment_length = equipment_length
+        self.equipment: List[Tuple[str, Optional[int]]] = []
+        self.equipment = self._get_searchable_equipment(equipment=equipment)
 
     def _get_searchable_campgrounds(self) -> List[CampgroundFacility]:
         """
@@ -122,29 +122,43 @@ class SearchRecreationDotGov(BaseCampingSearch):
         return list(set(searchable_campgrounds))
 
     @classmethod
-    def _get_searchable_equipment(cls, equipment: Optional[str]) -> Optional[str]:
+    def _get_searchable_equipment(
+        cls, equipment: Optional[List[Tuple[str, Optional[int]]]]
+    ) -> Optional[List[Tuple[str, Optional[int]]]]:
         """
-        Validate and normalize equipment names
+        Sort through and validate Equipment
 
         Parameters
         ----------
-        equipment: Optional[str]
+        equipment: Optional[List[Tuple[str, Optional[int]]]]
 
         Returns
         -------
-        Optional[str]
+        Optional[List[Tuple[str, Optional[int]]]]
         """
-        if (
-            equipment
-            and equipment.lower() not in EquipmentOptions.__all_accepted_equipment__
-        ):
-            logger.warning(
-                f"Equipment name not recognized: {equipment}. Acceptable options are: "
-                f"{', '.join(EquipmentOptions.__all_accepted_equipment__)}"
-            )
-            return None
-
-        return equipment.lower()
+        equipment_names = []
+        final_equipment = None
+        if isinstance(equipment, (list, tuple)):
+            final_equipment = []
+            for equipment_name, equipment_length in equipment:
+                if (
+                    equipment_name.lower()
+                    not in EquipmentOptions.__all_accepted_equipment__
+                ):
+                    logger.warning(
+                        f"Equipment name not recognized: {equipment_name}. This won't "
+                        "be used for filtering."
+                        "Acceptable options are: "
+                        f"{', '.join(EquipmentOptions.__all_accepted_equipment__)}"
+                    )
+                else:
+                    final_equipment.append((equipment_name, equipment_length))
+                    equipment_names.append(equipment_name)
+            if len(final_equipment) > 0:
+                logger.info(
+                    f"Filtering Campsites based on Equipment: {' | '.join(equipment_names)}"
+                )
+        return final_equipment
 
     def _get_campgrounds_by_campground_id(self) -> List[CampgroundFacility]:
         """
@@ -281,18 +295,21 @@ class SearchRecreationDotGov(BaseCampingSearch):
             .fillna("")
             .apply(lambda x: EquipmentConfig.EQUIPMENT_REVERSE_MAPPING[x])
         )
+        equipment_types = [item[0].lower() for item in self.equipment]
         matching_equipment = joined_data[
-            joined_data["equipment_name_normalized"] == self.equipment
+            joined_data["equipment_name_normalized"].isin(equipment_types)
         ]
         matching_ids = []
-        matching_data = matching_equipment[
-            matching_equipment["equipment_name_normalized"] == self.equipment
-        ].copy()
-        if self.equipment_length is not None:
-            matching_data = matching_data[
-                matching_data["max_length"] >= float(self.equipment_length)
-            ]
-        matching_ids += list(matching_data["campsite_id"].unique())
+        for equipment_name, equipment_length in self.equipment:
+            matching_data = matching_equipment[
+                matching_equipment["equipment_name_normalized"]
+                == equipment_name.lower()
+            ].copy()
+            if equipment_length is not None:
+                matching_data = matching_data[
+                    matching_data["max_length"] >= float(equipment_length)
+                ]
+            matching_ids += list(matching_data["campsite_id"].unique())
 
         original_campsites = campsites[
             campsites["campsite_id"].isin(matching_ids)

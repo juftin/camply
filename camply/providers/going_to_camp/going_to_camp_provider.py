@@ -507,6 +507,11 @@ class GoingToCampProvider(BaseProvider):
         """
         List equipment types available for a recreation area
 
+        Params
+        ------
+        rec_area_id: int
+            The ID of the recreation area
+
         Returns
         -------
         types: list[GoingToCampEquipment]

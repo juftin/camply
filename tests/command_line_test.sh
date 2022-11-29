@@ -29,8 +29,7 @@ camply \
     --start-date 2023-09-09 \
     --end-date 2023-09-17 \
     --nights 3 \
-    --equipment RV \
-    --equipment-length 25
+    --equipment RV 25 \
 
 camply \
   --debug \
@@ -117,7 +116,7 @@ camply \
   --rec-area 1 \
   --start-date 2023-09-01 \
   --end-date 2023-09-02 \
-  --equipment -32768 \
+  --equipment-id -32768 \
   --campground -2147483643 \
 
 rm test_file.pickle

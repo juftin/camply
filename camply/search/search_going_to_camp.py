@@ -27,7 +27,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         campsites: Optional[Union[List[int], int]] = None,
         weekends_only: bool = False,
         campgrounds: Optional[Union[List[str], str]] = None,
-        equipment: Optional[int] = None,
+        equipment_id: Optional[int] = None,
         nights: int = 1,
         **kwargs,
     ) -> None:
@@ -73,7 +73,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         )
         self.campsites = make_list(campsites)
         self.equipment_id = self._validate_equipment(
-            equipment, self._recreation_area_id, kwargs.get("equipment_length")
+            equipment_id, self._recreation_area_id
         )
         self.campgrounds = self._get_searchable_campgrounds()
 
@@ -92,20 +92,12 @@ class SearchGoingToCamp(BaseCampingSearch):
         return int(recreation_area[0])
 
     @classmethod
-    def _validate_equipment(
-        cls, equipment: Optional[int], rec_area: int, length: Optional[any]
-    ):
-        if not equipment:
+    def _validate_equipment(cls, equipment_id: Optional[int], rec_area: int):
+        if not equipment_id:
             return
 
-        if length:
-            logger.warning(
-                "--equpment-length is ignored by Going To Camp. "
-                "--equipment IDs describe both the type and length of equipment"
-            )
-
         try:
-            return int(equipment)
+            return int(equipment_id)
         except ValueError:
             logger.error(
                 "Invalid equipment ID. Use the follwoing to get list of "

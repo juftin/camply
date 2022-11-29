@@ -398,20 +398,25 @@ yaml_config_argument = click.option(
 equipment_argument = click.option(
     "--equipment",
     default=None,
+    nargs=2,
+    multiple=True,
     help="Search for campsites compatible with your camping equipment. "
-    "Different Camply providers and recreation areas accept different "
-    "types of equipment. RecreationDotGov, the default Camply provider "
-    "accepts the following equipment names: `Tent`, `RV`. `Trailer`,  "
-    "`Vehicle` and are not case-sensitive. "
-    "Use the following to get a list of equipment for a specific provider "
-    "and rec area:"
-    "`camply equipment-types --provider <PROVIDER> --rec-area <AREA ID>",
+    "This argument accepts two options, the equipment name and its length "
+    "If you don't want to filter based on length provide a length of 0. Accepted "
+    "equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are "
+    "not case-sensitive.",
 )
-equipment_length_argument = click.option(
-    "--equipment-length",
-    default=0,
-    help="Search for campsites filtered by the length of your camping equipment. "
-    "Defaults to any length",
+equipment_id_argument = click.option(
+    "--equipment-id",
+    default=None,
+    help="""
+    Search for campsites campaitble with specific equipment categories. Going To
+    Camp uses equipment category IDs for filtering campsites by equipment. Every
+    recreation area has equipment categories unique to it.
+
+    Use `camply equipment-types --provider goingtocamp --rec-area <rec area id>`
+    to get a listing of equipment for an area.
+    """,
 )
 
 offline_search_argument = click.option(
@@ -506,7 +511,7 @@ def _validate_campsites(
 @polling_interval_argument
 @continuous_argument
 @equipment_argument
-@equipment_length_argument
+@equipment_id_argument
 @nights_argument
 @provider_argument
 @weekends_argument
@@ -537,7 +542,7 @@ def campsites(
     offline_search: bool = False,
     offline_search_path: Optional[str] = None,
     equipment: Optional[Union[str, int]] = None,
-    equipment_length: Optional[int] = None,
+    equipment_id: Optional[Union[str, int]] = None,
 ) -> None:
     """
     Find available Campsites using search criteria
@@ -590,7 +595,7 @@ def campsites(
             offline_search=offline_search,
             offline_search_path=offline_search_path,
             equipment=equipment,
-            equipment_length=equipment_length,
+            equipment_id=equipment_id,
         )
         search_kwargs = dict(
             log=True,

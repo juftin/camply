@@ -564,7 +564,7 @@ class RecreationDotGov(BaseProvider):
         return response
 
     def paginate_recdotgov_campsites(
-        self, facility_id: int = None
+        self, facility_id: int, equipment: Optional[List[str]] = None
     ) -> List[RecDotGovCampsite]:
         """
         Paginate through the RecDotGov Campsite Metadata
@@ -577,6 +577,9 @@ class RecreationDotGov(BaseProvider):
             path="api/search/campsites",
         )
         fq_list = [f"asset_id:{facility_id}"]
+        if isinstance(equipment, list) and len(equipment) > 0:
+            for item in equipment:
+                fq_list.append(f"campsite_equipment_name:{item}")
         params = dict(
             start=0,
             size=1000,
