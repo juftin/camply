@@ -4,7 +4,6 @@ Yellowstone Testing Provider
 
 import logging
 from datetime import datetime, timedelta
-from typing import List
 
 import pytest
 from dateutil.relativedelta import relativedelta
@@ -58,10 +57,6 @@ def yellowstone_finder(search_window) -> SearchYellowstone:
 def test_get_all_campsites(yellowstone_finder) -> None:
     """
     Get all of the Yellowstone Campsites
-
-    Returns
-    -------
-    List[AvailableCampsite]
     """
     logger.info("Searching for Campsites")
     all_campsites = yellowstone_finder.get_all_campsites()
