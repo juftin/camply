@@ -27,10 +27,12 @@ edit_uri: blob/main/docs/
 site_author: juftin
 remote_branch: gh-pages
 copyright: Copyright &copy; 2020 Justin Flannery
+extra_css: [extra.css]
 nav:
 -   camply ⛺: index.md
 -   Installation ☀️: installation.md
 -   Usage 📝: command_line_usage.md
+-   Providers 🏕: providers.md
 -   Finding Campsites on Recreation.gov 🌲: recreationdotgov.md
 -   Object Oriented Usage 🐍: python.md
 -   Docker ⛴: docker.md

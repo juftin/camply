@@ -374,6 +374,20 @@ camply campsites \
     --continuous
 ```
 
+### Look for a Campsite from GoingToCamp
+
+#### TODO: Further Document This
+
+```commandline
+camply \
+  campsites \
+  --provider goingtocamp \
+  --rec-area 1 \
+  --start-date 2023-09-01 \
+  --end-date 2023-09-02 \
+  --campground -2147483643
+```
+
 ### Look for a Campsite Across Multiple Recreation areas
 
 You don't have to confine your search to a single Recreation or Campground ID. Adding multiple
