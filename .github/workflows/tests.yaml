@@ -48,6 +48,3 @@ jobs:
                 tox -e ${{ matrix.tox }}
                 echo "::remove-matcher owner=python::"
                 tox -e commandline
-            env:
-                PUSHOVER_PUSH_USER: XXXXXXXXXX
-                PUSHOVER_PUSH_TOKEN: XXXXXXXXXX
