@@ -6,6 +6,8 @@ import datetime
 import logging
 from typing import List, Optional, Tuple, Union
 
+from pydantic import validator
+
 from camply.containers.base_container import (
     CamplyModel,
     RecDotGovAttribute,
@@ -19,6 +21,30 @@ class SearchWindow(CamplyModel):
     """
     Search Window for Campsite Search
     """
+
+    @validator("start_date")
+    def start_date_must_be_in_future(self, v):
+        """
+        Validate that start_date is in the future
+        """
+        current_date = datetime.datetime.now().date()
+        print(v, current_date)
+        if v < current_date:
+            raise ValueError("must be in the future")
+
+        return v
+
+    @validator("end_date")
+    def end_date_must_be_in_future(self, v):
+        """
+        Validate that end_date is in the future
+        """
+        current_date = datetime.datetime.now().date()
+        print(v, current_date)
+        if v < current_date:
+            raise ValueError("must be in the future")
+
+        return v
 
     start_date: datetime.date
     end_date: datetime.date

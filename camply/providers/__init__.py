@@ -13,3 +13,7 @@ __all__ = [
     "RecreationDotGov",
     "YellowstoneLodging",
 ]
+
+GOING_TO_CAMP = "goingtocamp"
+RECREATION_DOT_GOV = "recreationdotgov"
+YELLOWSTONE = "yellowstone"

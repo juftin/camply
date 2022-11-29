@@ -555,10 +555,7 @@ class BaseCampingSearch(ABC):
         search_nights = set()
         for window in self.search_window:
             generated_dates = {
-                date
-                for date in window.get_date_range()
-                if date >= current_date
-                # TODO: Throw an error when the date is not in the future
+                date for date in window.get_date_range() if date >= current_date
             }
             search_nights.update(generated_dates)
         if self.weekends_only is True:
