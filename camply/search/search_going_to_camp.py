@@ -113,7 +113,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         Because Going To Camp has no efficient way of filtering
         campsites for multiple campgrounds, this function is limited to listeing
         all campsites _within_ a cammpground. Iterating through all sites for
-        all campgrounds would likely lead to a buse complaints.
+        all campgrounds would likely lead to abuse complaints.
 
         Returns
         -------
