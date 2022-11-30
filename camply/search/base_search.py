@@ -853,20 +853,24 @@ class BaseCampingSearch(ABC):
         pathlib.Path
         """
         if self.offline_mode == "pickle":
-            pickle.dump(
-                obj=self.campsites_found,
-                file=self.offline_search_path.open(mode="wb"),
-                protocol=4,
-                fix_imports=True,
-            )
+            with open(self.offline_search_path, mode="wb") as file_stream:
+                pickle.dump(
+                    obj=self.campsites_found,
+                    file=file_stream,
+                    protocol=4,
+                    fix_imports=True,
+                )
+                file_stream.seek(0)
         elif self.offline_mode == "json":
-            json.dump(
-                obj=self.campsites_found,
-                fp=self.offline_search_path.open(mode="w"),
-                sort_keys=True,
-                default=pydantic_encoder,
-                indent=4,
-            )
+            with open(self.offline_search_path, mode="w") as file_stream:
+                json.dump(
+                    obj=self.campsites_found,
+                    fp=file_stream,
+                    sort_keys=True,
+                    default=pydantic_encoder,
+                    indent=4,
+                )
+                file_stream.seek(0)
         logger.debug(
             "%s campsites saved to file: %s",
             len(self.campsites_found),
@@ -884,13 +888,13 @@ class BaseCampingSearch(ABC):
         """
         if self.offline_search_path.exists():
             if self.offline_mode == "pickle":
-                campsites: Set[AvailableCampsite] = pickle.load(
-                    file=self.offline_search_path.open(mode="rb"), fix_imports=True
-                )
+                with open(self.offline_search_path, mode="rb") as file_stream:
+                    campsites: Set[AvailableCampsite] = pickle.load(
+                        file=file_stream, fix_imports=True
+                    )
             elif self.offline_mode == "json":
-                campsites_dicts: List[Dict[str, Any]] = json.load(
-                    self.offline_search_path.open(mode="r"),
-                )
+                with open(self.offline_search_path, mode="r") as file_stream:
+                    campsites_dicts: List[Dict[str, Any]] = json.load(file_stream)
                 campsites: Set[AvailableCampsite] = set(
                     [AvailableCampsite(**json_dict) for json_dict in campsites_dicts]
                 )

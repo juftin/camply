@@ -65,6 +65,7 @@ mkdocs-gen-files = "^0.4.0"
 mkdocs-literate-nav = "^0.5.0"
 mkdocs-section-index = "^0.3.4"
 pytest-vcr = "^1.0.2"
+pytest-cov = "^4.0.0"
 
 [tool.poetry.scripts]
 camply = "camply.cli:cli"

@@ -47,4 +47,3 @@ jobs:
                 echo "::add-matcher::.github/matchers/python.json"
                 tox -e ${{ matrix.tox }}
                 echo "::remove-matcher owner=python::"
-                tox -e commandline

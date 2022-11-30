@@ -1,14 +1,17 @@
 """
 Pytest Fixtures Shared Across all Unit Tests
 """
+
 import datetime
 import logging
+from textwrap import dedent
 from typing import Any, Dict
 
 import pytest
 from click.testing import CliRunner, Result
 
 from camply import AvailableCampsite
+from camply.cli import camply_command_line
 
 logger = logging.getLogger(__name__)
 logging.getLogger("vcr.cassette").setLevel(logging.WARNING)
@@ -16,51 +19,71 @@ logging.getLogger("vcr.cassette").setLevel(logging.WARNING)
 module_scope = pytest.fixture(scope="module")
 
 
+class CamplyRunner(CliRunner):
+    """
+    Custom CLI Runner for Camply
+    """
+
+    def run_camply_command(self, command: str) -> Result:
+        """
+        Run a Camply Command and Return the Result
+
+        Parameters
+        ----------
+        command
+
+        Returns
+        -------
+        Result
+        """
+        result = self.invoke(
+            cli=camply_command_line, args=self.parse_camply_command(command=command)
+        )
+        return result
+
+    @classmethod
+    def parse_camply_command(cls, command: str) -> str:
+        """
+        Parse a Camply CLI Command to a Parseable Str
+
+        Parameters
+        ----------
+        command: str
+
+        Returns
+        -------
+        str
+        """
+        command_parsed = dedent(command).strip()
+        for r in (("\\", ""), ("\n", ""), ("\t", " "), ("  ", " "), ("camply ", "")):
+            command_parsed = command_parsed.replace(*r)
+        return command_parsed
+
+
 @pytest.fixture
-def cli_runner() -> CliRunner:
+def cli_runner() -> CamplyRunner:
     """
     Fixture for invoking command-line interfaces.
     """
-    return CliRunner()
+    return CamplyRunner()
 
 
-def assert_cli_success(result: Result) -> None:
+def cli_status_checker(result: Result, exit_code_zero: bool = True) -> None:
     """
     Handle Exceptions from the CLI
+
+    Parameters
+    ----------
+    result : Result
+        CliRunner Invoke Result
+    exit_code_zero: bool
+        Whether the exit code should be `0` - defaults to True
     """
     try:
-        assert result.exit_code == 0
+        assert (result.exit_code == 0) == exit_code_zero
     except AssertionError:
         logger.exception(result.exception, exc_info=result.exc_info)
         raise result.exception
-
-
-def scrub_string(string, replacement=""):
-    """
-    Nested Scrubbing Function
-    """
-
-    def before_record_response(response):
-        body = response["body"]["string"]
-        sensitive_strings = string.split(",")
-        try:
-            sensitive_strings.remove("<CAMPLY>")
-        except ValueError:
-            pass
-        for string_part in sensitive_strings:
-            string_part = string_part.strip()
-            if isinstance(body, bytes):
-                try:
-                    body = body.decode("utf-8").replace(string_part, replacement)
-                    body = str.encode(body)
-                except UnicodeDecodeError:
-                    pass
-            else:
-                body = body.replace(string, replacement)
-        response["body"]["string"] = body
-        return response
-
-    return before_record_response
 
 
 @module_scope
@@ -77,9 +100,6 @@ def vcr_config() -> Dict[str, Any]:
     return {
         "filter_headers": [("authorization", "REDACTED"), ("apikey", "REDACTED")],
         "filter_query_parameters": [("user", "REDACTED"), ("token", "REDACTED")],
-        # "before_record_response": scrub_string(
-        #     getenv("SENSITIVE_REQUEST_STRINGS", "<CAMPLY>"), "REDACTED"
-        # ),
     }
 
 

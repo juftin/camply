@@ -4,30 +4,72 @@ CLI Testing: `camply campgrounds ...`
 
 import logging
 
-from click.testing import CliRunner
-
-from camply.cli import camply_command_line
-from tests.conftest import assert_cli_success, vcr_cassette
+from camply import __version__
+from tests.conftest import CamplyRunner, cli_status_checker, vcr_cassette
 
 logger = logging.getLogger(__name__)
 
 
 @vcr_cassette
-def test_list_recdotgov_campgrounds(cli_runner: CliRunner) -> None:
+def test_list_recdotgov_campgrounds(cli_runner: CamplyRunner) -> None:
     """
     Test the Campground Search for a Fire Tower
     """
-    result = cli_runner.invoke(
-        cli=camply_command_line,
-        args=[
-            "campgrounds",
-            "--provider",
-            "RecreationDotGov",
-            "--search",
-            "Fire Tower",
-            "--state",
-            "CA",
-        ],
-    )
+    test_command = """
+    camply \
+        campgrounds \
+        --provider RecreationDotGov \
+        --search "Fire Tower" \
+        --state CA
+    """
+    result = cli_runner.run_camply_command(command=test_command)
     assert "Furnace Creek Campground" in result.output
-    assert_cli_success(result=result)
+    cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_campground_search_by_recarea_id(cli_runner: CamplyRunner) -> None:
+    """
+    Search for Campgrounds by RecArea ID
+    """
+    test_command = """
+    camply \
+        campgrounds \
+        --rec-area 2991
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Bridalveil Creek Campground" in result.output
+    cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_campground_search_by_campsite_id(cli_runner: CamplyRunner) -> None:
+    """
+    Search for Campgrounds by Campsite ID
+    """
+    test_command = """
+    camply \
+        campgrounds \
+        --campsite 40107
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Ledgefork" in result.output
+    cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_campground_search_yellowstone(cli_runner: CamplyRunner) -> None:
+    """
+    Search for Campgrounds Yellowstone Provider
+    """
+    test_command = """
+    camply \
+        --debug \
+        campgrounds \
+        --provider Yellowstone
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert __version__ in result.output
+    cli_status_checker(result=result)
+    assert "Madison Campground" in result.output
+    cli_status_checker(result=result)
