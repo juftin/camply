@@ -242,9 +242,7 @@ def test_search_persist_json(cli_runner: CamplyRunner) -> None:
     """
     result_1 = cli_runner.run_camply_command(command=test_command)
     result_2 = cli_runner.run_camply_command(command=test_command)
-    camply.config.FileConfig.ROOT_DIRECTORY.joinpath("test_file.json").unlink(
-        missing_ok=True
-    )
+    camply.config.FileConfig.ROOT_DIRECTORY.joinpath("test_file.json").unlink()
     cli_status_checker(result=result_1, exit_code_zero=True)
     cli_status_checker(result=result_2, exit_code_zero=True)
     assert "Campsite search is configured to save offline" in result_1.output
@@ -269,9 +267,7 @@ def test_search_persist_pickle(cli_runner: CamplyRunner) -> None:
     """
     result_1 = cli_runner.run_camply_command(command=test_command)
     result_2 = cli_runner.run_camply_command(command=test_command)
-    camply.config.FileConfig.ROOT_DIRECTORY.joinpath("test_file.pickle").unlink(
-        missing_ok=True
-    )
+    camply.config.FileConfig.ROOT_DIRECTORY.joinpath("test_file.pickle").unlink()
     cli_status_checker(result=result_1, exit_code_zero=True)
     cli_status_checker(result=result_2, exit_code_zero=True)
     assert "Campsite search is configured to save offline" in result_1.output
