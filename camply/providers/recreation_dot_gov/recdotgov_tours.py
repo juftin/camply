@@ -37,7 +37,7 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
     api_response_class = TourResponse
     api_search_result_class = RecDotGovSearchResult
     api_search_result_key = "entity_id"
-    activity_name = None # Activity Name Should't Be Propogated to Query Parameters
+    activity_name = None  # Activity Name Should't Be Propogated to Query Parameters
 
     @property
     @abstractmethod
