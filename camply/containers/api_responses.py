@@ -27,7 +27,13 @@ class _CampsiteAttribute(CamplyModel):
     AttributeValue: str
 
 
-class CampsiteResponse(CamplyModel):
+class CoreRecDotGovResponse(CamplyModel):
+    """
+    Core Response from Recreation.gov
+    """
+
+
+class CampsiteResponse(CoreRecDotGovResponse):
     """
     https://ridb.recreation.gov/api/v1/campsites/<CAMPSITE ID>
     """
@@ -48,10 +54,13 @@ class CampsiteResponse(CamplyModel):
     ATTRIBUTES: List[_CampsiteAttribute]
 
     def __str__(self) -> str:
+        """
+        String Representation
+        """
         return f"{self.CampsiteName} (#{self.CampsiteID})"
 
 
-class TourResponse(CamplyModel):
+class TourResponse(CoreRecDotGovResponse):
     """
     https://ridb.recreation.gov/api/v1/tours/<TOUR ID>
     """
@@ -68,6 +77,9 @@ class TourResponse(CamplyModel):
     ATTRIBUTES: List[_CampsiteAttribute]
 
     def __str__(self) -> str:
+        """
+        String Representation
+        """
         return f"{self.TourName} (#{self.TourID})"
 
 
@@ -166,7 +178,9 @@ class AwareDatetime(datetime.datetime):
             return datetime.datetime.strptime(v, "%Y-%m-%dT%H:%M:%S%z")
         elif isinstance(v, datetime.datetime):
             if v.tzinfo is None:
-                raise ValueError("You Must Provide a Parsable Datetime Object with tzinfo")
+                raise ValueError(
+                    "You Must Provide a Parsable Datetime Object with tzinfo"
+                )
             return v
         else:
             raise ValueError("You Must Provide a Parsable Datetime String or Object")
@@ -215,7 +229,9 @@ class _TourMonthlyAvailabilityDateResponse(CamplyModel):
     https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
     """
 
-    tour_availability_summary_view_by_tour_id: Dict[int, _TourMonthlyAvailabilityTourResponse]
+    tour_availability_summary_view_by_tour_id: Dict[
+        int, _TourMonthlyAvailabilityTourResponse
+    ]
 
 
 class TourMonthlyAvailabilityResponse(CamplyModel):
@@ -223,7 +239,9 @@ class TourMonthlyAvailabilityResponse(CamplyModel):
     https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
     """
 
-    facility_availability_summary_view_by_local_date: Dict[Date, _TourMonthlyAvailabilityDateResponse]
+    facility_availability_summary_view_by_local_date: Dict[
+        Date, _TourMonthlyAvailabilityDateResponse
+    ]
 
 
 class TourDailyAvailabilityBookingWindow(CamplyModel):
