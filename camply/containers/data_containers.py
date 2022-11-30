@@ -23,7 +23,8 @@ class SearchWindow(CamplyModel):
     """
 
     @validator("start_date")
-    def start_date_must_be_in_future(self, v):
+    @classmethod
+    def start_date_must_be_in_future(cls, v):
         """
         Validate that start_date is in the future
         """
@@ -35,7 +36,8 @@ class SearchWindow(CamplyModel):
         return v
 
     @validator("end_date")
-    def end_date_must_be_in_future(self, v):
+    @classmethod
+    def end_date_must_be_in_future(cls, v):
         """
         Validate that end_date is in the future
         """
