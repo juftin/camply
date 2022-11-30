@@ -111,7 +111,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         Search for all campsites matching search criteria.
 
         Because Going To Camp has no efficient way of filtering
-        campsites for multiple campgrounds, this function is limited to listeing
+        campsites for multiple campgrounds, this function is limited to listening
         all campsites _within_ a cammpground. Iterating through all sites for
         all campgrounds would likely lead to abuse complaints.
 
