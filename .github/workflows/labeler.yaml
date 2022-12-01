@@ -25,7 +25,7 @@ jobs:
         -   name: Check out the repository
             uses: actions/checkout@v3
         -   name: Run Labeler
-            uses: crazy-max/ghaction-github-labeler@v4.0.0
+            uses: crazy-max/ghaction-github-labeler@v4.1.0
             with:
                 yaml-file: .github/labels.yaml
                 skip-delete: false
