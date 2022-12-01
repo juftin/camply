@@ -120,60 +120,64 @@ class SearchGoingToCamp(BaseCampingSearch):
         List[AvailableCampsite]
         """
         available_sites = []
-        for campground in self.campgrounds:
-            sites = self.campsite_finder.list_site_availability(
-                campground,
-                self.search_window[0].start_date,
-                self.search_window[0].end_date,
-                self.equipment_id,
-            )
-            for site in sites:
-                site_details = self.campsite_finder.get_site_details(
-                    self._recreation_area_id, site.resource_id
+        for search_window in self.search_window:
+            for campground in self.campgrounds:
+                sites = self.campsite_finder.list_site_availability(
+                    campground,
+                    search_window.start_date,
+                    search_window.end_date,
+                    self.equipment_id,
                 )
-                nights = (
-                    self.search_window[0].end_date - self.search_window[0].start_date
-                ).days
-                start_dt = datetime.combine(self.search_window[0].start_date, time.min)
-                end_dt = datetime.combine(self.search_window[0].end_date, time.min)
-                rec_area_domain_name, rec_area = self.campsite_finder.rec_area_lookup(
-                    rec_area_id=self._recreation_area_id
-                )
-                booking_url = self.campsite_finder.get_reservation_link(
-                    rec_area_domain_name,
-                    resource_location_id=campground.facility_id,
-                    map_id=site.map_id,
-                    equipment_id=NON_GROUP_EQUIPMENT,
-                    sub_equipment_id=self.equipment_id,
-                    party_size=1,
-                    start_date=self.search_window[0].start_date,
-                    end_date=self.search_window[0].end_date,
-                )
-
-                available_sites.append(
-                    AvailableCampsite(
-                        campsite_id=site_details["resourceId"],
-                        campsite_site_name=site_details["localizedValues"][0]["name"],
-                        booking_date=start_dt,
-                        booking_end_date=end_dt,
-                        booking_nights=nights,
-                        campsite_loop_name="Unknown",
-                        campsite_type=site_details["site_attributes"].get(
-                            "Service Type", "Unknown"
-                        ),
-                        campsite_occupancy=(
-                            site_details["minCapacity"],
-                            site_details["maxCapacity"],
-                        ),
-                        campsite_use_type="N/A",
-                        availability_status="Available",
-                        recreation_area=rec_area.recreation_area,
-                        recreation_area_id=self._recreation_area_id,
-                        facility_name=campground.facility_name,
-                        facility_id=campground.facility_id,
-                        booking_url=booking_url,
+                for site in sites:
+                    site_details = self.campsite_finder.get_site_details(
+                        self._recreation_area_id, site.resource_id
                     )
-                )
+                    nights = (search_window.end_date - search_window.start_date).days
+                    start_dt = datetime.combine(search_window.start_date, time.min)
+                    end_dt = datetime.combine(search_window.end_date, time.min)
+                    (
+                        rec_area_domain_name,
+                        rec_area,
+                    ) = self.campsite_finder.rec_area_lookup(
+                        rec_area_id=self._recreation_area_id
+                    )
+                    booking_url = self.campsite_finder.get_reservation_link(
+                        rec_area_domain_name,
+                        resource_location_id=campground.facility_id,
+                        map_id=site.map_id,
+                        equipment_id=NON_GROUP_EQUIPMENT,
+                        sub_equipment_id=self.equipment_id,
+                        party_size=1,
+                        start_date=search_window.start_date,
+                        end_date=search_window.end_date,
+                    )
+
+                    available_sites.append(
+                        AvailableCampsite(
+                            campsite_id=site_details["resourceId"],
+                            campsite_site_name=site_details["localizedValues"][0][
+                                "name"
+                            ],
+                            booking_date=start_dt,
+                            booking_end_date=end_dt,
+                            booking_nights=nights,
+                            campsite_loop_name="Unknown",
+                            campsite_type=site_details["site_attributes"].get(
+                                "Service Type", "Unknown"
+                            ),
+                            campsite_occupancy=(
+                                site_details["minCapacity"],
+                                site_details["maxCapacity"],
+                            ),
+                            campsite_use_type="N/A",
+                            availability_status="Available",
+                            recreation_area=rec_area.recreation_area,
+                            recreation_area_id=self._recreation_area_id,
+                            facility_name=campground.facility_name,
+                            facility_id=campground.facility_id,
+                            booking_url=booking_url,
+                        )
+                    )
 
         return available_sites
 
