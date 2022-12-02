@@ -26,12 +26,13 @@ class SearchWindow(CamplyModel):
     @classmethod
     def start_date_must_be_in_future(cls, v):
         """
-        Validate that start_date is in the future
+        Validate that start_date is in the future.
+
+        Coerece start date to today's date when it is not in the future.
         """
         current_date = datetime.datetime.now().date()
-        print(v, current_date)
         if v < current_date:
-            raise ValueError("must be in the future")
+            return current_date
 
         return v
 
@@ -42,7 +43,6 @@ class SearchWindow(CamplyModel):
         Validate that end_date is in the future
         """
         current_date = datetime.datetime.now().date()
-        print(v, current_date)
         if v < current_date:
             raise ValueError("must be in the future")
 
