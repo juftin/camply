@@ -152,6 +152,14 @@ class SearchGoingToCamp(BaseCampingSearch):
                         end_date=search_window.end_date,
                     )
 
+                    # Some rec areas have zero-capacity sites, which should not
+                    # be viable for camping. Skip all zero-capacity sites.
+                    if (
+                        not site_details["minCapacity"]
+                        or not site_details["maxCapacity"]
+                    ):
+                        continue
+
                     available_sites.append(
                         AvailableCampsite(
                             campsite_id=site_details["resourceId"],
