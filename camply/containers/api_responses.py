@@ -116,7 +116,7 @@ class RecreationAreaResponse(CamplyModel):
     https://ridb.recreation.gov/api/v1/campsites/<CAMPSITE ID>
     """
 
-    RecAreaID: int
+    RecAreaID: Union[int, str]
     RecAreaName: str
     RECAREAADDRESS: List[_RecAreaAddress]
 
@@ -132,7 +132,7 @@ class _FacilityRecArea(CamplyModel):
     Recreation Area inside of Facility
     """
 
-    RecAreaID: int
+    RecAreaID: Union[int, str]
     RecAreaName: str
 
 
@@ -158,7 +158,7 @@ class FacilityResponse(CamplyModel):
     FACILITYADDRESS: Optional[List[_FacilityAddress]]
     RECAREA: Optional[List[_FacilityRecArea]]
     ORGANIZATION: Optional[List[_FacilityOrganization]]
-    ParentRecAreaID: Optional[int]
+    ParentRecAreaID: Optional[Union[int, str]]
 
     @validator("ParentRecAreaID", pre=True, always=False)
     def validate_parentrecid(cls, val: Any) -> Optional[int]:
