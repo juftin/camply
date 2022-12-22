@@ -1,0 +1,75 @@
+interactions:
+-   request:
+        body:
+        headers:
+            Accept:
+            -   '*/*'
+            Accept-Encoding:
+            -   gzip, deflate
+            Connection:
+            -   keep-alive
+            Content-Length:
+            -   '0'
+            Content-Type:
+            -   application/json
+            User-Agent:
+            -   python-requests/2.28.1
+        method: POST
+        uri: https://api.pushover.net/1/messages.json?message=This+is+a+test+message%21&token=REDACTED&user=REDACTED
+    response:
+        body:
+            string: '{"status":1,"request":"7c8af003-b8c8-4d74-af54-20368dae4c1e"}'
+        headers:
+            Access-Control-Allow-Headers:
+            -   X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App, Authorization
+            Access-Control-Allow-Methods:
+            -   POST, OPTIONS
+            Access-Control-Allow-Origin:
+            -   '*'
+            Access-Control-Max-Age:
+            -   '1728000'
+            Cache-Control:
+            -   max-age=0, private, must-revalidate
+            Connection:
+            -   keep-alive
+            Content-Type:
+            -   application/json; charset=utf-8
+            Date:
+            -   Tue, 29 Nov 2022 05:51:28 GMT
+            ETag:
+            -   W/"a0ad3e68f8bcb0a21a84773cecdaf7f3"
+            Referrer-Policy:
+            -   strict-origin-when-cross-origin
+            Server:
+            -   nginx
+            Strict-Transport-Security:
+            -   max-age=31536000
+            Transfer-Encoding:
+            -   chunked
+            X-Content-Type-Options:
+            -   nosniff
+            X-Download-Options:
+            -   noopen
+            X-Frame-Options:
+            -   SAMEORIGIN
+            -   DENY
+            X-Limit-App-Limit:
+            -   '10000'
+            X-Limit-App-Remaining:
+            -   '9996'
+            X-Limit-App-Reset:
+            -   '1669874400'
+            X-PO-H:
+            -   t
+            X-Permitted-Cross-Domain-Policies:
+            -   none
+            X-Request-Id:
+            -   7c8af003-b8c8-4d74-af54-20368dae4c1e
+            X-Runtime:
+            -   '0.054488'
+            X-XSS-Protection:
+            -   1; mode=block
+        status:
+            code: 200
+            message: OK
+version: 1
