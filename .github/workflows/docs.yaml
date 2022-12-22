@@ -2,7 +2,7 @@ name: Documentation
 
 on:
     release:
-        types: [published]
+        types: [released]
 
 jobs:
     github-pages-publish:
