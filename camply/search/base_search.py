@@ -140,9 +140,12 @@ class BaseCampingSearch(ABC):
         -------
         bool
         """
-        timestamp_range: List[Timestamp] = date_range(
-            start=date.to_pydatetime(), periods=periods
-        )
+        timestamp_range = []
+        if type(date) is Timestamp:
+            timestamp_range = date_range(start=date.to_pydatetime(), periods=periods)
+        else:
+            timestamp_range = date_range(start=date, periods=periods)
+
         campsite_date_range = {item.date() for item in timestamp_range}
         intersection = campsite_date_range.intersection(self.search_days)
         if intersection:
