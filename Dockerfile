@@ -24,8 +24,9 @@ RUN python -m pip install -r /tmp/camply/requirements.txt && \
     python -m pip install /tmp/camply --no-dependencies && \
     rm -rf /tmp/camply/
 
-RUN mkdir /home/camply
-WORKDIR /home/camply
+ENV HOME=/home/camply
+RUN mkdir ${HOME}
+WORKDIR ${HOME}
 ENV CAMPLY_LOG_HANDLER="PYTHON"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
