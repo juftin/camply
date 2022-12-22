@@ -141,17 +141,6 @@ class SearchGoingToCamp(BaseCampingSearch):
                     ) = self.campsite_finder.rec_area_lookup(
                         rec_area_id=self._recreation_area_id
                     )
-                    min_capacity = (
-                        1
-                        if site_details["minCapacity"] is None
-                        else site_details["minCapacity"]
-                    )
-                    max_capacity = (
-                        1
-                        if site_details["maxCapacity"] is None
-                        else site_details["maxCapacity"]
-                    )
-                    site_details.get("maxCapacity", 1)
                     booking_url = self.campsite_finder.get_reservation_link(
                         rec_area_domain_name,
                         resource_location_id=campground.facility_id,
@@ -162,6 +151,14 @@ class SearchGoingToCamp(BaseCampingSearch):
                         start_date=search_window.start_date,
                         end_date=search_window.end_date,
                     )
+
+                    # Some rec areas have zero-capacity sites, which should not
+                    # be viable for camping. Skip all zero-capacity sites.
+                    if (
+                        not site_details["minCapacity"]
+                        or not site_details["maxCapacity"]
+                    ):
+                        continue
 
                     available_sites.append(
                         AvailableCampsite(
@@ -177,8 +174,8 @@ class SearchGoingToCamp(BaseCampingSearch):
                                 "Service Type", "Unknown"
                             ),
                             campsite_occupancy=(
-                                min_capacity,
-                                max_capacity,
+                                site_details["minCapacity"],
+                                site_details["maxCapacity"],
                             ),
                             campsite_use_type="N/A",
                             availability_status="Available",
