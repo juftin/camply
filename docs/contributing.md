@@ -70,42 +70,27 @@ poetry run tox -e mypy
 
 ### Releasing
 
-Releases are triggered entirely by CI/CD via Pull requests being merged into
-the main branch.
+Releases are handled entirely by CI/CD via Pull requests being merged into
+the main branch. Contributions follow the [gitmoji] standards with [conventional commits],
+orchestration is handled by the [semantic-release] tool.
 
-The version bump on each release is decided by the labels placed on the Pull Requests.
-There must be one, and only one, of the following labels on each pull request to the main branch:
-`BUMP_MAJOR`, `BUMP_MINOR`, `BUMP_PATCH`. Pull Requests will be un-mergeable unless the version on
-your `pyproject.toml` matches the main branch and the proper version labels are applied.
+While you can denote other changes on your commit messages with gitmoji, the following
+commit message emoji prefixes are the only ones to trigger new releases:
+
+| Unicode | Shortcode   | Description                 | Semver |
+|---------|-------------|-----------------------------|--------|
+| 💥      | :boom:      | Introduce breaking changes. | Major  |
+| ✨      | :sparkles:  | Introduce new features.     | Minor  |
+| 🐛      | :bug:       | Fix a bug.                  | Patch  |
+| 🚑      | :ambulance: | Critical hotfix.            | Patch  |
+| 🔒      | :lock:      | Fix security issues.        | Patch  |
 
 The Release workflow performs the following automated steps:
 
 - Publish a GitHub Release.
 - Apply a version tag to the repository.
 - Build and upload the package to PyPI.
-
 - Build and upload the package to Docker Hub.
-Release notes are populated with the titles and authors of merged pull requests.
-You can group the pull requests into separate sections
-by applying labels to them, like this:
-
-<!-- table-release-drafter-sections-begin -->
-
-| Pull Request Label | Section in Release Notes     |
-| ------------------ | ---------------------------- |
-| `breaking`         | 💥 Breaking Changes          |
-| `enhancement`      | 🚀 Features                  |
-| `removal`          | 🔥 Removals and Deprecations |
-| `bug`              | 🐞 Fixes                     |
-| `performance`      | 🐎 Performance               |
-| `testing`          | 🚨 Testing                   |
-| `ci`               | 👷 Continuous Integration    |
-| `documentation`    | 📚 Documentation             |
-| `refactoring`      | 🔨 Refactoring               |
-| `style`            | 💄 Style                     |
-| `dependencies`     | 📦 Dependencies              |
-
-<!-- table-release-drafter-sections-end -->
 
 [codecov]: https://codecov.io/
 [cookiecutter]: https://github.com/audreyr/cookiecutter
@@ -121,3 +106,6 @@ by applying labels to them, like this:
 [read the docs]: https://readthedocs.org/
 [testpypi]: https://test.pypi.org/
 [pre-commit]: https://pre-commit.com/
+[gitmoji]: https://gitmoji.dev/
+[conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
+[semantic-release]: https://github.com/semantic-release/semantic-release
