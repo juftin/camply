@@ -2,8 +2,7 @@ name: Publishing
 
 on:
     release:
-        types:
-        -   created
+        types: [released]
 
 jobs:
 
