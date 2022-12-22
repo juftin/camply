@@ -103,7 +103,6 @@ class CampgroundFacility(CamplyModel):
     recreation_area: str
     facility_id: Union[int, str]
     recreation_area_id: Union[int, str]
-    recreation_area_id: int
     map_id: Optional[int]
 
 

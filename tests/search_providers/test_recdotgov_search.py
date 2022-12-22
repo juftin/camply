@@ -3,10 +3,9 @@ Yellowstone Testing Provider
 """
 
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import pytest
-from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
 from camply.search import SearchRecreationDotGov
@@ -18,22 +17,15 @@ logger = logging.getLogger(__name__)
 @pytest.fixture
 def search_window() -> SearchWindow:
     """
-    Get A RecDotGov Search Window For Next Month
+    Get A RecDotGov Search Window For September 2023
 
     Returns
     -------
     SearchWindow
     """
-    beginning_of_next_month = (datetime.now() + relativedelta(months=2)).replace(
-        day=1, hour=0, minute=0, second=0, microsecond=0
-    )
     search_window = SearchWindow(
-        start_date=beginning_of_next_month,
-        end_date=beginning_of_next_month + timedelta(days=29),
-    )
-    logger.info(
-        "Setting Up Search Window starting Next Month: "
-        f"{search_window.start_date.strftime('%B, %Y')}"
+        start_date=datetime(2023, 9, 1),
+        end_date=datetime(2023, 10, 1),
     )
     return search_window
 
@@ -48,8 +40,8 @@ def recdotgov_recarea_finder(search_window) -> SearchRecreationDotGov:
     SearchYellowstone
     """
     recdotgov_finder = SearchRecreationDotGov(
-        search_window=search_window, recreation_area=2907
-    )  # Rocky Mtn / Arapahoe
+        search_window=search_window, recreation_area=2584
+    )  # Big Bend National Park
     logger.info("RecreationDotGov Recreation Area Searcher Established.")
     logger.info(f"Search Months: {recdotgov_finder.search_months}")
     return recdotgov_finder
@@ -65,8 +57,8 @@ def recdotgov_campground_finder(search_window) -> SearchRecreationDotGov:
     SearchYellowstone
     """
     recdotgov_finder = SearchRecreationDotGov(
-        search_window=search_window, campgrounds=232493
-    )  # Fish Creek, Glacier Ntl Park
+        search_window=search_window, campgrounds=234708
+    )  # Apache Trout CampgroundApache Trout Campground
     logger.info("RecreationDotGov Campground Searcher Established.")
     logger.info(f"Search Months: {recdotgov_finder.search_months}")
     return recdotgov_finder
@@ -82,8 +74,8 @@ def recdotgov_campsite_finder(search_window) -> SearchRecreationDotGov:
     SearchYellowstone
     """
     recdotgov_finder = SearchRecreationDotGov(
-        search_window=search_window, campsites=40107
-    )  # Fish Creek, Glacier Ntl Park
+        search_window=search_window, campsites=93740
+    )  # Site: O, Loop: Group Sites L-R - Chisos Basin Group Campground
     logger.info("RecreationDotGov Campground Searcher Established.")
     logger.info(f"Search Months: {recdotgov_finder.search_months}")
     return recdotgov_finder
@@ -98,6 +90,7 @@ def test_get_searchable_campgrounds_recarea(
     """
     logger.info("Searching for Matching Recreation Area Campgrounds")
     campgrounds = recdotgov_recarea_finder._get_searchable_campgrounds()
+    assert campgrounds
     for camp in campgrounds:
         assert isinstance(camp, CampgroundFacility)
 
@@ -111,6 +104,7 @@ def test_get_searchable_campgrounds_campground(
     """
     logger.info("Searching for Matching Campgrounds to Campground ID")
     campgrounds = recdotgov_campground_finder._get_searchable_campgrounds()
+    assert campgrounds
     for camp in campgrounds:
         assert isinstance(camp, CampgroundFacility)
 
@@ -125,6 +119,7 @@ def test_get_all_campsites_recarea(recdotgov_recarea_finder) -> None:
     SearchRecreationDotGov.assemble_availabilities(
         matching_data=all_campsites, log=True, verbose=False
     )
+    assert all_campsites
     for camp in all_campsites:
         assert isinstance(camp, AvailableCampsite)
 
@@ -141,6 +136,7 @@ def test_get_all_campsites_campground(
     SearchRecreationDotGov.assemble_availabilities(
         matching_data=all_campsites, log=True, verbose=False
     )
+    assert all_campsites
     for camp in all_campsites:
         assert isinstance(camp, AvailableCampsite)
 
@@ -154,6 +150,7 @@ def test_get_campsite_specific_campgrounds(
     """
     logger.info("Searching for Campground Specific Campsites")
     campgrounds = recdotgov_campsite_finder._get_campgrounds_by_campsite_id()
+    assert campgrounds
     for camp in campgrounds:
         assert isinstance(camp, CampgroundFacility)
 
@@ -170,5 +167,6 @@ def test_get_campsite_specific_results(
     SearchRecreationDotGov.assemble_availabilities(
         matching_data=all_campsites, log=True, verbose=False
     )
+    assert all_campsites
     for camp in all_campsites:
         assert isinstance(camp, AvailableCampsite)

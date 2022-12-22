@@ -1,0 +1,62 @@
+interactions:
+-   request:
+        body:
+        headers:
+            Accept:
+            -   '*/*'
+            Accept-Encoding:
+            -   gzip, deflate
+            Connection:
+            -   keep-alive
+            User-Agent:
+            -   Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27
+        method: GET
+        uri: https://longpoint.goingtocamp.com/api/equipment
+    response:
+        body:
+            string: !!binary |
+                H4sIAAAAAAAECqyQO2/CMBSF/0p0Z6e1nae8IejQpRNiKGIwyaWy5NipH0gt4r9XUAgLraI24z1X
+                Ot+nsz7AHp1X1jy3IFLO8iqvWFUX5JovZEAQwClnKeMp5UuaC0oFpQ+UZa9AQPmF8nKrsQWxk9oj
+                AXyPqu/QhLkM+Gbdx7k941VZE7CuRQeCEdC2kVp9YruSOqIHsT5AE3WIDl9kd8KiSeczIGC+z6dr
+                LxBo0TdO9UFZAwJun+OGgI/bIbgoqEv/ndcPdsrPmqD2CCK4iH+wZckSTYDj5kgO95Ru3GpYhZ/2
+                /CeXn7l+DLgcwNkE4JU0j3PZ9ejGsIuBnU/AXjqpNLok9kmwCat3o4bPB4dicgdejHPIBodycoeM
+                /+7wBQAA//8CZXpQtjSCu8Gc6m4wMSDKDSYIN1hQ0Q35ZalFCjAnxNbGAgAAAP//AwBI5KtG8gQA
+                AA==
+        headers:
+            Cache-Control:
+            -   no-cache, no-store
+            Content-Encoding:
+            -   gzip
+            Content-Type:
+            -   application/json; charset=utf-8
+            Date:
+            -   Tue, 06 Dec 2022 02:48:07 GMT
+            Pragma:
+            -   no-cache
+            Referrer-Policy:
+            -   strict-origin-when-cross-origin
+            Request-Context:
+            -   appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
+            Set-Cookie:
+            -   .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8L3yave5z3lLtTxwV8PukffCn0xpWyEmdR0qUZGs06fcqCM5NSQExdjBUV2pyb0tPICOOfMihJHWFaHudc0b1n_V9sJGO7Hxd_ABqlXUDTYpXXW-P1oqips2mwoZqw1J0wl8xPs4xWBB0NZffC5DdNo; path=/; samesite=strict; httponly
+            -   XSRF-TOKEN=CfDJ8L3yave5z3lLtTxwV8Pukfcb5-HazB1otM5kt67fptFD6GBQMzw1Vs-0221RB38ww9mosB76Kxsu4dO11zWNb0aC_5y-EMdY0xoejXTyj6Ks3CSOqIK_A1oVYxFIoHEvBOSV0-nH0mwNlZ5hQ4wHwpY; path=/; secure
+            Strict-Transport-Security:
+            -   max-age=31536000
+            Transfer-Encoding:
+            -   chunked
+            Vary:
+            -   Accept-Encoding
+            X-Azure-Ref:
+            -   0aK2OYwAAAADeRJ3U842wRb9+iZDyrhwDREVOMzAxMDAwMTA5MDIxADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
+            X-Cache:
+            -   CONFIG_NOCACHE
+            X-Content-Type-Options:
+            -   nosniff
+            X-Frame-Options:
+            -   DENY
+            X-XSS-Protection:
+            -   '1'
+        status:
+            code: 200
+            message: OK
+version: 1

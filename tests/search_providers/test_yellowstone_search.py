@@ -3,10 +3,9 @@ Yellowstone Testing Provider
 """
 
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import pytest
-from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, SearchWindow
 from camply.search import SearchYellowstone
@@ -18,22 +17,15 @@ logger = logging.getLogger(__name__)
 @pytest.fixture
 def search_window() -> SearchWindow:
     """
-    Get A Yellowstone Search Window For Next Month
+    Get A Search Window For September 2023
 
     Returns
     -------
     SearchWindow
     """
-    beginning_of_next_month = (datetime.now() + relativedelta(months=1)).replace(
-        day=1, hour=0, minute=0, second=0, microsecond=0
-    )
     search_window = SearchWindow(
-        start_date=beginning_of_next_month,
-        end_date=beginning_of_next_month + timedelta(days=15),
-    )
-    logger.info(
-        "Setting Up Search Window starting Next Month: "
-        f"{search_window.start_date.strftime('%B, %Y')}"
+        start_date=datetime(2023, 9, 1),
+        end_date=datetime(2023, 10, 1),
     )
     return search_window
 
@@ -54,7 +46,7 @@ def yellowstone_finder(search_window) -> SearchYellowstone:
 
 
 @vcr_cassette
-def test_get_all_campsites(yellowstone_finder) -> None:
+def test_yellowstone_get_all_campsites(yellowstone_finder) -> None:
     """
     Get all of the Yellowstone Campsites
     """

@@ -14,8 +14,14 @@ from camply import AvailableCampsite
 from camply.cli import camply_command_line
 
 logger = logging.getLogger(__name__)
-logging.getLogger("vcr.cassette").setLevel(logging.WARNING)
-
+[
+    logging.getLogger(loggo).setLevel(logging.WARNING)
+    for loggo in [
+        "vcr.cassette",
+        "vcr.request",
+        "vcr.matchers",
+    ]
+]
 module_scope = pytest.fixture(scope="module")
 
 
@@ -36,9 +42,9 @@ class CamplyRunner(CliRunner):
         -------
         Result
         """
-        result = self.invoke(
-            cli=camply_command_line, args=self.parse_camply_command(command=command)
-        )
+        parsed_command = self.parse_camply_command(command=command)
+        logger.debug("Camply CLI: %s", parsed_command)
+        result = self.invoke(cli=camply_command_line, args=parsed_command)
         return result
 
     @classmethod
