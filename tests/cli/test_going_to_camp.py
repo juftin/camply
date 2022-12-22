@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 @vcr_cassette
 def test_goingtocamp_list_recareas(cli_runner: CamplyRunner) -> None:
     """
-    GoingToCamp - List All RecAreas
+    Testing GoingToCamp - List All RecAreas
     """
     test_command = """
     camply \
@@ -27,7 +27,7 @@ def test_goingtocamp_list_recareas(cli_runner: CamplyRunner) -> None:
 @vcr_cassette
 def test_goingtocamp_equipment_types(cli_runner: CamplyRunner) -> None:
     """
-    GoingToCamp - List Equipment Types
+    Testing GoingToCamp - List Equipment Types
     """
     test_command = """
     camply \
@@ -44,7 +44,7 @@ def test_goingtocamp_equipment_types(cli_runner: CamplyRunner) -> None:
 @vcr_cassette
 def test_goingtocamp_search_by_equipment_types(cli_runner: CamplyRunner) -> None:
     """
-    GoingToCamp - Search By Equipment Types
+    Testing GoingToCamp - Search By Equipment Types
     """
     test_command = """
     camply \

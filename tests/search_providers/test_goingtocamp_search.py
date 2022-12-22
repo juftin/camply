@@ -4,7 +4,6 @@ GoingToCamp Testing Provider
 
 import logging
 from datetime import datetime
-from typing import List
 
 import pytest
 
@@ -56,10 +55,6 @@ def test_going_to_camp_get_all_campsites(
 ) -> None:
     """
     Get all GTC sites for the rec area
-
-    Returns
-    -------
-    List[AvailableCampsite]
     """
     logger.info("Searching for Campsites")
     all_campsites = going_to_camp_finder.get_all_campsites()
