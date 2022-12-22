@@ -83,7 +83,7 @@ class AvailableCampsite(CamplyModel):
     campsite_use_type: str
     availability_status: str
     recreation_area: str
-    recreation_area_id: int
+    recreation_area_id: Union[int, str]
     facility_name: str
     facility_id: Union[int, str]
     booking_url: str
@@ -102,7 +102,7 @@ class CampgroundFacility(CamplyModel):
     facility_name: str
     recreation_area: str
     facility_id: Union[int, str]
-    recreation_area_id: int
+    recreation_area_id: Union[int, str]
     map_id: Optional[int]
 
 
@@ -112,7 +112,7 @@ class RecreationArea(CamplyModel):
     """
 
     recreation_area: str
-    recreation_area_id: int
+    recreation_area_id: Union[int, str]
     recreation_area_location: str
 
 

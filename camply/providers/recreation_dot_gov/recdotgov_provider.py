@@ -713,7 +713,7 @@ class RecreationDotGov(BaseProvider):
         cls,
         availability: dict,
         recreation_area: str,
-        recreation_area_id: int,
+        recreation_area_id: Union[int, str],
         facility_name: str,
         facility_id: int,
         month: datetime,
@@ -728,7 +728,7 @@ class RecreationDotGov(BaseProvider):
             API Response
         recreation_area: str
             Name of Recreation Area
-        recreation_area_id: int
+        recreation_area_id: Union[int, str]
             ID of Recreation Area
         facility_name: str
             Campground Facility Name
