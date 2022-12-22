@@ -29,7 +29,7 @@ camply \
     --start-date 2023-09-09 \
     --end-date 2023-09-17 \
     --nights 3 \
-    --equipment RV 25
+    --equipment RV 25 \
 
 camply \
   --debug \
@@ -84,5 +84,39 @@ camply \
   --end-date 2023-10-01 \
   --offline-search \
   --offline-search-path test_file.pickle
+
+camply \
+  --debug \
+  --provider goingtocamp \
+  recreation-areas
+
+camply \
+  --debug \
+  recreation-areas \
+  --provider goingtocamp \
+
+camply \
+  --debug \
+  recreation-areas \
+  --provider goingtocamp \
+
+camply \
+  --debug \
+  equipment-types \
+  --rec-area 1 \
+  --provider goingtocamp \
+
+# Rec area: Long Point Region
+# Campground: Waterford North Conservation Area
+# Equipment: 1 tent
+camply \
+  --debug \
+  --provider goingtocamp \
+  campsites \
+  --rec-area 1 \
+  --start-date 2023-09-01 \
+  --end-date 2023-09-02 \
+  --equipment-id -32768 \
+  --campground -2147483643 \
 
 rm test_file.pickle

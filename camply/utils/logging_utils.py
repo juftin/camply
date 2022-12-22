@@ -6,11 +6,13 @@ import logging
 from typing import List, Union
 
 from camply.containers import CampgroundFacility, RecreationArea
+from camply.containers.base_container import GoingToCampEquipment
 
 CALENDARMOJI = "📅"
 CAMPMOJI = "🏕"
 TENTMOJI = "⛺️"
 XMOJI = "❌"
+RVMOJI = "🚌"
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +45,8 @@ def _generate_response_string(
             f"⛰  {response.recreation_area}, {response.recreation_area_location} "
             f"(#{response.recreation_area_id})"
         )
+    elif isinstance(response, GoingToCampEquipment):
+        return f"{RVMOJI} {response.equipment_name} " f"(#{response.equipment_type_id})"
     elif isinstance(response, str):
         return response
     else:
