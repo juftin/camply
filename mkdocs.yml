@@ -42,6 +42,9 @@ nav:
 -   Changelog 📝: https://github.com/juftin/camply/releases
 extra:
     generator: false
+    analytics:
+        provider: google
+        property: G-J7HWHT1EZN
 markdown_extensions:
 -   toc:
         permalink: '#'
