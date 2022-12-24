@@ -72,6 +72,11 @@ RECREATION_AREAS = {
         recreation_area_id=11,
         recreation_area_location="Wisconsin, USA",
     ),
+        "midnrreservations.com": RecreationArea(
+        recreation_area="Michigan State Parks",
+        recreation_area_id=12,
+        recreation_area_location="Michigan, USA",
+    ),
 }
 
 NON_GROUP_EQUIPMENT = -32768
