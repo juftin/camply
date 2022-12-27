@@ -36,4 +36,12 @@ camply --provider Yellowstone campgrounds
 
 ![](_static/goingtocamp_logo.png){: .center}
 
-### TODO: Add some blurbs about GoingToCamp and Document Usage
+[GoingToCamp](https://goingtocamp.com/) provides campground listing and booking services for several US state and Canadian provincial parks.
+
+To get a listing of GoingToCamp recreation areas
+
+```
+camply --provider goingtocamp recreation-areas
+```
+
+Unlike other camply providers, when using GoingToCamp you must restrict campground and campsites searches to a single recreation area. Since recreation areas may list every campground in a state or provincial park system, it feels natural to filter searches by recreation area when using GoingToCamp.
