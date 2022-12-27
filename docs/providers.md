@@ -69,3 +69,9 @@ The GoingToCamp Provider currently contains the following Recreation Areas:
 - Washington State Parks, Washington, USA (#4)
 - Wisconsin State Parks, Wisconsin, USA (#11)
 - Yukon (Backcountry), Yukon, CA (#5)
+
+Check out the following documentation examples for more details on searching GoingToCamp recreation
+areas:
+
+- [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+- [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
