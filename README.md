@@ -21,6 +21,7 @@ ___________
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 [![Black Codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)]()
 [![Discord Chat](https://img.shields.io/static/v1?label=chat&message=discord&color=blue&logo=discord)](https://discord.gg/qZDr78kKvB)
+[![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.dev)
 
 ## [Check Out The Docs](https://juftin.com/camply/)
 
@@ -78,6 +79,10 @@ Camply doesn't support your favorite campsite booking provider yet? Consider
 - [Installation](docs/installation.md)
     * [PyPI](docs/installation.md#pypi)
     * [Docker](docs/installation.md#docker)
+- [Providers](docs/providers.md)
+    * [RecreationDotGov](docs/providers.md#recreationgov)
+    * [Yellowstone](docs/providers.md#yellowstone)
+    * [GoingToCamp](docs/providers.md#goingtocamp)
 - [Command Line Usage](docs/command_line_usage.md)
     * [campsites](docs/command_line_usage.md#campsites)
     * [recreation-areas](docs/command_line_usage.md#recreation-areas)
@@ -95,6 +100,8 @@ Camply doesn't support your favorite campsite booking provider yet? Consider
         + [Look for Weekend Campsite Availabilities](docs/command_line_usage.md#look-for-weekend-campsite-availabilities)
         + [Look for Consecutive Nights at the Same Campsite](docs/command_line_usage.md#look-for-consecutive-nights-at-the-same-campsite)
         + [Look for a Campsite Inside of Yellowstone](docs/command_line_usage.md#look-for-a-campsite-inside-of-yellowstone)
+        + [Look for a Campsite from GoingToCamp](docs/command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+        + [Searching GoingToCamp Using Equipment](docs/command_line_usage.md#searching-goingtocamp-using-equipment)
         + [Look for a Campsite Across Multiple Recreation areas](docs/command_line_usage.md#look-for-a-campsite-across-multiple-recreation-areas)
         + [Using a YAML Configuration file to search for campsites](docs/command_line_usage.md#using-a-yaml-configuration-file-to-search-for-campsites)
         + [Searching for a Campsite That Fits Your Equipment](docs/command_line_usage.md#searching-for-a-campsite-that-fits-your-equipment)
