@@ -52,6 +52,7 @@ ___________
         + [Look for Consecutive Nights at the Same Campsite](command_line_usage.md#look-for-consecutive-nights-at-the-same-campsite)
         + [Look for a Campsite Inside of Yellowstone](command_line_usage.md#look-for-a-campsite-inside-of-yellowstone)
         + [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+        + [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
         + [Look for a Campsite Across Multiple Recreation areas](command_line_usage.md#look-for-a-campsite-across-multiple-recreation-areas)
         + [Using a YAML Configuration file to search for campsites](command_line_usage.md#using-a-yaml-configuration-file-to-search-for-campsites)
         + [Searching for a Campsite That Fits Your Equipment](command_line_usage.md#searching-for-a-campsite-that-fits-your-equipment)

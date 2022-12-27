@@ -32,11 +32,20 @@ the [documentation](command_line_usage.md#look-for-a-campsite-inside-of-yellowst
 camply --provider Yellowstone campgrounds
 ```
 
+The Yellowstone Provider currently supports the following Campgrounds:
+
+- Bridge Bay Campground (YLYB:RV)
+- Canyon Campground (YLYC:RV)
+- Fishing Bridge RV Park (YLYF:RV)
+- Grant Campground (YLYG:RV)
+- Madison Campground (YLYM:RV)
+
 ## GoingToCamp
 
 ![](_static/goingtocamp_logo.png){: .center}
 
-[GoingToCamp](https://goingtocamp.com/) provides campground listing and booking services for several US state and Canadian provincial parks.
+[GoingToCamp](https://goingtocamp.com/) provides campground listing and booking services for several US state and
+Canadian provincial parks.
 
 To get a listing of GoingToCamp recreation areas
 
@@ -44,4 +53,19 @@ To get a listing of GoingToCamp recreation areas
 camply --provider goingtocamp recreation-areas
 ```
 
-Unlike other camply providers, when using GoingToCamp you must restrict campground and campsites searches to a single recreation area. Since recreation areas may list every campground in a state or provincial park system, it feels natural to filter searches by recreation area when using GoingToCamp.
+Unlike other camply providers, when using GoingToCamp you must restrict campground and campsites searches to a single
+recreation area. Since recreation areas may list every campground in a state or provincial park system, it feels natural
+to filter searches by recreation area when using GoingToCamp.
+
+The GoingToCamp Provider currently contains the following Recreation Areas:
+
+- Hamilton, Ontario, CA (#6)
+- Long Point Region, Ontario, CA (#1)
+- Maitland Valley, Ontario, CA (#7)
+- Oroville Park, Washington, USA (#8)
+- Saugreen Valley, Ontario, CA (#9)
+- St. Clair Region, Ontario, CA (#2)
+- Tacoma Power Parks, Washington, USA (#10)
+- Washington State Parks, Washington, USA (#4)
+- Wisconsin State Parks, Wisconsin, USA (#11)
+- Yukon (Backcountry), Yukon, CA (#5)

@@ -100,6 +100,7 @@ Camply doesn't support your favorite campsite booking provider yet? Consider
         + [Look for Consecutive Nights at the Same Campsite](docs/command_line_usage.md#look-for-consecutive-nights-at-the-same-campsite)
         + [Look for a Campsite Inside of Yellowstone](docs/command_line_usage.md#look-for-a-campsite-inside-of-yellowstone)
         + [Look for a Campsite from GoingToCamp](docs/command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+        + [Searching GoingToCamp Using Equipment](docs/command_line_usage.md#searching-goingtocamp-using-equipment)
         + [Look for a Campsite Across Multiple Recreation areas](docs/command_line_usage.md#look-for-a-campsite-across-multiple-recreation-areas)
         + [Using a YAML Configuration file to search for campsites](docs/command_line_usage.md#using-a-yaml-configuration-file-to-search-for-campsites)
         + [Searching for a Campsite That Fits Your Equipment](docs/command_line_usage.md#searching-for-a-campsite-that-fits-your-equipment)

@@ -376,16 +376,57 @@ camply campsites \
 
 ### Look for a Campsite from GoingToCamp
 
-#### TODO: Further Document This
+The `GoingToCamp` provider requires that you specify both a Recreation Area and a
+Campground in your search. First you'll need to find your Recreation Area ID:
 
 ```commandline
-camply \
-  campsites \
+camply recreation-areas --provider goingtocamp
+```
+
+For this example we'll search Washington State Parks which corresponds to Recreation Area ID #4.
+Next we'll list the Campgrounds within the Recreation Area:
+
+```commandline
+camply campgrounds --provider goingtocamp --rec-area 4
+```
+
+The above command will list all of the campgrounds within our Recreation Area.
+For the next example we'll search for an availability at Bay Bridge State Park,
+which is in our Recreation Area and corresponds to Campground ID #-2147483645
+(GoingToCamp regularly uses negative ID numbers).
+
+```commandline
+camply campsites \
   --provider goingtocamp \
-  --rec-area 1 \
+  --rec-area 4 \
+  --campground -2147483645 \
+  --start-date 2023-09-01 \
+  --end-date 2023-09-02
+```
+
+### Searching GoingToCamp Using Equipment
+
+In the [previous GoingToCamp example](#look-for-a-campsite-from-goingtocamp) we were searching
+Recreation Area ID #4 and Campground ID #-2147483645. GoingToCamp also allows
+us to search for campsites using equipment filters. In order to find the corresponding equipment
+IDs, you'll use the `equipment-types` command and pass in the Recreation Area ID:
+
+```commandline
+camply equipment-types --provider goingtocamp --rec-area 4
+```
+
+The previous command will list all of the Equipment IDs for your Recreation Area.
+For our example we will use Equipment ID #-32763 which corresponds to an `RV/Trailer up to 25'`.
+Next we can use that Equipment ID in our search:
+
+```commandline
+camply campsites \
+  --provider goingtocamp \
+  --rec-area 4 \
+  --campground -2147483645 \
   --start-date 2023-09-01 \
   --end-date 2023-09-02 \
-  --campground -2147483643
+  --equipment-id -32763
 ```
 
 ### Look for a Campsite Across Multiple Recreation areas
