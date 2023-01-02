@@ -33,7 +33,7 @@ module.exports = {
         [
             '@semantic-release/exec',
             {
-                prepareCmd: 'poetry version ${nextRelease.version} && poetry build'
+                prepareCmd: 'tox -e requirements && poetry version ${nextRelease.version} && poetry build'
             }
         ],
         [
@@ -54,7 +54,8 @@ module.exports = {
             {
                 assets: [
                     'pyproject.toml',
-                    '*/_version.py'
+                    '*/_version.py',
+                    'requirements/*.txt'
                 ],
                 message: '🔖 camply ${nextRelease.version}\n\n${nextRelease.notes}'
             }

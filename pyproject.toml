@@ -20,7 +20,8 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10"
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
 ]
 keywords = [
     "recdotgov",
@@ -66,6 +67,7 @@ mkdocs-literate-nav = "^0.5.0"
 mkdocs-section-index = "^0.3.4"
 pytest-vcr = "^1.0.2"
 pytest-cov = "^4.0.0"
+importlib-metadata = ">=4,<5" # TODO (@juftin): Deprecate This
 
 [tool.poetry.scripts]
 camply = "camply.cli:cli"
