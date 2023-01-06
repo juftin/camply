@@ -1,0 +1,76 @@
+# schema: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+
+site_name: camply
+theme:
+    favicon: _static/camply.png
+    logo: _static/camply.png
+    name: material
+    features:
+    -   navigation.tracking
+    -   content.code.annotate
+    palette:
+    -   media: '(prefers-color-scheme: light)'
+        scheme: default
+        accent: purple
+        toggle:
+            icon: material/weather-sunny
+            name: Switch to dark mode
+    -   media: '(prefers-color-scheme: dark)'
+        scheme: slate
+        primary: black
+        toggle:
+            icon: material/weather-night
+            name: Switch to light mode
+repo_url: https://github.com/juftin/camply
+repo_name: camply
+edit_uri: blob/main/docs/
+site_author: juftin
+remote_branch: gh-pages
+copyright: Copyright &copy; 2020 Justin Flannery
+extra_css: [extra.css]
+nav:
+-   camply ⛺: index.md
+-   Installation ☀️: installation.md
+-   Usage 📝: command_line_usage.md
+-   Providers 🏕: providers.md
+-   Finding Campsites on Recreation.gov 🌲: recreationdotgov.md
+-   Object Oriented Usage 🐍: python.md
+-   Docker ⛴: docker.md
+-   Command Line Interface ⌨️: cli.md
+-   API Documentation 🤖: reference/
+-   Dependencies ♻️: dependencies.md
+-   Contributing 👥: contributing.md
+-   GitHub 🛠: https://github.com/juftin/camply
+-   Changelog 📝: https://github.com/juftin/camply/releases
+extra:
+    generator: false
+    analytics:
+        provider: google
+        property: G-J7HWHT1EZN
+markdown_extensions:
+-   toc:
+        permalink: '#'
+-   pymdownx.snippets:
+-   pymdownx.magiclink:
+-   attr_list:
+-   mkdocs-click:
+-   md_in_html:
+-   pymdownx.highlight:
+        anchor_linenums: true
+-   pymdownx.inlinehilite:
+-   pymdownx.superfences:
+-   markdown.extensions.attr_list:
+-   pymdownx.keys:
+-   pymdownx.tasklist:
+        custom_checkbox: true
+-   pymdownx.highlight:
+        anchor_linenums: true
+plugins:
+-   search
+-   gen-files:
+        scripts:
+        -   docs/gen_ref_pages.py
+-   literate-nav:
+        nav_file: SUMMARY.md
+-   section-index:
+-   mkdocstrings:

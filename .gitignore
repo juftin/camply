@@ -70,8 +70,6 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-docs/source/api
-docs/source/README.md
 
 # PyBuilder
 target/
@@ -121,7 +119,6 @@ venv.bak/
 
 # documentation
 /site
-docs/source/_autosummary
 
 # mypy
 .mypy_cache/
@@ -133,3 +130,6 @@ dmypy.json
 
 # IDE Files
 .idea/
+
+# NodeJS
+node_modules/
