@@ -1,9 +1,13 @@
 name: Documentation
 
 on:
-    release:
-        types:
-        -   released
+    push:
+        branches: ['main']
+        paths:
+        -   camply/**
+        -   docs/**
+        -   .github/workflows/docs.yaml
+        -   mkdocs.yml
 
 jobs:
     github-pages-publish:

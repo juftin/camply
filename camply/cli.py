@@ -417,7 +417,7 @@ equipment_id_argument = click.option(
     default=None,
     help="Search for campsites campaitble with specific equipment categories. Going To "
     "Camp uses equipment category IDs for filtering campsites by equipment. Every "
-    "recreation area has equipment categories unique to it."
+    "recreation area has equipment categories unique to it. "
     "Use `camply equipment-types --provider goingtocamp --rec-area <rec area id>` "
     "to get a listing of equipment for an area.",
 )
