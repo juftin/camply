@@ -2,7 +2,7 @@ FROM python:3.9-slim as python-base
 
 FROM python-base as builder
 
-ENV POETRY_VERSION=1.2.1
+ENV POETRY_VERSION=1.3.1
 RUN python -m pip install --upgrade pip wheel
 RUN python -m pip install poetry==${POETRY_VERSION}
 
@@ -24,8 +24,9 @@ RUN python -m pip install -r /tmp/camply/requirements.txt && \
     python -m pip install /tmp/camply --no-dependencies && \
     rm -rf /tmp/camply/
 
-RUN mkdir /home/camply
-WORKDIR /home/camply
+ENV HOME=/home/camply
+RUN mkdir ${HOME}
+WORKDIR ${HOME}
 ENV CAMPLY_LOG_HANDLER="PYTHON"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]

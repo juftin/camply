@@ -15,7 +15,7 @@ from pandas import DataFrame, to_datetime
 from pytz import timezone
 
 from camply.config import STANDARD_HEADERS, USER_AGENTS, YellowstoneConfig
-from camply.containers import AvailableCampsite
+from camply.containers import AvailableCampsite, RecreationArea
 from camply.containers.api_responses import XantResortData
 from camply.providers.base_provider import BaseProvider
 from camply.utils import logging_utils
@@ -27,6 +27,12 @@ class YellowstoneLodging(BaseProvider):
     """
     Scanner for Lodging in Yellowstone
     """
+
+    recreation_area = RecreationArea(
+        recreation_area=YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_FULL_NAME,
+        recreation_area_id=YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_ID,
+        recreation_area_location="USA",
+    )
 
     def __repr__(self):
         """
@@ -518,3 +524,11 @@ class YellowstoneLodging(BaseProvider):
         if today > month:
             month = today
         return month
+
+    #
+    # def find_recreation_areas(
+    #         self, search_string: Optional[str] = None, **kwargs
+    # ) -> List[RecreationArea]:
+    #     _, _ = search_string, kwargs
+    #     log_sorted_response([self.recreation_area])
+    #     return [self.recreation_area]

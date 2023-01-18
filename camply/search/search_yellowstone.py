@@ -9,7 +9,7 @@ from typing import List, Optional, Set, Union
 import pandas as pd
 
 from camply.config import YellowstoneConfig
-from camply.containers import AvailableCampsite, SearchWindow
+from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.providers import YellowstoneLodging
 from camply.search.base_search import BaseCampingSearch, SearchError
 from camply.utils import make_list
@@ -22,6 +22,8 @@ class SearchYellowstone(BaseCampingSearch):
     """
     Camping Search Object
     """
+
+    recreation_area = YellowstoneLodging.recreation_area
 
     # noinspection PyUnusedLocal
     def __init__(
@@ -158,3 +160,11 @@ class SearchYellowstone(BaseCampingSearch):
         Print the Campgrounds inside of Yellowstone
         """
         log_sorted_response(YellowstoneConfig.YELLOWSTONE_CAMPGROUND_OBJECTS)
+
+    @classmethod
+    def find_recreation_areas(cls, **kwargs) -> List[RecreationArea]:
+        """
+        Return the Yellowstone Recreation Area Object
+        """
+        log_sorted_response([cls.recreation_area])
+        return [cls.recreation_area]

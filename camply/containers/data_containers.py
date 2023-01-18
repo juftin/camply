@@ -6,6 +6,8 @@ import datetime
 import logging
 from typing import List, Optional, Tuple, Union
 
+from pydantic import validator
+
 from camply.containers.base_container import (
     CamplyModel,
     RecDotGovAttribute,
@@ -19,6 +21,32 @@ class SearchWindow(CamplyModel):
     """
     Search Window for Campsite Search
     """
+
+    @validator("start_date")
+    @classmethod
+    def start_date_must_be_in_future(cls, v):
+        """
+        Validate that start_date is in the future.
+
+        Coerece start date to today's date when it is not in the future.
+        """
+        current_date = datetime.datetime.now().date()
+        if v < current_date:
+            return current_date
+
+        return v
+
+    @validator("end_date")
+    @classmethod
+    def end_date_must_be_in_future(cls, v):
+        """
+        Validate that end_date is in the future
+        """
+        current_date = datetime.datetime.now().date()
+        if v < current_date:
+            raise ValueError("must be in the future")
+
+        return v
 
     start_date: datetime.date
     end_date: datetime.date
@@ -55,7 +83,7 @@ class AvailableCampsite(CamplyModel):
     campsite_use_type: str
     availability_status: str
     recreation_area: str
-    recreation_area_id: int
+    recreation_area_id: Union[int, str]
     facility_name: str
     facility_id: Union[int, str]
     booking_url: str
@@ -74,7 +102,8 @@ class CampgroundFacility(CamplyModel):
     facility_name: str
     recreation_area: str
     facility_id: Union[int, str]
-    recreation_area_id: int
+    recreation_area_id: Union[int, str]
+    map_id: Optional[int]
 
 
 class RecreationArea(CamplyModel):
@@ -83,5 +112,14 @@ class RecreationArea(CamplyModel):
     """
 
     recreation_area: str
-    recreation_area_id: int
+    recreation_area_id: Union[int, str]
     recreation_area_location: str
+
+
+class AvailableResource(CamplyModel):
+    """
+    A resource that is available for booking
+    """
+
+    resource_id: int
+    map_id: int

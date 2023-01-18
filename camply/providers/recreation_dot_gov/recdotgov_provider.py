@@ -150,7 +150,8 @@ class RecreationDotGovBase(BaseProvider, ABC):
                 "You must provide a search query or state(s) "
                 "to find Recreation Areas"
             )
-        logger.info(f'Searching for Recreation Areas: "{search_string}"')
+        if search_string is not None:
+            logger.info(f'Searching for Recreation Areas: "{search_string}"')
         state_arg = kwargs.get("state", None)
         if state_arg is not None:
             kwargs.update({"state": state_arg.upper()})
@@ -748,6 +749,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
                 campground_id=[campsite.FacilityID]
             )[0]
             facilities.append(facility)
+            # TODO(@juftin): Why did we change this?
             logger.info(
                 "Searching Specific Campsite: ⛺️ "
                 f"{campsite} - {facility.facility_name}, {facility.recreation_area}"

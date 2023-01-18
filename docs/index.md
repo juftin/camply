@@ -23,13 +23,17 @@ ___________
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 [![Black Codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)]()
 [![Discord Chat](https://img.shields.io/static/v1?label=chat&message=discord&color=blue&logo=discord)](https://discord.gg/qZDr78kKvB)
-
+[![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.dev)
 
 ## Table of Contents
 
 - [Installation](installation.md)
     * [PyPI](installation.md#pypi)
     * [Docker](installation.md#docker)
+- [Providers](providers.md)
+    * [RecreationDotGov](providers.md#recreationgov)
+    * [Yellowstone](providers.md#yellowstone)
+    * [GoingToCamp](providers.md#goingtocamp)
 - [Command Line Usage](command_line_usage.md)
     * [campsites](command_line_usage.md#campsites)
     * [recreation-areas](command_line_usage.md#recreation-areas)
@@ -47,6 +51,8 @@ ___________
         + [Look for Weekend Campsite Availabilities](command_line_usage.md#look-for-weekend-campsite-availabilities)
         + [Look for Consecutive Nights at the Same Campsite](command_line_usage.md#look-for-consecutive-nights-at-the-same-campsite)
         + [Look for a Campsite Inside of Yellowstone](command_line_usage.md#look-for-a-campsite-inside-of-yellowstone)
+        + [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+        + [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
         + [Look for a Campsite Across Multiple Recreation areas](command_line_usage.md#look-for-a-campsite-across-multiple-recreation-areas)
         + [Using a YAML Configuration file to search for campsites](command_line_usage.md#using-a-yaml-configuration-file-to-search-for-campsites)
         + [Searching for a Campsite That Fits Your Equipment](command_line_usage.md#searching-for-a-campsite-that-fits-your-equipment)

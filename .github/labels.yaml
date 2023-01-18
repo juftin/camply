@@ -3,15 +3,6 @@
 #
 # The repository labels will be automatically configured using this file and
 # the GitHub Action https://github.com/marketplace/actions/github-labeler.
--   name: BUMP_MAJOR
-    description: Apply a MAJOR version bump
-    color: af9500
--   name: BUMP_MINOR
-    description: Apply a MINOR version bump
-    color: d7d7d7
--   name: BUMP_PATCH
-    description: Apply a PATCH version bump
-    color: ad8a56
 -   name: breaking
     description: Breaking Changes
     color: bfd4f2

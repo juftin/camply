@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "camply"
 description = "camply, the campsite finder 🏕"
-version = "0.7.3"
+version = "0.8.0"
 authors = ["Justin Flannery <juftin@juftin.com>"]
 license = "MIT"
 readme = "README.md"
@@ -64,6 +64,8 @@ mkdocs-material = "^8.5.10"
 mkdocs-gen-files = "^0.4.0"
 mkdocs-literate-nav = "^0.5.0"
 mkdocs-section-index = "^0.3.4"
+pytest-vcr = "^1.0.2"
+pytest-cov = "^4.0.0"
 
 [tool.poetry.scripts]
 camply = "camply.cli:cli"

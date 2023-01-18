@@ -61,3 +61,17 @@ class RecDotGovEquipment(CamplyModel):
 
     equipment_name: str
     max_length: float
+
+
+#############################
+# GoingToCamp Base Containers
+#############################
+
+
+class GoingToCampEquipment(CamplyModel):
+    """
+    Model of GoingToCamp provider equipment
+    """
+
+    equipment_name: str
+    equipment_type_id: int
