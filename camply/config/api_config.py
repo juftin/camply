@@ -199,10 +199,14 @@ class RIDBConfig:
     # FACILITIES_API_PATH FIELDS
     FACILITIES_API_PATH: str = "facilities"
     CAMPGROUND_FACILITY_FIELD_QUALIFIER: str = "Campground"
+    TICKET_FACILITY_FIELD_QUALIFIER: str = "Ticket Facility"
+    TIMED_ENTRY_FACILITY_FIELD_QUALIFIER: str = "Timed Entry"
     # RECREATION AREA FIELDS
     REC_AREA_API_PATH: str = "recareas"
     # CAMPSITE DETAILS
     CAMPSITE_API_PATH: str = "campsites"
+    # TOUR DETAILS
+    TOUR_API_PATH: str = "tours"
 
 
 class RecreationBookingConfig:

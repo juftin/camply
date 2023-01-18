@@ -3,26 +3,42 @@ Recreation.gov Web Searching Utilities
 """
 
 import logging
+from abc import ABC, abstractmethod
 from random import uniform
 from time import sleep
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple, Type, Union
 
 import pandas as pd
 
 from camply.config import RecreationBookingConfig
 from camply.config.search_config import EquipmentConfig, EquipmentOptions
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
-from camply.providers import RecreationDotGov
+from camply.providers import (
+    RecreationDotGov,
+    RecreationDotGovDailyTicket,
+    RecreationDotGovDailyTimedEntry,
+    RecreationDotGovTicket,
+    RecreationDotGovTimedEntry,
+)
+from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
 from camply.search.base_search import BaseCampingSearch, SearchError
-from camply.utils import make_list
+from camply.utils import logging_utils, make_list
 
 logger = logging.getLogger(__name__)
 
 
-class SearchRecreationDotGov(BaseCampingSearch):
+class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
     """
     Camping Search Object
     """
+
+    @property
+    @abstractmethod
+    def provider_class(self) -> Type[RecreationDotGovBase]:
+        """
+        Attach a corresponding provider Implementation
+        """
+        pass
 
     def __init__(
         self,
@@ -71,8 +87,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
             When not specified, the filename will default to `camply_campsites.json`
         """
         self.campsite_finder: RecreationDotGov
-        super(SearchRecreationDotGov, self).__init__(
-            provider=RecreationDotGov(),
+        super(SearchRecreationDotGovBase, self).__init__(
+            provider=self.provider_class(),
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
@@ -246,6 +262,11 @@ class SearchRecreationDotGov(BaseCampingSearch):
                     month=month,
                     campsite_metadata=self.campsite_metadata,
                 )
+                logger.info(
+                    f"\t{logging_utils.get_emoji(campsites)}\t"
+                    f"{len(campsites)} total sites found in month of "
+                    f"{month.strftime('%B')}"
+                )
                 if self.campsites not in [None, []]:
                     campsites = [
                         campsite_obj
@@ -315,3 +336,43 @@ class SearchRecreationDotGov(BaseCampingSearch):
             campsites["campsite_id"].isin(matching_ids)
         ].copy()
         return original_campsites
+
+
+class SearchRecreationDotGov(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for Campsites
+    """
+
+    provider_class = RecreationDotGov
+
+
+class SearchRecreationDotGovDailyTicket(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovDailyTicket Object
+    """
+
+    provider_class = RecreationDotGovDailyTicket
+
+
+class SearchRecreationDotGovDailyTimedEntry(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovDailyTimedEntry Object
+    """
+
+    provider_class = RecreationDotGovDailyTimedEntry
+
+
+class SearchRecreationDotGovTicket(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovTicket Object
+    """
+
+    provider_class = RecreationDotGovTicket
+
+
+class SearchRecreationDotGovTimedEntry(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovTimedEntry Object
+    """
+
+    provider_class = RecreationDotGovTimedEntry

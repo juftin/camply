@@ -1,6 +1,7 @@
 """
 Recreation.gov Web Searching Utilities
 """
+
 import json
 import logging
 import pathlib
@@ -88,7 +89,9 @@ class BaseCampingSearch(ABC):
         self.search_window: List[SearchWindow] = make_list(search_window)
         self.weekends_only: bool = weekends_only
         self.search_days: List[datetime] = self._get_search_days()
-        self.search_months: List[datetime] = self._get_search_months()
+        self.search_months: List[datetime] = provider.get_search_months(
+            self.search_days
+        )
         self.nights = self._validate_consecutive_nights(nights=nights)
         self.offline_search = offline_search
         self.offline_search_path = self._set_offline_search_path(
@@ -567,28 +570,6 @@ class BaseCampingSearch(ABC):
             logger.info(SearchConfig.ERROR_MESSAGE)
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
         return list(sorted(search_nights))
-
-    def _get_search_months(self) -> List[datetime]:
-        """
-        Get the Unique Months that need to be Searched
-
-        Returns
-        -------
-        search_months: List[datetime]
-            Datetime Months to search for reservations
-        """
-        truncated_months = set([day.replace(day=1) for day in self.search_days])
-        if len(truncated_months) > 1:
-            logger.info(
-                f"{len(truncated_months)} different months selected for search, "
-                f"ranging from {min(self.search_days)} to {max(self.search_days)}"
-            )
-            return sorted(list(truncated_months))
-        elif len(truncated_months) == 0:
-            logger.info(SearchConfig.ERROR_MESSAGE)
-            raise RuntimeError(SearchConfig.ERROR_MESSAGE)
-        else:
-            return sorted(list(truncated_months))
 
     @classmethod
     def _consolidate_campsites(
