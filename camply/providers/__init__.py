@@ -38,7 +38,3 @@ __all__ = [
     "RECREATION_DOT_GOV_TICKET",
     "RECREATION_DOT_GOV_TIMED_ENTRY",
 ]
-
-GOING_TO_CAMP = "goingtocamp"
-RECREATION_DOT_GOV = "recreationdotgov"
-YELLOWSTONE = "yellowstone"

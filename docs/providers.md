@@ -75,3 +75,28 @@ areas:
 
 - [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
 - [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
+
+## Recreation.gov Tickets, Tours, & Timed-Entry
+
+![](_static/recreation_dot_gov_logo.png){: .center}
+
+Apart from reservations for campsites, Recreation.gov also supports reserving Tickets & Tours
+online. There are thousands of Tickets and Tours options available around the USA.
+
+### Tours & Tickets
+
+https://www.recreation.gov/search?inventory_type=tours
+
+```shell
+camply campgrounds --provider RecreationDotGovTicket --state HI
+```
+
+### Timed Entry
+
+```shell
+camply campgrounds --provider RecreationDotGovTimedEntry --state OR
+```
+
+- [Searching for Tickets and Timed Entries](command_line_usage.md#searching-for-tickets-and-timed-entries)
+    - [Tickets + Tours](command_line_usage.md#tickets-tours)
+    - [Timed Entry](command_line_usage.md#timed-entry)

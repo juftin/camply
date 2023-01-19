@@ -21,17 +21,18 @@ Usage: camply [OPTIONS] COMMAND [ARGS]...
   visit the camply documentation at https://github.com/juftin/camply
 
 Options:
-  --version             Show the version and exit.
-  --provider TEXT       Camping Search Provider. Options available are
-                        'Yellowstone' and 'RecreationDotGov'. Defaults to
-                        'RecreationDotGov', not case-sensitive.
-  --debug / --no-debug  Enable extra debugging output
-  --help                Show this message and exit.
+  --version                       Show the version and exit.
+  --debug / --no-debug            Enable extra debugging output
+  --provider [RecreationDotGov|Yellowstone|GoingToCamp|RecreationDotGovDailyTicket|RecreationDotGovDailyTimedEntry|RecreationDotGovTicket|RecreationDotGovTimedEntry]
+                                  Camping Search Provider. Defaults to
+                                  'RecreationDotGov', not case-sensitive.
+  --help                          Show this message and exit.
 
 Commands:
   campgrounds       Search for Campgrounds (inside of Recreation Areas)...
   campsites         Find available Campsites using search criteria
   configure         Set up camply configuration file with an interactive...
+  equipment-types   Retrieve a list of equipment supported by the current...
   recreation-areas  Search for Recreation Areas and list them
 ```
 
@@ -69,8 +70,11 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       found.
       [**_example_](#look-for-consecutive-nights-at-the-same-campsite)
 * `--provider`: `PROVIDER`
-    + Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
-      to 'RecreationDotGov', not case-sensitive.
+    + Camping Search Provider. Defaults to 'RecreationDotGov', not case-sensitive. Options include:
+      [RecreationDotGov](#searching-for-a-campsite), [Yellowstone](#look-for-a-campsite-inside-of-yellowstone),
+      [GoingToCamp](#look-for-a-campsite-from-goingtocamp), [RecreationDotGovDailyTicket](#tickets-tours),
+      [RecreationDotGovDailyTimedEntry](#timed-entry), [RecreationDotGovTicket](#tickets-tours),
+      [RecreationDotGovTimedEntry](#timed-entry).
       [**_example_](#look-for-a-campsite-inside-of-yellowstone)
 * `--continuous`
     + Continuously check for a campsite to become available, and quit once at least one campsite is
@@ -92,6 +96,11 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
       a length of 0. Accepted equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are
       not case-sensitive.
       [**_example_](#searching-for-a-campsite-that-fits-your-equipment)
+* `--equipment-id`
+    + Search for campsites campaitble with specific equipment categories. Going To Camp
+      uses equipment category IDs for filtering campsites by equipment. Every recreation
+      area has equipment categories unique to it.
+      [**_example_](#searching-goingtocamp-using-equipment)
 * `--notify-first-try`
     + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
       matching campsites are found on the first try. Defaults to false which only sends the first5.
@@ -577,4 +586,56 @@ The below search looks for Fire Lookout Towers to stay in inside of California.
 
 ```commandline
 camply campgrounds --search "Fire Tower Lookout" --state CA
+```
+
+### Searching for Tickets and Timed Entries
+
+The [Recreation.gov Tickets, Tours, & Timed-Entry Providers](providers.md#recreationgov-tickets-tours--timed-entry)
+support "campgrounds" that are actually resources like Timed Entry appointments and tickets
+to recreation activities.
+
+#### Tickets + Tours
+
+Let's say you're going on vacation in Hawaii and you're interested in what hiking tickets are available:
+
+```shell
+camply campgrounds --provider RecreationDotGovTicket --state HI
+```
+
+Nice, there are some great options there. Let's say we've decided on
+the [Haleakala National Park Summit Sunrise Reservations](https://www.recreation.gov/ticket/facility/253731).
+This "campground" has ID #253731. These reservations are hard to snag but they do pop up!
+
+```shell
+camply campsites \
+  --provider RecreationDotGovTicket \
+  --start-date 2023-06-09 \
+  --end-date 2023-06-10 \
+  --campground 253731 \
+  --continuous \
+  --search-forever \
+  --notifications email
+```
+
+#### Timed Entry
+
+Let's say you're visiting Oregon and wanting to visit
+the [Lava River Cave](https://www.recreation.gov/timed-entry/10089508). They've recently implemented a Timed Reservation
+System - so we'd use the `RecreationDotGovTimedEntry` provider:
+
+```shell
+camply campgrounds --provider RecreationDotGovTimedEntry --state OR
+```
+
+Using the above command we can see that the campground ID we want is #10089508:
+
+```shell
+camply campsites \
+  --provider RecreationDotGovTimedEntry \
+  --start-date 2023-06-09 \
+  --end-date 2023-06-10 \
+  --campground 10089508 \
+  --continuous \
+  --search-forever \
+  --notifications email
 ```
