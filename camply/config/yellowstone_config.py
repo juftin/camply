@@ -69,6 +69,7 @@ class YellowstoneConfig(DataColumns):
 
     YELLOWSTONE_RECREATION_AREA_ID: int = 1
     YELLOWSTONE_RECREATION_AREA_NAME: str = "Yellowstone"
+    YELLOWSTONE_RECREATION_AREA_FULL_NAME: str = "Yellowstone National Park"
     YELLOWSTONE_RECREATION_AREA_FORMAL_NAME: str = "Yellowstone National Park, USA"
     YELLOWSTONE_LOOP_NAME: str = "N/A"
     CAMPSITE_AVAILABILITY_STATUS: str = "Available"

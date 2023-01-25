@@ -2,17 +2,37 @@
 camply search __init__ file
 """
 
-from typing import Dict
+from typing import Dict, Type
 
-from .base_search import BaseCampingSearch
-from .search_going_to_camp import SearchGoingToCamp
-from .search_recreationdotgov import SearchRecreationDotGov
-from .search_yellowstone import SearchYellowstone
+from camply.providers import (
+    GOING_TO_CAMP,
+    RECREATION_DOT_GOV,
+    RECREATION_DOT_GOV_DAILY_TICKET,
+    RECREATION_DOT_GOV_DAILY_TIMED_ENTRY,
+    RECREATION_DOT_GOV_TICKET,
+    RECREATION_DOT_GOV_TIMED_ENTRY,
+    YELLOWSTONE,
+)
+from camply.search.base_search import BaseCampingSearch
+from camply.search.search_going_to_camp import SearchGoingToCamp
+from camply.search.search_recreationdotgov import (
+    SearchRecreationDotGov,
+    SearchRecreationDotGovDailyTicket,
+    SearchRecreationDotGovDailyTimedEntry,
+    SearchRecreationDotGovTicket,
+    SearchRecreationDotGovTimedEntry,
+)
+from camply.search.search_yellowstone import SearchYellowstone
 
-CAMPSITE_SEARCH_PROVIDER: Dict[str, object] = {
-    "RecreationDotGov": SearchRecreationDotGov,
-    "Yellowstone": SearchYellowstone,
-    "GoingToCamp": SearchGoingToCamp,
+CAMPSITE_SEARCH_PROVIDER: Dict[str, Type[BaseCampingSearch]] = {
+    RECREATION_DOT_GOV: SearchRecreationDotGov,
+    YELLOWSTONE: SearchYellowstone,
+    GOING_TO_CAMP: SearchGoingToCamp,
+    # Tours and Timed Entry (RecDotGov)
+    RECREATION_DOT_GOV_DAILY_TICKET: SearchRecreationDotGovDailyTicket,
+    RECREATION_DOT_GOV_DAILY_TIMED_ENTRY: SearchRecreationDotGovDailyTimedEntry,
+    RECREATION_DOT_GOV_TICKET: SearchRecreationDotGovTicket,
+    RECREATION_DOT_GOV_TIMED_ENTRY: SearchRecreationDotGovTimedEntry,
 }
 
 __all__ = [

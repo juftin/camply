@@ -108,8 +108,9 @@ class GoingToCampProvider(BaseProvider):
         """
         return "<GoingToCampProvider>"
 
+    @classmethod
     def find_recreation_areas(
-        self, search_string: Optional[str] = None, **kwargs
+        cls, search_string: Optional[str] = None, **kwargs
     ) -> List[RecreationArea]:
         """
         Find Matching Recreation Areas based on search string
@@ -124,7 +125,8 @@ class GoingToCampProvider(BaseProvider):
         filtered_responses: List[RecreationArea]
             Array of Matching Recreation Areas
         """
-        logger.info(f'Searching for Recreation Areas matching: "{search_string}"')
+        if search_string is not None:
+            logger.info(f'Searching for Recreation Areas matching: "{search_string}"')
 
         if not search_string or search_string == "":
             rec_areas = RECREATION_AREAS.values()

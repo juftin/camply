@@ -5,7 +5,12 @@ import logging
 from datetime import datetime, time
 from typing import List, Optional, Union
 
-from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
+from camply.containers import (
+    AvailableCampsite,
+    CampgroundFacility,
+    RecreationArea,
+    SearchWindow,
+)
 from camply.providers import GoingToCampProvider
 from camply.providers.going_to_camp.going_to_camp_provider import NON_GROUP_EQUIPMENT
 from camply.search.base_search import BaseCampingSearch
@@ -18,6 +23,15 @@ class SearchGoingToCamp(BaseCampingSearch):
     """
     Going to Camp primary search functionality
     """
+
+    @classmethod
+    def find_recreation_areas(
+        cls, search_string: str, **kwargs
+    ) -> List[RecreationArea]:
+        """
+        Return the GoingToCamp Recreation Areas
+        """
+        return GoingToCampProvider.find_recreation_areas(search_string=search_string)
 
     # noinspection PyUnusedLocal
     def __init__(

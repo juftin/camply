@@ -5,7 +5,7 @@
 Camply is hosted on PyPI, you can download it directly from tools like
 pip and pipx.
 
-```shell
+```commandline
 pip install camply
 ```
 
@@ -13,7 +13,7 @@ If you're using camply on your command line - it's recommended that you use a to
 like [pipx](https://github.com/pypa/pipx) to easily manage the application in an isolated
 virtual environment.
 
-```shell
+```commandline
 pipx install camply
 ```
 
@@ -21,7 +21,7 @@ pipx install camply
 
 ## Docker
 
-```shell
+```commandline
 docker pull juftin/camply
 ```
 

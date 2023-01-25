@@ -27,7 +27,13 @@ class _CampsiteAttribute(CamplyModel):
     AttributeValue: str
 
 
-class CampsiteResponse(CamplyModel):
+class CoreRecDotGovResponse(CamplyModel):
+    """
+    Core Response from Recreation.gov
+    """
+
+
+class CampsiteResponse(CoreRecDotGovResponse):
     """
     https://ridb.recreation.gov/api/v1/campsites/<CAMPSITE ID>
     """
@@ -46,6 +52,68 @@ class CampsiteResponse(CamplyModel):
     LastUpdatedDate: datetime.date
     PERMITTEDEQUIPMENT: List[_CampsiteEquipment]
     ATTRIBUTES: List[_CampsiteAttribute]
+
+    def __str__(self) -> str:
+        """
+        String Representation
+        """
+        return f"{self.CampsiteName} (#{self.CampsiteID})"
+
+
+class TourResponse(CoreRecDotGovResponse):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<TOUR ID>
+    """
+
+    TourID: int
+    FacilityID: int
+    TourName: str
+    TourType: str
+    TourDuration: int
+    TourDescription: str
+    TourAccessible: bool
+    CreatedDate: datetime.date
+    LastUpdatedDate: datetime.date
+    ATTRIBUTES: List[_CampsiteAttribute]
+
+    def __str__(self) -> str:
+        """
+        String Representation
+        """
+        return f"{self.TourName} (#{self.TourID})"
+
+
+class Date(datetime.date):
+    """
+    Date Parsing
+    """
+
+    @classmethod
+    def __get_validators__(cls) -> Iterator:
+        """
+        Generate Validators
+        """
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v: Union[str, datetime.date]) -> datetime.date:
+        """
+        Validate Date Strings Into
+
+        Parameters
+        ----------
+        v: Union[str, datetime.date]
+
+        Returns
+        -------
+        datetime.date
+        """
+        if isinstance(v, str):
+            return datetime.datetime.strptime(v, "%Y-%m-%d").date()
+        elif isinstance(v, datetime.date):
+            return v
+        else:
+            raise ValueError("You Must Provide a Parsable Date String or Object")
 
 
 class UnawareDatetime(datetime.datetime):
@@ -81,6 +149,43 @@ class UnawareDatetime(datetime.datetime):
             raise ValueError("You Must Provide a Parsable Datetime String or Object")
 
 
+class AwareDatetime(datetime.datetime):
+    """
+    Datetime Aware Timestamp Parsing
+    """
+
+    @classmethod
+    def __get_validators__(cls) -> Iterator:
+        """
+        Generate Validators
+        """
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v: Union[str, datetime.datetime]) -> datetime.datetime:
+        """
+        Validate Date Strings Into
+
+        Parameters
+        ----------
+        v: Union[str, datetime.datetime]
+
+        Returns
+        -------
+        datetime.datetime
+        """
+        if isinstance(v, str):
+            return datetime.datetime.strptime(v, "%Y-%m-%dT%H:%M:%S%z")
+        elif isinstance(v, datetime.datetime):
+            if v.tzinfo is None:
+                raise ValueError(
+                    "You Must Provide a Parsable Datetime Object with tzinfo"
+                )
+            return v
+        else:
+            raise ValueError("You Must Provide a Parsable Datetime String or Object")
+
+
 class _CampsiteAvailabilityCampsiteResponse(CamplyModel):
     """
     https://ridb.recreation.gov/api/v1/campsites/<CAMPSITE ID>
@@ -101,6 +206,75 @@ class CampsiteAvailabilityResponse(CamplyModel):
     """
 
     campsites: Dict[int, _CampsiteAvailabilityCampsiteResponse]
+
+
+class _TourMonthlyAvailabilityTourResponse(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    facility_id: int
+    tour_id: int
+    local_date: Date
+    availability_level: str
+    not_yet_released: int
+    reservable: int
+    reserved_count: int
+    scheduled_count: int
+    walk_up: int
+
+
+class _TourMonthlyAvailabilityDateResponse(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    tour_availability_summary_view_by_tour_id: Dict[
+        int, _TourMonthlyAvailabilityTourResponse
+    ]
+
+
+class TourMonthlyAvailabilityResponse(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    facility_availability_summary_view_by_local_date: Dict[
+        Date, _TourMonthlyAvailabilityDateResponse
+    ]
+
+
+class TourDailyAvailabilityBookingWindow(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    open_timestamp: AwareDatetime
+    close_timestamp: AwareDatetime
+
+
+class TourDailyAvailabilityBookingWindows(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    PRIMARY: Optional[TourDailyAvailabilityBookingWindow]
+    SECONDARY: Optional[TourDailyAvailabilityBookingWindow]
+
+
+class TourDailyAvailabilityResponse(CamplyModel):
+    """
+    https://ridb.recreation.gov/api/v1/tours/<CAMPSITE ID>
+    """
+
+    facility_id: int
+    booking_windows: TourDailyAvailabilityBookingWindows
+    inventory_count: Dict[str, int]
+    reservation_count: Dict[str, int]
+    status: str
+    tour_date: Date
+    tour_id: int
+    tour_time: str
 
 
 class _RecAreaAddress(CamplyModel):
@@ -306,6 +480,41 @@ class RecDotGovCampsiteResponse(CamplyModel):
     """
 
     campsites: List[RecDotGovCampsite]
+    size: int
+    spelling_autocorrected: Any
+    start: int
+    total: int
+
+
+class RecDotGovSearchResult(CamplyModel):
+    """
+    Recreation.gov Search Result Object
+    """
+
+    average_rating: Optional[int]
+    description: str
+    entity_id: int
+    entity_type: str
+    latitude: Optional[float]
+    longitude: Optional[float]
+    name: str
+    number_of_ratings = int
+    org_id: int
+    parent_id: int
+    parent_name: str
+    parent_type: str
+    preview_image_url: Optional[str]
+    reservable: bool
+    time_zone: str
+    type: str
+
+
+class RecDotGovSearchResponse(CamplyModel):
+    """
+    Parent Response from Search Results
+    """
+
+    results: List[RecDotGovSearchResult]
     size: int
     spelling_autocorrected: Any
     start: int

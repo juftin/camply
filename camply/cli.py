@@ -46,9 +46,8 @@ provider_argument = click.option(
     "--provider",
     show_default=False,
     default=None,
-    help="Camping Search Provider. Options available are 'Yellowstone', "
-    "'RecreationDotGov', and 'GoingToCamp'. Defaults to 'RecreationDotGov'"
-    ", not case-sensitive.",
+    type=click.Choice(CAMPSITE_SEARCH_PROVIDER.keys(), case_sensitive=False),
+    help="Camping Search Provider. Defaults to 'RecreationDotGov', not case-sensitive.",
 )
 debug_option = click.option(
     "--debug/--no-debug", default=None, help="Enable extra debugging output"
@@ -85,11 +84,11 @@ def _preferred_provider(context: CamplyContext, command_provider: Optional[str])
     The preferred provider is returned
     """
     if command_provider:
-        return command_provider.lower()
+        return command_provider
     elif command_provider is None and context.provider:
-        return context.provider.lower()
+        return context.provider
     else:
-        return DEFAULT_CAMPLY_PROVIDER.lower()
+        return DEFAULT_CAMPLY_PROVIDER
 
 
 @click.group()
@@ -213,38 +212,24 @@ def recreation_areas(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
-
-    # Recreation dot gov and yellowstone require --state or --search, but going to
-    # camp does not, since all of its "rec areas" are a very few.
-    if all([search is None, state is None, provider != GOING_TO_CAMP]):
+    if all(
+        [search is None, state is not None, provider in [YELLOWSTONE, GOING_TO_CAMP]]
+    ):
+        # State Filtering Not Supported
         logger.error(
-            "You must add a --search, --state, or --provider parameter "
-            "to search for Recreation Areas."
+            f"{provider} does not support filtering recreation areas by state. Leave --state blank."
         )
         exit(1)
-    if all([search is None, state is not None, provider == GOING_TO_CAMP]):
-        logger.error(
-            "GoingToCamp does not support filtering recreation areas by state. Leave --state blank."
-        )
-        exit(1)
-
-    camp_provider = None
-    if provider == RECREATION_DOT_GOV:
-        camp_provider = RecreationDotGov()
-    elif provider == GOING_TO_CAMP:
-        camp_provider = GoingToCampProvider()
+    if provider == GOING_TO_CAMP:
+        rec_area_finder = GoingToCampProvider()
+    elif provider.startswith(RECREATION_DOT_GOV):
+        rec_area_finder = RecreationDotGov()
     else:
-        logger.error(
-            "The provider you specified does not exist or does notsupport"
-            "listing recreation areas. See --help for available providers"
-        )
-        exit(1)
-
+        rec_area_finder = CAMPSITE_SEARCH_PROVIDER[provider]
     params = dict()
     if state is not None:
         params.update(dict(state=state))
-
-    camp_provider.find_recreation_areas(search_string=search, **params)
+    rec_area_finder.find_recreation_areas(search_string=search, **params)
 
 
 @camply_command_line.command()
@@ -264,7 +249,7 @@ def campgrounds(
     rec_area: Optional[int] = None,
     campground: Optional[int] = None,
     campsite: Optional[int] = None,
-    provider: str = DEFAULT_CAMPLY_PROVIDER,
+    provider: Optional[str] = DEFAULT_CAMPLY_PROVIDER,
 ) -> None:
     """
     Search for Campgrounds (inside of Recreation Areas) and list them
@@ -278,7 +263,6 @@ def campgrounds(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
-
     if provider == YELLOWSTONE:
         SearchYellowstone.print_campgrounds()
         exit(0)
@@ -296,11 +280,10 @@ def campgrounds(
             "or --rec-area parameter to search for Campgrounds."
         )
         exit(1)
-
     if provider == YELLOWSTONE:
         SearchYellowstone.print_campgrounds()
         exit(0)
-    if provider == GOING_TO_CAMP:
+    elif provider == GOING_TO_CAMP:
         if len(rec_area) == 0:
             logger.error("You must specify at least one --rec-area")
             exit(1)
@@ -309,8 +292,8 @@ def campgrounds(
             rec_area_id=rec_area_id, campground_id=campground, search_string=search
         )
         exit(0)
-
-    camp_finder = RecreationDotGov()
+    search_provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
+    camp_finder = search_provider_class.provider_class()
     params = dict()
     if state is not None:
         params.update(dict(state=state))
@@ -471,7 +454,7 @@ def _validate_campsites(
     """
     Validate the campsites portion of the CLI
     """
-    if provider == RECREATION_DOT_GOV and all(
+    if provider.startswith(RECREATION_DOT_GOV) and all(
         [
             len(rec_area) == 0,
             len(campground) == 0,
@@ -561,7 +544,6 @@ def campsites(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
-
     notifications = make_list(notifications)
     _validate_campsites(
         rec_area=rec_area,
@@ -583,7 +565,9 @@ def campsites(
         provider, provider_kwargs, search_kwargs = yaml_utils.yaml_file_to_arguments(
             file_path=yaml_config
         )
-        provider = provider.lower()
+        for provider_str in CAMPSITE_SEARCH_PROVIDER.keys():
+            if provider.lower() == provider_str.lower():
+                provider = provider_str
     else:
         search_window = SearchWindow(
             start_date=datetime.strptime(start_date, "%Y-%m-%d"),
@@ -610,9 +594,7 @@ def campsites(
             notification_provider=notifications,
             search_forever=search_forever,
         )
-    provider_class = {
-        key.lower(): value for key, value in CAMPSITE_SEARCH_PROVIDER.items()
-    }[provider]
+    provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
     camping_finder = provider_class(**provider_kwargs)
     camping_finder.get_matching_campsites(**search_kwargs)
 

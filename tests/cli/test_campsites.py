@@ -93,6 +93,36 @@ def test_search_by_another_yaml(cli_runner: CamplyRunner) -> None:
 
 
 @vcr_cassette
+def test_search_by_misspelled_yaml(cli_runner: CamplyRunner) -> None:
+    """
+    Search for Campsites by YAML (Misspelled Provider)
+    """
+    test_command = """
+    camply \
+        campsites \
+        --yaml-config \
+        tests/yaml/misspelled_search.yaml
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    cli_status_checker(result=result, exit_code_zero=False)
+
+
+@vcr_cassette
+def test_search_by_lowercase_yaml(cli_runner: CamplyRunner) -> None:
+    """
+    Search for Campsites by YAML (Lowercase Provider)
+    """
+    test_command = """
+    camply \
+        campsites \
+        --yaml-config \
+        tests/yaml/lowercase_search.yaml
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
 def test_search_nights(cli_runner: CamplyRunner) -> None:
     """
     Search Functionality: Nights

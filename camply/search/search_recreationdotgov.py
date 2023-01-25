@@ -3,26 +3,46 @@ Recreation.gov Web Searching Utilities
 """
 
 import logging
+from abc import ABC, abstractmethod
 from random import uniform
 from time import sleep
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple, Type, Union
 
 import pandas as pd
 
 from camply.config import RecreationBookingConfig
 from camply.config.search_config import EquipmentConfig, EquipmentOptions
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
-from camply.providers import RecreationDotGov
+from camply.providers import (
+    RecreationDotGov,
+    RecreationDotGovDailyTicket,
+    RecreationDotGovDailyTimedEntry,
+    RecreationDotGovTicket,
+    RecreationDotGovTimedEntry,
+)
+from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
 from camply.search.base_search import BaseCampingSearch, SearchError
-from camply.utils import make_list
+from camply.utils import logging_utils, make_list
 
 logger = logging.getLogger(__name__)
 
 
-class SearchRecreationDotGov(BaseCampingSearch):
+class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
     """
     Camping Search Object
     """
+
+    accepted_equipment: Optional[
+        List[str]
+    ] = EquipmentOptions.__all_accepted_equipment__
+
+    @property
+    @abstractmethod
+    def provider_class(self) -> Type[RecreationDotGovBase]:
+        """
+        Attach a corresponding provider Implementation
+        """
+        pass
 
     def __init__(
         self,
@@ -71,8 +91,8 @@ class SearchRecreationDotGov(BaseCampingSearch):
             When not specified, the filename will default to `camply_campsites.json`
         """
         self.campsite_finder: RecreationDotGov
-        super(SearchRecreationDotGov, self).__init__(
-            provider=RecreationDotGov(),
+        super(SearchRecreationDotGovBase, self).__init__(
+            provider=self.provider_class(),
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
@@ -142,14 +162,23 @@ class SearchRecreationDotGov(BaseCampingSearch):
             final_equipment = []
             for equipment_name, equipment_length in equipment:
                 if (
-                    equipment_name.lower()
-                    not in EquipmentOptions.__all_accepted_equipment__
+                    cls.accepted_equipment
+                    == EquipmentOptions.__all_accepted_equipment__
+                    and equipment_name.lower() not in cls.accepted_equipment
                 ):
                     logger.warning(
                         f"Equipment name not recognized: {equipment_name}. This won't "
-                        "be used for filtering."
+                        "be used for filtering. "
                         "Acceptable options are: "
-                        f"{', '.join(EquipmentOptions.__all_accepted_equipment__)}"
+                        f"{', '.join(cls.accepted_equipment)}"
+                    )
+                elif (
+                    cls.accepted_equipment == EquipmentConfig.TIMESTAMP_EQUIPMENT
+                    and equipment_name not in EquipmentConfig.TIMESTAMP_EQUIPMENT
+                ):
+                    logger.warning(
+                        'Invalid Timestamp supplied, "%s". This won\'t be used for filtering',
+                        equipment_name,
                     )
                 else:
                     final_equipment.append((equipment_name, equipment_length))
@@ -246,6 +275,11 @@ class SearchRecreationDotGov(BaseCampingSearch):
                     month=month,
                     campsite_metadata=self.campsite_metadata,
                 )
+                logger.info(
+                    f"\t{logging_utils.get_emoji(campsites)}\t"
+                    f"{len(campsites)} total sites found in month of "
+                    f"{month.strftime('%B')}"
+                )
                 if self.campsites not in [None, []]:
                     campsites = [
                         campsite_obj
@@ -290,11 +324,14 @@ class SearchRecreationDotGov(BaseCampingSearch):
             pd.concat([exploded_data, expanded_data], axis=1),
             columns=column_names + ["equipment_name", "max_length"],
         )
-        joined_data["equipment_name_normalized"] = (
-            joined_data["equipment_name"]
-            .fillna("")
-            .apply(lambda x: EquipmentConfig.EQUIPMENT_REVERSE_MAPPING[x])
-        )
+        if self.accepted_equipment == EquipmentOptions.__all_accepted_equipment__:
+            joined_data["equipment_name_normalized"] = (
+                joined_data["equipment_name"]
+                .fillna("")
+                .apply(lambda x: EquipmentConfig.EQUIPMENT_REVERSE_MAPPING[x])
+            )
+        else:
+            joined_data["equipment_name_normalized"] = joined_data["equipment_name"]
         equipment_types = [item[0].lower() for item in self.equipment]
         matching_equipment = joined_data[
             joined_data["equipment_name_normalized"].isin(equipment_types)
@@ -315,3 +352,45 @@ class SearchRecreationDotGov(BaseCampingSearch):
             campsites["campsite_id"].isin(matching_ids)
         ].copy()
         return original_campsites
+
+
+class SearchRecreationDotGov(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for Campsites
+    """
+
+    provider_class = RecreationDotGov
+
+
+class SearchRecreationDotGovDailyTicket(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovDailyTicket Object
+    """
+
+    provider_class = RecreationDotGovDailyTicket
+    accepted_equipment = EquipmentConfig.TIMESTAMP_EQUIPMENT
+
+
+class SearchRecreationDotGovDailyTimedEntry(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovDailyTimedEntry Object
+    """
+
+    provider_class = RecreationDotGovDailyTimedEntry
+    accepted_equipment = EquipmentConfig.TIMESTAMP_EQUIPMENT
+
+
+class SearchRecreationDotGovTicket(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovTicket Object
+    """
+
+    provider_class = RecreationDotGovTicket
+
+
+class SearchRecreationDotGovTimedEntry(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for the RecreationDotGovTimedEntry Object
+    """
+
+    provider_class = RecreationDotGovTimedEntry
