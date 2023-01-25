@@ -62,7 +62,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
     @abstractmethod
     def api_search_result_key(self) -> str:
         """
-        # TODO: Document this
+        Entity ID: Related to Searches
         """
         pass
 
@@ -70,7 +70,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
     @abstractmethod
     def activity_name(self) -> str:
         """
-        # TODO: Document this
+        Activity Name Used In API Query Params
         """
         pass
 
@@ -78,7 +78,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
     @abstractmethod
     def api_search_result_class(self) -> Type[CamplyModel]:
         """
-        # TODO: Document this
+        Pydantic Object for the Search Results API Response
         """
         pass
 
@@ -86,7 +86,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
     @abstractmethod
     def facility_type(self) -> str:
         """
-        # TODO: Document this
+        Facility Type: Used for Filtering Campgrounds
         """
         pass
 
@@ -94,7 +94,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
     @abstractmethod
     def resource_api_path(self) -> str:
         """
-        # TODO: Document this
+        API Endpoint Path
         """
         pass
 
@@ -102,7 +102,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
     @abstractmethod
     def api_base_path(self) -> str:
         """
-        # TODO: Document this
+        API Base Path - Used in Downstream API Calls.
         """
         pass
 
@@ -110,7 +110,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
     @abstractmethod
     def api_response_class(self) -> Type[CoreRecDotGovResponse]:
         """
-        # TODO: Document this
+        Pydantic Object Representing the API Response.
         """
         pass
 

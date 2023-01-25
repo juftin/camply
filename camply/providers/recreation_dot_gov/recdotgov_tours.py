@@ -1,5 +1,5 @@
 """
-Recreation.gov Implementation for Tours
+Recreation.gov Implementation for Tours.
 """
 
 import json
@@ -129,22 +129,20 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
     @classmethod
     def make_campsite_availability_fields(
         cls,
-        tour_id,
-        booking_url_vars,
-        booking_date,
-        campsite_metadata,
+        tour_id: int,
+        booking_url_vars: Dict[str, str],
+        booking_date: datetime.date,
+        campsite_metadata: pd.DataFrame,
     ) -> Dict[str, Any]:
         """
-        Generate a dictionary of fields to be used in a campsite container
-
-        # TODO(@juftin): Add Type Hints
+        Generate a dictionary of fields to be used in a campsite container.
 
         Parameters
         ----------
-        tour_id
-        booking_url_vars
-        booking_date
-        campsite_metadata
+        tour_id: int
+        booking_url_vars: Dict[str, str]
+        booking_date: datetime.date
+        campsite_metadata: pd.DataFrame
 
         Returns
         -------
@@ -443,7 +441,7 @@ class RecreationDotGovTicket(RecreationDotGovTours):
     """
     RecreationDotGovTicket
 
-    # TODO: Document this
+    Tickets for Tours
     """
 
     facility_type = RIDBConfig.TICKET_FACILITY_FIELD_QUALIFIER
@@ -456,7 +454,7 @@ class RecreationDotGovTimedEntry(RecreationDotGovTours):
     """
     RecreationDotGovTimedEntry
 
-    # TODO: Document this
+    Timed Entries
     """
 
     facility_type = RIDBConfig.TIMED_ENTRY_FACILITY_FIELD_QUALIFIER
@@ -471,10 +469,8 @@ class RecreationDotGovDailyTicket(RecreationDotGovDailyMixin, RecreationDotGovTi
     """
     RecreationDotGovTicket: Daily
 
-    # TODO: Document this
+    Daily MixIn for Tickets
     """
-
-    pass
 
 
 class RecreationDotGovDailyTimedEntry(
@@ -483,7 +479,5 @@ class RecreationDotGovDailyTimedEntry(
     """
     RecreationDotGovTimedEntry: Daily
 
-    # TODO: Document this
+    Daily MixIn for Tours
     """
-
-    pass

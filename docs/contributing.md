@@ -5,7 +5,7 @@
 camply uses [Poetry] to  manage its Python environment.
 To get started first install `poetry`:
 
-```shell
+```commandline
 pipx install poetry
 ```
 
@@ -17,7 +17,7 @@ camply makes use of a couple tools to help with contributing via
 [pre-commit]. `pre-commit` is a tool to manage git-hooks scripts, which are useful
   for identifying simple issues before submission to code review.
 
-```shell
+```commandline
 pipx install pre-commit
 pre-commit install
 ```
@@ -34,14 +34,14 @@ pre-commit install
 
 Run the command-line interface from the source tree:
 
-```shell
+```commandline
 poetry install
 poetry run camply
 ```
 
 Run an interactive Python session:
 
-```shell
+```commandline
 poetry install
 poetry run python
 ```
@@ -64,7 +64,7 @@ poetry run tox
 
 Run Just One Testing Tool:
 
-```shell
+```commandline
 poetry run tox -e mypy
 ```
 

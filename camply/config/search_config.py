@@ -65,3 +65,10 @@ class EquipmentConfig:
     for key, list_of_values in EQUIPMENT_MAPPING.items():
         for value in list_of_values:
             EQUIPMENT_REVERSE_MAPPING[value] = key
+
+    TIMESTAMP_EQUIPMENT = []
+    for hour in range(0, 24):
+        hour_str = str(hour).zfill(2)
+        for minute in range(0, 60):
+            minute_str = str(minute).zfill(2)
+            TIMESTAMP_EQUIPMENT.append(hour_str + minute_str)

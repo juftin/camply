@@ -32,6 +32,10 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
     Camping Search Object
     """
 
+    accepted_equipment: Optional[
+        List[str]
+    ] = EquipmentOptions.__all_accepted_equipment__
+
     @property
     @abstractmethod
     def provider_class(self) -> Type[RecreationDotGovBase]:
@@ -158,14 +162,23 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
             final_equipment = []
             for equipment_name, equipment_length in equipment:
                 if (
-                    equipment_name.lower()
-                    not in EquipmentOptions.__all_accepted_equipment__
+                    cls.accepted_equipment
+                    == EquipmentOptions.__all_accepted_equipment__
+                    and equipment_name.lower() not in cls.accepted_equipment
                 ):
                     logger.warning(
                         f"Equipment name not recognized: {equipment_name}. This won't "
-                        "be used for filtering."
+                        "be used for filtering. "
                         "Acceptable options are: "
-                        f"{', '.join(EquipmentOptions.__all_accepted_equipment__)}"
+                        f"{', '.join(cls.accepted_equipment)}"
+                    )
+                elif (
+                    cls.accepted_equipment == EquipmentConfig.TIMESTAMP_EQUIPMENT
+                    and equipment_name not in EquipmentConfig.TIMESTAMP_EQUIPMENT
+                ):
+                    logger.warning(
+                        'Invalid Timestamp supplied, "%s". This won\'t be used for filtering',
+                        equipment_name,
                     )
                 else:
                     final_equipment.append((equipment_name, equipment_length))
@@ -311,11 +324,14 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
             pd.concat([exploded_data, expanded_data], axis=1),
             columns=column_names + ["equipment_name", "max_length"],
         )
-        joined_data["equipment_name_normalized"] = (
-            joined_data["equipment_name"]
-            .fillna("")
-            .apply(lambda x: EquipmentConfig.EQUIPMENT_REVERSE_MAPPING[x])
-        )
+        if self.accepted_equipment == EquipmentOptions.__all_accepted_equipment__:
+            joined_data["equipment_name_normalized"] = (
+                joined_data["equipment_name"]
+                .fillna("")
+                .apply(lambda x: EquipmentConfig.EQUIPMENT_REVERSE_MAPPING[x])
+            )
+        else:
+            joined_data["equipment_name_normalized"] = joined_data["equipment_name"]
         equipment_types = [item[0].lower() for item in self.equipment]
         matching_equipment = joined_data[
             joined_data["equipment_name_normalized"].isin(equipment_types)
@@ -352,6 +368,7 @@ class SearchRecreationDotGovDailyTicket(SearchRecreationDotGovBase):
     """
 
     provider_class = RecreationDotGovDailyTicket
+    accepted_equipment = EquipmentConfig.TIMESTAMP_EQUIPMENT
 
 
 class SearchRecreationDotGovDailyTimedEntry(SearchRecreationDotGovBase):
@@ -360,6 +377,7 @@ class SearchRecreationDotGovDailyTimedEntry(SearchRecreationDotGovBase):
     """
 
     provider_class = RecreationDotGovDailyTimedEntry
+    accepted_equipment = EquipmentConfig.TIMESTAMP_EQUIPMENT
 
 
 class SearchRecreationDotGovTicket(SearchRecreationDotGovBase):
