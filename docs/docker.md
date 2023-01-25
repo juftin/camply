@@ -3,7 +3,7 @@
 Here's an example of a detached container searching in the background (notice the `-d` flag, the
 container will run detached).
 
-```shell
+```commandline
 docker run -d \
   --name camply-detached-example \
   --env PUSHOVER_PUSH_TOKEN=${PUSHOVER_PUSH_TOKEN} \
@@ -41,7 +41,7 @@ The docker image accepts the following environment variables:
 Alternatively, if you have already run `camply configure` locally, you can share
 your [`.camply`](examples/example.camply) file inside the docker container.
 
-```shell
+```commandline
 docker run \
   --name camply-file-share-example \
   --env TZ="America/Denver" \
@@ -58,7 +58,7 @@ docker run \
 To manage multiple searches (with different notification preferences) I like to use YAML
 configuration files:
 
-```shell
+```commandline
 docker run -d \
   --name camply-email-example \
   --env TZ="America/Denver" \

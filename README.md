@@ -113,6 +113,7 @@ Camply doesn't support your favorite campsite booking provider yet? Consider
         + [Searching for Tickets and Timed Entries](docs/ccommand_line_usage.md#searching-for-tickets-and-timed-entries)
             - [Tickets + Tours](docs/ccommand_line_usage.md#tickets-tours)
             - [Timed Entry](docs/ccommand_line_usage.md#timed-entry)
+            - [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
 - [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](docs/command_line_usage.md#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
 - [Object-Oriented Usage (Python)](docs/python.md)
     * [Search for a Recreation.gov Campsite](docs/python.md#search-for-a-recreationgov-campsite)

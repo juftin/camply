@@ -1,7 +1,7 @@
 # Providers
 
 camply works with a number of providers. A "provider" is an Online Booking
-Service that lists campsite and recreation inventory.
+Service that lists camping and recreation inventory.
 
 ## Recreation.gov
 
@@ -80,23 +80,24 @@ areas:
 
 ![](_static/recreation_dot_gov_logo.png){: .center}
 
-Apart from reservations for campsites, Recreation.gov also supports reserving Tickets & Tours
-online. There are thousands of Tickets and Tours options available around the USA.
+Apart from reservations for campsites, Recreation.gov also supports reserving tickets & tours
+- there are thousands of tickets and tours options available around the USA.
+
+[Search for Tickets, Tours, & Timed-Entry Online](https://www.recreation.gov/search?inventory_type=tours)
 
 ### Tours & Tickets
 
-https://www.recreation.gov/search?inventory_type=tours
-
-```shell
+```commandline
 camply campgrounds --provider RecreationDotGovTicket --state HI
 ```
 
 ### Timed Entry
 
-```shell
+```commandline
 camply campgrounds --provider RecreationDotGovTimedEntry --state OR
 ```
 
 - [Searching for Tickets and Timed Entries](command_line_usage.md#searching-for-tickets-and-timed-entries)
     - [Tickets + Tours](command_line_usage.md#tickets-tours)
     - [Timed Entry](command_line_usage.md#timed-entry)
+    - [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)

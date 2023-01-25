@@ -591,22 +591,24 @@ camply campgrounds --search "Fire Tower Lookout" --state CA
 ### Searching for Tickets and Timed Entries
 
 The [Recreation.gov Tickets, Tours, & Timed-Entry Providers](providers.md#recreationgov-tickets-tours--timed-entry)
-support "campgrounds" that are actually resources like Timed Entry appointments and tickets
+support "campgrounds" that are actually resources like timed entry appointments and tickets
 to recreation activities.
 
 #### Tickets + Tours
 
 Let's say you're going on vacation in Hawaii and you're interested in what hiking tickets are available:
 
-```shell
-camply campgrounds --provider RecreationDotGovTicket --state HI
+```commandline
+camply campgrounds \
+    --provider RecreationDotGovTicket \
+    --state HI
 ```
 
 Nice, there are some great options there. Let's say we've decided on
 the [Haleakala National Park Summit Sunrise Reservations](https://www.recreation.gov/ticket/facility/253731).
 This "campground" has ID #253731. These reservations are hard to snag but they do pop up!
 
-```shell
+```commandline
 camply campsites \
   --provider RecreationDotGovTicket \
   --start-date 2023-06-09 \
@@ -623,13 +625,15 @@ Let's say you're visiting Oregon and wanting to visit
 the [Lava River Cave](https://www.recreation.gov/timed-entry/10089508). They've recently implemented a Timed Reservation
 System - so we'd use the `RecreationDotGovTimedEntry` provider:
 
-```shell
-camply campgrounds --provider RecreationDotGovTimedEntry --state OR
+```commandline
+camply campgrounds \
+    --provider RecreationDotGovTimedEntry \
+    --state OR
 ```
 
 Using the above command we can see that the campground ID we want is #10089508:
 
-```shell
+```commandline
 camply campsites \
   --provider RecreationDotGovTimedEntry \
   --start-date 2023-06-09 \
@@ -638,4 +642,69 @@ camply campsites \
   --continuous \
   --search-forever \
   --notifications email
+```
+
+#### Using the Daily Providers
+
+You'll also notice that there are alternative daily providers for our tours
+and timed entry providers: `RecreationDotGovTicket` -> `RecreationDotGovDailyTicket` and
+`RecreationDotGovTimedEntry` -> `RecreationDotGovDailyTimedEntry`. These providers search the
+same recreation activities as their non-daily counterparts but there are scenarios where you
+might want to use the daily provider.
+
+When you use the daily provider it issues an API request for each day in your search
+range, instead of once per month with the non-daily providers. This means that you can
+make as many as 31x more API requests compared to the non-daily counterpart. `camply` needs
+to be respectful of recreation.gov so always use the non-daily version when you have a large
+search window.
+
+It's suspected that the non-daily providers return "cached" results and can take longer to reflect
+actual inventory. When you have a small search window, or if you need to use the `--equipment` filtering
+functionality, then you should use the daily provider.
+
+In the following scenario we'll search for tickets to a great attraction,
+the [Keys Ranch Tour](https://www.recreation.gov/ticket/300004/ticket/1040), in Joshua Tree National Park.
+
+Here's how you could search for that and retrieve its campground ID, #300004:
+
+```commandline
+camply campgrounds \
+    --provider RecreationDotGovDailyTicket \
+    --search "Keys Ranch Tour"
+```
+
+Great, now let's search:
+
+```commandline
+camply campsites \
+  --provider RecreationDotGovDailyTicket \
+  --start-date 2023-07-06 \
+  --end-date 2023-07-07 \
+  --campground 300004
+```
+
+Let's take it even a step further, let's say you need 4 spots in their 1:00PM time slot. In this case we can search
+for that timeslot using the `--equipment` option and providing the time and minimum spots needed (`1300` and `4`):
+
+```commandline
+camply campsites \
+  --provider RecreationDotGovDailyTicket \
+  --start-date 2023-07-06 \
+  --end-date 2023-07-07 \
+  --campground 300004 \
+  --equipment 1300 4
+```
+
+Here's another example of searching for a specific time, this time for the timed-entry
+[Tuweep Area Day Use Passes](https://www.recreation.gov/timed-entry/10089462) in Grand Canyon
+National Park (ID #10089462). In this example we're looking for any number of spots in
+their 8:00AM-5:00PM time slot:
+
+```commandline
+camply campsites \
+  --provider RecreationDotGovDailyTimedEntry \
+  --start-date 2023-07-06 \
+  --end-date 2023-07-07 \
+  --campground 10089462 \
+  --equipment 0800 0
 ```

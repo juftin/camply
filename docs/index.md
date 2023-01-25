@@ -64,6 +64,7 @@ ___________
         + [Searching for Tickets and Timed Entries](command_line_usage.md#searching-for-tickets-and-timed-entries)
             - [Tickets + Tours](command_line_usage.md#tickets-tours)
             - [Timed Entry](command_line_usage.md#timed-entry)
+            - [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
 - [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](command_line_usage.md#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
 - [Object-Oriented Usage (Python)](python.md)
     * [Search for a Recreation.gov Campsite](python.md#search-for-a-recreationgov-campsite)
