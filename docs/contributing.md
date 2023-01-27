@@ -2,7 +2,7 @@
 
 ### Requirements
 
-camply uses [Poetry] to  manage its Python environment.
+camply uses [Poetry] to manage its Python environment.
 To get started first install `poetry`:
 
 ```commandline
@@ -15,20 +15,19 @@ pipx install poetry
 
 camply makes use of a couple tools to help with contributing via
 [pre-commit]. `pre-commit` is a tool to manage git-hooks scripts, which are useful
-  for identifying simple issues before submission to code review.
+for identifying simple issues before submission to code review.
 
 ```commandline
 pipx install pre-commit
 pre-commit install
 ```
 
-- `camply`'s instance of `pre-commit` uses tools like [black](https://github.com/psf/black)
-  and
-  [isort](https://pycqa.github.io/isort/) to format your code in a standardized way.
-- After cloning this repo run `pre-commit install`.
-- Done, now pre-commit will run automatically on git commit. To run it manually on your changed
-  code run `pre-commit run` on your command line.
-
+-   `camply`'s instance of `pre-commit` uses tools like [black](https://github.com/psf/black)
+    and
+    [isort](https://pycqa.github.io/isort/) to format your code in a standardized way.
+-   After cloning this repo run `pre-commit install`.
+-   Done, now pre-commit will run automatically on git commit. To run it manually on your changed
+    code run `pre-commit run` on your command line.
 
 ### Running
 
@@ -48,13 +47,13 @@ poetry run python
 
 ### Testing
 
-- [tox](https://tox.wiki/en/latest/) is a tool to standardize and manage testing and routines
-  using Python virtual environments
-- `camply`'s instance of `tox` runs Python unit tests, and uses tools like
-  [mypy](https://github.com/python/mypy) and [flake8](https://flake8.pycqa.org/en/latest/pre) to
-  format.
-- To run all `tox` tests (which get run as part of GitHub Actions) locally, just enter `tox`
-  into your command line or use poetry.
+-   [tox](https://tox.wiki/en/latest/) is a tool to standardize and manage testing and routines
+    using Python virtual environments
+-   `camply`'s instance of `tox` runs Python unit tests, and uses tools like
+    [mypy](https://github.com/python/mypy) and [flake8](https://flake8.pycqa.org/en/latest/pre) to
+    format.
+-   To run all `tox` tests (which get run as part of GitHub Actions) locally, just enter `tox`
+    into your command line or use poetry.
 
 Run the Full Test Suite:
 
@@ -78,7 +77,7 @@ While you can denote other changes on your commit messages with gitmoji, the fol
 commit message emoji prefixes are the only ones to trigger new releases:
 
 | Unicode | Shortcode   | Description                 | Semver |
-|---------|-------------|-----------------------------|--------|
+| ------- | ----------- | --------------------------- | ------ |
 | 💥      | :boom:      | Introduce breaking changes. | Major  |
 | ✨      | :sparkles:  | Introduce new features.     | Minor  |
 | 🐛      | :bug:       | Fix a bug.                  | Patch  |
@@ -87,10 +86,10 @@ commit message emoji prefixes are the only ones to trigger new releases:
 
 The Release workflow performs the following automated steps:
 
-- Publish a GitHub Release.
-- Apply a version tag to the repository.
-- Build and upload the package to PyPI.
-- Build and upload the package to Docker Hub.
+-   Publish a GitHub Release.
+-   Apply a version tag to the repository.
+-   Build and upload the package to PyPI.
+-   Build and upload the package to Docker Hub.
 
 [codecov]: https://codecov.io/
 [cookiecutter]: https://github.com/audreyr/cookiecutter

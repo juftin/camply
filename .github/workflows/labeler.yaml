@@ -3,44 +3,43 @@ name: Labeler
 on:
     push:
         branches:
-        -   main
+            - main
     issues:
         types: [opened]
     pull_request:
         types:
-        -   opened
-        -   reopened
-        -   synchronize
-        -   labeled
-        -   unlabeled
+            - opened
+            - reopened
+            - synchronize
+            - labeled
+            - unlabeled
         branches:
-        -   main
+            - main
 
 jobs:
-
     label-sync:
         if: github.event_name == 'push'
         runs-on: ubuntu-latest
         steps:
-        -   name: Check out the repository
-            uses: actions/checkout@v3
-        -   name: Run Labeler
-            uses: crazy-max/ghaction-github-labeler@v4.0.0
-            with:
-                yaml-file: .github/labels.yaml
-                skip-delete: false
-                dry-run: false
+            - name: Check out the repository
+              uses: actions/checkout@v3
+            - name: Run Labeler
+              uses: crazy-max/ghaction-github-labeler@v4.0.0
+              with:
+                  yaml-file: .github/labels.yaml
+                  skip-delete: false
+                  dry-run: false
 
     apply-triage-label:
         if: github.event_name == 'issues'
         runs-on: ubuntu-latest
         steps:
-        -   uses: actions/github-script@v6
-            with:
-                script: |
-                    github.rest.issues.addLabels({
-                      issue_number: context.issue.number,
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      labels: ['triage']
-                    })
+            - uses: actions/github-script@v6
+              with:
+                  script: |
+                      github.rest.issues.addLabels({
+                        issue_number: context.issue.number,
+                        owner: context.repo.owner,
+                        repo: context.repo.repo,
+                        labels: ['triage']
+                      })
