@@ -3,19 +3,19 @@ name: Tests
 on:
     push:
         branches:
-        -   main
+            - main
         paths:
-        -   camply/**
-        -   pyproject.toml
-        -   .github/workflows/tests.yaml
+            - camply/**
+            - pyproject.toml
+            - .github/workflows/tests.yaml
     pull_request:
-        branches: ['**']
+        branches: ["**"]
         paths:
-        -   camply/**
-        -   pyproject.toml
-        -   .github/workflows/tests.yaml
+            - camply/**
+            - pyproject.toml
+            - .github/workflows/tests.yaml
     schedule:
-    -   cron: 0 12 1 * *
+        - cron: 0 12 1 * *
 jobs:
     test-suite:
         runs-on: ubuntu-latest
@@ -23,27 +23,27 @@ jobs:
             fail-fast: true
             matrix:
                 include:
-                -   {name: Python 3.10, python: '3.10', tox: py310}
-                -   {name: Python 3.9, python: '3.9', tox: py39}
-                -   {name: Python 3.8, python: '3.8', tox: py38}
-                -   {name: Python 3.7, python: '3.7', tox: py37}
+                    - { name: Python 3.10, python: "3.10", tox: py310 }
+                    - { name: Python 3.9, python: "3.9", tox: py39 }
+                    - { name: Python 3.8, python: "3.8", tox: py38 }
+                    - { name: Python 3.7, python: "3.7", tox: py37 }
         env:
             CAMPLY_LOG_HANDLER: PYTHON
         steps:
-        -   name: Set up Github Workspace
-            uses: actions/checkout@v3
-            with:
-                fetch-depth: 0
-        -   name: Set up Python Environment ${{ matrix.python }}
-            uses: actions/setup-python@v4
-            with:
-                python-version: ${{ matrix.python }}
-        -   name: Install Test Dependencies
-            run: |
-                python -m pip install --upgrade pip wheel setuptools
-                python -m pip install tox
-        -   name: Tox Test Suite
-            run: |
-                echo "::add-matcher::.github/matchers/python.json"
-                tox -e ${{ matrix.tox }}
-                echo "::remove-matcher owner=python::"
+            - name: Set up Github Workspace
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - name: Set up Python Environment ${{ matrix.python }}
+              uses: actions/setup-python@v4
+              with:
+                  python-version: ${{ matrix.python }}
+            - name: Install Test Dependencies
+              run: |
+                  python -m pip install --upgrade pip wheel setuptools
+                  python -m pip install tox
+            - name: Tox Test Suite
+              run: |
+                  echo "::add-matcher::.github/matchers/python.json"
+                  tox -e ${{ matrix.tox }}
+                  echo "::remove-matcher owner=python::"

@@ -1,243 +1,243 @@
 interactions:
--   request:
-        body:
-        headers:
-            Accept-Encoding:
-            -   gzip, deflate
-            Connection:
-            -   keep-alive
-            User-Agent:
-            -   Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36
-            accept:
-            -   application/json
-            apikey:
-            -   REDACTED
-        method: GET
-        uri: https://ridb.recreation.gov/api/v1/facilities/300004?full=True
-    response:
-        body:
-            string: !!binary |
-                H4sIAAAAAAAAA+yXbY/buBHHvwqhVy1g2ZIsP7Youtn1Xpzb3WzXTg5BUQSUSFnMUqKOpOwzDvfd
-                +ycld71xgwbXl21ebOzhDDkPP87QvwZX19v1x/X2U7D8+z8GwfXV/eNmvV1131YfVw/b/mNNM8lZ
-                sLS65YPg9up6fQerq5ubp9Vm0+nc0lxIYY9XjF7lOTcmWAYPwYv8hptci8YKVWNlXRNbclKKXUkY
-                N1xbkqu2tvoIObXkQA2ximQ8VxUn75QpW0q2mnPyQN0WVJJHqp8HRLe7HWdE1EzsBWuphJ0WkGB7
-                oYls82eC/XJqreRE0zovRb0bkErU/n9aM1LiDGM5ZZAMyRZ+GavgiSrIT0JKQStyOyQ/8qPp1IUh
-                Ba2EPBJ8aqi2Im8l1fiueaMRTW3h5J67DXyUVDNyUPrZm+MQXrfICBEWMapnF6jh3j+33mhlGq6h
-                543v1ReKrW58kobkz5ke/cX7iFh2XIe7VjAXrmr16TwfJexz2SK3XpQrqXTRypfInHQakSOn2pA3
-                CNMffutsYQMPaut9hrvYfMehr52nFX2Gn0SKonNXU2F4n+3CBY0ES6Z53QWADGleKcuJVLkv3fDk
-                PXwsVWv4gJi8VEr+6xtc5F1lnAOmVA1kzkNjIfyTd13p3Ke1BCgZx2lIvaS15Vh3lk5np4EUQ9E0
-                J4hdnsLOEfIAmIANcyKB8J9b0VSIujvZNM7KFdd0RLqv1AtO23QlIX9r3fFPPh6f3eE59ULz3EXt
-                rsNWIUO9bz7+AfYzXYFwsE+9S/FbwRi2/Eil5EdyTaumiwQ+t7omkhfWMe3MPoUCMWvTHTIghZJS
-                HboTFGWENsDpF1FRy4GnPaB+QnJ/t5wOavIMeHZYHpJPDiGPEzm4bFecW3JUrdPUWP/DBtevos3w
-                j+RRcoqqU61dxXtfupK6vUg8cWltLU5qtFAenKPb3mF6np9VRYVEar4oqz+LulB/rRsz3Kn9mc76
-                BgrjCP/SM+kdYLLgO1hGZ0JV7y6l97T58HSHTc7MH2gFpeCbnYVs4ak5M3gsVe0sZtMoHE9n4WQS
-                RWfLTw6Gvd/h4qztseGv299WIO+WnBTOdD8Yfsu/0sbyD6v37zbvH4Llr8H1+/dPN+uHq+0KnbcG
-                1oNg++lx5fR+GwToUrg0zLyObfCqhboiAHzf0J46Dl8+X66SVxtdtAqnCA/v1g8/dpPgjhr7oWHg
-                gN3gDzxJoiQOo0WYjJ0i39H8+Kq4kN6vbtZXsEd8mjNh/fh43IyeVJaRt7Su6YEiZxqqr5Nz5id6
-                TS6V8d3QE9m0mRT5gKga8FM/lQQGGdkLirvcN1AMNrT0ZwB+C1Ar9B7iQNSVLyZse7D7vOyFQd8+
-                HA7DntSRY3fkmo8j3C+PvIVnvbSV431VZZxdKwemi3ZV2wuwO9k9gqd+gacZnSbRNGSzdBKmE3CX
-                LWgUpovJfJLGBYuSFzOHGGzOgHrLMVttsJwkk0GwNj+4ZqKPwbLAiORO8qj5XvDDaag7AfrEmYp3
-                pd94XdEdx66bNsNxsg9j2398K1zjE3mfKXTsg2upFP1bMQ9LrjQmtUMCbcVS6WfuAM1Cu06H3krd
-                KDduXbW279DOkJKCH7wsazFXsK05HyAouWm1744wzY4Ec3jHSaZayTCvGt/sMIjo6ZXB673QqnaN
-                3tWlu6ultY1ZjkY5q4fo1/DGDypX3A6hURLFi1E0H8XjUTwZjaejrmyfCxrNUjqdh/NFjNLkBQ9p
-                PI1RqQWbsjiZzif08yyKhl+aHY77STBbBksIfht8TbqHvCSbvDxQmfEL0N9wl1ODGUIxabWqEHnT
-                SMG7V4mfmm6sITf+TvRPFOOY3Psnkl/r84BUYZK7HTFz3UTje+BhSz/uS4wddag5+53oRvM4i1ix
-                CCfTbBGm4ywN5/m4CNk0TzmL0yRJo+9Adz6ZvkL3BdSe3DOWfy+6m7ZG6lDxys1hgIQHKe1RROOQ
-                rHsn/BesLE6sgIfxDIvhPJkWYTob83A+Hi/CuJiNkzjLJ3yWfycr/7tdcTErZgu2mIdJznDhxkUR
-                ZjM2DznLEtzBPIuS5DvQGqfRf+iKl2x1+P2/K36T9MmJ9JTSaZzELOQRXkopz/NwjmYYTvPpPJpn
-                cTqbRZ/jNP0KdSe5ZP0dN5XQlLxRtaL1Ben+neaeoGfI79yr1DOn3Bppa/Fzizf2L/hdJXj/ysYT
-                Fo9pmrksft00+18Q+EnTtU+UxqcLPzlM+Y2k/VuY/wkAAP//zFldb9s2FH3fr/DyspeyEUVZovYy
-                eEXQZUiTwc06YEsfLj9kC9NsIVLiBsX++84lJSfuusVwumBPQUhaMi8Pz7nn+N/BjDIlXulK2KpU
-                IqumqdCarMhzb1I1JU+q3APMpc7+c56cAbV/0GqyQdUiinE2XFjmBAYcOZg+MEmYY7/Ssqq0ft02
-                TB2sWKtgnYgN9IOL8QTA6S3gqtwlbgoucFMjsrwiyLDKBRmVOGtMqad6b8A9JsQ/wGBt+CoFczTo
-                a7iMOxL7AlVZN+FyB7UO/qeiW+y894NcRwft4WtvUIu+++4wHLlCq9JIJVSqM3QhPhMGgiuqjCwZ
-                a5WW++htmctnwFFTr0LDwdrKTAim29ACDplF5aFtf5hmHA6STI4gSVRRZJLQhjhlAZLcCVIkhfK+
-                Soqi8iaffjGQfB9uSThzC6sJ/qIG5jTuse5iXkMdr/gGhmqD02dSstTC40Oja8t/t0WwS3aMq8nV
-                kcXN8ldHLyeHQQVQSBPvS2F1hSIo5YQB3QhnncmroijQve4DleI5oLKrfRPwOctWxwkFbUuyqTne
-                YVaPEsgrWQBrMDmFGK1bUhsonybvfoFiLmKMNyZHdr1C79uHFjksGp9s1+v2CcBLRuCptEzzUmtR
-                eWI5lGj8iswKZatE4kAqyqovJYdvqG5Qgqb5esI8FTDn1gNTtS36QI4dI331HOWBvznO830f8737
-                TOdeUA+kJWnJ+lIWwlLJWJMGNolSoTKZaqe9hEXax8HK8vmw1gMvZv0hRo2BkmiCqqFkdb8MVzHE
-                K7iIoTwcX10dTXAC1NvlCCFexih9ORlyboMuPdJaDNMYoLcQ0vVNN744dm7bFPIJuMtG3BUouTRp
-                IpJUQRV1hruuJaSRrE4TnUs9rfY0HGc1tP+MNn/D22um8SFC5dAe3S2FfDkExAwudA13Q7593Y0S
-                ee0XbCP4HvIDFvEpTQOvQqsh7TX8eZTsUKqDIsItwG8V2sKFSgL8fGYEOZNh59aUxf9HFR/prgIc
-                eWank1rtFu8JmFEjZkp4VDd1JFKv0ZJKN4W/gmbmzpSYcZWr5D9x1fsXRxfz17Pz019nl6ccVv72
-                8bNhoNQiyUWa4+MX14uZMajkkMdi23E0Ekiqh/+4enFrwV/WVRz/8ea67lwdwu+h0G97fk2YHZ+5
-                k+u+9ejX7LACI7hr8V2h1cbYiAQPq4QPzRaQlrs4hW8wi23uUGOU+IHn3S669B/6kMe+DyOfZp0/
-                nczfnF6enF/OZ+evhl/b4jfZ3Xgcm3s7wwGG8bTQ7G7nJ69m85MYl35uOg49FnGHlR36EOvP6tXv
-                91viX2qaJUjvWwbFMbX18a08Bo7YkXbH4S28tSHzNgzheCtQ/LszCG8/wPvi5zlv78+v/gIAAP//
-                AwAO0a/WaxwAAA==
-        headers:
-            Access-Control-Allow-Origin:
-            -   '*'
-            Alt-Svc:
-            -   h3=":443"; ma=86400
-            Connection:
-            -   keep-alive
-            Content-Encoding:
-            -   gzip
-            Content-Type:
-            -   application/json; charset=utf-8
-            Date:
-            -   Wed, 25 Jan 2023 05:15:20 GMT
-            Server:
-            -   CloudFront
-            Strict-Transport-Security:
-            -   max-age=31536000; includeSubdomains; always
-            Transfer-Encoding:
-            -   chunked
-            Vary:
-            -   Accept-Encoding
-            Via:
-            -   1.1 89657e9ba87ccb5f5b96de064bf6d496.cloudfront.net (CloudFront)
-            X-Amz-Cf-Id:
-            -   xfpcxhC9dQTmJ6uRqufha76NtT93AUwklvC-8TKI50GZWfjEXYwYyQ==
-            X-Amz-Cf-Pop:
-            -   DEN52-P3
-            X-Cache:
-            -   Miss from cloudfront
-        status:
-            code: 200
-            message: OK
--   request:
-        body:
-        headers:
-            Accept:
-            -   '*/*'
-            Accept-Encoding:
-            -   gzip, deflate, br
-            Accept-Language:
-            -   en-US,en;q=0.9,la;q=0.8
-            Cache-Control:
-            -   max-age=0
-            Connection:
-            -   keep-alive
-            Referer:
-            -   https://www.recreation.gov/
-            Upgrade-Insecure-Requests:
-            -   '1'
-            User-Agent:
-            -   Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.17 Safari/537.36
-        method: GET
-        uri: https://www.recreation.gov/api/search?fq=asset_id%3A300004&fq=entity_type%3Atour&size=1000&start=0
-    response:
-        body:
-            string: !!binary |
-                H4sIAAAAAAAAA+xY647jthV+FUJ/OgvYsmTLsux/sztJ23Sy3U6mLZALBFqiZXYoUSApzzqLAHmQ
-                Fsiz5FHyJP1IybY8lyTbdoFsoYEx4+HtfOfynXPId55iuhFGe6uv3nl0xxQtWKqo4VXhraKRl9Gy
-                1tyw1OxrlspN2miGtV5FvW9GXs50pnhtuKy8lXfFdSZxBDFbRjIppNo0ggi+Y5rIDXnJhSC0ysmn
-                ilYZxv7E9toNCEZVRbby3u7cE92oHTblbk5Rru1XsqElF3vCK3f8liq9JZDPlCGs2nElq5JVhsh2
-                3p19Azlbcisb5ZNP3tYAxNykcuNbCV1GRGdbKQVRUpb4x2DNiNxLdae3sh45CKXbpxgFMMDeKFm6
-                Y+KA7IFcnwRmVAiANVsOxbABMkrmk2uuDYY7aK+ptRcV5IYVdkJZ4/yBW9E8I28EtbaBmuFyMR+5
-                HbWSNfSE8poImVF7GBZQolgpDfAqmd3tIb3aQwZmPpN621Byq1hP3Buq7vyvq55lDCyDE6k2ZBmQ
-                kleNYa1HeLWTYscIXcvGQNCWis0Y9mcW6z0Vd4gPnzw6CjqTrFEKjoCrBC+5hWok0UywzH7PqROh
-                Ccx7Xx1McsMyWMvi9Au5s2ZkVU7htauG2e2GlTAANbA/YW/hipLpUSez5MXWkEoasgbeHeWCroEz
-                bxQwtrEiDYQaxFVZwtqlrMxWk4vP6X5EPmsqZn8DrtX7sikabV74QITI2jlIrVqnk5vaQoLzc7p3
-                jqL5zga0O6CpDBdOKmaBaHOIOQvW90AZrmAJeywY83UTBLOsdn9Y+482iOSiHYFpCwB+bRWnAhFC
-                3ihZKFpq0i6e9FdTQ7642/9Ok1uIu7a2JyVj8B68Gy8X5K+Gggzgk7Cgb+/hpH3FK4bAECXM+Qoi
-                ALfilFxYc2KfBb7j4L9UJMN6pl74neQD6OoXdHhARP0E8CPMB8RFqN8hZAqEDBBrnrPnA/tnIf/4
-                w48/PIL9S8Cvjo5yEXgOzWFyYYF8IIWQ93p1lNE/5T2t9ekht/QV/VunziunzlMGvDhkBRggns+j
-                1iQvxS4fnZ306tJ/sSJXCtmVaDB7awl4XAtNVMf4ObFkP2r+d0ufTyrjEje5OO2weU5oSe4qy2YY
-                46fv//mXxobYF7XlH+wlaf7T9/8CpS7Ng3OsEUc2uWXMJXsJUYok/rIV7pPbBmXhmm1sVgeSlxCL
-                BVe0JDe536kBBR6Mn7QI/MUzR/VcabdcXEt55zZabTUvbFqCLbVlOFTqxW+ry1H2w4MoAcENEjLN
-                X/SQhA5HLzt0sf0gpHzLXUSVNSvRJaoJqaGcTWSunLiCyKzrESYbmnHBURW6qO/RxZ6DM/DZA7Pj
-                lz2jtrXlAN7wkj0R2a66PR99DloNn73lJQQhbc7mZ5Ujl/hiucirTDS5zYpAmOe8I2vOBHWVsrFl
-                fY2qhTCGSpi1irB+cMBvT/CyPcApDTBnG5D1nU69M+XGMJuibYD1ccxOBc8aQaH3Ea1NEM41OhLN
-                rL2wJ8ukymE+sff/hwT/M9VA/37UXkRRMn+Q966UP3oqmT/F9F4FOIXmzI/Oyf5aKiw/sNTx9nzo
-                GeKGsT8/o9uNq8wflLoDcx8w96mweszZKPiAnH2i1v5KTrxCoyareynz9yGG3GzIH8dh4KC8RdcT
-                xgmp0Ji3IeGCfw0Kt42266fhmSM7Khfbtg7yNlI1uiNbtSY9OMdq1i+S0+UpSC9bT6KJr10Uojs9
-                D9tTzXQWd6LD8EGt+28YMxDmPyLMszH3mDWhvTIqhyw8Fr1H/TB6fOwH2JTnaPHDIEiSZB6ehu1N
-                GhP2QoDBQqb2hpzaixFGgyAIx+5zGwQr9/kSq7amFOlw2x5u28Nt+71u22cUTDvKCQgyKHOYmkV+
-                EM2TYBp0P3YaNeYwPw7R1YTxMozCZfeDFRUt7WTPIddUFYz8XknAvW2lVE25Zso+mbXPabjvhyNP
-                qqLLC9MEi5Dy4L12ZGblR6fBTsrzV97bNgpgh8OzwGlzl2QOidNOKLbj7D5FNitY2iiB6a0xtV5N
-                Jlle+eosKiZ1sxY8m0yDcDkJkkk4m4TzySyetCjTDQ0WEY2TcbIMg3GUbdiYhnE4Xi+XeZyH0ziZ
-                03QRBP4/6gLCVetgONRbGdWwkWdzcvqtrCzKSwQKz+jkWur0Ep0Fqhj2dCocuers+t3onUeLQjGb
-                +9OMCZG6LAidvFXgJ2G0jIN4Op9OF8skWIwev2n6SRTMo2B42/y/y7awBo5zkYa+wmiyPQjOYFKK
-                jKigdF5yrW3n2jUErcEg3XUbPOtyaNHwHN+67NtmP9ez9JJvP1MDGdJogVbSef08y/tdatD8W9fx
-                9HL1dE5qJnHhHB4Hh8fB4XFweBz8zd+YhsfB4XFweBz8GJk7PA4Oj4MDYX5Tj4NRMDwMDlfVj/Cq
-                eozfD/iq9vxL2mwRfNxvaYtJFE6c+eI4TFiyiccRjdfjKMiTcbLO5mMazZJlvAjiPJt9kJe0b0ae
-                dbK3muJLzYSAaVPaGImWVrn3Y2+1wQUOIrShytgkZA+ThkLf6Xf/BgAA//8DAFydb3I8KAAA
-        headers:
-            Access-Control-Allow-Origin:
-            -   '*'
-            Alt-Svc:
-            -   h3=":443"; ma=86400
-            Connection:
-            -   keep-alive
-            Content-Encoding:
-            -   gzip
-            Content-Type:
-            -   application/json; charset=utf-8
-            Date:
-            -   Wed, 25 Jan 2023 05:15:20 GMT
-            Server:
-            -   CloudFront
-            Strict-Transport-Security:
-            -   max-age=31536000; includeSubdomains; always
-            Transfer-Encoding:
-            -   chunked
-            Vary:
-            -   Accept-Encoding
-            Via:
-            -   1.1 39c272e966ab7a6f8a68d2222276a954.cloudfront.net (CloudFront)
-            X-Amz-Cf-Id:
-            -   KCf9mJKHzsnC591zsPSslND53gO5E7dazYcU_ipPrU9TVqmqSmcUtA==
-            X-Amz-Cf-Pop:
-            -   DEN52-C1
-            X-Cache:
-            -   Miss from cloudfront
-        status:
-            code: 200
-            message: OK
--   request:
-        body:
-        headers:
-            Accept:
-            -   '*/*'
-            Accept-Encoding:
-            -   gzip, deflate, br
-            Accept-Language:
-            -   en-US,en;q=0.9,la;q=0.8
-            Cache-Control:
-            -   max-age=0
-            Connection:
-            -   keep-alive
-            Referer:
-            -   https://www.recreation.gov/
-            Upgrade-Insecure-Requests:
-            -   '1'
-            User-Agent:
-            -   Mozilla/5.0 (X11; Linux i686; rv:21.0) Gecko/20100101 Firefox/21.0
-        method: GET
-        uri: https://www.recreation.gov/api/ticket/availability/facility/300004?date=2023-07-06
-    response:
-        body:
-            string: "[]\n"
-        headers:
-            Access-Control-Allow-Origin:
-            -   '*'
-            Alt-Svc:
-            -   h3=":443"; ma=86400
-            Connection:
-            -   keep-alive
-            Content-Length:
-            -   '3'
-            Content-Type:
-            -   application/json; charset=utf-8
-            Date:
-            -   Wed, 25 Jan 2023 05:15:20 GMT
-            Server:
-            -   CloudFront
-            Strict-Transport-Security:
-            -   max-age=31536000; includeSubdomains; always
-            Via:
-            -   1.1 be7f6ce4397843276657a8babac08b6e.cloudfront.net (CloudFront)
-            X-Amz-Cf-Id:
-            -   vJm-ADv41iNHtzWl6USwN6xIY1xX-R3z9F5HTqun9DKAmZMePpaDQw==
-            X-Amz-Cf-Pop:
-            -   DEN52-C1
-            X-Cache:
-            -   Miss from cloudfront
-        status:
-            code: 200
-            message: OK
+    - request:
+          body:
+          headers:
+              Accept-Encoding:
+                  - gzip, deflate
+              Connection:
+                  - keep-alive
+              User-Agent:
+                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36
+              accept:
+                  - application/json
+              apikey:
+                  - REDACTED
+          method: GET
+          uri: https://ridb.recreation.gov/api/v1/facilities/300004?full=True
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA+yXbY/buBHHvwqhVy1g2ZIsP7Youtn1Xpzb3WzXTg5BUQSUSFnMUqKOpOwzDvfd
+                  +ycld71xgwbXl21ebOzhDDkPP87QvwZX19v1x/X2U7D8+z8GwfXV/eNmvV1131YfVw/b/mNNM8lZ
+                  sLS65YPg9up6fQerq5ubp9Vm0+nc0lxIYY9XjF7lOTcmWAYPwYv8hptci8YKVWNlXRNbclKKXUkY
+                  N1xbkqu2tvoIObXkQA2ximQ8VxUn75QpW0q2mnPyQN0WVJJHqp8HRLe7HWdE1EzsBWuphJ0WkGB7
+                  oYls82eC/XJqreRE0zovRb0bkErU/n9aM1LiDGM5ZZAMyRZ+GavgiSrIT0JKQStyOyQ/8qPp1IUh
+                  Ba2EPBJ8aqi2Im8l1fiueaMRTW3h5J67DXyUVDNyUPrZm+MQXrfICBEWMapnF6jh3j+33mhlGq6h
+                  543v1ReKrW58kobkz5ke/cX7iFh2XIe7VjAXrmr16TwfJexz2SK3XpQrqXTRypfInHQakSOn2pA3
+                  CNMffutsYQMPaut9hrvYfMehr52nFX2Gn0SKonNXU2F4n+3CBY0ES6Z53QWADGleKcuJVLkv3fDk
+                  PXwsVWv4gJi8VEr+6xtc5F1lnAOmVA1kzkNjIfyTd13p3Ke1BCgZx2lIvaS15Vh3lk5np4EUQ9E0
+                  J4hdnsLOEfIAmIANcyKB8J9b0VSIujvZNM7KFdd0RLqv1AtO23QlIX9r3fFPPh6f3eE59ULz3EXt
+                  rsNWIUO9bz7+AfYzXYFwsE+9S/FbwRi2/Eil5EdyTaumiwQ+t7omkhfWMe3MPoUCMWvTHTIghZJS
+                  HboTFGWENsDpF1FRy4GnPaB+QnJ/t5wOavIMeHZYHpJPDiGPEzm4bFecW3JUrdPUWP/DBtevos3w
+                  j+RRcoqqU61dxXtfupK6vUg8cWltLU5qtFAenKPb3mF6np9VRYVEar4oqz+LulB/rRsz3Kn9mc76
+                  BgrjCP/SM+kdYLLgO1hGZ0JV7y6l97T58HSHTc7MH2gFpeCbnYVs4ak5M3gsVe0sZtMoHE9n4WQS
+                  RWfLTw6Gvd/h4qztseGv299WIO+WnBTOdD8Yfsu/0sbyD6v37zbvH4Llr8H1+/dPN+uHq+0KnbcG
+                  1oNg++lx5fR+GwToUrg0zLyObfCqhboiAHzf0J46Dl8+X66SVxtdtAqnCA/v1g8/dpPgjhr7oWHg
+                  gN3gDzxJoiQOo0WYjJ0i39H8+Kq4kN6vbtZXsEd8mjNh/fh43IyeVJaRt7Su6YEiZxqqr5Nz5id6
+                  TS6V8d3QE9m0mRT5gKga8FM/lQQGGdkLirvcN1AMNrT0ZwB+C1Ar9B7iQNSVLyZse7D7vOyFQd8+
+                  HA7DntSRY3fkmo8j3C+PvIVnvbSV431VZZxdKwemi3ZV2wuwO9k9gqd+gacZnSbRNGSzdBKmE3CX
+                  LWgUpovJfJLGBYuSFzOHGGzOgHrLMVttsJwkk0GwNj+4ZqKPwbLAiORO8qj5XvDDaag7AfrEmYp3
+                  pd94XdEdx66bNsNxsg9j2398K1zjE3mfKXTsg2upFP1bMQ9LrjQmtUMCbcVS6WfuAM1Cu06H3krd
+                  KDduXbW279DOkJKCH7wsazFXsK05HyAouWm1744wzY4Ec3jHSaZayTCvGt/sMIjo6ZXB673QqnaN
+                  3tWlu6ultY1ZjkY5q4fo1/DGDypX3A6hURLFi1E0H8XjUTwZjaejrmyfCxrNUjqdh/NFjNLkBQ9p
+                  PI1RqQWbsjiZzif08yyKhl+aHY77STBbBksIfht8TbqHvCSbvDxQmfEL0N9wl1ODGUIxabWqEHnT
+                  SMG7V4mfmm6sITf+TvRPFOOY3Psnkl/r84BUYZK7HTFz3UTje+BhSz/uS4wddag5+53oRvM4i1ix
+                  CCfTbBGm4ywN5/m4CNk0TzmL0yRJo+9Adz6ZvkL3BdSe3DOWfy+6m7ZG6lDxys1hgIQHKe1RROOQ
+                  rHsn/BesLE6sgIfxDIvhPJkWYTob83A+Hi/CuJiNkzjLJ3yWfycr/7tdcTErZgu2mIdJznDhxkUR
+                  ZjM2DznLEtzBPIuS5DvQGqfRf+iKl2x1+P2/K36T9MmJ9JTSaZzELOQRXkopz/NwjmYYTvPpPJpn
+                  cTqbRZ/jNP0KdSe5ZP0dN5XQlLxRtaL1Ben+neaeoGfI79yr1DOn3Bppa/Fzizf2L/hdJXj/ysYT
+                  Fo9pmrksft00+18Q+EnTtU+UxqcLPzlM+Y2k/VuY/wkAAP//zFldb9s2FH3fr/DyspeyEUVZovYy
+                  eEXQZUiTwc06YEsfLj9kC9NsIVLiBsX++84lJSfuusVwumBPQUhaMi8Pz7nn+N/BjDIlXulK2KpU
+                  IqumqdCarMhzb1I1JU+q3APMpc7+c56cAbV/0GqyQdUiinE2XFjmBAYcOZg+MEmYY7/Ssqq0ft02
+                  TB2sWKtgnYgN9IOL8QTA6S3gqtwlbgoucFMjsrwiyLDKBRmVOGtMqad6b8A9JsQ/wGBt+CoFczTo
+                  a7iMOxL7AlVZN+FyB7UO/qeiW+y894NcRwft4WtvUIu+++4wHLlCq9JIJVSqM3QhPhMGgiuqjCwZ
+                  a5WW++htmctnwFFTr0LDwdrKTAim29ACDplF5aFtf5hmHA6STI4gSVRRZJLQhjhlAZLcCVIkhfK+
+                  Soqi8iaffjGQfB9uSThzC6sJ/qIG5jTuse5iXkMdr/gGhmqD02dSstTC40Oja8t/t0WwS3aMq8nV
+                  kcXN8ldHLyeHQQVQSBPvS2F1hSIo5YQB3QhnncmroijQve4DleI5oLKrfRPwOctWxwkFbUuyqTne
+                  YVaPEsgrWQBrMDmFGK1bUhsonybvfoFiLmKMNyZHdr1C79uHFjksGp9s1+v2CcBLRuCptEzzUmtR
+                  eWI5lGj8iswKZatE4kAqyqovJYdvqG5Qgqb5esI8FTDn1gNTtS36QI4dI331HOWBvznO830f8737
+                  TOdeUA+kJWnJ+lIWwlLJWJMGNolSoTKZaqe9hEXax8HK8vmw1gMvZv0hRo2BkmiCqqFkdb8MVzHE
+                  K7iIoTwcX10dTXAC1NvlCCFexih9ORlyboMuPdJaDNMYoLcQ0vVNN744dm7bFPIJuMtG3BUouTRp
+                  IpJUQRV1hruuJaSRrE4TnUs9rfY0HGc1tP+MNn/D22um8SFC5dAe3S2FfDkExAwudA13Q7593Y0S
+                  ee0XbCP4HvIDFvEpTQOvQqsh7TX8eZTsUKqDIsItwG8V2sKFSgL8fGYEOZNh59aUxf9HFR/prgIc
+                  eWank1rtFu8JmFEjZkp4VDd1JFKv0ZJKN4W/gmbmzpSYcZWr5D9x1fsXRxfz17Pz019nl6ccVv72
+                  8bNhoNQiyUWa4+MX14uZMajkkMdi23E0Ekiqh/+4enFrwV/WVRz/8ea67lwdwu+h0G97fk2YHZ+5
+                  k+u+9ejX7LACI7hr8V2h1cbYiAQPq4QPzRaQlrs4hW8wi23uUGOU+IHn3S669B/6kMe+DyOfZp0/
+                  nczfnF6enF/OZ+evhl/b4jfZ3Xgcm3s7wwGG8bTQ7G7nJ69m85MYl35uOg49FnGHlR36EOvP6tXv
+                  91viX2qaJUjvWwbFMbX18a08Bo7YkXbH4S28tSHzNgzheCtQ/LszCG8/wPvi5zlv78+v/gIAAP//
+                  AwAO0a/WaxwAAA==
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Wed, 25 Jan 2023 05:15:20 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 89657e9ba87ccb5f5b96de064bf6d496.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - xfpcxhC9dQTmJ6uRqufha76NtT93AUwklvC-8TKI50GZWfjEXYwYyQ==
+              X-Amz-Cf-Pop:
+                  - DEN52-P3
+              X-Cache:
+                  - Miss from cloudfront
+          status:
+              code: 200
+              message: OK
+    - request:
+          body:
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate, br
+              Accept-Language:
+                  - en-US,en;q=0.9,la;q=0.8
+              Cache-Control:
+                  - max-age=0
+              Connection:
+                  - keep-alive
+              Referer:
+                  - https://www.recreation.gov/
+              Upgrade-Insecure-Requests:
+                  - "1"
+              User-Agent:
+                  - Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.17 Safari/537.36
+          method: GET
+          uri: https://www.recreation.gov/api/search?fq=asset_id%3A300004&fq=entity_type%3Atour&size=1000&start=0
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA+xY647jthV+FUJ/OgvYsmTLsux/sztJ23Sy3U6mLZALBFqiZXYoUSApzzqLAHmQ
+                  Fsiz5FHyJP1IybY8lyTbdoFsoYEx4+HtfOfynXPId55iuhFGe6uv3nl0xxQtWKqo4VXhraKRl9Gy
+                  1tyw1OxrlspN2miGtV5FvW9GXs50pnhtuKy8lXfFdSZxBDFbRjIppNo0ggi+Y5rIDXnJhSC0ysmn
+                  ilYZxv7E9toNCEZVRbby3u7cE92oHTblbk5Rru1XsqElF3vCK3f8liq9JZDPlCGs2nElq5JVhsh2
+                  3p19Azlbcisb5ZNP3tYAxNykcuNbCV1GRGdbKQVRUpb4x2DNiNxLdae3sh45CKXbpxgFMMDeKFm6
+                  Y+KA7IFcnwRmVAiANVsOxbABMkrmk2uuDYY7aK+ptRcV5IYVdkJZ4/yBW9E8I28EtbaBmuFyMR+5
+                  HbWSNfSE8poImVF7GBZQolgpDfAqmd3tIb3aQwZmPpN621Byq1hP3Buq7vyvq55lDCyDE6k2ZBmQ
+                  kleNYa1HeLWTYscIXcvGQNCWis0Y9mcW6z0Vd4gPnzw6CjqTrFEKjoCrBC+5hWok0UywzH7PqROh
+                  Ccx7Xx1McsMyWMvi9Au5s2ZkVU7htauG2e2GlTAANbA/YW/hipLpUSez5MXWkEoasgbeHeWCroEz
+                  bxQwtrEiDYQaxFVZwtqlrMxWk4vP6X5EPmsqZn8DrtX7sikabV74QITI2jlIrVqnk5vaQoLzc7p3
+                  jqL5zga0O6CpDBdOKmaBaHOIOQvW90AZrmAJeywY83UTBLOsdn9Y+482iOSiHYFpCwB+bRWnAhFC
+                  3ihZKFpq0i6e9FdTQ7642/9Ok1uIu7a2JyVj8B68Gy8X5K+Gggzgk7Cgb+/hpH3FK4bAECXM+Qoi
+                  ALfilFxYc2KfBb7j4L9UJMN6pl74neQD6OoXdHhARP0E8CPMB8RFqN8hZAqEDBBrnrPnA/tnIf/4
+                  w48/PIL9S8Cvjo5yEXgOzWFyYYF8IIWQ93p1lNE/5T2t9ekht/QV/VunziunzlMGvDhkBRggns+j
+                  1iQvxS4fnZ306tJ/sSJXCtmVaDB7awl4XAtNVMf4ObFkP2r+d0ufTyrjEje5OO2weU5oSe4qy2YY
+                  46fv//mXxobYF7XlH+wlaf7T9/8CpS7Ng3OsEUc2uWXMJXsJUYok/rIV7pPbBmXhmm1sVgeSlxCL
+                  BVe0JDe536kBBR6Mn7QI/MUzR/VcabdcXEt55zZabTUvbFqCLbVlOFTqxW+ry1H2w4MoAcENEjLN
+                  X/SQhA5HLzt0sf0gpHzLXUSVNSvRJaoJqaGcTWSunLiCyKzrESYbmnHBURW6qO/RxZ6DM/DZA7Pj
+                  lz2jtrXlAN7wkj0R2a66PR99DloNn73lJQQhbc7mZ5Ujl/hiucirTDS5zYpAmOe8I2vOBHWVsrFl
+                  fY2qhTCGSpi1irB+cMBvT/CyPcApDTBnG5D1nU69M+XGMJuibYD1ccxOBc8aQaH3Ea1NEM41OhLN
+                  rL2wJ8ukymE+sff/hwT/M9VA/37UXkRRMn+Q966UP3oqmT/F9F4FOIXmzI/Oyf5aKiw/sNTx9nzo
+                  GeKGsT8/o9uNq8wflLoDcx8w96mweszZKPiAnH2i1v5KTrxCoyareynz9yGG3GzIH8dh4KC8RdcT
+                  xgmp0Ji3IeGCfw0Kt42266fhmSM7Khfbtg7yNlI1uiNbtSY9OMdq1i+S0+UpSC9bT6KJr10Uojs9
+                  D9tTzXQWd6LD8EGt+28YMxDmPyLMszH3mDWhvTIqhyw8Fr1H/TB6fOwH2JTnaPHDIEiSZB6ehu1N
+                  GhP2QoDBQqb2hpzaixFGgyAIx+5zGwQr9/kSq7amFOlw2x5u28Nt+71u22cUTDvKCQgyKHOYmkV+
+                  EM2TYBp0P3YaNeYwPw7R1YTxMozCZfeDFRUt7WTPIddUFYz8XknAvW2lVE25Zso+mbXPabjvhyNP
+                  qqLLC9MEi5Dy4L12ZGblR6fBTsrzV97bNgpgh8OzwGlzl2QOidNOKLbj7D5FNitY2iiB6a0xtV5N
+                  Jlle+eosKiZ1sxY8m0yDcDkJkkk4m4TzySyetCjTDQ0WEY2TcbIMg3GUbdiYhnE4Xi+XeZyH0ziZ
+                  03QRBP4/6gLCVetgONRbGdWwkWdzcvqtrCzKSwQKz+jkWur0Ep0Fqhj2dCocuers+t3onUeLQjGb
+                  +9OMCZG6LAidvFXgJ2G0jIN4Op9OF8skWIwev2n6SRTMo2B42/y/y7awBo5zkYa+wmiyPQjOYFKK
+                  jKigdF5yrW3n2jUErcEg3XUbPOtyaNHwHN+67NtmP9ez9JJvP1MDGdJogVbSef08y/tdatD8W9fx
+                  9HL1dE5qJnHhHB4Hh8fB4XFweBz8zd+YhsfB4XFweBz8GJk7PA4Oj4MDYX5Tj4NRMDwMDlfVj/Cq
+                  eozfD/iq9vxL2mwRfNxvaYtJFE6c+eI4TFiyiccRjdfjKMiTcbLO5mMazZJlvAjiPJt9kJe0b0ae
+                  dbK3muJLzYSAaVPaGImWVrn3Y2+1wQUOIrShytgkZA+ThkLf6Xf/BgAA//8DAFydb3I8KAAA
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Wed, 25 Jan 2023 05:15:20 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 39c272e966ab7a6f8a68d2222276a954.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - KCf9mJKHzsnC591zsPSslND53gO5E7dazYcU_ipPrU9TVqmqSmcUtA==
+              X-Amz-Cf-Pop:
+                  - DEN52-C1
+              X-Cache:
+                  - Miss from cloudfront
+          status:
+              code: 200
+              message: OK
+    - request:
+          body:
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate, br
+              Accept-Language:
+                  - en-US,en;q=0.9,la;q=0.8
+              Cache-Control:
+                  - max-age=0
+              Connection:
+                  - keep-alive
+              Referer:
+                  - https://www.recreation.gov/
+              Upgrade-Insecure-Requests:
+                  - "1"
+              User-Agent:
+                  - Mozilla/5.0 (X11; Linux i686; rv:21.0) Gecko/20100101 Firefox/21.0
+          method: GET
+          uri: https://www.recreation.gov/api/ticket/availability/facility/300004?date=2023-07-06
+      response:
+          body:
+              string: "[]\n"
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Length:
+                  - "3"
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Wed, 25 Jan 2023 05:15:20 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Via:
+                  - 1.1 be7f6ce4397843276657a8babac08b6e.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - vJm-ADv41iNHtzWl6USwN6xIY1xX-R3z9F5HTqun9DKAmZMePpaDQw==
+              X-Amz-Cf-Pop:
+                  - DEN52-C1
+              X-Cache:
+                  - Miss from cloudfront
+          status:
+              code: 200
+              message: OK
 version: 1

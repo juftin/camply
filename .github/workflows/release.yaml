@@ -1,53 +1,53 @@
 name: Release
 on:
     push:
-        branches: [main, next, beta, alpha, '*.x']
+        branches: [main, next, beta, alpha, "*.x"]
 jobs:
     release:
         name: Release
         runs-on: ubuntu-latest
         steps:
-        -   name: Checkout
-            uses: actions/checkout@v3
-        -   name: Setup Node.js
-            uses: actions/setup-node@v3
-        -   name: Set up Python
-            uses: actions/setup-python@v4
-            with:
-                python-version: 3.9
-        -   name: Install Poetry
-            run: |
-                python -m pip install -q poetry
-                poetry --version
-        -   name: Install Semantic Release
-            run: |
-                npm install --prefix .github/semantic_release
-        -   name: Release
-            run: npx --prefix .github/semantic_release semantic-release
-            env:
-                GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+            - name: Set up Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: 3.9
+            - name: Install Poetry
+              run: |
+                  python -m pip install -q poetry
+                  poetry --version
+            - name: Install Semantic Release
+              run: |
+                  npm install --prefix .github/semantic_release
+            - name: Release
+              run: npx --prefix .github/semantic_release semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
     github-pages-publish:
         runs-on: ubuntu-latest
         needs: release
         if: github.ref == 'refs/heads/main'
         steps:
-        -   name: Checkout Latest Changes
-            uses: actions/checkout@v3
-            with:
-                ref: ${{ github.ref }}
-                fetch-depth: 0
-        -   name: Set up Python Environment
-            uses: actions/setup-python@v2
-            with:
-                python-version: '3.9'
-        -   name: Install Dependencies
-            run: |
-                pip install --upgrade pip wheel setuptools
-                pip install poetry
-                poetry --version
-        -   name: Install Environment
-            run: |
-                poetry install --extras all
-        -   name: Deploy Documentation Changes
-            run: poetry run mkdocs gh-deploy --force
+            - name: Checkout Latest Changes
+              uses: actions/checkout@v3
+              with:
+                  ref: ${{ github.ref }}
+                  fetch-depth: 0
+            - name: Set up Python Environment
+              uses: actions/setup-python@v2
+              with:
+                  python-version: "3.9"
+            - name: Install Dependencies
+              run: |
+                  pip install --upgrade pip wheel setuptools
+                  pip install poetry
+                  poetry --version
+            - name: Install Environment
+              run: |
+                  poetry install --extras all
+            - name: Deploy Documentation Changes
+              run: poetry run mkdocs gh-deploy --force

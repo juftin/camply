@@ -34,11 +34,11 @@ camply --provider Yellowstone campgrounds
 
 The Yellowstone Provider currently supports the following Campgrounds:
 
-- Bridge Bay Campground (YLYB:RV)
-- Canyon Campground (YLYC:RV)
-- Fishing Bridge RV Park (YLYF:RV)
-- Grant Campground (YLYG:RV)
-- Madison Campground (YLYM:RV)
+-   Bridge Bay Campground (YLYB:RV)
+-   Canyon Campground (YLYC:RV)
+-   Fishing Bridge RV Park (YLYF:RV)
+-   Grant Campground (YLYG:RV)
+-   Madison Campground (YLYM:RV)
 
 ## GoingToCamp
 
@@ -59,29 +59,30 @@ to filter searches by recreation area when using GoingToCamp.
 
 The GoingToCamp Provider currently contains the following Recreation Areas:
 
-- Hamilton, Ontario, CA (#6)
-- Long Point Region, Ontario, CA (#1)
-- Maitland Valley, Ontario, CA (#7)
-- Oroville Park, Washington, USA (#8)
-- Saugreen Valley, Ontario, CA (#9)
-- St. Clair Region, Ontario, CA (#2)
-- Tacoma Power Parks, Washington, USA (#10)
-- Washington State Parks, Washington, USA (#4)
-- Wisconsin State Parks, Wisconsin, USA (#11)
-- Yukon (Backcountry), Yukon, CA (#5)
+-   Hamilton, Ontario, CA (#6)
+-   Long Point Region, Ontario, CA (#1)
+-   Maitland Valley, Ontario, CA (#7)
+-   Oroville Park, Washington, USA (#8)
+-   Saugreen Valley, Ontario, CA (#9)
+-   St. Clair Region, Ontario, CA (#2)
+-   Tacoma Power Parks, Washington, USA (#10)
+-   Washington State Parks, Washington, USA (#4)
+-   Wisconsin State Parks, Wisconsin, USA (#11)
+-   Yukon (Backcountry), Yukon, CA (#5)
 
 Check out the following documentation examples for more details on searching GoingToCamp recreation
 areas:
 
-- [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
-- [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
+-   [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+-   [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
 
 ## Recreation.gov Tickets, Tours, & Timed-Entry
 
 ![](_static/recreation_dot_gov_logo.png){: .center}
 
 Apart from reservations for campsites, Recreation.gov also supports reserving tickets & tours
-- there are thousands of tickets and tours options available around the USA.
+
+-   there are thousands of tickets and tours options available around the USA.
 
 [Search for Tickets, Tours, & Timed-Entry Online](https://www.recreation.gov/search?inventory_type=tours)
 
@@ -97,7 +98,7 @@ camply campgrounds --provider RecreationDotGovTicket --state HI
 camply campgrounds --provider RecreationDotGovTimedEntry --state OR
 ```
 
-- [Searching for Tickets and Timed Entries](command_line_usage.md#searching-for-tickets-and-timed-entries)
-    - [Tickets + Tours](command_line_usage.md#tickets-tours)
-    - [Timed Entry](command_line_usage.md#timed-entry)
-    - [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
+-   [Searching for Tickets and Timed Entries](command_line_usage.md#searching-for-tickets-and-timed-entries)
+    -   [Tickets + Tours](command_line_usage.md#tickets-tours)
+    -   [Timed Entry](command_line_usage.md#timed-entry)
+    -   [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)

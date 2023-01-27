@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 services:
     camply:
         container_name: camply-docker-compose-example
@@ -6,7 +6,7 @@ services:
         environment:
             TZ: America/Denver
         volumes:
-        -   ${PWD}/example.camply:/home/camply/.camply
-        -   ${PWD}/example_search.yaml:/home/camply/search.yaml
+            - ${PWD}/example.camply:/home/camply/.camply
+            - ${PWD}/example_search.yaml:/home/camply/search.yaml
         command: camply campsites --yaml-config /home/camply/search.yaml
         restart: unless-stopped
