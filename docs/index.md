@@ -13,8 +13,9 @@ APIs of booking services like https://recreation.gov (which indexes thousands of
 the USA) to continuously check for cancellations and availabilities to pop up. Once a campsite
 becomes available, camply sends you a notification to book your spot!
 
-___________
-___________
+---
+
+---
 
 [![PyPI](https://img.shields.io/pypi/v/camply?color=blue&label=⛺️camply)](https://github.com/juftin/camply)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/camply)](https://pypi.python.org/pypi/camply/)
@@ -27,53 +28,53 @@ ___________
 
 ## Table of Contents
 
-- [Installation](installation.md)
-    * [PyPI](installation.md#pypi)
-    * [Docker](installation.md#docker)
-- [Providers](providers.md)
-    * [RecreationDotGov](providers.md#recreationgov)
-    * [Yellowstone](providers.md#yellowstone)
-    * [GoingToCamp](providers.md#goingtocamp)
-- [Command Line Usage](command_line_usage.md)
-    * [campsites](command_line_usage.md#campsites)
-    * [recreation-areas](command_line_usage.md#recreation-areas)
-    * [campgrounds](command_line_usage.md#campgrounds)
-    * [configure](command_line_usage.md#configure)
-    * [Examples](command_line_usage.md#examples)
-        + [Searching for a Campsite](command_line_usage.md#searching-for-a-campsite)
-        + [Searching for a Campsite by Campground ID](command_line_usage.md#searching-for-a-campsite-by-campground-id)
-        + [Searching for a Specific Campsite by ID](command_line_usage.md#searching-for-a-specific-campsite-by-id)
-        + [Continuously Searching for A Campsite](command_line_usage.md#continuously-searching-for-a-campsite)
-        + [Continue Looking After The First Match Is Found](command_line_usage.md#continue-looking-after-the-first-match-is-found)
-        + [Send a Push Notification](command_line_usage.md#send-a-push-notification)
-        + [Send a Text Message](command_line_usage.md#send-a-text-message)
-        + [Send a Notification to Different Services](command_line_usage.md#send-a-notification-to-different-services)
-        + [Look for Weekend Campsite Availabilities](command_line_usage.md#look-for-weekend-campsite-availabilities)
-        + [Look for Consecutive Nights at the Same Campsite](command_line_usage.md#look-for-consecutive-nights-at-the-same-campsite)
-        + [Look for a Campsite Inside of Yellowstone](command_line_usage.md#look-for-a-campsite-inside-of-yellowstone)
-        + [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
-        + [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
-        + [Look for a Campsite Across Multiple Recreation areas](command_line_usage.md#look-for-a-campsite-across-multiple-recreation-areas)
-        + [Using a YAML Configuration file to search for campsites](command_line_usage.md#using-a-yaml-configuration-file-to-search-for-campsites)
-        + [Searching for a Campsite That Fits Your Equipment](command_line_usage.md#searching-for-a-campsite-that-fits-your-equipment)
-        + [Saving the Results of a Search](command_line_usage.md#saving-the-results-of-a-search)
-        + [Search for Recreation Areas by Query String](command_line_usage.md#search-for-recreation-areas-by-query-string)
-        + [Look for Specific Campgrounds Within a Recreation Area](command_line_usage.md#look-for-specific-campgrounds-within-a-recreation-area)
-        + [Look for Specific Campgrounds by Query String](command_line_usage.md#look-for-specific-campgrounds-by-query-string)
-- [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](command_line_usage.md#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
-- [Object-Oriented Usage (Python)](python.md)
-    * [Search for a Recreation.gov Campsite](python.md#search-for-a-recreationgov-campsite)
-    * [Continuously Search for Recreation.gov Campsites](python.md#continuously-search-for-recreationgov-campsites)
-- [Running in Docker](docker.md)
-- [Dependencies](dependencies.md)
-
+-   [Installation](installation.md)
+    -   [PyPI](installation.md#pypi)
+    -   [Docker](installation.md#docker)
+-   [Providers](providers.md)
+    -   [RecreationDotGov](providers.md#recreationgov)
+    -   [Yellowstone](providers.md#yellowstone)
+    -   [GoingToCamp](providers.md#goingtocamp)
+-   [Command Line Usage](command_line_usage.md)
+    -   [campsites](command_line_usage.md#campsites)
+    -   [recreation-areas](command_line_usage.md#recreation-areas)
+    -   [campgrounds](command_line_usage.md#campgrounds)
+    -   [configure](command_line_usage.md#configure)
+    -   [Examples](command_line_usage.md#examples)
+        -   [Searching for a Campsite](command_line_usage.md#searching-for-a-campsite)
+        -   [Searching for a Campsite by Campground ID](command_line_usage.md#searching-for-a-campsite-by-campground-id)
+        -   [Searching for a Specific Campsite by ID](command_line_usage.md#searching-for-a-specific-campsite-by-id)
+        -   [Continuously Searching for A Campsite](command_line_usage.md#continuously-searching-for-a-campsite)
+        -   [Continue Looking After The First Match Is Found](command_line_usage.md#continue-looking-after-the-first-match-is-found)
+        -   [Send a Push Notification](command_line_usage.md#send-a-push-notification)
+        -   [Send a Text Message](command_line_usage.md#send-a-text-message)
+        -   [Send a Notification to Different Services](command_line_usage.md#send-a-notification-to-different-services)
+        -   [Look for Weekend Campsite Availabilities](command_line_usage.md#look-for-weekend-campsite-availabilities)
+        -   [Look for Consecutive Nights at the Same Campsite](command_line_usage.md#look-for-consecutive-nights-at-the-same-campsite)
+        -   [Look for a Campsite Inside of Yellowstone](command_line_usage.md#look-for-a-campsite-inside-of-yellowstone)
+        -   [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+        -   [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
+        -   [Look for a Campsite Across Multiple Recreation areas](command_line_usage.md#look-for-a-campsite-across-multiple-recreation-areas)
+        -   [Using a YAML Configuration file to search for campsites](command_line_usage.md#using-a-yaml-configuration-file-to-search-for-campsites)
+        -   [Searching for a Campsite That Fits Your Equipment](command_line_usage.md#searching-for-a-campsite-that-fits-your-equipment)
+        -   [Saving the Results of a Search](command_line_usage.md#saving-the-results-of-a-search)
+        -   [Search for Recreation Areas by Query String](command_line_usage.md#search-for-recreation-areas-by-query-string)
+        -   [Look for Specific Campgrounds Within a Recreation Area](command_line_usage.md#look-for-specific-campgrounds-within-a-recreation-area)
+        -   [Look for Specific Campgrounds by Query String](command_line_usage.md#look-for-specific-campgrounds-by-query-string)
+-   [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](command_line_usage.md#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
+-   [Object-Oriented Usage (Python)](python.md)
+    -   [Search for a Recreation.gov Campsite](python.md#search-for-a-recreationgov-campsite)
+    -   [Continuously Search for Recreation.gov Campsites](python.md#continuously-search-for-recreationgov-campsites)
+-   [Running in Docker](docker.md)
+-   [Dependencies](dependencies.md)
 
 <br/>
 
 Recreation data provided by [**Recreation.gov**](https://ridb.recreation.gov/)
 
-___________
-___________
+---
+
+---
 
 <br/>
 

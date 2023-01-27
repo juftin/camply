@@ -1,28 +1,28 @@
 name: Release
 on:
     push:
-        branches: [main, next, beta, alpha, '*.x']
+        branches: [main, next, beta, alpha, "*.x"]
 jobs:
     release:
         name: Release
         runs-on: ubuntu-latest
         steps:
-        -   name: Checkout
-            uses: actions/checkout@v3
-        -   name: Setup Node.js
-            uses: actions/setup-node@v3
-        -   name: Set up Python
-            uses: actions/setup-python@v4
-            with:
-                python-version: 3.9
-        -   name: Install Python Dependencies
-            run: |
-                python -m pip install -q poetry tox
-                poetry --version
-        -   name: Install Semantic Release
-            run: |
-                npm install --prefix .github/semantic_release
-        -   name: Release
-            run: npx --prefix .github/semantic_release semantic-release
-            env:
-                GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+            - name: Set up Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: 3.9
+            - name: Install Python Dependencies
+              run: |
+                  python -m pip install -q poetry tox
+                  poetry --version
+            - name: Install Semantic Release
+              run: |
+                  npm install --prefix .github/semantic_release
+            - name: Release
+              run: npx --prefix .github/semantic_release semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

@@ -1,10 +1,9 @@
 ---
 name: Bug Report
 about: Create a report to help improve camply
-title: ''
-labels: 'bug'
-assignees: 'juftin'
-
+title: ""
+labels: "bug"
+assignees: "juftin"
 ---
 
 **Describe the bug**

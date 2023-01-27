@@ -46,65 +46,65 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 
 ### Arguments
 
-* `--rec-area`: `RECREATION_AREA_ID`
-    + Add Recreation Areas (comprised of campgrounds) by ID.
-      [**_example_](#searching-for-a-campsite)
-* `--campground`: `CAMPGROUND_ID`
-    + Add individual Campgrounds by ID.
-      [**_example_](#searching-for-a-campsite-by-campground-id)
-* `--campsite`: `CAMPSITE_ID`
-    + Add individual Campsites by ID.
-      [**_example_](#searching-for-a-specific-campsite-by-id)
-* `--start-date`: `START_DATE`
-    + `YYYY-MM-DD`: Start of Search window. You will be arriving this day.
-      [**_example_](#searching-for-a-campsite)
-* `--end-date`: `END_DATE`
-    + `YYYY-MM-DD`: End of Search window. You will be checking out this day..
-      [**_example_](#searching-for-a-campsite)
-* `--weekends`
-    + Only search for weekend bookings (Fri/Sat nights).
-      [**_example_](#look-for-weekend-campsite-availabilities)
-* `--nights`
-    + Search for campsite stays with consecutive nights. Defaults to 1 which returns all campsites
-      found.
-      [**_example_](#look-for-consecutive-nights-at-the-same-campsite)
-* `--provider`: `PROVIDER`
-    + Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
-      to 'RecreationDotGov', not case-sensitive.
-      [**_example_](#look-for-a-campsite-inside-of-yellowstone)
-* `--continuous`
-    + Continuously check for a campsite to become available, and quit once at least one campsite is
-      found.
-      [**_example_](#continuously-searching-for-a-campsite)
-* `--search-forever`
-    + If `--continuous` is activated, this method continues to search after the first availability
-      has been found. The one caveat is that it will never notify about the same identical campsite
-      for the same booking date.
-      [**_example_](#continue-looking-after-the-first-match-is-found)
-* `--notifications`: `NOTIFICATIONS`
-    + If `--continuous` is activated, types of notifications to receive. Options available
-      are`email`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
-      messages to console.
-      [**_example_](#send-a-push-notification)
-* `--equipment`
-    + Search for campsites compatible with your camping equipment. This argument accepts two
-      options, the equipment name and its length If you don't want to filter based on length provide
-      a length of 0. Accepted equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are
-      not case-sensitive.
-      [**_example_](#searching-for-a-campsite-that-fits-your-equipment)
-* `--notify-first-try`
-    + If `--continuous` is activated, whether to send all non-silent notifications if more than 5
-      matching campsites are found on the first try. Defaults to false which only sends the first5.
-      [**_example_](#continuously-searching-for-a-campsite)
-* `--polling-interval`: `POLLING_INTERVAL`
-    + If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
-      10, cannot be less than 5.
-      [**_example_](#look-for-weekend-campsite-availabilities)
-* `--yaml-config`
-    + Rather than provide arguments to the command line utility, instead pass a file path to a YAML
-      configuration file. See the documentation for more information on how to structure your
-      configuration file.
-      [**_example_](#using-a-yaml-configuration-file-to-search-for-campsites)
+-   `--rec-area`: `RECREATION_AREA_ID`
+    -   Add Recreation Areas (comprised of campgrounds) by ID.
+        [\*\*_example_](#searching-for-a-campsite)
+-   `--campground`: `CAMPGROUND_ID`
+    -   Add individual Campgrounds by ID.
+        [\*\*_example_](#searching-for-a-campsite-by-campground-id)
+-   `--campsite`: `CAMPSITE_ID`
+    -   Add individual Campsites by ID.
+        [\*\*_example_](#searching-for-a-specific-campsite-by-id)
+-   `--start-date`: `START_DATE`
+    -   `YYYY-MM-DD`: Start of Search window. You will be arriving this day.
+        [\*\*_example_](#searching-for-a-campsite)
+-   `--end-date`: `END_DATE`
+    -   `YYYY-MM-DD`: End of Search window. You will be checking out this day..
+        [\*\*_example_](#searching-for-a-campsite)
+-   `--weekends`
+    -   Only search for weekend bookings (Fri/Sat nights).
+        [\*\*_example_](#look-for-weekend-campsite-availabilities)
+-   `--nights`
+    -   Search for campsite stays with consecutive nights. Defaults to 1 which returns all campsites
+        found.
+        [\*\*_example_](#look-for-consecutive-nights-at-the-same-campsite)
+-   `--provider`: `PROVIDER`
+    -   Camping Search Provider. Options available are 'Yellowstone' and 'RecreationDotGov'. Defaults
+        to 'RecreationDotGov', not case-sensitive.
+        [\*\*_example_](#look-for-a-campsite-inside-of-yellowstone)
+-   `--continuous`
+    -   Continuously check for a campsite to become available, and quit once at least one campsite is
+        found.
+        [\*\*_example_](#continuously-searching-for-a-campsite)
+-   `--search-forever`
+    -   If `--continuous` is activated, this method continues to search after the first availability
+        has been found. The one caveat is that it will never notify about the same identical campsite
+        for the same booking date.
+        [\*\*_example_](#continue-looking-after-the-first-match-is-found)
+-   `--notifications`: `NOTIFICATIONS`
+    -   If `--continuous` is activated, types of notifications to receive. Options available
+        are`email`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
+        messages to console.
+        [\*\*_example_](#send-a-push-notification)
+-   `--equipment`
+    -   Search for campsites compatible with your camping equipment. This argument accepts two
+        options, the equipment name and its length If you don't want to filter based on length provide
+        a length of 0. Accepted equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are
+        not case-sensitive.
+        [\*\*_example_](#searching-for-a-campsite-that-fits-your-equipment)
+-   `--notify-first-try`
+    -   If `--continuous` is activated, whether to send all non-silent notifications if more than 5
+        matching campsites are found on the first try. Defaults to false which only sends the first5.
+        [\*\*_example_](#continuously-searching-for-a-campsite)
+-   `--polling-interval`: `POLLING_INTERVAL`
+    -   If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
+        10, cannot be less than 5.
+        [\*\*_example_](#look-for-weekend-campsite-availabilities)
+-   `--yaml-config`
+    -   Rather than provide arguments to the command line utility, instead pass a file path to a YAML
+        configuration file. See the documentation for more information on how to structure your
+        configuration file.
+        [\*\*_example_](#using-a-yaml-configuration-file-to-search-for-campsites)
 
 ```commandline
 camply campsites \
@@ -120,16 +120,16 @@ National Forests that can contain one or many campgrounds.
 
 ### Arguments
 
-* `--search` `SEARCH`
-    + Search for Campgrounds or Recreation Areas by search string.
-* `--state` `STATE`
-    + Filter by US state code.
+-   `--search` `SEARCH`
+    -   Search for Campgrounds or Recreation Areas by search string.
+-   `--state` `STATE`
+    -   Filter by US state code.
 
 ```commandline
 camply recreation-areas --search "Yosemite National Park"
 ```
 
-**_see the [examples](#search-for-recreation-areas-by-query-string) for more information_
+\*\*_see the [examples](#search-for-recreation-areas-by-query-string) for more information_
 
 ## campgrounds
 
@@ -139,20 +139,20 @@ like fire towers or cabins that might only contain a single 'campsite' to book.
 
 ### Arguments
 
-* `--search` `SEARCH`
-    + Search for Campgrounds or Recreation Areas by search string.
-* `--state` `STATE`
-    + Filter by US state code.
-* `--rec-area`: `RECREATION_AREA_ID`
-    + Add Recreation Areas (comprised of campgrounds) by ID.
-* `--campground`: `CAMPGROUND_ID`
-    + Add individual Campgrounds by ID.
+-   `--search` `SEARCH`
+    -   Search for Campgrounds or Recreation Areas by search string.
+-   `--state` `STATE`
+    -   Filter by US state code.
+-   `--rec-area`: `RECREATION_AREA_ID`
+    -   Add Recreation Areas (comprised of campgrounds) by ID.
+-   `--campground`: `CAMPGROUND_ID`
+    -   Add individual Campgrounds by ID.
 
 ```commandline
 camply campgrounds --search "Fire Tower Lookout" --state CA
 ```
 
-**_see the [examples](#look-for-specific-campgrounds-by-query-string) for more information_
+\*\*_see the [examples](#look-for-specific-campgrounds-by-query-string) for more information_
 
 ## configure
 
@@ -231,7 +231,7 @@ search for matching campsites until it finds a match. It also sends a notificati
 once matches are found. Alternate notification methods are `email`, `pushbullet`, `telegram`, and `silent` (
 default).
 
-__Important Note__: When `camply` is told to run `--continuous` with non-silent notifications set up
+**Important Note**: When `camply` is told to run `--continuous` with non-silent notifications set up
 and it finds more than 5 matching campsites on the first try, it will only send notifications for
 the first 5 campsites. This is to prevent thousands of campsites flooding your notifications. It's
 always encouraged to perform an initial online search before setting up a `camply` search. To bypass
@@ -450,23 +450,23 @@ Sometimes, using a YAML configuration file is easier to manage all of your searc
 below [YAML example file](examples/example_search.yaml) and corresponding camply command:
 
 ```yaml
-provider: RecreationDotGov  # RecreationDotGov IF NOT PROVIDED
+provider: RecreationDotGov # RecreationDotGov IF NOT PROVIDED
 recreation_area: # (LIST OR SINGLE ENTRY)
-  - 2991  # Yosemite National Park, CA (All Campgrounds)
-  - 1074  # Sierra National Forest, CA (All Campgrounds)
-campgrounds: null  # ENTIRE FIELD CAN BE OMITTED IF NOT USED - (LIST OR SINGLE ENTRY)
-campsites: null   # OVERRIDES CAMPGROUNDS / RECREATION AREA - (LIST OR SINGLE ENTRY)
-start_date: 2023-09-12  # YYYY-MM-DD
-end_date: 2023-09-13  # YYYY-MM-DD
-weekends: false  # FALSE BY DEFAULT
-nights: 1  # 1 BY DEFAULT
-continuous: true  # DEFAULTS TO TRUE
-polling_interval: 5  # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
-notifications: email  # (silent, email, pushover, pushbullet, and telegram), DEFAULTS TO `silent`
-search_forever: true  # FALSE BY DEFAULT
-notify_first_try: false  # FALSE BY DEFAULT
+    - 2991 # Yosemite National Park, CA (All Campgrounds)
+    - 1074 # Sierra National Forest, CA (All Campgrounds)
+campgrounds: null # ENTIRE FIELD CAN BE OMITTED IF NOT USED - (LIST OR SINGLE ENTRY)
+campsites: null # OVERRIDES CAMPGROUNDS / RECREATION AREA - (LIST OR SINGLE ENTRY)
+start_date: 2023-09-12 # YYYY-MM-DD
+end_date: 2023-09-13 # YYYY-MM-DD
+weekends: false # FALSE BY DEFAULT
+nights: 1 # 1 BY DEFAULT
+continuous: true # DEFAULTS TO TRUE
+polling_interval: 5 # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
+notifications: email # (silent, email, pushover, pushbullet, and telegram), DEFAULTS TO `silent`
+search_forever: true # FALSE BY DEFAULT
+notify_first_try: false # FALSE BY DEFAULT
 equipment: null # Array of Equipment Search Lists - DEFAULTS TO `null`
-offline_search: false    # FALSE BY DEFAULT
+offline_search: false # FALSE BY DEFAULT
 offline_search_path: camply_campsites.json # Defaults to `camply_campsites.json`
 ```
 
@@ -500,12 +500,12 @@ Here's what the above search would look like on a YAML Config:
 
 ```yaml
 recreation_area:
-  - 2991
+    - 2991
 start_date: 2023-07-09
 end_date: 2023-07-17
 nights: 5
 equipment:
-  - [ RV, 25 ]
+    - [RV, 25]
 ```
 
 Finally, here's a search that accommodates trailers of all lengths:

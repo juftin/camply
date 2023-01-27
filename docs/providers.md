@@ -34,11 +34,11 @@ camply --provider Yellowstone campgrounds
 
 The Yellowstone Provider currently supports the following Campgrounds:
 
-- Bridge Bay Campground (YLYB:RV)
-- Canyon Campground (YLYC:RV)
-- Fishing Bridge RV Park (YLYF:RV)
-- Grant Campground (YLYG:RV)
-- Madison Campground (YLYM:RV)
+-   Bridge Bay Campground (YLYB:RV)
+-   Canyon Campground (YLYC:RV)
+-   Fishing Bridge RV Park (YLYF:RV)
+-   Grant Campground (YLYG:RV)
+-   Madison Campground (YLYM:RV)
 
 ## GoingToCamp
 
@@ -59,19 +59,19 @@ to filter searches by recreation area when using GoingToCamp.
 
 The GoingToCamp Provider currently contains the following Recreation Areas:
 
-- Hamilton, Ontario, CA (#6)
-- Long Point Region, Ontario, CA (#1)
-- Maitland Valley, Ontario, CA (#7)
-- Oroville Park, Washington, USA (#8)
-- Saugreen Valley, Ontario, CA (#9)
-- St. Clair Region, Ontario, CA (#2)
-- Tacoma Power Parks, Washington, USA (#10)
-- Washington State Parks, Washington, USA (#4)
-- Wisconsin State Parks, Wisconsin, USA (#11)
-- Yukon (Backcountry), Yukon, CA (#5)
+-   Hamilton, Ontario, CA (#6)
+-   Long Point Region, Ontario, CA (#1)
+-   Maitland Valley, Ontario, CA (#7)
+-   Oroville Park, Washington, USA (#8)
+-   Saugreen Valley, Ontario, CA (#9)
+-   St. Clair Region, Ontario, CA (#2)
+-   Tacoma Power Parks, Washington, USA (#10)
+-   Washington State Parks, Washington, USA (#4)
+-   Wisconsin State Parks, Wisconsin, USA (#11)
+-   Yukon (Backcountry), Yukon, CA (#5)
 
 Check out the following documentation examples for more details on searching GoingToCamp recreation
 areas:
 
-- [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
-- [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
+-   [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+-   [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)

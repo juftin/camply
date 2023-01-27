@@ -1,9 +1,9 @@
 {
-  "devDependencies": {
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^8.0.7",
-    "semantic-release": "^19.0.5",
-    "semantic-release-gitmoji": "^1.5.0"
-  }
+    "devDependencies": {
+        "@semantic-release/exec": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^8.0.7",
+        "semantic-release": "^19.0.5",
+        "semantic-release-gitmoji": "^1.5.0"
+    }
 }
