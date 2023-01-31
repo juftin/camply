@@ -23,17 +23,17 @@ try:
         current_version = Version(environ["CURRENT_VERSION"])
         compared_version = Version(environ["COMPARED_VERSION"])
     assert current_version > compared_version
-except KeyError:
+except KeyError as ke:
     raise EnvironmentError(
-        f"You must set the `CURRENT_VERSION` and `MAIN_VERSION` "
+        "You must set the `CURRENT_VERSION` and `MAIN_VERSION` "
         "environment variables or pass them in as arguments, "
         "respectively."
-    )
-except AssertionError:
+    ) from ke
+except AssertionError as ae:
     raise ValueError(
         f"Your current version ({current_version}) is not greater than "
         f"the `main` branch ({compared_version})"
-    )
+    ) from ae
 
 logger.info("Current Version: %s", current_version)
 logger.info("Compared Version: %s", compared_version)

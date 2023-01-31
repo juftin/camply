@@ -106,7 +106,7 @@ class EmailNotifications(BaseNotifications):
         ----------
         campsites: List[AvailableCampsite]
         """
-        master_email_body_list = list()
+        master_email_body_list = []
         for campsite in campsites:
             message_title, formatted_dict = self.format_standard_campsites(
                 campsite=campsite,

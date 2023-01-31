@@ -121,24 +121,24 @@ def yaml_file_to_arguments(
 
     search_window = SearchWindow(start_date=start_date, end_date=end_date)
 
-    provider_kwargs = dict(
-        search_window=search_window,
-        recreation_area=recreation_area,
-        campgrounds=campgrounds,
-        campsites=campsites,
-        weekends_only=weekends_only,
-        nights=nights,
-        equipment=equipment,
-        offline_search=offline_search,
-        offline_search_path=offline_search_path,
-    )
-    search_kwargs = dict(
-        log=True,
-        verbose=True,
-        continuous=continuous,
-        polling_interval=polling_interval,
-        notify_first_try=notify_first_try,
-        notification_provider=notification_provider,
-        search_forever=search_forever,
-    )
+    provider_kwargs = {
+        "search_window": search_window,
+        "recreation_area": recreation_area,
+        "campgrounds": campgrounds,
+        "campsites": campsites,
+        "weekends_only": weekends_only,
+        "nights": nights,
+        "equipment": equipment,
+        "offline_search": offline_search,
+        "offline_search_path": offline_search_path,
+    }
+    search_kwargs = {
+        "log": True,
+        "verbose": True,
+        "continuous": continuous,
+        "polling_interval": polling_interval,
+        "notify_first_try": notify_first_try,
+        "notification_provider": notification_provider,
+        "search_forever": search_forever,
+    }
     return provider, provider_kwargs, search_kwargs

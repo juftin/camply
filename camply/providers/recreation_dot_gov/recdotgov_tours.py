@@ -74,11 +74,11 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
             # or entity_type:timedentry_tour (parent is entity_type:timedentry).
             self.api_search_fq,
         ]
-        params = dict(
-            start=0,
-            size=1000,
-            fq=fq_list,
-        )
+        params = {
+            "start": 0,
+            "size": 1000,
+            "fq": fq_list,
+        }
         campsites = []
         while continue_paginate is True:
             response = self.make_recdotgov_request_retry(
@@ -115,11 +115,11 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
         api_endpoint = self._rec_availability_get_endpoint(
             path=f"{campground_id}/monthlyAvailabilitySummaryView"
         )
-        query_params = dict(
-            year=month.strftime("%Y"),
-            month=month.strftime("%m"),
-            inventoryBucket="FIT",
-        )
+        query_params = {
+            "year": month.strftime("%Y"),
+            "month": month.strftime("%m"),
+            "inventoryBucket": "FIT",
+        }
         return self.make_recdotgov_request(
             method="GET",
             url=api_endpoint,
@@ -161,17 +161,17 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
             use_type = campsite_metadata.at[tour_id, "time_zone"]
         except LookupError:
             use_type = "Time zone not available"
-        return dict(
-            booking_url=cls.booking_url.format(**booking_url_vars),  # type: ignore
-            booking_date=booking_date,
-            booking_end_date=booking_date + timedelta(days=1),
-            booking_nights=1,
-            campsite_id=tour_id,
-            campsite_site_name=site_name,
-            campsite_loop_name=loop_name,
-            campsite_type=cls.facility_type,
-            campsite_use_type=use_type,
-        )
+        return {
+            "booking_url": cls.booking_url.format(**booking_url_vars),  # type: ignore
+            "booking_date": booking_date,
+            "booking_end_date": booking_date + timedelta(days=1),
+            "booking_nights": 1,
+            "campsite_id": tour_id,
+            "campsite_site_name": site_name,
+            "campsite_loop_name": loop_name,
+            "campsite_type": cls.facility_type,
+            "campsite_use_type": use_type,
+        }
 
     @classmethod
     def process_campsite_availability(
@@ -209,7 +209,7 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
         total_campsite_availability: List[Optional[AvailableCampsite]]
             Any monthly availabilities
         """
-        total_campsite_availability: List[Optional[AvailableCampsite]] = list()
+        total_campsite_availability: List[Optional[AvailableCampsite]] = []
         campsite_data = TourMonthlyAvailabilityResponse(**availability)
         for (
             matching_date,
@@ -257,9 +257,9 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
         -------
         Tuple[List[int], List[CamplyModel]]
         """
-        campground_ids = list()
-        campgrounds = list()
-        unknown_ids = list()
+        campground_ids = []
+        campgrounds = []
+        unknown_ids = []
         for campsite_id in campsite_ids:
             try:
                 campsite = self.get_campsite_by_id(campsite_id=campsite_id)
@@ -331,9 +331,9 @@ class RecreationDotGovDailyMixin(RecreationDotGovTours, ABC):
         requests.Response
         """
         api_endpoint = self._rec_availability_get_endpoint(path=str(campground_id))
-        query_params = dict(
-            date=month.strftime("%Y-%m-%d"),
-        )
+        query_params = {
+            "date": month.strftime("%Y-%m-%d"),
+        }
         return self.make_recdotgov_request(
             method="GET",
             url=api_endpoint,
@@ -376,7 +376,7 @@ class RecreationDotGovDailyMixin(RecreationDotGovTours, ABC):
         total_campsite_availability: List[Optional[AvailableCampsite]]
             Any monthly availabilities
         """
-        total_campsite_availability: List[AvailableCampsite] = list()
+        total_campsite_availability: List[AvailableCampsite] = []
         now = datetime.now(timezone.utc)
         availabilities: Dict[str, Any] = {}
         for slot in availability:

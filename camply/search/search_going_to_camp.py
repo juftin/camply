@@ -2,6 +2,7 @@
 Going To Camp API search utilities
 """
 import logging
+import sys
 from datetime import datetime, time
 from typing import List, Optional, Union
 
@@ -95,13 +96,13 @@ class SearchGoingToCamp(BaseCampingSearch):
     def _validate_rec_area(cls, recreation_area: int) -> int:
         if recreation_area in [(), [], None]:
             logger.error("At least one --rec-area must be provided")
-            exit(1)
+            sys.exit(1)
 
         if not isinstance(recreation_area, List) or len(recreation_area) > 1:
             logger.error(
                 "Going To Camp only allows a single recreation area to be searched at a time"
             )
-            exit(1)
+            sys.exit(1)
 
         return int(recreation_area[0])
 
@@ -118,7 +119,7 @@ class SearchGoingToCamp(BaseCampingSearch):
                 "equipment types: "
                 f"`camply equipment-types --provider goingtocamp --rec-area {rec_area}`"
             )
-            exit(1)
+            sys.exit(1)
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """
@@ -217,7 +218,7 @@ class SearchGoingToCamp(BaseCampingSearch):
                 "You must provide a Campground and Recreation Area to"
                 " search campsites with this provider"
             )
-            exit(1)
+            sys.exit(1)
 
         if self.campsites not in [(), [], None]:
             self.campsites = [int(campsite_id) for campsite_id in self.campsites]

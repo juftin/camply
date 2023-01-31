@@ -225,7 +225,7 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
         -------
         campgrounds: List[CampgroundFacility]
         """
-        campgrounds = list()
+        campgrounds = []
         for rec_area in self._recreation_area_id:
             campground_array = self.campsite_finder.find_facilities_per_recreation_area(
                 rec_area_id=rec_area
@@ -241,7 +241,7 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
         -------
         List[AvailableCampsite]
         """
-        found_campsites = list()
+        found_campsites = []
         if len(self.campgrounds) == 0:
             error_message = "No campgrounds found to search"
             logger.error(error_message)
@@ -322,7 +322,7 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
         expanded_data = exploded_data["permitted_equipment"].apply(pd.Series)
         joined_data = pd.DataFrame(
             pd.concat([exploded_data, expanded_data], axis=1),
-            columns=column_names + ["equipment_name", "max_length"],
+            columns=[*column_names, "equipment_name", "max_length"],
         )
         if self.accepted_equipment == EquipmentOptions.__all_accepted_equipment__:
             joined_data["equipment_name_normalized"] = (

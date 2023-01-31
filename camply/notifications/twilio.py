@@ -22,10 +22,10 @@ class TwilioNotifications(BaseNotifications):
         super().__init__()
         try:
             from twilio.rest import Client
-        except ImportError:
+        except ImportError as ie:
             raise RuntimeError(
                 "Looks like `twilio` isn't installed. Install it with `pip install camply[twilio]`"
-            )
+            ) from ie
 
         if any(
             [

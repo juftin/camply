@@ -56,12 +56,12 @@ class RecreationDotGov(RecreationDotGovBase):
         if isinstance(equipment, list) and len(equipment) > 0:
             for item in equipment:
                 fq_list.append(f"campsite_equipment_name:{item}")
-        params = dict(
-            start=0,
-            size=1000,
-            fq=fq_list,
-            include_non_site_specific_campsites=True,
-        )
+        params = {
+            "start": 0,
+            "size": 1000,
+            "fq": fq_list,
+            "include_non_site_specific_campsites": True,
+        }
         campsites = []
         while continue_paginate is True:
             response = self.make_recdotgov_request_retry(
@@ -99,7 +99,7 @@ class RecreationDotGov(RecreationDotGovBase):
             path=f"{campground_id}/{RecreationBookingConfig.API_MONTH_PATH}"
         )
         formatted_month = month.strftime("%Y-%m-01T00:00:00.000Z")
-        query_params = dict(start_date=formatted_month)
+        query_params = {"start_date": formatted_month}
         return self.make_recdotgov_request(
             method="GET",
             url=api_endpoint,
@@ -116,7 +116,7 @@ class RecreationDotGov(RecreationDotGovBase):
         if isinstance(item, pd.Series):
             list_of_dicts = list(chain.from_iterable(item.tolist()))
             unique_list_of_dicts = [
-                dict(s) for s in set(frozenset(d.items()) for d in list_of_dicts)
+                dict(s) for s in {frozenset(d.items()) for d in list_of_dicts}
             ]
             return unique_list_of_dicts
         else:
@@ -179,7 +179,7 @@ class RecreationDotGov(RecreationDotGovBase):
         total_campsite_availability: List[Optional[AvailableCampsite]]
             Any monthly availabilities
         """
-        total_campsite_availability: List[Optional[AvailableCampsite]] = list()
+        total_campsite_availability: List[Optional[AvailableCampsite]] = []
         campsite_data = CampsiteAvailabilityResponse(**availability)
         for campsite_id, site_related_data in campsite_data.campsites.items():
             for (

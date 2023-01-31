@@ -3,6 +3,7 @@ Camply Configuration Script
 """
 
 import logging
+import sys
 from collections import OrderedDict
 from os.path import isfile
 from time import sleep
@@ -126,7 +127,7 @@ def generate_dot_camply_file():
             "configuration file?"
         )
         if overwrite is False:
-            exit(0)
+            sys.exit(0)
     config = generate_configuration()
     if double_check(
         "Are you ready to publish this to a file at "
