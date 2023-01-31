@@ -17,13 +17,13 @@ class SilentNotifications(BaseNotifications):
     Silent Notifications
     """
 
-    def send_message(self, message: Iterable, **kwargs) -> None:
+    def send_message(self, message: str, **kwargs) -> None:
         """
         Send a message via Email
 
         Parameters
         ----------
-        message: Iterable
+        message: str
             Email Body
         **kwargs
             kwargs are disregarded
@@ -32,8 +32,7 @@ class SilentNotifications(BaseNotifications):
         -------
         None
         """
-        message_string = "\n\t• " + "\n\t• ".join(list(message))
-        logger.debug(f"SilentNotification: {message_string}")
+        logger.debug(f"SilentNotification: {message}")
 
     def send_campsites(self, campsites: List[AvailableCampsite], **kwargs):
         """
@@ -55,6 +54,7 @@ class SilentNotifications(BaseNotifications):
                 campsite.facility_name,
                 campsite.booking_url,
             )
-            self.send_message(campsite_tuple)
+            message_string = "\n\t• " + "\n\t• ".join(campsite_tuple)
+            self.send_message(message_string)
             campsite_formatted = pformat(campsite.dict())
             logger.debug("Campsite Info: " + campsite_formatted)
