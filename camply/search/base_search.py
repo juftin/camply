@@ -16,7 +16,7 @@ from typing import Any, Dict, Generator, Iterable, List, Optional, Set, Union
 
 import pandas as pd
 import tenacity
-from pandas import DataFrame, Series, Timedelta, Timestamp, concat, date_range
+from pandas import DataFrame, Series, Timedelta, concat, date_range
 from pydantic.json import pydantic_encoder
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
@@ -130,25 +130,20 @@ class BaseCampingSearch(ABC):
         List[AvailableCampsite]
         """
 
-    def _get_intersection_date_overlap(self, date: Timestamp, periods: int) -> bool:
+    def _get_intersection_date_overlap(self, date: datetime, periods: int) -> bool:
         """
         Find Date Overlap
 
         Parameters
         ----------
-        date: Timestamp
+        date: datetime
         periods: int
 
         Returns
         -------
         bool
         """
-        timestamp_range = []
-        if type(date) is Timestamp:
-            timestamp_range = date_range(start=date.to_pydatetime(), periods=periods)
-        else:
-            timestamp_range = date_range(start=date, periods=periods)
-
+        timestamp_range = date_range(start=date, periods=periods)
         campsite_date_range = {item.date() for item in timestamp_range}
         intersection = campsite_date_range.intersection(self.search_days)
         if intersection:
@@ -187,7 +182,7 @@ class BaseCampingSearch(ABC):
         """
         matches = campsites.apply(
             lambda x: self._get_intersection_date_overlap(
-                date=x.booking_date, periods=x.booking_nights
+                date=x.booking_date.to_pydatetime(), periods=x.booking_nights
             ),
             axis=1,
         )
@@ -749,6 +744,12 @@ class BaseCampingSearch(ABC):
         composed_campsite_array = []
         composed_campsite_data_array = campsite_df.to_dict(orient="records")
         for campsite_record in composed_campsite_data_array:
+            campsite_record["booking_date"] = campsite_record[
+                "booking_date"
+            ].to_pydatetime()
+            campsite_record["booking_end_date"] = campsite_record[
+                "booking_end_date"
+            ].to_pydatetime()
             composed_campsite_array.append(AvailableCampsite(**campsite_record))
         return composed_campsite_array
 
