@@ -12,7 +12,7 @@ from camply.config import SearchConfig
 logger = logging.getLogger(__name__)
 
 
-class BaseProvider(ABC):
+class BaseProvider(ABC):  # noqa: B024
     """
     Base Provider Class
     """
@@ -27,18 +27,18 @@ class BaseProvider(ABC):
         search_months: List[datetime]
             Datetime Months to search for reservations
         """
-        truncated_months = set([day.replace(day=1) for day in search_days])
+        truncated_months = {day.replace(day=1) for day in search_days}
         if len(truncated_months) > 1:
             logger.info(
                 f"{len(truncated_months)} different months selected for search, "
                 f"ranging from {min(search_days)} to {max(search_days)}"
             )
-            return sorted(list(truncated_months))
+            return sorted(truncated_months)
         elif len(truncated_months) == 0:
             logger.info(SearchConfig.ERROR_MESSAGE)
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
         else:
-            return sorted(list(truncated_months))
+            return sorted(truncated_months)
 
 
 class ProviderError(Exception):

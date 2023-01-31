@@ -20,12 +20,12 @@ jobs:
               run: |
                   python -m pip install --upgrade pip wheel
                   python -m pip install tox
-            - name: Lint with Flake8
-              id: flake8
+            - name: Lint
+              id: lint
               continue-on-error: true
               run: |
                   echo "::add-matcher::.github/matchers/flake8.json"
-                  tox -e flake8
+                  tox -e lint
                   echo "::remove-matcher owner=flake8::"
             - name: Lint with MyPy
               id: mypy
@@ -36,9 +36,9 @@ jobs:
                   echo "::remove-matcher owner=mypy::"
             - name: Raise Errors For Linting Failures
               if: |
-                  steps.flake8.outcome != 'success'
+                  steps.lint.outcome != 'success'
               run: |
-                  echo "Flake8: ${{ steps.flake8.outcome }}"
+                  echo "Lint: ${{ steps.lint.outcome }}"
                   echo "MyPy: ${{ steps.mypy.outcome }}"
                   echo "I Should Really Be Enforcing MyPy Errors"
                   exit 1

@@ -69,7 +69,7 @@ class BaseNotifications(ABC):
         """
         Format Standard Message
         """
-        fields = dict()
+        fields = {}
         message_title = " | ".join(
             [
                 campsite.recreation_area,
@@ -93,7 +93,7 @@ class BaseNotifications(ABC):
                     else campsite.permitted_equipment
                 )
                 value = "\n  - " + "\n  - ".join(
-                    set(item.equipment_name for item in equipment)
+                    {item.equipment_name for item in equipment}
                 )
             if key not in [CampsiteContainerFields.CAMPSITE_ATTRIBUTES]:
                 formatted_key = key.replace("_", " ").title()

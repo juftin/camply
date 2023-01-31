@@ -56,6 +56,8 @@ mkdocs-literate-nav = "^0.5.0"
 mkdocs-section-index = "^0.3.4"
 pytest-vcr = "^1.0.2"
 pytest-cov = "^4.0.0"
+pytest-xdist = "^3.1.0"
+ruff = "0.0.238"
 
 [tool.poetry.scripts]
 camply = "camply.cli:cli"
@@ -65,3 +67,24 @@ Changelog = "https://github.com/juftin/camply/releases"
 "Bug Tracker" = "https://github.com/juftin/camply/issues"
 Docker = "https://hub.docker.com/r/juftin/camply"
 Discussions = "https://github.com/juftin/camply/discussions"
+
+[tool.ruff]
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "C", # flake8-comprehensions
+    "Q", # flake8-quotes
+    "B", # flake8-bugbear
+    "PLE", # pylint
+    "PLR", # pylint
+    "PLW", # pylint
+    "RUF", # ruff
+    "C90", # mccabe
+    "I" # isort
+]
+ignore = [
+    "E501", # line too long, handled by black
+    "PLR0913", # Too many arguments to function call
+]

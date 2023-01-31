@@ -76,7 +76,7 @@ class SearchYellowstone(BaseCampingSearch):
         -------
         List[AvailableCampsite]
         """
-        all_campsites = list()
+        all_campsites = []
         searchable_campgrounds = self._get_searchable_campgrounds()
         this_month = datetime.now().date().replace(day=1)
         for month in self.search_months:

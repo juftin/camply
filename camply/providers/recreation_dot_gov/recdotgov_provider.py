@@ -56,7 +56,10 @@ class RecreationDotGovBase(BaseProvider, ABC):
                 _api_key: str = b64decode(RIDBConfig.API_KEY).decode("utf-8")
         else:
             _api_key: str = api_key
-        self._ridb_api_headers: dict = dict(accept="application/json", apikey=_api_key)
+        self._ridb_api_headers: dict = {
+            "accept": "application/json",
+            "apikey": _api_key,
+        }
 
     @property
     @abstractmethod
@@ -145,11 +148,11 @@ class RecreationDotGovBase(BaseProvider, ABC):
                     search_string is not None and search_string != "",
                 ]
             )
-        except AssertionError:
+        except AssertionError as ae:
             raise RuntimeError(
                 "You must provide a search query or state(s) "
                 "to find Recreation Areas"
-            )
+            ) from ae
         if search_string is not None:
             logger.info(f'Searching for Recreation Areas: "{search_string}"')
         state_arg = kwargs.get("state", None)
@@ -162,7 +165,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
             path=RIDBConfig.REC_AREA_API_PATH, params=params
         )
         logger.info(f"{len(api_response)} recreation areas found.")
-        logging_messages = list()
+        logging_messages = []
         for recreation_area_object in api_response:
             _, recreation_area = self._process_rec_area_response(
                 recreation_area=recreation_area_object
@@ -208,7 +211,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
                 campground_id=campground_id
             )
         elif rec_area_id not in (None, [], ()):
-            facilities = list()
+            facilities = []
             for recreation_area in rec_area_id:
                 facilities += self.find_facilities_per_recreation_area(
                     rec_area_id=recreation_area
@@ -252,7 +255,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
             path=api_path, params=dict(full="true", **kwargs)
         )
         filtered_facilities = self._filter_facilities_responses(responses=api_response)
-        campgrounds = list()
+        campgrounds = []
         logger.info(f"{len(filtered_facilities)} Matching Campgrounds Found")
         for facility in filtered_facilities:
             _, campground_facility = self.process_facilities_responses(
@@ -278,11 +281,11 @@ class RecreationDotGovBase(BaseProvider, ABC):
         filtered_responses: List[CampgroundFacility]
             Array of Matching Campsites
         """
-        campgrounds = list()
+        campgrounds = []
         for campground_identifier in campground_id:
             facility_data = self.get_ridb_data(
                 path=f"{RIDBConfig.FACILITIES_API_PATH}/{campground_identifier}",
-                params=dict(full=True),
+                params={"full": True},
             )
             filtered_facility = self._filter_facilities_responses(
                 responses=[facility_data]
@@ -318,7 +321,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
             responses=facilities_response
         )
         logger.info(f"{len(filtered_responses)} Matching Campgrounds Found")
-        campgrounds = list()
+        campgrounds = []
         for facility in filtered_responses:
             _, campground_facility = self.process_facilities_responses(
                 facility=facility
@@ -379,9 +382,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
         response = requests.get(
             url=api_endpoint, headers=headers, params=params, timeout=30
         )
-        try:
-            assert response.status_code == 200
-        except AssertionError:
+        if response.ok is False:
             error_message = (
                 f"Receiving bad data from Recreation.gov API: {response.text}"
             )
@@ -411,10 +412,11 @@ class RecreationDotGovBase(BaseProvider, ABC):
         """
         if params is None:
             params = {}
-        paginated_response = list()
+        paginated_response = []
 
         data_incomplete = True
         offset: int = 0
+        max_offset: int = 500
         historical_results = 0
 
         while data_incomplete is True:
@@ -425,7 +427,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
             result_count = response_object.METADATA.RESULTS.CURRENT_COUNT
             historical_results += result_count
             total_count = response_object.METADATA.RESULTS.TOTAL_COUNT
-            if offset >= 500:
+            if offset >= max_offset:
                 logger.info(
                     f"Too Many Results returned ({total_count}), "
                     "try performing a more specific search"
@@ -450,7 +452,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
         -------
         List[dict]
         """
-        filtered_responses = list()
+        filtered_responses = []
         for possible_match in responses:
             try:
                 facility = FacilityResponse(**possible_match)
@@ -458,7 +460,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
                 logger.error("That doesn't look like a valid Campground Facility")
                 logger.error(json.dumps(possible_match))
                 logger.exception(e)
-                raise ProviderSearchError("Invalid Campground Facility Returned")
+                raise ProviderSearchError("Invalid Campground Facility Returned") from e
             if all(
                 [
                     facility.FacilityTypeDescription == cls.facility_type,
@@ -643,16 +645,15 @@ class RecreationDotGovBase(BaseProvider, ABC):
         -------
         requests.Response
         """
-        try:
-            response = self.make_recdotgov_availability_request(campground_id, month)
-            assert response.status_code == 200
-        except AssertionError:
+        response = self.make_recdotgov_availability_request(campground_id, month)
+        if response.ok is True:
+            return response
+        else:
             response_error = response.text
             error_message = "Bad Data Returned from the RecreationDotGov API"
             logger.debug(f"{error_message}, will continue to retry")
             logger.debug(f"Error Details: {response_error}")
             raise ConnectionError(f"{error_message}: {response_error}")
-        return response
 
     def get_recdotgov_data(
         self, campground_id: int, month: datetime
@@ -675,11 +676,11 @@ class RecreationDotGovBase(BaseProvider, ABC):
             response = self._make_recdotgov_availability_request(
                 campground_id=campground_id, month=month
             )
-        except tenacity.RetryError:
+        except tenacity.RetryError as re:
             raise RuntimeError(
                 "Something went wrong in fetching data from the "
                 "RecreationDotGov API."
-            )
+            ) from re
         return loads(response.content)
 
     def get_campsite_by_id(
@@ -699,8 +700,10 @@ class RecreationDotGovBase(BaseProvider, ABC):
         data = self.get_ridb_data(path=f"{self.resource_api_path}/{campsite_id}")
         try:
             response = self.api_response_class(**data[0])
-        except IndexError:
-            raise ProviderSearchError(f"Campsite with ID #{campsite_id} not found.")
+        except IndexError as ie:
+            raise ProviderSearchError(
+                f"Campsite with ID #{campsite_id} not found."
+            ) from ie
         return response
 
     def get_campground_ids_by_campsites(
@@ -718,8 +721,8 @@ class RecreationDotGovBase(BaseProvider, ABC):
         -------
         Tuple[List[int], List[CamplyModel]]
         """
-        campground_ids = list()
-        campgrounds = list()
+        campground_ids = []
+        campgrounds = []
         for campsite_id in campsite_ids:
             campsite = self.get_campsite_by_id(campsite_id=campsite_id)
             campgrounds.append(campsite)
@@ -743,7 +746,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
         facility_ids, campsites = self.get_campground_ids_by_campsites(
             campsite_ids=campsite_id
         )
-        facilities = list()
+        facilities = []
         for campsite in campsites:
             facility = self._find_facilities_from_campgrounds(
                 campground_id=[campsite.FacilityID]

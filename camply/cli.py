@@ -111,7 +111,7 @@ def camply_command_line(
     visit the camply documentation at https://github.com/juftin/camply
     """
     set_up_logging(log_level=None if debug is False else logging.INFO)
-    logger.camply("camply, the campsite finder ⛺️")  # noqa
+    logger.camply("camply, the campsite finder ⛺️")
     ctx.obj = CamplyContext(debug=debug, provider=provider)
     _set_up_debug(debug=debug)
 
@@ -179,14 +179,14 @@ def equipment_types(
         logger.error(
             "This provider requires --rec-area to be specified when listing equipment types"
         )
-        exit(1)
+        sys.exit(1)
 
     if provider == GOING_TO_CAMP:
         GoingToCampProvider().list_equipment_types(rec_area[0])
     else:
         log_sorted_response(response_array=EquipmentOptions.__all_accepted_equipment__)
 
-    exit(0)
+    sys.exit(0)
 
 
 @camply_command_line.command()
@@ -219,16 +219,16 @@ def recreation_areas(
         logger.error(
             f"{provider} does not support filtering recreation areas by state. Leave --state blank."
         )
-        exit(1)
+        sys.exit(1)
     if provider == GOING_TO_CAMP:
         rec_area_finder = GoingToCampProvider()
     elif provider.startswith(RECREATION_DOT_GOV):
         rec_area_finder = RecreationDotGov()
     else:
         rec_area_finder = CAMPSITE_SEARCH_PROVIDER[provider]
-    params = dict()
+    params = {}
     if state is not None:
-        params.update(dict(state=state))
+        params.update({"state": state})
     rec_area_finder.find_recreation_areas(search_string=search, **params)
 
 
@@ -265,7 +265,7 @@ def campgrounds(
         _set_up_debug(debug=context.debug)
     if provider == YELLOWSTONE:
         SearchYellowstone.print_campgrounds()
-        exit(0)
+        sys.exit(0)
     if all(
         [
             search is None,
@@ -279,24 +279,24 @@ def campgrounds(
             "You must add a --search, --state, --campground, --campsite, "
             "or --rec-area parameter to search for Campgrounds."
         )
-        exit(1)
+        sys.exit(1)
     if provider == YELLOWSTONE:
         SearchYellowstone.print_campgrounds()
-        exit(0)
+        sys.exit(0)
     elif provider == GOING_TO_CAMP:
         if len(rec_area) == 0:
             logger.error("You must specify at least one --rec-area")
-            exit(1)
+            sys.exit(1)
         rec_area_id = int(rec_area[0])
         GoingToCampProvider().find_facilities_per_recreation_area(
             rec_area_id=rec_area_id, campground_id=campground, search_string=search
         )
-        exit(0)
+        sys.exit(0)
     search_provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
     camp_finder = search_provider_class.provider_class()
-    params = dict()
+    params = {}
     if state is not None:
-        params.update(dict(state=state))
+        params.update({"state": state})
     camp_finder.find_campgrounds(
         search_string=search,
         rec_area_id=make_list(rec_area, coerce=int),
@@ -467,14 +467,14 @@ def _validate_campsites(
             "either the --rec-area, --campground, or --campsite "
             "parameters."
         )
-        exit(1)
+        sys.exit(1)
 
     if not kwargs.get("notifications") == ["silent"] and not kwargs.get("continuous"):
         logger.error(
             "To receive notifications about campsites you must search "
             "continuously by passing the --continuous option."
         )
-        exit(1)
+        sys.exit(1)
 
     mandatory_parameters = [start_date, end_date]
     mandatory_string_parameters = ["--start-date", "--end-date"]
@@ -484,7 +484,7 @@ def _validate_campsites(
                 "Campsite searches require the following mandatory search parameters: "
                 f"{', '.join(mandatory_string_parameters)}"
             )
-            exit(1)
+            sys.exit(1)
 
 
 @camply_command_line.command()
@@ -573,27 +573,27 @@ def campsites(
             start_date=datetime.strptime(start_date, "%Y-%m-%d"),
             end_date=datetime.strptime(end_date, "%Y-%m-%d"),
         )
-        provider_kwargs = dict(
-            search_window=search_window,
-            recreation_area=make_list(rec_area),
-            campgrounds=make_list(campground),
-            campsites=make_list(campsite),
-            weekends_only=weekends,
-            nights=int(nights),
-            offline_search=offline_search,
-            offline_search_path=offline_search_path,
-            equipment=equipment,
-            equipment_id=equipment_id,
-        )
-        search_kwargs = dict(
-            log=True,
-            verbose=True,
-            continuous=continuous,
-            polling_interval=float(polling_interval),
-            notify_first_try=notify_first_try,
-            notification_provider=notifications,
-            search_forever=search_forever,
-        )
+        provider_kwargs = {
+            "search_window": search_window,
+            "recreation_area": make_list(rec_area),
+            "campgrounds": make_list(campground),
+            "campsites": make_list(campsite),
+            "weekends_only": weekends,
+            "nights": int(nights),
+            "offline_search": offline_search,
+            "offline_search_path": offline_search_path,
+            "equipment": equipment,
+            "equipment_id": equipment_id,
+        }
+        search_kwargs = {
+            "log": True,
+            "verbose": True,
+            "continuous": continuous,
+            "polling_interval": float(polling_interval),
+            "notify_first_try": notify_first_try,
+            "notification_provider": notifications,
+            "search_forever": search_forever,
+        }
     provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
     camping_finder = provider_class(**provider_kwargs)
     camping_finder.get_matching_campsites(**search_kwargs)
@@ -608,7 +608,7 @@ def cli():
     except KeyboardInterrupt:
         logger.debug("Handling Exit Request")
     finally:
-        logger.camply("Exiting camply 👋")  # noqa
+        logger.camply("Exiting camply 👋")
 
 
 if __name__ == "__main__":

@@ -4,6 +4,7 @@ Going to Camp Web Searching Utilities
 
 import json
 import logging
+import sys
 from datetime import datetime
 from random import choice
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -192,7 +193,7 @@ class GoingToCampProvider(BaseProvider):
             logger.error(
                 "This provider requires --rec-area to be specified when seaching for campsites"
             )
-            exit(1)
+            sys.exit(1)
 
         return self.find_facilities_per_recreation_area(
             rec_area_id=rec_area_id,
@@ -338,7 +339,7 @@ class GoingToCampProvider(BaseProvider):
                 rec_area = ra
         if not rec_area:
             logger.error(f"Recreation area '{rec_area_id}' does not exist.")
-            exit(1)
+            sys.exit(1)
 
         self.campground_details = {}
         api_response = self._api_request(rec_area_id, "LIST_CAMPGROUNDS")
@@ -389,7 +390,7 @@ class GoingToCampProvider(BaseProvider):
         params: Optional[Dict[str, str]] = None,
     ) -> str:
         if params is None:
-            params = dict()
+            params = {}
 
         hostname = self._hostname_for(rec_area_id)
         endpoint = ENDPOINTS.get(endpoint_name)
@@ -400,9 +401,7 @@ class GoingToCampProvider(BaseProvider):
         headers = {}
         headers.update(choice(USER_AGENTS))
         response = requests.get(url=url, headers=headers, params=params, timeout=30)
-        try:
-            assert response.status_code == 200
-        except AssertionError:
+        if response.ok is False:
             error_message = "Receiving bad data from GoingToCamp API: status_code: "
             f"{response.status_code}: {response.text}"
             logger.error(error_message)
@@ -424,7 +423,7 @@ class GoingToCampProvider(BaseProvider):
         -------
         List[dict]
         """
-        filtered_facilities = list()
+        filtered_facilities = []
         for facil in facilities:
             try:
                 location_name = _fetch_nested_key(
@@ -449,10 +448,12 @@ class GoingToCampProvider(BaseProvider):
                     resource_location_id=facil.get("resourceLocationId"),
                     resource_location_name=location_name,
                 )
-            except ValidationError:
+            except ValidationError as ve:
                 logger.error("That doesn't look like a valid Campground Facility")
                 logger.error(facil)
-                raise ProviderSearchError("Invalid Campground Facility Returned")
+                raise ProviderSearchError(
+                    "Invalid Campground Facility Returned"
+                ) from ve
 
             if not facility.resource_categories:
                 continue

@@ -213,7 +213,7 @@ class BaseCampingSearch(ABC):
         -------
         List[AvailableCampsite]
         """
-        matching_campgrounds = list()
+        matching_campgrounds = []
         for camp in self.get_all_campsites():
             if all(
                 [
@@ -572,7 +572,7 @@ class BaseCampingSearch(ABC):
         else:
             logger.info(SearchConfig.ERROR_MESSAGE)
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
-        return list(sorted(search_nights))
+        return sorted(search_nights)
 
     @classmethod
     def _consolidate_campsites(
@@ -590,7 +590,7 @@ class BaseCampingSearch(ABC):
         -------
         List[AvailableCampsite]
         """
-        composed_groupings = list()
+        composed_groupings = []
         for _, campsite_slice in campsite_df.groupby(
             [CampsiteContainerFields.CAMPSITE_ID, CampsiteContainerFields.CAMPGROUND_ID]
         ):
@@ -642,7 +642,7 @@ class BaseCampingSearch(ABC):
             k_wise = tee(map(itemgetter(1), consec_run), length)
             for n, it in enumerate(k_wise):
                 next(islice(it, n, n), None)
-            yield from zip(*k_wise)
+            yield from zip(*k_wise)  # noqa: B905
 
     @classmethod
     def _find_consecutive_nights(cls, dataframe: DataFrame, nights: int) -> DataFrame:
@@ -667,7 +667,7 @@ class BaseCampingSearch(ABC):
             iterable=nights_indexes, length=nights
         )
         sequences = list(consecutive_generator)
-        concatted_data = list()
+        concatted_data = []
         for sequence in sequences:
             index_list = list(sequence)
             data_copy = dataframe_slice.iloc[index_list].copy()
@@ -746,7 +746,7 @@ class BaseCampingSearch(ABC):
         -------
         List[AvailableCampsite]
         """
-        composed_campsite_array = list()
+        composed_campsite_array = []
         composed_campsite_data_array = campsite_df.to_dict(orient="records")
         for campsite_record in composed_campsite_data_array:
             composed_campsite_array.append(AvailableCampsite(**campsite_record))
@@ -879,9 +879,9 @@ class BaseCampingSearch(ABC):
             elif self.offline_mode == "json":
                 with open(self.offline_search_path, mode="r") as file_stream:
                     campsites_dicts: List[Dict[str, Any]] = json.load(file_stream)
-                campsites: Set[AvailableCampsite] = set(
-                    [AvailableCampsite(**json_dict) for json_dict in campsites_dicts]
-                )
+                campsites: Set[AvailableCampsite] = {
+                    AvailableCampsite(**json_dict) for json_dict in campsites_dicts
+                }
             if len(campsites) > 0:
                 logger.info(
                     "%s campsites loaded from file: %s",

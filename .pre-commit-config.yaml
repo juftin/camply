@@ -29,6 +29,8 @@ repos:
       hooks:
           - id: pretty-format-ini
             args: [--autofix]
+          - id: pretty-format-toml
+            args: [--autofix]
 
     - repo: https://github.com/PyCQA/autoflake
       rev: v2.0.0
@@ -56,7 +58,11 @@ repos:
                 )
             additional_dependencies:
                 - prettier
-                - prettier-plugin-toml
+
+    - repo: https://github.com/charliermarsh/ruff-pre-commit
+      rev: v0.0.238
+      hooks:
+          - id: ruff
 
 # sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
 ci:

@@ -53,13 +53,13 @@ class YellowstoneLodging(BaseProvider):
         data_availability: dict
             Data Availability Dictionary
         """
-        query_dict = dict(
-            date=self._ensure_current_month(month=month),
-            limit=31,
-            rate_code=YellowstoneConfig.RATE_CODE,
-        )
+        query_dict = {
+            "date": self._ensure_current_month(month=month),
+            "limit": 31,
+            "rate_code": YellowstoneConfig.RATE_CODE,
+        }
         if nights is not None:
-            query_dict.update(dict(nights=nights))
+            query_dict.update({"nights": nights})
         api_endpoint = self._get_api_endpoint(
             url_path=YellowstoneConfig.YELLOWSTONE_LODGING_PATH, query=None
         )
@@ -99,7 +99,7 @@ class YellowstoneLodging(BaseProvider):
         response = requests.get(
             url=endpoint, headers=yellowstone_headers, params=params, timeout=30
         )
-        if response.status_code == 200 and response.text.strip() != "":
+        if response.ok is True and response.text.strip() != "":
             return loads(response.content)
         else:
             error_message = (
@@ -132,7 +132,7 @@ class YellowstoneLodging(BaseProvider):
                 endpoint=endpoint, params=params
             )
         except RuntimeError as re:
-            raise RuntimeError(f"error_message: {re}")
+            raise RuntimeError(f"error_message: {re}") from re
         return content
 
     @classmethod
@@ -144,14 +144,14 @@ class YellowstoneLodging(BaseProvider):
             query_string = parse.urlencode(query=query)
         else:
             query_string = ""
-        url_components = dict(
-            scheme=YellowstoneConfig.API_SCHEME,
-            netloc=YellowstoneConfig.API_BASE_ENDPOINT,
-            url=url_path,
-            params="",
-            query=query_string,
-            fragment="",
-        )
+        url_components = {
+            "scheme": YellowstoneConfig.API_SCHEME,
+            "netloc": YellowstoneConfig.API_BASE_ENDPOINT,
+            "url": url_path,
+            "params": "",
+            "query": query_string,
+            "fragment": "",
+        }
         api_endpoint = parse.urlunparse(tuple(url_components.values()))
         return api_endpoint
 
@@ -176,24 +176,24 @@ class YellowstoneLodging(BaseProvider):
         str
             URL String
         """
-        query = dict(
-            dateFrom=month.strftime("%m-%d-%Y"),
-            adults=1,
-            destination=lodging_code,
-            children=0,
-        )
+        query = {
+            "dateFrom": month.strftime("%m-%d-%Y"),
+            "adults": 1,
+            "destination": lodging_code,
+            "children": 0,
+        }
         if params is not None:
             query.update(params)
         query_string = parse.urlencode(query=query)
 
-        url_components = dict(
-            scheme=YellowstoneConfig.API_SCHEME,
-            netloc=YellowstoneConfig.WEBUI_BASE_ENDPOINT,
-            url=YellowstoneConfig.WEBUI_BOOKING_PATH,
-            params="",
-            query=query_string,
-            fragment="",
-        )
+        url_components = {
+            "scheme": YellowstoneConfig.API_SCHEME,
+            "netloc": YellowstoneConfig.WEBUI_BASE_ENDPOINT,
+            "url": YellowstoneConfig.WEBUI_BOOKING_PATH,
+            "params": "",
+            "query": query_string,
+            "fragment": "",
+        }
         webui_endpoint = parse.urlunparse(tuple(url_components.values()))
         return webui_endpoint
 
@@ -214,7 +214,7 @@ class YellowstoneLodging(BaseProvider):
         available_campsites:  List[dict]
             List of Availabilities as JSON
         """
-        available_campsites = list()
+        available_campsites = []
         for booking_date, daily_data in availability.availability.items():
             camping_keys = [
                 key
@@ -230,17 +230,17 @@ class YellowstoneLodging(BaseProvider):
                         min_capacity = min(hotel_rate_mins.keys())
                         max_capacity = max(hotel_rate_mins.keys())
                         capacity = (min_capacity, max_capacity)
-                        campsite = dict(
-                            campsite_id=None,
-                            booking_date=booking_date,
-                            campsite_occupancy=capacity,
-                            recreation_area=YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_NAME,
-                            recreation_area_id=YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_ID,
-                            facility_name=hotel_title.replace(
+                        campsite = {
+                            "campsite_id": None,
+                            "booking_date": booking_date,
+                            "campsite_occupancy": capacity,
+                            "recreation_area": YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_NAME,
+                            "recreation_area_id": YellowstoneConfig.YELLOWSTONE_RECREATION_AREA_ID,
+                            "facility_name": hotel_title.replace(
                                 *YellowstoneConfig.YELLOWSTONE_CAMPGROUND_NAME_REPLACE
                             ),
-                            facility_id=hotel_code,
-                        )
+                            "facility_id": hotel_code,
+                        }
                         available_campsites.append(campsite)
                 except KeyError:
                     pass
@@ -273,7 +273,7 @@ class YellowstoneLodging(BaseProvider):
         -------
         List[dict]
         """
-        available_room_array = list()
+        available_room_array = []
         availability_df = DataFrame(data=available_campsites)
         if availability_df.empty is True:
             return available_room_array
@@ -283,9 +283,9 @@ class YellowstoneLodging(BaseProvider):
             api_endpoint = self._get_api_endpoint(
                 url_path=YellowstoneConfig.YELLOWSTONE_CAMPSITE_AVAILABILITY, query=None
             )
-            params = dict(date=self._ensure_current_month(month=month), limit=31)
+            params = {"date": self._ensure_current_month(month=month), "limit": 31}
             if nights is not None:
-                params.update(dict(nights=nights))
+                params.update({"nights": nights})
             campsite_data = self.make_yellowstone_request(
                 endpoint=f"{api_endpoint}/{facility_id}", params=params
             )
@@ -321,7 +321,7 @@ class YellowstoneLodging(BaseProvider):
         -------
         List[dict]
         """
-        daily_availabilities = list()
+        daily_availabilities = []
         for booking_date_str in booking_dates:
             daily_availability = campsite_availability[booking_date_str]
             if (
@@ -332,17 +332,17 @@ class YellowstoneLodging(BaseProvider):
                 for room in available_rooms:
                     if room[YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER] > 0:
                         daily_availabilities.append(
-                            dict(
-                                booking_date=booking_date_str,
-                                facility_id=facility_id,
-                                campsite_code=room[
+                            {
+                                "booking_date": booking_date_str,
+                                "facility_id": facility_id,
+                                "campsite_code": room[
                                     YellowstoneConfig.FACILITY_ROOM_CODE
                                 ],
-                                available=room[
+                                "available": room[
                                     YellowstoneConfig.FACILITY_AVAILABLE_QUALIFIER
                                 ],
-                                price=room[YellowstoneConfig.FACILITY_PRICE],
-                            )
+                                "price": room[YellowstoneConfig.FACILITY_PRICE],
+                            }
                         )
         return daily_availabilities
 
@@ -358,7 +358,7 @@ class YellowstoneLodging(BaseProvider):
         -------
         List[dict]
         """
-        property_info_array = list()
+        property_info_array = []
         availability_df = DataFrame(data=available_rooms)
         if availability_df.empty is True:
             return property_info_array
@@ -374,18 +374,20 @@ class YellowstoneLodging(BaseProvider):
             for campsite_code in campsite_codes:
                 campsite_data = campsite_info[campsite_code]
                 property_info_array.append(
-                    dict(
-                        facility_id=facility_id,
-                        campsite_code=campsite_code,
-                        campsite_title=campsite_data[YellowstoneConfig.LODGING_TITLE],
-                        campsite_type=campsite_data[
+                    {
+                        "facility_id": facility_id,
+                        "campsite_code": campsite_code,
+                        "campsite_title": campsite_data[
+                            YellowstoneConfig.LODGING_TITLE
+                        ],
+                        "campsite_type": campsite_data[
                             YellowstoneConfig.FACILITY_TYPE
                         ].upper(),
-                        capacity=(
+                        "capacity": (
                             campsite_data[YellowstoneConfig.LODGING_OCCUPANCY_BASE],
                             campsite_data[YellowstoneConfig.LODGING_OCCUPANCY_MAX],
                         ),
-                    )
+                    }
                 )
         return property_info_array
 
@@ -426,7 +428,7 @@ class YellowstoneLodging(BaseProvider):
             monthly_campsites, columns=YellowstoneConfig.CAMPSITE_DATA_COLUMNS
         ).drop_duplicates()
         if campsite_data.empty is True:
-            return list()
+            return []
         available_room_array = self._gather_campsite_specific_availability(
             available_campsites=monthly_campsites, month=month, nights=nights
         )
@@ -446,9 +448,9 @@ class YellowstoneLodging(BaseProvider):
             merged_campsites[YellowstoneConfig.BOOKING_DATE_COLUMN]
         )
         if nights is not None:
-            nights_param = dict(nights=nights)
+            nights_param = {"nights": nights}
         else:
-            nights_param = dict(nights=1)
+            nights_param = {"nights": 1}
         booking_nights = nights_param.get("nights")
         merged_campsites[YellowstoneConfig.BOOKING_END_DATE_COLUMN] = merged_campsites[
             YellowstoneConfig.BOOKING_DATE_COLUMN
@@ -479,7 +481,7 @@ class YellowstoneLodging(BaseProvider):
         -------
         List[AvailableCampsite]
         """
-        all_monthly_campsite_array = list()
+        all_monthly_campsite_array = []
         for _, row in campsite_df.iterrows():
             campsite = AvailableCampsite(
                 campsite_id=row[YellowstoneConfig.CAMPSITE_ID_COLUMN],

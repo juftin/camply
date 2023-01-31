@@ -87,9 +87,9 @@ def cli_status_checker(result: Result, exit_code_zero: bool = True) -> None:
     """
     try:
         assert (result.exit_code == 0) == exit_code_zero
-    except AssertionError:
+    except AssertionError as e:
         logger.exception(result.exception, exc_info=result.exc_info)
-        raise result.exception
+        raise result.exception from e
 
 
 @module_scope
