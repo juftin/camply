@@ -36,7 +36,7 @@ jobs:
                   echo PROJECT_NAME=${PROJECT_NAME} >> $GITHUB_ENV
             - name: Docker Image Building and Publishing
               id: docker_build
-              uses: docker/build-push-action@v3
+              uses: docker/build-push-action@v4
               with:
                   push: false
                   tags: juftin/${{ env.PROJECT_NAME }}:latest
