@@ -64,6 +64,12 @@ class SearchWindow(CamplyModel):
             for x in range((self.end_date - self.start_date).days)
         ]
 
+    def get_current_start_date(self) -> datetime.date:
+        """
+        Return a start date with the current day in mind
+        """
+        return max((datetime.datetime.now().date(), self.start_date))
+
 
 class AvailableCampsite(CamplyModel):
     """

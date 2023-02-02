@@ -136,19 +136,20 @@ class SearchGoingToCamp(BaseCampingSearch):
         """
         available_sites = []
         for search_window in self.search_window:
+            current_start_date = search_window.get_current_start_date()
             for campground in self.campgrounds:
                 sites = self.campsite_finder.list_site_availability(
-                    campground,
-                    search_window.start_date,
-                    search_window.end_date,
-                    self.equipment_id,
+                    campground=campground,
+                    start_date=current_start_date,
+                    end_date=search_window.end_date,
+                    equipment_type_id=self.equipment_id,
                 )
                 for site in sites:
                     site_details = self.campsite_finder.get_site_details(
                         self._recreation_area_id, site.resource_id
                     )
-                    nights = (search_window.end_date - search_window.start_date).days
-                    start_dt = datetime.combine(search_window.start_date, time.min)
+                    nights = (search_window.end_date - current_start_date).days
+                    start_dt = datetime.combine(current_start_date, time.min)
                     end_dt = datetime.combine(search_window.end_date, time.min)
                     (
                         rec_area_domain_name,
@@ -163,7 +164,7 @@ class SearchGoingToCamp(BaseCampingSearch):
                         equipment_id=NON_GROUP_EQUIPMENT,
                         sub_equipment_id=self.equipment_id,
                         party_size=1,
-                        start_date=search_window.start_date,
+                        start_date=current_start_date,
                         end_date=search_window.end_date,
                     )
 

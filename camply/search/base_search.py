@@ -23,7 +23,7 @@ from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
 from camply.notifications.base_notifications import BaseNotifications
 from camply.notifications.multi_provider_notifications import MultiNotifierProvider
-from camply.providers import RecreationDotGov, YellowstoneLodging
+from camply.providers import ProviderType
 from camply.utils import make_list
 from camply.utils.logging_utils import get_emoji
 
@@ -55,7 +55,7 @@ class BaseCampingSearch(ABC):
 
     def __init__(
         self,
-        provider: Union[RecreationDotGov, YellowstoneLodging],
+        provider: ProviderType,
         search_window: Union[SearchWindow, List[SearchWindow]],
         weekends_only: bool = False,
         nights: int = 1,
@@ -68,7 +68,7 @@ class BaseCampingSearch(ABC):
 
         Parameters
         ----------
-        provider: Union[RecreationDotGov, YellowstoneLodging]
+        provider: ProviderType
             API Provider
         search_window: Union[SearchWindow, List[SearchWindow]]
             Search Window tuple containing start date and End Date
@@ -85,12 +85,12 @@ class BaseCampingSearch(ABC):
             When offline search is set to True, this is the name of the file to be saved/loaded.
             When not specified, the filename will default to `camply_campsites.json`
         """
-        self.campsite_finder: Union[RecreationDotGov, YellowstoneLodging] = provider
+        self.campsite_finder: ProviderType = provider
         self.search_window: List[SearchWindow] = make_list(search_window)
         self.weekends_only: bool = weekends_only
-        self.search_days: List[datetime] = self._get_search_days()
-        self.search_months: List[datetime] = provider.get_search_months(
-            self.search_days
+        self._original_search_days: List[datetime] = self._get_search_days()
+        self._original_search_months: List[datetime] = provider.get_search_months(
+            self._original_search_days
         )
         self.nights = self._validate_consecutive_nights(nights=nights)
         self.offline_search = offline_search
@@ -117,6 +117,22 @@ class BaseCampingSearch(ABC):
             ] = self.load_campsites_from_file()
             self.loaded_campsites: Set[AvailableCampsite] = self.campsites_found.copy()
 
+    @property
+    def search_days(self) -> List[datetime]:
+        """
+        Get the Unique Days that need to be Searched
+        """
+        current_date = datetime.now().date()
+        return [day for day in self._original_search_days if day >= current_date]
+
+    @property
+    def search_months(self) -> List[datetime]:
+        """
+        Get the Unique Months that need to be Searched
+        """
+        current_month = datetime.now().date().replace(day=1)
+        return [day for day in self._original_search_months if day >= current_month]
+
     @abstractmethod
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """
@@ -130,7 +146,12 @@ class BaseCampingSearch(ABC):
         List[AvailableCampsite]
         """
 
-    def _get_intersection_date_overlap(self, date: datetime, periods: int) -> bool:
+    def _get_intersection_date_overlap(
+        self,
+        date: datetime,
+        periods: int,
+        search_days: List[datetime],
+    ) -> bool:
         """
         Find Date Overlap
 
@@ -138,6 +159,7 @@ class BaseCampingSearch(ABC):
         ----------
         date: datetime
         periods: int
+        search_days: List[datetime]
 
         Returns
         -------
@@ -145,7 +167,7 @@ class BaseCampingSearch(ABC):
         """
         timestamp_range = date_range(start=date, periods=periods)
         campsite_date_range = {item.date() for item in timestamp_range}
-        intersection = campsite_date_range.intersection(self.search_days)
+        intersection = campsite_date_range.intersection(search_days)
         if intersection:
             return True
         else:
@@ -164,7 +186,9 @@ class BaseCampingSearch(ABC):
         bool
         """
         intersection = self._get_intersection_date_overlap(
-            date=campsite.booking_date, periods=campsite.booking_nights
+            date=campsite.booking_date,
+            periods=campsite.booking_nights,
+            search_days=self.search_days,
         )
         return intersection
 
@@ -182,7 +206,9 @@ class BaseCampingSearch(ABC):
         """
         matches = campsites.apply(
             lambda x: self._get_intersection_date_overlap(
-                date=x.booking_date.to_pydatetime(), periods=x.booking_nights
+                date=x.booking_date.to_pydatetime(),
+                periods=x.booking_nights,
+                search_days=self.search_days,
             ),
             axis=1,
         )
