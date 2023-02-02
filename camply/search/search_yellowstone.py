@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 class SearchYellowstone(BaseCampingSearch):
     """
-    Camping Search Object
+    Searches on YellowstoneNationalParkLodges.com for Campsites
     """
 
     recreation_area = YellowstoneLodging.recreation_area
