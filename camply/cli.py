@@ -10,9 +10,10 @@ from typing import List, Optional, Tuple, Union
 
 import click
 from rich import traceback
+from rich_click import RichCommand, RichGroup, rich_click
 
 from camply import __application__, __version__
-from camply.config import EquipmentOptions, SearchConfig
+from camply.config import EquipmentOptions, SearchConfig, logging_config
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
 from camply.providers import (
@@ -31,6 +32,21 @@ logger = logging.getLogger(__name__)
 
 DEFAULT_CAMPLY_PROVIDER: str = RECREATION_DOT_GOV
 
+rich_click.STYLE_OPTION = "bold green"
+rich_click.STYLE_SWITCH = "bold blue"
+rich_click.STYLE_METAVAR = "bold red"
+rich_click.MAX_WIDTH = 90
+rich_click.STYLE_HELPTEXT_FIRST_LINE = "bold blue"
+rich_click.STYLE_HELPTEXT = ""
+rich_click.STYLE_HEADER_TEXT = "bold green"
+rich_click.STYLE_OPTION_DEFAULT = "bold yellow"
+rich_click.STYLE_OPTION_HELP = ""
+rich_click.STYLE_ERRORS_SUGGESTION = "bold red"
+rich_click.STYLE_OPTIONS_TABLE_BOX = "SIMPLE_HEAVY"
+rich_click.STYLE_COMMANDS_TABLE_BOX = "SIMPLE_HEAVY"
+if logging_config.LOG_HANDLER == "python":
+    rich_click.COLOR_SYSTEM = None
+
 
 @dataclass
 class CamplyContext:
@@ -47,7 +63,7 @@ provider_argument = click.option(
     show_default=False,
     default=None,
     type=click.Choice(CAMPSITE_SEARCH_PROVIDER.keys(), case_sensitive=False),
-    help="Camping Search Provider. Defaults to 'RecreationDotGov', not case-sensitive.",
+    help="Camping Search Provider. Defaults to 'RecreationDotGov'",
     metavar="",
 )
 debug_option = click.option(
@@ -67,7 +83,7 @@ def _set_up_debug(debug: Optional[bool] = None) -> None:
         logger.debug("Camply Version: %s", __version__)
         logger.debug("Python Version: %s", sys.version.split(" ")[0])
         logger.debug("Platform: %s", sys.platform)
-    traceback.install(show_locals=debug)
+    traceback.install(show_locals=debug, suppress=[click, rich_click])
 
 
 def _preferred_provider(context: CamplyContext, command_provider: Optional[str]) -> str:
@@ -92,7 +108,7 @@ def _preferred_provider(context: CamplyContext, command_provider: Optional[str])
         return DEFAULT_CAMPLY_PROVIDER
 
 
-@click.group()
+@click.group(cls=RichGroup)
 @click.version_option(version=__version__, prog_name=__application__)
 @debug_option
 @provider_argument
@@ -109,6 +125,8 @@ def camply_command_line(
     check for cancellations and availabilities to pop up. Once a campsite becomes available,
     camply sends you a notification to book your spot!
 
+    \b
+
     visit the camply documentation at https://github.com/juftin/camply
     """
     set_up_logging(log_level=None if debug is False else logging.INFO)
@@ -117,7 +135,7 @@ def camply_command_line(
     _set_up_debug(debug=debug)
 
 
-@camply_command_line.command()
+@camply_command_line.command(cls=RichCommand)
 @debug_option
 @click.pass_obj
 def configure(context: CamplyContext, debug: bool) -> None:
@@ -160,7 +178,7 @@ campground_argument = click.option(
 )
 
 
-@camply_command_line.command()
+@camply_command_line.command(cls=RichCommand)
 @rec_area_argument
 @provider_argument
 @click.pass_obj
@@ -170,8 +188,9 @@ def equipment_types(
     provider: str = DEFAULT_CAMPLY_PROVIDER,
 ) -> None:
     """
-    Retrieve a list of equipment supported by the current provider/recreaton area
+    Get a list of supported equipment
 
+    This command returns supported equipment for the current provider/recreation area.
     Equipment are camping equipment that can be used at a campsite. Different providers
     and recreation areas have different types of equipment for which reservations can be made.
     """
@@ -190,7 +209,7 @@ def equipment_types(
     sys.exit(0)
 
 
-@camply_command_line.command()
+@camply_command_line.command(cls=RichCommand)
 @search_argument
 @state_argument
 @debug_option
@@ -233,7 +252,7 @@ def recreation_areas(
     rec_area_finder.find_recreation_areas(search_string=search, **params)
 
 
-@camply_command_line.command()
+@camply_command_line.command(cls=RichCommand)
 @search_argument
 @state_argument
 @rec_area_argument
@@ -488,7 +507,7 @@ def _validate_campsites(
             sys.exit(1)
 
 
-@camply_command_line.command()
+@camply_command_line.command(cls=RichCommand)
 @yaml_config_argument
 @offline_search_path_argument
 @offline_search_argument
@@ -532,7 +551,7 @@ def campsites(
     equipment_id: Optional[Union[str, int]] = None,
 ) -> None:
     """
-    Find available Campsites using search criteria
+    Find Available Campsites with Custom Search Criteria
 
     Search for a campsite within camply. Campsites are returned based on the search criteria
     provided. Campsites contain properties like booking date, site type (tent, RV, cabin, etc),
@@ -600,7 +619,7 @@ def campsites(
     camping_finder.get_matching_campsites(**search_kwargs)
 
 
-@camply_command_line.command()
+@camply_command_line.command(cls=RichCommand)
 @debug_option
 @click.pass_obj
 def providers(
