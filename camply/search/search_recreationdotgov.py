@@ -356,7 +356,7 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
 
 class SearchRecreationDotGov(SearchRecreationDotGovBase):
     """
-    Searches on Recreation.gov for Campsites
+    Searches on Recreation.gov for Campsites (default provider)
     """
 
     provider_class = RecreationDotGov
@@ -364,7 +364,7 @@ class SearchRecreationDotGov(SearchRecreationDotGovBase):
 
 class SearchRecreationDotGovDailyTicket(SearchRecreationDotGovBase):
     """
-    Searches on Recreation.gov for the RecreationDotGovDailyTicket Object
+    Searches on Recreation.gov for Tickets and Tours (Daily)
     """
 
     provider_class = RecreationDotGovDailyTicket
@@ -373,7 +373,7 @@ class SearchRecreationDotGovDailyTicket(SearchRecreationDotGovBase):
 
 class SearchRecreationDotGovDailyTimedEntry(SearchRecreationDotGovBase):
     """
-    Searches on Recreation.gov for the RecreationDotGovDailyTimedEntry Object
+    Searches on Recreation.gov for Timed Entries
     """
 
     provider_class = RecreationDotGovDailyTimedEntry
@@ -382,7 +382,7 @@ class SearchRecreationDotGovDailyTimedEntry(SearchRecreationDotGovBase):
 
 class SearchRecreationDotGovTicket(SearchRecreationDotGovBase):
     """
-    Searches on Recreation.gov for the RecreationDotGovTicket Object
+    Searches on Recreation.gov for Tickets and Tours
     """
 
     provider_class = RecreationDotGovTicket
@@ -390,7 +390,7 @@ class SearchRecreationDotGovTicket(SearchRecreationDotGovBase):
 
 class SearchRecreationDotGovTimedEntry(SearchRecreationDotGovBase):
     """
-    Searches on Recreation.gov for the RecreationDotGovTimedEntry Object
+    Searches on Recreation.gov for Timed Entries (Daily)
     """
 
     provider_class = RecreationDotGovTimedEntry

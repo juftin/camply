@@ -48,6 +48,7 @@ provider_argument = click.option(
     default=None,
     type=click.Choice(CAMPSITE_SEARCH_PROVIDER.keys(), case_sensitive=False),
     help="Camping Search Provider. Defaults to 'RecreationDotGov', not case-sensitive.",
+    metavar="",
 )
 debug_option = click.option(
     "--debug/--no-debug", default=None, help="Enable extra debugging output"
@@ -597,6 +598,30 @@ def campsites(
     provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
     camping_finder = provider_class(**provider_kwargs)
     camping_finder.get_matching_campsites(**search_kwargs)
+
+
+@camply_command_line.command()
+@debug_option
+@click.pass_obj
+def providers(
+    context: CamplyContext,
+    debug: bool,
+) -> None:
+    """
+    List the different camply providers
+    """
+    if context.debug is None:
+        context.debug = debug
+        _set_up_debug(debug=context.debug)
+    logger.info(
+        "camply currently supports %s providers:", len(CAMPSITE_SEARCH_PROVIDER.keys())
+    )
+    for provider_name, search_class in CAMPSITE_SEARCH_PROVIDER.items():
+        logger.info(
+            '    "%s":    %s',
+            provider_name,
+            search_class.__doc__.strip().splitlines()[0],
+        )
 
 
 def cli():

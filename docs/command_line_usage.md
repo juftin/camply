@@ -1,8 +1,8 @@
 # Command Line Usage
 
 When installed, `camply`'s command line utility can be invoked with the command, `camply`. The CLI
-tool accepts one of four sub-arguments: `campsites`, `recreation-areas`, `campgrounds`,
-and `configure`.
+tool accepts one of six sub-arguments: `campsites`, `recreation-areas`, `campgrounds`, `providers`,
+`equipment-types`, and `configure`.
 
 ```text
 ❯ camply --help
@@ -21,19 +21,28 @@ Usage: camply [OPTIONS] COMMAND [ARGS]...
   visit the camply documentation at https://github.com/juftin/camply
 
 Options:
-  --version                       Show the version and exit.
-  --debug / --no-debug            Enable extra debugging output
-  --provider [RecreationDotGov|Yellowstone|GoingToCamp|RecreationDotGovDailyTicket|RecreationDotGovDailyTimedEntry|RecreationDotGovTicket|RecreationDotGovTimedEntry]
-                                  Camping Search Provider. Defaults to
-                                  'RecreationDotGov', not case-sensitive.
-  --help                          Show this message and exit.
+  --version             Show the version and exit.
+  --debug / --no-debug  Enable extra debugging output
+  --provider            Camping Search Provider. Defaults to
+                        'RecreationDotGov', not case-sensitive.
+  --help                Show this message and exit.
 
 Commands:
   campgrounds       Search for Campgrounds (inside of Recreation Areas)...
   campsites         Find available Campsites using search criteria
   configure         Set up camply configuration file with an interactive...
   equipment-types   Retrieve a list of equipment supported by the current...
+  providers         List the different camply providers
   recreation-areas  Search for Recreation Areas and list them
+```
+
+## providers
+
+List the various [providers](providers.md) that camply works with. Unless you specify
+camply will use the default [RecreationDotGov](providers.md#recreationgov) provider.
+
+```commandline
+camply providers
 ```
 
 ## campsites

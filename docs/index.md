@@ -37,6 +37,7 @@ becomes available, camply sends you a notification to book your spot!
     -   [GoingToCamp](providers.md#goingtocamp)
     -   [RecDotGov Tours + Tickets + Timed Entry](providers.md#recreationgov-tickets-tours-timed-entry)
 -   [Command Line Usage](command_line_usage.md)
+    -   [providers](command_line_usage.md#providers)
     -   [campsites](command_line_usage.md#campsites)
     -   [recreation-areas](command_line_usage.md#recreation-areas)
     -   [campgrounds](command_line_usage.md#campgrounds)
