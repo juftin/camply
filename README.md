@@ -39,7 +39,7 @@ pip install camply
 Head over to the [camply documentation](https://juftin.com/camply/) to see what you can do!
 
 ```commandline
-❯ camply --help
+camply --help
 
 Usage: camply [OPTIONS] COMMAND [ARGS]...
 
