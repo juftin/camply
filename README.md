@@ -56,16 +56,17 @@ Usage: camply [OPTIONS] COMMAND [ARGS]...
 
 Options:
   --version             Show the version and exit.
-  --provider TEXT       Camping Search Provider. Options available are
-                        'Yellowstone' and 'RecreationDotGov'. Defaults to
-                        'RecreationDotGov', not case-sensitive.
   --debug / --no-debug  Enable extra debugging output
+  --provider            Camping Search Provider. Defaults to
+                        'RecreationDotGov', not case-sensitive.
   --help                Show this message and exit.
 
 Commands:
   campgrounds       Search for Campgrounds (inside of Recreation Areas)...
   campsites         Find available Campsites using search criteria
   configure         Set up camply configuration file with an interactive...
+  equipment-types   Retrieve a list of equipment supported by the current...
+  providers         List the different camply providers
   recreation-areas  Search for Recreation Areas and list them
 ```
 
@@ -85,6 +86,7 @@ Camply doesn't support your favorite campsite booking provider yet? Consider
     -   [GoingToCamp](docs/providers.md#goingtocamp)
     -   [RecDotGov Tours + Tickets + Timed Entry](docs/providers.md#recreationgov-tickets-tours--timed-entry)
 -   [Command Line Usage](docs/command_line_usage.md)
+    -   [providers](docs/command_line_usage.md#providers)
     -   [campsites](docs/command_line_usage.md#campsites)
     -   [recreation-areas](docs/command_line_usage.md#recreation-areas)
     -   [campgrounds](docs/command_line_usage.md#campgrounds)

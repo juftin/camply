@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 class SearchGoingToCamp(BaseCampingSearch):
     """
-    Going to Camp primary search functionality
+    Searches on GoingToCamp.com for Campsites
     """
 
     @classmethod
