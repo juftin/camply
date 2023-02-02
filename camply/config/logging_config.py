@@ -3,11 +3,12 @@ Dynamic Logging Configuration
 """
 
 import logging
-import os
 from os import getenv
 from typing import Optional, Tuple, Union
 
 from rich.logging import RichHandler
+
+LOG_HANDLER = getenv("CAMPLY_LOG_HANDLER", "rich").lower()
 
 
 def get_log_handler(
@@ -42,8 +43,7 @@ def get_log_handler(
         "rich": rich_handler,
         "python": python_handler,
     }
-    log_handler_name = os.getenv("CAMPLY_LOG_HANDLER", "rich")
-    log_handler: logging.Handler = _log_dict.get(log_handler_name.lower(), rich_handler)
+    log_handler: logging.Handler = _log_dict.get(LOG_HANDLER, rich_handler)
     return log_handler, log_level
 
 
