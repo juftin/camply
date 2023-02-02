@@ -4,7 +4,7 @@ Silent Notifications
 
 import logging
 from pprint import pformat
-from typing import Iterable, List
+from typing import List
 
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications
