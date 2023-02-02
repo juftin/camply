@@ -6,9 +6,10 @@ import logging
 from datetime import datetime, timedelta
 from json import loads
 from random import choice
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 from urllib import parse
 
+import ratelimit
 import requests
 import tenacity
 from pandas import DataFrame, to_datetime
@@ -72,11 +73,40 @@ class YellowstoneLodging(BaseProvider):
         return all_resort_availability_data
 
     @staticmethod
+    @ratelimit.sleep_and_retry
+    @ratelimit.limits(calls=3, period=2)
+    def _make_api_request(
+        endpoint: str, params: Optional[Dict[str, Any]] = None
+    ) -> requests.Response:
+        """
+        Make a Low Level API Request
+
+        Parameters
+        ----------
+        endpoint: str
+            API Endpoint
+        params: Optional[Dict[str, Any]]
+
+        Returns
+        -------
+        requests.Response
+        """
+        yellowstone_headers = choice(USER_AGENTS)
+        yellowstone_headers.update(STANDARD_HEADERS)
+        yellowstone_headers.update(YellowstoneConfig.API_REFERRERS)
+        response = requests.get(
+            url=endpoint, headers=yellowstone_headers, params=params, timeout=30
+        )
+        return response
+
+    @staticmethod
     @tenacity.retry(
         wait=tenacity.wait_random_exponential(multiplier=3, max=1800),
         stop=tenacity.stop.stop_after_delay(6000),
     )
-    def _try_retry_get_data(endpoint: str, params: Optional[dict] = None) -> dict:
+    def _try_retry_get_data(
+        endpoint: str, params: Optional[Dict[str, Any]] = None
+    ) -> dict:
         """
         Try and Retry Fetching Data from the Yellowstone API.
 
@@ -87,17 +117,14 @@ class YellowstoneLodging(BaseProvider):
         ----------
         endpoint: str
             API Endpoint
-        params
+        params: Optional[Dict[str, Any]]
 
         Returns
         -------
         dict
         """
-        yellowstone_headers = choice(USER_AGENTS)
-        yellowstone_headers.update(STANDARD_HEADERS)
-        yellowstone_headers.update(YellowstoneConfig.API_REFERRERS)
-        response = requests.get(
-            url=endpoint, headers=yellowstone_headers, params=params, timeout=30
+        response = YellowstoneLodging._make_api_request(
+            endpoint=endpoint, params=params
         )
         if response.ok is True and response.text.strip() != "":
             return loads(response.content)

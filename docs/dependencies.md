@@ -15,6 +15,9 @@ dependencies:
     -   The `tenacity` package is used for retrying data searches on the underlying campsite APIs.
         This retrying methodology handles exceptions allowing for API downtime and facilitating
         exponential backoff.
+-   [ratelimit](https://github.com/tomasbasham/ratelimit)
+    -   The `ratelimit` package is used for limiting the frequency of our API calls to external
+        APIs so we can be good partners to our friends who run the campsite booking services.
 -   [rich](https://github.com/textualize/rich)
     -   Colorizing the CLI
 -   [python-dotenv](https://github.com/theskumar/python-dotenv)

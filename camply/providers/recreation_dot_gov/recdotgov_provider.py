@@ -13,6 +13,7 @@ from typing import Any, Dict, List, Optional, Tuple, Type, Union
 from urllib import parse
 
 import pandas as pd
+import ratelimit
 import requests
 import tenacity
 from pydantic import ValidationError
@@ -564,6 +565,8 @@ class RecreationDotGovBase(BaseProvider, ABC):
         return endpoint_url
 
     @classmethod
+    @ratelimit.sleep_and_retry
+    @ratelimit.limits(calls=3, period=2)
     def make_recdotgov_request(
         cls,
         url: str,

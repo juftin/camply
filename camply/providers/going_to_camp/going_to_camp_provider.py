@@ -9,6 +9,7 @@ from datetime import datetime
 from random import choice
 from typing import Any, Dict, List, Optional, Tuple, Union
 
+import ratelimit
 import requests
 from pydantic import ValidationError
 
@@ -383,6 +384,8 @@ class GoingToCampProvider(BaseProvider):
                 return hostname
         return None
 
+    @ratelimit.sleep_and_retry
+    @ratelimit.limits(calls=3, period=1)
     def _api_request(
         self,
         rec_area_id: int,
