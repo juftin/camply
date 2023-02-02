@@ -2,6 +2,8 @@
 providers __init__ file
 """
 
+from typing import Union
+
 from .base_provider import BaseProvider
 from .going_to_camp.going_to_camp_provider import GoingToCampProvider
 from .recreation_dot_gov.recdotgov_camps import RecreationDotGov
@@ -21,8 +23,19 @@ RECREATION_DOT_GOV_DAILY_TIMED_ENTRY = "RecreationDotGovDailyTimedEntry"
 RECREATION_DOT_GOV_TICKET = "RecreationDotGovTicket"
 RECREATION_DOT_GOV_TIMED_ENTRY = "RecreationDotGovTimedEntry"
 
+ProviderType = Union[
+    GoingToCampProvider,
+    RecreationDotGov,
+    RecreationDotGovDailyTicket,
+    RecreationDotGovDailyTimedEntry,
+    RecreationDotGovTicket,
+    RecreationDotGovTimedEntry,
+    YellowstoneLodging,
+]
+
 __all__ = [
     "BaseProvider",
+    "ProviderType",
     "GoingToCampProvider",
     "RecreationDotGov",
     "RecreationDotGovDailyTicket",
