@@ -613,9 +613,14 @@ def providers(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
+    logger.info(
+        "camply currently supports %s providers:", len(CAMPSITE_SEARCH_PROVIDER.keys())
+    )
     for provider_name, search_class in CAMPSITE_SEARCH_PROVIDER.items():
         logger.info(
-            '"%s":    %s', provider_name, search_class.__doc__.strip().splitlines()[0]
+            '    "%s":    %s',
+            provider_name,
+            search_class.__doc__.strip().splitlines()[0],
         )
 
 

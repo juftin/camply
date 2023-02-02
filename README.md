@@ -86,6 +86,7 @@ Camply doesn't support your favorite campsite booking provider yet? Consider
     -   [GoingToCamp](docs/providers.md#goingtocamp)
     -   [RecDotGov Tours + Tickets + Timed Entry](docs/providers.md#recreationgov-tickets-tours--timed-entry)
 -   [Command Line Usage](docs/command_line_usage.md)
+    -   [providers](docs/command_line_usage.md#providers)
     -   [campsites](docs/command_line_usage.md#campsites)
     -   [recreation-areas](docs/command_line_usage.md#recreation-areas)
     -   [campgrounds](docs/command_line_usage.md#campgrounds)

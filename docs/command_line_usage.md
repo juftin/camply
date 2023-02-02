@@ -1,8 +1,8 @@
 # Command Line Usage
 
 When installed, `camply`'s command line utility can be invoked with the command, `camply`. The CLI
-tool accepts one of four sub-arguments: `campsites`, `recreation-areas`, `campgrounds`,
-and `configure`.
+tool accepts one of six sub-arguments: `campsites`, `recreation-areas`, `campgrounds`, `providers`,
+`equipment-types`, and `configure`.
 
 ```text
 ❯ camply --help
@@ -34,6 +34,15 @@ Commands:
   equipment-types   Retrieve a list of equipment supported by the current...
   providers         List the different camply providers
   recreation-areas  Search for Recreation Areas and list them
+```
+
+## providers
+
+List the various [providers](providers.md) that camply works with. Unless you specify
+camply will use the default [RecreationDotGov](providers.md#recreationgov) provider.
+
+```commandline
+camply providers
 ```
 
 ## campsites
