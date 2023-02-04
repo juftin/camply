@@ -93,12 +93,12 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
         found.
         [\*\*_example_](#continuously-searching-for-a-campsite)
 -   `--search-forever`
-    -   If `--continuous` is activated, this method continues to search after the first availability
+    -   Enables continuous searching. This method continues to search after the first availability
         has been found. The one caveat is that it will never notify about the same identical campsite
         for the same booking date.
         [\*\*_example_](#continue-looking-after-the-first-match-is-found)
 -   `--notifications`: `NOTIFICATIONS`
-    -   If `--continuous` is activated, types of notifications to receive. Options available
+    -   Enables continuous searching. Types of notifications to receive. Options available
         are`email`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
         messages to console.
         [\*\*_example_](#send-a-push-notification)
@@ -114,11 +114,11 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
         area has equipment categories unique to it.
         [\*\*_example_](#searching-goingtocamp-using-equipment)
 -   `--notify-first-try`
-    -   If `--continuous` is activated, whether to send all non-silent notifications if more than 5
+    -   Enables continuous searching. Whether to send all non-silent notifications if more than 5
         matching campsites are found on the first try. Defaults to false which only sends the first5.
         [\*\*_example_](#continuously-searching-for-a-campsite)
 -   `--polling-interval`: `POLLING_INTERVAL`
-    -   If `--continuous` is activated, how often to wait in between checks (in minutes). Defaults to
+    -   Enables continuous searching. How often to wait in between checks (in minutes). Defaults to
         10, cannot be less than 5.
         [\*\*_example_](#look-for-weekend-campsite-availabilities)
 -   `--yaml-config`
@@ -126,6 +126,15 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
         configuration file. See the documentation for more information on how to structure your
         configuration file.
         [\*\*_example_](#using-a-yaml-configuration-file-to-search-for-campsites)
+-   `--offline-search`
+    -   When set to True, the campsite search will both save the results of the campsites it's
+        found, but also load those campsites before beginning a search for other campsites.
+        [\*\*_example_](#saving-the-results-of-a-search)
+-   `--offline-search-path`
+    -   Enables offline search. This is the name of the file to be saved/loaded. Campsites can be saved as
+        a serialized pickle file or a JSON file, depending on the file extension. When not specified,
+        the filename will default to `camply_campsites.json`.
+        [\*\*_example_](#saving-the-results-of-a-search)
 
 ```commandline
 camply campsites \
@@ -247,16 +256,17 @@ camply campsites \
 
 ### Continuously Searching for A Campsite
 
-Sometimes you want to look for campgrounds until an eventual match is found. The below snippet will
+Most of the time you want to look for campgrounds until an eventual match is found. The below snippet will
 search for matching campsites until it finds a match. It also sends a notification via `pushover`
 once matches are found. Alternate notification methods are `email`, `pushbullet`, `telegram`, and `silent` (
 default).
 
-**Important Note**: When `camply` is told to run `--continuous` with non-silent notifications set up
-and it finds more than 5 matching campsites on the first try, it will only send notifications for
-the first 5 campsites. This is to prevent thousands of campsites flooding your notifications. It's
-always encouraged to perform an initial online search before setting up a `camply` search. To bypass
-this behavior and send all notifications, pass the `--notify-first-try` argument.
+!!! note
+
+    The use of **`--continuous`** in the below example isn't actually necessary.
+    Continuous searching is enabled when any of the following options are provided:
+    **`--notifications`**, **`--search-forever`**, **`--polling-interval`**,
+    **`--notify-first-try`**.
 
 ```commandline
 camply campsites \
@@ -267,6 +277,14 @@ camply campsites \
     --notifications pushover \
     --notify-first-try
 ```
+
+!!! warning
+
+    When `camply` is told to running continuously with non-silent notifications set up
+    and it finds more than 5 matching campsites on the first try, it will only send notifications for
+    the first 5 campsites. This is to prevent thousands of campsites flooding your notifications. It's
+    always encouraged to perform an initial online search before setting up a `camply` search. To bypass
+    this behavior and send all notifications, pass the `--notify-first-try` argument.
 
 ### Continue Looking After The First Match Is Found
 
@@ -281,7 +299,6 @@ camply campsites \
     --rec-area 2725 \
     --start-date 2023-07-01 \
     --end-date 2023-08-01 \
-    --continuous \
     --notifications pushover \
     --search-forever
 ```
@@ -301,7 +318,6 @@ camply campsites \
     --rec-area 2991 \
     --start-date 2023-09-10 \
     --end-date 2023-09-21 \
-    --continuous \
     --notifications pushbullet
 ```
 
@@ -323,7 +339,6 @@ camply campsites \
     --rec-area 2991 \
     --start-date 2023-09-10 \
     --end-date 2023-09-21 \
-    --continuous \
     --notifications twilio
 ```
 
@@ -338,7 +353,6 @@ camply campsites \
     --rec-area 2991 \
     --start-date 2023-09-10 \
     --end-date 2023-09-21 \
-    --continuous \
     --notifications email \
     --notifications pushover
 ```
@@ -355,7 +369,6 @@ camply campsites \
     --start-date 2023-05-01 \
     --end-date 2023-08-01 \
     --weekends \
-    --continuous \
     --notifications email \
     --polling-interval 5
 ```
@@ -547,7 +560,7 @@ search and load them into a new search, so you don't receive duplicate notificat
 This can be achieved by passing the `--offline-search` flag. By default, camply will save
 the results in a file called `camply_campsites.json`.
 
-Optionally, you can also path the `--offline-search-path` flag to specify a certain file
+Alternatively, you can also path the `--offline-search-path` flag to specify a certain file
 path to save the results as. When a file path with a `.json` extension is passed
 camply will export the results as a JSON file. When the `.pkl` or `.pickle` extension is
 used, camply will use a serialized Pickle file.
@@ -569,7 +582,6 @@ camply \
   --start-date 2023-09-01 \
   --end-date 2023-10-01 \
   --continuous \
-  --offline-search \
   --offline-search-path campsites.pkl
 ```
 
@@ -626,7 +638,6 @@ camply campsites \
   --start-date 2023-06-09 \
   --end-date 2023-06-10 \
   --campground 253731 \
-  --continuous \
   --search-forever \
   --notifications email
 ```
@@ -651,7 +662,6 @@ camply campsites \
   --start-date 2023-06-09 \
   --end-date 2023-06-10 \
   --campground 10089508 \
-  --continuous \
   --search-forever \
   --notifications email
 ```

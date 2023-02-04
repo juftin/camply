@@ -93,7 +93,10 @@ class BaseCampingSearch(ABC):
             self._original_search_days
         )
         self.nights = self._validate_consecutive_nights(nights=nights)
-        self.offline_search = offline_search
+        if offline_search_path is not None:
+            self.offline_search = True
+        else:
+            self.offline_search = offline_search
         self.offline_search_path = self._set_offline_search_path(
             file_path=offline_search_path
         )
@@ -941,6 +944,15 @@ class BaseCampingSearch(ABC):
             ]
         ):
             path_obj = returned_path.joinpath(default_file_path)
+        elif all(
+            [
+                returned_path.parent.exists(),
+                returned_path.parent.is_dir(),
+            ]
+        ):
+            path_obj = returned_path
         else:
             path_obj = parent_dir.joinpath(file_path)
+        if not path_obj.parent.exists():
+            raise FileNotFoundError(f"That directory doesn't exist: {path_obj.parent}")
         return path_obj
