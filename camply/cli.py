@@ -127,7 +127,7 @@ def camply_command_line(
 
     \b
 
-    visit the camply documentation at https://github.com/juftin/camply
+    visit the camply documentation at https://juftin.com/camply
     """
     set_up_logging(log_level=None if debug is False else logging.INFO)
     logger.camply("camply, the campsite finder ⛺️")

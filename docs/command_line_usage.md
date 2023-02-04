@@ -5,7 +5,7 @@ tool accepts one of six sub-arguments: `campsites`, `recreation-areas`, `campgro
 `equipment-types`, and `configure`.
 
 ```console
-camply --help
+❯ camply --help
 
  Usage: camply [OPTIONS] COMMAND [ARGS]...
 
@@ -17,36 +17,72 @@ camply --help
  notification to book your spot!
 
 
- visit the camply documentation at https://github.com/juftin/camply
+ visit the camply documentation at https://juftin.com/camply
 
 ╭─ Options ──────────────────────────────────────────────────────────────────────────────╮
 │                                                                                        │
-│  --version                  Show the version and exit.                                 │
-│  --debug/--no-debug         Enable extra debugging output                              │
-│  --provider                 Camping Search Provider. Defaults to 'RecreationDotGov'    │
-│  --help                     Show this message and exit.                                │
+│  --version                      Show the version and exit.                             │
+│  --debug/--no-debug             Enable extra debugging output                          │
+│  --provider              TEXT   Camping Search Provider. Defaults to                   │
+│                                 'RecreationDotGov'                                     │
+│  --help                         Show this message and exit.                            │
 │                                                                                        │
 ╰────────────────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────────────────╮
 │                                                                                        │
 │  campgrounds        Search for Campgrounds (inside of Recreation Areas) and list them  │
 │  campsites          Find Available Campsites with Custom Search Criteria               │
-│  configure          Set up camply configuration file with an interactive console          │
+│  configure          Set up camply configuration file with an interactive console       │
 │  equipment-types    Get a list of supported equipment                                  │
 │  providers          List the different camply providers                                │
 │  recreation-areas   Search for Recreation Areas and list them                          │
 │                                                                                        │
 ╰────────────────────────────────────────────────────────────────────────────────────────╯
+
+```
+
+## Simple Examples
+
+[Search for a specific recreation area](#search-for-recreation-areas-by-query-string) (recreation
+areas contain campgrounds):
+
+```commandline
+camply recreation-areas --search "Glacier National Park"
+```
+
+[Search for campgrounds](#look-for-specific-campgrounds-by-query-string) (campgrounds
+contain campsites):
+
+```commandline
+camply campgrounds --search "Fire Lookout Towers" --state CA
+```
+
+[Search for available campsites](#searching-for-a-campsite),
+[get an notification whenever one becomes available](#send-a-push-notification), and
+[continue searching after the first one is found](#continue-looking-after-the-first-match-is-found):
+
+```commandline
+camply campsites \
+    --rec-area 2725 \
+    --start-date 2023-07-10 \
+    --end-date 2023-07-18 \
+    --notifications email \
+    --search-forever
 ```
 
 ## providers
 
-List the various [providers](providers.md) that camply works with. Unless you specify
-camply will use the default [RecreationDotGov](providers.md#recreationgov) provider.
+List the various [providers](providers.md) that camply works with.
 
 ```commandline
 camply providers
 ```
+
+!!! note
+
+    If no provider is specified, camply will use the default provider,
+    **`RecreationDotGov`**, which searches for recreation areas,
+    campgrounds, and campsites listed on https://recreation.gov
 
 ## campsites
 
@@ -244,8 +280,12 @@ a trailhead. Its URL
 is [https://www.recreation.gov/camping/campsites/98363](https://www.recreation.gov/camping/campsites/98363)
 , here we can see that it's ID is `98363`. You can search for one or many campsites by ID by
 supplying the `--campsite` argument. You can provide the `--campsite` argument once or multiple
-times to search for different campsites. Note, `--campsite` arguments override any `--rec-area`
-or `--campground` parameters provided.
+times to search for different campsites.
+
+!!! note
+
+    **`--campsite`** arguments override any **`--rec-area`** or **`--campground`** options
+    provided. And **`--campground`** will override the **`--rec-area`** option.
 
 ```commandline
 camply campsites \
@@ -290,9 +330,13 @@ camply campsites \
 
 Sometimes you want to search for all possible matches up until your arrival date. No problem. Add
 the `--search-forever` and `camply` won't stop sending notifications after the first match is found.
-One important note, `camply` will save and store all previous notifications when `--search-forever`
-is enabled, so it won't notify you about the exact same campsite availability twice. This can be
-problematic when certain campsites become available more than once.
+
+!!! note
+
+    `camply` will save and store all previous notifications when
+    **`--search-forever`** is enabled, so it won't notify you about the exact same
+    campsite availability twice. This can be problematic when certain campsites become
+    available more than once.
 
 ```commandline
 camply campsites \
@@ -379,9 +423,11 @@ A lot of times you need to search for consecutive nights at the same campsite. B
 all campsites with a single nights booking are returned by camply. To search for campsites with
 consecutive night stays, pass the `--nights` argument.
 
-Note, the `--nights` argument handles issues with improper search parameters. For example, if you
-set the `--weekends` parameter the maximum number of consecutive nights possible is 2. If you supply
-more than this your `--nights` parameter will be overwritten to 2.
+!!! note
+
+    The **`--nights`** argument handles issues with improper search parameters. For example, if you
+    set the **`--weekends`** parameter the maximum number of consecutive nights possible is 2. If you supply
+    more than this your **`--nights`** parameter will be overwritten to 2.
 
 ```commandline
 camply campsites \

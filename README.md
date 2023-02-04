@@ -21,17 +21,45 @@ becomes available, camply sends you a notification to book your spot!
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yaml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 [![Black Codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)]()
-[![Discord Chat](https://img.shields.io/static/v1?label=chat&message=discord&color=blue&logo=discord)](https://discord.gg/qZDr78kKvB)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-lightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.dev)
+[![Discord Chat](https://img.shields.io/static/v1?label=chat&message=discord&color=blue&logo=discord)](https://discord.gg/qZDr78kKvB)
 
 ## [Check Out The Docs](https://juftin.com/camply/)
 
 ## Installing
 
-Install camply via pip:
+Install camply via `pip` or [pipx](https://github.com/pypa/pipx):
 
+```commandline
+pipx install camply
 ```
-pip install camply
+
+## Usage
+
+Search for a specific recreation area (recreation areas contain campgrounds):
+
+```commandline
+camply recreation-areas --search "Glacier National Park"
+```
+
+Search for campgrounds (campgrounds contain campsites):
+
+```commandline
+camply campgrounds --search "Fire Lookout Towers" --state CA
+```
+
+Search for available campsites, get an notification whenever one becomes
+available, and continue searching after the first one is found:
+
+```commandline
+camply campsites \
+    --rec-area 2725 \
+    --start-date 2023-07-10 \
+    --end-date 2023-07-18 \
+    --notifications email \
+    --search-forever
 ```
 
 ## Documentation
@@ -39,7 +67,7 @@ pip install camply
 Head over to the [camply documentation](https://juftin.com/camply/) to see what you can do!
 
 ```console
-camply --help
+❯ camply --help
 
  Usage: camply [OPTIONS] COMMAND [ARGS]...
 
@@ -51,26 +79,28 @@ camply --help
  notification to book your spot!
 
 
- visit the camply documentation at https://github.com/juftin/camply
+ visit the camply documentation at https://juftin.com/camply
 
 ╭─ Options ──────────────────────────────────────────────────────────────────────────────╮
 │                                                                                        │
-│  --version                  Show the version and exit.                                 │
-│  --debug/--no-debug         Enable extra debugging output                              │
-│  --provider                 Camping Search Provider. Defaults to 'RecreationDotGov'    │
-│  --help                     Show this message and exit.                                │
+│  --version                      Show the version and exit.                             │
+│  --debug/--no-debug             Enable extra debugging output                          │
+│  --provider              TEXT   Camping Search Provider. Defaults to                   │
+│                                 'RecreationDotGov'                                     │
+│  --help                         Show this message and exit.                            │
 │                                                                                        │
 ╰────────────────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────────────────╮
 │                                                                                        │
 │  campgrounds        Search for Campgrounds (inside of Recreation Areas) and list them  │
 │  campsites          Find Available Campsites with Custom Search Criteria               │
-│  configure          Set up camply configuration file with an interactive console          │
+│  configure          Set up camply configuration file with an interactive console       │
 │  equipment-types    Get a list of supported equipment                                  │
 │  providers          List the different camply providers                                │
 │  recreation-areas   Search for Recreation Areas and list them                          │
 │                                                                                        │
 ╰────────────────────────────────────────────────────────────────────────────────────────╯
+
 ```
 
 ## Contributing
@@ -88,7 +118,9 @@ Camply doesn't support your favorite campsite booking provider yet? Consider
     -   [Yellowstone](docs/providers.md#yellowstone)
     -   [GoingToCamp](docs/providers.md#goingtocamp)
     -   [RecDotGov Tours + Tickets + Timed Entry](docs/providers.md#recreationgov-tickets-tours--timed-entry)
--   [Command Line Usage](docs/command_line_usage.md)
+-   [Usage](docs/command_line_usage.md)
+    -   [Simple Examples](docs/command_line_usage.md#simple-examples)
+    -   [providers](docs/command_line_usage.md#providers)
     -   [providers](docs/command_line_usage.md#providers)
     -   [campsites](docs/command_line_usage.md#campsites)
     -   [recreation-areas](docs/command_line_usage.md#recreation-areas)

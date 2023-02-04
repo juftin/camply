@@ -1,21 +1,16 @@
 # Installation
 
-## PyPI
-
-Camply is hosted on PyPI, you can download it directly from tools like
-pip and pipx.
-
-```commandline
-pip install camply
-```
-
-If you're using camply on your command line - it's recommended that you use a tool
-like [pipx](https://github.com/pypa/pipx) to easily manage the application in an isolated
-virtual environment.
+## Python
 
 ```commandline
 pipx install camply
 ```
+
+!!! note
+
+    If you're using camply on your command line - it's recommended that you use a tool
+    like [pipx](https://github.com/pypa/pipx) to easily manage the application in an isolated
+    virtual environment. However you can always **`pip install camply`** as well.
 
 [PyPI Link](https://pypi.python.org/pypi/camply/)
 
