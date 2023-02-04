@@ -1,7 +1,6 @@
 # Dependencies
 
-`camply` is compatible with any Python version >= `3.6`. Currently, there are eight required
-dependencies:
+`camply` is compatible with any Python version >= `3.6`. Here are the current dependencies:
 
 -   [click](https://docs.python-requests.org/en/master/)
     -   The `click` package is used to leverage it's simple Command Line Interface
@@ -16,7 +15,8 @@ dependencies:
         This retrying methodology handles exceptions allowing for API downtime and facilitating
         exponential backoff.
 -   [rich](https://github.com/textualize/rich)
-    -   Colorizing the CLI
+    -   Colorizing the CLI (also using [rich-click](https://github.com/ewels/rich-click) to
+        colorize `click`)
 -   [python-dotenv](https://github.com/theskumar/python-dotenv)
     -   The `python-dotenv` package reads key-value pairs from a `.env` file and can set them as
         environment variables - this helps with the `.camply` configuration file.

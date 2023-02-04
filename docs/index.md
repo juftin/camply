@@ -23,8 +23,10 @@ becomes available, camply sends you a notification to book your spot!
 [![Testing Status](https://github.com/juftin/camply/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/juftin/camply/actions/workflows/tests.yaml)
 [![GitHub License](https://img.shields.io/github/license/juftin/camply?color=blue&label=License)](https://github.com/juftin/camply/blob/main/LICENSE)
 [![Black Codestyle](https://img.shields.io/badge/code%20style-black-000000.svg)]()
-[![Discord Chat](https://img.shields.io/static/v1?label=chat&message=discord&color=blue&logo=discord)](https://discord.gg/qZDr78kKvB)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-lightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.dev)
+[![Discord Chat](https://img.shields.io/static/v1?label=chat&message=discord&color=blue&logo=discord)](https://discord.gg/qZDr78kKvB)
 
 ## Table of Contents
 
@@ -37,6 +39,7 @@ becomes available, camply sends you a notification to book your spot!
     -   [GoingToCamp](providers.md#goingtocamp)
     -   [RecDotGov Tours + Tickets + Timed Entry](providers.md#recreationgov-tickets-tours-timed-entry)
 -   [Command Line Usage](command_line_usage.md)
+    -   [Simple Examples](command_line_usage.md#simple-examples)
     -   [providers](command_line_usage.md#providers)
     -   [campsites](command_line_usage.md#campsites)
     -   [recreation-areas](command_line_usage.md#recreation-areas)

@@ -373,7 +373,7 @@ class SearchRecreationDotGovDailyTicket(SearchRecreationDotGovBase):
 
 class SearchRecreationDotGovDailyTimedEntry(SearchRecreationDotGovBase):
     """
-    Searches on Recreation.gov for Timed Entries
+    Searches on Recreation.gov for Timed Entries (Daily)
     """
 
     provider_class = RecreationDotGovDailyTimedEntry
@@ -390,7 +390,7 @@ class SearchRecreationDotGovTicket(SearchRecreationDotGovBase):
 
 class SearchRecreationDotGovTimedEntry(SearchRecreationDotGovBase):
     """
-    Searches on Recreation.gov for Timed Entries (Daily)
+    Searches on Recreation.gov for Timed Entries
     """
 
     provider_class = RecreationDotGovTimedEntry
