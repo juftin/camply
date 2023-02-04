@@ -6,7 +6,7 @@ import logging
 import sys
 from dataclasses import dataclass
 from datetime import datetime
-from typing import List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import click
 from rich import traceback
@@ -64,7 +64,7 @@ provider_argument = click.option(
     default=None,
     type=click.Choice(CAMPSITE_SEARCH_PROVIDER.keys(), case_sensitive=False),
     help="Camping Search Provider. Defaults to 'RecreationDotGov'",
-    metavar="",
+    metavar="TEXT",
 )
 debug_option = click.option(
     "--debug/--no-debug", default=None, help="Enable extra debugging output"
@@ -348,6 +348,7 @@ nights_argument = click.option(
     "--nights",
     show_default=True,
     default=1,
+    type=click.INT,
     help="Search for campsite stays with consecutive nights. "
     "Defaults to 1 which returns all campsites found.",
 )
@@ -361,17 +362,17 @@ continuous_argument = click.option(
 )
 polling_interval_argument = click.option(
     "--polling-interval",
-    show_default=True,
-    default=SearchConfig.RECOMMENDED_POLLING_INTERVAL,
-    help="If --continuous is activated, how often to wait in between "
+    default=None,
+    type=click.INT,
+    help="Enables continuous searching. How often to wait in between "
     "checks (in minutes). Defaults to 10, cannot be less than 5.",
 )
 notifications_argument = click.option(
     "--notifications",
     multiple=True,
     show_default=True,
-    default=["silent"],
-    help="If --continuous is activated, types of notifications to receive. "
+    default=[],
+    help="Enables continuous searching. Types of notifications to receive. "
     "Options available are 'email', 'pushover', "
     "'pushbullet', 'telegram', 'twilio', or 'silent'. Defaults to 'silent' - "
     "which just logs messages to console.",
@@ -379,19 +380,17 @@ notifications_argument = click.option(
 notify_first_try_argument = click.option(
     "--notify-first-try",
     is_flag=True,
-    show_default=True,
-    default=False,
-    help="If --continuous is activated, whether to send all "
+    flag_value="FLAG-SET",
+    help="Enables continuous searching. Whether to send all "
     "non-silent notifications if more than 5 matching "
-    "campsites are found on the first try. Defaults to false which "
+    "campsites are found on the first try. Defaults to False which "
     "only sends the first 5.",
 )
 search_forever_argument = click.option(
     "--search-forever",
     is_flag=True,
-    show_default=True,
-    default=False,
-    help="If --continuous is activated, this method continues to search "
+    flag_value="FLAG-SET",
+    help="Enables continuous searching. This method continues to search "
     "after the first availability has been found. The one caveat is "
     "that it will never notify about the same identical campsite for "
     "the same booking date.",
@@ -400,6 +399,7 @@ yaml_config_argument = click.option(
     "--yaml-config",
     "--yml-config",
     default=None,
+    type=click.Path(exists=True, dir_okay=False, resolve_path=True),
     help="Rather than provide arguments to the command line utility, instead "
     "pass a file path to a YAML configuration file. See the documentation "
     "for more information on how to structure your configuration file.",
@@ -418,10 +418,10 @@ equipment_argument = click.option(
 equipment_id_argument = click.option(
     "--equipment-id",
     default=None,
-    help="Search for campsites campaitble with specific equipment categories. Going To "
+    help="Search for campsites compatible with specific equipment categories. Going To "
     "Camp uses equipment category IDs for filtering campsites by equipment. Every "
     "recreation area has equipment categories unique to it. "
-    "Use `camply equipment-types --provider goingtocamp --rec-area <rec area id>` "
+    "Use `camply equipment-types --provider GoingToCamp --rec-area <rec area id>` "
     "to get a listing of equipment for an area.",
 )
 
@@ -438,7 +438,8 @@ offline_search_path_argument = click.option(
     "--offline-search-path",
     show_default=True,
     default=None,
-    help="When offline search is set to True, this is the name of the file to be saved/loaded. "
+    type=click.Path(dir_okay=False),
+    help="Enables offline search. This is the name of the file to be saved/loaded. "
     "Campsites can be saved as a serialized pickle file or "
     "a JSON file, depending on the file extension. When not specified, "
     "the filename will default to `camply_campsites.json`",
@@ -469,10 +470,38 @@ def _validate_campsites(
     end_date: Optional[str],
     provider: str,
     yaml_config: Optional[str],
-    **kwargs,
-) -> None:
+    continuous: bool,
+    polling_interval: int,
+    notifications: List[str],
+    notify_first_try: bool,
+    search_forever: bool,
+    **kwargs: Dict[str, Any],
+) -> bool:
     """
     Validate the campsites portion of the CLI
+
+    Also, indicate whether the search should be continuous.
+
+    Parameters
+    ----------
+    rec_area: Optional[int]
+    campground: Optional[int]
+    campsite: Optional[int]
+    start_date: Optional[str]
+    end_date: Optional[str]
+    provider: str
+    yaml_config: Optional[str]
+    continuous: bool
+    polling_interval: int
+    notifications: List[str]
+    notify_first_try: bool
+    search_forever: bool
+    **kwargs: Dict[str, Any]
+
+    Returns
+    -------
+    continuous: bool
+        Returns whether the search should be continuous
     """
     if provider.startswith(RECREATION_DOT_GOV) and all(
         [
@@ -489,13 +518,6 @@ def _validate_campsites(
         )
         sys.exit(1)
 
-    if not kwargs.get("notifications") == ["silent"] and not kwargs.get("continuous"):
-        logger.error(
-            "To receive notifications about campsites you must search "
-            "continuously by passing the --continuous option."
-        )
-        sys.exit(1)
-
     mandatory_parameters = [start_date, end_date]
     mandatory_string_parameters = ["--start-date", "--end-date"]
     for field in mandatory_parameters:
@@ -505,6 +527,17 @@ def _validate_campsites(
                 f"{', '.join(mandatory_string_parameters)}"
             )
             sys.exit(1)
+
+    if any(
+        [
+            len(notifications) > 0,
+            search_forever is not None,
+            notify_first_try is not None,
+            polling_interval is not None,
+        ]
+    ):
+        continuous = True
+    return continuous
 
 
 @camply_command_line.command(cls=RichCommand)
@@ -531,24 +564,24 @@ def _validate_campsites(
 def campsites(
     context: CamplyContext,
     debug: bool,
-    rec_area: Optional[int] = None,
-    campground: Optional[int] = None,
-    campsite: Optional[int] = None,
-    start_date: Optional[str] = None,
-    end_date: Optional[str] = None,
-    weekends: bool = False,
-    nights: int = 1,
-    provider: str = DEFAULT_CAMPLY_PROVIDER,
-    continuous: bool = False,
-    polling_interval: int = SearchConfig.RECOMMENDED_POLLING_INTERVAL,
-    notifications: Union[str, List[str]] = "silent",
-    notify_first_try: bool = False,
-    search_forever: bool = False,
-    yaml_config: Optional[str] = None,
-    offline_search: bool = False,
-    offline_search_path: Optional[str] = None,
-    equipment: Optional[Union[str, int]] = None,
-    equipment_id: Optional[Union[str, int]] = None,
+    rec_area: Tuple[Union[str, int]],
+    campground: Tuple[Union[str, int]],
+    campsite: Tuple[Union[str, int]],
+    start_date: str,
+    end_date: str,
+    weekends: bool,
+    nights: int,
+    provider: Optional[str],
+    continuous: bool,
+    polling_interval: Optional[str],
+    notifications: Tuple[str],
+    notify_first_try: Optional[str],
+    search_forever: Optional[str],
+    yaml_config: Optional[str],
+    offline_search: bool,
+    offline_search_path: Optional[str],
+    equipment: Tuple[Union[str, int]],
+    equipment_id: Tuple[Union[str, int]],
 ) -> None:
     """
     Find Available Campsites with Custom Search Criteria
@@ -565,7 +598,7 @@ def campsites(
         context.debug = debug
         _set_up_debug(debug=context.debug)
     notifications = make_list(notifications)
-    _validate_campsites(
+    continuous = _validate_campsites(
         rec_area=rec_area,
         campground=campground,
         campsite=campsite,
@@ -574,13 +607,26 @@ def campsites(
         weekends=weekends,
         nights=nights,
         provider=provider,
+        yaml_config=yaml_config,
         continuous=continuous,
         polling_interval=polling_interval,
         notifications=notifications,
         notify_first_try=notify_first_try,
         search_forever=search_forever,
-        yaml_config=yaml_config,
     )
+    if len(notifications) == 0:
+        notifications = ["silent"]
+    if polling_interval is None:
+        polling_interval = SearchConfig.RECOMMENDED_POLLING_INTERVAL
+    if notify_first_try is None:
+        notify_first_try = False
+    else:
+        notify_first_try = True
+    if search_forever is None:
+        search_forever = False
+    else:
+        search_forever = True
+
     if yaml_config is not None:
         provider, provider_kwargs, search_kwargs = yaml_utils.yaml_file_to_arguments(
             file_path=yaml_config
