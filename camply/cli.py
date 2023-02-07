@@ -35,7 +35,6 @@ DEFAULT_CAMPLY_PROVIDER: str = RECREATION_DOT_GOV
 rich_click.STYLE_OPTION = "bold green"
 rich_click.STYLE_SWITCH = "bold blue"
 rich_click.STYLE_METAVAR = "bold red"
-rich_click.MAX_WIDTH = 90
 rich_click.STYLE_HELPTEXT_FIRST_LINE = "bold blue"
 rich_click.STYLE_HELPTEXT = ""
 rich_click.STYLE_HEADER_TEXT = "bold green"

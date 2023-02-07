@@ -17,9 +17,10 @@ plugins:
             - pyproject.toml
             - camply/_version.py
         message: |
-            🔖 ${nextRelease.version}
+            🔖 camply ${nextRelease.version}
 
             ${nextRelease.notes}
+            [skip ci]
     - - "@semantic-release/github"
       - assets:
             - path: dist/*.whl
