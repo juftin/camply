@@ -5,7 +5,7 @@
 </a>
 </div>
 
-`camply`, the campsite finder ⛺️, is a tool to help you book a campground online. Finding
+**`camply`**, the campsite finder ⛺️, is a tool to help you book a campground online. Finding
 reservations at sold out campgrounds can be tough. That's where camply comes in. It searches the
 APIs of booking services like https://recreation.gov (which indexes thousands of campgrounds across
 the USA) to continuously check for cancellations and availabilities to pop up. Once a campsite
@@ -61,6 +61,20 @@ camply campsites \
     --notifications email \
     --search-forever
 ```
+
+## Providers
+
+camply works with a number of providers. A "provider" is an online booking
+service that lists camping and recreation inventory.
+
+-   **`RecreationDotGov`**: Searches on [Recreation.gov](https://recreation.gov) for Campsites (default provider)
+-   **`Yellowstone`**: Searches on [YellowstoneNationalParkLodges.com](https://yellowstonenationalparklodges.com) for Campsites
+-   **`GoingToCamp`**: Searches on [GoingToCamp.com](https://goingtocamp.com) for Campsites
+-   **`RecreationDotGovTicket`**: Searches on [Recreation.gov](https://recreation.gov) for Tickets and Tours
+-   **`RecreationDotGovTimedEntry`**: Searches on [Recreation.gov](https://recreation.gov) for Timed Entries
+
+Run **`camply providers`** to list current providers and visit the [Providers](https://juftin.com/camply/providers/)
+section in the docs to learn more.
 
 ## Documentation
 
