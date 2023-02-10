@@ -50,15 +50,17 @@ Search for campgrounds (campgrounds contain campsites):
 camply campgrounds --search "Fire Lookout Towers" --state CA
 ```
 
-Search for available campsites, get an notification whenever one becomes
-available, and continue searching after the first one is found:
+Search for available campsites, get a notification whenever one becomes
+available, and continue searching after the first one is found. The below command
+is using `silent` notifications as an example but camply also supports `Email`,
+`Slack`, `Twilio` (SMS), `Pushover`, `Pushbullet`, and `Telegram`.
 
 ```commandline
 camply campsites \
     --rec-area 2725 \
     --start-date 2023-07-10 \
     --end-date 2023-07-18 \
-    --notifications email \
+    --notifications silent \
     --search-forever
 ```
 
@@ -121,57 +123,6 @@ Head over to the [camply documentation](https://juftin.com/camply/) to see what 
 
 Camply doesn't support your favorite campsite booking provider yet? Consider
 [contributing](https://juftin.com/camply/contributing/) 😉.
-
-## Table of Contents
-
--   [Installation](docs/installation.md)
-    -   [PyPI](docs/installation.md#pypi)
-    -   [Docker](docs/installation.md#docker)
--   [Providers](docs/providers.md)
-    -   [RecreationDotGov](docs/providers.md#recreationgov)
-    -   [Yellowstone](docs/providers.md#yellowstone)
-    -   [GoingToCamp](docs/providers.md#goingtocamp)
-    -   [RecDotGov Tours + Tickets + Timed Entry](docs/providers.md#recreationgov-tickets-tours--timed-entry)
--   [Usage](docs/command_line_usage.md)
-    -   [Simple Examples](docs/command_line_usage.md#simple-examples)
-    -   [providers](docs/command_line_usage.md#providers)
-    -   [providers](docs/command_line_usage.md#providers)
-    -   [campsites](docs/command_line_usage.md#campsites)
-    -   [recreation-areas](docs/command_line_usage.md#recreation-areas)
-    -   [campgrounds](docs/command_line_usage.md#campgrounds)
-    -   [configure](docs/command_line_usage.md#configure)
-    -   [Examples](docs/command_line_usage.md#examples)
-        -   [Searching for a Campsite](docs/command_line_usage.md#searching-for-a-campsite)
-        -   [Searching for a Campsite by Campground ID](docs/command_line_usage.md#searching-for-a-campsite-by-campground-id)
-        -   [Searching for a Specific Campsite by ID](docs/command_line_usage.md#searching-for-a-specific-campsite-by-id)
-        -   [Continuously Searching for A Campsite](docs/command_line_usage.md#continuously-searching-for-a-campsite)
-        -   [Continue Looking After The First Match Is Found](docs/command_line_usage.md#continue-looking-after-the-first-match-is-found)
-        -   [Send a Push Notification](docs/command_line_usage.md#send-a-push-notification)
-        -   [Send a Text Message](docs/command_line_usage.md#send-a-text-message)
-        -   [Send a Notification to Different Services](docs/command_line_usage.md#send-a-notification-to-different-services)
-        -   [Look for Weekend Campsite Availabilities](docs/command_line_usage.md#look-for-weekend-campsite-availabilities)
-        -   [Look for Consecutive Nights at the Same Campsite](docs/command_line_usage.md#look-for-consecutive-nights-at-the-same-campsite)
-        -   [Look for a Campsite Inside of Yellowstone](docs/command_line_usage.md#look-for-a-campsite-inside-of-yellowstone)
-        -   [Look for a Campsite from GoingToCamp](docs/command_line_usage.md#look-for-a-campsite-from-goingtocamp)
-        -   [Searching GoingToCamp Using Equipment](docs/command_line_usage.md#searching-goingtocamp-using-equipment)
-        -   [Look for a Campsite Across Multiple Recreation areas](docs/command_line_usage.md#look-for-a-campsite-across-multiple-recreation-areas)
-        -   [Using a YAML Configuration file to search for campsites](docs/command_line_usage.md#using-a-yaml-configuration-file-to-search-for-campsites)
-        -   [Searching for a Campsite That Fits Your Equipment](docs/command_line_usage.md#searching-for-a-campsite-that-fits-your-equipment)
-        -   [Saving the Results of a Search](docs/command_line_usage.md#saving-the-results-of-a-search)
-        -   [Search for Recreation Areas by Query String](docs/command_line_usage.md#search-for-recreation-areas-by-query-string)
-        -   [Look for Specific Campgrounds Within a Recreation Area](docs/command_line_usage.md#look-for-specific-campgrounds-within-a-recreation-area)
-        -   [Look for Specific Campgrounds by Query String](docs/command_line_usage.md#look-for-specific-campgrounds-by-query-string)
-        -   [Searching for Tickets and Timed Entries](docs/ccommand_line_usage.md#searching-for-tickets-and-timed-entries)
-            -   [Tickets + Tours](docs/ccommand_line_usage.md#tickets-tours)
-            -   [Timed Entry](docs/ccommand_line_usage.md#timed-entry)
-            -   [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
--   [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](docs/command_line_usage.md#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
--   [Object-Oriented Usage (Python)](docs/python.md)
-    -   [Search for a Recreation.gov Campsite](docs/python.md#search-for-a-recreationgov-campsite)
-    -   [Continuously Search for Recreation.gov Campsites](docs/python.md#continuously-search-for-recreationgov-campsites)
--   [Running in Docker](docs/docker.md)
--   [Dependencies](docs/dependencies.md)
--   [Contributing](docs/contributing.md)
 
 <br/>
 
