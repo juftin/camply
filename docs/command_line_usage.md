@@ -298,8 +298,8 @@ camply campsites \
 
 Most of the time you want to look for campgrounds until an eventual match is found. The below snippet will
 search for matching campsites until it finds a match. It also sends a notification via `pushover`
-once matches are found. Alternate notification methods are `email`, `pushbullet`, `telegram`, and `silent` (
-default).
+once matches are found. Alternate notification methods are listed in the
+[Send a Push Notification](#send-a-push-notification) example.
 
 !!! note
 
@@ -349,21 +349,40 @@ camply campsites \
 
 ### Send a Push Notification
 
-camply supports notifications via `Pushbullet`, `Pushover`, `Telegram`, and `Email`. Pushbullet is a great
-option because it's
-a [free and easy service to sign up for](https://www.pushbullet.com/#settings/account)
-and it supports notifications across different devices and operating systems. Similar to `Pushover`,
-`Pushbullet` requires that you create an account and an API token, and share that token with camply
-through a [configuration file](examples/example.camply) (via the `camply configure`
-command) or though environment variables (`PUSHBULLET_API_TOKEN`).
+camply supports notifications via a number of services:
+
+-   `Email`
+-   `Pushover`
+-   `Pushbullet`
+-   `Telegram`
+-   `Slack`
+-   `Twilio` (SMS)
 
 ```commandline
 camply campsites \
     --rec-area 2991 \
     --start-date 2023-09-10 \
     --end-date 2023-09-21 \
-    --notifications pushbullet
+    --notifications pushover
 ```
+
+Like all providers, `Pushover` requires that you share credentials/authentication - for `Pushover` this involves
+sharing your "Pushover User Key" with camply through a [configuration file](examples/example.camply)
+(via the **`camply configure`** command) or though environment variables (`PUSHOVER_PUSH_USER`). See the
+[Environment Variables](docker.md#environment-variables) section for a list of relevant environment variables
+per notification provider.
+
+!!! info
+
+    When searching continuously `camply` uses the **`silent`** notification provider
+    unless you expictly specify another notification provider to use. The **`silent`** notification
+    provider simply prints logs to your console when matching campsites are found.
+
+!!! note
+
+    I personally use [Pushover](https://pushover.net) notifications - it's built for push notifications, easy to set up,
+    and includes a 30-day trial and a one-time fee of $5 after that to unlock lifetime programmatic push notifications.
+    There are other notification providers like `Slack` and `Email` that are free to use if that's more your style.
 
 ### Send a Text Message
 
