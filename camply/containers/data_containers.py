@@ -83,10 +83,10 @@ class AvailableCampsite(CamplyModel):
     booking_end_date: datetime.datetime
     booking_nights: int
     campsite_site_name: str
-    campsite_loop_name: str
-    campsite_type: str
+    campsite_loop_name: Optional[str]
+    campsite_type: Optional[str]
     campsite_occupancy: Tuple[int, int]
-    campsite_use_type: str
+    campsite_use_type: Optional[str]
     availability_status: str
     recreation_area: str
     recreation_area_id: Union[int, str]
@@ -110,6 +110,7 @@ class CampgroundFacility(CamplyModel):
     facility_id: Union[int, str]
     recreation_area_id: Union[int, str]
     map_id: Optional[int]
+    coordinates: Optional[tuple[float, float]]
 
 
 class RecreationArea(CamplyModel):
@@ -120,6 +121,7 @@ class RecreationArea(CamplyModel):
     recreation_area: str
     recreation_area_id: Union[int, str]
     recreation_area_location: str
+    coordinates: Optional[tuple[float, float]]
 
 
 class AvailableResource(CamplyModel):

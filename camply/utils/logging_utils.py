@@ -17,9 +17,7 @@ RVMOJI = "🚌"
 logger = logging.getLogger(__name__)
 
 
-def _generate_response_string(
-    response: Union[CampgroundFacility, RecreationArea, str]
-) -> str:
+def format_log_string(response: Union[CampgroundFacility, RecreationArea, str]) -> str:
     """
     Generate a formatted string for logging
 
@@ -65,7 +63,7 @@ def log_sorted_response(response_array: List[object]) -> None:
     -------
     None
     """
-    log_array = [_generate_response_string(obj) for obj in response_array]
+    log_array = [format_log_string(obj) for obj in response_array]
     sorted_logs = sorted(log_array)
     for log_response in sorted_logs:
         logger.info(log_response)

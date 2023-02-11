@@ -11,6 +11,7 @@ from camply.providers import (
     RECREATION_DOT_GOV_DAILY_TIMED_ENTRY,
     RECREATION_DOT_GOV_TICKET,
     RECREATION_DOT_GOV_TIMED_ENTRY,
+    RESERVE_CALIFORNIA,
     YELLOWSTONE,
 )
 from camply.search.base_search import BaseCampingSearch
@@ -22,6 +23,7 @@ from camply.search.search_recreationdotgov import (
     SearchRecreationDotGovTicket,
     SearchRecreationDotGovTimedEntry,
 )
+from camply.search.search_reserve_california import SearchReserveCalifornia
 from camply.search.search_yellowstone import SearchYellowstone
 
 CAMPSITE_SEARCH_PROVIDER: Dict[str, Type[BaseCampingSearch]] = {
@@ -33,6 +35,8 @@ CAMPSITE_SEARCH_PROVIDER: Dict[str, Type[BaseCampingSearch]] = {
     RECREATION_DOT_GOV_TIMED_ENTRY: SearchRecreationDotGovTimedEntry,
     RECREATION_DOT_GOV_DAILY_TICKET: SearchRecreationDotGovDailyTicket,
     RECREATION_DOT_GOV_DAILY_TIMED_ENTRY: SearchRecreationDotGovDailyTimedEntry,
+    # ReserveCalifornia
+    RESERVE_CALIFORNIA: SearchReserveCalifornia,
 }
 
 __all__ = [

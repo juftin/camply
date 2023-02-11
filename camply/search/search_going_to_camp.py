@@ -1,6 +1,7 @@
 """
 Going To Camp API search utilities
 """
+
 import logging
 import sys
 from datetime import datetime, time

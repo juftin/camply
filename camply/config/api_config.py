@@ -237,3 +237,22 @@ class RecreationBookingConfig:
     CAMPSITE_BOOKING_URL: str = "https://www.recreation.gov/camping/campsites"
 
     RATE_LIMITING = (1.01, 1.51)
+
+
+class ReserveCaliforniaConfig:
+    """
+    Reserve California API Configuration
+    """
+
+    BASE_URL = "https://calirdr.usedirect.com"
+    RDR_PREFIX = "rdr/rdr"
+    SEARCH_PREFIX = "search"
+    CITYPARK_ENDPOINT = f"{RDR_PREFIX}/fd/citypark"
+    LIST_PLACES_ENDPOINT = f"{RDR_PREFIX}/fd/places"
+    LIST_FACILITIES_ENDPOINT = f"{RDR_PREFIX}/fd/facilities"
+    SEARCH_ENDPOINT = f"{CITYPARK_ENDPOINT}/namecontains"
+    METADATA_PREFIX = f"{RDR_PREFIX}/{SEARCH_PREFIX}/filters"
+    PLACE_ENDPOINT = f"{RDR_PREFIX}/{SEARCH_PREFIX}/place"
+    AVAILABILITY_ENDPOINT = f"{RDR_PREFIX}/{SEARCH_PREFIX}/grid"
+    DATE_FORMAT = "%m-%d-%Y"
+    CAMPGROUND_URL = "https://www.reservecalifornia.com"

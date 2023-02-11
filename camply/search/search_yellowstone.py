@@ -10,8 +10,9 @@ import pandas as pd
 
 from camply.config import YellowstoneConfig
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
+from camply.exceptions import SearchError
 from camply.providers import YellowstoneLodging
-from camply.search.base_search import BaseCampingSearch, SearchError
+from camply.search.base_search import BaseCampingSearch
 from camply.utils import make_list
 from camply.utils.logging_utils import log_sorted_response
 

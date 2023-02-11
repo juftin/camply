@@ -21,6 +21,7 @@ from pydantic.json import pydantic_encoder
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
+from camply.exceptions import CamplyError, CampsiteNotFoundError
 from camply.notifications.base_notifications import BaseNotifications
 from camply.notifications.multi_provider_notifications import MultiNotifierProvider
 from camply.providers import ProviderType
@@ -28,24 +29,6 @@ from camply.utils import make_list
 from camply.utils.logging_utils import get_emoji
 
 logger = logging.getLogger(__name__)
-
-
-class CamplyError(Exception):
-    """
-    Base Camply Error
-    """
-
-
-class SearchError(CamplyError):
-    """
-    Generic Search Error
-    """
-
-
-class CampsiteNotFoundError(SearchError):
-    """
-    Campsite not found Error
-    """
 
 
 class BaseCampingSearch(ABC):
@@ -601,7 +584,7 @@ class BaseCampingSearch(ABC):
     @classmethod
     def _consolidate_campsites(
         cls, campsite_df: DataFrame, nights: int
-    ) -> List[AvailableCampsite]:
+    ) -> pd.DataFrame:
         """
         Consolidate Single Night Campsites into Multiple Night Campsites
 
@@ -612,7 +595,7 @@ class BaseCampingSearch(ABC):
 
         Returns
         -------
-        List[AvailableCampsite]
+        pd.DataFrame
         """
         composed_groupings = []
         for _, campsite_slice in campsite_df.groupby(

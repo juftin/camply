@@ -7,6 +7,9 @@ from abc import ABC
 from datetime import datetime
 from typing import List
 
+import requests
+from fake_useragent import UserAgent
+
 from camply.config import SearchConfig
 
 logger = logging.getLogger(__name__)
@@ -16,6 +19,17 @@ class BaseProvider(ABC):  # noqa: B024
     """
     Base Provider Class
     """
+
+    def __init__(self):
+        """
+        Initialize with a session
+        """
+        _user_agent = UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+        self.session = requests.Session()
+        self.headers = {"User-Agent": _user_agent}
+        self.session.headers = self.headers
+        self.json_headers = self.headers.copy()
+        self.json_headers.update({"Content-Type": "application/json"})
 
     @classmethod
     def get_search_months(cls, search_days) -> List[datetime]:

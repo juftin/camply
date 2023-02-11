@@ -13,6 +13,7 @@ from .recreation_dot_gov.recdotgov_tours import (
     RecreationDotGovTicket,
     RecreationDotGovTimedEntry,
 )
+from .reserve_california.reserve_california import ReserveCalifornia
 from .xanterra.yellowstone_lodging import YellowstoneLodging
 
 RECREATION_DOT_GOV = "RecreationDotGov"
@@ -22,6 +23,7 @@ RECREATION_DOT_GOV_DAILY_TICKET = "RecreationDotGovDailyTicket"
 RECREATION_DOT_GOV_DAILY_TIMED_ENTRY = "RecreationDotGovDailyTimedEntry"
 RECREATION_DOT_GOV_TICKET = "RecreationDotGovTicket"
 RECREATION_DOT_GOV_TIMED_ENTRY = "RecreationDotGovTimedEntry"
+RESERVE_CALIFORNIA = "ReserveCalifornia"
 
 ProviderType = Union[
     GoingToCampProvider,
@@ -31,6 +33,7 @@ ProviderType = Union[
     RecreationDotGovTicket,
     RecreationDotGovTimedEntry,
     YellowstoneLodging,
+    ReserveCalifornia,
 ]
 
 __all__ = [
@@ -43,6 +46,7 @@ __all__ = [
     "RecreationDotGovTicket",
     "RecreationDotGovTimedEntry",
     "YellowstoneLodging",
+    "ReserveCalifornia",
     "RECREATION_DOT_GOV",
     "YELLOWSTONE",
     "GOING_TO_CAMP",
@@ -50,4 +54,5 @@ __all__ = [
     "RECREATION_DOT_GOV_DAILY_TIMED_ENTRY",
     "RECREATION_DOT_GOV_TICKET",
     "RECREATION_DOT_GOV_TIMED_ENTRY",
+    "RESERVE_CALIFORNIA",
 ]

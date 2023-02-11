@@ -13,6 +13,7 @@ import pandas as pd
 from camply.config import RecreationBookingConfig
 from camply.config.search_config import EquipmentConfig, EquipmentOptions
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
+from camply.exceptions import SearchError
 from camply.providers import (
     RecreationDotGov,
     RecreationDotGovDailyTicket,
@@ -21,7 +22,7 @@ from camply.providers import (
     RecreationDotGovTimedEntry,
 )
 from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
-from camply.search.base_search import BaseCampingSearch, SearchError
+from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
 
 logger = logging.getLogger(__name__)
