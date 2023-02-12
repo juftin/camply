@@ -567,10 +567,3 @@ class ReserveCalifornia(BaseProvider):
             )
             campgrounds.append(camp)
         return campgrounds
-
-
-if __name__ == "__main__":
-    _this_file = pathlib.Path(__file__).resolve()
-    city_park_file = _this_file.with_name("citypark.json")
-    prov = ReserveCalifornia()
-    prov.refresh_metadata()

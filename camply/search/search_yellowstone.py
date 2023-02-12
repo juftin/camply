@@ -61,7 +61,6 @@ class SearchYellowstone(BaseCampingSearch):
             When not specified, the filename will default to `camply_campsites.json`
         """
         super().__init__(
-            provider=YellowstoneLodging(),
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,

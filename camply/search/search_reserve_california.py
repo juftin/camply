@@ -25,6 +25,64 @@ class SearchReserveCalifornia(BaseCampingSearch):
 
     provider_class = ReserveCalifornia
 
+    def __init__(
+        self,
+        search_window: Union[SearchWindow, List[SearchWindow]],
+        recreation_area: List[int],
+        weekends_only: bool = False,
+        campgrounds: Optional[Union[List[str], str]] = None,
+        nights: int = 1,
+        **kwargs,
+    ) -> None:
+        """
+        Initialize with Search Parameters
+
+        Parameters
+        ----------
+        search_window: Union[SearchWindow, List[SearchWindow]]
+            Search Window tuple containing start date and End Date
+        recreation_area: List[int]
+            The IDs of the recreation area to be searched.
+        weekends_only: bool
+            Whether to only search for Camping availabilities on the weekends (Friday /
+            Saturday nights)
+        campgrounds: Union[List[int], int]
+            Campground ID or List of Campground IDs
+        nights: int
+            minimum number of consecutive nights to search per campsite,defaults to 1
+        """
+        super().__init__(
+            search_window=search_window,
+            weekends_only=weekends_only,
+            nights=nights,
+        )
+        self.campsite_finder: ReserveCalifornia
+        self._recreation_area_ids: List[int] = make_list(recreation_area)
+        self._campground_ids: List[int] = make_list(campgrounds)
+        try:
+            assert any([self._campground_ids != [], self._recreation_area_ids != []])
+        except AssertionError:
+            logger.error(
+                "You must provide a Campground ID or a Recreation Area ID to ReserveCalifornia"
+            )
+            sys.exit(1)
+        if self._campground_ids:
+            self.campgrounds = self.campsite_finder.find_campgrounds(
+                campground_id=self._campground_ids,
+                verbose=False,
+            )
+        else:
+            self.campgrounds = self.campsite_finder.find_campgrounds(
+                rec_area_id=self._recreation_area_ids,
+                verbose=False,
+            )
+        self.campground_ids = [item.facility_id for item in self.campgrounds]
+        if len(self.campground_ids) == 0:
+            logger.error("No Campsites Found Matching Your Search Criteria")
+            sys.exit(1)
+        if kwargs.get("equipment", ()):
+            logger.warning("ReserveCalifornia Doesn't Support Equipment, yet 🙂")
+
     def get_all_campsites(self, **kwargs: Dict[str, Any]) -> List[AvailableCampsite]:
         """
         Retrieve All Campsites from the ReserveCalifornia API
@@ -82,64 +140,3 @@ class SearchReserveCalifornia(BaseCampingSearch):
         logger.info(f"{len(rec_areas)} Matching Recreation Areas Found")
         log_sorted_response(rec_areas)
         return rec_areas
-
-    # noinspection PyUnusedLocal
-    def __init__(
-        self,
-        search_window: Union[SearchWindow, List[SearchWindow]],
-        recreation_area: List[int],
-        weekends_only: bool = False,
-        campgrounds: Optional[Union[List[str], str]] = None,
-        nights: int = 1,
-        **kwargs,
-    ) -> None:
-        """
-        Initialize with Search Parameters
-
-        Parameters
-        ----------
-        search_window: Union[SearchWindow, List[SearchWindow]]
-            Search Window tuple containing start date and End Date
-        recreation_area: List[int]
-            The IDs of the recreation area to be searched.
-        weekends_only: bool
-            Whether to only search for Camping availabilities on the weekends (Friday /
-            Saturday nights)
-        campgrounds: Union[List[int], int]
-            Campground ID or List of Campground IDs
-        nights: int
-            minimum number of consecutive nights to search per campsite,defaults to 1
-        """
-        self.provider = ReserveCalifornia
-        self.campsite_finder: ReserveCalifornia
-        super().__init__(
-            provider=ReserveCalifornia(),
-            search_window=search_window,
-            weekends_only=weekends_only,
-            nights=nights,
-        )
-        self._recreation_area_ids: List[int] = make_list(recreation_area)
-        self._campground_ids: List[int] = make_list(campgrounds)
-        try:
-            assert any([self._campground_ids != [], self._recreation_area_ids != []])
-        except AssertionError:
-            logger.error(
-                "You must provide a Campground ID or a Recreation Area ID to ReserveCalifornia"
-            )
-            sys.exit(1)
-        if self._campground_ids:
-            self.campgrounds = self.campsite_finder.find_campgrounds(
-                campground_id=self._campground_ids,
-                verbose=False,
-            )
-        else:
-            self.campgrounds = self.campsite_finder.find_campgrounds(
-                rec_area_id=self._recreation_area_ids,
-                verbose=False,
-            )
-        self.campground_ids = [item.facility_id for item in self.campgrounds]
-        if len(self.campground_ids) == 0:
-            logger.error("No Campsites Found Matching Your Search Criteria")
-            sys.exit(1)
-        if kwargs.get("equipment", ()):
-            logger.warning("ReserveCalifornia Doesn't Support Equipment, yet 🙂")

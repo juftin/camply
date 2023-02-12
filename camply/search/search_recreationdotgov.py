@@ -3,10 +3,10 @@ Recreation.gov Web Searching Utilities
 """
 
 import logging
-from abc import ABC, abstractmethod
+from abc import ABC
 from random import uniform
 from time import sleep
-from typing import List, Optional, Tuple, Type, Union
+from typing import List, Optional, Tuple, Union
 
 import pandas as pd
 
@@ -21,7 +21,6 @@ from camply.providers import (
     RecreationDotGovTicket,
     RecreationDotGovTimedEntry,
 )
-from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
 
@@ -36,14 +35,6 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
     accepted_equipment: Optional[
         List[str]
     ] = EquipmentOptions.__all_accepted_equipment__
-
-    @property
-    @abstractmethod
-    def provider_class(self) -> Type[RecreationDotGovBase]:
-        """
-        Attach a corresponding provider Implementation
-        """
-        pass
 
     def __init__(
         self,
@@ -91,15 +82,14 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
             When offline search is set to True, this is the name of the file to be saved/loaded.
             When not specified, the filename will default to `camply_campsites.json`
         """
-        self.campsite_finder: RecreationDotGov
         super(SearchRecreationDotGovBase, self).__init__(
-            provider=self.provider_class(),
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
             offline_search=offline_search,
             offline_search_path=offline_search_path,
         )
+        self.campsite_finder: RecreationDotGov
         self._recreation_area_id = make_list(recreation_area)
         self._campground_object = campgrounds
         self.weekends_only = weekends_only
