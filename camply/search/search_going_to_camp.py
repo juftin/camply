@@ -1,6 +1,7 @@
 """
 Going To Camp API search utilities
 """
+
 import logging
 import sys
 from datetime import datetime, time
@@ -24,6 +25,8 @@ class SearchGoingToCamp(BaseCampingSearch):
     """
     Searches on GoingToCamp.com for Campsites
     """
+
+    provider_class = GoingToCampProvider
 
     @classmethod
     def find_recreation_areas(

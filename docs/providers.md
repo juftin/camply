@@ -80,9 +80,8 @@ areas:
 
 ![](_static/recreation_dot_gov_logo.png){: .center}
 
-Apart from reservations for campsites, Recreation.gov also supports reserving tickets & tours
-
--   there are thousands of tickets and tours options available around the USA.
+Apart from reservations for campsites, Recreation.gov also supports reserving tickets & tours there are thousands of
+tickets and tours options available around the USA.
 
 [Search for Tickets, Tours, & Timed-Entry Online](https://www.recreation.gov/search?inventory_type=tours)
 

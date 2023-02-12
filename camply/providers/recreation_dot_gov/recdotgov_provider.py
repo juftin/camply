@@ -8,21 +8,17 @@ from abc import ABC, abstractmethod
 from base64 import b64decode
 from datetime import datetime
 from json import loads
-from random import choice
 from typing import Any, Dict, List, Optional, Tuple, Type, Union
 from urllib import parse
 
 import pandas as pd
+import ratelimit
 import requests
 import tenacity
+from fake_useragent import UserAgent
 from pydantic import ValidationError
 
-from camply.config import (
-    STANDARD_HEADERS,
-    USER_AGENTS,
-    RecreationBookingConfig,
-    RIDBConfig,
-)
+from camply.config import STANDARD_HEADERS, RecreationBookingConfig, RIDBConfig
 from camply.containers import CampgroundFacility, RecreationArea
 from camply.containers.api_responses import (
     CampsiteResponse,
@@ -50,6 +46,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
         """
         Initialize with Search Dates
         """
+        super().__init__()
         if api_key is None:
             _api_key = RIDBConfig.API_KEY
             if isinstance(_api_key, bytes):
@@ -60,6 +57,8 @@ class RecreationDotGovBase(BaseProvider, ABC):
             "accept": "application/json",
             "apikey": _api_key,
         }
+        _user_agent = UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+        self._user_agent = {"User-Agent": _user_agent}
 
     @property
     @abstractmethod
@@ -377,9 +376,9 @@ class RecreationDotGovBase(BaseProvider, ABC):
         Union[dict, list]
         """
         api_endpoint = self._ridb_get_endpoint(path=path)
-        headers = self._ridb_api_headers.copy()
-        headers.update(choice(USER_AGENTS))
-        response = requests.get(
+        headers = self.headers.copy()
+        headers.update(self._ridb_api_headers)
+        response = self.session.get(
             url=api_endpoint, headers=headers, params=params, timeout=30
         )
         if response.ok is False:
@@ -564,6 +563,8 @@ class RecreationDotGovBase(BaseProvider, ABC):
         return endpoint_url
 
     @classmethod
+    @ratelimit.sleep_and_retry
+    @ratelimit.limits(calls=3, period=1)
     def make_recdotgov_request(
         cls,
         url: str,
@@ -585,8 +586,11 @@ class RecreationDotGovBase(BaseProvider, ABC):
         requests.Response
         """
         # BUILD THE HEADERS EXPECTED FROM THE API
+        user_agent = {
+            "User-Agent": UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+        }
         headers = STANDARD_HEADERS.copy()
-        headers.update(choice(USER_AGENTS))
+        headers.update(user_agent)
         headers.update(RecreationBookingConfig.API_REFERRERS)
         response = requests.request(
             method=method, url=url, headers=headers, params=params, timeout=30, **kwargs
