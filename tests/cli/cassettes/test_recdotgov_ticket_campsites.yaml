@@ -1,13 +1,10 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 5.0; rv:21.0) Gecko/20100101 Firefox/21.0
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.0 (KHTML, like Gecko)
+                    Chrome/4.0.206.0 Safari/532.0
               accept:
                   - application/json
               apikey:
@@ -16,49 +13,56 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/facilities/253731?full=True
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA8RXaY/bOBL9K4Q+ZDqAD1mXD/Rk12s7E2/6QtuZINgeNGiJsrgtiRqSsscI5r/v
-                  IyWn7WQ6s7tYYBsNH6xiHa+qnsqfnelsvfx5uf7kTP7xS8eZTa/vVsv1ovm2+Hlxs24/lnSTs8SZ
-                  aFmzjvN2Olte4dZ0Pr9frFbQ+exMk0QypWaiLrU8zETCnInzYTV1OkfRSlPNWsG7Jc5nXB/w+Zo+
-                  0T0VOHhLY57jsL2wnEPquUHgBt7gW/H6UBlTc5bSOtcn8uZe6A/901srLRnT7d0BNO5uyd/Eb8SP
-                  xi9pedB6SeY3siuq9IcqQWbJHC824MGo60ZdL4L4TihN8zbpcTSMRs7vv5xmQqdxDGuQ3px4mjMV
-                  S15pLkpILjPvze2OyR1n+8llH9/e0ZwBtZySG2qUaE7uqHwiXJFMFIxoQa5pzX/AV77NmNKkgn6P
-                  3HPFyy0ZuB3X88mF33HdkBSvSYq8CN2IHSOKUZKzHcs75NlLwWipyIOTiVoxIlKiM2jW5YNDaJkY
-                  t/uMSUYSVvCtSKxzklOlBEuOuh2icrE37rlWpIKQbiEQCE1UOSMZTUghYETzJoNEHsgTrSi5iHOh
-                  s9fW1VaKPUmFSHpkDbuJkAUtNdmJPKal+MEEGUsUQiI0hEVjXdM8PxBKdnhnBxJTuUNQmwNhUihg
-                  17us3qzqUnJkRnUbbVFwbfJ8hiCjimwYK40loKiFhLaWcAAbBLDGzN7N4ZwMRq5rMSnJihY1y8ks
-                  ZwUDhnspNJsgyqUme5hs3G1y5IwqqYrFmsZAY0lQA0n2XJdoD5Z0bPZL6PPyyd4qGNA6mCAR6p7n
-                  OZGsoLw0dzJICc339KB6D85lv3qDJA1eFboEIK2aBOdcacljjcS2HMEh/SFawm364cLrDPzAtAd8
-                  MPSEbTUbh2Q0RlsdG6lRRzeFppt6xJamAbFtwef7nRal+MmYzSHTTW6s3HEpSqCEiSGVyPO60TfC
-                  5FDSgsdkzyiuS+ShUWOEXNAnZgCgJeEJw0WjXYmqzim04Ma2kpmcBuqnQ6+FY15bkTlt9TF4JibV
-                  NoO5ZNr1vCmMfVSLY+AtmtA4nZTzeSzRrJL9WnMwBj4ozLCVK7SwJAZEsmMZNwVH2kwad7otE4qS
-                  mnE4hnPhT1AZ2it6Juzh8ctrm89DeWlf0KeSpT9iUrWuJv3+fr/vSRajXsZtbyt2/QK2mYanXiL+
-                  kpr50a8AZ/Zqg5pcobtebYUWP/YRrqhlzPqxKG2fq34pleib3qHy8PiWMfU4CMJg7PYyXeQYOMly
-                  uC5FiuKJ/YPzptU1qBp10n0RqbYjj4N4f4LVZZ+a1JDlKUMCUjt6hjpNu33d0mfDe+4LTAFw2yZO
-                  SCpFQd7TrM5BWjtOyb2oMcP+0ODsD9u3EbmYWWKBmCZo8rnkO1uvlq5OeuTCzMVxjL50/mvrafLF
-                  FejJ64Ug7FqqDvlIOaI1h/7x6IpmmOfm7KhoaQ8AJfDeUCU4xM5AiRhoHJvnL2G/GSJBbhmjuwNB
-                  +dIU02N6V2nGqg5IokxM9BLJwOgn2DaErYnvkoKXAEAZCJM2Scsv1k8zU2ALjNuXXsWQptqOpVLH
-                  Hmamawwr4gnYEMe37OKDp3BPnVNM75w/nqmH/zHjNCZAO1PLeGbQTPqGTVk7rEjxpHokBvUrg1wm
-                  RW3YqUxoucUTLDGZJjlPzfNowxF5D1y9sobeAwNFPrZy8OpJOy7AvDk6MUPLPcaiKJiMOc0f8XDC
-                  U07+tayUGb4/XVKukKiuzbbgub2hOx56nnciFeW2FXcHYdQbRIH5e1a4ptWH+6vzreWGFnbj+s8H
-                  78TIXSZKY2Xkjrrh0OvCq38iPrn1jX+zpp3vM2seg4HIUeFE94Ni4IlzbYh/Wtz+fXV740w+O7Pb
-                  2/v58ma6Xpi18wyFZ8SwYa0/3S3MjicwF87vHec9O+yFTFS7tS1v3tut9dzVO+yhnBO7qDaNMhMY
-                  kyMYi1J/U7jmzNCmPR/442Qz9vyQjkJvNPIYHbPAo6kfeEE83Gy+3GiX1xMMjI329NY843C05jpn
-                  fx5XA3nL+JnVtUyfCJP6d5NcY+65Kv695OIoiCIaDjyXRqEX0DAOR6MoDoNkHKdJ6v8PknuO5yyp
-                  rWjTwmjZBfqP1m5v0HXHXc+EccW2ND6cjdogGI4DF7LrxXw5tcWfYd5BDS8PB7S/xu4lvUWxYUm7
-                  538XzWv4pFYw9KNgk0ZedzQKgy7ag3VHjIZdYOlGw403ckPvO5C+Y2Z3ciZ+5HacpfrJrLcSv6dS
-                  mitmTu4kMyvM2Qk3j+PjzzgbSmt4WYCnYHVVb3RbmLMa/Tfk8VxChRrGSfn1KlKZxTfu4xfTuO/i
-                  3+/jgxf0G8ge44gNkyDagG08vxskQdzdjAeb7ngwMCMWJWHg9v5ZbeHqI0905kxwYBr+/1xYFvkD
-                  Px273XDM/gUAAP//5JlLbtswEIb3PUUOUILiS6SyEwKhsIHKgeJuuglIkbIFBHUgGUG66KJ368E6
-                  FCm4tpM6ryJOs/SQNsn5Zsz5hw5xk2mktcmQcZnI0ozLphEPACuoOAA2YPyDa5zybLCPg6cwSTAj
-                  mDLMshFeypyprYKjW0IQT4VDurEGacMzodK0pjW9lMkOQDAcAUAqFFUse0LybYjcm3svxeiFkq/1
-                  a/dYSsr5MSbTwIKT98YiPcBiz+nP8e7fbu7/0rvqeCP9KVf+m2YhD7C4WOouKM0CVG3XOtCUH0+m
-                  q95dL0+mIG76f4zFKQtgLBIaykvOEyhAGsKRopaqGmp83tQPYcYfX6a91nUOtRilmKRDORauc+lU
-                  prTWKDUaCjJRQy3GmERCsCTlThtJ7CXhuwWZtxxNaiXvLbXEfmqBdppVn/Jy8jWfT7ykBh104A1j
-                  1i1yY+D8sZNQnl8Ea9BVVMVPft2wyaHb0TbBPvWKzrZDsy66Z9B6YXT8zW1H+LeOOs4Ai/u2HtV1
-                  sI38nHUdfClfwJ/C9zAEO4gvNBv56Lugmw5MmDR3t2uPZfBIt9jSinnJR7V4XlSfJ/OinFd5eRYf
-                  xsKOth0QbJWrc0ASYk4KH4pVcZZXRRCcdw0H006T5tfPvaivYjvWK+nNya5Wtb5arvr1KUuSBOvr
-                  Ft8QDIEB29E9HhbxJ4yxZHz8hZAGBqDsId5ibM6+VP50Pz78BgAA//8DAK16m+oVHAAA
+              string:
+                  "{\"ACTIVITY\":[],\"CAMPSITE\":[],\"EVENT\":[],\"Enabled\":true,\"FACILITYADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"HI\",\"City\":\"Makawao\",\"FacilityAddressID\":\"20440421\",\"FacilityAddressType\":\"Default\",\"FacilityID\":\"253731\",\"FacilityStreetAddress1\":\"PO
+                  Box 369\",\"FacilityStreetAddress2\":\"\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2018-06-26\",\"PostalCode\":\"96768\"}],\"FacilityAdaAccess\":\"N\",\"FacilityDescription\":\"<h2>Overview:</h2>Haleakala
+                  National Park is home to Maui's highest peak. Rising 10,023 (3,005 m) feet
+                  above sea level, Haleakala means \\\"house of the sun\\\" and is where demigod
+                  Maui lassoed the sun, slowing its passage so people had more time to dry kapa
+                  (cloth) and grow food. The dormant volcano's \\\"crater\\\" is actually a
+                  valley carved by erosion.<p>Sunrise at the summit of Haleakala has been a
+                  visitor attraction since the late 1800s when Samuel Clemens wrote: \\\"It
+                  was the sublimest spectacle I ever witnessed, and I think the memory of it
+                  will remain with me always.\\\"</p><p>The park's Summit District begins at
+                  7,000 feet (2,134 m) of elevation and reaches 10,023 feet (3,055 m).  The
+                  summit's high elevation, the lack of light, and environmental pollution, and
+                  dynamic weather patterns make it an ideal and popular place to view the sky.</p><p>Due
+                  to the popularity of sunrise viewing at the summit and limited parking, Haleakala
+                  National Park now requires reservations for each vehicle entering the park
+                  before sunrise (3:00 a.m. to 7:00 a.m.).</p>\\n<p>\\n<a href=\\\"http://www.recreation.gov/marketing.do?format&path&backLink&goto=/resource/contracts/nrso/Summary_Fees_145490.html\\\"
+                  rel=\\\"nofollow\\\">Summary of Fees - Haleakala National Park Summit Sunrise
+                  Reservations</a>\\n</p>\",\"FacilityDirections\":\"The Summit District of
+                  Haleakala National Park can be reached from Kahului via Route 37 to 377 to
+                  378 (Crater Road). Driving time to the summit (10,000 feet elevation) from:
+                  Kahului is 2.5 hours, Wailea is 3 hours, Lahaina is 3.5 hours. These drive
+                  times take into account expected heavy traffic and steep, winding roads. Your
+                  last 30 minutes of driving will take place inside the park, after passing
+                  the entrance station at 7,000 feet (2,133 meters) of elevation. The summit's
+                  elevation is 10,023 feet (3,055 meters).  Always respect speed limits. Crater
+                  Road crosses through endangered wildlife habitat. \\\"Speed Kills Wildlife.\\\"\",\"FacilityEmail\":\"hale_commercial_manager@nps.gov\",\"FacilityID\":\"253731\",\"FacilityLatitude\":20.7097222,\"FacilityLongitude\":-156.1644444,\"FacilityMapURL\":\"\",\"FacilityName\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"FacilityPhone\":\"808-572-4443\",\"FacilityReservationURL\":\"\",\"FacilityTypeDescription\":\"Ticket
+                  Facility\",\"FacilityUseFeeDescription\":\"\",\"GEOJSON\":{\"COORDINATES\":[-156.1644444,20.7097222],\"TYPE\":\"Point\"},\"Keywords\":\"\",\"LINK\":[{\"Description\":\"Hawaii
+                  State Road Conditions\",\"EntityID\":\"253731\",\"EntityLinkID\":\"139db9235a852882ea9e42af3424c7bb\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Hawaii
+                  State Road Conditions\",\"URL\":\"http://hawaii.gov/dot\"},{\"Description\":\"Hawaii
+                  State Tourism\",\"EntityID\":\"253731\",\"EntityLinkID\":\"c6466a5120a6524a5c5886c54d9cfdf3\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Hawaii
+                  State Tourism\",\"URL\":\"http://gohawaii.com\"}],\"LastUpdatedDate\":\"2021-09-23\",\"LegacyFacilityID\":\"147940\",\"MEDIA\":[{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582841\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77246.jpg\",\"Width\":540},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582842\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77247.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582843\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77248.jpg\",\"Width\":540},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"7364bf62-8854-4c7e-8ea5-cfd067b28052\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/2019/09/03/19/24/253731_c6e7d46b-4423-4d4c-b91b-91192356d540.jpg\",\"Width\":540},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582839\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77244.jpg\",\"Width\":540},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582840\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77245.jpg\",\"Width\":540},{\"Credits\":\"Share
+                  the Experience, Joseph James\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2e8d828d-5a09-440b-9f14-82d28c8824fc\",\"EntityType\":\"Facility\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/22/16/19/253731_7e898aaa-6bab-45cc-b337-553064eab71d_1440.jpg\",\"Width\":1440},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"e6313f90-59ee-4b9a-aab9-be9596947ff5\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":false,\"IsPreview\":true,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park\",\"URL\":\"https://cdn.recreation.gov/public/2018/10/31/23/39/253731_63ebcd8a-ad11-465e-afdb-ab495866c2c2_700.jpg\",\"Width\":700}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"NPS\",\"OrgID\":\"128\",\"OrgImageURL\":\"nps.gif\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"National
+                  Park Service\",\"OrgParentID\":\"139\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.nps.gov\",\"OrgURLText\":\"\"}],\"OrgFacilityID\":\"AN447940\",\"PERMITENTRANCE\":[],\"ParentOrgID\":\"128\",\"ParentRecAreaID\":\"2751\",\"RECAREA\":[{\"RecAreaID\":\"2751\",\"RecAreaName\":\"Haleakal\u0101
+                  National Park\",\"ResourceLink\":\"http://localhost:3000/api/v1/recareas/2751\"}],\"Reservable\":true,\"StayLimit\":\"\",\"TOUR\":[]}\n"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -66,33 +70,31 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "7189"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 25 Jan 2023 02:42:06 GMT
+                  - Sun, 12 Feb 2023 07:23:47 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
-              Transfer-Encoding:
-                  - chunked
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 f3ddfa13c95148b404ddbc8398e73286.cloudfront.net (CloudFront)
+                  - 1.1 599b9600e4966f19b30202be0b0d649e.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - xF2KT97jKk0ccTuhNyylAj0NzLG26Iw4bGsaqBN_O6ESgHn1rKFdmg==
+                  - 5MxdtsTGog8fLKZxEc4l5QTl9uoeMC1szlV6WR3aWFL0DdHlFNQP7Q==
               X-Amz-Cf-Pop:
-                  - DEN52-P3
+                  - DEN52-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -109,29 +111,30 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.17 Safari/537.36
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/528.8 (KHTML,
+                    like Gecko) Chrome/2.0.156.1 Safari/528.8
           method: GET
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A253731&fq=entity_type%3Atour&size=1000&start=0
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+xV246bSBD9lRIvOyNhzGUwY7+tNg+RspcoGSnaTVao3DTQOw2NuhvPTqL8e05j
-                  HCfKfsJaSIaqouqcU9XFp8hKN2vvosP7TxF3nZUde1kLqXUtzEla7mR0yJJ9ts/yrNxVd3mZV+ku
-                  jvjsrC17NXbR4S4pqzS/393HkeBhcgpp/PMka9PWs0OS99HI0d9x1EgnrJq8MmN0iP44OmlPkt7O
-                  o1VOUmvNQC9ZS35kzTAPg/KkHDFNZpo1W2Lh1Un5Z+LBjB2dFGoZ68gb+o1nldBrto/AROzJ9/I/
-                  s2mFG9kk9NDjCSIABAdIJEc34xlv4vVnM9OT0pp60A0Q1sxuYiFDfjNKMu1SpjWzJbfSOCn5FAK1
-                  EUtadwHjFghJBB2UlWLxQYaHXl7QvVDOWyV8yHuF/vuShvVCjgSPdJTAzaKXzVm0V9zPelYozfTG
-                  zF5SUQVNimr9u6ebX9AtaeHm5jahFxY6AqRXgwwhV3x0k6VxmqbUSulJankW53apdPhaCtLlSUk9
-                  mLuY3rEC2mAsLqZfuWc1nm2XwKA59KYG1eVSG2LzoyQ1AgMLYeYRNf+doA649ZJPz+Qtt60SxGND
-                  zks5xejL2AT0FmSQ9M8gv2bnqUhpUCMEcEHCZiW5tHGpM+nQPDU61ciFc+hqTNwGaSZ2btEEdjmi
-                  7IhY58+zgR5WV1lu8jgrChok3nO3odZXoRaOq5Y/uas9CBGUzYs1RRGnZXlJkRD9rJ/4eRnIQB9z
-                  JiHBMqyg+E33SFjj3DKm1sxdD6wNj520CAfTRqtWYmiPCsgT+hC9XRK9ggaO3q3+5EOEMQRJnKVa
-                  NZjCvCyvlnB4YfPQFcbO1Br9qhtAgBUiZJvlekjTw3L9hajeD7r+/4CfD/hF0nqVUCPQz02QL0+T
-                  Kt1XeZ6n519wg+vFv8GqTbLdXfidAzJEjDwE57d0z2A2K/EQMw9HacPSPS9mLJe8Kos4MrY7NznL
-                  7xEHoujzpe1FVWRX4w91vl8+q8iX4m+u2rprjnV6WhZKo5XBYWUQrVZD+GzMVsPdez+5w3YrmjHB
-                  NsQ+W05PZ07baT5qJbZ5mu23abHNq21WbLN8GwTdY5izcp9vynQnNndNmm6Ox3uxYRbVXshW8G5X
-                  V2ma/DN1qLx2/6iByNtZxlHYOvVH9BYYXgMiVsv2pRmNxlrDCyt40Mak0ENo32d8uZz6GD6GuJnw
-                  fYS4Nc/eCGPtsqqiQ8vaITvWhfXhkIRUxjOYZp+/AAAA//8DACqk4G5rBwAA
+                  H4sIAAAAAAAAA+xVXa+bRhD9KyNeeq+EMR/GvvZb1TxESj+i5EpRm1RovCywvQuLdhenN1H+e84C
+                  jlO1P6EWkmFmmDnnzOzwObLSTdq76PT+c8Rta2XLXlZCal0Jc5GWWxmdsuSYZ0W5y8os2+32eXGI
+                  I16clWWvhjY67ZJyvy/TfB9HgvvRKaTxz6OsTFNNDkneRwNHf8ZRLZ2wavTKDNEp+u3spL1IejsN
+                  VjlJjTU9vWQt+Yk1w9z3ypNyxDSacdJsiYVXF+WfiXsztHRRqGWsI2/oF55UQq/ZPgETsSffyf/M
+                  phVuZJ3QY4cniAAQHCCRHNyEZ7yJ15/NRB+V1tSBboCwZnYjCxnym0GSaeYyjZksuZXGRcmPIVAb
+                  Mad1VzBuhpBE0EFZKWYfZHjs5BXdC+W8VcKHvDfov85pWM/kSPBAZwncLDpZL6K94m7Sk0Jppjdm
+                  8pKKQ9CkOKx/D3T3E7olLdxc3yf0wkJHgPSqlyHkho/usjRO05QaKT1JLRdx7udKp2+lIF2elNSB
+                  uYvpHSugDcbiavqZO1bDYrsGBs2hN9WoLufaEJufJKkBGFgIMw2o+fcIdcCtk3x5Jm+5aZQgHmpy
+                  XsoxRl+GOqC3IIOkvwf5NTtPRUq9GiCACxLWK8m5jXOdUYfmqcGpWs6cQ1dj4iZIM7JzsyawywFl
+                  B8Q6v8wGeni4yXKXx1lRUC/xnrsPtb4JNXNctfzB3exBiKBsXqwpijgty2uKhOhH/ZGf54EM9DFn
+                  EhLMwwqK33WPhDXOzWNqzdR2wFrz0EqLcDCttWokhvasgDyhD9HbOdEraODo3epPPkQYQ5DEWapU
+                  jSnMy/JmCYcXNg9dYWxNpdGvqgYEWCFCtpmvxzQ9zdcfiOp8r6v/D/hywK+SVquEGoF+qoN8eZoc
+                  0uMhz/N0+QU3uF79m6zcJ9l+F35LQIaIgfvg/J7uAmazEg8xU3+WNizdZTFjueQPuzyOjG2XJmf5
+                  A+JAFH2+tr04FNnN+K86/1w+q8jX4m9u2rpbjnV6GhZKo5XBYWUQrVJ9+GxMVsPdeT+603Yr6iHB
+                  NsQ+m09Pay7bcTprJbZ5mh23abHND9us2Gb5Ngh6xDBn5THflOlebHZ1mm7O5wexYRaHo5CN4P2+
+                  OqRp8tfYovLa/bMGIm8nGUdh61Sf0FtgeA2IWC3bl2YwGmsNL6zgQRuTQo+hfV/w5XLqU/gY4mbE
+                  9xHiVjx5I4y186qKTg1rh+xYF9aHQxJSGc9gmn35CgAA//8DAFj8qSBrBwAA
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -144,7 +147,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 25 Jan 2023 02:42:06 GMT
+                  - Sun, 12 Feb 2023 07:23:47 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -154,18 +157,18 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 8a50fe9452625079391cf0ce7a3e0c56.cloudfront.net (CloudFront)
+                  - 1.1 b7bda6e7794db75fcc11fe5733aa7ccc.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - 7uvXNVehmI45ciuA-5hq0xAJ1wacMP6KzJ07dlU00U5g3JK96ZQ9KQ==
+                  - abeLgK19-M8PaEYm2hMTRFgA8vo4FGj8L9a-vuYpNhG5ZMHNXTs2iA==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -182,28 +185,31 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36 Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10
+                  - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.0 (KHTML, like Gecko)
+                    Chrome/3.0.198.1 Safari/532.0
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/253731/monthlyAvailabilitySummaryView?inventoryBucket=FIT&month=06&year=2023
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+zS3WqDMBQH8HfJtUL8iBZfYN397kPU0zU0mmISnZS++2Jb0o7RhYIXDgQRPEmO
-                  J39+J7RjFRdcj5T1jAtWXj+UaRrWjbTnMNBypEJWTNCaaUDFCcU4TkKchTiavn4cFNCDQAXavr9t
-                  UXDvzmtbjEmSJ5EtP7Z77BagDhR0PdS0kqbVqMABUtUeaiPutYjYqpam+3vmy47pv3ZgQnyTllIe
-                  ePtJB97WclCoaI0QTy+wZ4q2UtMRNO1AAFNg13Vn4Lp2vQYrhb3gjgl1Kw9MHKg5utrzHFr4cp2p
-                  5g0ozZqj25WGOP7AeYGxfcJoek+Hfk10iepxGPxqxLd7E9veTY/P53NwnzeeVUG8KnA5+BUki1GQ
-                  zKogWRW4HPwK0sUoSGdVkK4KXA5+BWQxCrzZvqSArApcDn4F2WIUZLMqyFYFLge/gnwxCvJZFeSr
-                  ApeDX8FmMQo2syrY/B8F3wAAAP//7NgxSkMBGMPx3WO82cJLHoqvt3EQuqhQXBx699Kl3yRxiJgh
-                  NwjhP/3+tIKXX1Wwx1SwWyvYW8H9B1kB1pQKsDorwNoK7j/oChBTgdUOUTucH3QFMXYIqx2idjg/
-                  6Api7BBWO0TtcH7QFcTYIax2iNrh/KAriLFDWO0QtcP5QVcQY4ew2iFqh/ODriDGDmG1Q9QO5wdd
-                  QYwdwmqHqB3OD7qCGDuE1Q5RO5wfZAWMsUNa7ZC1w/lBVxBjh7TaIWuH84OuIMYOabVD1g7nB11B
-                  jB3SaoesHc4PuoIYO6TVDlk7nB90BTF2SKsdsnY4P+gKYuyQVjtk7XB+0BXE2CGtdsja4fygK4ix
-                  Q1rtkLXD+UFXEGOHtNoha4fzg6xgi7HDzWqHW+1wfhAVPB3Wf7bDy4/fvH9+fJ2W4/Pj8v32el6O
-                  t8WXhysAAAD//wMAoicUphg9AAA=
+                  H4sIAAAAAAAAA+yYTWvjMBBA7/szdE5AM46T1H+g3fvehZKoG1PFLv5INpT893WaImVZukNhYOcw
+                  EAKWbXn0eKf3Zp79to71cHb+6OvoN7eLfjwcfHd2xzqc3ObsYrv10e38EEz1ZtBiMbfLuYXr1R8v
+                  xnAM0VTm6fvjk5nl3evdtIhlsSpgWr7f7n63melCH7pj2LltOzaDqezM9Nt92I0xr0E5rQ7t2P17
+                  5vcnrt+dBi5LatJN277UzU93qptde+pN1YwxfnqAve9d0w7uHAbXhRh8H6b7QzeG273bMfwmTgd8
+                  9rH/WD75+OLG17T2OYcm/Eo7u6E+hH7wh9f01GJu8YddVdZOvzlc/68v/TXRO6r7YexXEX+cu5y2
+                  T9Pby+Uyy/MiqwWoFiQOtAWFGAsKVgsKtSBxoC1YiLFgwWrBQi1IHGgLSjEWkGy/ZEGpFiQOtAVL
+                  MRYsWS1YqgWJA23BSowFK1YLVmpB4kBbsBZjwZrVgrVakDjQFjyIseCB1YIHtSBxIC0AK8UCsJwW
+                  gFULEgfaAhBjAWs7BG2HmQNtgZh2CKztELQdZg60BWLaIbC2Q9B2mDnQFohph8DaDkHbYeZAWyCm
+                  HQJrOwRth5kDbYGYdgis7RC0HWYOtAVi2iGwtkPQdpg50BaIaYfA2g5B22HmQFsgph0CazsEbYeZ
+                  A2kBimmHyNoOUdth5kBbIKYdIms7RG2HmQNtgZh2iKztELUdZg60BWLaIbK2Q9R2mDnQFohph8ja
+                  DlHbYeZAWyCmHSJrO0Rth5kDbYGYdois7RC1HWYOtAVi2iGytkPUdpg50BaIaYfI2g5R22HmQFsg
+                  ph0iaztEbYeZA2lBIaYdFqztsNB2mDkQFpRz+5/b4eVTNoe2GfamWs7MOfjOVNeJL99+AwAA//8D
+                  AKInFKYYPQAA
           headers:
               Access-Control-Allow-Origin:
                   - "*"
+              Age:
+                  - "57"
               Alt-Svc:
                   - h3=":443"; ma=86400
               Connection:
@@ -213,7 +219,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 25 Jan 2023 02:42:07 GMT
+                  - Sun, 12 Feb 2023 07:22:50 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -223,13 +229,13 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 cf7db6af8b8a86ebeb9fc938221e81da.cloudfront.net (CloudFront)
+                  - 1.1 9d675d07795fdde7b262b37b43b204cc.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - VOPnibsjJsDa2wrIqHmBsCAkuQrP0ceZzVPaMGkoPIM2sXlilg7UUQ==
+                  - 9QqbM-eugdR4gGU2lfGqLMZq2Gjbbu9QUB3lD2KnGIPEDVdRmk4mxA==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
-                  - Miss from cloudfront
+                  - Hit from cloudfront
           status:
               code: 200
               message: OK

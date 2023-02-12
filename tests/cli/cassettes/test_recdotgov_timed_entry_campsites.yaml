@@ -1,13 +1,10 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (X11; OpenBSD amd64; rv:28.0) Gecko/20100101 Firefox/28.0
+                  - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/534.30 (KHTML,
+                    like Gecko) Chrome/12.0.742.100 Safari/534.30
               accept:
                   - application/json
               apikey:
@@ -16,45 +13,41 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/facilities/10089508?full=True
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA7RXbW/bNhD+K5y+bAMsW5T1mm+u7axe84bYaVEMRUGKJ1sLLQoUZdcout++o+TU
-                  doKgWYZ+Sey74/Huee6F/uqMxovZ+9nio3P216eeMx5d3sxni2n3bfp+erXYfywZlyCcM6Mb6Dnn
-                  o/HsAk+NJpPb6XyONl+dkRAa6nqsmtLo3VgJcM6cu/nI6T2o5oYZ2Cuub1E+LswOP8+bUhcb0Cg5
-                  Z1khUbo/MZugGmJIOMTCpUkauUHuRW4KXuDmTOSRR5M4iPOnRxe7yt4zgZw10hzpW5/U85I09JIj
-                  +dxoALM/TdGmkiyDlZLiJLITMx/NntMNO90Fq81dJTBzMcE/KPQ933cxCX+I6htVGyb3oKRx7MXO
-                  t0/HybBRlqG304smUGe6qEyhSlRcsA0jtxZBMmYb6JGKaUNUTswKyBVsOWi9I1fMmjNJ3iuZsbLI
-                  yKUqmzWUpoe2Oeia1CBzd9kUAgSBL5VUuj1jXTGyLiS4UpVLIu19puHQJ+dKr9E4Dnue55EdMPTC
-                  loqIRhdoyYjQbI1OMgK6qR6cfY+pC0X1yKMUyJbVRJXwkERe6Noc7q2JUYQDEUWdKTyDERQludaw
-                  RP+sxG91e8xGC3gwU6UpykY1NcmsdzS26trWY5/MDDHsHp2yqtLqS4HxgtwRSlaq0fYm0/7HA4hV
-                  oaHz8ds/ft9vQamJxpoXBgn5Hb2VhSkQZdbSRgQyBaWo7WWYhHXHMJ41L8rv2OaSGcIV02LL5H2v
-                  zaApYQMlsQILZN3oHKux7pMLldlaIiVi3QaVYT1YL2/wmh65vj1g2UGJWDBSqaqR9gCmUiAiGJZ5
-                  iMBex0okPAMpMUWELes0uequWEIJGnOqGi6Ryg58LBBVYyD4DQHBIPvHBYo4ZdaHLdxzrdaH8IzG
-                  qCSpVWNWyDF5WyxXW7YjaWxdTb8UhtCQDsbKGFVulRLkVvTJotElkZAbwnKDVQJo11YYBo+sZWAj
-                  WSERyxVihy1bMUQ/V1KqbQtgsSxb9B9VWv8AEseIkHVLKRFq29WIVkzYKHe2Buz9x1lO16yQp535
-                  3HS5QERNY7vcOxJifT6VXrLq7vbi1O0VW8PTTieLwnbfLdSgNx1liyK7B1MfHb1ZYSOdejs68OQm
-                  OzdPx0t3ydRO9SO7uxrO4ZElqv+YXv85v75yzr464+vr28nsarSY4oIoGyl7zuLjzdTafes572C3
-                  VVrsB9vF7Opdt2l+MC8vYMmy3QnaKL2cTmajdguNcRgUpm5Xz/kcVacRzm0X2mqzbb3qWhmNpmsO
-                  Yj+E7Vfs86dUdtJL9M86lR/TDHzq0iwN3WAYcNxLInDBZ0FKvSzOYu/7sf06eggc5W8BC984Z1E4
-                  7Dmz+g+GzYcI7zfsrL7RsClg65zlTNZ7Cc4ma7KXtKHsHc/WbGkzmTccr5P7RBb7j8+k3ZG/Mqaq
-                  zwaDTJR97FoNbWH0l2oz6Bp+YBkYeNFg6A08b0DTwQMqn72cMz/FZRwyRt0g8iOX0Yy7IeU8T+M0
-                  8kX4Ofa8/t/VEi/8UAizcs5Q8K33Q67eKIWjWwLuKtvA5jCt7FTcZ9POYhxampUZ9F9NpfApYxG4
-                  dMgTTCMJXOaHkUtZwhMhOE/BfwGV6TD46VR+OOQ+/l8shgcWY86ziIehG/s0sS+s1E1jEblelid+
-                  7jHUp69l8QNIXHdA5uawUw7xETume3YZ4Laz+9HSKy2aaFTiy6h+LaWRl/KYxsz1hmHm4hMxdtMw
-                  yd04EAEd5lESJ8kLKI2Hyc+n9BSi11MaHCjFOmY8E7kbBrHvBjSnLqd+7ibgJz6lw5BHr27Mt8U9
-                  6F/tA80Ok0ITW4+cZfcEN+hr+UpEgkoMMwypfeVz4bI8AGzGWCQx40PKxQv4Sig94euInmcJ6zh9
-                  OV8/yv+/sucPBz5tCXxgL2VekCZ+4Io09XC1wNBNhzEOpSFNk0TQOIyizzQIHtFnJU/5I+8w85LM
-                  K9DyCZcTfBrbpxy+1jAZfAa1zWcH7nYF7bOHbIq6ML8QMlf2BZmtmF7CvkmxXzf4BLK/De1Asi1r
-                  UUH718/iHFgSx2HgJgn+5gsYBZdFCZZEGIs8ZwGngr+gEEI//EEhHFr5tY07bX8jWbAePcyOiuBf
-                  AAAA///MWE1P4zAQve+v4A+kTWLHjrlFpUJFbFuFwgGJg79Co12gSsJ2e9j/vs+xIaKw0m6klbhU
-                  yjipPW/GM+/NPyYBGZIgYTl6kKqihDIS0Tg2qGBcR5XNTUWh2DKhx17hGYix3Dn6rp+apjYoyjvZ
-                  bY8owmtjHRtLCXNsGCgSZ4hgKlJQpCyPYmuUZJTkhvFP0lcHRGYBkfF1mA9BNFoydBobpQI/lDO0
-                  VsHiiHFrhc1zrfTo1npjtzX40claNk4kjg0SSo1SnHBwOCJwzRAuoUB+qEiTLNUZeBH9m8rL/n+n
-                  fO/xyAglQ4RQYITUCsSVgLhShhaUZyCz3JqkolrwuCJ/qrXQK6vyvFgubovNwqkeKJCPBAxYlRMw
-                  DJ+vmvtCKWASJF0fVxh9lEgSnhwM3reqDRvDfOHUu6l7ZR0A64dqfjX84/XVWeEGM27ycQWdV+uw
-                  DtRwof1GjHjbSzyt6RV+AamvD34J24dRVkAYAO/3+wkOVFkzeW5fX9vYn10v6+56y7E6W8/Lr4vN
-                  fLkpi+UszBb9Wd767W2l1QUC6O0USYiVcj4ryrlXeB+ue1sAwN2S7XNn22Hm5eHo3wTXbLS9rB+/
-                  DW65icf37VPbnZIY6SF39fRHMkUm4USynfptnHdBOSuXjT7Bgf/hsn6ou5Cpq+vSefjry28AAAD/
-                  /wMApdG1zlwVAAA=
+              string:
+                  '{"ACTIVITY":[],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[{"AddressCountryCode":"USA","AddressStateCode":"OR","City":"Sunriver","FacilityAddressID":"e7e8be7d-1896-4f06-9e04-fadf6018747f","FacilityAddressType":"Default","FacilityID":"10089508","FacilityStreetAddress1":"placeholder","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2022-06-23","PostalCode":"97707"}],"FacilityAdaAccess":"","FacilityDescription":"Lava
+                  River Cave, part of the Newberry National Volcanic Monument, offers self-guided
+                  exploration of a mile-long lava tube. Formed 75,000 years ago during a dramatic
+                  eruption of Newberry Volcano, Lava River Cave was one of the first lava tubes
+                  to be discovered in Oregon and is the longest continuous cave in the state.
+                  It takes approximately 1 hour to tour the entire cave (~2.2 miles roundtrip).
+                  Initial access descends stairs to a combination of flat boardwalk, and uneven
+                  walking surfaces. Located near the city of Bend, OR Lava Rive Cave is a popular
+                  tourist destination and an excellent location for the general public to be
+                  exposed to caving.","FacilityDirections":"From Bend, OR travel south on Highway
+                  97 to Exit 151/Cottonwood Rd. Turn left after exiting and proceed through
+                  underpass following signs to Lava River Cave. Cave is about 1 mile down the
+                  road on your left.","FacilityEmail":"","FacilityID":"10089508","FacilityLatitude":0,"FacilityLongitude":0,"FacilityMapURL":"","FacilityName":"Lava
+                  River Cave Timed Reservation Tickets","FacilityPhone":"","FacilityReservationURL":"","FacilityTypeDescription":"Timed
+                  Entry","FacilityUseFeeDescription":"","GEOJSON":{"COORDINATES":null,"TYPE":""},"Keywords":"","LINK":[],"LastUpdatedDate":"2022-06-23","LegacyFacilityID":"","MEDIA":[{"Credits":"USFS","Description":"Stairway
+                  to the cave","EmbedCode":"","EntityID":"10089508","EntityMediaID":"1271ce21-1c95-434b-9ed4-e2a4910c7c70","EntityType":"Facility","Height":653,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Stairway
+                  to the cave","URL":"https://cdn.recreation.gov/public/2022/06/30/00/19/10089508_0fba2904-5aa1-4626-a1cb-51bbf97962d5_700.jpg","Width":700},{"Credits":"USFS
+                  Kevin Sperl","Description":"Dont expect this lighting when you visit!  Solar
+                  charged lights available to rent on site.","EmbedCode":"","EntityID":"10089508","EntityMediaID":"fea87754-887d-4a1e-a686-457dffa4b1db","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Exploring
+                  Lava River Cave","URL":"https://cdn.recreation.gov/public/2022/06/23/21/03/10089508_168256bf-1463-400d-957c-fe8df4ffe59c_700.jpg","Width":700},{"Credits":"USFS","Description":"Vehicle
+                  Parking","EmbedCode":"","EntityID":"10089508","EntityMediaID":"049bb737-5a39-4561-9b56-492152c5a6e4","EntityType":"Facility","Height":868,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Vehicle
+                  Parking","URL":"https://cdn.recreation.gov/public/2022/06/30/00/11/10089508_a1e9acb6-a3cb-46f1-85a1-7ed1f4c970f3_1440.jpg","Width":1440},{"Credits":"USFS","Description":"Welcome
+                  Station for recreation pass, souvenirs and light rentals","EmbedCode":"","EntityID":"10089508","EntityMediaID":"609b717a-035c-47f7-958f-74d413f68788","EntityType":"Facility","Height":738,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Welcome
+                  Station","URL":"https://cdn.recreation.gov/public/2022/06/30/00/14/10089508_3b8abcdf-5472-41f1-b12f-8e2821135b65_700.jpg","Width":700},{"Credits":"USFS","Description":"Collapsed
+                  corridor pathway to the cave entrance","EmbedCode":"","EntityID":"10089508","EntityMediaID":"a5080d61-1766-4292-9e58-0edba6438d67","EntityType":"Facility","Height":934,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Collapsed
+                  Corridor","URL":"https://cdn.recreation.gov/public/2022/06/30/00/17/10089508_dca6788e-298e-4769-9960-67ee9e88cbc9_700.jpg","Width":700},{"Credits":"USFS","Description":"Boot
+                  cleaning station and walkway to cave entrance.","EmbedCode":"","EntityID":"10089508","EntityMediaID":"1d21aa6e-13b8-4684-a256-1a8b8ddbb9e2","EntityType":"Facility","Height":934,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Walkway
+                  to Cave","URL":"https://cdn.recreation.gov/public/2022/06/30/00/15/10089508_7bbc6b55-7218-4f09-97d6-0cf82f0a7bb9_700.jpg","Width":700},{"Credits":"USFS","Description":"Hiker''s
+                  on their way back out","EmbedCode":"","EntityID":"10089508","EntityMediaID":"8d8008f1-5516-4fbd-af4e-467d87ab31bd","EntityType":"Facility","Height":811,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Hiker''s
+                  on their way back out","URL":"https://cdn.recreation.gov/public/2022/06/23/21/00/10089508_9a049824-d990-43e3-9374-a31988d17566_1440.jpg","Width":1440}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"FS","OrgID":"131","OrgImageURL":"fs.jpg","OrgJurisdictionType":"State","OrgName":"USDA
+                  Forest Service","OrgParentID":"163","OrgType":"Federal Agency","OrgURLAddress":"http://www.fs.fed.us","OrgURLText":""}],"OrgFacilityID":"","PERMITENTRANCE":[],"ParentOrgID":"131","ParentRecAreaID":"14492","RECAREA":[{"RecAreaID":"14492","RecAreaName":"Deschutes
+                  National Forest","ResourceLink":"http://localhost:3000/api/v1/recareas/14492"}],"Reservable":true,"StayLimit":"","TOUR":[]}
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -62,24 +55,22 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "5468"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 25 Jan 2023 02:44:45 GMT
+                  - Sun, 12 Feb 2023 07:23:55 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
-              Transfer-Encoding:
-                  - chunked
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 350e87fe323bf8d725a381e15f465f40.cloudfront.net (CloudFront)
+                  - 1.1 20ebec22e4be2753f048f31dfe94e426.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - gPnknS48OVKAwGW0PldrqMkzGX2cElXlLZ-T8MS7cuH7233nPei_sA==
+                  - kHUjqHipvJppEkz6DX6jXSL0FZqQmxhaVAs1B1rGdfaeidLp6Xb3dg==
               X-Amz-Cf-Pop:
                   - DEN52-C1
               X-Cache:
@@ -88,7 +79,7 @@ interactions:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -105,7 +96,8 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.0 (KHTML, like Gecko)
+                    Chrome/4.0.211.0 Safari/532.0
           method: GET
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A10089508&fq=entity_type%3Atimedentry_tour&size=1000&start=0
       response:
@@ -135,7 +127,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 25 Jan 2023 02:44:45 GMT
+                  - Sun, 12 Feb 2023 07:23:56 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -145,18 +137,18 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 badefad2d1fb92bb4620df1ce11d8c92.cloudfront.net (CloudFront)
+                  - 1.1 6858de87a9a441b83cd7cbdcd1cf2b40.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - eRb-zZa3bdaBTVWfH9T24cCTcZauiraViDGvRgbQRU_l7RROCq8jmA==
+                  - cRtBPs4MpHskyI1rj4jiwzO9-aO4JJEqEuKgbJStxj2_MAQiJ0WxHQ==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -173,7 +165,8 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.15 (KHTML, like Gecko) Chrome/24.0.1295.0 Safari/537.15
+                  - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.90
+                    Safari/537.36
           method: GET
           uri: https://www.recreation.gov/api/timedentry/availability/facility/10089508/monthlyAvailabilitySummaryView?inventoryBucket=FIT&month=06&year=2023
       response:
@@ -202,7 +195,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 25 Jan 2023 02:44:45 GMT
+                  - Sun, 12 Feb 2023 07:23:56 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -212,11 +205,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 d9fe97589e952f97209f7a422c89d876.cloudfront.net (CloudFront)
+                  - 1.1 5426e173edd65a7a7e49d28e75692b50.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - SvqKSlGyNeXv2yHF4Ay07zrfadlCvC5OfPypbVZUKw76aLaqyuGp3Q==
+                  - ZH3TCfVVF-SadyD2GWAVm6dxPp-sZ6EFm4_nuQR-bjrNxg6cguTUnQ==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:

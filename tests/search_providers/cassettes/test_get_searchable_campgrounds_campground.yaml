@@ -1,13 +1,10 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.124 Safari/537.36
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/3.0.195.6 Safari/532.0
               accept:
                   - application/json
               apikey:
@@ -16,60 +13,69 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/facilities/234708?full=True
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA9Raa28btxL9fn8FoS+3BURpue81guKqtpKosWVDklv0hYKvlfZmH8Luyooa9L/f
-                  meXqVduJqiZIrxE4K5JLzpxzZjik/L4zuJyNvh/Nfuxc/Py+M5B18pDUm9FV5yLq7j6OeaY7F53L
-                  wc3daPyq0+285DJJoWM74EpXskyWdVLkOI5nyySfPzHupdYfG4pLd2zHDayw80f32CTbemTT3ehy
-                  PLp8c4pZd4nME0lmXKS6OsW456z6tdtAMR3NhoAafBp+PxzP2sccp1edi7pcaXh/cDm6BnQHV1eT
-                  4XRqQFaq1FV1WazyutxcFgr9uJ8OYLm2a1rzWrcdg5+g/RJMgOfpsgSwdPmQpKk+9MC8Zoy0XNey
-                  Iutx92yzxAmvdMxXaf2Mc/vWaV1qXbfvMrRkyeVCk2lSz0vNH3RFxhyR4il5WcCg+rmX7WMsj/oc
-                  03fNq/p+qcBtdQW/Gj9smzKbWgy674qq5mmLSOhFjmFh7yAfSAmzQe/4YKVjOl8s7G9uHxA9vX7R
-                  hw+/5K1Ls7JY1QS1OIenXJGkIkWuSRGTOHnQRO56KsJrUsMr3yZzcs3fajLREtDAJcgAHkgC/zez
-                  0ueB6hJuFtHVUsuEp+mGLIvlKuUliYuS4FrLZlWgu0d+yV+Isv9N8+uX/IekXhBRwIz5vJknTqoF
-                  PsfG6wTWw2ZOHniZ6HqDbkCw5E1Xlxz5DDZwIov8Abp1XjcvyiIDI2rUMVmmXGpSFwTw3/TIXQqD
-                  mgmLpc5JBVPpLqkWXGmFloNvZvEMxc0Bi0rqXJcbkiFW6BuHOTWvOCwGBqgCmvS7pQZLc6l7yNEe
-                  0ZalGZh7ZHXr6caYXy3AWrLm6VvC13xD4rLIGo5cz6Ic5tqR1d2yOiiT34GPf1fg2nIHYApDqt6e
-                  Wpj9bV6s88buBDyrzepmeJeskYkSvBTFukvkqq4XJfDSJaIsircNDq3Z5kWhcRW0LAM9k6pYzRc1
-                  5XGtS9IIAVdHZ8u9pnijKXAzrYojjSySt40RO6RF2yCSUgEatVxsBbJOUpUmsSaofFQUovxyp5YD
-                  lOVRCByo80AiuHiVQSvKItMqWWWkSn4HATSyBRcwkKqkRh0C+AoiqKx0Y0kRxxolsE4UeMkhlxkt
-                  oavGd3gBX7JtoooVKrCZyBBnwgIbAESIQ8kBHwlyzQrMHMSzyFIXIC+MrwJwLvfjFkWqCLOsVp1l
-                  M0VObAsCFixM1Aqis1mrdxxuswUgAf+QtiJHKA4wyptm1M0jzpqVF7wykxqtxCtAbQHaaGB6ma6q
-                  BYCYpLqNGlDyGrDawqRU0qaNHfxtiEA+WZWYTjQ+PEdhhZrlGNREp/rBGAd4R10EIq57Wwd+WCCm
-                  N62ScH0CIQqyzLeR0iOjNlk8YDRjVMNWio5227jXyvi4LHKly6KCOE9yYOIKVJ4CDHFSQqZYlitp
-                  pMArzCBJDqvAEwikfX+RzBcH5maaq2INaB1yMi0y46jBdgE51iQhiMkFwEka8o38MNSAtWqV55DA
-                  pqssQ1noDNY02DWjdjnJJMAiBQkRcBF5rZaIzi6rLABzRChFrojSlS7rqknSSIzmpdiQQV2XXDaq
-                  bqn5PgFbC7AJxQgJL0UJ6lxBKVJBXEJ6NRKoUUtLDgkNuMl4vtllSW7KFEzvLW3VqmyIxjg/Yc8B
-                  aCRAm0PALHlVwRCbZFBJNJKViAR4lfF5nsTgOGCxSy3SlCq4LuqCYi/KrxVHY/hYr8mNfpfIone4
-                  AycQFw0OuAEvv3mJKN6BMCDvdrfvd43Xr4F5zN+2bzXLENtD+zQm6X1n4GDirBcQP0UKHDzuISza
-                  v2ecJ5OCKxIy5pGvdul9iE5ARH0NiWcFUi9hIiMAaH/QKXHMNL0X/SUweODVMONJCg7VJWwF/D9l
-                  mRUx7wGuHy2qroGUeoVljOP0Qj+MHMc56C3yedtNmRX1XObDT7AfcMOX95Pr43KqLYQHd4PL10My
-                  m9zezwiWp6/gaXx1MPBuAUkURkZ2SD0noCH8HHRPUMkm6h6tgaXj48LdpJmDYfeVfqqIfjW8/W56
-                  O+5cvO9c3t5OrkbjwWyItfCRk3tAoLKb/Xg3xJK9gAQBx4DOG71ZF6WqnneUfDX46evut6NX5Hrw
-                  Zogl5Wj8pqm3j+3ZarapsY0uLiFlJUakWMDXj9gzbddJ/rYtsYXjMyXsWCvLFzAqjGIWhE4YMiFd
-                  vnujrbi38KBRMEfbeos5CppmSZ3qEwwzpCzqennR76/X6x7/XRV1b1489JuD0ofcnBUrkGp2mnsq
-                  imPha59rRzNbebavwF0e8jAOpQjtT+He3qAjt7gZNF9BfYDx9JRnBwU3SBbmgSR9w+ElnWHSwuoO
-                  Unwi+WnesghqV+n5UoXS1UJJO2Shr7yIB5bQwj3P2zbtTPG0AfYBkXg8wXwMCfEpMvc5pN8cbT5y
-                  ILrWcy43R7kmCtwArb0ZXo0GjfAvS6jOaowZWH8X3MS8CyP/pJhn4kqtsiWW/80wACMTWrUnsQ8i
-                  fAOLcwOxCjwvsDzqicClOIhGtgpo4LuuH3uO4Cz+AMyvNSbmzkXE3G5nVL2C0hNqkO0Je1TdlRoL
-                  285FDEVy25JkHIe0LY0p7cQj2OGQgelK1C1Zhyo9DYQ9fRXwJ1Xe25d/TUQuoXZNZB84Y30r6jtW
-                  n7l9FvYNRr8xHti2A2BEKvKpa7kWFVYoqC8dabnKd4Wyf2NwkO/9d4mXIz8kql50LrAFA+IvEvvM
-                  IVe3+995pAYqCoWjGA1iB0gVfkh5ZAkaCx5DTNlM2eoEUoPQ//ykfhyAMwl1t4RGwne4DiJqSaGp
-                  G3KbClS8DVsa00wwHcjPTmh7fDiPz4jHkSNsTT3fl9SVkGy4I22I1IBD/ve5ZX8oF2759Gzvi/G5
-                  9/88OuGhpVNb2rEDi1GpIDRdDnRyLmKK6UpGTmSpOPgtsP7EJjQck3k/fTn9y+FoThol7P9nEulr
-                  ETiMUUeLkLqxA9k2dBgNmVSOw4VrCf8kIo8D84C3lsk9tZ+YyLMJtJ0tgcJzw0BoTaXkEXVdz6U8
-                  9mKqodIMROx4gStPIPDvROOa470OHicEHAqJKN6dx2esbD9ikaRh5MFeYfOACju0qR+HkYaaRYZh
-                  9A8PzCehODPl2luKObof2Yy6WsMvN1Swh7oebKncdYKIsVh/booPLqRKnnHFz2PYi7l0PeVR4SoO
-                  WynzIWI9SX1mOcqRsJ26p2ylYRR+MYafQuJMgr0dwZblax77VHohCN8JLRp6YUQhj7mMceVb3ucv
-                  kuLDS7oz6fXt2GKWS6EqsEGowqKR1CEUe5bjO55ydHhK+RtGwRej988onEmttaU2jEHpvmCUByGU
-                  S9L3KGcup5oxFXtaCN+OPju12wvE81jlrhe5IZzHZIDpx7ccGgV2SKGMh1bbsSOX/cPT8gEA5xDq
-                  9a0doZaILGbrmHph4MAm5QsKhwEogkObO1orX7HohGT8iLvzuLG9kDnOhy4qtvA7vvWlzpR/AfUE
-                  56/6gRO67jGC3uc4EP7dCjTgXhDC4ZBCloOjoauw+IKPsc1CPF1EnvBOSXjM+kgF+pgcw9+nOxoe
-                  QXFmUcp2RanijmOFMeWhgiOWxTkVUJDTgEsuY0dBvSpOynqfMkzYKVnq/yxMgsB+HCa/dju3k1eD
-                  8einwWyEt9E/v3/ylo1BDvepjWek23I+EAJ8bO/Ym9McNJpbLYe1n3BZY2NctetC83d4w6mS5tuP
-                  FoDm7tP0tjPeT68G5Piy0PTf8RI0aBbyHdO25Ucr3Xz7Mtd5E93QBcu3f1BxfK0IBsVa9VbVbthM
-                  v6sR+AaPcn50hTgYO9tbxLvh5GY0G45nk8H4sv0zF2PTsf+mbaIl/vGDabcx8U6Gl4PJ0NxDPtFr
-                  WrZfXXzsu6vmDXPVi3euexfTQvJ0UVT1hWPBZsSXSf+B9UEd+M1k1cfF0M/2qw2BOjPSBSY210mW
-                  1K0Gb+8n6OMf//ofAAAA//8DAI/kjTgRJQAA
+              string:
+                  '{"ACTIVITY":[{"ActivityID":9,"ActivityName":"CAMPING","FacilityActivityDescription":"Camping","FacilityActivityFeeDescription":"Camping","FacilityID":"234708"},{"ActivityID":20,"ActivityName":"PICNICKING","FacilityActivityDescription":"Picnic
+                  Tables","FacilityActivityFeeDescription":"","FacilityID":"234708"}],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[{"AddressCountryCode":"USA","AddressStateCode":"AZ","City":"Springerville","FacilityAddressID":"20440090","FacilityAddressType":"Default","FacilityID":"234708","FacilityStreetAddress1":"Apache
+                  Sitgreaves National Forest","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-01-10","PostalCode":"85938"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nApache
+                  Trout Campground is one of five campgrounds at the Big Lake Recreation Area
+                  in Apache-Sitgreaves National Forest, and is especially popular for group
+                  camping. \n<br/><br/>\nWith boating and fishing facilities and a variety of
+                  amenities, Apache Trout is a convenient and comfortable place to stay. Plenty
+                  of open space, shaded forests and mountain scenery make for a pleasant outdoor
+                  experience.<h2>Recreation</h2>\nThe Apache Trout facility is a short walk
+                  away from the 450-acre Big Lake, one of Arizona''s top fishing lakes. Big
+                  Lake is known for its trout fishing, with rainbow, cutthroat, brook and Apache
+                  trout being the most sought-after species. The recreation area is also popular
+                  for hiking, mountain biking, bird watching and wildlife viewing.<h2>Facilities</h2>\nThe
+                  campground is especially convenient for small to medium sized groups. Campsites
+                  are diverse and offer a wide range of options. There are 22 double sites,
+                  one group site that can accommodate 50 people, another that can hold 100 and
+                  more than 20 individual sites.\n<br/><br/>\nThis is the only campground in
+                  the lake recreation area that has sites with full hookups. Flush toilets and
+                  showers offer additional convenience.<h2>Natural Features</h2>\nThe campground
+                  sits at an elevation of 9,100 ft. in the White Mountains of eastern Arizona.
+                  It is a very scenic area, forested with ponderosa pine, Douglas fir, spruce
+                  and aspen interspersed with high elevation meadows. <br/><br/>\nSome campsites
+                  have shade, while others are mostly sunny. Summer temperatures are pleasant
+                  and cool, a nice respite from the heat of lower deserts. \n<h2>Nearby Attractions</h2>\nVisitors
+                  can explore endless vistas and take part in many outdoor activities in the
+                  surrounding Apache-Sitgreaves National Forest, which encompasses 2 million
+                  acres of magnificent mountain country in east-central Arizona and New Mexico.","FacilityDirections":"<p>From
+                  Pinetop, Arizona, take Highway 260 east 25 miles to Highway 273 south. Follow
+                  Highway 273 south 19 miles to Forest Road 8115 (Big Lake Entrance). Turn right
+                  and travel 3 miles.</p>\n","FacilityEmail":"trisha@rrmofa.com","FacilityID":"234708","FacilityLatitude":33.8689333,"FacilityLongitude":-109.4166667,"FacilityMapURL":"","FacilityName":"APACHE
+                  TROUT CAMPGROUND","FacilityPhone":"928-537-8888","FacilityReservationURL":"","FacilityTypeDescription":"Campground","FacilityUseFeeDescription":"","GEOJSON":{"COORDINATES":[-109.4166667,33.8689333],"TYPE":"Point"},"Keywords":"APACHE
+                  TROUT CAMPGROUND (AZ),BIG LAKE","LINK":[{"Description":"Arizona State Road
+                  Conditions","EntityID":"234708","EntityLinkID":"20b361db2fed06b34789f1783881bc4a","EntityType":"Facility","LinkType":"Other","Title":"Arizona
+                  State Road Conditions","URL":"http://www.azdot.gov/"},{"Description":"Arizona
+                  State Tourism","EntityID":"234708","EntityLinkID":"d9ffb6e6ae3e12d526d361a8a8f8cb82","EntityType":"Facility","LinkType":"Other","Title":"Arizona
+                  State Tourism","URL":"http://arizonaguide.com/"},{"Description":"Recreation
+                  Resource Management of America","EntityID":"234708","EntityLinkID":"19dedc56cd8c4ebdc28186d59a70beb4","EntityType":"Facility","LinkType":"Other","Title":"Forest
+                  Service Concessionaire","URL":"http://www.rrmofa.com/"}],"LastUpdatedDate":"2023-01-10","LegacyFacilityID":"97474","MEDIA":[{"Credits":"USFS","Description":"Apache
+                  Trout Campground entrance from road","EmbedCode":"","EntityID":"234708","EntityMediaID":"96eb7311-3eb8-4f38-9831-81cd33ab40b6","EntityType":"Facility","Height":526,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground","URL":"https://cdn.recreation.gov/public/2021/09/30/14/23/234708_b5487bee-cca9-4454-af5f-e6677bf3574c_700.jpg","Width":700},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground flush toilets","EmbedCode":"","EntityID":"234708","EntityMediaID":"562f0104-8a22-44b0-9ce8-6c03635d3e8f","EntityType":"Facility","Height":897,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground flush toilets","URL":"https://cdn.recreation.gov/public/2021/09/30/14/10/234708_8f4da6b1-a78e-4c65-a14a-e11df5ebb629_1440.jpg","Width":1440},{"Credits":"","Description":"","EmbedCode":"","EntityID":"234708","EntityMediaID":"2581332","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"APACHE
+                  TROUT CAMPGROUND","URL":"https://cdn.recreation.gov/public/images/73844.jpg","Width":540},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground campsite","EmbedCode":"","EntityID":"234708","EntityMediaID":"a4594812-c7e1-4603-9728-08b812232941","EntityType":"Facility","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground campsite","URL":"https://cdn.recreation.gov/public/2021/09/30/15/00/234708_0b9012ef-5873-426b-90b2-b82a3eed6d19_700.jpg","Width":700},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground group site ramada","EmbedCode":"","EntityID":"234708","EntityMediaID":"5fac45d5-b4da-4b16-985c-6103d3cf194d","EntityType":"Facility","Height":898,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground group site ramada","URL":"https://cdn.recreation.gov/public/2021/09/30/14/15/234708_a006eaf6-c586-4380-8589-1cd411ad6052_1440.jpg","Width":1440},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground showers","EmbedCode":"","EntityID":"234708","EntityMediaID":"9af93b2e-566c-4c22-a3c2-927ad366a024","EntityType":"Facility","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground showers","URL":"https://cdn.recreation.gov/public/2021/09/30/14/09/234708_e0e32701-cd40-4aa2-aabf-46f5c9390df7_700.jpg","Width":700},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground water and bear box","EmbedCode":"","EntityID":"234708","EntityMediaID":"fd26919c-8956-42a7-b282-6f89e8c4c889","EntityType":"Facility","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground water and bear box","URL":"https://cdn.recreation.gov/public/2021/09/30/14/12/234708_a89e8921-4ee1-448d-b045-9da437911fec_700.jpg","Width":700},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground entrance","EmbedCode":"","EntityID":"234708","EntityMediaID":"7d98b3d1-7f34-4b68-a90b-fbaf19d21d2d","EntityType":"Facility","Height":786,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground entrance","URL":"https://cdn.recreation.gov/public/2021/09/30/14/14/234708_9b63ae79-0cbe-48a2-b705-28681e1b1e7c_1440.jpg","Width":1440},{"Credits":"Conservation
+                  Legacy","Description":"APACHE TROUT CAMPGROUND dump station","EmbedCode":"","EntityID":"234708","EntityMediaID":"1d755705-5b74-4708-92d7-76446f53ba1f","EntityType":"Facility","Height":914,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"APACHE
+                  TROUT CAMPGROUND dump station","URL":"https://cdn.recreation.gov/public/2021/09/30/14/18/234708_1a722374-9d96-4040-b08b-6c3c04d64bd2_1440.jpg","Width":1440},{"Credits":"","Description":"","EmbedCode":"","EntityID":"234708","EntityMediaID":"2581311","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"APACHE
+                  TROUT CAMPGROUND","URL":"https://cdn.recreation.gov/public/images/73772.jpg","Width":540},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground entrance from road","EmbedCode":"","EntityID":"234708","EntityMediaID":"7a5788b3-ce84-44d4-afb3-f218566c95b5","EntityType":"Facility","Height":810,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground entrance from road","URL":"https://cdn.recreation.gov/public/2021/09/30/14/21/234708_bda3308f-a8dc-40aa-b3ab-7acacf3dbeeb_1440.jpg","Width":1440}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"FS","OrgID":"131","OrgImageURL":"fs.jpg","OrgJurisdictionType":"State","OrgName":"USDA
+                  Forest Service","OrgParentID":"163","OrgType":"Federal Agency","OrgURLAddress":"http://www.fs.fed.us","OrgURLText":""}],"OrgFacilityID":"AN397474","PERMITENTRANCE":[],"ParentOrgID":"131","ParentRecAreaID":"122","RECAREA":[{"RecAreaID":"122","RecAreaName":"Apache-Sitgreaves
+                  National Forest","ResourceLink":"http://localhost:3000/api/v1/recareas/122"}],"Reservable":true,"StayLimit":"","TOUR":[]}
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -77,20 +83,22 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "9489"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 06 Dec 2022 04:37:41 GMT
-              Transfer-Encoding:
-                  - chunked
+                  - Sun, 12 Feb 2023 07:24:16 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 9427b8c01c70c4a2deb16eed5a2ced9c.cloudfront.net (CloudFront)
+                  - 1.1 d126a6b57e5778e7435ff2e74117527a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - PjMygbI6p6h4Ut5YJiZnFbK-vCnVFmAJOMFfQztl05uNyJeoVBsFuw==
+                  - ZCRWEq8KAG9JaEqbivm9zjVsI4YCXlJtT8-j1aEM3qV71Ee2sp8KiA==
               X-Amz-Cf-Pop:
                   - DEN52-C1
               X-Cache:
@@ -99,14 +107,11 @@ interactions:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/4E423F
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/3.0.195.6 Safari/532.0
               accept:
                   - application/json
               apikey:
@@ -115,60 +120,69 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/facilities/234708?full=True
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA9Raa28btxL9fn8FoS+3BURpue81guKqtpKosWVDklv0hYKvlfZmH8Luyooa9L/f
-                  meXqVduJqiZIrxE4K5JLzpxzZjik/L4zuJyNvh/Nfuxc/Py+M5B18pDUm9FV5yLq7j6OeaY7F53L
-                  wc3daPyq0+285DJJoWM74EpXskyWdVLkOI5nyySfPzHupdYfG4pLd2zHDayw80f32CTbemTT3ehy
-                  PLp8c4pZd4nME0lmXKS6OsW456z6tdtAMR3NhoAafBp+PxzP2sccp1edi7pcaXh/cDm6BnQHV1eT
-                  4XRqQFaq1FV1WazyutxcFgr9uJ8OYLm2a1rzWrcdg5+g/RJMgOfpsgSwdPmQpKk+9MC8Zoy0XNey
-                  Iutx92yzxAmvdMxXaf2Mc/vWaV1qXbfvMrRkyeVCk2lSz0vNH3RFxhyR4il5WcCg+rmX7WMsj/oc
-                  03fNq/p+qcBtdQW/Gj9smzKbWgy674qq5mmLSOhFjmFh7yAfSAmzQe/4YKVjOl8s7G9uHxA9vX7R
-                  hw+/5K1Ls7JY1QS1OIenXJGkIkWuSRGTOHnQRO56KsJrUsMr3yZzcs3fajLREtDAJcgAHkgC/zez
-                  0ueB6hJuFtHVUsuEp+mGLIvlKuUliYuS4FrLZlWgu0d+yV+Isv9N8+uX/IekXhBRwIz5vJknTqoF
-                  PsfG6wTWw2ZOHniZ6HqDbkCw5E1Xlxz5DDZwIov8Abp1XjcvyiIDI2rUMVmmXGpSFwTw3/TIXQqD
-                  mgmLpc5JBVPpLqkWXGmFloNvZvEMxc0Bi0rqXJcbkiFW6BuHOTWvOCwGBqgCmvS7pQZLc6l7yNEe
-                  0ZalGZh7ZHXr6caYXy3AWrLm6VvC13xD4rLIGo5cz6Ic5tqR1d2yOiiT34GPf1fg2nIHYApDqt6e
-                  Wpj9bV6s88buBDyrzepmeJeskYkSvBTFukvkqq4XJfDSJaIsircNDq3Z5kWhcRW0LAM9k6pYzRc1
-                  5XGtS9IIAVdHZ8u9pnijKXAzrYojjSySt40RO6RF2yCSUgEatVxsBbJOUpUmsSaofFQUovxyp5YD
-                  lOVRCByo80AiuHiVQSvKItMqWWWkSn4HATSyBRcwkKqkRh0C+AoiqKx0Y0kRxxolsE4UeMkhlxkt
-                  oavGd3gBX7JtoooVKrCZyBBnwgIbAESIQ8kBHwlyzQrMHMSzyFIXIC+MrwJwLvfjFkWqCLOsVp1l
-                  M0VObAsCFixM1Aqis1mrdxxuswUgAf+QtiJHKA4wyptm1M0jzpqVF7wykxqtxCtAbQHaaGB6ma6q
-                  BYCYpLqNGlDyGrDawqRU0qaNHfxtiEA+WZWYTjQ+PEdhhZrlGNREp/rBGAd4R10EIq57Wwd+WCCm
-                  N62ScH0CIQqyzLeR0iOjNlk8YDRjVMNWio5227jXyvi4LHKly6KCOE9yYOIKVJ4CDHFSQqZYlitp
-                  pMArzCBJDqvAEwikfX+RzBcH5maaq2INaB1yMi0y46jBdgE51iQhiMkFwEka8o38MNSAtWqV55DA
-                  pqssQ1noDNY02DWjdjnJJMAiBQkRcBF5rZaIzi6rLABzRChFrojSlS7rqknSSIzmpdiQQV2XXDaq
-                  bqn5PgFbC7AJxQgJL0UJ6lxBKVJBXEJ6NRKoUUtLDgkNuMl4vtllSW7KFEzvLW3VqmyIxjg/Yc8B
-                  aCRAm0PALHlVwRCbZFBJNJKViAR4lfF5nsTgOGCxSy3SlCq4LuqCYi/KrxVHY/hYr8mNfpfIone4
-                  AycQFw0OuAEvv3mJKN6BMCDvdrfvd43Xr4F5zN+2bzXLENtD+zQm6X1n4GDirBcQP0UKHDzuISza
-                  v2ecJ5OCKxIy5pGvdul9iE5ARH0NiWcFUi9hIiMAaH/QKXHMNL0X/SUweODVMONJCg7VJWwF/D9l
-                  mRUx7wGuHy2qroGUeoVljOP0Qj+MHMc56C3yedtNmRX1XObDT7AfcMOX95Pr43KqLYQHd4PL10My
-                  m9zezwiWp6/gaXx1MPBuAUkURkZ2SD0noCH8HHRPUMkm6h6tgaXj48LdpJmDYfeVfqqIfjW8/W56
-                  O+5cvO9c3t5OrkbjwWyItfCRk3tAoLKb/Xg3xJK9gAQBx4DOG71ZF6WqnneUfDX46evut6NX5Hrw
-                  Zogl5Wj8pqm3j+3ZarapsY0uLiFlJUakWMDXj9gzbddJ/rYtsYXjMyXsWCvLFzAqjGIWhE4YMiFd
-                  vnujrbi38KBRMEfbeos5CppmSZ3qEwwzpCzqennR76/X6x7/XRV1b1489JuD0ofcnBUrkGp2mnsq
-                  imPha59rRzNbebavwF0e8jAOpQjtT+He3qAjt7gZNF9BfYDx9JRnBwU3SBbmgSR9w+ElnWHSwuoO
-                  Unwi+WnesghqV+n5UoXS1UJJO2Shr7yIB5bQwj3P2zbtTPG0AfYBkXg8wXwMCfEpMvc5pN8cbT5y
-                  ILrWcy43R7kmCtwArb0ZXo0GjfAvS6jOaowZWH8X3MS8CyP/pJhn4kqtsiWW/80wACMTWrUnsQ8i
-                  fAOLcwOxCjwvsDzqicClOIhGtgpo4LuuH3uO4Cz+AMyvNSbmzkXE3G5nVL2C0hNqkO0Je1TdlRoL
-                  285FDEVy25JkHIe0LY0p7cQj2OGQgelK1C1Zhyo9DYQ9fRXwJ1Xe25d/TUQuoXZNZB84Y30r6jtW
-                  n7l9FvYNRr8xHti2A2BEKvKpa7kWFVYoqC8dabnKd4Wyf2NwkO/9d4mXIz8kql50LrAFA+IvEvvM
-                  IVe3+995pAYqCoWjGA1iB0gVfkh5ZAkaCx5DTNlM2eoEUoPQ//ykfhyAMwl1t4RGwne4DiJqSaGp
-                  G3KbClS8DVsa00wwHcjPTmh7fDiPz4jHkSNsTT3fl9SVkGy4I22I1IBD/ve5ZX8oF2759Gzvi/G5
-                  9/88OuGhpVNb2rEDi1GpIDRdDnRyLmKK6UpGTmSpOPgtsP7EJjQck3k/fTn9y+FoThol7P9nEulr
-                  ETiMUUeLkLqxA9k2dBgNmVSOw4VrCf8kIo8D84C3lsk9tZ+YyLMJtJ0tgcJzw0BoTaXkEXVdz6U8
-                  9mKqodIMROx4gStPIPDvROOa470OHicEHAqJKN6dx2esbD9ikaRh5MFeYfOACju0qR+HkYaaRYZh
-                  9A8PzCehODPl2luKObof2Yy6WsMvN1Swh7oebKncdYKIsVh/booPLqRKnnHFz2PYi7l0PeVR4SoO
-                  WynzIWI9SX1mOcqRsJ26p2ylYRR+MYafQuJMgr0dwZblax77VHohCN8JLRp6YUQhj7mMceVb3ucv
-                  kuLDS7oz6fXt2GKWS6EqsEGowqKR1CEUe5bjO55ydHhK+RtGwRej988onEmttaU2jEHpvmCUByGU
-                  S9L3KGcup5oxFXtaCN+OPju12wvE81jlrhe5IZzHZIDpx7ccGgV2SKGMh1bbsSOX/cPT8gEA5xDq
-                  9a0doZaILGbrmHph4MAm5QsKhwEogkObO1orX7HohGT8iLvzuLG9kDnOhy4qtvA7vvWlzpR/AfUE
-                  56/6gRO67jGC3uc4EP7dCjTgXhDC4ZBCloOjoauw+IKPsc1CPF1EnvBOSXjM+kgF+pgcw9+nOxoe
-                  QXFmUcp2RanijmOFMeWhgiOWxTkVUJDTgEsuY0dBvSpOynqfMkzYKVnq/yxMgsB+HCa/dju3k1eD
-                  8einwWyEt9E/v3/ylo1BDvepjWek23I+EAJ8bO/Ym9McNJpbLYe1n3BZY2NctetC83d4w6mS5tuP
-                  FoDm7tP0tjPeT68G5Piy0PTf8RI0aBbyHdO25Ucr3Xz7Mtd5E93QBcu3f1BxfK0IBsVa9VbVbthM
-                  v6sR+AaPcn50hTgYO9tbxLvh5GY0G45nk8H4sv0zF2PTsf+mbaIl/vGDabcx8U6Gl4PJ0NxDPtFr
-                  WrZfXXzsu6vmDXPVi3euexfTQvJ0UVT1hWPBZsSXSf+B9UEd+M1k1cfF0M/2qw2BOjPSBSY210mW
-                  1K0Gb+8n6OMf//ofAAAA//8DAI/kjTgRJQAA
+              string:
+                  '{"ACTIVITY":[{"ActivityID":9,"ActivityName":"CAMPING","FacilityActivityDescription":"Camping","FacilityActivityFeeDescription":"Camping","FacilityID":"234708"},{"ActivityID":20,"ActivityName":"PICNICKING","FacilityActivityDescription":"Picnic
+                  Tables","FacilityActivityFeeDescription":"","FacilityID":"234708"}],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[{"AddressCountryCode":"USA","AddressStateCode":"AZ","City":"Springerville","FacilityAddressID":"20440090","FacilityAddressType":"Default","FacilityID":"234708","FacilityStreetAddress1":"Apache
+                  Sitgreaves National Forest","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-01-10","PostalCode":"85938"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nApache
+                  Trout Campground is one of five campgrounds at the Big Lake Recreation Area
+                  in Apache-Sitgreaves National Forest, and is especially popular for group
+                  camping. \n<br/><br/>\nWith boating and fishing facilities and a variety of
+                  amenities, Apache Trout is a convenient and comfortable place to stay. Plenty
+                  of open space, shaded forests and mountain scenery make for a pleasant outdoor
+                  experience.<h2>Recreation</h2>\nThe Apache Trout facility is a short walk
+                  away from the 450-acre Big Lake, one of Arizona''s top fishing lakes. Big
+                  Lake is known for its trout fishing, with rainbow, cutthroat, brook and Apache
+                  trout being the most sought-after species. The recreation area is also popular
+                  for hiking, mountain biking, bird watching and wildlife viewing.<h2>Facilities</h2>\nThe
+                  campground is especially convenient for small to medium sized groups. Campsites
+                  are diverse and offer a wide range of options. There are 22 double sites,
+                  one group site that can accommodate 50 people, another that can hold 100 and
+                  more than 20 individual sites.\n<br/><br/>\nThis is the only campground in
+                  the lake recreation area that has sites with full hookups. Flush toilets and
+                  showers offer additional convenience.<h2>Natural Features</h2>\nThe campground
+                  sits at an elevation of 9,100 ft. in the White Mountains of eastern Arizona.
+                  It is a very scenic area, forested with ponderosa pine, Douglas fir, spruce
+                  and aspen interspersed with high elevation meadows. <br/><br/>\nSome campsites
+                  have shade, while others are mostly sunny. Summer temperatures are pleasant
+                  and cool, a nice respite from the heat of lower deserts. \n<h2>Nearby Attractions</h2>\nVisitors
+                  can explore endless vistas and take part in many outdoor activities in the
+                  surrounding Apache-Sitgreaves National Forest, which encompasses 2 million
+                  acres of magnificent mountain country in east-central Arizona and New Mexico.","FacilityDirections":"<p>From
+                  Pinetop, Arizona, take Highway 260 east 25 miles to Highway 273 south. Follow
+                  Highway 273 south 19 miles to Forest Road 8115 (Big Lake Entrance). Turn right
+                  and travel 3 miles.</p>\n","FacilityEmail":"trisha@rrmofa.com","FacilityID":"234708","FacilityLatitude":33.8689333,"FacilityLongitude":-109.4166667,"FacilityMapURL":"","FacilityName":"APACHE
+                  TROUT CAMPGROUND","FacilityPhone":"928-537-8888","FacilityReservationURL":"","FacilityTypeDescription":"Campground","FacilityUseFeeDescription":"","GEOJSON":{"COORDINATES":[-109.4166667,33.8689333],"TYPE":"Point"},"Keywords":"APACHE
+                  TROUT CAMPGROUND (AZ),BIG LAKE","LINK":[{"Description":"Arizona State Road
+                  Conditions","EntityID":"234708","EntityLinkID":"20b361db2fed06b34789f1783881bc4a","EntityType":"Facility","LinkType":"Other","Title":"Arizona
+                  State Road Conditions","URL":"http://www.azdot.gov/"},{"Description":"Arizona
+                  State Tourism","EntityID":"234708","EntityLinkID":"d9ffb6e6ae3e12d526d361a8a8f8cb82","EntityType":"Facility","LinkType":"Other","Title":"Arizona
+                  State Tourism","URL":"http://arizonaguide.com/"},{"Description":"Recreation
+                  Resource Management of America","EntityID":"234708","EntityLinkID":"19dedc56cd8c4ebdc28186d59a70beb4","EntityType":"Facility","LinkType":"Other","Title":"Forest
+                  Service Concessionaire","URL":"http://www.rrmofa.com/"}],"LastUpdatedDate":"2023-01-10","LegacyFacilityID":"97474","MEDIA":[{"Credits":"USFS","Description":"Apache
+                  Trout Campground entrance from road","EmbedCode":"","EntityID":"234708","EntityMediaID":"96eb7311-3eb8-4f38-9831-81cd33ab40b6","EntityType":"Facility","Height":526,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground","URL":"https://cdn.recreation.gov/public/2021/09/30/14/23/234708_b5487bee-cca9-4454-af5f-e6677bf3574c_700.jpg","Width":700},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground flush toilets","EmbedCode":"","EntityID":"234708","EntityMediaID":"562f0104-8a22-44b0-9ce8-6c03635d3e8f","EntityType":"Facility","Height":897,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground flush toilets","URL":"https://cdn.recreation.gov/public/2021/09/30/14/10/234708_8f4da6b1-a78e-4c65-a14a-e11df5ebb629_1440.jpg","Width":1440},{"Credits":"","Description":"","EmbedCode":"","EntityID":"234708","EntityMediaID":"2581332","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"APACHE
+                  TROUT CAMPGROUND","URL":"https://cdn.recreation.gov/public/images/73844.jpg","Width":540},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground campsite","EmbedCode":"","EntityID":"234708","EntityMediaID":"a4594812-c7e1-4603-9728-08b812232941","EntityType":"Facility","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground campsite","URL":"https://cdn.recreation.gov/public/2021/09/30/15/00/234708_0b9012ef-5873-426b-90b2-b82a3eed6d19_700.jpg","Width":700},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground group site ramada","EmbedCode":"","EntityID":"234708","EntityMediaID":"5fac45d5-b4da-4b16-985c-6103d3cf194d","EntityType":"Facility","Height":898,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground group site ramada","URL":"https://cdn.recreation.gov/public/2021/09/30/14/15/234708_a006eaf6-c586-4380-8589-1cd411ad6052_1440.jpg","Width":1440},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground showers","EmbedCode":"","EntityID":"234708","EntityMediaID":"9af93b2e-566c-4c22-a3c2-927ad366a024","EntityType":"Facility","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground showers","URL":"https://cdn.recreation.gov/public/2021/09/30/14/09/234708_e0e32701-cd40-4aa2-aabf-46f5c9390df7_700.jpg","Width":700},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground water and bear box","EmbedCode":"","EntityID":"234708","EntityMediaID":"fd26919c-8956-42a7-b282-6f89e8c4c889","EntityType":"Facility","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground water and bear box","URL":"https://cdn.recreation.gov/public/2021/09/30/14/12/234708_a89e8921-4ee1-448d-b045-9da437911fec_700.jpg","Width":700},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground entrance","EmbedCode":"","EntityID":"234708","EntityMediaID":"7d98b3d1-7f34-4b68-a90b-fbaf19d21d2d","EntityType":"Facility","Height":786,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground entrance","URL":"https://cdn.recreation.gov/public/2021/09/30/14/14/234708_9b63ae79-0cbe-48a2-b705-28681e1b1e7c_1440.jpg","Width":1440},{"Credits":"Conservation
+                  Legacy","Description":"APACHE TROUT CAMPGROUND dump station","EmbedCode":"","EntityID":"234708","EntityMediaID":"1d755705-5b74-4708-92d7-76446f53ba1f","EntityType":"Facility","Height":914,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"APACHE
+                  TROUT CAMPGROUND dump station","URL":"https://cdn.recreation.gov/public/2021/09/30/14/18/234708_1a722374-9d96-4040-b08b-6c3c04d64bd2_1440.jpg","Width":1440},{"Credits":"","Description":"","EmbedCode":"","EntityID":"234708","EntityMediaID":"2581311","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"APACHE
+                  TROUT CAMPGROUND","URL":"https://cdn.recreation.gov/public/images/73772.jpg","Width":540},{"Credits":"Conservation
+                  Legacy","Description":"Apache Trout Campground entrance from road","EmbedCode":"","EntityID":"234708","EntityMediaID":"7a5788b3-ce84-44d4-afb3-f218566c95b5","EntityType":"Facility","Height":810,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Apache
+                  Trout Campground entrance from road","URL":"https://cdn.recreation.gov/public/2021/09/30/14/21/234708_bda3308f-a8dc-40aa-b3ab-7acacf3dbeeb_1440.jpg","Width":1440}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"FS","OrgID":"131","OrgImageURL":"fs.jpg","OrgJurisdictionType":"State","OrgName":"USDA
+                  Forest Service","OrgParentID":"163","OrgType":"Federal Agency","OrgURLAddress":"http://www.fs.fed.us","OrgURLText":""}],"OrgFacilityID":"AN397474","PERMITENTRANCE":[],"ParentOrgID":"131","ParentRecAreaID":"122","RECAREA":[{"RecAreaID":"122","RecAreaName":"Apache-Sitgreaves
+                  National Forest","ResourceLink":"http://localhost:3000/api/v1/recareas/122"}],"Reservable":true,"StayLimit":"","TOUR":[]}
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -176,20 +190,22 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "9489"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 06 Dec 2022 04:37:43 GMT
-              Transfer-Encoding:
-                  - chunked
+                  - Sun, 12 Feb 2023 07:24:17 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 12e4fc9256386a4cd8f000b9caa3e012.cloudfront.net (CloudFront)
+                  - 1.1 d126a6b57e5778e7435ff2e74117527a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - ScF_USpZmfhIOyKr9X6bJ6ICZHe2bBp8GOZ-nCQvDP7inpFdqimMWw==
+                  - aXa6W14Y7pgDezbEjuTlbvuxSXea13vGQCL0cEzEdZVZAn090rNJ3g==
               X-Amz-Cf-Pop:
                   - DEN52-C1
               X-Cache:

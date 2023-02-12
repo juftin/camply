@@ -1,13 +1,10 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.14 (KHTML,
+                    like Gecko) Chrome/10.0.601.0 Safari/534.14
               accept:
                   - application/json
               apikey:
@@ -16,87 +13,139 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/facilities/234787?full=True
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA5RXa28aSRb9K1doNJtIGAN+JR6vJRbsxLtxYgWS0WgyH4ruC5TcXdWqqoaQaP/7
-                  nlvdQNvYk+wX6K7Hueee+6jq763BcHLz+WbyR+v8z7/areHg9m58M7mq3q4+X72f1I9GTTNOW+fB
-                  ldxuXQ+GN++wazAafbwaj7Hme2uQpo69H9rSBLce2pRb561P40GrvZkaBxW4nhh+wPhQhzWe79Tc
-                  ekXjwmkz9xi/VonOMFfvuxlhUb97fNztvervT0/WhSCOeKbKLDTmq31Hx2evzhqj4+CYQ723J+Y/
-                  0L/sV+qdnvafW9bHsufmjqq5d8qHT0UKD9MRfiLj3quD7ulB/xTTd9YHldXOv+r1js9a//2r6Yoa
-                  JAnQMPtHw9KIfeJ0EbQ1mLlY9C8/LNktNa/OLw7xdlFcDhc6N7ymjza5p0yzp5UOC20oLJjGytC/
-                  S/y8V4KhMrq2IB3aNOWwYjY0Kp0yc0vKpPQwEAQMb8uwWGEDO0NDm1mnUtuhCaBvrSlzNoHYJDYv
-                  lPcwfdw+65+SSmCjTQV+hayZ06I0ECv1ZGcyvNA+WKcT8jpgV1ioQKkNkXIGJj5RBZNyyKU0DoaV
-                  kCk0EOne2JUh5emB58J/KDwM/IxDnS/m4rAQid7aHBA2IikDmWE8UpGBHDGBc3clTzNLNybVyoC8
-                  TAk7chz9MMFHAjqUUNHrudEznQiaIOfKrCk4PWX/W9w6iGYcllbAwKRpqbMAe47FY0P9bpcWoOYj
-                  +YQd59ZobJGFaQzBQs8XpKZ2yRF1qbIMDs8ya53oa6coy7UQmDIZVm4nlhNRCm2MSjL2HRqLBqCr
-                  JWRgViahFDUXCthTyQT+mqil5G+kg3SdIgW/4XVmHUnKSSC1SbJSuJ3TG8cI23/0UrXpTgd6a0vP
-                  bbpFEeqDa5VrMButOMuwuh0xFUKmEmgB9HXGNULcV8vUoVtRsjQ7Mg2uPui8zDAa3dS5mmsT83oX
-                  aslMYx3mVUzagxyFtzWLbEaFONKIvuFNBojICBZxxssI90T0qkytMj+XFqegccHq3m8SK1qNbopp
-                  ZEQKigEDpFOWlCmQ4CIlcJN70bLKviXHKqq5+NJEjNzCq2itYFtkkeuDfM/VuoodxEtjPsJGsCtG
-                  ZkPUpXIaulJmk+hSRROl7nOQSlTGKEgUoDaglFdeY0UUioaIwWNRHxi/MdAWZRE0CAy8t4muIF4M
-                  P94MXoq+ik66vRfJyxdHLyGNOUCyzmDZujkq9Fu1Oqa9NSni6ylVOqZy6ap6sAU7VXUHps8a+kO7
-                  IYtlSku3EdBDbUDNnM2RO2vqnWAYjQN1M+YicD7F+qNu1FI7yrX3MN2W5lYoFwz0Wugi9swfdEwd
-                  NYQfSwR02x/+4aGm41iNgZMQwYV/3f1UPYK2jFKQ/6KcZlH5WsOdFgwl1A4BTUXN61xvCg5Lc6dy
-                  CXNoNmI0S/iqHvil5jiq4uzWw7rLf0Tbx/IRWjESAf59Go8GtbOQDn074Q5JPJF7M0mrqQWC52x2
-                  MC8hQdUn6scqbp6XaCSpWkv8cbzcVyn8KHpSfQXXMXtNqpN3RNnj86MuFfJSpcKWMHoBxyNQisAX
-                  nEiPFEvBdyRDkafFJdVPU3d4GX/k+XJc5rlya9l4zewvDqeP1wS52OCB6CK4+C9PKOQMJfXPL60k
-                  cv7SwobLCZwkJAY6qSBdHIbFD3YMUnTDxtrn1qG6svTFyUGv/7KJHGkd1rya/NLLN5Xuv6ss9pJJ
-                  1B9r08aaX3rHnW738eDZbuwJfFnyHg0ROXC/Pifc2ep6fKMy9VWuF/tW+k9YOXnSys7GdYlquEWX
-                  20M72Ud7fzjYjDwJdqUcEiaG51faIiPTk3tUUL01ove7O/SHyNLtHsE2dPgAaG8znLDjNQ6WvInZ
-                  9H/f9z1UyUlUwbg0TvsH5Jqu/5DcKN5kNufGoDrZ/d/BNXnVcE3AN4z73byS8WdhnuBFA9wPbLwX
-                  0MShkvcBuz8B2IR8p2cs3a55BjX2X6PFPfO6jzWWiyfHMxIR8Bz+b1efTbw96J9JQJTjyaOg4K9u
-                  SrFJUd2q7rJS2mrjWKEZx4vBL0edkxNcFHC30Mk97MYdzc8IXJzj0STfF1W72R3m24Nue5DEFlQZ
-                  Peqdvab44UZvV3K69jZ0mhhtXL0JXzX93rb1Vn+FNLdr6fMPvy3a24+JczFGIycHW+8U53MmXzBy
-                  BsG/aPK0W50Uj75O6mvXhhVuiAbnVHWJ+TvvcCRhKWU8ExNYvkGQJpdGHkc1jfj1szGErS5e9x/f
-                  xJ6z4KR7/A8AAP//7FvbcuPGEX3PV8B68JOGxNwwgCqVimpNr+mVSIWS4jhVLtdgLiK8FCET4MpK
-                  ylX5jfxeviTdA/ACSbti0Yosp/yiEnEZYHrOdJ8+3dgadUVLOoNdoWVpn4Unrh7VjZc9cIJn6NMK
-                  fFsI7sHhA+fQaKIwj2lg7EhLAvOAS5DfgNUaYtmOB1SljcAwjpk601wFD7pDAGMI7zU4D6xvtXJt
-                  hvj4kgnR2iqQ3vtLtkouf+FaNZb8rSzWi61V1C5V8acRUM+jQLW677piWtlRHANhbEnWzXXLsIo5
-                  aenzijmXXdL8x36x7UYG13AbeBDTWBRTzD9v/W/KHtD7JwWYE1iCeolCCFc9quTWmXJ+1Z4iNFY9
-                  HjOlVLq54FTfXE5OumIM0jEUlL4ano4G30aT8Zt30ej4YjgeHZ9Ep+PR5SmqWJvrz6aQ+sENmYpJ
-                  mnIiucy2Tk827vXBo1Bp6ioyF42/XV2wde1l5YBxdq+G028H46/Px6ODo38evBmPJ18M4VUHKKB1
-                  JtwY5rvDg4tvzwYoUZWAp4OfDw/eubvbcmHRjXf8b/vjcPtHA/jjhZnqENkLyPrgp9OHjxxDBWs4
-                  eheUvO5Lr3Z9GwUmpUahZW6LJp6gNlg/WOvm2Ekxfx+OQy4sBNM+scwxzxOvveM5VZZzyZI8Xt/R
-                  anlb9sQx2qNj2G4LOHRR1DO3y5s1Czit65vqqN+/vb3tmdKWde+q/NAHaz4xU4zqRXW92wxjqWKj
-                  bG60ZnEae8tYxhItTcZFFsfZs8xw80abma0n1mpzprwOyuJjeiSjJM4I4/hQd6XNXWejUsppii96
-                  OvhieByQ8GbhwJqItq/KW72wYONb199JCoBxutY9cRr8rM7BTUfT8nYlxgU9aqORBTUjyCnBIVfv
-                  75osEzaZjsyshM0Zzcry/Sr5rdb5ydUqP1m7bgdhwYD/qz5D64NPs63++sklPYUp63CCp5amlOfE
-                  ZD4hwllNMq0MEdxaKbnyUplPrOtXDqdwcJTJ7PBgWL1F7W5xt5LQh9XZwqGqdnDk9axqjxSYra6P
-                  hFdpBx5eA5GEUc+Xed2iYwsoTZr2eWOEu7Va1yYHG1s+tM19Xv1g2xg77wF7RKkOlTbcO42C0UeB
-                  ux9nfSbg334s+40lv+fGKea0JfCPJUJ6Q/JMZEQIZXXGaMy8/p4KEfd+uMFw8U1h6+nBER7BTfmc
-                  oPu2XP7nX/+GeJxjvAb8rWRvxBBaKDBNCHuVayWdGyDK2iwx06saEo/g8qVZVsGija7eqosbKRB5
-                  jtseyBcLGLmawRsucB1Q0LtvawjyW8lqo+r09sOqllIzyiSRLkWbc0pSkwjCBfUuZ8zk4lNedo3V
-                  hP7PsXpSgO2C2ojGCYwMVxFyYtTTIz9bgqu7BnOb6HaKREvXNdxgV4rfA5PdN+tDkvfZ/qhOV6jW
-                  3EtupCW5zj0RmiYk5UIQbUSu4oQJ5diOqH4c1A/e+gGa3wYviAvR8Es9X3tQYAUzu5sh9kBX6m3m
-                  dKaIEhr3sXck41QTaqWX3udOUvdK0PUkD9wTB8kKB7HT0lPHCKMZ2MJyTXKZpEQxmsK2S3ys0/9X
-                  HFBtlKexIBS4DuDAMJIqmRKnY52oxEqdvRYvs/b8t3oWcqfglMuyBudzs5bNvK5MqCFhloYKPIRK
-                  rIaYRwt4T5p1f3hlK3ixNM6VF5QoBc5F+FiSLNeOQNKbM++5ht22E7yiXx49O3e1RYBryFOnkDu2
-                  RYgKSxXz5VqQb1LokF1uFQk0SoKkUyoINd/bAkNzW8uBZDV3elkXfjlrSq8hRHgIyiVmvRFGhw9F
-                  BQ8r/uEgNsAARQ25OJKbTRlzVrx36+ACdBoy9sM4jqM7F5jiVblnhE0Uj0Uac5IYHhNh4D9tYSvk
-                  lmWQ2STM5ekO2Oci7mB/C+ofBX+zP3bHfuMf/or+Ydj6h1Yfjr7ZzT/sB2Sa9SVbATlTwPmkBEaS
-                  ihz8ZGJJqg2Q6Tj3uZU5kGr5QixwMP+hvNsCF0/iyDqsjDVOtHUG69Lf6YrVBRELT21XqkOl9GZ1
-                  U+eNTl2l93StGtLhjKYpyXkqIdlIGMmN5+BkU64dd0rEu8DrJVzrMTA1wMq26e5V8mc5yoUdgfjz
-                  e90Z+yNs7SoTSmlOc0k4o2AyzSzR2iHg0tSpVANDMS+EMCx0zMG3fShnAB2HRc7tW4Pnq34ldxdF
-                  e6a/iWNMGIjzNIP013pLMuNjIH3UZd4nXu3k8F4CkW+3I8vjkMTmnnti8P7ROl5BMDci9YxBtOYZ
-                  BAVKY0gPJINdS7lk1sXmdye3BakcKCPPIH3KUqmJyL2GLNVSIk2cwNZVmeHylUDqiRIZdrjMcZPD
-                  +LU7RHZEwFIE7A+5KrnRWOjvyqxhj4d+HGfX8hUWLVBIcPbKfXSJqggJ7PnjvXh7o5iuUay15g5W
-                  ANwnV5jaGphHnpNMp0nGWCJTtWtK87sjfYh6y52zFii9QTFRWCVJmlhOuJRM6dR7Fb+WrKmzaKb8
-                  4NZNPdWPSw02aWptW/1N8Av7GFf556f7GQ9hSa4Dzm+nhZk+2ny43W0YUrKfbhDqLVr2hDpda5Ox
-                  9Al1nHhPLdKsGFi8YATyrATofW5d8lKc4Rtdm6bA6FHRCgIhdoREaPaPOYLWbzyUDaPodWmdvT03
-                  C429dZx7wmINcZR5BcFCARmmSntLPXdJ/ko2y5eXJ6gsjUfR2WT8dnJ8Gh1fRNv60zMQDJ1ZnxrG
-                  ScYtkLDUUJIJlhCWMmoSypRM1Avh9bdXwBGGemdVSrRBLBkJ2ZU2hujECmtsapPYvpICztN0Y7tT
-                  GTbhplkZNhy8WcvT2vZqbFY+RBM3y6VCJPPO1W0zeeV0BAO4We8ZfCrT3OdpqokzAuiD4kAfmEkJ
-                  k1YxDyRPmuzFfWrVtNd90pkG5rthut3+amC5EKXcwn0S6C1fCE/Rz8YYjJZU+9wSC9wLeHICxFIw
-                  CYRM20wmqUvdTsB9CTGgS3IXyxClUPNbACPTpkYc5su51aEHeWaRmTX9zQV+UuHquvmuIJg5R9hN
-                  ax3i1cdasaNr/f5eTqKxYFQTCEjPAWjKqWYO/K2kPMUYpEmey4zYWDlm8gwWZ9dSzy8FdPRsGux2
-                  4/aWBIukzi/v9Z/DUOFLhSnS5XKGOjl+zrFvTIcgRR3220jvKBEySUgqnCI+Sx0XFqKa3EVJkEw+
-                  IZ1uAL4vnINouo5Lh/foGdoEsaeDBZt8rag6RGrtsnf1HftmcCiFiTWt1U5wnguSp1pj+VdhXVIQ
-                  bozKPWTVXNDvIc3oAhYO/LoOGExaNd3QVTmr6gIb9sCPLuvlNUS4H8GXlD+9Xi8NRrVJgsVgbuBP
-                  mjOiMy2IgtxCeQXWdf6VeOnz8cn5xfDNIPo8Gvzlcjga/y06vxxNhueDFXc935+s8rXknztuhfPE
-                  p7DZRSwMSXUGbhTYgVGO50p91G9+d3gwnrw9Hg3/Hmq2of3oiW8qx4ur4xwixoe2BfDL8+Zgk0dw
-                  2v5CwzQz81X7YDj8NbZS2SJ0RbcmDE1Wzdl2xEc+iWnOn4HbnNfNgxLeHFutsLMOy4bHV25u7ppT
-                  8Pj2a9GDTtcWvBAQ1N6yWl924X6qcemCPRZXnQat45FYtWidDSanw4vB6GJyPHrTfq7bvFN3/s2x
-                  iTPY49fmV1LAicngzfFk0HR5PXa6OdSa4WOBOFxYgSc0DpvYNnNDlWs2Lav6iMNW6+ubov+B9gFM
-                  2Alb9cNDcIZts2WOGG1gD2twd1JcF3WL3/HlBGf38x/+CwAA//8DALnYXPmrPAAA
+              string:
+                  "{\"ACTIVITY\":[],\"CAMPSITE\":[],\"EVENT\":[],\"Enabled\":true,\"FACILITYADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CO\",\"City\":\"Pagosa
+                  Springs\",\"FacilityAddressID\":\"20440182\",\"FacilityAddressType\":\"Default\",\"FacilityID\":\"234787\",\"FacilityStreetAddress1\":\"PO
+                  Box 1662\",\"FacilityStreetAddress2\":\"\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2018-06-26\",\"PostalCode\":\"81147\"}],\"FacilityAdaAccess\":\"Y\",\"FacilityDescription\":\"<h2>Overview:</h2><p>Chimney
+                  Rock lies within the San Juan National Forest, between Durango and Pagosa
+                  Springs in southwestern Colorado. The Monument encompasses 4,726 acres, preserving
+                  hundreds of prehistoric sites that dot the landscape around the twin spires
+                  known as Chimney Rock and Companion Rock.\\n</p><p>Home to the ancestors of
+                  the modern Pueblo Indians, the site represents spiritual significance to many
+                  tribes; the Ancestral Puebloans built more than 200 homes and ceremonial buildings
+                  high above the valley floor, probably to be near the twin rock pinnacles.
+                  Some ancient structures have been excavated and stabilized for viewing including:
+                  Great Kiva, Pit House, Multi-Family Dwelling, and a Chacoan style Great House
+                  Pueblo. Many unexcavated structures stimulate the imagination.\\n</p><p>The
+                  northeastern-most Chacoan outlier is one of the highest elevation Ancestral
+                  Puebloan sites. The mountain peaks to the north and east made it an ideal
+                  spot for tracking the movement of the sun and moon. The people of Chimney
+                  Rock may have used signal towers at various locations to transmit calendric
+                  information to Chaco Canyon.\\n</p><p>The Chimney Rock Interpretive Association
+                  (CRIA) is a 501(c)(3) non-profit organization and conducts daily tours and
+                  operates the Visitor Center during the season from May 15 through September
+                  30. Their mission, in partnership with the San Juan National Forest, is to
+                  provide the site's care, protection, and preservation, as well as public interpretation
+                  and education, and manage the interpretive program at the Monument under a
+                  partnership agreement with the Pagosa Ranger District, USDA Forest Service.
+                  CRIA offers both self-guided and guided tours seven days a week. The Visitor
+                  Center is open from 9 a.m. to 4:30 p.m. daily with the exception of special
+                  events.</p>\\n<p> </p>\\n<br/><br/>\\n<b>Summary of Fees</b>\\n<br/><br/>\\n<table>\\n
+                  \ <tr>\\n    <th align=\\\"center\\\"><b>Tour  Name </b></th>\\n    <th align=\\\"center\\\"><b>Adult</b></th>\\n<th
+                  align=\\\"center\\\"><b>Child(5-12)</b></th>\\n \\n  </tr>\\n  <tr>\\n    <td>Guided
+                  Walking Tours </td>\\n    <td>$14.00</td>\\n    <td>$7.00</td>\\n\\n  </tr>\\n
+                  \ <tr>\\n<td>Night Sky: Stars and Galaxies  </td>\\n    <td>$12.00</td>\\n
+                  \   <td>$5.00</td>\\n\\n  </tr>\\n<tr>\\n<td>Full Moon</td>\\n    <td>$15.00</td>\\n
+                  \   <td>N/A</td>\\n \\n  </tr>\\n<tr>\\n<td>Early Tour & Full Moon Package</td>\\n<td>$20.00</td>\\n<td>N/A</td>\\n\\n</tr>\\n<tr>\\n<td>Night
+                  Sky: Our solar System</td>\\n<td>$12.00</td>\\n<td>$5.00</td>\\n\\n</tr>\\n<tr>\\n<td>Summer
+                  Sunrise</td>\\n<td>$15.00</td>\\n<td>N/A</td>\\n\\n</tr>\\n<tr>\\n<td>Dances
+                  of the Ancients</td>\\n<td>$15.00</td>\\n<td>$5.00</td>\\n</tr>\\n\\n<tr>\\n<td>Geology
+                  Tour</td>\\n<td>$15.00</td>\\n<td>$5.00</td>\\n\\n</tr>\\n<tr>\\n<td> Audio
+                  Kiva Trail Tour</td>\\n<td>$10.00</td>\\n<td>$5.00</td>\\n\\n</tr>\\n\\n<tr>\\n<td>Life
+                  at Chimney Rock</td>\\n<td>Free</td>\\n<td>Free</td>\\n</tr>\\n\\n<tr>\\n<td>Stories
+                  at Sunset</td>\\n<td>$15.00</td>\\n<td>$5.00</td>\\n\\n</tr>\\n\\n<tr>\\n<td>Early
+                  Tour & Stories at Sunset Package</td>\\n<td>$20.00</td>\\n<td>$7.50</td>\\n</tr>\\n</table>\\n<br/>
+                  <br/>\\nPlus a reservation fee of $3.55 per ticket <br/>\",\"FacilityDirections\":\"<b>Chimney
+                  Rock National Monument </b><br/>\\n3179 State Hwy 151 <br/>\\nChimney Rock,
+                  Co 81121<br/>\\n<br/>\\n<p><b>From Pagosa Springs, Colorado:</b> Drive 16
+                  miles west on Hwy 160 from Pagosa Springs to the Hwy 151 turnoff to Chimney
+                  Rock National Monument. Turn left onto Hwy 151 and drive 3 miles south to
+                  the entrance of Chimney Rock National Monument. Turn right and drive through
+                  the entrance gate 1/2 mile to the Visitor Center.   Pull into parking area
+                  on left hand side and park in front of Visitor's Center to check in for your
+                  tour.\\n\\n</p><p><b>From Durango, Colorado:</b> Drive 44 miles east on Hwy
+                  160 from Durango to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn right onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.  Pull into parking area on left hand side and
+                  park in front of Visitor's Center to check in for your tour. \\n</p><i>Note:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to September
+                  30.</i>\",\"FacilityEmail\":\"chimneyrock@chimneyrockco.org\",\"FacilityID\":\"234787\",\"FacilityLatitude\":37.175,\"FacilityLongitude\":-107.3027778,\"FacilityMapURL\":\"\",\"FacilityName\":\"CHIMNEY
+                  ROCK NATIONAL MONUMENT\",\"FacilityPhone\":\"970-883-5359\",\"FacilityReservationURL\":\"\",\"FacilityTypeDescription\":\"Ticket
+                  Facility\",\"FacilityUseFeeDescription\":\"\",\"GEOJSON\":{\"COORDINATES\":[-107.3027778,37.175],\"TYPE\":\"Point\"},\"Keywords\":\"Chimney
+                  Rock,Chimney,Rock,Chimney Rock Archaeological Area,Archaeological Area\",\"LINK\":[{\"Description\":\"Colorado
+                  State Road Conditions\",\"EntityID\":\"234787\",\"EntityLinkID\":\"ade442af6d2e2f36fafe3b17d33526b0\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Colorado
+                  State Road Conditions\",\"URL\":\"https://www.codot.gov/\"},{\"Description\":\"Colorado
+                  State Tourism\",\"EntityID\":\"234787\",\"EntityLinkID\":\"0570c7dbcaa2080fd22926a5c9349009\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Colorado
+                  State Tourism\",\"URL\":\"http://www.colorado.com\"}],\"LastUpdatedDate\":\"2021-09-23\",\"LegacyFacilityID\":\"113189\",\"MEDIA\":[{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Learn about
+                  how the ancient Puebloans used the night sky and get a closer look at the
+                  stars and galaxies through telescopes!\",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"38d1813b-c9f6-4eda-9a7c-43dd5537f57c\",\"EntityType\":\"Facility\",\"Height\":959,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Stars
+                  & galaxy viewing of the night sky through telescopes at Chimney Rock\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/05/234787_3ce72ead-3ced-45fc-b949-447da92102fa_1440.jpg\",\"Width\":1440},{\"Credits\":\"
+                  Howard Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Chimney
+                  Rock offers monthly programs, annual events and daily guided and audio-guided
+                  tours that will bring this beautiful site to life so you can visualize what
+                  it might have been like to live here 1,000 years ago.\",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"67304803-6c30-4c03-ad04-bd29af662eb8\",\"EntityType\":\"Facility\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Get
+                  a View Into an Ancient World at Chimney Rock National Monument\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/19/52/234787_97949555-584b-4d6d-8acb-c0bfbd5bc9f5_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Enjoy beautiful
+                  360 degree view of the San Juan Mountain from the Great House on top of the
+                  Chimney Rock Mesa!\",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"b44c39bf-985a-4bfa-8cd1-5c06aae79c35\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Chimney
+                  Rock National Monument is an intimate, off-the-beaten-path archaeological
+                  site located at the southern edge of the San Juan Mountains  in Southwestern
+                  Colorado. \",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/10/234787_aaa3e06a-aa37-4a1c-bebb-9a8692265878_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Watch the full
+                  moon rise over the San Juan Mountains at the Full Moon Program.  You\u2019ll
+                  be torn between looking west to see the spectacular sunset and focusing on
+                  the eastern mountain range to see the first sliver of moon. \",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"10fde33f-20a2-42f7-9872-b17afd1f3e6b\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FULL
+                  MOON PROGRAM AT CHIMNEY ROCK\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/00/234787_a9df8c23-93d6-48c1-9426-2821c6127567_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Watch the sunrise
+                  over the San Juan Mountains from on top of Chimney Rock mesa where the ancient
+                  Puebloans used to live over a 1,000 years ago.  \",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"ca51afbd-d658-4b6e-b425-9aad9568e8ed\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Archaeological
+                  ruins and artifacts, abundant wildlife, and its setting in the breathtaking
+                  San Juan National Forest make Chimney Rock a must-see.\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/11/234787_131a2ed6-5138-42fa-bb59-d07e2cb951a2_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Watch the sunrise
+                  over the San Juan Mountains on summer solstice or autumn equinox from on top
+                  of Chimney Rock mesa where the ancient Puebloans used to live over a 1,000
+                  years ago.  \",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"534d66bf-43cf-48b2-a9a4-7ff17f7700ef\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"SOLSTICE
+                  & EQUINOX SUNRISE PROGRAMS\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/03/234787_9be3d4ef-f870-404c-8a96-5b88c7e3b772_1440.jpg\",\"Width\":1440},{\"Credits\":\"Hoard
+                  Rowe/Chimney Rock National Monument\",\"Description\":\"Get a view into an
+                  ancient world at Chimney Rock National Monument!\",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"8fd9ea97-74a9-44fe-931a-1d5f5ffbe51e\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"CHIMNEY
+                  ROCK NATIONAL MONUMENT\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/06/234787_0ea5f1e2-2199-4d3a-b568-72185316f0a8_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Enjoy beautiful
+                  360 degree view of the San Juan Mountain from the Great House on top of the
+                  Chimney Rock Mesa!\",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"ab179188-b385-4e62-bcf3-4483ae3e7408\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Aerial
+                  view of the Great House Puelbo, Chimney Rock, & Companion Rock\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/19/59/234787_6111b1b5-3215-4a2d-aae5-5888e78a31ac_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Learn about
+                  how the ancient Puebloans used the night sky and get a closer look at the
+                  stars and galaxies through telescopes!\",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"4c1fed78-aca2-4c58-bacc-a6d4dcd8d60d\",\"EntityType\":\"Facility\",\"Height\":959,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Chimney
+                  Rock National Monument is the highest in elevation of all the Chacoan sites,
+                  at about 7,000 feet above sea level.\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/11/234787_2a3fb88a-ec47-473c-b2c8-25d72fbfa5c9_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\" Chimney Rock
+                  offers monthly programs, annual events and daily guided and self-guided tours
+                  that are fun and educational for the whole family. \",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"7561e970-5fe1-4566-84e7-f98e34d48c58\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":false,\"IsPreview\":true,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"View
+                  the stars, the full moon or take a tour of this spectacular Monument where
+                  the ancient Puebloans used to live. \",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/19/54/234787_3ae433b4-b8aa-4537-ac44-3cc7bfc35341_700.jpg\",\"Width\":700},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"You\u2019ll
+                  be torn between looking west to see the spectacular sunset and focusing on
+                  the eastern mountain range to see the first sliver of moon at Chimney Rock's
+                  Full Moon Program.\",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"a55a2125-5e8d-4531-8c64-341feb22cb40\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Listen
+                  to live Native American flute music while atttending the Full Moon Program
+                  at Chimney Rock National Monument!\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/08/234787_a3f53c5d-babf-4a16-8344-ac4b706247e2_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Trained volunteer
+                  interpretive guides will bring this beautiful site to life so you can visualize
+                  what it might have been like to live here 1,000 years ago.  \",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"36e224cd-4196-4dfd-9cf0-1d1e9ff6f7b8\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Guided
+                  tours of the Great House Pueblo of Chimney Rock\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/00/234787_bc48f221-7390-4110-ba52-441352de0cf5_1440.jpg\",\"Width\":1440},{\"Credits\":\"Hoard
+                  Rowe/Chimney Rock National Monument\",\"Description\":\"Get a view into an
+                  ancient world at Chimney Rock National Monument!\",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"1ac7f104-1c7d-44c2-8758-ea0a676d5a90\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"You\u2019ll
+                  walk in the footsteps of the fascinating and enigmatic Ancestral Puebloans
+                  at Chimney Rock National Monument\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/09/234787_280b7f41-7744-4f05-9bae-151b2ff3afbe_1440.jpg\",\"Width\":1440},{\"Credits\":\"Howard
+                  Rowe/Chimney Rock Interpretive Association\",\"Description\":\"Trained volunteer
+                  interpretive guides will bring this beautiful site to life so you can visualize
+                  what it might have been like to live here 1,000 years ago.  \",\"EmbedCode\":\"\",\"EntityID\":\"234787\",\"EntityMediaID\":\"d3eedd41-c13b-4d75-86d3-35527a8ff700\",\"EntityType\":\"Facility\",\"Height\":961,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Chimney
+                  Rock covers seven square miles and preserves 200 ancient homes and ceremonial
+                  buildings, some of which have been excavated for viewing and exploration\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/24/20/11/234787_305f61e3-ff1d-4e60-ad42-f056048bde6c_1440.jpg\",\"Width\":1440}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"FS\",\"OrgID\":\"131\",\"OrgImageURL\":\"fs.jpg\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"USDA
+                  Forest Service\",\"OrgParentID\":\"163\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.fs.fed.us\",\"OrgURLText\":\"\"}],\"OrgFacilityID\":\"AN413189\",\"PERMITENTRANCE\":[],\"ParentOrgID\":\"131\",\"ParentRecAreaID\":\"1054\",\"RECAREA\":[{\"RecAreaID\":\"1054\",\"RecAreaName\":\"San
+                  Juan National Forest\",\"ResourceLink\":\"http://localhost:3000/api/v1/recareas/1054\"}],\"Reservable\":true,\"StayLimit\":\"\",\"TOUR\":[]}\n"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -104,29 +153,31 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "15531"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:30 GMT
-              Transfer-Encoding:
-                  - chunked
+                  - Sun, 12 Feb 2023 07:23:41 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 5dcf09eaf65257abe85ddc5988a25c4e.cloudfront.net (CloudFront)
+                  - 1.1 95ab38d462185df6df78ba1102868640.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - onfQ40WscGdGCWze-9y9mka9JMedZpq-Q6VNAa2_0ZtpmgOio4Va2w==
+                  - mlDpO1W4Jg4JNlDzs4Q-SuZ723g29M-6ofI5O3CDf-R4g9IKkDEruw==
               X-Amz-Cf-Pop:
-                  - DEN52-P3
+                  - DEN52-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -143,7 +194,8 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36 Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10
+                  - Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.16
+                    (KHTML, like Gecko) Chrome/10.0.639.0 Safari/534.16
           method: GET
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A234787&fq=entity_type%3Atour&size=1000&start=0
       response:
@@ -170,83 +222,81 @@ interactions:
                   jXEAhtuNTTqG5xCQ3/JArtGuCZ4HI5K+g9n9BjBAEJPQ4ThGGbIdLTc5Ya56djr6xTanhocxXwtv
                   X1/Q19ZBIGuhcNVVKDIkAvUzZEBbadDJBVsMtWY40X+T0CvnijuntRvVRbFFBxdHiANDAOhwHbUG
                   Oen52gme8pwKDC5qPcZ0/1QEEfzUQcDWyWgEGNFln89a9PeQahLCUCd0H/gH0wDENQsVHJO1NgX6
-                  +en5+fT8fHp+Pj0/v5DGvwAAAP//7F3rjtvGFX4V1siPFhB3JV4k0vnlpLGRNtsYsYMgQAFjOBxK
-                  9FIky8vKMlAg79Bffb08Sb9zZkhd3WATrZM1ZmHAK61Ezpw5l++bc87wk4Wf/sXh54EILHiw4OET
-                  Ag+H5rRjPf6lWc8XRuWPVOzx0p35NUnJk3M5DbOpm0YL3w0WSehGYj51555U01kUJsncewC6I5bL
-                  RpF7fSNVUbyRFT6PuTx56k2eCP37m0aQs3jyNLjywsm9CNJr0tpa81FYyjKHqWHd2AhrUPExvhRQ
-                  MFZYmEaptPNjG09Z6bUFUOTSsRLfu8OfNE3/e34nnNcwNLiPqqotjLUw1sJYC2MtjOUAPLs4iv29
-                  nLqZz6XxxFeigdgpILLFenPnOenNTYXhvRTylqIhPtyT/Cnc6WiIwBI9WsQRXUOM0yCIY+VHbjaL
-                  EjeYe5EbpyJzAxVNFypN4mQmfjPg+LJaJ9Ue2jhCFPeEE8+gLwD2ZMBbRUhVLLXp16oC0nU2q8oh
-                  nU5P+Eeqao1cjc6BDBCCF/AtmrqsGdNmQNYTcDFVTKCiVYFASjfEWCeOhDqv+Le1SsEBSjVhVwJG
-                  AF9Ddp5A8impOzkvmOyKnJ6mRSNrI/MXxbqCjwYNwSLmJRO5rkoF2JlzwArLkY+RAJiNECPSV9Vz
-                  GEkOM5hlAwJzPHcxkjOItmUWCWeEEALFe9mrpKCMh5agmQhbJ7MbQ0H4fsdJkUb9qwfOauFHl1WX
-                  s9Ixm3PaTql64hjHzUbMfgAkrAKfYo+NAcHRt8bTV7WLOGQz4Ba7WexmsZvFbmbzxHvYLUgbTz/1
-                  ePqhXTnv0ij6OTm5Y0dxHjd7jxY3x9ckuWjuh/Mkzdwsk6kbpNOFG4dCuqmapSoIkwzY+aPu1F0t
-                  wnObdbP779bBbZLfXRP3GRheJ26hkzAOOEGxFGB7musl4EakaIP57KuzNoOBFXb6QwdLeKNaYdGe
-                  RXsW7Vm0Z9GeDsoPsFP38R26mcvF8cWwJ/eJ7cXhH4QViNDPvDh01UIGbjDzIzcJPeV66TxIgDlm
-                  nv9Rk3/+OTwx559fkwGcXYXOye4vZeQrgrtFRWnvJWfAt2zzOXBsowqdm1/l9ViIwHZHttAOSnoK
-                  vdsP0xZ4Gl5rGndLhbtCAvBDghLuVSEW11UHx7IdyQqnyyvA7dqwhjus/OdmrJAk3sbtiQWkCl9c
-                  g8ToTD++2EpRa0ozOR7HhKyPijkkO5wCyL6gdD84EXSpG2jDKr+lLXW+ojFAvSNuxHGuWnmN6yZU
-                  spFlueyLjokPs5yc6xHWo+SYVIDhiJSKlSdDzQIoW8esjKsmCnWnFdhCNQvVLFSzUM1CNcIT8QNl
-                  VW2gfPSB0hkwMJTk0iD4hVn61/qyZ3Dw/LHiYD+4JoEl02wazxPp+rGcuUEcRK7wvbk7T7z53Avi
-                  TGW/PSn925p+2FCzRkFlMwFXuXUrainrqCwSFpbfQXb4xEoVJ2bVHrlTdp1XQDbQL2JfrHqYgCNa
-                  564qenyGKmTNrnjeks2mag1bhzF0bNPcaMZGqMuHG5F1No1q0ZpFaxatWbSmN6PChwFrf/AYMAKR
-                  ILw0Dvkmz9QnU3/vedeQ0HyqFsqfzt0kyGI3SLLMTRbThRsG+G8up2IWqd97B+7+2TzaMC3Ym9yo
-                  okq3Z/eATXcKLr3K8YsYlHJiijdL/Em8J99Bsh6z5XlZCknOTiQYNXx9SXccbmB6Y5a4uCkBJZ7y
-                  jq7C/UwGrZei4/w1o3W+0MlYJnTNu1z3fJTEhoYWfjMSvgbUBsLOERNYc/ZaYBIl+i7P+oKH356M
-                  n0b+fQ1n0yiKBXQb400PR9HtzY7OlFkTbDACykuwBxAS8taFYpLElRFVnUvThwSWsaMje1pPy+m0
-                  vVyRwQvwkVb2bWtS/+eJm0N8BbeYDK1DgoNhtebjCcgTtXq4N+It/Mw3fQknD0AGqtVhWSY6Bhge
-                  OXFUJxEp/lk+a/lLnCuggwRaHTiYAt3ic9QTNLQ8dWRWumWM/r4S8FMkuTWpWa5Zp6CVIYkYcwBl
-                  KvqO6yy2upuNi4A3JfGzhjTphjxcqd5fOS/Ee1bMTVWmpI4nQ8M7eQdppQ6ZjDODf9qrYdmsVPlB
-                  1gsSTd10B6uwAvG7QmQrD4qbCwgWF6zx+h3zTQQnz1D01tRy5NwEpeStm5eToTgDGj4ZFYF8Mo2c
-                  D2dY9y13eUGJWWUwPurJ27tp3p60WsELtE7AF+prCKdXNC5cqnNMwN5DCAMqoZC71fE27Zv9YdLN
-                  8wqEveM1TLBmm8/5u/zpYY0LCEZvDWjgkWqNpNfwdWQ2EFeOz3S6/+yz2fwKq1AXPSlyUlWMNwAg
-                  TPCCpVal26isL1PynFfO13qR+DQNurgkcRR6OwODVrojEUbKNr2Byq3IErmnjiez68ETdxC8vupz
-                  SCxVHV7TRkUBJKF4zY+qeDonXkzdKPLd0A/jyQBGXGCRKWGRmwo6TXd6zbP9Tnt83S6owSe0YW+l
-                  rpxv8nVOAm1rQav6A7TApeJ4TEY4Wd60nUsdjRPzO12Psm5tbgmbJWyWsFnCZgmbpg/TaRTNo8sX
-                  v1pIbCGxhcQWEltI/Dgg8UE0uPQm1nEg+ASK1WfR9TS+9gKqVA+Daz26N75Qge8ngZtEQrhB6C9c
-                  IYPA9aVcJJn0Qz+Yfdx6dbMWs2nkL7xpdK7YbKF/fkWxmSqX1AWCkLWpdM+xog5fd10NkQxv4XPj
-                  iTrkoMpj7/c1ORGsg/bWbVtJ05DRjen5k+aOtq46rVHw86xKZMFLVSrytibyCQiTPUg+3oEGxVls
-                  EqFO7NOJPBQfz8JQ04DywZR+Xq5EwmbHn+LzZigiiDPtPpjEj0MQ06dcAnL02r/Jqiw1JT0Zggly
-                  y0ZjI06wO18OMZjj49EMOFipVrhUPLqXiJ+M00nFFn908d9h5YKZDjcYHY1jf/SMoZKq0y6fylGB
-                  k+E5l9rZnqlm5RqBdqLnzVhqnPqu1sHgJiWkab2Z7EU53QZ0MFWOSC1hqB8/DA7ari/LAT7uCg36
-                  hvunODCRq222LR1zxLGivTUnNHGPE/VmkQ51OuTxUT2JQoQvqBSCAmR32MZV0djOhXk9BQ72O33e
-                  BRHoANVz4FsGE/+rzxVFpszVId+MfceIzHlCWzILiShbwXoBlWDHMIMJTb0B6jbHFpWpPpjIboDY
-                  DRC7AWI3QOwGyAB559Eiepi8tQVIFiBZgPQIAdKBb7g4Hd62He0inqjQ/6k2nT3ativfux4FKUIZ
-                  S+kl7iyNUjeYxR6dvDh3wxjIUHpCeVn2cfmxd6af27+K7keG+ZxU2kfi0z31MV2707h0mTm7WCHZ
-                  h+9ts5r9raNCJXPUw8kG6znvKxyzSnz0KB+lYHbo4Lxov1ry4xJapfSYOgUQIhFi4RZe6zhA2Mcc
-                  aTvea6KvRcPY9TWulXn4Ar09PHvhJVu29p0rOsRhdws+MbalQyHo9m0HR3+FCAb32tyWqqXyqlaq
-                  MoXjM4M2oMbAMAQw7T0Pzjmj82F3BVvjkLl2ayPy7nieDFl4F19RfXtRQavoqLNb53iCtH2HlTEh
-                  dJVnPNlUqVo1bnuLBUjeQp6t2WYstxBy6a4FLjz8hbcopS5ux3dpYU63WGn/ldZld7gr17YNJ+gi
-                  NLZmtQqzq7euEjZKy94se7PszbI3y94YCAXBxYmbDeY2mH/EYD7o8aVJxj/Y07y63T51voXGvqoK
-                  SsMT81ifZxjhYyUYlISD/MAmxMwXyp3HoXQDmUk3jmXoeuFMeWEaJ56XfExuMbvyj37OJd8C/rln
-                  8u07tYb71TYu6SERvNMDu1Pl22qry1J4+UnL85L3lXp4X7LU/UIV84SH886uoz2M8x5tvzTlnN8Z
-                  nc3QMWHIf1l1udzR990YYVu/7Gx0x0XfNLoHg29Kkxuc3B/RGekKknFnYpyxhfEWxlsYb2G8hfHc
-                  Nnf5+lMbIh99iNx1VV68IG0PHL8a5fZCUImwas/D4/jRwuPoGgJUyczz0sXcFckicIPYV66YqdRd
-                  zGQSRMKfBvFDVKbdu6RMFgKaSaxKNB214U70b43KCo2WzBumdrvFcm/Nacaw8a6DDd2RKf5yuHB+
-                  /uk//Dy0puJUFDthTPBPjvOD+vmn/xJr7HgUWlFX9IixFDFq94ZIx5zTfo6Pk3mwtYw8QUJFmmQ+
-                  Q98yyLi5PKcJU6pBNja390AOYvk5x8ikECWXucK7yJXIKSNGJzbjmogfRO6WlW6Cxnf4booPcYGh
-                  psYaOQfa6exdxqQYXoELQ8fqcPx5TZPRcsWFv2/5mWe4s1xROe1w3rHYcKk1ObZcFO1g3DwtzbXV
-                  OzGeOnN4WXgqWkVKOutsm1yxV6PcoeBnssEFi7rmjDCPryZ50mAxzd1YMDwW7kY0qa42b3aVw5jU
-                  SnDeT5/cTNnSij4y7qlslM5ScrJVpVx6TXLEa6r3hiSh2VQv/TxvgXipVJq7ErDsdDXV7MT6dbUR
-                  iOFkd84ruaLOcHqGm/6woEfC6ZJqPm8aMnpLKVLBDwLUh0ljwBxpab375ZJa2qnGl+WDCQ0NAZSL
-                  x6BLTtdDipmr3sE78L4Tj/9mXBB90WFZ6CWLoN49T+8pvtC9GqVJr25y2dDBlaqkV6+rhmr1cW16
-                  9aIRFMwoh4tgRVaRS/pSaR5/7fwV926fOn/rseiLCf7HKoYT51m/pNl6kz1sMDd17mq/QpxXjqWQ
-                  sY6bQnHMNESEd17ejOI4rAwPnwJ6vLyBNpwWpZuqc36YH19xrDwfRtByPYLT7JVWu1VZjG0qUCxE
-                  Y6xK3vE553ps+hl8Ts+dAbOpKURfMQ4jBfvMmzp/JqWdTU3J/F+Go8hb9jaj5WivRcPDnbFUZK7i
-                  qEod3qE0hx09Oyxqr2veYcLqmnoAroV36p62GVs+Lr4gI6wO6/O5FF0a8HkjNODcl8GHPk0X2qiE
-                  3UiuGyJYWBvB2GTZC6CbTrH51VV38CBF3IlOjR/kqh+h2OmdOilqITkrn/Td6EKEpMr2KmXtGCrZ
-                  80wXt/NB9LuK+y92YgGEqXjRSDw8ruHLv7rc/xfq/S2Ptzze8njL4y2PNwVTse8/0ImNlhpYamCp
-                  gaUGlhpYavBIqMFBVLz0Jqa2UvN8dhr/y+FQgUd1QNwj6aQ9Td7f8/EMX+2OjtAF9rolnxEzvXHu
-                  5GTyAroTYrPipEVrtJTiPCwlX9dwx6aM56CO59tS2aOOLDm15NSSU0tOzePML//Up9/Hpw/TuTig
-                  6NdEZl6BqFAS2nllpmOw/Acakx4T1jjIi86vSYYxYMY0Uok7DQMPQMNL3SjOYld6QswjLw6T9OIt
-                  ScAGbf6eagR9/FYr5nJvRN9VsmoaZsFPnmbgAbg87zOQUtLVKvBG+ta//wcAAP//AwBn+sqUbJsA
-                  AA==
+                  +en5+fT8fHp+Pj0/v5DGvwAAAP//7F3rbuPGFX4VdpEfLSDaEi8S6fzapNlF2rhZxBsEAQoshsOh
+                  xDVFqrxYqwUK5B36q6+XJ+l3zgypi+UGTmQnWoyxwFqyRM6cOZfvm3Pm8JOFn/7J4eeeCCx4sODh
+                  EwIP++a0ZT3+qVnPF0blD1TsfOnO9JKk5MmpHIfZ2E2jme8GsyR0IzEdu1NPqvEkCpNk6j0B3RHz
+                  ea3Ivb6TqijeyQqfx1xeXHmjF0L//q4W5CxeXAUXXjh6FEF6S1q70nwUljLPYWpYNzbCFaj4EF8K
+                  KBgrLEyjVNr5sY2nrPTaAihy6ViJ793hT5qm/z2/E85bGBrcR1WtLIy1MNbCWAtjLYzlADw5OYr9
+                  vZy6mc+p8cRXoobYKSCyxXpT5xXpzXWF4b0R8paiIT7ckfwp3OloiMASnS3iiC4hxnEQxLHyIzeb
+                  RIkbTL3IjVORuYGKxjOVJnEyEb8ZcHxZLZNqB20cIIpHwomX0BcAezLgjSKkKuba9FeqAtJ11ovK
+                  IZ1O7/GPVK00cjU6BzJACF7At2jqsmRMmwFZj8DFVDGCilYFAindEGMdORLqvODflioFByjViF0J
+                  GAF8Ddl5AsmnpO7kvGCyC3J6mhYNrI3MXxTLCj4aNASLmJdM5NoqFWBnzh4rLAc+RgJgNkKMSF9V
+                  z2EgOcxg5jUIzOHcxUDOINqGWSScEUIIFO9Np5KCMh5agmYibJ3MbgwF4fsdJkVq9a8OOKuBH51X
+                  bc5Kx2zOaVqlViPHOG42YvYDIGEV+BR7bAwIjr4xnr5auYhDNgNusZvFbha7WexmNk+8p92CtPH0
+                  U4+nD+3KeadG0a/IyR06iuO42Ttb3BxfkuSiqR9OkzRzs0ymbpCOZ24cCummapKqIEwyYOfn3Knz
+                  j+zUPXabTjHfKdh/X6uiSjcDw2vFLXQSxiFVv5GNSy+gf0pvKUNuI8PzSvxJfCRvTcIeDCsvSyEp
+                  vIgEo0Z0LemO/Q3MNjost2eLtSrEB7oKpz66FV+lFC2rOqs/X+jeWEZ0zbtcbw+XZB59tY8ZCV8D
+                  egNh54jCrDo7u+WJEl2bZ13Bw2/ujZ9G/v0KVlkrir50GxO/9kfR7syOyk+XBNSMgPISrmiJdcL4
+                  CwBdmhP7olUuTcoiw7Kb6+6pPS2n03QS14EonTRvZNc0xkvwKO77IdkVdItRn2UQDD+qJVcyQcFU
+                  o4d7Ld7DQ37TlQirgMBl2rRYlpGOunPOTmxGjmolXNo/y5cNf2lJHJlqjhodqrmm6hafo/RBnx1p
+                  ya50don+vhBdSUoKrw81I0/LLq7UEjHmUDpZ0bXskjc68cX7BeuSKrRq0qRrSsSU6uOF81p8ZMVc
+                  VwhINYnmYGh4J28hLQQrmIkzgd/aCXfrhSofEF7jSFFQ4m1vFRYIGRfAEuXePkgBweKCK7z+AB/T
+                  KsAB7yKkcEcZFXb7OedLlLx183LU+3Fo+GhQBHLeNHKu41oiUFJCCErMKoPxUfpu56b49TArAy/Q
+                  OAFfqFtBOJ2iceFSrWMg0g4m63EggZyNRjhpV+8Ok26eVykiEK9hgjVbf87f5U/3a1xAMBolaKiX
+                  ao2k1/B1ZDYQV47PtDpV9dlkeoFVWBUdKXJSVYzwANkMAoClVqVbqwxogjznhfO1XiQuvKOLSxJH
+                  UeggmXZKJy9hpGzTa6jcgiyR0288mW26TtxB8PqqryCxVLV4DTNAvBaU5aRs5H7Ab514NnajyHdD
+                  P4xHPfxzgf7GhP6ugXpautNbnu132uPrzKKG+9CGnZW6cL7JlzkJtFkJWtUfoAUu7aNhMsLJ8rpp
+                  XUp+jszvdD3gIdHkliJbimwpsqXIliJr/jAeR9E0Oj1PtpDYQmILiS0ktpD4PCDxXjQ4/eYWLG+k
+                  U8ImRwyHwBtO576/NYkux/GlF9DmVhhc6tG984UKfD8J3CQSwg1Cf+YKGQSuL+UsyaQf+sHkWYvR
+                  LmbhsXq0yeML0gB7CDexMzwWz8UcWttoq02EvKW91D6Y7O7Yao/Y23erP7S3iteqEZatWbZm2Zpl
+                  a5at6bzTk/C053boZi4nRxl92dknVm6GfxBWIEI/8+LQVTMZuMHEj9wk9JTrpdMgCfAFz3/W+vZj
+                  WbOLKf/8miL3iSE2ewWOdOikoowuyADEbjgj23zeNszpGRcs8tVw1obtjmyheZjCNg9n5uFpeK1p
+                  3A2dTReyJcDdMZsiSF+1cCybIR/PJ0Iq0K6VSYzfYeU/N2OFJPE2bk+kEaxA1UswTH2YhQixFCud
+                  tR8djmPERBXIXbLDKZy6KpiTyoK5oMmML/Jb1e9mGAPURZ8D2b9/IH+J6yZ0KinLcuLyTPI4kZ/z
+                  kZvlIDnOmzvwCCmdxx/1x3Kyqmq58IAPBhVK8xIL1SxUs1DNQjUL1RhPxE90cMAGyrMPlE6PgaEk
+                  pwbBr83Sv9WXPYKDp+eKg/3gkgSWjLNxPE2k68dy4gZxELnC96buNPGmUy+IM5X99nMXv62vDRtq
+                  VivabBVwlRuX0iIl7c5msLD8DrLDJxaquGdWzYE7Zdd5AWQD/SL2xaqHCVAK4q4qOnyGDoGbws+8
+                  IZtN1RK2DmNo2aa5lxIboT4hX4ustWUQFq1ZtGbRmkVrejMqfBqw9gePAQMQCcJT45Bv8kx9Mi0m
+                  PO8SEpqO1Uz546mbBFnsBkmWuclsPHPDAP9N5VhMIvW8ST0j9ck48mfeODq2IzfTP79iR06VczoN
+                  MnfadaXPHis66esuq75MBW/hc0NnHao+KA9LG74mBcYa6FKMpqmkOZjRDhzm3iGPBtRB1w0JRwNY
+                  8otzVSrC96asRUCYbDn5cAcaFEN9EqFmP9SZh4pfjjpXcxDlQd6TlwuRcE6dP8V9Z6jcQxw59oNJ
+                  /NhXqOhulyKBh+dvyqosNdC6NwTjlOe1LnxiFuJ82RfYMLU4mAFXoqhGuLTDvsNWRsN0UrHBH138
+                  t0/vzHT4oNHBOHZHzwVSSdXqYEJ79nBHRQG14jsc2fJnItWM9Lw5gAxT3xJCUxSlhDRHcEY7JSz6
+                  ONDeVLncpKECqR8frvxp2q4s+9qwLRvraj5HxVUnVEdRbxpqd8QOsrk1nZr4rBOd0SIdanU9C7fs
+                  SRTiTkF8kfheu3+cq6KxHavh0VPgSp6tPm8rRKADRHrxLVPw9q8uV1R2krm6nseMfRvnTV+hDZmF
+                  7Oq8gvWCTcOOYQYjmnqdbvr2RWWqGxRZWG9hvYX1FtZbWN/Xs02jWfQ04N4CJAuQLEA6Q4C05xtO
+                  TXyvN01LRwTuqdD/2ZKfnG1tiu9dDoIUoYyl9BJ3kkapG0xijzowTt0wBjKUnlBelj0vP/aOFL36
+                  F9HjyDD3S6V0Dnf51O26tl25dC6OXayQ7MN3zlCYWqiD3RzT8uHe6Ylj3lc4ZpW4BSm3VDDl93Be
+                  dBhF8mMTGqX0mFoFECIRYuEW3uo4QNjHtLYd7jXS12r3ir+WyjyEgd7un8Hwhi1b+84FNXPY3oI7
+                  xzbUHIJu31BB9wUiGNxrfVuqhvagGqnKFI7PDNqAGgPDEMC099zrd0Z9Yre7WsOQeYNrLfL2cJ4M
+                  WfiIjqIkYFFBq6jl2a1zOEGqzcfKmBC6yDOebKrUStVuc4sFSN5Dno05Q1BuIOTSXQpcuP8Lnz+Q
+                  OgOI79LC3D8/QYcraF22TV55A7DvpIvQ2JjVKkzJ/rJK2Cgte7PszbI3y94se2MgFAQnJ242mNtg
+                  /ozBvNfjU5OMf7CnubndXDnfQmNvqoLO2BLzWB5nGOG5Egw6WQf5gU2IiS+UO41D6QYyk24cy9D1
+                  wonywjROPC95Tm4xufAPfo4l3wL+eWTy7Tu1hPvVNi7pYRG80wO7U+X7is9YOyUvP2l5XvK+Ugfv
+                  S5a6ewrdPOnhuLNraQ/juEfbPXd+zO8MzqZPKxvyX1ZtLrf0fTtG2NYvOxudlu7qWieq+aY0ud7J
+                  /RGdkT4ePuxMDDO2MN7CeAvjLYy3MJ5ri07fXMaGyLMPkdvSs5N3m9gBxzeD3F4L6v+jHmg5EZ8t
+                  PI4uIUCVTDwvnU1dkcwCN4h95YqJSt3ZRCZBJPxxED9Fu4lHl5TJQkAziVWJuqVaxZH+rVZZodGS
+                  ecM0Zmqw3BvT1Rg23rawoTsyxV8OF87PP/2Hn4tWV5yKYieMCf7JcX5QP//0X2KNLY9CK+qCHjWW
+                  IkZt3xDpkHPazfFxMg+2lpEnSKgDC5lPX9wJMm4uz2nClBoMGZvbeTAHsfycY2RSiJJ72MC7yIXI
+                  KSNGnZtxTcQPInfzSleK4jt8N8UnXWCoqbFGzoG2OnuXMSmGV+CuL0PrJ/x5SZPRcsWFv2/42We4
+                  s1xQr5y+77FYcx8lcmy5KJreuHlammurD2I4mrN/WXgqWkVKOutsm1ywV6PcoeBns8EFi9WKM8I8
+                  vhXJkwaLaW7HguGxcNeiTnUrqXrbFgiTWgjO++kOzpQtregjw57KWuksJSdbVcp9lUiOeE3NnCBJ
+                  aDY1Q3qVN0C81AeJS2yx7HQ1VW/F+nW1FojhZHfOjVxQ+Sw9y01/WNCj4XS/JO47DRm9pxSp4AcC
+                  6qbSGDBHWlrvbj6nul9q4MPywYT6bl+Ui8egS07XQ4qZqz7AO/C+E4//elgQfdF+Wegli2C1fa7e
+                  Fb7Q3gzSpFfXuazpdL8q6dXbqqZGXLg2vXpdCwpmlMNFsCKryCV9qTSPwXb+ins3V87fOiz6bIT/
+                  sYrhyHnZzWm23mgHG0xNEyu12/6JV46lkLGOmy5QmGmICO+8uR7Esd/2KbwC9HhzDW2433HKtJTi
+                  h/rxFYe2Uv0IGq5HcOqdvkluVRZDDzooFqIxViVvud+5Hpt+Fp/Tcduvydh0mVowDiMF+8wbO38m
+                  pZ2MTT+sv/QtyRv2NoPlaK9Fw8OdsVRkruKgBRW8Q2lOhL3c71i1WvEOE1bX1ANwoytn1dE2Y8Nt
+                  4wsywmq/+Rb3mZIGfF4LDTh3ZfDQp+lCa5WwG8l1tzMW1lowNpl3AuimVWx+q6rde6Ai7kTd43u5
+                  6kcptnqnToqVkJyVT7p2cCFCUtuqKmXt6NtU5ZnuXMUN6bfttL7YigUQpuJFI/HwuPov/+peXr/Q
+                  zMvyeMvjLY+3PN7yeFMwFfv+Ex1rt9TAUgNLDSw1sNTAUoMzoQZ7UfHUm5jaSs1z2mn8b/qO4Wd1
+                  ivZM2uPeT94/sofdV9u+8LrAXvfbZsRMbxxrL0NeQJ+EWC84adEYLaU4D0vJlyu4Y1PGs1fH822p
+                  bAMPS04tObXk1JJT81jz07fG/X18ej+dkwOKbklk5gZEhZLQzo2ZjsHyDxxMOiessZcXnV6SDGPA
+                  jHGkEnccBh6Ahpe6UZzFrvSEmEZeHCbpyY8kARs0+UeqEfTx20oxl3snuraSVV0zC35xlYEH4PK8
+                  z0BKSVerwBvpW//+HwAAAP//AwBRFzvgdJsAAA==
           headers:
               Access-Control-Allow-Origin:
                   - "*"
-              Age:
-                  - "56"
               Alt-Svc:
                   - h3=":443"; ma=86400
               Connection:
@@ -256,7 +306,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:35:35 GMT
+                  - Sun, 12 Feb 2023 07:23:41 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -266,18 +316,18 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 1c13683c7de319f25e08f83861fc6dc2.cloudfront.net (CloudFront)
+                  - 1.1 0e00e4a51244e3761dee356d1ed0bb6a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - 23Di6qFilyGaIQjO9HKG-W-jxapZRKe2WnM0i2PLT0TT2hf04n7mJw==
+                  - ZimOUr9hTT_CkKqQ44BxBccpsaxwqqNVogVuJZClnoN8lneZvBvH_w==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
-                  - Hit from cloudfront
+                  - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -294,12 +344,15 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2226.0 Safari/537.36
+                  - Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.860.0
+                    Safari/535.2
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-09
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -312,24 +365,24 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:31 GMT
+                  - Sun, 12 Feb 2023 07:23:41 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 1c13683c7de319f25e08f83861fc6dc2.cloudfront.net (CloudFront)
+                  - 1.1 6211d31dba7b1c097ae4459c62ae1440.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - cS8XLv-Ko8FfmMeKHxX6JfdaZYqjb_6rcsGz4SoniWwC30JSYr_PzQ==
+                  - GRcmCnnRoPcG-2koeGNE8jk9Dvhxoq71HAq399-16m_NNhuzR-HYXg==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -346,12 +399,15 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:16.0.1) Gecko/20121011 Firefox/21.0.1
+                  - Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_0; en-US) AppleWebKit/533.4
+                    (KHTML, like Gecko) Chrome/5.0.375.86 Safari/533.4
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-10
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -364,24 +420,24 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:31 GMT
+                  - Sun, 12 Feb 2023 07:23:41 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 f6992241dd15e99fe1ce21d807856f16.cloudfront.net (CloudFront)
+                  - 1.1 9106b78e193d93c4369ca72b57d1f212.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - j5xxyGH8mje3UBVIm_l8cDECAsyfB_wzNUa6lLRo4l8GATcQkMzGew==
+                  - eDqursyFJovNz8vDyKt6IiqUdGEzLJqVVzNw5XhJSbzTotT4ZBUSzw==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -398,12 +454,15 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36
+                  - Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+                    Chrome/27.0.1500.55 Safari/537.36
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-11
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -416,24 +475,24 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:31 GMT
+                  - Sun, 12 Feb 2023 07:23:42 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 ac79b9352835edad28c9b0bc7dd7f8b0.cloudfront.net (CloudFront)
+                  - 1.1 6858de87a9a441b83cd7cbdcd1cf2b40.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - O-TfsKFKE51lt4b0f30ISKq3tF9xmctyiKvEPvB_uXEIrsQDzKM6eQ==
+                  - m_QdMafciyHDy0Gp34QYzh6ezNPxJiQVnqCiJrZ4k5oIehdWI1qJLg==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -450,12 +509,15 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; rv:27.3) Gecko/20130101 Firefox/27.3
+                  - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.2 (KHTML, like Gecko)
+                    Chrome/4.0.222.4 Safari/532.2
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-12
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -468,24 +530,24 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:31 GMT
+                  - Sun, 12 Feb 2023 07:23:42 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 3fddcbe99f78632bf14e5e80e6c14058.cloudfront.net (CloudFront)
+                  - 1.1 d1d7584dba4cb255d83d636982110e0a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - psRCKiiVwedYStTAk5gl2oq4zOlxX2YxLD90FWiOZqJi8T6xdCTfxA==
+                  - DExN6orkA5H7kBPby8_Ye03hMeY577Ah4mdNZU_533R7LiAeRLF4Xg==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -502,12 +564,15 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; de-de) AppleWebKit/534.15+ (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4
+                  - Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.65
+                    Safari/535.11
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-13
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -520,24 +585,24 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:31 GMT
+                  - Sun, 12 Feb 2023 07:23:42 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 16d72e0791ff01fc4470d27fc024527a.cloudfront.net (CloudFront)
+                  - 1.1 db88a4a8e4f93b9bfeab5462f253c306.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - LDBH8kwGtul8yvfGM-kAeSoILDt2dD15K3dR6svv7MCTfFbURcLR-A==
+                  - Stqnmqxr-0qHA5vwbVGVerJRA7KMu8MQXN0HyzJbiLshwied9Ialhw==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -554,12 +619,15 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20130330 Firefox/21.0
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/3.0.195.1 Safari/532.0
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-14
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -572,24 +640,24 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:31 GMT
+                  - Sun, 12 Feb 2023 07:23:43 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 1c80fe425edf82026702c486fb324fd0.cloudfront.net (CloudFront)
+                  - 1.1 d1d7584dba4cb255d83d636982110e0a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - D853VOgnYH_JXH22kIuogy58drbSbCvZYCpdc2nmtYwvDpXo6cCBuA==
+                  - SYkWqxEVB0bEaAvQhe_w-rQ1kHX21B10VoWm1Ay-ccg9wLHm_D23OQ==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -606,12 +674,15 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2225.0 Safari/537.36
+                  - Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_7; en-US) AppleWebKit/531.3
+                    (KHTML, like Gecko) Chrome/3.0.192 Safari/531.3
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-15
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -624,24 +695,24 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:31 GMT
+                  - Sun, 12 Feb 2023 07:23:43 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 16d72e0791ff01fc4470d27fc024527a.cloudfront.net (CloudFront)
+                  - 1.1 17467161b347e9a9edf61422e33949d4.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - u2txApamG9KjIGKANTaiIIQIDcZ_VYund4N1q1npHjy2LWkNicB8zw==
+                  - wHGdQviNimBZD9YtvRAKa4LKroFY5orqrrWifwSfF-gfJ7559n6Hbw==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -658,12 +729,15 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1
+                  - Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.864.0
+                    Safari/535.2
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-16
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -676,17 +750,17 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Fri, 06 Jan 2023 04:36:31 GMT
+                  - Sun, 12 Feb 2023 07:23:43 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 77cfd797d789c3b8bc1b8f2f8a42a9c6.cloudfront.net (CloudFront)
+                  - 1.1 fa2254c03129ab031bcce738a88ad77e.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - Dau4mHhp3GOdNSoQMrskJSZMZulcY5Vpf1BITWc1qvJsU89INF0bUw==
+                  - r2XNQeMKvIMsJQkMxko6y8TfVrqIlHM-KlWe0NDk4vTp65oUsins_A==
               X-Amz-Cf-Pop:
-                  - DEN52-P2
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
