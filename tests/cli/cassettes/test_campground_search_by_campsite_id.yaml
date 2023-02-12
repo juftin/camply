@@ -1,13 +1,10 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2226.0 Safari/537.36
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.2 (KHTML,
+                    like Gecko) Chrome/6.0
               accept:
                   - application/json
               apikey:
@@ -16,24 +13,25 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/campsites/40107
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA8xWXXOjNhR9769geI5iCcSX3xybbZmxHdfG2cns7GSEJGw1GCgIp24n/30lTOKk
-                  wZtMXxo/eODqHOnec64kvv1jjuJ4GV2t43BlDr+pVykrkTSSz8mOm0Pzi6i4sRDSvDgN3ZCs0WO3
-                  5uPFW8ZC0FxQIyZJxj/OGm85vS8aacRi10tD1hBCYzHrX5PL2hhlWfHAWe+avO7lrbaE9Sd5hjAj
-                  fxnzZmcUqbHgRdlfod9fISkJFfIwWIm/ubEkUuSbPvZKxdW8Z0US+VmN7J9INFO8dzNHZzLflanu
-                  g/+g8AvBbvhW0EzhPrzwpBJ7/kAOxqqpUkJ7U16Qvcrop+wwl9Whj3tF6D2I8l52tDLC39fRYhbO
-                  Y2M2mk9G8fXytm8WWTX9dunau6KNKc83cttHx9B8/H7RilwLyUeU8roWevMMU5LV/DQUTVo4gp55
-                  Ck5VI8lGdfEQw0sPQwf6GOofeoEp8k0HAgihSxhgG/nBCdAlDB3/xcxLXvNq327joa7xNBIfyrZT
-                  Yy3LcmLMr+fhNByrg2Ss+RUnkrOJ+lMgCyIMoAOgpYaUllF8Owsn0ag9bRSUCVkr2FqSrbHkVHNF
-                  kRvjYleSXLs24TWtRKmjCjflbMPToro3dDKbqmhyZlwZwDjmHu4SzsaFrtTUr7kS5/BKt2NoptYl
-                  bdzHLregmwLieQnABFogIcwGkAQJ8pGLOYXPtK7wJx1U/DcuNltpDm0ML8yo/pVkGVfN9mRdVC8q
-                  vhf84VVE7IjGHEVtU+kmjnZko2ddNYlaLuuqiLvHd2pfL6cKtJWyrIeDAWX5ZfWs5+Wm2A/KJskE
-                  HVjQggOIBlYwQM7A8QetNHfMs33iYASwY1OAPccBfsAckHKLUBYgGKT2HcKqy/4o9cH1VTDV0EMd
-                  0c3/Cay0GLU8G9kAU6KsxC4EPvJT4CaIMETcgLjWB6x0LOcdK4/GvXCyg/zfVgadlWlqMwi5DXyP
-                  KjUcFwNiewFwuesSnLpp4Hh3HvyXkyrwSYxE0CcWszxge5gB7HMXBE7KALdJgl2GWcCdDxgZuK/3
-                  5Mm2s1vykxj5tCcx9J0EMQr8hFpKCIpBEBAEAgLVsaV3bMLP7Ul1p3xRHxzZk9iWjQI7UKApqeW6
-                  ZK/OaMsC0AVWO1wUpb4b1eMiXM6iOA4nzzdhe2qHfzai3PFcdtdGXBGhFFYEdeN1F93weCq8garH
-                  j+CWN29Qqh7tyHW6rjXies+rvPX58fsvPwAAAP//AwARLqLvyAoAAA==
+              string:
+                  '[{"ATTRIBUTES":[{"AttributeName":"Fire Pit","AttributeValue":"Y"},{"AttributeName":"Picnic
+                  Table","AttributeValue":"Y"},{"AttributeName":"Checkout Time","AttributeValue":"12:00
+                  PM"},{"AttributeName":"Pets Allowed","AttributeValue":"Yes"},{"AttributeName":"Shade","AttributeValue":"Yes"},{"AttributeName":"Max
+                  Num of People","AttributeValue":"8"},{"AttributeName":"Capacity/Size Rating","AttributeValue":"Single"},{"AttributeName":"Checkin
+                  Time","AttributeValue":"3:00 PM"},{"AttributeName":"Min Num of People","AttributeValue":"1"},{"AttributeName":"Campfire
+                  Allowed","AttributeValue":"Yes"},{"AttributeName":"Max Num of Vehicles","AttributeValue":"1"},{"AttributeName":"Driveway
+                  Surface","AttributeValue":"Paved"},{"AttributeName":"Driveway Entry","AttributeValue":"Back-In"},{"AttributeName":"IS
+                  EQUIPMENT MANDATORY","AttributeValue":"true"},{"AttributeName":"Max Vehicle
+                  Length","AttributeValue":"40"}],"CampsiteAccessible":false,"CampsiteID":"40107","CampsiteLatitude":40.7405084000001,"CampsiteLongitude":-111.0943189,"CampsiteName":"058","CampsiteReservable":true,"CampsiteType":"STANDARD
+                  NONELECTRIC","CreatedDate":"2014-05-02","ENTITYMEDIA":[{"Credits":"Utah Recreation
+                  Company","Description":"Ledgefork Campground B - 058","EmbedCode":"","EntityID":"40107","EntityMediaID":"108a2d27-374d-48e6-95fd-e3ab46d4d9e5","EntityType":"Campsite","Height":960,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Ledgefork
+                  Campground B - 058","URL":"https://cdn.recreation.gov/public/2020/01/29/15/58/40107_4085b1dc-8bc2-48c4-99a1-9a046ed738be_1440.jpg","Width":1440},{"Credits":"Utah
+                  Recreation Company","Description":"Ledgefork Campground B - 058","EmbedCode":"","EntityID":"40107","EntityMediaID":"846e206f-a77b-4a02-bad3-0a9b18164ec0","EntityType":"Campsite","Height":340,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Ledgefork
+                  Campground B - 058","URL":"https://cdn.recreation.gov/public/2020/01/29/15/58/40107_d738a541-453c-4755-89d5-fe2acd9109f3_1440.jpg","Width":1440},{"Credits":"Utah
+                  Recreation Company","Description":"Ledgefork Campground B - 058","EmbedCode":"","EntityID":"40107","EntityMediaID":"2dc27313-4cab-4460-818f-6b1ad1a69a62","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Ledgefork
+                  Campground B - 058","URL":"https://cdn.recreation.gov/public/2020/01/29/15/59/40107_ff3d00e3-87c3-4564-a379-6e66a4f6f957_700.jpg","Width":700}],"FacilityID":"231939","LastUpdatedDate":"2022-06-29","Loop":"B","PERMITTEDEQUIPMENT":[{"EquipmentName":"Trailer","MaxLength":40},{"EquipmentName":"Tent","MaxLength":40},{"EquipmentName":"RV","MaxLength":40}],"TypeOfUse":"Overnight"}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -41,36 +39,35 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "2760"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 30 Nov 2022 03:06:35 GMT
-              Transfer-Encoding:
-                  - chunked
+                  - Sun, 12 Feb 2023 07:21:07 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 4bb08411ba89edb53d3520e2681c55f2.cloudfront.net (CloudFront)
+                  - 1.1 cf1928ef9a9a7bb589a35ead31bcb4ea.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - BKxHiTyzLU7kzZW5N99GmPE608hcbTmJf3QGUB1Gh-uI5dZ7RfrSvA==
+                  - H8OMI_an0vIf_mSBoAbuHcI-NaLCXNDMJ70PSqbUKXBADkPaa060AQ==
               X-Amz-Cf-Pop:
-                  - DEN52-P3
+                  - DEN52-C1
               X-Cache:
                   - Miss from cloudfront
           status:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.2 (KHTML,
+                    like Gecko) Chrome/6.0
               accept:
                   - application/json
               apikey:
@@ -79,90 +76,129 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/facilities/231939?full=True
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA6xXDW/bNhD9KwdvGFrAcW0nTtIgKOA6dmvkE7GToNiGgZYoi7UkaiRl1yv2X/Zb
-                  9sv2jlJiu06KbEsAJxZ5JN+9e/eofK11e+Ph7XD8qXb089daN3BqrtxyeFI72q8/PF6IVNaOau8v
-                  u+PhxYdavTYQgUowcR9wIm1gVO6UzjhOC6ey6SNxAyk3Q9di+Mxae7f1dvdt7c/6Jpa3W1h63fOr
-                  52DpiTR/WSyt1haYwXD08TlgBsrGLwxmbwvMx+Hpc7B8VLOXhdLeFszd8OzkbDjo0+2wf/ccUHcq
-                  CRMVSbpVcvHCTDW38Y3uhufnz8E1Wqg0fWk8+DnYgnTa/dR9Vv1OxVK8cAU9pMNHWu3isv+8Xsu0
-                  /J+Qfq371h4Nx304Ep76t/2LcfU1E5NEhrUjZwqJ9d3e8AzO1T05ue6PRqWBhaGR1vZ0kTmz7OlQ
-                  lmdV4yMnnKxGb8YY7+F8fL9KpLAic/TB6Llcx1+uW4PY3J4dL3Pe8FxgcCP79cxWoyNnpHTV2hYi
-                  Ovt7dEcHzSaNngprswidbOw2O3V6r7/QD52nQnfLjM+EdTd5iHzDE/xiIM12e6fV2mkzmCttnUgq
-                  Kg73mvvtUg7/jb9TkQr7XdpYW08ydxUvrQpE8u+pu1GZE3SH4rkgpp4IYkkXgjUmEhpohLnvUTq4
-                  bnZaL0vk7r4X8SpR0Q0C7IbZi7WTNrvhOG6/u5xLM4ftHb/Bwy/ZmQynMtJmRnyFTQ0qEpKylOiA
-                  odDnwjoSE8iVRqlyMQnMnyPjWBdW0rW02E4rQzojB1YWoEKajHhb0pEfK9k752ILlVlSGWXaYEaU
-                  sTdOxA0aI9LpRcarLsUskUvG4c9v7VGqEmlJLMSyAde2ymljSWaf9ZKi8rqrU1AZg8cov+SJNvzE
-                  EB7DPjbopAZzci0DI305K1aO83cMxzxkByQ6l0hRU6pxtvoD3EzwAmLr2F8XU2xOCzGTO4BpyeZS
-                  ehplBm4DGdYp9TZKCmyCnS+BTBIJJ8gTEUhC0Cb6WWW7Der6Y8igOut1qej2PDLnZGMkhvBsmshv
-                  qfH7W6eDGVYi62yiF+RQa+cP09jJUAYCUGVewvgDJW2Djifm3f2HGWm1d7gS5HWy4yCtp6lluLnO
-                  i0QYWnBMrGYMjUMnIpjl+OC5qrxfMZHTSiCcXLBSJK+BeYYWE8bTHfmuA/0phvWi3FaAZgP8E5a0
-                  RBqF8RLQUcSl6xsVzCyoey8szuAVQ5vwnzOUrnH8JufaQwFV+4CCTUGsIQp0pWYr0VGwAewI6v2m
-                  oS5wg2DEQbM+9VwFmQrI8c1SQuWtIgWQDBAk3IoicQAJdh0iMJHjklChDBs0QNxCa68oMQdRvI0v
-                  KhIMYgHGI6NTT1oMo2j8/dcqF/hUwfgGkr88ZPRNOtgZcAuvLUbM9NDvhTDo0LLkVTOv9QSH2EBy
-                  YmAD71OmLILlTinrQ6LUeyLnvr94l4P6Ie6gCA7YeFQ8PZjjjEyRrYq9qQZuirkwSrol77e4f5tD
-                  i4FcBfpinaISZWYboOtAHSRFyKJItbZVvaQ0wFKkKVJwMs1RUM8VmiWbVuTud3YOOgidAt6DREOx
-                  ZGHtNXc6Tc41U9PYNUrivUIC95uCB1Sk46qgqLLmsskikMcBJvX81GEIkuuJayqhV7uHndfUPtjF
-                  NdBseqvqxcJMcf5P8OuMTcQvW5PpsUVjZ1MOZOic3nokXelEcW/7GbwvYWm1opJMkfDvRPmbwufj
-                  Q0+Q6Q2ArVrjiMYaPmNBFJJSJoPz1Suqy7MEum8O6SHrUObQEofyFWdRqyXMy6FTKfBI4Qlyqat6
-                  TbT2bomXc/Q24eKAObQOmW4Aj6DJh5BVef2ZaGJALxOo/imjN/fgjyCcH1vNBuTHCxQ7r5QsoIRE
-                  nie4cSJa6qKCRKUrgzseNBupvVrpiIXpW51voAksoQ6X1jO4K76xYvP7miuOkS5ovC5N7yksIAV9
-                  XwTcjA+NbWTknTDle3Q9zU8M+B8AAAD//8xb227bSBJ9368gjAHWBkyJd1J+WkWWbSW2ZFD2BrPI
-                  IGiSTZsTS9SIlD3CYvbb91R3kyJ1cYwkg5kXx242u+tyqupUs4MgU6KS0FL8hrybUNrUus5D/kyz
-                  o7VAG6li6oHv647j6J7v+/UmXYmJDbiu4cNtAH4zisRicXMxkf5QVot6XMCjfOFILKZ1Zpga68w6
-                  2vFQMoiTqhxSOKrcX2FP5NpHHn/RqNyVGRJDY7LEkprbNOponqCjSFZYYVD590wbpUh5MShJTplC
-                  ygZpW8jYkiNfNvdDuqoEw9C6dncswpoK2B5MkAoSo09FTok15aARtCQKSKGSzj8LjZInzT+mwEJW
-                  IpbBZUCVOdijtmBZIsoGDYHEoNhitCE8cNnyqpjMqtJW7dPUVsjVFAmkhqpaJUsEo8/zlnu3Yq4d
-                  sRQ/CNhrFUBn2kBZuzhsq53FyWBfN1MmnEk7kpNUyLaUQ1Hc4E9VRXBRkYVUOSyArWRFzyu/Un57
-                  kxlJDqGTyoOsKJBBhWIN7zfNcymSScXtD8NRJp28jry65LQ993Z99oO13J/C3mT9P9VCVZbpI9N9
-                  zUoUlUKm77XRacNITfVl6NXbCOyD8yAomkaTNj2ccce5Pn0EzT2YZ/cWu1gNznMd/cHLxgrUz8wh
-                  yWMOsopyTAYWynDB2Lapdz1H1ZitoitKCOVY/XCOfS1YZBfJk00pFbsegHHGN7ngkT8lih4cFiDN
-                  n55yOueTZXxHio52WUFBb0Dh1X2I/6lt9i8qVWtWlBYM91h9q+VBQLTIw3qPlfeWMUG3vu4wgU0s
-                  gp4yK4hpYFMs8ulot7h/OpJHAKdSxkqHmahyzaj8yXo1G6gAKA7DPBQk5xWU19VgRgcDS/7biot/
-                  xWsUVBBZoI1twnYfANt8tLNNi+qs87Ck8zrFvdR21YqNtFAv1/R42DA4mPYZnRRpBbUmTT5YAj4F
-                  +Qxdx4yaF0jOkiRTp0tNr4mqVVT5t7NZL2+RrF0cn24tOs/nutRJdJLbe5BjZW0WNPUrswWhEErQ
-                  5iVabOpgIedPJsDw5iUq9UVnVxBCxVnHFqdXABFvvGPzLzFbJtqt6oJBF5rPIzzXxIQFW89ATDbx
-                  nBXFihBLdQCOTzJBmFq0qH770PYDySrxCyseD8mwhatakBlLeB3QtMgM+Rj8cIkYPFUHBFi1no/8
-                  UKCLFi3BJknsKqQWlLamRllBt5q3WOaxjFZV22yjBvGSxzxbSAzB/ctc5MZb2ZCO85JXqm0CQaiR
-                  rOQhy1LFxSa2kH2QIZ/WWzs/gsbLDYjXy1RUZ7kZm7MHTlprRcnSFI6gl1YLYIUQARpLLez6kFuG
-                  SA8PfB6vtcFTTs0p8XZZDPgzrUocfK7xelosp8nktuWvkrOZ4qolHQwImCAvZKko5wrzeSrOPp6o
-                  F6HkKVvcY0IXablYZhgAtx4Rf8hEbFBuWeRFkSEcTtudWk2zauopHEK0gk4eBImv5kjvUi4I2yEl
-                  bZEuOa8jkpqqrTjM3mCX15J1y1bvMtlEjjbHGQfzeFPaEim2YPGmnYDROBNtU1VqwAVVlIpwLuj7
-                  gIqLAhVrS5BWD/vp6KD88oikIJe2TkVuCamJPCs7KH9rR+k/WorqLCXiU4nyOSfMs+X6VB4dJwSc
-                  ZvZbqI1FmkSYVX9rLxzuekJ/C+SLrwLa+xUCyTLMYMsjzeN+tF7CkPQd4IJODqZApTjd1AaiZfg0
-                  F8MjzXQhEo2PtMAYAlXY6ZbRdwAKQuoeM3EsfPWy1sygR9H9EX56zBYdbTKnoVPy3DPIxXRI8z/A
-                  Z0Dvu6fnpDsNNcsJwPFzUKb5Cgij5aGufEDT3y3zF0wHz1hjPASC7+Rqw+54SFPbEyT3IgDkcxi1
-                  VOeqWM+25EcCcRROIL7lOcNqq+UcxXFFY3PsNw0xURQouU29YMTjnFjQWLz/DtCXB5Il+e8jj/iy
-                  KaSwnjKEMqCUQRgwzOMvC6yjiS9Y0p6ELiFRvxS/nEpR9m0bJq/sjCXXZJetB7T+BSSwlcoCfdqx
-                  0PxEqi4eN3UXssqj132fcvBK/Vmoox1fhHg7AUekfKT9z/Tkx5gTTQSTAhR9w9HE97y1dowAes5P
-                  BNgE9dbupwJDx/dzcN1lQQjrP/POSX0qJd6olML+V1JJTBR2o7D6dTWXOQJJSzyG+UnhJ57KklUo
-                  A9FOD7lse8i20tN0rIeQjR+F+dvGInSeSHi2QSIM9R5Fmc0pE2+59QKJK84KIaH6vSnTsdhe+eCG
-                  QexpuXGjGCgwsAtE/oKIRXcG52KO/Ba2ebH5GAu34VDsV2xn3t8ST5RkG8lsOGPZE/IYrCJy/b/6
-                  qAQZquL1dQdjX/2Kiz4mK1f0wdQxOr5juY1HyOnqmW6aoKm9HgqGs5lwwxb34XX7AoG6p3A9PL8c
-                  XkzCD41Ht49gb+JaxU1/qoX98eUw1M5H07twNLjTHNvV/cDWHdsOtEmo3d/1r7RwOAiH/bvRZKwN
-                  Jje3/fHPmh24enXY31i8USt3ZKIv27s3kSQ5bEy7L/jO1QjErudXJy6y6dbRwHng7HSQvcCrCFNd
-                  C8DM88UTVyUQb7W/b+El19p+CU7deutcHoB05ZcwcXSvq9Ojes7wdwBKe+aPWYzlq8fUGVSD9VS6
-                  /IUwWFHarCceg6SCftDBPBexU50nECM6qd+dIiyowDSWuEUTS+t4G3lgvsvh5P10Mj46++/RYDIJ
-                  z0fj/t2QboC0QKPQ9cvp0d3Pt0O6Z4DkUx79cXr0ga9fkDwKhZrTj/1p/25wpQ/6g6uhNr7Ajhd0
-                  F+N6NP4g7pW0PVThncJdVoZrnhElO6JLKuUO8OXYdTb/IsYTbgFIMXMY8+wgiIIo9T3fZYnrxoET
-                  ePUb6npEBRYSCGuo0QmxAAzdZeWTmCW/601Vi48KTwyH2spMCCYh+liWi7Nu9+XlpbMVtXT9o63m
-                  LbqHsj7VRGJcvE2/nhdBnySxe4Hr9xIvSbjB0tgwU8+wEif6Nv32SrOj1LLF/7ovPFo85mVedKs2
-                  ZsYWRdc3TNv+TK7vLJJ0j+qiasqiEuYsIWvKHr14mwkcm9tBZHtpYLoscCLL8mOe+q5rxXZg+71v
-                  M8GrUu2YYpXkZWdFVzjIEq8reZejVSxmb1Qu9ezIdFPbSJIoTh3bdILUT5wg6BnMZtZ3K7eRZkep
-                  Z7piIpQSmP3lq/dzrvkDi9etgiS8j0c3w/NRX4T3QPQwRSXFpomAiWcLVGDMbtuuLjYaXVe7DCf3
-                  43PSexbxZHNt6rAxb7AhEw+46wISqERmzFCKnKCnRzFL9F7suWkaWIGZpq9Y9IoTD6DLe65xejQq
-                  LtGP8uW6uiQ3Km6XnK4VHZ2l7KlQI9mM0RQ1ImRRK49m6PGx7HQVlcoxDR/t01qzWn4q4Kg4mW8H
-                  4gKFKYu7cI3RNcyubXbNXtcIutIsn+PU7qWWwXXHNPGDeaYe2J6lRwljbmSZaRD5n33D6Py6oAt2
-                  H7OkfDw6wwCh+q/0Xs/1IHvi6Z7jorn1TMic4kfCWRSZRs+O3OQN3rOdtvMavjroPeng73Pet7vO
-                  r1wXGIZr2QnTY+6YuuP7nCyAJt9JA597ns+499l0nC3f0chf7Tw38pwoNTzdNCyEXtRz9Z4VJHoU
-                  8Nj0HTiFv5apK+e5xGBfdd4mFn9k5P0I5/mJ6bs9T7dS5EzkHq4zzyWDBGma+G4aWdHfMu4sy0D9
-                  iS3dM4xIdwwHgnMe664ZxGkSWMxxX6tDlet63l+TNH+A65wEFNI3enrqWwyuM22dJamvR75txhG4
-                  h8WdHxp305vR3ZV2MwmHV5P76RCN0nQY/nsyCr/NgyCDbmrZTDdTO9AdNzL0qJc6es8wAz+N4sh3
-                  nG8Ivj/Dg69p/r2VDy70TNuxdHgRQLZMXw+sOEIYmilz4sBOrHR/BIL7TMLL/nj0H9GtCiKzjwyZ
-                  gY4UZ1FbMVk+9KMIlqn+48pUDgqHmLap/iJjSL3SQu2L4fdEypJMnPUoswm6Jp+qFe+n532t3YrI
-                  57dsyeel3Miz5VjlVZ6Ii5p9cbwtH2F7dQ27zf8gUMqTzqqop93x30tyl7DH8qHF9PpjuyJ7t8MQ
-                  XhyO78L+eKD+b4GUqa2/HEM40B0FOW7YdNk+HA764VDyxX2P5VBlBrpZrat76fqhe+khL8B0Y06s
-                  eKOm+JZCt0XPbMMwumyRdZ/NLlAFyVjRFfuRsur4ISKIStTTydF1NstKBd/JfUiK/vGP/wMAAP//
-                  AwAxFcqY5zUAAA==
+              string:
+                  "{\"ACTIVITY\":[{\"ActivityID\":6,\"ActivityName\":\"BOATING\",\"FacilityActivityDescription\":\"Boating\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":9,\"ActivityName\":\"CAMPING\",\"FacilityActivityDescription\":\"Camping\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":11,\"ActivityName\":\"FISHING\",\"FacilityActivityDescription\":\"Fishing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"FacilityActivityDescription\":\"Hiking\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":26,\"ActivityName\":\"WILDLIFE
+                  VIEWING\",\"FacilityActivityDescription\":\"Wildlife Viewing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":106,\"ActivityName\":\"SWIMMING\",\"FacilityActivityDescription\":\"Swimming\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":100007,\"ActivityName\":\"KAYAKING\",\"FacilityActivityDescription\":\"Kayaking\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":100008,\"ActivityName\":\"CANOEING\",\"FacilityActivityDescription\":\"Canoeing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"}],\"CAMPSITE\":[],\"EVENT\":[],\"Enabled\":true,\"FACILITYADDRESS\":[{\"AddressCountryCode\":\"\",\"AddressStateCode\":\"UT\",\"City\":\"Pleasant
+                  Grove\",\"FacilityAddressID\":\"2319390\",\"FacilityAddressType\":\"Mailing\",\"FacilityID\":\"231939\",\"FacilityStreetAddress1\":\"564
+                  W 700 S\",\"FacilityStreetAddress2\":\"Ste.305, Box #5\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-01-10\",\"PostalCode\":\"84062\"},{\"AddressCountryCode\":\"\",\"AddressStateCode\":\"UT\",\"City\":\"Kamas\",\"FacilityAddressID\":\"2319391000\",\"FacilityAddressType\":\"Physical\",\"FacilityID\":\"231939\",\"FacilityStreetAddress1\":\"Uinta
+                  Wasatch Cache National Forest\",\"FacilityStreetAddress2\":\"FR051\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-01-10\",\"PostalCode\":\"84036\"}],\"FacilityAdaAccess\":\"N\",\"FacilityDescription\":\"<h2>Overview</h2>\\nLedgefork
+                  Campground is located just above Smith and Morehouse Reservoir on the western
+                  edge of the Uinta Mountains in northeastern Utah. The town of Oakley is just
+                  14 miles away. Visitors enjoy fishing, canoeing and exploring the Smith and
+                  Morehouse Trail.<h2>Recreation</h2>\\n<p>The reservoir is open to motorized
+                  boats, though a wake-less speed is enforced, making it an excellent place
+                  for canoeing and kayaking. A boat ramp is located on the northwest shore.
+                  Anglers enjoy fishing for stocked rainbow trout and other native fish species.
+                  <br><br><br>The 12-mile round-trip Smith and Morehouse Trail is popular with
+                  hikers and backpackers. The trail begins in the campground and leads through
+                  forests, meadows and a marsh before spurring off to Erickson Basin and Island
+                  Lake.</p>\\n<h2>Facilities</h2>\\n<p>The campground contains several single
+                  and double sites with picnic tables and campfire rings. Vault toilets are
+                  provided. Firewood is available for purchase from the host.\_</p>\\n<h2>Natural
+                  Features</h2>\\nThe campground is situated within a quarter-mile of the reservoir
+                  in a scenic conifer and aspen forest at an elevation of 7,800 feet. Smith
+                  and Morehouse Creek runs through the campground. A variety of wildlife makes
+                  its home around the reservoir, including moose and deer. Summer temperatures
+                  range from 65-75 degrees in the day to 40-50 at night.\\n<h2>contact_info</h2>\\nFor
+                  facility specific information, please call (385) 273-1100.<h2>Charges & Cancellations</h2>\\n<p><strong>Change
+                  and Cancellation Policies and Fees</strong></p>\\n<ul>\\n<li>Overnight and
+                  Day Use Facilities: To ensure fairness, reservation arrival or departure dates
+                  may not be changed beyond the booking window until 18 days after booking the
+                  reservation.</li>\\n<li>Camping / Day Use: A $10.00 service fee will apply
+                  if you change or cancel your reservation (including campsites, cabins, lookouts,
+                  group facilities, etc.). The $10.00 service fee will be deducted from the
+                  refund amount.</li>\\n<li>You can cancel or change reservations through Recreation.gov
+                  or by calling 1-877-444-6777.</li>\\n</ul>\\n<p><strong>Late Cancellations</strong></p>\\n<ul>\\n<li>Overnight
+                  and Day Use Facilities: Late cancellations are those cancelled between 12:01
+                  a.m. (Eastern) on the day before arrival and check out time on the day after
+                  arrival.</li>\\n<li>Individual Campsites: If a customer cancels a reservation
+                  the day before or on the day of arrival they will be charged a $10.00 service
+                  fee and will also forfeit the first night's use fee (not to exceed the total
+                  paid for the original reservation). Cancellations for a single night's reservation
+                  will forfeit the entire use fee but no cancellation fee will apply.</li>\\n<li>Cabins
+                  / Lookouts: Customers will be charged a $10.00 cancellation fee and forfeit
+                  the first night's use fee if a cabin or lookout reservation is cancelled within
+                  14 days of the scheduled arrival date. Cancellations for a single night's
+                  use will not be assessed a service fee.</li>\\n<li>Group Facility: If a customer
+                  cancels a group overnight facility reservation within 14 days of the scheduled
+                  arrival date they will be charged the $10.00 service fee and forfeit the first
+                  night's use fee. Cancellations for a single night's use will not be assessed
+                  a service fee.</li>\\n<li>Group Day Use Area: If a customer cancels a group
+                  day use facility reservation within 14 days of the scheduled arrival date,
+                  they will forfeit the total day use fee with no service fee charge.</li>\\n</ul>\\n<p><strong>No-Shows</strong></p>\\n<ul>\\n<li>Camping
+                  / Day Use: A camping no-show customer is one who does not arrive at a campground
+                  and does not cancel the reservation by check-out time on the day after the
+                  scheduled arrival date. Reserved campsites and group overnight facilities
+                  will be held until check-out time on the day following your scheduled arrival.
+                  Group day-use facilities will be held until check-in time on your scheduled
+                  arrival date.</li>\\n<li>If a customer does not arrive at the campground or
+                  group facility by check-out time the day after arrival or does not cancel
+                  the reservation by the times listed under \\\"Late Cancellations\\\" above,
+                  the customer may be assessed a $20.00 service fee and forfeit use fees.</li>\\n</ul>\\n<p><strong>Refunds</strong></p>\\n<ul>\\n<li>Customers
+                  must request refunds no later than 14 days after the scheduled departure date.
+                  Recreation.gov will not grant refund requests after 14 days of departure.</li>\\n<li>Reservation
+                  Fee: For some facilities, tours or permits an additional reservation fee is
+                  charged. For some overnight and day-use facilities, an additional non-refundable
+                  reservation fee may apply. The non-refundable reservation fee for tours and
+                  tickets is $1.00. The non-refundable reservation fee for permits varies by
+                  location.</li>\\n<li>Refunds for Bankcard Purchases: Refunds for bank card
+                  payments will be issued as a credit to the original bank card.</li>\\n<li>Refunds
+                  for Check or Cash Purchases: Refunds for Recreation.gov payments made by check
+                  or money order, and cash payments at selected campgrounds will be issued a
+                  check refund. A refund will be processed within 30 days of receipt and approval.
+                  Please Note: Refund requests made during or after departure can only be processed
+                  when approved by the facility management staff based upon local policy.</li>\\n<li>Refunds
+                  for Emergency Closures: In the event of an emergency closure, the Recreation.gov
+                  team will attempt to notify users and offer alternate dates (as appropriate).
+                  If this is not possible, reservations will be cancelled and all fees paid
+                  will be refunded. Reservation fees for free tickets are non-refundable in
+                  the event of an emergency closure.</li>\\n</ul>\\n<p><strong>Recreation.gov
+                  Billing Information</strong></p>\\n<ul>\\n<li>Reservation transaction will
+                  appear on customer's credit card statements as \\\"Recreation.gov 877-444-6777.\\\"</li>\\n</ul>\\n<p><strong>Changes
+                  to Policies and Procedures</strong></p>\\n<ul>\\n<li>Recreation.gov reserves
+                  the right, when necessary, to modify reservation policies. These policies
+                  were last updated July 2018.</li>\\n</ul>\\n\",\"FacilityDirections\":\"From
+                  Salt Lake City: \\nFrom I 15, take I 80E past Park City to either Hwy 189
+                  or Wanship. On 189, travel SE to Kearns Blvd/SR 248. Continue east on SR 248
+                  to Browns Canyon Rd. Travel E/NE on Browns Canyon until it connects with SR
+                  32 just north of Peoa. Turn south onto SR32 and travel until it becomes North
+                  Bench and then Weber Canyon Rd. From Wanship, take SR 32 past Rockport State
+                  Park to Peoa. At Peoa, SR32 becomes North Bench Rd and then Weber Canyon Rd.
+                  Stay on Weber Canyon Rd to FR 33. Turn right (south) onto FR 33 and travel
+                  past Smith Morehouse Reservoir to Ledgefork. (FR33 distance ~16 miles) \\n<p>\\nFrom
+                  Utah County (Provo): \\nFollow US 189 (University Ave.) through Provo Canyon
+                  to Heber City. At the junction in Heber, turn left and stay on 189 going north
+                  until you reach SR32. Turn right (east) on SR32 and travel past Jordanelle
+                  State Park to Francis. At Francis, turn left (north) onto Main St. Stay on
+                  Main st. until it becomes New Lane Rd in Oakley. Stay on New Lane Rd to Weber
+                  Canyon Rs. Turn right (east) onto Weber Canyon Rd. Stay on Weber Canyon Rd
+                  to FR 33. Turn right (south) onto FR 33 and travel past Smith Morehouse Reservoir
+                  to Ledgefork. (FR33 distance ~16 miles) </p>\",\"FacilityEmail\":\"comments@AmericanLL.com\",\"FacilityID\":\"231939\",\"FacilityLatitude\":40.7425,\"FacilityLongitude\":-111.0994444,\"FacilityMapURL\":\"\",\"FacilityName\":\"LEDGEFORK\",\"FacilityPhone\":\"KAMAS
+                  RANGER DISTRICT 435-783-4338 OR UTAH RECREATION COMPANY 385-273-1100\",\"FacilityReservationURL\":\"\",\"FacilityTypeDescription\":\"Campground\",\"FacilityUseFeeDescription\":\"<p>67
+                  single sites - $26.00, capacity - 8 people</p>\\n<p>6 double sites - $52.00,
+                  capacity - 16 people</p>\\n<p>Day use/picnicking - $10.00</p>\\n<p>Extra vehicle
+                  - $10.00 per vehicle</p>\\n<p>Boat Launch - $10.00 (Not Included in campsite
+                  fee)</p>\\n<p>Season Boat Launch Pass - $60.00</p>\\n\",\"GEOJSON\":{\"COORDINATES\":[-111.0994444,40.7425],\"TYPE\":\"Point\"},\"Keywords\":\"LEDG,WASATCH-CACHE
+                  NF - FS\",\"LINK\":[{\"Description\":\"American Land and Leisure\",\"EntityID\":\"231939\",\"EntityLinkID\":\"de2100ca4aa6388b8bf7675ad55c8486\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Forest
+                  Service Concessionaire\",\"URL\":\"http://www.AmericanLL.com\"},{\"Description\":\"Print
+                  Facility Map\",\"EntityID\":\"231939\",\"EntityLinkID\":\"96b767dd398579d6dde0afc01f602d4b\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Print
+                  Facility Map\",\"URL\":\"http://www.recreation.gov/webphotos/facilitymaps/70133_LEDG.pdf\"},{\"Description\":\"Utah
+                  State Road Conditions\",\"EntityID\":\"231939\",\"EntityLinkID\":\"43e38b36f815a84b227cef7552c38379\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Utah
+                  State Road Conditions\",\"URL\":\"http://www.udot.utah.gov/\"},{\"Description\":\"Utah
+                  State Tourism\",\"EntityID\":\"231939\",\"EntityLinkID\":\"4f63b15f30ddbcf43148f7d48890a3a2\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Utah
+                  State Tourism\",\"URL\":\"http://www.visitutah.com\"}],\"LastUpdatedDate\":\"2023-01-10\",\"LegacyFacilityID\":\"70133\",\"MEDIA\":[{\"Credits\":\"Utah
+                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"220f30c2-600b-404e-aeec-518cfd82a452\",\"EntityType\":\"Facility\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
+                  CAMPGROUND\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/07/231939_4d0ca709-f72a-4813-adf7-b731cbb362e4_1440.jpg\",\"Width\":1440},{\"Credits\":\"Utah
+                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"e5538335-1ca3-4489-bcad-9c65ff8281ff\",\"EntityType\":\"Facility\",\"Height\":1050,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
+                  CAMPGROUND 2\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/08/231939_cf39f20e-411e-4a61-8362-bdaa5b21f8b7_700.jpg\",\"Width\":700},{\"Credits\":\"Utah
+                  Recreation Company\",\"Description\":\"SMITH MOREHOUSE RESERVOIR\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"f605f23a-1f38-45b0-b9f4-90187fbcb744\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"SMITH
+                  MOREHOUSE RESERVOIR\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/08/231939_a7061342-72ab-4217-82cb-a61fa4c83d2f_700.jpg\",\"Width\":700},{\"Credits\":\"Utah
+                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"956cf3d6-6457-4612-bf12-deabb1093b5d\",\"EntityType\":\"Facility\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
+                  CAMPGROUND\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/07/231939_800523da-ce41-477e-bf14-64f87e667ae6_1440.jpg\",\"Width\":1440},{\"Credits\":\"Utah
+                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"5b64bf06-1023-4b95-928d-b8ec174340e9\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":false,\"IsPreview\":true,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
+                  CAMPGROUND\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/07/231939_87d17596-2f22-489e-a656-108ffd75fb2b_700.jpg\",\"Width\":700}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"FS\",\"OrgID\":\"131\",\"OrgImageURL\":\"fs.jpg\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"USDA
+                  Forest Service\",\"OrgParentID\":\"163\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.fs.fed.us\",\"OrgURLText\":\"\"}],\"OrgFacilityID\":\"AN370133\",\"PERMITENTRANCE\":[],\"ParentOrgID\":\"131\",\"ParentRecAreaID\":\"1035\",\"RECAREA\":[{\"RecAreaID\":\"1035\",\"RecAreaName\":\"Uinta-Wasatch-Cache
+                  National Forest\",\"ResourceLink\":\"http://localhost:3000/api/v1/recareas/1035\"}],\"Reservable\":true,\"StayLimit\":\"\",\"TOUR\":[]}\n"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -170,22 +206,24 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "13799"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 30 Nov 2022 03:06:37 GMT
-              Transfer-Encoding:
-                  - chunked
+                  - Sun, 12 Feb 2023 07:21:09 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 0493ac96db17aa3c2303a0a81e1a1ec8.cloudfront.net (CloudFront)
+                  - 1.1 cf1928ef9a9a7bb589a35ead31bcb4ea.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - G9TYNdaryoXCzEB5D3m5kiOoLXlwNeSDULDxzDyheVx0tnitfdDOHQ==
+                  - w6i-zdbs-XOj-r4pv6Br2BF-5J_7vRm1Flb9Sf0_uZE6nZxDIZ5HMg==
               X-Amz-Cf-Pop:
-                  - DEN52-P3
+                  - DEN52-C1
               X-Cache:
                   - Miss from cloudfront
           status:

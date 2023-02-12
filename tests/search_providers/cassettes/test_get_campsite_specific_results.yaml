@@ -1,13 +1,10 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (X11; CrOS i686 4319.74.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.13 (KHTML, like
+                    Gecko) Chrome/9.0.597.0 Safari/534.13
               accept:
                   - application/json
               apikey:
@@ -16,33 +13,36 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/campsites/93740
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA8xWbW8aORD+Kxafcdb2et/4RhLaQwqEAukpqk6R3xb2uuyiXZM0PfW/35hsm/Tq
-                  0BQpuiLEy+w88/bMjP3hn95wuZyPT6+Wo0Vv8AH+WtsUcmfNVGxMb9A7Fa1B091GmgbVOXpv1oUq
-                  TdvrP2q+F+XOqZLel77HwOk7n/K1V/lNXWt0UauPpnk5aFYKZTSqKzQRWx+M+gP7PrOZqbel8cEz
-                  v9dCVYVCSyH9KH+sZ2ujPhYVWhYbL4oOCEGzyfPYemefB7MDaMjUpXlq9C+QtyisQUOlTOsFnTfF
-                  rcHjyoudQJqd01+urbEtGpZlfWe0t7bQgF6X4tPPXVLur25d6cIW0EVzYYtq5YNOg6EfK7ZCFfY+
-                  WBSfzRH4paksmgmN/iy0XfuQoZ+fPQF34h4tdk0OU+CDzsQtVPGg2wtTrfx+afSzQh/aCP5KO3CH
-                  OuCZhYczHlW2uffmuytLbNdNvVutD5t42wjtLdmiLFZrexj8fORZ4kfWO1gV6KsBb3/UXuR4gUbv
-                  rsazyWi6RJPh9Hy4vJxf+wzYBr6+/NWHjtxsWxjeh9kt3I4a5KJszeOj8bmLNUw46T0KL6B37Q6q
-                  MmDZCUsinlCaEHjRJzp1teqUMCXhSUgiHjKSPVHpAr98YnluWtPc7rflwIX5+GR5v3XKb+eXVzO0
-                  dDleTi+u0XA+GqLp5XR0MTqDI+rM2WqMsEafw4frEEI5JhEmDB4BbLy8nozOx8P9OQaqMM6tK+ps
-                  Ac/PTauaYusG/HF5WxdO20fSiAbJ+pP7LSqNVk1RlshZhdNBn9Uu1Z77W0F17r8r3INoAs5EJw+F
-                  pDLFJI4SzBXJsNSpxCaMSBwTligZfoN1mX8tBMj/MPvOG0Qs6vfG7VtRlgbavKvYuJ015rYwd9/I
-                  dJJiI5xKJ9mH0hkeb8TKWV3sJLgruyyW3c8XFeGusGu0qXeVFUXVItjpdm2QFOrjCiascuv5an4B
-                  1tbWbttBEChdnTRGOaag1ier+jbYQuMXKgC+soDEAQ0DGgWUBfsa3uQm51RThUOTKMxzk+EsTHPM
-                  mEpZqGTGI3oDPXjy99Yt1YcVOQCBG5XDNL8phe1DIrABSyQgpId0tk8TP4rlNMukyKMcCxFrYDlk
-                  WHKtsGSCcp5oE8n4N2H5JTX4kdb+j5zrorWi2p8xRzIedoynWug4TWOcRpJhTmKKZZ5G2FBB0lBR
-                  Q/LsSMZfb7BjE6eECoUZMSnmRsY4i0SCQch4YnQeGvICysMw/Y7yJww/y/lDW/zWg50GBN4sYPCm
-                  8JlkJCcUM81yzKHNsUypxEowHqlEpJqFNzz6D8EgeAHBooH78wq5sh43u0xpmRmeY0kgLi6VgeAY
-                  x4LrMKVcxTwXRxD5Khv6SbLAHbLONdrCBQd1F5wHGleNMdXrkBkFUR6zhKccR1zDtIaC45QRAvtZ
-                  aw3TGjMVHUnm/gK630nf+vK4Qzdy7aYkFhFcCWAaI1jMGcWJCqNcG5LGcfZ/UfovAAAA///UmMtO
-                  g0AUhvc+xbzAJHPO4ADuTMTEhEZT6dLFXCCa9IJCTXx7/8FWEbsibroj4SwYPs5/YYK0egYr0ePg
-                  nejqXuzbSKsZifT6YyTTJ8j+A1Vce40VMNhOMgZbQGRB1ZNsgjaBkktjA82k2h+pzmLp8zwxAZbA
-                  lENnlXKQWIbYGsvkldHEfoa1/tXZH7rnx3LsqnRwVaUVB5emUjlLMrHsZZZqLU1We6dyx95mp10V
-                  feEW/XV9RMM6URRTamm7ftWGX5mbGdFWctyncrdrY3DHAVoRfxV0opRL3Hgolou7qipuvmvLkMmL
-                  1/1Lu8HrGvVPTKMPHsrU1fB1TcceF9dlORSD6TAePIK6b1bdUDfe67ftV3N7uvgEAAD//wMA848P
-                  tNsSAAA=
+              string:
+                  '[{"ATTRIBUTES":[{"AttributeName":"Base Number of Vehicles","AttributeValue":"0"},{"AttributeName":"BBQ","AttributeValue":"Y"},{"AttributeName":"Food
+                  Locker","AttributeValue":"Y"},{"AttributeName":"Placed on Map","AttributeValue":"1"},{"AttributeName":"Base
+                  Number of People","AttributeValue":"9"},{"AttributeName":"Picnic Table","AttributeValue":"Y"},{"AttributeName":"Checkin
+                  Time","AttributeValue":"1:00 PM"},{"AttributeName":"Checkout Time","AttributeValue":"12:00
+                  PM"},{"AttributeName":"Num of Beds","AttributeValue":"0"},{"AttributeName":"Site
+                  Access","AttributeValue":"Drive-In"},{"AttributeName":"Min Num of People","AttributeValue":"9"},{"AttributeName":"Pets
+                  Allowed","AttributeValue":"Yes"},{"AttributeName":"Max Num of People","AttributeValue":"14"},{"AttributeName":"Condition
+                  Rating","AttributeValue":"N/A"},{"AttributeName":"Capacity/Size Rating","AttributeValue":"N/A"},{"AttributeName":"Tent
+                  Pad Width","AttributeValue":"30"},{"AttributeName":"Driveway Surface","AttributeValue":"Paved"},{"AttributeName":"Tent
+                  Pad Length","AttributeValue":"15"},{"AttributeName":"Max Num of Vehicles","AttributeValue":"4"},{"AttributeName":"Max
+                  Vehicle Length","AttributeValue":"23"},{"AttributeName":"Driveway Entry","AttributeValue":"Pull-through"},{"AttributeName":"Driveway
+                  Grade","AttributeValue":"Slight"},{"AttributeName":"Driveway Length","AttributeValue":"97"},{"AttributeName":"Double
+                  Driveway","AttributeValue":"No"},{"AttributeName":"IS EQUIPMENT MANDATORY","AttributeValue":"true"}],"CampsiteAccessible":false,"CampsiteID":"93740","CampsiteLatitude":29.2754711700001,"CampsiteLongitude":-103.305432091,"CampsiteName":"O","CampsiteReservable":true,"CampsiteType":"GROUP
+                  TENT ONLY AREA NONELECTRIC","CreatedDate":"2014-05-02","ENTITYMEDIA":[{"Credits":"NPS","Description":"Tent
+                  area and grill","EmbedCode":"","EntityID":"93740","EntityMediaID":"9590f0cb-a514-47e5-aa91-7c35fde08669","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
+                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/18/c3e4f62f-1665-411a-82c1-fd36d1456ad1_450.jpg","Width":450},{"Credits":"NPS","Description":"Parking
+                  sites","EmbedCode":"","EntityID":"93740","EntityMediaID":"2cdb9e4f-b025-4bce-b824-a4d3814c64fa","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Parking
+                  site, a tight pull through with green mountains in the background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/25/5f627484-54d2-43a4-8200-22ddd3c162c5_450.jpg","Width":450},{"Credits":"NPS","Description":"Flat,
+                  gravel area with picnic tables","EmbedCode":"","EntityID":"93740","EntityMediaID":"a2455bd6-66cd-443f-8680-70b3fc1deb2c","EntityType":"Campsite","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Shade
+                  structure, flat gravel area with picnic tables in the background, mountains
+                  in the distance","URL":"https://cdn.recreation.gov/public/2022/12/09/22/15/93740_19b70ec5-8336-467f-a53c-2fd83eb30a2c_700.jpg","Width":700},{"Credits":"NPS","Description":"tent
+                  area","EmbedCode":"","EntityID":"93740","EntityMediaID":"c9946d61-2198-400b-8026-96a21c06312c","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
+                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2019/06/13/15/11/93740_0302db77-0ba1-4a2c-8733-68ecb09b2ca8_700.jpg","Width":700},{"Credits":"NPS","Description":"Shade
+                  structure, picnic tables, bear boxes, and grill ","EmbedCode":"","EntityID":"93740","EntityMediaID":"3ccc15b2-e140-4b9b-a25a-b74f9861191e","EntityType":"Campsite","Height":934,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Shade
+                  structure, picnic tables, bear boxes, and grill with mountains in the background","URL":"https://cdn.recreation.gov/public/2022/12/09/22/14/93740_b2f9e565-572d-4111-9ef4-ccdbda6b9830_700.jpg","Width":700}],"FacilityID":"234013","LastUpdatedDate":"2022-06-29","Loop":"Group
+                  Sites L-R","PERMITTEDEQUIPMENT":[{"EquipmentName":"Tent","MaxLength":0},{"EquipmentName":"SMALL
+                  TENT","MaxLength":0}],"TypeOfUse":"Overnight"}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -50,20 +50,22 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "4396"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 06 Dec 2022 04:38:07 GMT
-              Transfer-Encoding:
-                  - chunked
+                  - Sun, 12 Feb 2023 07:24:42 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 20ebec22e4be2753f048f31dfe94e426.cloudfront.net (CloudFront)
+                  - 1.1 9bed99ac619d23b077acdc859dc1c43c.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - m9XsHsACQrnSrAYUKZQzyDpdzfKebdAcE9mR1ttogMqYSaAawYfRBg==
+                  - o4N3yWFRaSBrj6mhpdWmLmpUB2q7LWfqbNJZjXCAtG9B6wq1L_G1cQ==
               X-Amz-Cf-Pop:
                   - DEN52-C1
               X-Cache:
@@ -72,14 +74,11 @@ interactions:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.0; hu-HU) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.13 (KHTML, like
+                    Gecko) Chrome/9.0.597.0 Safari/534.13
               accept:
                   - application/json
               apikey:
@@ -88,65 +87,81 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/facilities/234013?full=True
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA8xa+28aSRL+/f6KFr/cnsRjngz4opUwJjYbGxDgePcup1Uz0wN9HqZne3qM2dX+
-                  71fVPcPDOInX67uLlETQz3p89VVVk99qvf58+HE4/6l29s/far1Q8QeutsOL2lm3vvs6omtWO6v1
-                  ezeT4eiyVq+9pyFPYKJacMHyUPJMcZHiOrrOeLp8Zt17xo6XHqzBO2uO61m2W/u9fiyL7Z0IczX8
-                  8BJZrvj924ritE9EuRteX1wP3w/Ix+Hg7iVC3fEkSnjMyEfONm9sKcuy7OBExPPh9OIlkp1zGb29
-                  QM/YbPBxMAKByGQ6vpz2bmZflWzwwFKQjEykWEq6zt9axFObXd4OLwYXZDiaD6aT6QDCZEDuetcf
-                  vi7rZcEjFpFhqpjMJIMljNzR5P6thW77J0JPhv3RsE/mvfPrwdcFnfAw5SGZ00XC/pRw/6prdpgN
-                  5wMgEviG/p2XH1M8PqqdKVkw2N/rD6+BcHoXF9PBbGZ4J4oky/O+KFIlt30RoSq3sx5cV07NFFWs
-                  nJj/CON9EEED+5KcD0YXZNSbN8mkN/1wqIbZayS1PLfr+sHp9Hyb4akXLKZFoj6j4X50piRjqtxr
-                  oxHH5Hz8I7Gd7udWOceWO5pzzdw1zdVtFoGS0QX8owV2nIbtNCwbpiciVzQp9Q+6HdfTNt9rQnth
-                  CKfB7OjgpmPnvVs5348fmHwA1nnXgi+f0v6K5yIn5zTnKbmUosgIsvcSPqVRneRcFSgSWfHlisAS
-                  tWJEFsslDJVbb9BnlKd5nfCciJQREetlaxCZ5KJYrlSDxhAJJNydnONZ53xJzlkakRFFAWlCJlTe
-                  N8lQkRXNSc4g4slSyxSajILysJzQB8oTxBSJhTQrcrwV+IERJYhjkYyJDOa/y/mvDOXCjY2IZXAd
-                  S9XfmqSnCE0JTRRoGGmZ/bpnWSRWzboWfy+s3l9I/Rn0FrgtgRMjEGWxJeCXpE6kCO+3JARWj0FA
-                  2BSKFBkLbku2JBGhNmPKqASbrHdGykDjv+alrTIWKhoWCazBEzKR6c9Kgrp5k8xh/ZQLcBPMMmNt
-                  OJuSfCWkIpFEmqEbum0SQj6ln9JekgswkVbBuI5KRnEjfj5y/UcOFgJj9hlylrHAJUuZBK/MYIJp
-                  iQ627dxOrkW0ZHWyWfFwRVaiyJk5XwsHCFe0AIHVFzyOuJyyEGTD0RKZc7jniRMoWRUL7fMVv2cS
-                  TDJ7lSnRDNoViy2ANg2TAnOePuQad98gjua41BjijqeR2ByOzEShVuCMtRncGWfC05SGwKXV4g2H
-                  dVzBlTo8EZ0HsmJUgYFAPJ6qOhmshdySCaP35DuWsAdtDhLUO46PuATUYmyC4mCXlMS8vFQrtWIU
-                  ogptow1gbJKzSuPS/2vw2LHjNSIoWXOIFoHYJHEhYakkoLLZZBZKQSMSS7F+Eh07sB0piFiU2mdZ
-                  JsUjXwP8AQ6upW/KNUwRMww88WCwZ7SCvwLQdE+3YAU0a8zzlUZIyWmc5SVC3mXfY0jsGWKPlCre
-                  jm+3W55RFG/f63JqlP6BdgMKsEb6gIheg+Tao5RkJnMqpKE6CVdUhgLwvJQ8MXBYAL4acDt4IhYi
-                  IjmoSJd4io4bZoCpucCwGh5vTi/PzlcsUeht9Gq+ohED2oLTUdWSCKXZASIzmm/JBmoMRHLEIerS
-                  UJMh0EKqBzdUlZcqAUZQED4jQaYfgbg1SOCmOkJgqcNeOwTPB3YTGxY137UytDlYHoK3QF54z/DD
-                  zh3oi7SKawQ4OiKFqiTSClASFhIIqkTiAZGFcAUzUP5UWwBFLIAimp9q5D1ss+uOX4Km/gRZqSmw
-                  dneeo8MoRNCCqQ1j5p7blCMQdPlgiPmGPfJQVLCdH1N9wnGV0lsXNNfkgokI9c0ToZNQRfJrHkGk
-                  rdGfwBf5ShaLBC74O4HEwICQM/imMHUAgCCf9ST/FeQk4TaThREF8PRLgdDCggD8jNjBm/GYPKQZ
-                  OPyGZggwCoyW1gEZ6Rbzj6Y0sJ0UOUIxhc2gwAYl15wiyY4/cvLvAsSkCwHGfxq68xXmZyAoEzQb
-                  2KhW1FiuSnl7leuneYNra9GTW80xQhPJYdov0VpxIDB4sV7jrQyJzeCJaFZA7IVCAIdumQLwynUl
-                  nDkViUvzWkzLiINOChEeFaxioVAkwAEcoqeMAVghSj0lW6J1DnFwkto0/nfJA6ysqiLEMC1f6kAB
-                  xEHbVGbo9W43BP8DFAn7ZFgdUPHUcwjFc7WVRQK0BV2DBIKRVXqlEuGv1Qb0NXqZLJMPlDZUKrMd
-                  042xxf4yvSXHrLUBISBoyjDAAgZPmrEMXLBgslnGuM6OUCUBNYQaRmWUP5/CCUuBvjKaY/LvWHYd
-                  mhNIebIMuRPYVHVICOUGhNa+QkIbIqaQdPJ9ZgCvs8eQAU9AISGyDOqdAsy2RUezxywRhqhKUBwU
-                  BKg2BV8nFJswuOegVmru6xERx0i0+ztW+tmgzJ71MmnBuWXtG3E4BDMizKGCcEaC2S8Tec4XZZoy
-                  vA2BoXLG4LQmOazMuWTGsFCYv8dUpMksRxQQ24JQo/dMhxXmKrfjG++hwu9RAyjKwntVcgFom2Jd
-                  CpM3FCC5EmmT6EOrr3WyFMSrsq85CjZcHZxfxkwKp6+I9gtmEND5c3X6hS44c7QR6Eicdnk6HKQx
-                  cQUlyS8FwBJNCywxATrEyP2hSLXm4OsCgCj1bg1ifaCJACBEc1y5KmGxqojZYAgsa7QHzUyvsLv+
-                  Cc0dmH0AyT75fB+7H72mpjOonTndphP4BzMiXZZTDdtym67l2e12sF8AlH07vT6+pHpBuxrOxjNy
-                  3psNR+RyOr6dEGyb8dPo4mD5BFyG6z3XaXhB0LBtxz6YnmKCMUR7chN2s6fPccYSB8tuc/Zcc385
-                  GP8wG49qZ7/V+uMxvhn15gPs0Y9UNSaB/nP+02SAHTDWr7Xf67UPbLsRQIV46/nltH6gaP0GdJz3
-                  dl+rxr1+2MEPx6Pete7i6/2r2Rj74uHog34iOBZ1zh4h0DVnkilWpn1Ih9zEE744qBPHmrFrSAR6
-                  3GuHYdcKmB3RuNONqWN3O93FwgviKAzCMNrtKF8HKruhSHBGOTpGQMPQnKuEfVUs46uVUtlZq7XZ
-                  bJqRUE0d8U312Czyln7k+byic1FInq9fpmA7jp2Y0Xbbj0M/8Gk7ai8Wdhw5LLJcz3X/vIJ7cU4U
-                  A054wOL1sQlpoaWfKr7ywHHNljTcHsVk4HY7OHUzuBj2NAb6koE19SPHBB+3jk01Q0IQplNBUkuA
-                  fzSJG0J4+rqBBoCMF5WPKl+06g3cS82EH3Q8q/sF610xJLTamdu26rVhfonVrdxWr1/DfCIZPsDU
-                  zqBwycsRSPW4pBzRt5UHD9fQNMCps2KhSh8cuOOPq7x3VQ6+CqO0KXedd3MpHloZVLE8bHG8N28F
-                  tu91mv/O8EX4jkdqVTvzPQth+mVf4MM25o6jrL/ruPZdtk6wr/MEDVw7cDy34TPLb3h+4Da6XZc1
-                  OqEb+J3Aby/8zgvcZOtX1AM/Hbjls44yvny5n/6QOZrgN2xfHtiSKVNN67YQDL6vLv+AKx3L7ras
-                  dst2W7bf8vyWMenPPluEEeu2G1HHjxqeF7Qb3dCJG7Htep2w7dAgin6225Z17H8c+SYA0LE7nhd1
-                  vYYTdVxIk07YWASdTsPqeH7b6tC25cavAcB/I1D/3wDotCz4E8DHlu21YuoFdtejDT+kGDoxa1A/
-                  7DasrhM5bTvuUNd/tef75fMEmZbPX/rpAuvEIsT+7pXO9uzYYW7QaNuLuOF1Iwj0oAvCu+3Yj+PY
-                  9aOXkLLvfC3Y995/ra8PDbB7QMdKXb8gsOrhQB02i68P504VznHYWdiRYzeoG0E4tCG50sizG4EV
-                  tmnXXkRdRn8Onvo0eIlLL58+saGp9vDF7PP6bOp630o2fZoujYb64fNJYt09wb0mowI7vSKjPvXB
-                  nzB4EHxTBg+f+8GJrkX5JP+aGNlXL5b3BrZ+Y7x/W+b/H+DdPfUBdATj6WVvNPyH7vp0ef9ci2BD
-                  Pm83nDbsHstlb7EA/ctm2ngORrVpbadTfsN7jZBpljeXPDbjP2C3EnH99FCaR/cxZrY68+hVa4a/
-                  lYblChhhqTJ3uV0zVvmPRfqFuLdkabg1UyBB+QvvcWukZRIPu0XQUSl0i7aIXB51QL2RWzVBk8H0
-                  ZjgfjObT3qhf/sZuJDo2gBmbsrAHLikx1/FgYjro96YD00c9N22Gqv8u8uyTj16WQ9cXMmwR93rh
-                  412ygiLmzLUsq0Uz3nqwWwAL/R7X0legfuW7xQLRZwANHoCWdc1Viczx7RR1+/0v/wEAAP//AwBP
-                  9HqtmSQAAA==
+              string:
+                  '{"ACTIVITY":[{"ActivityID":9,"ActivityName":"CAMPING","FacilityActivityDescription":"Camping","FacilityActivityFeeDescription":"","FacilityID":"234013"},{"ActivityID":14,"ActivityName":"HIKING","FacilityActivityDescription":"Hiking","FacilityActivityFeeDescription":"","FacilityID":"234013"},{"ActivityID":26,"ActivityName":"WILDLIFE
+                  VIEWING","FacilityActivityDescription":"Wildlife Viewing","FacilityActivityFeeDescription":"","FacilityID":"234013"},{"ActivityID":100017,"ActivityName":"BIRDING","FacilityActivityDescription":"Birding","FacilityActivityFeeDescription":"","FacilityID":"234013"},{"ActivityID":100026,"ActivityName":"EVENING
+                  PROGRAMS","FacilityActivityDescription":"Evening Programs","FacilityActivityFeeDescription":"","FacilityID":"234013"},{"ActivityID":100027,"ActivityName":"GUIDED
+                  INTERPRETIVE WALKS","FacilityActivityDescription":"Guided Interpretive Walks","FacilityActivityFeeDescription":"","FacilityID":"234013"},{"ActivityID":100065,"ActivityName":"PICNIC
+                  TABLES","FacilityActivityDescription":"Picnic Tables","FacilityActivityFeeDescription":"","FacilityID":"234013"}],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[{"AddressCountryCode":"USA","AddressStateCode":"TX","City":"BIG
+                  BEND NAT. PARK","FacilityAddressID":"20439357","FacilityAddressType":"Default","FacilityID":"234013","FacilityStreetAddress1":"PO
+                  BOX 129","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-01-10","PostalCode":"79834"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nChisos
+                  Basin Group Campground, situated high in the rugged Chisos Mountains, is one
+                  of the most sought-after campgrounds in Big Bend National Park. It has seven
+                  group camping sites available for groups of nine to 20 people (size is site-dependent).
+                  At an altitude of 5,400 ft., the campground is surrounded on all sides by
+                  tall, rocky cliffs and conveniently located near some of the park''s most
+                  spectacular and popular trails. The Rio Grande is only a short drive away.   \n\nAlso
+                  found in the area is the Chisos Basin Visitor Center, the General Store and
+                  the Chisos Mountains Lodge, which houses the only restaurant in Big Bend National
+                  Park.<h2>Recreation</h2>\nThis campground is a hub for hikers. Some of the
+                  park''s most spectacular and popular trails are nearby, including the Lost
+                  Mine Trail, the Window Trail, the South Rim Trail and the Pinnacles Trail,
+                  with its access to the park''s highest point, Emory Peak (elevation 7,825
+                  ft.). Campers can find the trailheads for most of these trails in the main
+                  Chisos Basin area a mile or so further down the Basin road from the campground.   \n\nAccess
+                  to the river is approximately 30 miles away, where visitors can canoe, kayak
+                  and fish.<h2>Facilities</h2>\n<p>The group campground is located approximately
+                  1/4 mile away from the main Chisos Basin Campground. Each site comes with
+                  a picnic table, charcoal grill and bear-proof food storage container and some
+                  sites come with picnic shelters for shade. All campsites are within easy walking
+                  distance to drinking water and toilets. No RVs, trailers, or generators are
+                  allowed.</p>\n<h2>Natural Features</h2>\nThe national park is named for a
+                  curve in the Rio Grande called the \"big bend.\" For 1,250 miles, the river
+                  is an International Boundary between the United States and Mexico.   \n\nThe
+                  campground lies at the base of several sloping cliffs amidst montane shrubland;
+                  desert plants such as Arizona cyprus and mesquite trees fill the landscape.
+                  Maple, aspen, pinyon and ponderosa pines grow at higher elevations just above
+                  the campground. Though it is lower than the surrounding cliffs, the Chisos
+                  Basin is at a higher elevation than other campgrounds within the park. Summer
+                  temperatures here are cool, yet warmer than other areas in fall and winter
+                  due to the cold air sinking into lower regions.   \n\nThe Chisos Mountains
+                  are a popular nesting site for migratory birds. The mountains provide the
+                  only nesting ground in the United States for the Colima Warbler, which arrives
+                  in mid-April and departs for its wintering grounds in southwestern Mexico
+                  by mid-September.\n<h2>Nearby Attractions</h2>\nBig Bend National Park encompasses
+                  801,000 acres and the Chisos Basin area is centrally located. This allows
+                  visitors an excellent opportunity to explore all areas of the park in a relatively
+                  short drive. Big Bend offers excellent hiking trails, miles of rugged dirt
+                  roads, and endless possibilities for sightseeing. ","FacilityDirections":"From
+                  Interstate 10, take highway 385 south to Fort Stockton and then on to Marathon.
+                  From Marathon, go 40 miles south on Highway 385 to the north entrance of Big
+                  Bend National Park. Drive straight 26 miles to Park Headquarters at Panther
+                  Junction. Turn right and drive for three miles. Turn left at the Basin sign
+                  and go seven miles to the campground.","FacilityEmail":"","FacilityID":"234013","FacilityLatitude":29.275,"FacilityLongitude":-103.3041667,"FacilityMapURL":"","FacilityName":"CHISOS
+                  BASIN GROUP CAMPGROUND","FacilityPhone":"432-477-1121","FacilityReservationURL":"","FacilityTypeDescription":"Campground","FacilityUseFeeDescription":"","GEOJSON":{"COORDINATES":[-103.3041667,29.275],"TYPE":"Point"},"Keywords":"CBGR,BASIN
+                  GROUP,MOUNTAIN GROUP,BIG BEND,BIG BEND NATIONAL PARK,CHSO","LINK":[{"Description":"Texas
+                  State Road Conditions","EntityID":"234013","EntityLinkID":"46cc907e1daf89fa21989bb47fdc7ccd","EntityType":"Facility","LinkType":"Other","Title":"Texas
+                  State Road Conditions","URL":"http://www.dot.state.tx.us/"},{"Description":"Texas
+                  State Tourism","EntityID":"234013","EntityLinkID":"6ff2fea665fc575a6d6bb1fd2ed03433","EntityType":"Facility","LinkType":"Other","Title":"Texas
+                  State Tourism","URL":"http://www.traveltex.com/"}],"LastUpdatedDate":"2023-01-10","LegacyFacilityID":"73981","MEDIA":[{"Credits":"NPS","Description":"Group
+                  campground","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578377","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
+                  campground, situated among the mountains","URL":"https://cdn.recreation.gov/public/images/71504.jpg","Width":540},{"Credits":"NPS","Description":"Group
+                  campground view from the road","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578347","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
+                  Campground from road leading to the campsites","URL":"https://cdn.recreation.gov/public/images/71453.jpg","Width":540},{"Credits":"NPS","Description":"View
+                  of Chisos Basin from the Lost Mine trail","EmbedCode":"","EntityID":"234013","EntityMediaID":"81844d94-2d83-472c-b788-0845608a603f","EntityType":"Facility","Height":1065,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"View
+                  of Chisos Basin from the Lost Mine trail. Green vegetation with red mountains","URL":"https://cdn.recreation.gov/public/2018/08/07/20/14/fa47194a-5ca5-45fe-a5c9-092d261f8a35_1600.jpg","Width":1600},{"Credits":"NPS","Description":"View
+                  of Chisos Basin from the Lost Mine trail","EmbedCode":"","EntityID":"234013","EntityMediaID":"a7317243-5e05-4573-993e-8c3758756b58","EntityType":"Facility","Height":1065,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"View
+                  of Chisos Basin from the Lost Mine trail. Green vegetation with red mountains","URL":"https://cdn.recreation.gov/public/2019/06/13/15/45/234013_5ebcde96-d85d-4476-9c2f-f1348c62a7dd_1600.jpg","Width":1600},{"Credits":"NPS","Description":"Group
+                  campground view from the road","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578349","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
+                  Campground from road leading to the campsites","URL":"https://cdn.recreation.gov/public/images/71456.jpg","Width":540},{"Credits":"NPS","Description":"Sign
+                  on roadway leading to the Group Campground","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578409","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Sign
+                  on roadway leading to the Group Campground","URL":"https://cdn.recreation.gov/public/images/71548.jpg","Width":540},{"Credits":"NPS","Description":"Campsite
+                  R, with shade structure","EmbedCode":"","EntityID":"234013","EntityMediaID":"841f2e37-61bf-49de-8795-436f5fff35d9","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Campsite
+                  R, situated on a slope amidst the mountains","URL":"https://cdn.recreation.gov/public/2019/06/13/15/48/234013_fc8b1d21-a3d3-4622-ad41-70c6a91bd9ea_700.jpg","Width":700}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"NPS","OrgID":"128","OrgImageURL":"nps.gif","OrgJurisdictionType":"State","OrgName":"National
+                  Park Service","OrgParentID":"139","OrgType":"Federal Agency","OrgURLAddress":"http://www.nps.gov","OrgURLText":""}],"OrgFacilityID":"AN373981","PERMITENTRANCE":[],"ParentOrgID":"128","ParentRecAreaID":"2584","RECAREA":[{"RecAreaID":"2584","RecAreaName":"Big
+                  Bend National Park","ResourceLink":"http://localhost:3000/api/v1/recareas/2584"}],"Reservable":true,"StayLimit":"","TOUR":[]}
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -154,20 +169,22 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "9369"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 06 Dec 2022 04:38:08 GMT
-              Transfer-Encoding:
-                  - chunked
+                  - Sun, 12 Feb 2023 07:24:44 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 543364398a9b5ee1ed0d763a4bb2c14a.cloudfront.net (CloudFront)
+                  - 1.1 9bed99ac619d23b077acdc859dc1c43c.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - LPbrSErg8IdnYh8dp3qFHsnVJmiVmegn2vlF-X0jdqg-PoXeby2K1w==
+                  - 6Az6AGw9Z2BT_3B0191UxE6E-gJE7Rih9Bq1g9iikLTQGv2GFoSqlA==
               X-Amz-Cf-Pop:
                   - DEN52-C1
               X-Cache:
@@ -176,7 +193,7 @@ interactions:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -193,66 +210,77 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36
+                  - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.66
+                    Safari/535.11
           method: GET
           uri: https://www.recreation.gov/api/search/campsites?fq=asset_id%3A234013&include_non_site_specific_campsites=True&size=1000&start=0
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA7yXbW+jOBCA/8qIz02O12TpN5LQLToCbKDbq06nyAUntUowB063VdX/vuO87OXu
-                  nLSiVfMlgGf8zIzH9syzlpNV3TJBW+38z2eN5DltW3ZbUu1cW5CypdqZRpbLhi6JoPOcluU85w+0
-                  IUuUMHGsbamYswLFTcvWDUvbf6vISk4yvgzSOIWRlwYRfJ3FVwmMvWkin6LJL2HxVG+E0Zhlw9dV
-                  IUeEaNjt+pdp+9d5jqYsefOECtLyeUEFYWV7qLKxyBkcftnZM2UVROsV8AUklNcl/ZfaAynXUsrV
-                  Xs66IA0VcsyrggnGK5gRwaqlkhj95nVlmirmHc3v+VpAxlZqFw3zXNchmXakDhwFNaGiBa8s+Q9a
-                  KKE3uJjdeEOVl0nDH9mKiScQHK5xpuaDY+uoqFPy+IYUMvWunroKZooa4G12p5I2adgD7QVV1xwy
-                  juUQbpfjKfRaBtG/16xe0UocBZuqDbNx5gd5gnTdLEiuhifkAZPsHWhdQVaSbOujMUEL/l4RpqQq
-                  iJDTqeCiwb/P8PLkJnnDQlqnFtKvxBH/EtKQsqTlp/honNqUr3Mc+8hp8J3esbykENJqKe6UaOt9
-                  ZFV0D86hnQHqs8H+lNiaH75LlJh3hdFUHecTvsZ6B/a5qt4c/DgWZ6nweqf/x6nSZTT6pr4ZuwAG
-                  Q9WlyPKK5ZCR2yM3UyeUpQrdBecFhDy/P3LxdiLZyoJmRFoqs/2WNt1rt1NQVQb+B3pyl51IzBNR
-                  1VXYKanhDxhz3hSswmmUvMGgb7i265r6wLFNd9gJb6hSNCnxzi0A61U0RH2OdvNVVWRIX29e89Ux
-                  nL5rD4bDoWVbQ0d7+Qultl3IvNnW1Od2HyvSfTez7Uhca6B/0Q6+NrSlzQPdtxuyqOqlNc3ZguWH
-                  cq0gYo1thxbXtJIDWGLKdGBLGNGqgIjIcp6UgLfXvRzHlgUvOGyNCjnvFUYAA5jiLJs4LCgi6aou
-                  N+/nz1q8kBlM7iVh97htjTI/yiCOwhvwZr4HURz5oT/OZsEYp9lp3DqORamb974sdNKzjZz0XNey
-                  ek5h6rprOLqzICidNaRqN20H6vzz8gbONSnvIZBqu6dXdV7ONPSNifXGfdPtm0PHHVjGUMefoeOc
-                  Ja+W+/GeoVt9S3csfYj2SpGtBK9x8Cu2fzXIlWkh7M1wYJcooXzkguW7flDQR4GfPZgGUTC9msoN
-                  6kK9OReANBRm/rerYOZPZG8gV1YmtLhjLcgl7gMkoe+lPkxidCWDURz/vutP0yDzU7iIZ9v3FOIL
-                  CP00hezSi5CR+DHqAo5nlz5iUn/23cuCOILrIAxh5GOHG439MET26CcAAAD//+zdS3PiNhwA8K/i
-                  2XNk6/3IrdtDD33sdtlDe6KysQMtCYwhu0xn+t0ryYYAcQgvWzbAZHYcYhC2ZUn/H39p/3Q7ff7h
-                  y8+hOYCy4n3X+ZOttPYuKo/DdOajR9OZP61am7npyWb3gTt95etGT9nEVf5ir/4kK6v/zHU2k/yh
-                  qPgI22pvfy1P3kaFDXrmJhi5YfXUnCjTX1ZF8Rt/2jOY33hN+ZmT9Zh+muYmXDM3R3/VWbuL+dJ1
-                  lyV9tX+5+/CoF/1xMai6h/Zsvdqx92iGj0Hl7uY8TfP02yj93h892qbiOR+bVwzn8+nsPoqSwVOY
-                  p0meunMTPky+RVMzEhglEYZIRZBHiESIRYRGriHpc46RRDQDKsMc0ExCoLCmAJq7cQAHVA5S3TdV
-                  Pvx7amP8orFxvfC9HcXffbDNSrpsJL6mCz17ubR73Jd2T3vJn2f2BZ9M+/c0ehjOi7b4MLgJyeaD
-                  tVtyLigkvhyx+skM/m5kVQ8eoWPxqHIY+6OeajuEiXqjf9OjEbJzmNNGZemNX5rshmPYnRX5rMji
-                  y1gw9yFYH3XyDxjt6GYugnd2tUjnVKQdl7ANOHFCEMsFDk30iggRUkG+g8s8itIJIIERDDlDUjIl
-                  OTERSLtBy5P4eNGtE5ynQlpISCukhamLk5Y99/YtLQLSQlrgW9LCkTpAWn5tobTUrSxsG1leXvN1
-                  mObFcc6Heeq29Mwe6tTEKtq9QTBaO+D7AOEFgkE2vwsQWm6Z4WeA4QIp81u4XVi16LCb6JxPdDCM
-                  kPlREUYR45FrsPo4ZjIdcASw+RfQDCdAJRkHOktihqGWtCuiQ9oNODdMuaX/eLOUHQGSL0vxoZ0X
-                  EYbyHd9zdg6oqqvrjsCpZj45CW72D/FPKqaWFI7upTedzTZbkhxQO2z4SvC47LSZE7gIKR5KDikl
-                  CDEzYG1Y4ygXIYYKS8UYFPKoSnu0VlWgSkXyCib4Rip+SIVz9A6pIMFLUkF7kMpvV0gqYn9SmdpO
-                  xZmKiUADcwrLt8B4gWQBKWYLryAFqQXGVZBSWcT3STA1Vd187mA8SVztnwXZJF8nm2nZTwdcuFLi
-                  4kudAKP9veaWgVNTBg6UkWsN+yKGOiFJDFLNCKAIcaAE1IDIDKdCEiIGol1e02aTuRqs8BXIexCo
-                  a3CZa8kG41XVtjyvH9PBwVHKOZGCNVLMrqz21lJBBxTtZM06mkOex2NgxnyT54dhR/KtThK1q5g5
-                  uGtqWz2ZJgqHQkEulCKI0+PAyVP6R93O1WAqVKM+6Ee3jp+xREVIKTIhCVUcqqN065y8RELuHuI1
-                  MwkKb8zkh5moQO/MkaIEH5C586ndzNTz6ExrCFQk8Oj5RspOYDZ1MF0bnwT2bBceFNhLc7faaWlF
-                  g+WAh8rlTnuLlEsbqvoka+ZF31Cuan4iN36qh58Qilwr2YcE4kEsBICxRoBqnAApCAFcpkkMVYwT
-                  LdvFTx1ducfLpCQfa734kqkryccSVSOo3lAP3hg6Hb86kQeSapr6arPbiyCV00TM16Quj3Oempwy
-                  14W0r7OLahupyGNy23EJJs2l79QNQw1OraqqDmVJvWE6nqd5dUu9vU/1Mi+8IlNGXN7ko24s80Kl
-                  em/yETmIMD53kjDOur7L0UkszieWmStFQBgsLcH+aQUXy3ficO8kGpens4YW20WzBWJFSXKBaLEF
-                  i5ydq5zu9IvOH1LHEoEN1AP1B8J/tQU07Pwn02b2CUpigjAGOOYxoClmIMYIgYwjmHDTwhCmugEa
-                  KGz5EjYeol8voOEjqcgDZnjJQbmq5KnG7KYGR2nNsqoeI9+2zZipyRbqiklbsyDP3sUIPwJ2WrKW
-                  ZzipCzZvotEh0ajwDDep5OYZHjxDyfdm/kAmoILKPvbwjN/b7RkNLVm7gzQ2ReLFNjaXVJk8pVYw
-                  kHzJxiifEuyg3Its8pxvC4r91NtLuMDlwi2YrGRDLLfscwfIxpVODGozgWC7qK95qs9TzHlCMoDT
-                  lAKqlAR6YGcYiUwOpBQJEp0hEFks5osI5QwhSdstIj7Cdh880eVAtnW+5GNRHy/s4gWYvC4e3AUv
-                  wFfxLf3pKtLQYjD+8MUnrLVHSiqLYa38n66uwyma052GRURAfhMRLyLC8DLD461JKtRenv0zPL60
-                  W0S8ZXgUK6G8l+NRqsd2lodyLmFJxb7XK1bB1jLc0insfCkfKxihbEFKLGEHTVkRNxhpBYxIu8QK
-                  dGvjUhnxRGQZUhRkkAlABWFAs1QCrLVMKR4IFes+4h5MxBzjzEQhruLMpul4bKpRXz/PJ8kkNwdn
-                  rtGHe+ck7iPktj67e28y1+ZciP/+BwAA//8DAGpaouvvegAA
+                  H4sIAAAAAAAAA7yXX2+jOBDAv8qI5ybHf0rfSEq36BJgA91edTpFDjipFQIcON1WVb/7jmnS6905
+                  2RWpmpcA9szPY8+MZ56VjGzqlnHaKhd/Pisky2jbskVBlQtlSYqWKmcKWa0auiKczjNaFPOseqAN
+                  WeEMfair3c907HPD0Wyc27aUz1mO4rphqpqh7L+VZCOUjq+DJEpg5CVBCF9m0U0MY28ai6fw8m0y
+                  f6q7ybi4VVNty1yMcN6wxfZtqfvXeYZLW1XNEwoIS+Y55YQV7XuRbkWO+/7Lbj0JSoDXmf0vgQdS
+                  bMX4ZcMe6CAolZezPkxNkzDH9zRbsxJStqFSqHahqhBPezItW8KcIi/cbqBaQkyrupCD3b5mypDj
+                  qswZZ1UJM8JZuZISw9+8vkz90NZWW35kb/WTNte2JNSY8ha8oqi+01wKvUOn7cdzZFbGTfXINow/
+                  Aa/gFjU1H7y3low6JY+/4EK6ephJ/96yekNLfhCsSrhyjPEpGO3jzQla8PeCMCVlTrhQJ6PzBv9O
+                  wFvmgWP8Ru9ZVlCY0HLF76Vs4yTDdVlC6HLpd/IEybZZkkzuPzF5wCA6xWjjuO/ubJene/NTvOpz
+                  QuRo+H8gxzwpFHVZqrmstliDwN5h5OZVJ2FlXvLmoH7JD4RkTBpSFLQ4zEZVJV579P9MWTSORl/l
+                  N0YfgO3ILguWlSyDlCwOZOxeKEN2bFdVlcOkytYHLqReJFN60Y9IS0VEL2jTv6Y5BpW5/3+gRzPJ
+                  kRg/squqDDslNfwB46pqclaiGinPtoeaa7qurtqWqbtOL7wmc9G4wFydA9ZxuBD5LdnPVlltLGy9
+                  +5mtlmYNXdN2HMcwDcdSXv7CWa9dybx5rTUvzCFeQfvu5rUjcQ1bPVfefW1oS5sHum83RC8wSGqa
+                  sSXL3s9rOeFbbDuUqKalGMDSS7gDW8GIljmERJS5pADMDmsxji0LJhBslXKh9wZ3ADcwQS3dPiwp
+                  IummLrr3i2clWgoPJmtB2D2+tkapH6YQhZM78Ga+B2EU+hN/nM6CMarZSSwsy6DUzQbnS5UMTC0j
+                  A9c1jIGVY3fmapZqLQnOThtStl05jjL/vPwC55YUawiE2O7ppzIvZwraxvi2M193h7pjubahOaJZ
+                  1FTUWVTlaj8+0FRjaKiWoTq43q6h7GZUNQ5+wfavBnEyLUwGMxzYOcpEPFacZbt+kNNHjp89mAZh
+                  ML2ZigB1oe7yApCGwsz/ehPM/EtRM4uTFQ7N71kL4oiHAPHE9xIfLiM0JYVRFP2+60+TIPUTuIpm
+                  r+8JRFcw8ZME0msvREbsRygLOJ5e+4hJ/Nk3Lw2iEG6DyQ8AAAD//+ydXXOjNhSG/wqT62AkIQT4
+                  rtnZ6UXT3U6di7Y3lM+YrmMz2Nl42j/fIwGJkyWEGGwBUcbJQABLOno5+ng44lq7+gwj3C+fPl9f
+                  Q9pXf4qTfvvp919mUIBSeA9+vuai5XdRWQ7osKR30GFZP3qbHTRn27kmzFdel66TjRB/cZa3SUr5
+                  g0lgnLLJbwvhY8Jlz3dL4z0TrLaAmyAV3bEMDAWNZt0o/tmhloP5Z9eUeQ4Px/RZnMMwBm4O77HF
+                  FpX51H6XKd3wI5cXd/7eWxV91jni1vrhxMUdNM9a7elgpyyPv6fxg5fecVdxn6/giuVul23nhhFG
+                  61keh3ksbDO73Xw3MuiFpKFBEHYNxAxsGtgyTGoIR+IxRrCDaaK7CWE6TRyku8SnOoK7MUIRdaLY
+                  90Dys38yPvbNcrAx1M+aT52At7zjTsKDLEK7zb1+uZ+ui30wjXcPjgNyuE5vlzt+U+V+NfsBXseL
+                  uHvkAy7s6pjoJr5BaC4+f1XJlVMl4qvLZCpn2tZzcLPxdCGnGc93K+cE5/E6zjxwdZCH9f1qdQkj
+                  zvXtKvbKghZH/ruI4myz5cWEzC03qzSC7t68LH9R8Dktd+F3y90X7D7E8TewAa9WsEurgvSbJ9ac
+                  J8jUNvbhSCV74azhnzs/3z2rOYThc1BzQtWHtUuQqt3B1m4Ub8M8zcpmlVsPvCk/ctFOAFC5bwsA
+                  KwFMVwC4hQCIEsB0BUBaCMBUApiuAMwWAqBKANMVAP1RALxKxOSEmLWbcxAgruOTK8Wkwk2897dP
+                  Q8EW43h+Jh8i3m/5BV+/x3k1sDgC/DqWjenj34GT3+Px5M+bTQOMUHyyCynEDVOkzZatmyT95Gc+
+                  n5czFum/8WmIs3qAoMsDBCdEQY3y7RM6M1k0tmPKw0eiTc5g0Lj5WJB45Yff9LTBLfRo3MXqqaE/
+                  dT2SwT4vMQSY2QF6MZvMqGlj07QdF7EG6C6RQHcAmASjGbOw41iuw0ziDByASyLEUmh4By5cQ2bN
+                  GRM/dg2ftdzJ8dmWZ8vmszaiBZ9Fr/FZht138NlfB8hnT81mrZdo9umam2WcF+XcLfNYbPlbXtQM
+                  BoO++AItPSjwXMNkj5GW7C41jKstaP00gvbYhb3Zy8TqOTBTHLg/DkyQgeHjGgQbFjOEw/JIYDlx
+                  xLBO4K9OExLqbpgw3U/CwCLId2hbDkxfcOBqWqxnDkxfzBK28lBqlnAkHFjV7hjngHvkwEoAYxRA
+                  jxxYCWCMAuiRAysBjFEAPXJgJYAxCmCEHNi2hk1+u+DJBvCh8OTk8KSKbz7V8wN9Atje6VK9DRvg
+                  wyRoK2sID5t0VHM3AY0QM78dryopRHcgUYgnJ6KyIkmnHZ/bgTNjl80chig1Mbagw3pmjE+ZPSPI
+                  JY5rWch2jhLt0Zi7Pk5W/Fg/0lhiEkVjL6TQWMbwGzQW26yksbgFjf3yAWms3Z7GZrxxETgWRqIa
+                  mLD8CkL22CkYLGyRRwaL3T0hdQy2NomHjZaB1CHf2moTCvVvtWSTH9LerGynNWaLVILi8TCNYIV6
+                  5aBeYmBiINeADUQM4Q09xw4oSxxLd5KE6DRwTd2xTaKHFDEHdm24TKHejz4RqFDvlGtXoV4lAIV6
+                  lQAU6lUCUKhXCWBaqHfALFcGa5QC/iTxYymsXA7krLNwWcqrOHr3NPzgsPzZo8AlRQwPMQKy48LJ
+                  cpbDbY/GrYmj8aaVU0/Mpruto3wsIIYuk75bQit9uxzxQwGt6/cNEn+a0FaXzGwXMRs6sJjR40C1
+                  pHjTU/PxM8Zen/W5AjlU/Pgllak9oxQ7pkldhtyjqHifWLohSNimSGHpCylYmtr4jUWcqUneEST8
+                  ddhYeiGRSx9A4yJW2N89iw7WYNPXsoPWW+PWLvixxqvm8vGkii1HVXeAOtVJrQm2iFCuy8kBI6ev
+                  UPF6XG0qXH2aFaoxNoSX9JCJSBTYto4CH+vUJyHH1abOnDgMkBuQ0HcUrv7ok5kKV0+5dhWuVgJQ
+                  uFoJQOFqJQCFq5UApoWrX41MHjjKloI9ZQB0KUHJ4wPoTa+ZbbZv3ZzrYulHr0y2DgzxDm/ZdikB
+                  0INf+bob9pW4RrI84iwxWHgsLLabqs748EcnrH+mBdSPWjD5jGHCpwbJZ1z7ua5SypQWy3i1g/54
+                  /Y394pzW760l9vTWRR7He2up4761LrL5LuT52yiRZ68vrD06SFbwzCoythgQahV75IceQWf1TQy1
+                  DtIVccAHkPNl0tYeW0VKzh7TYgsVMcEteee03sh77ee3scCYGh+oa+4fmPw9FADKl2YGn+mZOAxM
+                  TIhOAhboNCaWHhCM9YRhFDLwMKblqlf0fvTpMfWK3inX7pAAqBLAGAXQBYD+DwAA///s3dFugjAU
+                  BuB38b6jLS2n3Vts94upWK7MWIwmy5K9+1qGGp2bMJUWerwiXBCkJyTw8Z+DBTCBAsARvYkXAI7o
+                  TbwARgeg7CHyzsyhkC6VFPGIBgH/Hz8D4HIIBw3ytcAtZTl6sgrZ2TfyxO+A0WkYabh4DDx4XePr
+                  gN2nO//Fv/LTKKAjEtAz/tk0uUX/DOCfWl3qREwlUE21/3Xwz6e4/fMuic9eBHosmAcLPZ4OW79a
+                  L55MHdKe7S6QvbKdVb1dn4qrP+vTabR0N4OW53sJhd2W39dDQsWkJLRz8jNmMuUia26z88Lyoijz
+                  inBrBRFaK2KW5YJYqNRSKSgZIJkm/0INyXTKq4tkigWAZIoFgGSKBYBkigWQBpliZjQO7hos0phE
+                  Z94ALJtS0+w7fU4wvpm5AzIhHyY2KK9q5JyiRgYdUpts3Hbg8bxTYszh8Pe+kVHGz4xvBVogms6C
+                  9Mnlu9Dob31yhV+e7qHR57jRNFho9Ht466XYaAujp8FR3dClV1d/rB/yyj13NtNe5e1SpHs7FfI9
+                  bz1V9uqaq9BOo7BTlVHVjIdlmVBZUUJVMS1IRSUQAbkkRlpFuDHKCr4EvTBzViCbpv1SDdl0yquL
+                  bIoFgGyKBYBsigWAbIoFMEo2ffFX6cPtBLfxZlcrd8nmZrupy3rtHobcM93ssaHU9tRnfrCYO169
+                  Me7ZCT6/AAAA//8DANsE5k5T0AAA
           headers:
               Access-Control-Allow-Origin:
                   - "*"
               Age:
-                  - "272"
+                  - "25"
               Alt-Svc:
                   - h3=":443"; ma=86400
               Connection:
@@ -262,15 +290,15 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 06 Dec 2022 04:33:36 GMT
+                  - Sun, 12 Feb 2023 07:24:19 GMT
               Transfer-Encoding:
                   - chunked
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 151128aaed557b2a57fee6557da2431e.cloudfront.net (CloudFront)
+                  - 1.1 7cc137fc5112e0f1a4468ffa72dedbec.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - HRdIRy3I-HPjB46lh1O-8hl_V5_73P4WzStDQqb_a2HlfHBnzJEpDg==
+                  - l-fNPDUPTSnPPRLKjVs1oz_osGTdP2uWBjt9KHOjcYGqujObdOrL7Q==
               X-Amz-Cf-Pop:
                   - DEN50-C1
               X-Cache:
@@ -279,7 +307,7 @@ interactions:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -296,22 +324,25 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2227.0 Safari/537.36
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.3 (KHTML,
+                    like Gecko) Chrome/6.0.464.0 Safari/534.3
           method: GET
           uri: https://www.recreation.gov/api/camps/availability/campground/234013/month?start_date=2023-09-01T00%3A00%3A00.000Z
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+zZTUvDMBgH8LufovS8YZLuxfY2xhBhtlrnQS8lzqiBro1tOpSx726y+bId5KEt
-                  goUHdijJv2nyP/wIbOMu+UqVUovSDTau7zFC7QNfc5nyB5lKLfdTjDCvT/w+oQtCgt3v3g3cyT6Y
-                  Crf3E2FwxIMjAzgyhCMjODKGI2dwxAcjlMARuF0Kt0vhdincLoXbpXC7FG6Xwu1SuF0Gt8vgdhnc
-                  LoPbZXC7DG6Xwe0yuF0Gt8vgdr3f2t32vglJ5KOZ2htyMFqIUhRrkeh3Jcz8jRnr3yixlE9yeZSr
-                  UktNVqXpwejnW+dxdHvlLGbhwonC+Z0ziWcTJ4zC2Xw2XcQX091Cii+lfk8KrmX2bF4KTydmPM1z
-                  ZVco8ko59uulM+/HZmLF35KsWiVK5MqcJGDEjMnsaMzvua8Vz/SXg+a4dltmvWuzQlkpk1qJTPM0
-                  sVvefXd/ArvxJH9KqtKmo7UoMvn8om1hpiKPIbPILDKLzDZn1hjSRWbpoA6zYStmxz4yi8wis8hs
-                  c2aNIV1ktt5t9qoNsyNyhswis8gsMtuYWWvIv2D274ydtzJ2iFdZNBaNRWNbGDvs5lWW1mL2sg2z
-                  YzJCZpFZZBaZbcysNaSLzNa7zcatmB0QZBaZRWaR2ebMGkO6yGy9/7+ipszaxvIq024w3p58AAAA
-                  //8DAPhQgB/oJQAA
+                  H4sIAAAAAAAAA+yaTWvbQBRF9/0VQmubzh35I/bOBFMKrpwq7qLZCNVR0gFZUi3JNIT8987YoU1A
+                  j0csKBE88ELMXMn4wjscRn70t8murEydVv780Z8FWsFdJIfEZMkPk5nanLa00sFQzYYKG6Xmx8+N
+                  P/cXp2CW+oN/Ec1HAj4y4iNjPjLhI1M+csFHZmwEio/w7YJvF3y74NsF3y74dsG3C75d8O1qvl3N
+                  t6v5djXfrubb1Xy7mm9X8+1qvl3NtxtQ7T4N/iIkNrd268SQF6v7tEr3hzSuH8rU7l/bteF1mW7N
+                  ndm+yjWZQ03eZNmL1ee7PkXrb1feZhluvHW4+u4touXCC9fhcrW83ESfL48PKpOtqR/ifVKb/N7e
+                  FH5c2PWsKEr3hH3RlJ779spbDSO7sUt+x3mzi8u0KO0vmWtl10z+am028H81SV4zHARFP1DMA0U6
+                  UHwDRTVQLANFMFDcAkUrUIwCRSZQPAJFIVDsAUUcUJwBRRdQTAFFElD8AEUNUKwARQhQXABFA1AM
+                  ADX5oOYd1JTDzrabQTs8X+24VE1pR2KX5nWSxW4+j0N2Glc3pXFxFzeVS68P6T439z9rRwfLg0CL
+                  U4hTiFOIU5zvFJYhfXQKjMQpxCnEKVqcIuzkFNOZOIU4hTiFOMX5TmEZ0kenkHMKcQpxilanuOri
+                  FBN18SaniE7AuKWVoi0RsAkRChEKEYoeCoUDyLsQiv9kE4oCn6J4pyjMiU2ITbw7m1h1somxnFCI
+                  UIhQiFB0EIpxP08oICcU4hTiFG1O8aWLU0zVRJxCnEKcQpzibKdwDOmjU8hbD3EKcYpWp4g6OcVI
+                  iVOIU4hTiFOc7xSWIX10Cvl3pjiFOEWrU6zPdQqHh6LJa38+ffrwBwAA//8DAICm4cFgOgAA
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -324,7 +355,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 06 Dec 2022 04:38:09 GMT
+                  - Sun, 12 Feb 2023 07:24:44 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -334,9 +365,9 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 3f717e4fd5cbd6c94c4a3860328e1092.cloudfront.net (CloudFront)
+                  - 1.1 627bd3ccf992ce79999b331b1a9d283c.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - Hg8uCtWV-gWWLt2pNLYntjvB1EkxxtFbpqeyGSgY2N_buA2Ma4oNuA==
+                  - sDb0OHiJu8pL2_kj3HqliYYk4MDCxhla1BNeAh_w5S09EUbCdjE1tQ==
               X-Amz-Cf-Pop:
                   - DEN50-C1
               X-Cache:

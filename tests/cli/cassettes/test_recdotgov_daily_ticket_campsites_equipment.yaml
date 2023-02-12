@@ -1,13 +1,10 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.93 Safari/537.36
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.13 (KHTML, like
+                    Gecko) Chrome/9.0.597.107 Safari/534.13 v1416664997.4379
               accept:
                   - application/json
               apikey:
@@ -16,56 +13,61 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/facilities/300004?full=True
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+yXbY/buBHHvwqhVy1g2ZIsP7Youtn1Xpzb3WzXTg5BUQSUSFnMUqKOpOwzDvfd
-                  +ycld71xgwbXl21ebOzhDDkPP87QvwZX19v1x/X2U7D8+z8GwfXV/eNmvV1131YfVw/b/mNNM8lZ
-                  sLS65YPg9up6fQerq5ubp9Vm0+nc0lxIYY9XjF7lOTcmWAYPwYv8hptci8YKVWNlXRNbclKKXUkY
-                  N1xbkqu2tvoIObXkQA2ximQ8VxUn75QpW0q2mnPyQN0WVJJHqp8HRLe7HWdE1EzsBWuphJ0WkGB7
-                  oYls82eC/XJqreRE0zovRb0bkErU/n9aM1LiDGM5ZZAMyRZ+GavgiSrIT0JKQStyOyQ/8qPp1IUh
-                  Ba2EPBJ8aqi2Im8l1fiueaMRTW3h5J67DXyUVDNyUPrZm+MQXrfICBEWMapnF6jh3j+33mhlGq6h
-                  543v1ReKrW58kobkz5ke/cX7iFh2XIe7VjAXrmr16TwfJexz2SK3XpQrqXTRypfInHQakSOn2pA3
-                  CNMffutsYQMPaut9hrvYfMehr52nFX2Gn0SKonNXU2F4n+3CBY0ES6Z53QWADGleKcuJVLkv3fDk
-                  PXwsVWv4gJi8VEr+6xtc5F1lnAOmVA1kzkNjIfyTd13p3Ke1BCgZx2lIvaS15Vh3lk5np4EUQ9E0
-                  J4hdnsLOEfIAmIANcyKB8J9b0VSIujvZNM7KFdd0RLqv1AtO23QlIX9r3fFPPh6f3eE59ULz3EXt
-                  rsNWIUO9bz7+AfYzXYFwsE+9S/FbwRi2/Eil5EdyTaumiwQ+t7omkhfWMe3MPoUCMWvTHTIghZJS
-                  HboTFGWENsDpF1FRy4GnPaB+QnJ/t5wOavIMeHZYHpJPDiGPEzm4bFecW3JUrdPUWP/DBtevos3w
-                  j+RRcoqqU61dxXtfupK6vUg8cWltLU5qtFAenKPb3mF6np9VRYVEar4oqz+LulB/rRsz3Kn9mc76
-                  BgrjCP/SM+kdYLLgO1hGZ0JV7y6l97T58HSHTc7MH2gFpeCbnYVs4ak5M3gsVe0sZtMoHE9n4WQS
-                  RWfLTw6Gvd/h4qztseGv299WIO+WnBTOdD8Yfsu/0sbyD6v37zbvH4Llr8H1+/dPN+uHq+0KnbcG
-                  1oNg++lx5fR+GwToUrg0zLyObfCqhboiAHzf0J46Dl8+X66SVxtdtAqnCA/v1g8/dpPgjhr7oWHg
-                  gN3gDzxJoiQOo0WYjJ0i39H8+Kq4kN6vbtZXsEd8mjNh/fh43IyeVJaRt7Su6YEiZxqqr5Nz5id6
-                  TS6V8d3QE9m0mRT5gKga8FM/lQQGGdkLirvcN1AMNrT0ZwB+C1Ar9B7iQNSVLyZse7D7vOyFQd8+
-                  HA7DntSRY3fkmo8j3C+PvIVnvbSV431VZZxdKwemi3ZV2wuwO9k9gqd+gacZnSbRNGSzdBKmE3CX
-                  LWgUpovJfJLGBYuSFzOHGGzOgHrLMVttsJwkk0GwNj+4ZqKPwbLAiORO8qj5XvDDaag7AfrEmYp3
-                  pd94XdEdx66bNsNxsg9j2398K1zjE3mfKXTsg2upFP1bMQ9LrjQmtUMCbcVS6WfuAM1Cu06H3krd
-                  KDduXbW279DOkJKCH7wsazFXsK05HyAouWm1744wzY4Ec3jHSaZayTCvGt/sMIjo6ZXB673QqnaN
-                  3tWlu6ultY1ZjkY5q4fo1/DGDypX3A6hURLFi1E0H8XjUTwZjaejrmyfCxrNUjqdh/NFjNLkBQ9p
-                  PI1RqQWbsjiZzif08yyKhl+aHY77STBbBksIfht8TbqHvCSbvDxQmfEL0N9wl1ODGUIxabWqEHnT
-                  SMG7V4mfmm6sITf+TvRPFOOY3Psnkl/r84BUYZK7HTFz3UTje+BhSz/uS4wddag5+53oRvM4i1ix
-                  CCfTbBGm4ywN5/m4CNk0TzmL0yRJo+9Adz6ZvkL3BdSe3DOWfy+6m7ZG6lDxys1hgIQHKe1RROOQ
-                  rHsn/BesLE6sgIfxDIvhPJkWYTob83A+Hi/CuJiNkzjLJ3yWfycr/7tdcTErZgu2mIdJznDhxkUR
-                  ZjM2DznLEtzBPIuS5DvQGqfRf+iKl2x1+P2/K36T9MmJ9JTSaZzELOQRXkopz/NwjmYYTvPpPJpn
-                  cTqbRZ/jNP0KdSe5ZP0dN5XQlLxRtaL1Ben+neaeoGfI79yr1DOn3Bppa/Fzizf2L/hdJXj/ysYT
-                  Fo9pmrksft00+18Q+EnTtU+UxqcLPzlM+Y2k/VuY/wkAAP//zFldb9s2FH3fr/DyspeyEUVZovYy
-                  eEXQZUiTwc06YEsfLj9kC9NsIVLiBsX++84lJSfuusVwumBPQUhaMi8Pz7nn+N/BjDIlXulK2KpU
-                  IqumqdCarMhzb1I1JU+q3APMpc7+c56cAbV/0GqyQdUiinE2XFjmBAYcOZg+MEmYY7/Ssqq0ft02
-                  TB2sWKtgnYgN9IOL8QTA6S3gqtwlbgoucFMjsrwiyLDKBRmVOGtMqad6b8A9JsQ/wGBt+CoFczTo
-                  a7iMOxL7AlVZN+FyB7UO/qeiW+y894NcRwft4WtvUIu+++4wHLlCq9JIJVSqM3QhPhMGgiuqjCwZ
-                  a5WW++htmctnwFFTr0LDwdrKTAim29ACDplF5aFtf5hmHA6STI4gSVRRZJLQhjhlAZLcCVIkhfK+
-                  Soqi8iaffjGQfB9uSThzC6sJ/qIG5jTuse5iXkMdr/gGhmqD02dSstTC40Oja8t/t0WwS3aMq8nV
-                  kcXN8ldHLyeHQQVQSBPvS2F1hSIo5YQB3QhnncmroijQve4DleI5oLKrfRPwOctWxwkFbUuyqTne
-                  YVaPEsgrWQBrMDmFGK1bUhsonybvfoFiLmKMNyZHdr1C79uHFjksGp9s1+v2CcBLRuCptEzzUmtR
-                  eWI5lGj8iswKZatE4kAqyqovJYdvqG5Qgqb5esI8FTDn1gNTtS36QI4dI331HOWBvznO830f8737
-                  TOdeUA+kJWnJ+lIWwlLJWJMGNolSoTKZaqe9hEXax8HK8vmw1gMvZv0hRo2BkmiCqqFkdb8MVzHE
-                  K7iIoTwcX10dTXAC1NvlCCFexih9ORlyboMuPdJaDNMYoLcQ0vVNN744dm7bFPIJuMtG3BUouTRp
-                  IpJUQRV1hruuJaSRrE4TnUs9rfY0HGc1tP+MNn/D22um8SFC5dAe3S2FfDkExAwudA13Q7593Y0S
-                  ee0XbCP4HvIDFvEpTQOvQqsh7TX8eZTsUKqDIsItwG8V2sKFSgL8fGYEOZNh59aUxf9HFR/prgIc
-                  eWank1rtFu8JmFEjZkp4VDd1JFKv0ZJKN4W/gmbmzpSYcZWr5D9x1fsXRxfz17Pz019nl6ccVv72
-                  8bNhoNQiyUWa4+MX14uZMajkkMdi23E0Ekiqh/+4enFrwV/WVRz/8ea67lwdwu+h0G97fk2YHZ+5
-                  k+u+9ejX7LACI7hr8V2h1cbYiAQPq4QPzRaQlrs4hW8wi23uUGOU+IHn3S669B/6kMe+DyOfZp0/
-                  nczfnF6enF/OZ+evhl/b4jfZ3Xgcm3s7wwGG8bTQ7G7nJ69m85MYl35uOg49FnGHlR36EOvP6tXv
-                  91viX2qaJUjvWwbFMbX18a08Bo7YkXbH4S28tSHzNgzheCtQ/LszCG8/wPvi5zlv78+v/gIAAP//
-                  AwAO0a/WaxwAAA==
+              string:
+                  '{"ACTIVITY":[],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[],"FacilityAdaAccess":"N","FacilityDescription":"In
+                  the high desert country that was to become Joshua Tree National Park, rugged
+                  individuals tried their luck at cattle ranching, mining, and homesteading.
+                  The story of William F. Keys and his family is particularly representative
+                  of the hard work and ingenuity it took to settle and prosper in the Mojave
+                  Desert. <br/> The ranger-guided tour of the ranch includes the colorful story
+                  of the 60 years Bill and Frances spent working together to make a life and
+                  raise their five children in this remote location. The ranch house, school
+                  house, store, and workshop still stand; the orchard has been replanted; and
+                  the grounds are full of the cars, trucks, mining equipment, and spare parts
+                  that are a part of the Desert Queen Ranch story.","FacilityDirections":"To
+                  find the ranch, pass the entrance to Hidden Valley Campground, turn left at
+                  the Y-intersection, follow the road approximately two miles to the locked
+                  gate. Your guide will meet you there. (See map.) Please arrive at the ranch
+                  gate 15 minutes prior to your tour.","FacilityEmail":"jotr_info@nps.gov","FacilityID":"300004","FacilityLatitude":0,"FacilityLongitude":0,"FacilityMapURL":"","FacilityName":"Joshua
+                  Tree National Park Tours","FacilityPhone":"760-367-5500","FacilityReservationURL":"","FacilityTypeDescription":"Ticket
+                  Facility","FacilityUseFeeDescription":"","GEOJSON":{"COORDINATES":null,"TYPE":""},"Keywords":"Joshua
+                  Tree, Joshua Tree tours, Keys Ranch, Keys Ranch tours, Keys Ranch Joshua Tree,
+                  Bill and Frances Keys","LINK":[],"LastUpdatedDate":"2021-09-23","LegacyFacilityID":"","MEDIA":[{"Credits":"NPS/Hannah
+                  Schwalbe","Description":"Bring your camera along on this tour as you''ll want
+                  to capture pictures of the chicken \"coupe\". ","EmbedCode":"","EntityID":"300004","EntityMediaID":"38120ee9-c8fc-433d-b66e-dcdb6f777161","EntityType":"Facility","Height":971,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"A
+                  rusted out car sits inside a chicken wire fence. The car is similar in shape
+                  to a VW bug and has been converted into a chicken coop.","URL":"https://cdn.recreation.gov/public/2019/08/13/15/40/300004_32926988-fea7-4e1e-874c-3cf01381fa4f_1440.jpg","Width":1440},{"Credits":"NPS/Hannah
+                  Schwalbe","Description":"How would you survive out in the desert, isolated
+                  from your favorite stores and restaurants?","EmbedCode":"","EntityID":"300004","EntityMediaID":"d7839b13-3284-4ce4-b8c3-f4acabcc3810","EntityType":"Facility","Height":961,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"A
+                  line of old wooden wagons on the grounds of the ranch.","URL":"https://cdn.recreation.gov/public/2019/08/13/15/41/300004_037741af-dd3c-466d-a3a1-3eef077feb65_1440.jpg","Width":1440},{"Credits":"NPS/Jesmira
+                  Bonoan","Description":"Tours at Keys Ranch give visitors a unique experience
+                  to learn about the Keys family and their survival in a harsh desert environment.","EmbedCode":"","EntityID":"300004","EntityMediaID":"aa60e38f-cf93-4f52-88ac-66eb235aea39","EntityType":"Facility","Height":984,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"A
+                  woman wearing a NPS uniform is addressing a group of people in front of a
+                  historic ranch.","URL":"https://cdn.recreation.gov/public/2019/08/13/15/38/300004_4f6d0d5f-bd5b-46fa-a136-ab30dcbb9858_1440.jpg","Width":1440},{"Credits":"NPS/Jesmira
+                  Bonoan","Description":"Mail call! How long do you suppose it would take for
+                  a letter to arrive at Keys Ranch?","EmbedCode":"","EntityID":"300004","EntityMediaID":"1cace917-ca9c-431b-89a2-34128d8e1d6d","EntityType":"Facility","Height":519,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"A
+                  rusted tin box stands on a post with the words \"Keys mail\" scratched into
+                  the side. In the background there is various rusted ranch equipment.","URL":"https://cdn.recreation.gov/public/2019/08/13/15/44/300004_74311b20-023b-484d-b81a-aac82086185f_700.jpg","Width":700},{"Credits":"NPS/Lian
+                  Law","Description":"Gold mining was a way of life for many settlers in the
+                  region and old gold mills can still be found. ","EmbedCode":"","EntityID":"300004","EntityMediaID":"9b197f01-78c9-41ab-8e4b-adb485fcb970","EntityType":"Facility","Height":961,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"A
+                  woman wearing a NPS uniform is standing in front of an old gold mill.","URL":"https://cdn.recreation.gov/public/2019/08/13/15/43/300004_9137d5da-2e83-41d5-b7af-6db937ddfdf1_1440.jpg","Width":1440},{"Credits":"NPS/Hannah
+                  Schwalbe","Description":"Being so far from supplies and stores, the Keys family
+                  survived in the desert by making use of everything they owned.","EmbedCode":"","EntityID":"300004","EntityMediaID":"081b0df9-56b9-43b4-8c3f-d6c4ed142240","EntityType":"Facility","Height":856,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Sun
+                  streams through a rusted, old truck.","URL":"https://cdn.recreation.gov/public/2019/08/13/15/39/300004_6d137201-826f-473e-8339-1f7321bc5e7c_700.jpg","Width":700},{"Credits":"NPS/Robb
+                  Hannawacker","Description":"Keys Ranch is closed to the public, only accessible
+                  via a ranger-led hike. For more information on ranch tours, visit www.nps.gov/jotr/planyourvisit/ranchtour.htm.","EmbedCode":"","EntityID":"300004","EntityMediaID":"97f79d98-2cd0-43ff-b7d8-edb2891cb022","EntityType":"Facility","Height":340,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Historic
+                  ranch showing a wood and corrugated metal home, garden area, rusted out cars,
+                  and a few out buildings. The ranch is surrounded by large boulder piles in
+                  a desert environment.","URL":"https://cdn.recreation.gov/public/2019/08/13/15/35/300004_4aa6121d-e067-4ecc-8d12-6c6808b14770_1440.jpg","Width":1440},{"Credits":"NPS/Robb
+                  Hannawacker","Description":"Keys Ranch is closed to the public, only accessible
+                  via a ranger-led hike. For more information on ranch tours, visit www.nps.gov/jotr/planyourvisit/ranchtour.htm.","EmbedCode":"","EntityID":"300004","EntityMediaID":"e4ba6206-d745-4560-b9a0-4958541fd024","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Historic
+                  ranch showing a wood and corrugated metal home, garden area, rusted out cars,
+                  and a few out buildings. The ranch is surrounded by large boulder piles in
+                  a desert environment.","URL":"https://cdn.recreation.gov/public/2019/08/13/15/36/300004_fa074a68-8910-4cfe-a161-b99d6d12685a_700.jpg","Width":700}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"NPS","OrgID":"128","OrgImageURL":"nps.gif","OrgJurisdictionType":"State","OrgName":"National
+                  Park Service","OrgParentID":"139","OrgType":"Federal Agency","OrgURLAddress":"http://www.nps.gov","OrgURLText":""}],"OrgFacilityID":"","PERMITENTRANCE":[],"ParentOrgID":"128","ParentRecAreaID":"2782","RECAREA":[{"RecAreaID":"2782","RecAreaName":"Joshua
+                  Tree National Park","ResourceLink":"http://localhost:3000/api/v1/recareas/2782"}],"Reservable":true,"StayLimit":"","TOUR":[]}
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -73,114 +75,22 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "7275"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 25 Jan 2023 05:15:20 GMT
+                  - Sun, 12 Feb 2023 07:23:58 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
-              Transfer-Encoding:
-                  - chunked
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 89657e9ba87ccb5f5b96de064bf6d496.cloudfront.net (CloudFront)
+                  - 1.1 9bed99ac619d23b077acdc859dc1c43c.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - xfpcxhC9dQTmJ6uRqufha76NtT93AUwklvC-8TKI50GZWfjEXYwYyQ==
-              X-Amz-Cf-Pop:
-                  - DEN52-P3
-              X-Cache:
-                  - Miss from cloudfront
-          status:
-              code: 200
-              message: OK
-    - request:
-          body:
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate, br
-              Accept-Language:
-                  - en-US,en;q=0.9,la;q=0.8
-              Cache-Control:
-                  - max-age=0
-              Connection:
-                  - keep-alive
-              Referer:
-                  - https://www.recreation.gov/
-              Upgrade-Insecure-Requests:
-                  - "1"
-              User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.17 Safari/537.36
-          method: GET
-          uri: https://www.recreation.gov/api/search?fq=asset_id%3A300004&fq=entity_type%3Atour&size=1000&start=0
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+xY647jthV+FUJ/OgvYsmTLsux/sztJ23Sy3U6mLZALBFqiZXYoUSApzzqLAHmQ
-                  Fsiz5FHyJP1IybY8lyTbdoFsoYEx4+HtfOfynXPId55iuhFGe6uv3nl0xxQtWKqo4VXhraKRl9Gy
-                  1tyw1OxrlspN2miGtV5FvW9GXs50pnhtuKy8lXfFdSZxBDFbRjIppNo0ggi+Y5rIDXnJhSC0ysmn
-                  ilYZxv7E9toNCEZVRbby3u7cE92oHTblbk5Rru1XsqElF3vCK3f8liq9JZDPlCGs2nElq5JVhsh2
-                  3p19Azlbcisb5ZNP3tYAxNykcuNbCV1GRGdbKQVRUpb4x2DNiNxLdae3sh45CKXbpxgFMMDeKFm6
-                  Y+KA7IFcnwRmVAiANVsOxbABMkrmk2uuDYY7aK+ptRcV5IYVdkJZ4/yBW9E8I28EtbaBmuFyMR+5
-                  HbWSNfSE8poImVF7GBZQolgpDfAqmd3tIb3aQwZmPpN621Byq1hP3Buq7vyvq55lDCyDE6k2ZBmQ
-                  kleNYa1HeLWTYscIXcvGQNCWis0Y9mcW6z0Vd4gPnzw6CjqTrFEKjoCrBC+5hWok0UywzH7PqROh
-                  Ccx7Xx1McsMyWMvi9Au5s2ZkVU7htauG2e2GlTAANbA/YW/hipLpUSez5MXWkEoasgbeHeWCroEz
-                  bxQwtrEiDYQaxFVZwtqlrMxWk4vP6X5EPmsqZn8DrtX7sikabV74QITI2jlIrVqnk5vaQoLzc7p3
-                  jqL5zga0O6CpDBdOKmaBaHOIOQvW90AZrmAJeywY83UTBLOsdn9Y+482iOSiHYFpCwB+bRWnAhFC
-                  3ihZKFpq0i6e9FdTQ7642/9Ok1uIu7a2JyVj8B68Gy8X5K+Gggzgk7Cgb+/hpH3FK4bAECXM+Qoi
-                  ALfilFxYc2KfBb7j4L9UJMN6pl74neQD6OoXdHhARP0E8CPMB8RFqN8hZAqEDBBrnrPnA/tnIf/4
-                  w48/PIL9S8Cvjo5yEXgOzWFyYYF8IIWQ93p1lNE/5T2t9ekht/QV/VunziunzlMGvDhkBRggns+j
-                  1iQvxS4fnZ306tJ/sSJXCtmVaDB7awl4XAtNVMf4ObFkP2r+d0ufTyrjEje5OO2weU5oSe4qy2YY
-                  46fv//mXxobYF7XlH+wlaf7T9/8CpS7Ng3OsEUc2uWXMJXsJUYok/rIV7pPbBmXhmm1sVgeSlxCL
-                  BVe0JDe536kBBR6Mn7QI/MUzR/VcabdcXEt55zZabTUvbFqCLbVlOFTqxW+ry1H2w4MoAcENEjLN
-                  X/SQhA5HLzt0sf0gpHzLXUSVNSvRJaoJqaGcTWSunLiCyKzrESYbmnHBURW6qO/RxZ6DM/DZA7Pj
-                  lz2jtrXlAN7wkj0R2a66PR99DloNn73lJQQhbc7mZ5Ujl/hiucirTDS5zYpAmOe8I2vOBHWVsrFl
-                  fY2qhTCGSpi1irB+cMBvT/CyPcApDTBnG5D1nU69M+XGMJuibYD1ccxOBc8aQaH3Ea1NEM41OhLN
-                  rL2wJ8ukymE+sff/hwT/M9VA/37UXkRRMn+Q966UP3oqmT/F9F4FOIXmzI/Oyf5aKiw/sNTx9nzo
-                  GeKGsT8/o9uNq8wflLoDcx8w96mweszZKPiAnH2i1v5KTrxCoyareynz9yGG3GzIH8dh4KC8RdcT
-                  xgmp0Ji3IeGCfw0Kt42266fhmSM7Khfbtg7yNlI1uiNbtSY9OMdq1i+S0+UpSC9bT6KJr10Uojs9
-                  D9tTzXQWd6LD8EGt+28YMxDmPyLMszH3mDWhvTIqhyw8Fr1H/TB6fOwH2JTnaPHDIEiSZB6ehu1N
-                  GhP2QoDBQqb2hpzaixFGgyAIx+5zGwQr9/kSq7amFOlw2x5u28Nt+71u22cUTDvKCQgyKHOYmkV+
-                  EM2TYBp0P3YaNeYwPw7R1YTxMozCZfeDFRUt7WTPIddUFYz8XknAvW2lVE25Zso+mbXPabjvhyNP
-                  qqLLC9MEi5Dy4L12ZGblR6fBTsrzV97bNgpgh8OzwGlzl2QOidNOKLbj7D5FNitY2iiB6a0xtV5N
-                  Jlle+eosKiZ1sxY8m0yDcDkJkkk4m4TzySyetCjTDQ0WEY2TcbIMg3GUbdiYhnE4Xi+XeZyH0ziZ
-                  03QRBP4/6gLCVetgONRbGdWwkWdzcvqtrCzKSwQKz+jkWur0Ep0Fqhj2dCocuers+t3onUeLQjGb
-                  +9OMCZG6LAidvFXgJ2G0jIN4Op9OF8skWIwev2n6SRTMo2B42/y/y7awBo5zkYa+wmiyPQjOYFKK
-                  jKigdF5yrW3n2jUErcEg3XUbPOtyaNHwHN+67NtmP9ez9JJvP1MDGdJogVbSef08y/tdatD8W9fx
-                  9HL1dE5qJnHhHB4Hh8fB4XFweBz8zd+YhsfB4XFweBz8GJk7PA4Oj4MDYX5Tj4NRMDwMDlfVj/Cq
-                  eozfD/iq9vxL2mwRfNxvaYtJFE6c+eI4TFiyiccRjdfjKMiTcbLO5mMazZJlvAjiPJt9kJe0b0ae
-                  dbK3muJLzYSAaVPaGImWVrn3Y2+1wQUOIrShytgkZA+ThkLf6Xf/BgAA//8DAFydb3I8KAAA
-          headers:
-              Access-Control-Allow-Origin:
-                  - "*"
-              Alt-Svc:
-                  - h3=":443"; ma=86400
-              Connection:
-                  - keep-alive
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Wed, 25 Jan 2023 05:15:20 GMT
-              Server:
-                  - CloudFront
-              Strict-Transport-Security:
-                  - max-age=31536000; includeSubdomains; always
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              Via:
-                  - 1.1 39c272e966ab7a6f8a68d2222276a954.cloudfront.net (CloudFront)
-              X-Amz-Cf-Id:
-                  - KCf9mJKHzsnC591zsPSslND53gO5E7dazYcU_ipPrU9TVqmqSmcUtA==
+                  - 4eHA18trjCZDAfYH5X4i2KlQ9xNO1oOYF3b1AYnafaUOR2dMe0VTRw==
               X-Amz-Cf-Pop:
                   - DEN52-C1
               X-Cache:
@@ -189,7 +99,7 @@ interactions:
               code: 200
               message: OK
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -206,12 +116,105 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (X11; Linux i686; rv:21.0) Gecko/20100101 Firefox/21.0
+                  - Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_5; en-US) AppleWebKit/534.16
+                    (KHTML, like Gecko) Chrome/10.0.648.204
+          method: GET
+          uri: https://www.recreation.gov/api/search?fq=asset_id%3A300004&fq=entity_type%3Atour&size=1000&start=0
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA+xY647bRBR+lan/0EqJYyeO4+Tftst9BaUsIFFQNLEnzpDxjDUzzjatKvVBQOJZ
+                  eBSehG/GuW2aBQotolJWltaZy7n5+86ZMy8CzUwjrAkmT18EtCw1K6ll05wJMc3VimlasmAShVk/
+                  GaZxEqf9NO0PR4NOQNvJqaaWyzKYJFgTD+O0E+S0qg2HFLuu2VTNp42BjKeBpMGPnaBgJte8tlzJ
+                  YBJccuPVELtgJFdC6XkjiOArZoiak4dcCEJlQT7SVOYY+5ytjR8QjGpJFurG7VwT0+gVNhV+TlNu
+                  3CuZ04qLNeHSi19QbRYE+pm2hMkV10pWTFqi2nkv+wn0LMi1anRIPnxWwyDmJ7UfXyj40iEmXygl
+                  iFaqwg+LNR1yo/TSLFTd8SZUfp9mFIbB7LlWlReTRmQNy81eYU6FgLF2weEYNkBHxUJyxY3F8Ma0
+                  L6iLFxXkCSvdhHbB+YQ71TwnjwV1sYGb8Xg07PgdtVY1/ITzhgiVUycMCyjRrFIW9mqVL9fQLtfQ
+                  gZnPlFk0lFxrdqDuMdXLENGAOBe2FSPcGrLYKs4RUprDHDhdVNwY7uxVBwGDduy0WOwMwFTZ8AJv
+                  N1QsARuMNNpAAzb4VxcCGLmgYt7Ft2POMsFkaRftV6fGknFEKi4by7DxY62amhj+nHlHecU3evpD
+                  UjNVCxYGwBzXLHcuAefBD00UDfLa/2PtDxioZNmOAAAl4osQNJoKeEoea1VqWhnSLu4drqaWfL1c
+                  f2C8B1dOPakYswTj43Q8It9YCjQBkMJ5cn0DuK0llwyRFZXpkEdQMVdackruS+X3ueCtOAikNMmx
+                  nukH4Ubz1mj5Fz4cIdmcMHxn5hHygZUlIuiyACw2+Fh3I+NPTf7t199+fc3svzL8cvehtjA6MM3b
+                  5PEBQikh1I2Z7HQcSnnDaH20Jeeho99u3Hnk3TkVwPtbWiEA6XCYtCF5KFZF55akRxfhgwm51EhP
+                  xKgGSAZJdmvhiSZ0hnEyJA7xO8+/A2/Ih9L6zEfu73e4RCGMIkupbqQLxu+vfv6qcRD7utYgFeKl
+                  aPH7q18ehOTCHslxQey47JAzny0VVGmSheNWOajYIK9esblLi7DkIdRiwSWtyJMi3LgBB47G915E
+                  4egOUQef0m25f6XU0m903hpeulSHWBq69i4d4Lf1Zaf7WBAlILhFRqPFgwNLYm8HaaRFaJyODbaP
+                  IOWzj/b5gxJTIR2TGs657OTzsa8oLoch26Oi5FxwpNUN6g/o4uRABp41bPb8cjJql5y3xltesRPI
+                  9uXhbvR502p8s2e8giJUtMFwmwK9eYXCi+Mil7loQFlkdWTkgm/IWjBBfalpXF2cIe0DxnDJpWvq
+                  auEBOPDdTvCyFeCdhjG3NpCi8T4dyFRzy6QzAIYc2jHYZW4fBI0zhGhjAjgjV1PDXLywJ8+VLhA+
+                  sQ7fIsG/pAbWvxm1R0mSDY/y3qUOO6eS+SmmH1SAPTQHYXKb7F8ojeVblnre3h66g7hxGg5v0e0J
+                  LxfvmLpn5h4x9xSsXudsEr1Dzp6otX+TE4+UtUreKFW8CTHUfE4+7caRN+UZTj1xmhGJk20LCQ/+
+                  GSjcnlT9gRRfZscO6bHt6iBvkWpwOnJVq3dgzq6aHRbJ/ngP0ov2S+IwWnsU4uR7G7b7mukj7lXH
+                  8VGt+zeMORPmHxHmTsy9zprY9VzaWxbvit5r52Gc8bEfxk55gSN+HCXRfsi1oRh0/QUGSzV17eW0
+                  gHyMRlEUd/1zHUUT/3yPVQtbiem5VT23qv91q7rD73SDVwEHLeoDhgdJGCXDLOpHmz83jeS8ne/G
+                  OA7E6ThO4vHmDyskrdzkEWTcRFPNmHYXNO0dDprjJBp3AqXLDY36GZYhQwB57cjAaU32gxvZd3eI
+                  122kEI9tF73fvOHlNs+4Cc1WnN1MQf6STRstML2wtjaTXi8vZIjmELBz8sNSrXp1MxM87/WjeNyL
+                  sl486MWjXhL3fPjSNM5YNk+7CU1n3SQqsm42y4ddmgyycTqK0iIfTEdRFP5Ul1DdgobOBEyyumGd
+                  wCWw6XMlnY0XFQMuaO9KmekFyjBSPvZsHNiB28f1ZefFG92AfaZarLfXDifuE76cecugYu0D6W8m
+                  2DZh+hogCdi79kj1S+T+8qJuw34PB8mfFARU9LkDswuz2ZZmnLgLk9Pad9bI6JuM1ZYWt6BNRB1o
+                  Qdlus4ZZru+db1bONyvnm5Xzzcr//bh5vlk536ycb1beR+aeb1bONytnwvyvblaiLBsko7d+u3KL
+                  VO9xT3Q7fvuGvg3b227q72ypgvexje+71r3XH/b6/V6MZxu0PsvH42F/3B1n86Sb5EPWzbIROvt8
+                  FrFROssGY/pOWnk06+6+Jpj08VIzIQCTKW2swhnKtVMMwZyjY4AKY4EDh3gnTFkKn/sv/wAAAP//
+                  AwBMvWC/XyMAAA==
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Sun, 12 Feb 2023 07:23:58 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 c1ac198ab82768c141e2da4f5b4eb71c.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - 93KtxuYwcJrC92qfRnxO_LTiSokhZoZj4yo3snq2ZjoYEUqKBGLYkw==
+              X-Amz-Cf-Pop:
+                  - DEN50-C1
+              X-Cache:
+                  - Miss from cloudfront
+          status:
+              code: 200
+              message: OK
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate, br
+              Accept-Language:
+                  - en-US,en;q=0.9,la;q=0.8
+              Cache-Control:
+                  - max-age=0
+              Connection:
+                  - keep-alive
+              Referer:
+                  - https://www.recreation.gov/
+              Upgrade-Insecure-Requests:
+                  - "1"
+              User-Agent:
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/11.04
+                    Chromium/12.0.742.112 Chrome/12.0.742.112 Safari/534.30
           method: GET
           uri: https://www.recreation.gov/api/ticket/availability/facility/300004?date=2023-07-06
       response:
           body:
-              string: "[]\n"
+              string: "[]
+
+                  "
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -224,17 +227,17 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 25 Jan 2023 05:15:20 GMT
+                  - Sun, 12 Feb 2023 07:23:58 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
                   - max-age=31536000; includeSubdomains; always
               Via:
-                  - 1.1 be7f6ce4397843276657a8babac08b6e.cloudfront.net (CloudFront)
+                  - 1.1 f6d641e44b5f98899da25792ac166784.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - vJm-ADv41iNHtzWl6USwN6xIY1xX-R3z9F5HTqun9DKAmZMePpaDQw==
+                  - xMSfcOFr7qpUqJTA7UN9gVLnRYUOSFbaQSIwKlm_vuk65Dzh1e1DrQ==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN50-C1
               X-Cache:
                   - Miss from cloudfront
           status:
