@@ -25,3 +25,9 @@
         data containers for `camply` objects.
 -   [PyYAML](https://pyyaml.org/)
     -   PyYAML is a YAML parsing library - this helps with the YAML file campsite searches.
+-   [ratelimit](https://github.com/tomasbasham/ratelimit)
+    -   The `ratelimit` package is used for limiting the frequency of our API calls to external
+        APIs so we can be good partners to our friends who run the campsite booking services.
+-   [fake-useragent](https://github.com/fake-useragent/fake-useragent)
+    -   `fake-useragent` makes it easy for us to mock the latest browsers when interacting with
+        certain API providers.

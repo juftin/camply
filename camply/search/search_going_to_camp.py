@@ -1,6 +1,7 @@
 """
 Going To Camp API search utilities
 """
+
 import logging
 import sys
 from datetime import datetime, time
@@ -24,6 +25,8 @@ class SearchGoingToCamp(BaseCampingSearch):
     """
     Searches on GoingToCamp.com for Campsites
     """
+
+    provider_class = GoingToCampProvider
 
     @classmethod
     def find_recreation_areas(
@@ -66,8 +69,7 @@ class SearchGoingToCamp(BaseCampingSearch):
             minimum number of consecutive nights to search per campsite,defaults to 1
         """
         self.provider = GoingToCampProvider
-        super(SearchGoingToCamp, self).__init__(
-            provider=GoingToCampProvider(),
+        super().__init__(
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
