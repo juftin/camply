@@ -60,7 +60,6 @@ class BaseProvider(ABC):
         """
         List Recreation Areas for the provider
         """
-        pass
 
 
 class ProviderError(Exception):

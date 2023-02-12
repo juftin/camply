@@ -5,16 +5,17 @@ Python Class Check Yellowstone Campground Booking API for Availability
 import logging
 from datetime import datetime, timedelta
 from json import loads
-from random import choice
 from typing import List, Optional
 from urllib import parse
 
 import requests
 import tenacity
+from fake_useragent import UserAgent
 from pandas import DataFrame, to_datetime
 from pytz import timezone
 
-from camply.config import STANDARD_HEADERS, USER_AGENTS, YellowstoneConfig
+
+from camply.config import STANDARD_HEADERS, YellowstoneConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
 from camply.containers.api_responses import XantResortData
 from camply.providers.base_provider import BaseProvider
@@ -94,7 +95,11 @@ class YellowstoneLodging(BaseProvider):
         -------
         dict
         """
-        yellowstone_headers = choice(USER_AGENTS)
+        yellowstone_headers = {}
+        user_agent = {
+            "User-Agent": UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+        }
+        yellowstone_headers.update(user_agent)
         yellowstone_headers.update(STANDARD_HEADERS)
         yellowstone_headers.update(YellowstoneConfig.API_REFERRERS)
         response = requests.get(

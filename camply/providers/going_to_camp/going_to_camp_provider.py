@@ -6,13 +6,12 @@ import json
 import logging
 import sys
 from datetime import datetime
-from random import choice
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import requests
+from fake_useragent import UserAgent
 from pydantic import ValidationError
 
-from camply.config import USER_AGENTS
 from camply.containers import AvailableResource, CampgroundFacility, RecreationArea
 from camply.containers.base_container import GoingToCampEquipment
 from camply.containers.gtc_api_responses import ResourceLocation
@@ -398,10 +397,10 @@ class GoingToCampProvider(BaseProvider):
         url = None
         if endpoint:
             url = endpoint.format(hostname)
-
-        headers = {}
-        headers.update(choice(USER_AGENTS))
-        response = requests.get(url=url, headers=headers, params=params, timeout=30)
+        user_agent = {
+            "User-Agent": UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+        }
+        response = requests.get(url=url, headers=user_agent, params=params, timeout=30)
         if response.ok is False:
             error_message = "Receiving bad data from GoingToCamp API: status_code: "
             f"{response.status_code}: {response.text}"
