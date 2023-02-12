@@ -23,7 +23,7 @@ from camply.providers import (
     GoingToCampProvider,
     RecreationDotGov,
 )
-from camply.search import CAMPSITE_SEARCH_PROVIDER, SearchYellowstone
+from camply.search import CAMPSITE_SEARCH_PROVIDER
 from camply.utils import configure_camply, log_camply, make_list, yaml_utils
 from camply.utils.logging_utils import log_sorted_response
 
@@ -283,9 +283,6 @@ def campgrounds(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
-    if provider == YELLOWSTONE:
-        SearchYellowstone.print_campgrounds()
-        sys.exit(0)
     if all(
         [
             search is None,
@@ -293,6 +290,7 @@ def campgrounds(
             len(rec_area) == 0,
             len(campground) == 0,
             len(campsite) == 0,
+            provider not in [YELLOWSTONE, GOING_TO_CAMP],
         ]
     ):
         logger.error(
@@ -300,18 +298,6 @@ def campgrounds(
             "or --rec-area parameter to search for Campgrounds."
         )
         sys.exit(1)
-    if provider == YELLOWSTONE:
-        SearchYellowstone.print_campgrounds()
-        sys.exit(0)
-    elif provider == GOING_TO_CAMP:
-        if len(rec_area) == 0:
-            logger.error("You must specify at least one --rec-area")
-            sys.exit(1)
-        rec_area_id = int(rec_area[0])
-        GoingToCampProvider().find_facilities_per_recreation_area(
-            rec_area_id=rec_area_id, campground_id=campground, search_string=search
-        )
-        sys.exit(0)
     search_provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
     camp_finder = search_provider_class.provider_class()
     params = {}

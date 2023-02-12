@@ -15,10 +15,11 @@ from pandas import DataFrame, to_datetime
 from pytz import timezone
 
 from camply.config import STANDARD_HEADERS, USER_AGENTS, YellowstoneConfig
-from camply.containers import AvailableCampsite, RecreationArea
+from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
 from camply.containers.api_responses import XantResortData
 from camply.providers.base_provider import BaseProvider
 from camply.utils import logging_utils
+from camply.utils.logging_utils import log_sorted_response
 
 logger = logging.getLogger(__name__)
 
@@ -527,10 +528,9 @@ class YellowstoneLodging(BaseProvider):
             month = today
         return month
 
-    #
-    # def find_recreation_areas(
-    #         self, search_string: Optional[str] = None, **kwargs
-    # ) -> List[RecreationArea]:
-    #     _, _ = search_string, kwargs
-    #     log_sorted_response([self.recreation_area])
-    #     return [self.recreation_area]
+    def find_campgrounds(self, **kwargs) -> list[CampgroundFacility]:
+        """
+        Print the Campgrounds inside of Yellowstone
+        """
+        log_sorted_response(YellowstoneConfig.YELLOWSTONE_CAMPGROUND_OBJECTS)
+        return YellowstoneConfig.YELLOWSTONE_CAMPGROUND_OBJECTS

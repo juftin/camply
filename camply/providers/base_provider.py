@@ -3,7 +3,7 @@ BaseProvider Base Class
 """
 
 import logging
-from abc import ABC
+from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import List
 
@@ -11,11 +11,12 @@ import requests
 from fake_useragent import UserAgent
 
 from camply.config import SearchConfig
+from camply.containers import CampgroundFacility
 
 logger = logging.getLogger(__name__)
 
 
-class BaseProvider(ABC):  # noqa: B024
+class BaseProvider(ABC):
     """
     Base Provider Class
     """
@@ -53,6 +54,13 @@ class BaseProvider(ABC):  # noqa: B024
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
         else:
             return sorted(truncated_months)
+
+    @abstractmethod
+    def find_campgrounds(self) -> list[CampgroundFacility]:
+        """
+        List Recreation Areas for the provider
+        """
+        pass
 
 
 class ProviderError(Exception):

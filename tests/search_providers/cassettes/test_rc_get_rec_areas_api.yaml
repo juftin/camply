@@ -3,8 +3,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.13 (KHTML, like Gecko)
-                    Chrome/24.0.1290.1 Safari/537.13
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.3
+                    Safari/534.24
           method: GET
           uri: https://calirdr.usedirect.com/rdr/rdr/fd/citypark/namecontains/Millerton%20Lake%20SRA
       response:
@@ -16,7 +16,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sat, 11 Feb 2023 21:02:54 GMT
+                  - Sun, 12 Feb 2023 03:21:31 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:

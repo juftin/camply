@@ -26,6 +26,8 @@ class SearchGoingToCamp(BaseCampingSearch):
     Searches on GoingToCamp.com for Campsites
     """
 
+    provider_class = GoingToCampProvider
+
     @classmethod
     def find_recreation_areas(
         cls, search_string: str, **kwargs

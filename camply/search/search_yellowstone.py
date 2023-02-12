@@ -25,6 +25,7 @@ class SearchYellowstone(BaseCampingSearch):
     """
 
     recreation_area = YellowstoneLodging.recreation_area
+    provider_class = YellowstoneLodging
 
     # noinspection PyUnusedLocal
     def __init__(
@@ -154,13 +155,6 @@ class SearchYellowstone(BaseCampingSearch):
             if campsite.facility_id in searchable_campgrounds
         ]
         return matching_campsites
-
-    @staticmethod
-    def print_campgrounds() -> None:
-        """
-        Print the Campgrounds inside of Yellowstone
-        """
-        log_sorted_response(YellowstoneConfig.YELLOWSTONE_CAMPGROUND_OBJECTS)
 
     @classmethod
     def find_recreation_areas(cls, **kwargs) -> List[RecreationArea]:

@@ -24,7 +24,7 @@ from camply.containers import AvailableCampsite, SearchWindow
 from camply.exceptions import CamplyError, CampsiteNotFoundError
 from camply.notifications.base_notifications import BaseNotifications
 from camply.notifications.multi_provider_notifications import MultiNotifierProvider
-from camply.providers import ProviderType
+from camply.providers import BaseProvider, ProviderType
 from camply.utils import make_list
 from camply.utils.logging_utils import get_emoji
 
@@ -130,6 +130,13 @@ class BaseCampingSearch(ABC):
         Returns
         -------
         List[AvailableCampsite]
+        """
+
+    @property
+    @abstractmethod
+    def provider_class(self) -> BaseProvider:
+        """
+        Provider Class Dependency Injection
         """
 
     def _get_intersection_date_overlap(

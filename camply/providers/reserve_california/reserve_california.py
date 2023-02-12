@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 import pathlib
 import sys
 from datetime import date, datetime, timedelta
@@ -49,46 +50,36 @@ class ReserveCalifornia(BaseProvider):
     reserve_california_unit_type_groups: dict[int, str] = {}
     metadata_refreshed: bool = False
     active_search: bool = False
+    force_stale_cache: bool = os.getenv("CAMPLY_STALE_CACHE", False)
 
-    def search_recareas_api(self, query: str) -> list[RecreationArea]:
+    def refresh_metadata(self) -> None:
         """
-        Retrieve Recreation Areas via the API
+        Refresh All the Campground Metadata
 
-        Parameters
-        ----------
-        query: str
+        This is the way that this provider caches all of its metadata
+        offline. It makes a number of GET requests and saves the entire output
+        as JSON alongside the provider code itself (calirdr.usedirect.com):
+
+        - /rdr/rdr/search/filters
+        - /rdr/rdr/search/citypark
+        - /rdr/rdr/search/places
+        - /rdr/rdr/search/facilities
 
         Returns
         -------
-        list[RecreationArea]
+        None
         """
-        url = (
-            f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.SEARCH_ENDPOINT}/"
-            f"{parse.quote(query)}"
-        )
-        response = self.session.get(url=url)
-        response.raise_for_status()
-        rec_areas = []
-        for item in response.json():
-            rc_facility = ReserveCaliforniaFacilityParent(**item)
-            if rc_facility.IsActive is True:
-                rec_area = RecreationArea(
-                    recreation_area=rc_facility.Name,
-                    recreation_area_id=rc_facility.PlaceId,
-                    recreation_area_location="California",
-                )
-                rec_areas.append(rec_area)
-                if (
-                    rec_area.recreation_area_id
-                    not in self.reserve_california_rec_areas.keys()
-                ):
-                    self.reserve_california_rec_areas[
-                        rec_area.recreation_area_id
-                    ] = rec_area
-        return rec_areas
+        if self.metadata_refreshed is False:
+            self._get_campground_metadata()
+            self._get_city_parks()
+            self._get_places()
+            self._get_facilities()
+        self.metadata_refreshed = True
 
     def search_for_recreation_areas(
-        self, query: Optional[str] = None, state: str = "CA", verbose: bool = True
+        self,
+        query: Optional[str] = None,
+        state: str = "CA",
     ) -> list[RecreationArea]:
         """
         Retrieve Recreation Areas
@@ -185,81 +176,50 @@ class ReserveCalifornia(BaseProvider):
         self.active_search = False
         return found_campgrounds
 
-    def _search_for_campgrounds_api(
-        self,
-        place_id: int,
-        start_date: Optional[date] = None,
-    ) -> ReserveCaliforniaPlaceResult:
+    @ratelimit.sleep_and_retry
+    @ratelimit.limits(calls=1, period=1)
+    def get_campsites(
+        self, campground_id: int, start_date: date, end_date: date
+    ) -> list[AvailableCampsite]:
         """
-        Search A Facility
+        Get All Campsites
 
         Parameters
         ----------
-        place_id: int
-        start_date: Optional[datetime.date]
+        campground_id: int
+        start_date: date
+        end_date: date
 
         Returns
         -------
-        ReserveCaliforniaPlaceResult
+        list[AvailableCampsite]
         """
-        if start_date is None:
-            start_date = datetime.today()
-        url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.PLACE_ENDPOINT}"
+        if self.metadata_refreshed is False:
+            self.refresh_metadata()
         data = {
-            "PlaceId": place_id,
-            "StartDate": start_date.strftime("%m-%d-%Y"),
+            "FacilityId": campground_id,
+            "StartDate": start_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
+            "EndDate": end_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
         }
-        resp = self.session.post(
-            url=url, headers=self.json_headers, data=json.dumps(data)
+        url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.AVAILABILITY_ENDPOINT}"
+        response = self.session.post(
+            url=url, data=json.dumps(data), headers=self.json_headers
         )
-        resp.raise_for_status()
-        results = ReserveCaliforniaPlaceResult(**resp.json())
-        return results
-
-    def get_campgrounds_api(
-        self,
-        rec_area_id: int,
-    ) -> list[CampgroundFacility]:
-        """
-        Retrieve Facility IDs
-
-        Parameters
-        ----------
-        rec_area_id: int
-
-        Returns
-        -------
-        list[CampgroundFacility]
-        """
-        response: ReserveCaliforniaPlaceResult = self._search_for_campgrounds_api(
-            place_id=rec_area_id, start_date=None
-        )
-        if response.SelectedPlace is None:
-            raise ValueError(
-                f"Could not find facilities in {rec_area_id} - try searching a different Rec Area."
-            )
-        campgrounds: list[CampgroundFacility] = []
-        for _facility_id, facility in response.SelectedPlace.Facilities.items():
-            if (
-                response.SelectedPlace.PlaceId
-                not in self.reserve_california_rec_areas.keys()
-            ):
-                self.reserve_california_rec_areas[
-                    response.SelectedPlace.PlaceId
-                ] = RecreationArea(
-                    recreation_area_id=response.SelectedPlace.PlaceId,
-                    recreation_area=response.SelectedPlace.Name,
-                    recreation_area_location="California",
+        response.raise_for_status()
+        availability_response = ReserveCaliforniaAvailabilityResponse(**response.json())
+        campsites: list[AvailableCampsite] = []
+        if availability_response.Facility.Units is None:
+            return campsites
+        for _campground_unit_id, unit in availability_response.Facility.Units.items():
+            for _slice_date, availability_slice in unit.Slices.items():
+                campsite = self._get_available_campsite(
+                    availability_slice=availability_slice,
+                    availability_response=availability_response,
+                    unit=unit,
                 )
-            camp = CampgroundFacility(
-                facility_id=facility.FacilityId,
-                facility_name=facility.Name,
-                recreation_area_id=response.SelectedPlace.PlaceId,
-                recreation_area=response.SelectedPlace.Name,
-                coordinates=(facility.Latitude, facility.Longitude),
-            )
-            campgrounds.append(camp)
-        return campgrounds
+                if campsite.availability_status == "Available":
+                    campsites.append(campsite)
+        return campsites
 
     def _get_available_campsite(
         self,
@@ -319,66 +279,6 @@ class ReserveCalifornia(BaseProvider):
         )
         return campsite
 
-    @ratelimit.sleep_and_retry
-    @ratelimit.limits(calls=1, period=1)
-    def get_campsites(
-        self, campground_id: int, start_date: date, end_date: date
-    ) -> list[AvailableCampsite]:
-        """
-        Get All Campsites
-
-        Parameters
-        ----------
-        campground_id: int
-        start_date: date
-        end_date: date
-
-        Returns
-        -------
-        list[AvailableCampsite]
-        """
-        if self.metadata_refreshed is False:
-            self.refresh_metadata()
-        data = {
-            "FacilityId": campground_id,
-            "StartDate": start_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
-            "EndDate": end_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
-        }
-        url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.AVAILABILITY_ENDPOINT}"
-        response = self.session.post(
-            url=url, data=json.dumps(data), headers=self.json_headers
-        )
-        response.raise_for_status()
-        availability_response = ReserveCaliforniaAvailabilityResponse(**response.json())
-        campsites: list[AvailableCampsite] = []
-        if availability_response.Facility.Units is None:
-            return campsites
-        for _campground_unit_id, unit in availability_response.Facility.Units.items():
-            for _slice_date, availability_slice in unit.Slices.items():
-                campsite = self._get_available_campsite(
-                    availability_slice=availability_slice,
-                    availability_response=availability_response,
-                    unit=unit,
-                )
-                if campsite.availability_status == "Available":
-                    campsites.append(campsite)
-        return campsites
-
-    def refresh_metadata(self) -> None:
-        """
-        Refresh All the Campground Metadata
-
-        Returns
-        -------
-        None
-        """
-        if self.metadata_refreshed is False:
-            self._get_campground_metadata()
-            self._get_city_parks()
-            self._get_places()
-            self._get_facilities()
-        self.metadata_refreshed = True
-
     def _fetch_metadata_from_disk(
         self, file_path: pathlib.Path
     ) -> Optional[dict[Any, Any] | list[dict[Any, Any]]]:
@@ -401,6 +301,7 @@ class ReserveCalifornia(BaseProvider):
             if (
                 current_time - modified_time > timedelta(days=1)
                 and self.active_search is False
+                and self.force_stale_cache is not False
             ):
                 return None
             else:
@@ -546,6 +447,128 @@ class ReserveCalifornia(BaseProvider):
                     recreation_area=rec_area.recreation_area,
                 )
         return facilities_data_validated
+
+    def _search_recareas_api(self, query: str) -> list[RecreationArea]:
+        """
+        Retrieve Recreation Areas via the API
+
+        Deprecated: This Function Has Been Deprecated in favor of using bulk updates and
+        local caching. This code has been left around as a temporary artifact.
+
+        Parameters
+        ----------
+        query: str
+
+        Returns
+        -------
+        list[RecreationArea]
+        """
+        url = (
+            f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.SEARCH_ENDPOINT}/"
+            f"{parse.quote(query)}"
+        )
+        response = self.session.get(url=url)
+        response.raise_for_status()
+        rec_areas = []
+        for item in response.json():
+            rc_facility = ReserveCaliforniaFacilityParent(**item)
+            if rc_facility.IsActive is True:
+                rec_area = RecreationArea(
+                    recreation_area=rc_facility.Name,
+                    recreation_area_id=rc_facility.PlaceId,
+                    recreation_area_location="California",
+                )
+                rec_areas.append(rec_area)
+                if (
+                    rec_area.recreation_area_id
+                    not in self.reserve_california_rec_areas.keys()
+                ):
+                    self.reserve_california_rec_areas[
+                        rec_area.recreation_area_id
+                    ] = rec_area
+        return rec_areas
+
+    def _search_for_campgrounds_api(
+        self,
+        place_id: int,
+        start_date: Optional[date] = None,
+    ) -> ReserveCaliforniaPlaceResult:
+        """
+        Search A Facility
+
+        Deprecated: This Function Has Been Deprecated in favor of using bulk updates and
+        local caching. This code has been left around as a temporary artifact.
+
+        Parameters
+        ----------
+        place_id: int
+        start_date: Optional[datetime.date]
+
+        Returns
+        -------
+        ReserveCaliforniaPlaceResult
+        """
+        if start_date is None:
+            start_date = datetime.today()
+        url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.PLACE_ENDPOINT}"
+        data = {
+            "PlaceId": place_id,
+            "StartDate": start_date.strftime("%m-%d-%Y"),
+        }
+        resp = self.session.post(
+            url=url, headers=self.json_headers, data=json.dumps(data)
+        )
+        resp.raise_for_status()
+        results = ReserveCaliforniaPlaceResult(**resp.json())
+        return results
+
+    def _get_campgrounds_api(
+        self,
+        rec_area_id: int,
+    ) -> list[CampgroundFacility]:
+        """
+        Retrieve Facility IDs
+
+        Deprecated: This Function Has Been Deprecated in favor of using bulk updates and
+        local caching. This code has been left around as a temporary artifact.
+
+        Parameters
+        ----------
+        rec_area_id: int
+
+        Returns
+        -------
+        list[CampgroundFacility]
+        """
+        response: ReserveCaliforniaPlaceResult = self._search_for_campgrounds_api(
+            place_id=rec_area_id, start_date=None
+        )
+        if response.SelectedPlace is None:
+            raise ValueError(
+                f"Could not find facilities in {rec_area_id} - try searching a different Rec Area."
+            )
+        campgrounds: list[CampgroundFacility] = []
+        for _facility_id, facility in response.SelectedPlace.Facilities.items():
+            if (
+                response.SelectedPlace.PlaceId
+                not in self.reserve_california_rec_areas.keys()
+            ):
+                self.reserve_california_rec_areas[
+                    response.SelectedPlace.PlaceId
+                ] = RecreationArea(
+                    recreation_area_id=response.SelectedPlace.PlaceId,
+                    recreation_area=response.SelectedPlace.Name,
+                    recreation_area_location="California",
+                )
+            camp = CampgroundFacility(
+                facility_id=facility.FacilityId,
+                facility_name=facility.Name,
+                recreation_area_id=response.SelectedPlace.PlaceId,
+                recreation_area=response.SelectedPlace.Name,
+                coordinates=(facility.Latitude, facility.Longitude),
+            )
+            campgrounds.append(camp)
+        return campgrounds
 
 
 if __name__ == "__main__":

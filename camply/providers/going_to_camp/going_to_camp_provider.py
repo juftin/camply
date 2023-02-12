@@ -2,6 +2,8 @@
 Going to Camp Web Searching Utilities
 """
 
+from __future__ import annotations
+
 import json
 import logging
 import sys
@@ -17,6 +19,7 @@ from camply.containers import AvailableResource, CampgroundFacility, RecreationA
 from camply.containers.base_container import GoingToCampEquipment
 from camply.containers.gtc_api_responses import ResourceLocation
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
+from camply.utils import make_list
 from camply.utils.logging_utils import log_sorted_response
 
 logger = logging.getLogger(__name__)
@@ -305,7 +308,7 @@ class GoingToCampProvider(BaseProvider):
 
     def find_facilities_per_recreation_area(
         self,
-        rec_area_id: int = None,
+        rec_area_id: int | list[int] = None,
         campground_id: int = None,
         search_string: str = None,
         **kwargs,
@@ -329,6 +332,7 @@ class GoingToCampProvider(BaseProvider):
         campgrounds: List[CampgroundFacility]
             Array of Matching Campsites
         """
+        rec_area_id = make_list(rec_area_id, coerce=int)[0]
         logger.info(
             f"Retrieving Facility Information for Recreation Area ID: `{rec_area_id}`."
         )
