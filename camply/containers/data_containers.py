@@ -112,7 +112,7 @@ class CampgroundFacility(CamplyModel):
     facility_id: Union[int, str]
     recreation_area_id: Union[int, str]
     map_id: Optional[int]
-    coordinates: Optional[tuple[float, float]]
+    coordinates: Optional[Tuple[float, float]]
 
 
 class RecreationArea(CamplyModel):
@@ -123,7 +123,7 @@ class RecreationArea(CamplyModel):
     recreation_area: str
     recreation_area_id: Union[int, str]
     recreation_area_location: str
-    coordinates: Optional[tuple[float, float]]
+    coordinates: Optional[Tuple[float, float]]
     description: Optional[str]
 
 

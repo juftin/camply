@@ -5,7 +5,7 @@ ReserveCalifornia API Responses
 from __future__ import annotations
 
 import datetime
-from typing import Any, Optional
+from typing import Any, Dict, Optional
 
 from camply.containers import CamplyModel
 
@@ -82,7 +82,7 @@ class ReserveCaliforniaAvailabilityUnit(CamplyModel):
     RecentPopups: Optional[int]
     IsAda: Optional[bool]
     AllowWebBooking: Optional[bool]
-    MapInfo: dict[str, Any] = {}
+    MapInfo: Dict[str, Any] = {}
     IsWebViewable: Optional[bool]
     IsFiltered: Optional[bool]
     UnitCategoryId: Optional[int]
@@ -95,7 +95,7 @@ class ReserveCaliforniaAvailabilityUnit(CamplyModel):
     OrderByRaw: Optional[int]
     SliceCount: Optional[int]
     AvailableCount: Optional[int]
-    Slices: dict[datetime.datetime, ReserveCaliforniaAvailabilitySlice] = {}
+    Slices: Dict[datetime.datetime, ReserveCaliforniaAvailabilitySlice] = {}
     StartTime: Any
     EndTime: Any
 
@@ -121,7 +121,7 @@ class ReserveCaliforniaFacility(CamplyModel):
     EnableCheckOccupancy: Optional[bool]
     AvailableOccupancy: Any
     FacilityAllowWebBooking: Optional[bool]
-    UnitTypes: dict[int, ReserveCaliforniaUnitType] = {}
+    UnitTypes: Dict[int, ReserveCaliforniaUnitType] = {}
     IsAvailableForGroup: Optional[bool]
     IsAvailableForPatron: Optional[bool]
     IsAvailableForEducationalGroup: Optional[bool]
@@ -156,7 +156,7 @@ class ReserveCaliforniaPlace(CamplyModel):
     ParkPopularity: int
     AvailableUnitCount: int
     Restrictions: ReserveCaliforniaRestrictions
-    Facilities: dict[int, ReserveCaliforniaFacility]
+    Facilities: Dict[int, ReserveCaliforniaFacility]
     IsAvailableForGreatwalk: bool
     FacilityDefaultZoom: int
 
@@ -231,8 +231,8 @@ class ReserveCaliforniaAvailabilityFacility(ReserveCaliforniaFacility):
     FacilityImageVBT: Optional[str]
     DatesInSeason: Optional[int]
     DatesOutOfSeason: Optional[int]
-    SeasonDates: dict[datetime.datetime, bool]
-    TrafficStatuses: dict[str, Any]
+    SeasonDates: Dict[datetime.datetime, bool]
+    TrafficStatuses: Dict[str, Any]
     UnitCount: int
     AvailableUnitCount: int
     SliceCount: int
@@ -243,7 +243,7 @@ class ReserveCaliforniaAvailabilityFacility(ReserveCaliforniaFacility):
     IsReservationDraw: bool
     DrawBookingStartDate: datetime.datetime
     DrawBookingEndDate: datetime.datetime
-    Units: Optional[dict[str, ReserveCaliforniaAvailabilityUnit]]
+    Units: Optional[Dict[str, ReserveCaliforniaAvailabilityUnit]]
 
 
 class ReserveCaliforniaAvailabilityResponse(CamplyModel):
@@ -252,7 +252,7 @@ class ReserveCaliforniaAvailabilityResponse(CamplyModel):
     """
 
     Message: str
-    Filters: dict[str, Any]
+    Filters: Dict[str, Any]
     UnitTypeId: int
     StartDate: datetime.date
     EndDate: datetime.date
