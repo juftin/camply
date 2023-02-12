@@ -14,7 +14,6 @@ from fake_useragent import UserAgent
 from pandas import DataFrame, to_datetime
 from pytz import timezone
 
-
 from camply.config import STANDARD_HEADERS, YellowstoneConfig
 from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
 from camply.containers.api_responses import XantResortData
