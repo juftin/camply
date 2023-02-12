@@ -6,17 +6,17 @@ import json
 import logging
 import sys
 from datetime import datetime
-from random import choice
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import requests
+from fake_useragent import UserAgent
 from pydantic import ValidationError
 
-from camply.config import USER_AGENTS
 from camply.containers import AvailableResource, CampgroundFacility, RecreationArea
 from camply.containers.base_container import GoingToCampEquipment
 from camply.containers.gtc_api_responses import ResourceLocation
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
+from camply.utils import make_list
 from camply.utils.logging_utils import log_sorted_response
 
 logger = logging.getLogger(__name__)
@@ -146,13 +146,13 @@ class GoingToCampProvider(BaseProvider):
 
         return rec_areas
 
-    def rec_area_lookup(self, rec_area_id: int) -> (str, RecreationArea):
+    def rec_area_lookup(self, rec_area_id: int) -> Tuple[str, RecreationArea]:
         """
         Lookup a recreation area by ID
 
         Parameters
         ----------
-        rec_ara_id: int
+        rec_area_id: int
             The recreation area ID to lookup
 
         Returns
@@ -215,14 +215,13 @@ class GoingToCampProvider(BaseProvider):
 
         Parameters
         ----------
-        search_string: str
-            Search Keyword(s)
-        rec_area_id: Optional[List[int]]
+        rec_area_id: int
             Recreation Area ID by which to filter
+        resource_id: int
 
         Returns
         -------
-        details: dict[str, str]
+        details: Dict[str, str]
             The details about the site
         """
         if not hasattr(self, "_attribute_details"):
@@ -305,7 +304,7 @@ class GoingToCampProvider(BaseProvider):
 
     def find_facilities_per_recreation_area(
         self,
-        rec_area_id: int = None,
+        rec_area_id: Union[List[int], int] = None,
         campground_id: int = None,
         search_string: str = None,
         **kwargs,
@@ -318,7 +317,7 @@ class GoingToCampProvider(BaseProvider):
         rec_area_id: int
             Recreation Area ID
 
-        campground_id: Optional[list[int]]
+        campground_id: Optional[List[int]]
             Campground IDs
 
         search_string: Optional[str]
@@ -329,6 +328,7 @@ class GoingToCampProvider(BaseProvider):
         campgrounds: List[CampgroundFacility]
             Array of Matching Campsites
         """
+        rec_area_id = make_list(rec_area_id, coerce=int)[0]
         logger.info(
             f"Retrieving Facility Information for Recreation Area ID: `{rec_area_id}`."
         )
@@ -397,10 +397,10 @@ class GoingToCampProvider(BaseProvider):
         url = None
         if endpoint:
             url = endpoint.format(hostname)
-
-        headers = {}
-        headers.update(choice(USER_AGENTS))
-        response = requests.get(url=url, headers=headers, params=params, timeout=30)
+        user_agent = {
+            "User-Agent": UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+        }
+        response = requests.get(url=url, headers=user_agent, params=params, timeout=30)
         if response.ok is False:
             error_message = "Receiving bad data from GoingToCamp API: status_code: "
             f"{response.status_code}: {response.text}"
@@ -517,7 +517,7 @@ class GoingToCampProvider(BaseProvider):
 
         Returns
         -------
-        types: list[GoingToCampEquipment]
+        types: List[GoingToCampEquipment]
             A list of equipment types available to this rec area
         """
         results = self._api_request(rec_area_id, "LIST_EQUIPMENT")

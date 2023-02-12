@@ -37,6 +37,13 @@ class CamplyModel(BaseModel):
         else:
             return self.dict(exclude=self.__unhashable__) == other
 
+    class Config:
+        """
+        Camply Wide Configuration
+        """
+
+        anystr_strip_whitespace = True
+
 
 ############################
 # RecDotGov Base Containers

@@ -21,6 +21,7 @@ from pydantic.json import pydantic_encoder
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
 from camply.containers import AvailableCampsite, SearchWindow
+from camply.exceptions import CamplyError, CampsiteNotFoundError
 from camply.notifications.base_notifications import BaseNotifications
 from camply.notifications.multi_provider_notifications import MultiNotifierProvider
 from camply.providers import ProviderType
@@ -30,24 +31,6 @@ from camply.utils.logging_utils import get_emoji
 logger = logging.getLogger(__name__)
 
 
-class CamplyError(Exception):
-    """
-    Base Camply Error
-    """
-
-
-class SearchError(CamplyError):
-    """
-    Generic Search Error
-    """
-
-
-class CampsiteNotFoundError(SearchError):
-    """
-    Campsite not found Error
-    """
-
-
 class BaseCampingSearch(ABC):
     """
     Camping Search Object
@@ -55,7 +38,6 @@ class BaseCampingSearch(ABC):
 
     def __init__(
         self,
-        provider: ProviderType,
         search_window: Union[SearchWindow, List[SearchWindow]],
         weekends_only: bool = False,
         nights: int = 1,
@@ -68,8 +50,6 @@ class BaseCampingSearch(ABC):
 
         Parameters
         ----------
-        provider: ProviderType
-            API Provider
         search_window: Union[SearchWindow, List[SearchWindow]]
             Search Window tuple containing start date and End Date
         weekends_only: bool
@@ -85,13 +65,13 @@ class BaseCampingSearch(ABC):
             When offline search is set to True, this is the name of the file to be saved/loaded.
             When not specified, the filename will default to `camply_campsites.json`
         """
-        self.campsite_finder: ProviderType = provider
+        self.campsite_finder: ProviderType = self.provider_class()
         self.search_window: List[SearchWindow] = make_list(search_window)
         self.weekends_only: bool = weekends_only
         self._original_search_days: List[datetime] = self._get_search_days()
-        self._original_search_months: List[datetime] = provider.get_search_months(
-            self._original_search_days
-        )
+        self._original_search_months: List[
+            datetime
+        ] = self.campsite_finder.get_search_months(self._original_search_days)
         self.nights = self._validate_consecutive_nights(nights=nights)
         if offline_search_path is not None:
             self.offline_search = True
@@ -147,6 +127,13 @@ class BaseCampingSearch(ABC):
         Returns
         -------
         List[AvailableCampsite]
+        """
+
+    @property
+    @abstractmethod
+    def provider_class(self) -> ProviderType:
+        """
+        Provider Class Dependency Injection
         """
 
     def _get_intersection_date_overlap(
@@ -601,7 +588,7 @@ class BaseCampingSearch(ABC):
     @classmethod
     def _consolidate_campsites(
         cls, campsite_df: DataFrame, nights: int
-    ) -> List[AvailableCampsite]:
+    ) -> pd.DataFrame:
         """
         Consolidate Single Night Campsites into Multiple Night Campsites
 
@@ -612,7 +599,7 @@ class BaseCampingSearch(ABC):
 
         Returns
         -------
-        List[AvailableCampsite]
+        pd.DataFrame
         """
         composed_groupings = []
         for _, campsite_slice in campsite_df.groupby(

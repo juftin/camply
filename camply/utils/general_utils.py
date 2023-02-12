@@ -3,14 +3,14 @@ Camply General Utilities
 """
 
 import logging
-from typing import Callable, List, Optional
+from typing import Any, Callable, List, Optional
 
 from camply.containers.base_container import CamplyModel
 
 logger = logging.getLogger(__name__)
 
 
-def make_list(obj, coerce: Optional[Callable] = None) -> Optional[List]:
+def make_list(obj, coerce: Optional[Callable] = None) -> Optional[List[Any]]:
     """
     Make Anything An Iterable Instance
 
