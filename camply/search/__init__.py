@@ -30,13 +30,12 @@ CAMPSITE_SEARCH_PROVIDER: Dict[str, Type[BaseCampingSearch]] = {
     RECREATION_DOT_GOV: SearchRecreationDotGov,
     YELLOWSTONE: SearchYellowstone,
     GOING_TO_CAMP: SearchGoingToCamp,
+    RESERVE_CALIFORNIA: SearchReserveCalifornia,
     # Tours and Timed Entry (RecDotGov)
     RECREATION_DOT_GOV_TICKET: SearchRecreationDotGovTicket,
     RECREATION_DOT_GOV_TIMED_ENTRY: SearchRecreationDotGovTimedEntry,
     RECREATION_DOT_GOV_DAILY_TICKET: SearchRecreationDotGovDailyTicket,
     RECREATION_DOT_GOV_DAILY_TIMED_ENTRY: SearchRecreationDotGovDailyTimedEntry,
-    # ReserveCalifornia
-    RESERVE_CALIFORNIA: SearchReserveCalifornia,
 }
 
 __all__ = [

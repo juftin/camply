@@ -70,6 +70,7 @@ becomes available, camply sends you a notification to book your spot!
             -   [Tickets + Tours](command_line_usage.md#tickets-tours)
             -   [Timed Entry](command_line_usage.md#timed-entry)
             -   [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
+        -   [Search ReserveCalifornia](command_line_usage.md#search-reservecalifornia)
 -   [Finding Recreation Areas IDs and Campground IDs To Search Without Using the Command Line](command_line_usage.md#finding-recreation-areas-ids-and-campground-ids-to-search-without-using-the-command-line)
 -   [Object-Oriented Usage (Python)](python.md)
     -   [Search for a Recreation.gov Campsite](python.md#search-for-a-recreationgov-campsite)

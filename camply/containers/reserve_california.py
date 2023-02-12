@@ -1,3 +1,7 @@
+"""
+ReserveCalifornia API Responses
+"""
+
 from __future__ import annotations
 
 import datetime
@@ -22,6 +26,10 @@ class ReserveCaliforniaFacilityParent(CamplyModel):
 
 
 class ReserveCaliforniaRestrictions(CamplyModel):
+    """
+    ReserveCalifornia: Campsite Restrictions
+    """
+
     FutureBookingStarts: datetime.datetime
     FutureBookingEnds: datetime.datetime
     MinimumStay: int
@@ -31,6 +39,10 @@ class ReserveCaliforniaRestrictions(CamplyModel):
 
 
 class ReserveCaliforniaUnitType(CamplyModel):
+    """
+    ReserveCalifornia: Unit Types
+    """
+
     UnitTypeId: int
     UseType: int
     Name: str
@@ -118,6 +130,10 @@ class ReserveCaliforniaFacility(CamplyModel):
 
 
 class ReserveCaliforniaPlace(CamplyModel):
+    """
+    ReserveCalifornia: Place Object
+    """
+
     PlaceId: int
     Name: str
     Description: str
@@ -185,7 +201,7 @@ class ReserveCaliforniaDetailedPlace(CamplyModel):
 
 class ReserveCaliforniaPlaceResult(CamplyModel):
     """
-    PLace Response
+    ReserveCalifornia: Place Response
     """
 
     SelectedPlaceId: Optional[int]
@@ -206,6 +222,10 @@ class ReserveCaliforniaPlaceResult(CamplyModel):
 
 
 class ReserveCaliforniaAvailabilityFacility(ReserveCaliforniaFacility):
+    """
+    ReserveCalifornia: Facility w/ Availability
+    """
+
     FacilityMapSize: Optional[bool]
     FacilityImage: Optional[str]
     FacilityImageVBT: Optional[str]
@@ -223,7 +243,7 @@ class ReserveCaliforniaAvailabilityFacility(ReserveCaliforniaFacility):
     IsReservationDraw: bool
     DrawBookingStartDate: datetime.datetime
     DrawBookingEndDate: datetime.datetime
-    Units: dict[str, ReserveCaliforniaAvailabilityUnit]
+    Units: Optional[dict[str, ReserveCaliforniaAvailabilityUnit]]
 
 
 class ReserveCaliforniaAvailabilityResponse(CamplyModel):
@@ -254,6 +274,10 @@ class ReserveCaliforniaAvailabilityResponse(CamplyModel):
 
 
 class ReserveCaliforniaUnitCategory(CamplyModel):
+    """
+    ReserveCalifornia: Unit Categories
+    """
+
     UnitCategoryId: int
     UnitCategoryName: str
     HasEquipment: bool
@@ -261,6 +285,10 @@ class ReserveCaliforniaUnitCategory(CamplyModel):
 
 
 class ReserveCaliforniaNightlySleepingUnit(CamplyModel):
+    """
+    ReserveCalifornia: Nightly Sleeping Units
+    """
+
     UnitCategoryId: int
     SleepingUnitId: int
     SleepingUnitName: str
@@ -269,6 +297,10 @@ class ReserveCaliforniaNightlySleepingUnit(CamplyModel):
 
 
 class ReserveCaliforniaMinVehicleLength(CamplyModel):
+    """
+    ReserveCalifornia: Vehicle Length
+    """
+
     SleepingUnitId: int
     MinVehicleLength: int
     MinVehicleName: str
@@ -276,6 +308,10 @@ class ReserveCaliforniaMinVehicleLength(CamplyModel):
 
 
 class ReserveCaliforniaUnitTypeGroup(CamplyModel):
+    """
+    ReserveCalifornia: Unit Type Groups
+    """
+
     UnitCategoryId: int
     UnitTypesGroupId: int
     UnitTypesGroupName: str
@@ -283,6 +319,10 @@ class ReserveCaliforniaUnitTypeGroup(CamplyModel):
 
 
 class ReserveCaliforniaAmenity(CamplyModel):
+    """
+    ReserveCalifornia: Amenities
+    """
+
     AmenityId: int
     Name: str
     ShortName: str
@@ -314,6 +354,10 @@ class ReserveCaliforniaMetadata(CamplyModel):
 
 
 class ReserveCaliforniaCityPark(CamplyModel):
+    """
+    ReserveCalifornia: City Parks
+    """
+
     CityParkId: int
     Name: str
     Latitude: float
@@ -326,6 +370,10 @@ class ReserveCaliforniaCityPark(CamplyModel):
 
 
 class ReserveCaliforniaFacilityMetadata(CamplyModel):
+    """
+    ReserveCalifornia: Facility Metadata
+    """
+
     FacilityId: int
     RegionId: int
     PlaceId: int

@@ -1,10 +1,13 @@
 """
 Search Implementation: Reserve California
 """
+
+from __future__ import annotations
+
 import logging
 import sys
 from datetime import timedelta
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from dateutil.relativedelta import relativedelta
 
@@ -24,7 +27,18 @@ class SearchReserveCalifornia(BaseCampingSearch):
 
     provider_class = ReserveCalifornia
 
-    def get_all_campsites(self, **kwargs) -> List[AvailableCampsite]:
+    def get_all_campsites(self, **kwargs: dict[str, Any]) -> List[AvailableCampsite]:
+        """
+        Retrieve All Campsites from the ReserveCalifornia API
+
+        Parameters
+        ----------
+        kwargs: dict[str, Any]
+
+        Returns
+        -------
+        list[AvailableCampsite]
+        """
         logger.info(f"Searching across {len(self.campgrounds)} campgrounds")
         for campground in self.campgrounds:
             log_str = format_log_string(campground)
@@ -65,8 +79,9 @@ class SearchReserveCalifornia(BaseCampingSearch):
         Return the ReserveCalifornia Recreation Areas
         """
         rec_areas = cls.provider_class().search_for_recreation_areas(
-            query=search_string
+            query=search_string, state=kwargs.get("state", "CA")
         )
+        logger.info(f"{len(rec_areas)} Matching Recreation Areas Found")
         log_sorted_response(rec_areas)
         return rec_areas
 
@@ -128,3 +143,5 @@ class SearchReserveCalifornia(BaseCampingSearch):
         if len(self.campground_ids) == 0:
             logger.error("No Campsites Found Matching Your Search Criteria")
             sys.exit(1)
+        if kwargs.get("equipment", ()):
+            logger.warning("ReserveCalifornia Doesn't Support Equipment, yet 🙂")

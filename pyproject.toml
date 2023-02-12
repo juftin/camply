@@ -38,6 +38,7 @@ rich = ">=10.0.0"
 rich-click = "^1.6.1"
 twilio = { version = ">=7.14.0", optional = true }
 fake-useragent = "^1.1.1"
+ratelimit = "^2.2.1"
 
 [tool.poetry.extras]
 twilio = ["twilio"]

@@ -1,3 +1,8 @@
+"""
+Camply: Common Exceptions
+"""
+
+
 class CamplyError(Exception):
     """
     Base Camply Error

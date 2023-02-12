@@ -1,3 +1,7 @@
+"""
+ReserveCalifornia Testing
+"""
+
 import datetime
 import logging
 
@@ -12,6 +16,9 @@ set_up_logging(log_level=logging.DEBUG)
 
 @vcr_cassette
 def test_rc_get_rec_areas_api():
+    """
+    Test Pinging the API Directly: Rec Areas
+    """
     prov = ReserveCalifornia()
     expected_rec_area = 678
     rec_areas = prov.search_recareas_api(query="Millerton Lake SRA")
@@ -20,6 +27,9 @@ def test_rc_get_rec_areas_api():
 
 @vcr_cassette
 def test_rc_get_campgrounds_api():
+    """
+    Test Pinging the API Directly: Campgrounds
+    """
     prov = ReserveCalifornia()
     expected_facility = 572
     campgrounds = prov.get_campgrounds_api(rec_area_id=678)
@@ -33,6 +43,9 @@ def test_rc_get_campgrounds_api():
 
 @vcr_cassette
 def test_rc_search_campgrounds_no_api():
+    """
+    Cached Results: Search Campgrounds
+    """
     prov = ReserveCalifornia()
     expected_facility = 572
     campgrounds = prov.find_campgrounds(rec_area_id=[678])
@@ -46,6 +59,9 @@ def test_rc_search_campgrounds_no_api():
 
 @vcr_cassette
 def test_rc_get_campsites():
+    """
+    Get Campsites
+    """
     prov = ReserveCalifornia()
     start_date = datetime.date(2023, 6, 5)
     campsites = prov.get_campsites(
@@ -54,17 +70,23 @@ def test_rc_get_campsites():
         end_date=start_date + relativedelta(days=2),
     )
     assert len({item.campsite_id for item in campsites}) > 1
-    assert any([item.campsite_site_name == "M93" for item in campsites])
+    assert any([item.campsite_site_name == "Campsite #M93" for item in campsites])
 
 
 @vcr_cassette
 def test_rc_get_metadata():
+    """
+    Cached Results: Metadata Fetching
+    """
     prov = ReserveCalifornia()
     prov.refresh_metadata()
 
 
 @vcr_cassette
 def test_rc_search_recreation_area():
+    """
+    Cached Results: Search For RecArea
+    """
     prov = ReserveCalifornia()
     results = prov.search_for_recreation_areas(query="Half Moon Bay")
     assert results[0].recreation_area_location == "Half Moon Bay, CA"
@@ -72,6 +94,9 @@ def test_rc_search_recreation_area():
 
 @vcr_cassette
 def test_rc_search_campgrounds():
+    """
+    Cached Results: Search For Campground
+    """
     prov = ReserveCalifornia()
     results = prov.find_campgrounds(search_string="Half Moon Bay", rec_area_id=[])
     assert results[0].recreation_area.__contains__("Half Moon Bay")
@@ -79,14 +104,18 @@ def test_rc_search_campgrounds():
 
 @vcr_cassette
 def test_rc_find_campsites_cli(cli_runner):
-    result = cli_runner.run_camply_command(
-        """
+    """
+    CLI Testing - Night Filtering
+    """
+    test_command = """
     camply campsites \
       --start-date 2023-06-01 \
       --end-date 2023-07-01  \
       --campground 1121 \
       --provider ReserveCalifornia
     """
-    )
-    cli_status_checker(result=result, exit_code_zero=False)
-    raise ValueError(result.output)
+    result = cli_runner.run_camply_command(test_command)
+    cli_status_checker(result=result, exit_code_zero=True)
+    assert "Valley Oak Loop (sites 85-90)" in result.output
+    assert "total sites found in month of June" in result.output
+    assert "https://www.reservecalifornia.com" in result.output

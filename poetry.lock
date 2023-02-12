@@ -7,7 +7,7 @@ twilio = ["twilio"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.7.1,<4.0"
-content-hash = "c8775257593637e1f6e46b29243e0e70f061693ec95e0059ecfd9b01fd4b8d89"
+content-hash = "56b679fe849ed5aa0138e92125bc4de45216b5d966283f2c582adc3314a3a3b4"
 
 [[package]]
 name = "attrs"
@@ -1300,6 +1300,17 @@ files = [
 
 [package.dependencies]
 pyyaml = "*"
+
+[[package]]
+name = "ratelimit"
+version = "2.2.1"
+description = "API rate limit decorator"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "ratelimit-2.2.1.tar.gz", hash = "sha256:af8a9b64b821529aca09ebaf6d8d279100d766f19e90b5059ac6a718ca6dee42"},
+]
 
 [[package]]
 name = "requests"

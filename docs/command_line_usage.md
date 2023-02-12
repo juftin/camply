@@ -795,3 +795,35 @@ camply campsites \
   --campground 10089462 \
   --equipment 0800 0
 ```
+
+### Search ReserveCalifornia
+
+[ReserveCalifornia](providers.md#reservecalifornia) is the online booking provider for California State Parks
+and it works a lot like `RecreationDotGov`.
+
+If you wanted to look for recreation areas (groupings of campgrounds):
+
+```commandline
+camply recreation-areas --provider ReserveCalifornia --search "Los Angeles"
+```
+
+If you want to look for more specific campgrounds to search:
+
+```commandline
+camply campgrounds --provider ReserveCalifornia --search "Sonoma Coast"
+```
+
+And finally, searching for a campsite is very similar to [RecreationDotGov](#searching-for-a-campsite):
+
+```commandline
+camply campsites \
+    --provider ReserveCalifornia \
+    --start-date 2023-07-01 \
+    --end-date 2023-08-01 \
+    --rec-area 718 \
+    --weekends
+```
+
+!!! note
+
+    **`ReserveCalifornia`** doesn't yet support searching / filtering by *equipment*.

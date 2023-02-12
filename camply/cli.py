@@ -202,9 +202,10 @@ def equipment_types(
 
     if provider == GOING_TO_CAMP:
         GoingToCampProvider().list_equipment_types(rec_area[0])
-    else:
+    elif provider.startswith(RECREATION_DOT_GOV):
         log_sorted_response(response_array=EquipmentOptions.__all_accepted_equipment__)
-
+    else:
+        logger.warning("That Provider doesn't support equipment based searching, yet 🙂")
     sys.exit(0)
 
 

@@ -3,7 +3,7 @@ Logging Utilities for Pushover Variables
 """
 
 import logging
-from typing import List, Union
+from typing import Any, List, Union
 
 from camply.containers import CampgroundFacility, RecreationArea
 from camply.containers.base_container import GoingToCampEquipment
@@ -51,7 +51,7 @@ def format_log_string(response: Union[CampgroundFacility, RecreationArea, str]) 
         raise NotImplementedError
 
 
-def log_sorted_response(response_array: List[object]) -> None:
+def log_sorted_response(response_array: List[Any]) -> None:
     """
     Log Some Statements in a Nice Sorted way
 

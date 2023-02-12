@@ -122,6 +122,7 @@ class RecreationArea(CamplyModel):
     recreation_area_id: Union[int, str]
     recreation_area_location: str
     coordinates: Optional[tuple[float, float]]
+    description: Optional[str]
 
 
 class AvailableResource(CamplyModel):
