@@ -528,7 +528,7 @@ class YellowstoneLodging(BaseProvider):
             month = today
         return month
 
-    def find_campgrounds(self, **kwargs) -> list[CampgroundFacility]:
+    def find_campgrounds(self, **kwargs) -> List[CampgroundFacility]:
         """
         Print the Campgrounds inside of Yellowstone
         """

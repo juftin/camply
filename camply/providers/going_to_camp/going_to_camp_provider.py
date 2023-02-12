@@ -2,8 +2,6 @@
 Going to Camp Web Searching Utilities
 """
 
-from __future__ import annotations
-
 import json
 import logging
 import sys
@@ -225,7 +223,7 @@ class GoingToCampProvider(BaseProvider):
 
         Returns
         -------
-        details: dict[str, str]
+        details: Dict[str, str]
             The details about the site
         """
         if not hasattr(self, "_attribute_details"):
@@ -308,7 +306,7 @@ class GoingToCampProvider(BaseProvider):
 
     def find_facilities_per_recreation_area(
         self,
-        rec_area_id: int | list[int] = None,
+        rec_area_id: Union[List[int], int] = None,
         campground_id: int = None,
         search_string: str = None,
         **kwargs,
@@ -321,7 +319,7 @@ class GoingToCampProvider(BaseProvider):
         rec_area_id: int
             Recreation Area ID
 
-        campground_id: Optional[list[int]]
+        campground_id: Optional[List[int]]
             Campground IDs
 
         search_string: Optional[str]
@@ -521,7 +519,7 @@ class GoingToCampProvider(BaseProvider):
 
         Returns
         -------
-        types: list[GoingToCampEquipment]
+        types: List[GoingToCampEquipment]
             A list of equipment types available to this rec area
         """
         results = self._api_request(rec_area_id, "LIST_EQUIPMENT")

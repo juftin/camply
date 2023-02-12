@@ -2,8 +2,6 @@
 Storage Containers for the Application
 """
 
-from __future__ import annotations
-
 import datetime
 import logging
 from typing import List, Optional, Tuple, Union

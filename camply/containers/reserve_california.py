@@ -2,10 +2,8 @@
 ReserveCalifornia API Responses
 """
 
-from __future__ import annotations
-
 import datetime
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from camply.containers import CamplyModel
 
@@ -86,7 +84,7 @@ class ReserveCaliforniaAvailabilityUnit(CamplyModel):
     IsWebViewable: Optional[bool]
     IsFiltered: Optional[bool]
     UnitCategoryId: Optional[int]
-    SleepingUnitIds: list[int] = []
+    SleepingUnitIds: List[int] = []
     UnitTypeGroupId: Optional[int]
     UnitTypeId: Optional[int]
     UseType: Optional[int]
@@ -345,12 +343,12 @@ class ReserveCaliforniaMetadata(CamplyModel):
     """
 
     Message: str
-    UnitCategories: list[ReserveCaliforniaUnitCategory]
-    NightlySleepingUnits: list[ReserveCaliforniaNightlySleepingUnit]
-    MinVehicleLengths: list[ReserveCaliforniaMinVehicleLength]
-    UnitTypesGroups: list[ReserveCaliforniaUnitTypeGroup]
-    PlaceHighlights: list[Any]
-    AllAmenity: list[ReserveCaliforniaAmenity]
+    UnitCategories: List[ReserveCaliforniaUnitCategory]
+    NightlySleepingUnits: List[ReserveCaliforniaNightlySleepingUnit]
+    MinVehicleLengths: List[ReserveCaliforniaMinVehicleLength]
+    UnitTypesGroups: List[ReserveCaliforniaUnitTypeGroup]
+    PlaceHighlights: List[Any]
+    AllAmenity: List[ReserveCaliforniaAmenity]
 
 
 class ReserveCaliforniaCityPark(CamplyModel):

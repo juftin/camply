@@ -2,12 +2,10 @@
 Search Implementation: Reserve California
 """
 
-from __future__ import annotations
-
 import logging
 import sys
 from datetime import timedelta
-from typing import Any, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from dateutil.relativedelta import relativedelta
 
@@ -27,23 +25,23 @@ class SearchReserveCalifornia(BaseCampingSearch):
 
     provider_class = ReserveCalifornia
 
-    def get_all_campsites(self, **kwargs: dict[str, Any]) -> List[AvailableCampsite]:
+    def get_all_campsites(self, **kwargs: Dict[str, Any]) -> List[AvailableCampsite]:
         """
         Retrieve All Campsites from the ReserveCalifornia API
 
         Parameters
         ----------
-        kwargs: dict[str, Any]
+        kwargs: Dict[str, Any]
 
         Returns
         -------
-        list[AvailableCampsite]
+        List[AvailableCampsite]
         """
         logger.info(f"Searching across {len(self.campgrounds)} campgrounds")
         for campground in self.campgrounds:
             log_str = format_log_string(campground)
             logger.info("    %s", log_str)
-        campsites_found: list[AvailableCampsite] = []
+        campsites_found: List[AvailableCampsite] = []
         for month in self.search_months:
             for campground in self.campgrounds:
                 logger.info(
@@ -120,8 +118,8 @@ class SearchReserveCalifornia(BaseCampingSearch):
             weekends_only=weekends_only,
             nights=nights,
         )
-        self._recreation_area_ids: list[int] = make_list(recreation_area)
-        self._campground_ids: list[int] = make_list(campgrounds)
+        self._recreation_area_ids: List[int] = make_list(recreation_area)
+        self._campground_ids: List[int] = make_list(campgrounds)
         try:
             assert any([self._campground_ids != [], self._recreation_area_ids != []])
         except AssertionError:
