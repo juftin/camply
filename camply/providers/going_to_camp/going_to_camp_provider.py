@@ -147,13 +147,13 @@ class GoingToCampProvider(BaseProvider):
 
         return rec_areas
 
-    def rec_area_lookup(self, rec_area_id: int) -> (str, RecreationArea):
+    def rec_area_lookup(self, rec_area_id: int) -> Tuple[str, RecreationArea]:
         """
         Lookup a recreation area by ID
 
         Parameters
         ----------
-        rec_ara_id: int
+        rec_area_id: int
             The recreation area ID to lookup
 
         Returns
@@ -216,10 +216,9 @@ class GoingToCampProvider(BaseProvider):
 
         Parameters
         ----------
-        search_string: str
-            Search Keyword(s)
-        rec_area_id: Optional[List[int]]
+        rec_area_id: int
             Recreation Area ID by which to filter
+        resource_id: int
 
         Returns
         -------

@@ -38,7 +38,6 @@ class SlackNotifications(BaseNotifications):
         Parameters
         ----------
         message: str
-        blocks: List
 
         Returns
         -------
