@@ -1,13 +1,10 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.60 Safari/537.17
+                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.24 (KHTML, like Gecko)
+                    Chrome/12.0.702.0 Safari/534.24
               accept:
                   - application/json
               apikey:
@@ -16,265 +13,507 @@ interactions:
           uri: https://ridb.recreation.gov/api/v1/recareas?full=true&offset=0&query=Yosemite+National+Park&sort=Name
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA6xXbW/iOBD+K1Y+05AX3qXTKU1Mm20KbBKKuqvTyiQGvM0LcgwsWu1/v3ESaLvp
-                  7QcOqaLJzGTm8fiZGfun8ohDy7FCSxn9VHwczL0wkI/23PfxJPxmT+eTUBn1W0o4DS3v/P6rpQTY
-                  8u37bzPLt8AJ9svvPPfRBb2uaVpLmY7HAYY3ePw8x/6zMlKe84KmTFA0IYLlGUnQjPAX5Rf487Fd
-                  Afn6U7Hs0H1yw+fqJRJsz8TRdZRRr3V+nZCUgsfbqRW6kzvlVQEeaSaktQJSn0YWp+SkdGgRcbaV
-                  weXHOcDI1k2zMaXvLV9NSsedga78ar3HNmxgs63H2cXYbJJur4ZN1xvgxm5wfzG4MSs21wPXaYC7
-                  dx8uxnbPXq4GzdAa0GauPXHty+HNWJSx6Erwug14CwtqEQWzqQ+VfBHABRGUo2Cbc1FcCWazbBeu
-                  53juGKMnFy8uzuWCJXHCVhQ9MXq42qab/eame9bznQ/Nz0HQ8B4gv9h2Lc/9gp0q1yhwQ3whIRJy
-                  XPN8l8VXKifNbODHkyfXn04eoadbHsLO3IauOZ1cBhhne8bzLAV7aOA43kVlM78Q/T8tBT9hOVW+
-                  yseMLBMaKyPBd7SljC3b9U6DYEwiltSLVAzT7GpDcHiSnjuH4+BJSasyWpHveEQ9lr2AciPEdtRu
-                  J3lEkk1eiJEJg6pNtqy919uryhGjRbt2LjP7e9BOR2sGvZ3bD8h3nTv8v2JK382Ynf6g1/tgoSyO
-                  aVYyH8lZ8YZCl8Wv4jTjd/Vep9+MvyAvJNml7DrBqyCSDHd4+ikAaspTyHTqO+4EOhocLr7e6PpQ
-                  HQxM02yZfVXXwTZ8nmFZQTnLBCBXHujxkPO4qKjmuZOHkjgNEuJMnJYnOXgSSND1Pi81YgzNVdSN
-                  u3TYXZpdahDao5QsY9o3zl+Ex63MRU1qGRNc1MLpasUiBhWyoEsUwKEH1CETSbl5NCsSekQeeaFS
-                  X1Tque/VSSsga1HOt4W0KFTK40iNoULVlCXtPQP7nBftLc+/00gUarRK/3advzyjN9C0XplHjxRi
-                  vo2hmccO/MhVaYZxo3Vu9A6EesSOWx22bE5jJuqcNVOVLmls5zH9Y+YewUVV04Zu/CE995StNwIm
-                  whAml1vckSSh/HiqdreYcboHQiujFUmKWsJSIk1qSRmp9uumZC3TFuyWok7sLc8PGVruBMywVXJE
-                  nBbyhIfyDB1pkuQHtIIfyos3m3GeIixDsnWVrey3rYgzldMIFiHV6jrft7e7ZcKiNpMYgMCwbPX7
-                  Vk6gBYvFRhl1Bprchql/Z03cL1W7len+aF/0wY3WuzFklU/52louIQ11mc0Dy8aVvMyvbmr1mwxc
-                  odyRIqLqmq0qzacdZ0XMypXUmQoEKQkG2rNfZPH0iGxJMpSvEM7WLKNVZsDszTzQe0Ylq52NaUw5
-                  8Npa0yw6VioAYsVA0KJ4rfrD4aDuCgLQCESSzD3bhvSHkIQqM8TXvw+FllKFf79ouCFYPrYsx4Gb
-                  SlDdDaqYNnQfwY81TSFlcrBVqnLltcKWcht4KTlJjmletqwPN6QrN6SMOoO2RZLaw9Dsdc0bTRt0
-                  30y7KlAFvtftDI2Grk6cQ1dkl4gPpuBZEghOqag/02VvU6cqus1/oLch31kZZZM2tD7ycxKjjtb/
-                  D0PzlPFa+b7WPbBAYkMyBH8baOIo5mxPUQbnwA2FHEmSjMFPlstCARla5bnYsCQp+SMFAaOcEzSh
-                  exITRDOYCnDXEzn6+N6nVv2PVMcFmAPgOEp2MUWH8gxavDCo3RZaVbeNFioOLE3Lpw20P7ok0Qvi
-                  LC4lqeQAAWTL8vwPJvV/ksUoqi5T6mtmHAb1LLFIwnown2D7kd5HwFLA8W7Rj0TyXbaQkmfHU561
-                  N+5wSoDeb0841eHnXwAAAP//1FvrbtvIFX6VQX50E8CUhuTwlrpGfUvshR0ZtrKLAAaMITm0uKFI
-                  laSsVX/1Nfqvz9JH6ZP0nCElUSKpm+VNiySwQ45mzpkzl+9859N68DN/cgPTko9xicmrbfE8gV1Z
-                  vKhcf7O3t3xUHACLjmbgoHK/LF7eDZIY3743DOcDMS1dMVSjYgVc3iJ9kRGq9CufuXhSlkcwbCm4
-                  KiGccj0drUnXD5zZ7Y4wVd0x2B+Xj+xt4L4g2LAdvQEE/5wMYnI7DtPFfrsKM4AMoSeRCKBGiSDI
-                  OXgm0tfgNmnABtwGV6OqayZ1LERujq3ZTNPWw7ciiT+aX82QlHryDNjkWjvu2zgpVcBWArIK3Cki
-                  VYOKKqWGqlr2qyHhPuYtgxS8b+NRJtHJb8lw3JULf8dJgDNlF7+drfwuOt3a06L5BudGEY+nsGYl
-                  GO4OObwb5MN26Ksq1FE0vQX6frl7IKNBkidH5GYMR39KzuBAF9MaJJ5bep6MRpInSflUpJ21UHl5
-                  DhdgGSbRtplJNwNmwzLfBjCv8WfbeO2AliEOtKvCX7OrWl1V68qZeXJc4ahBYCiqqQcK0w1fcZjL
-                  FM4c1eY8gExXBXQtKvDaNhmu7j0ieIuXOBwoMUCUCY/wnCF5Cm1fFUN1cwxtm75NDNd61K832j9g
-                  ehkwqnI38OxA0V2mKUwVXLE96iq6Hlg65wb1VbESMLgB6J4R6wO0TCKfTMLYB3z2ukBtkZ2+2WZr
-                  cuTtdxkrgxZQS2NcMMV1HV0B/OkqjuX7CqfCNU1mcdXTD7bL5u78lBFfZN9nOcPjuwdo5QK+IRci
-                  fnz3qljqm2Npmm8Uy10cfPsYm2WMDSFMzdCZ4mkmg5PU0RSuwt3H4VA1RGAbusVXYuw4Tj3Gdxjj
-                  9qCSq2QIiVsuPd7Cqz0ibBkWHP4/kEra29l6tHfsYEfuyVYNzVkhn5h2CPIJVkKVetLsGvUkIdlO
-                  xNMSA0AeILkMPVHnnGRasx/nVMLEbcimn3u3X+tsk/TzoGzTLU/zMBZ/b6ObLMnLajW6iRmG3sw0
-                  2Yalm6yNabobTLMQcrfGbLOdbGJwqpDTaMCHbsrJ6YtoaastJbI7kEyLxQ/wfSp8MgQQT9IkktwP
-                  GYQZwXTviMBuRuplMgi9ARmIaARtB+GQZGPPE/B72Rg/SXiGlBX3XySLQ4JEbq1xKjrkNCOnQwFb
-                  i//nH//MyBAmlwR8mIwzEmMTHsHWKxiiJJ6TH/DsqLAySMZwyCCDNUqTXHjFFp5AVooOeGA1/DdK
-                  XoR/NHswEcQDc7Ic7ncikxP4uM+nHdmjNGOShkhKZzjoSxh74A92+7Xz0CGwcEUqa2vVUWf82RFs
-                  mL+Nk5Afkc8pmn2OSVAsPbjNO+Seh3EIlzKX/hX7bAT7LGtjvu4iwTNR2omk3xAptEmRYcqpzEbC
-                  CyHzJP78c2gZth1JDu9bMoZPTcFrcHj5hFumGWR33IdbpjAsjOHBsDjV6kwaJnlPsNtx2z9h078u
-                  9vWWFNvKcl8i2UoWoplpqxAWm7m2LQ70Vf7N0YwPRNNsxbZl8nc4/m1bImkNYROPo2jOzexZVVN1
-                  S18A7TlpoAeqZzpeoAYm5HWGb1FHBJbjmYHPAlPfjkRZJhNuBLJZMaY85V548EQMU382ncCiXKUS
-                  kNQK4XBLpx0XG2SdJH3u8i4cunnoPSGN0EWqC/8xQ+9C90Xv+EredHVOZSvXmWWYRgAYDP6acIL5
-                  AXP1QDDXdFTTo9vxKOv4o1U38SYMBhPe8ZNcgobC39kPTXPsdrKEwh5QpFGvrxMuT0gF4THH2gzv
-                  3ihlrkxcP0ye+Ywp3xF6oQ/LyGuHop+jUK0oxq7irotev4q7dL2Gu2RQ1+CuEi8tIa8LAQd2Lq8W
-                  uFr7cH9kKPKZiTdWAJhhNQKwRSfrQVi56rYBYXUAJh1+NQC7vVwAsMsoyiZY1GlDYLai0gYERplJ
-                  W2p9KmUFUNy+1DfbCm34617Wy1SbtrRB3NWLBblCNhw2BPmVT/fCYZ8iHn8H2OFO5Y19CtgHsLXP
-                  h5mEElcJohCC7DuAESwMYhfFu+ZS3hHZcBDnqGMgU8AK+SBFVEWeAS9JrAKdviQRgKZEkVsN7Mo8
-                  vPinfyYcYIeHuajEbICXAth9OXFFPhECEu4JYiTYjBERkcBV2Yp0jkcnx1mewjV/8oW/hM9S+Sm9
-                  lwZ+PO6Wb4/dtHtyPGAnF2n4stTmuAtPH+PHGPr6lEg1wRWcUuieqlFATVk+9w4/dA3TsJimTwmK
-                  EUiQJkP5NkelAmzEysQBrsI38ymGsxF2qSfIQ7FLMYcsjqs7nmWd4+6oMAfM+oTdLro6IuenH6v2
-                  XgkO0wrra4CFzGvEY3jnCQIYqaiRAhyOSYqnLrQASyqudQgyV/LmgKl/DhECwvoDgE1qNjSvjyVb
-                  +lj1LfyQpdSlhfK+Mu4HadgATZcV2c6mVVYaV3jBAwSdOKHLOaeYzerybC5cgZ91PLoL7Fza5QvY
-                  SZvQJq1DzMMAlVWcun7q6ijVplRh+M82K4qCg9eI6yXi06/9Hun3vt7/gXVYU6W1MnFdXHv2hxav
-                  m2w6sMj8MEYdWl1+IKt+tPigyag3EJQfyLD6bP1y/XDd792Tc8gnL+9/qHH/O4KNJvN0rWbexek3
-                  8vXhkiCC/aGbgNbjenfV6/c+35/eXX37sabVD9g7QPs3P/rcgCuVNiw4+cWK8hq7vtzzyxV7mriv
-                  PsjSbcmqrGq3Qwle75CxTA8j4C5GqqvH8blet+DWO+euIJCH5IcbX28Zv0mxn4aecMfp8+GkUMVI
-                  zRaodQvOMYaAf73v5AKQ69dMLNjC/Q1QWwww6gZ8QUSNWcl3guQJdPIiZCxeaYLRZALTpCy2NQp3
-                  41wJ49eMLEdodr7h2xP3AOpTzD0OuwLNjVI42qFUNwwUwhmOaW6QwbXzrbcixbrBfYiJ+v3tKTgS
-                  et9Tchq54+EyAYcnSI2PDGxuOtyhOnNc1aYuVy1DaGbAfd8wVHWNnKXCR66MOZeabLCtruwKZIOO
-                  lwy7Ul2Qdd1oCBMeBkkah7zL8ZNZ19JUwzJNU1VNlTnUshrY2D7WhUKZoEJ2XfKl1YIGvli2cM7w
-                  SZqjs8XsWTB1ju17jg5/XMNw9MBRLdRV2I7OVPfVbO46AxtnEOZL8pOlHE5+XEEBd7pmjjiJwJwZ
-                  7VCOiayPzLvL9LCwYZ5Cn1cKZeQG2mHJyyU4vdvMnE+pSgNdd7lpcdcxfZ+aItAodT2qGnxLHSWy
-                  D/XZarZcWWv7A5a3JK+Zhc/xjAttn99RmjynHNbirL6mVCuHSoSddisrt4zEJGuKw1KUz25uKwdR
-                  ixqzcU4RsVi2uU/5ZEsL2ucD4y53q/xfgOr5btHp06KrzshvKpwsluGQj2bfIXjt1qRGwAPV9nTP
-                  YULzqKFRm/lGwCxbpbaUOew8SdtZt/M8+YmXdQtpqllOmuy4NMn+XWXI5jwZ1PaKKVzzvS5H0fDQ
-                  bqrXSDEPcr0X/CX0yedUiHiSJP4RRvzdajHnLIS7R0yxKCwm6PfqLU3+NEcs86C0Vn+qMap8S4yZ
-                  juEY7bGYS/G0N1L3rLmuanFcq8LSuhA8qkoVltMFd58Mz4ZLlAvFVi1LYb7DFdsXukIN7ng6MwMD
-                  4mpRuqLDgifLOiwZtmz7uLVAWtRKZKO0/PrL7pGydYduocNyMAv+P4iULiNFZaQYYAlLqJric9dT
-                  mAW/OcxTFcfSDbjMPVPX2JPK2Gqo8FFDrLYPFRy0eN1kSEEv4lb6BbB07y21jSJSf/ua6qEDRV2m
-                  B7rNlMB2HYXZnCq2weHUE6rHHK4x4WtvFaiJiDzU72HA9t5Aa+r7iw30RkrVN4yLTz3Hp7qraLrj
-                  K0zVhcItVSiuYQk481Sd285bxOVXrD6Rq8mUqIySoRB5Vr+eq3tr/0uKbY6cheTp/0HkqpeU6hjM
-                  szRLsQwmFObYjuL4nClcwnFfNTTXbY3cAaSlRVQXksuyTUXiILHSTtLSszF4P5Y1VSmI4zF0tpAq
-                  HEheWmK4d3spG6SfB5WWzpf4u/YvPpkKxWW8rC01dNaibLA1w9Fo7d1aaUOxhdqEDesi0yZ0aFjx
-                  uwsdjkcn9zAQ7PwUxQcpOeZkkIrgL4+NKD0SPI27yTj3kyQV+SD0ssd3JBURtI+TQNb8H9+dkN7X
-                  /kWvd08u+1fX5w/HXX5CJgMRExH/lkyxwirHKvYfkTlhhxRSy+bxy40Lh1o2gnQydKMp1nsbx4bV
-                  A4unfwm/PNz1vjxcn918QwsWcoCF0uE8SjKYevIlyWGVrGgcHuP+hoyGFBLTWRqXofI1IrkYjpKU
-                  p2GEBfd//2s+2E3v4fJiPkZRjJf15k9p6PPpEel5eYdYRwRPJFRKjMkDqnDluy/JS4cY5Tt/LL82
-                  zgks2CDALrIBSpWeRZOX/eR3mObT6JlDRgJHcP4RjFp1Vbbh0CaCbBOuC9iBZATzjXKoSQihjus3
-                  SDbNwNkOORbDk/cj2D3wBvIsqqCRH4678Hihf5DDHA/0k8qEHaHMKoxQwVCoZyBxUmaJUwZmoqHw
-                  kZkwQl5rcGLg5AhB3usfiC9eRJSg/hnBiFcJBo+SUp2yZPRMG7PAlTjwGX92p4WOY6kPHM/zYB8V
-                  aiAvTbJsJnrJxtlIwGqE1eBCBJ8F+W2c5WTEs0IH3ZpxzFQb2JGPMpe0uJDnBo/jEX9BlxqwL3mP
-                  X5Gay0h+wVt1SuaE7eeU++JDdRl86fUvP5LrHKkE+B22DOA1OFx8GEASfhgCkWZEippUmwRwekgb
-                  I56CU/e//CQlzdL3olGj94sxxxH+zI+j8GT9efLyXwAAAP//7B1dc9ra8a+cpzZ3BmHzje9k2mKQ
-                  DTEgCiRpnjwyyEZjgbhIikOf+iP6C/tLurvnCAm8JyHWyUwf+nKvjYN2tbtnv3ePzMYtFu6DZz0G
-                  bmxlxOcON18WIf1iiWq5ptYTIE1BvD13LduJDmR8fwEo/QxqL1QJsqh3ffcD5HRVI4Verdw0jt5O
-                  cf0c2ulS+gq9erlhHD1qSrJAxp6tbVpCISw5/LT1lgN7dQjq3+wn8V1gzcnahYtniHj3VhJ5Fual
-                  OGw15SmFa6VcN07MCGzvYmUtvRheN63oXFQ45DK1oXC7UJkphV4aGAC18qqxJCpVhXa22wN8hTBy
-                  FbbvL+TRJj3ufMXhJO/lRENrLWbm1UjjSZnNr9imGakkMx0zqURP6Zbqu7JSZBB1BuJ5g8oTdZj3
-                  bQEfkK1awb+S+1Ee5PrKEg2kyL1GlLSjz9TKk/zSFFR5WYgA+Dyhpt26ZKQxs4144hPLApOAuIWF
-                  li4gPk8Qi6XNjeAfkYZ08S1ppkZlR/fAwrJQyyHxW9twm4CSVWoYv4c4PLhR3nrBW/lghshGIGSa
-                  X87+/LQDUxEIPADShpI+j/KPR/uNcz1+gEtk8N9437bezvdotia/GQbNgBvA/8tCrpigd0OKwNf2
-                  sb/2jt/FdqO9MpAlsFpwbNYbNCtA7KikIOk5AwIIyC5isaNeRInas7t3CY9lsjtYWsrPiV0CQv4o
-                  3nXg1+DQSvohCfa/lUUXjdqO5AgfJ4e8/a2y4V+BJnRk5SkEVwEIAAKFLgvQ/RF/2kV5s/lKlMlV
-                  wR5beHYCdASRPpVSya5lSiPWfBOHdzTftJIEB+Yr0qtKU04Vcnl1eoK3DzdL6bBA9LB2peEnMaCT
-                  tQlp/DgVgcOqIeB8AL47Yo/7iUoEuoQ4rCBatxbo4svuzwS7ih9AHSAUeGQkq0a4VYigLAJ//QAf
-                  x563BVcXpZfDNjeCBa7aJk7AYdmLgFw+wAczGfB7Hz1nQOI6AY06gj+CAB33uubaeWt/GeOQm4vV
-                  l79m6udst8NEsYF1T74XKwCuqH5/Qu+fXTv6Di5MvcoAFkCshLrJ1e9rzNNYC/JuLRnWgRkN11ZW
-                  6bPyNVcrU7MW9uOeQ0/7my931Y1Uk27g+uvo5IWODFTfC7aPSSCwcBX9zspJjknY5OxFv/8gAj7U
-                  N7M3uNjSN7kXUMOVUhlAhB/7iM9//vXv45ZrqfjSJMs0b4JkFRZxe8W2qUct6fPwRzhTmd+7WJNG
-                  sIJwCb627wVLS/6B9SCGo5IYSRUyhC+A0YIvyB073itMKLzBoPIMN+Yh1YmWWtOoxOb7fsxxAPWa
-                  4Vny43So4SbVyws/3pNLQ0JVEoFaagasp8nSVNdcXZXQhKJNxdxpzh3a0JyBl3X+w9+Vxk6HFVJ/
-                  iRTzJn1OqowrqQcrrTfzHH3IGL/qQfjTUR3/xHQdxcn/j5HPi5Hn50TC+LrAz6Mw+vuvrABlMprO
-                  TAA37rud+8/ew/1o+LcscXrmIMVRTvFoepdapzSzu2mHFTtW8UvK8qeTFmcGCNn30pGL6uWVVWtd
-                  WVf1Sm5u+X99Ld97krIYQ7HVwad2U69afSVdj5KuiDyeioKo55GGw1D4cLPXYRxKKpjDwkkaoco5
-                  zhDGSu/fBT/vSeCR3ZYIOPwgaJ0AnpAlPgu009YLt7gxACS+2pCDRaDUohjC3DRBC3Kv8sWYgAxw
-                  9AZOMzht6P+9rOCVEE/6xMcxKVxg8JINymFMVMas3vGJOHsf4GXr9b7C2uuhgZvB1BZDx7lzPs5n
-                  F93O9WA8E84nezoe3Pbnhfg413IJ9BTtxozFCrhyYpTTTr6o/Ogtywk4EA0I6WlZQd6XgB/vd7Q5
-                  HNuk1tv6PTDj3r1fucEjLnALODu5cB9AAtTXcrnut9L3je3UlctKuyq3Dp20k975u8VKpmduSfJM
-                  dJQewDF7yKtX3PLz7rQztsWnznBofynQySqfzm0/b3PbJnuD6VzcDDvzIiDp0dyLtttM+/adPZx/
-                  ESO703MKrXmnp7NQq0zLds+Zdq5tIK7AoSt5H0Ax6FWuXxtoUWeapXvTL+L247DbL0bmOtMl3ZlU
-                  uSbpax8j2S54WM9CXluR2a03wZdwWPDMhvle+PIVMPDMwW7xR6nCSJiqsg2csZg4g3Eh2SYIrJRV
-                  mNcedUYjZ94HsM6wmHRVmPet1xvtBjMSotH4uRHwCeWT3o6RgszRocJJX28wvrO/CGCDfVeIDhVO
-                  5uj0MXzHwUUJU7zrdn4reLw1bG8xbJ99tu05DRkVg9nihbxdYcxWz7anBgiMz2ZhXjJqbPhxMhgX
-                  uieDnsvDqzPHyRk7Jt7xsq7hJXOYMLMZ5VNT7+TxKihOLfb0gOXkxOnjaGRPex1jxorA8OqTMZWf
-                  4RiB6rzuzGZi2Lkrxm+EwKsNZqzpAFLkVLgawyyiQ7ixJvQfGBHv9gfDO8cpZjPwyfxB5iA64JUU
-                  u32GHswDZKgMjma3b08HxaiKj+adW8YeDJ3PoK2uB8OhCaOAIPi35Wb1OvPOJ7soeXkhbrcYl3pu
-                  /6MzI596VlBlaJzqS4anpCn7zlzMJrh6oSDkS4619VqTmwbthmFAuTNZGDlUEAsOREpo/PszAgbR
-                  8wikS96LVeTNdZLFuBsfJ5NjoRbd24Jixt4hVWs2GTG7DalCTjQ/NCph3nUj+zz2xYjf5ISv3mpV
-                  GDM9calAiVmytFz7erzm7VdbIUyWLFWGLMNw46WLFjO6FKNFlaUFCChnPP3Nci9oHlT0/GgLdPGW
-                  aRRk4Exwigg+bzBuxBRborqUfqGdQdudR30rVGt7t/Y34a6IUyOh8ieU8auuO71bOC6kFwW6NJOC
-                  J5VzqOq1Rosxsc4GBXG2lZVt7A3BJgChruksLKEElFcbzGm5G4zHA/pPt6jrrnFrKwz5qRtIpgPe
-                  8fEirp0q6ORWeJ40q4x03roQmuIZefYE3uUqhm6yWRgyHVVOMEGTcILZBSAxbZ26+Ay2KzSsvDRy
-                  2uQ2G9y56zB8NqW22I0GeGq59Fi4cx+8XMKmOA8avKpqcNm5a8/diSm5Ed0kxj4aMzRosEk6NG/c
-                  XgE4IqnqNkYF9lpGlFBGM3xwF8/YXpW2mPwirV3lzWmjxXh3t/6TC1i4hq6pJCA8Q7hVJ6CVHnEz
-                  sTluaA5jhbukk3Jmf45EHxdV56dmi+FQ0UhEnZGIfoINXU8xaCLSkVPgAvh4JlVlXeNccaWSoffi
-                  R8qKyI6z8S42pa7YYgl+zhgPrHPduHh7nTnRYE1Grdlm1FW+MyevLooLR1unNBkiTEJ0u00rTJ4M
-                  DS7SnSVrOCEm3Shd0MEcz5G7xqYhYEAYGA43NAeUy8LabhTjqOOhQ2SQLUY3IJRschZNO5MC6MHj
-                  vT3F36C53I3BoEOTDuCuU57LBl97szSlF/iLlWvNFgN95H7DMNQQ5JYGMlfh+4TWIgiQ7XSts/OQ
-                  bSsxoKS5+AJ9LK4atHJfMCngPFI31K0PBjwyqajZQhBqUIYhf0/cXfzPLC9gylbwl223uDTNDI7C
-                  h9D9I8G0hGb3RxFtoUOF0RaHpq8ZLfM1iwerKuBzrhwtVYU05GaxYAUVoiDGfPxgH0uRmEuTsGmz
-                  +UuIep7UuIwh8WzreMFYcWy0THt2zLJC49DUGVbcYNs9NtbTpb7GDEddxweudO67eCE9iaTT/2TC
-                  l9IlATguZI42kcCsOGo4UeUS+eEmPG7bMMaNKm/GG1wo2kvixepi5S+Xniml3dDEnc06cyqvg8RL
-                  pzPAtYpd0wZV41hVGU+zi/26afJQ+by/KjTXZQvYIAT7j0F1Yj4zwLyRWRJpUieNJiO1t7LV8zDj
-                  aCYcaGoEtslFynk1WqRYLp/Pwq1xLRHhE/gXp3WYYvBrvLfX4OoNUzeOAy/a0Fp+Q+A1ObMq8/qT
-                  cBcnT17k/TIpZBeDVlp1hhbqhvsebvwx7YRLkHxcyFU7MI93aknkhAqFiITOxaN3uB6iYJyoy2sx
-                  pu7aXaLWoLNqyN/RuBqNKkMZlbXAqSFjhkUXkDB6AnkS+ctznJz/AgAA///cXetu47gVfhUhP9o/
-                  ZixS1IXdFqiTSWbSyWzS2JlggQEGFEVthMhW1rInDRYLzGsUaF9unqQ8pGzLMWU7tjIZ9FcM2REv
-                  hzw8N37ftr5Ig7YgVmPzsZi0tlFJwyGGN1p4R9Ud1xYiFE1FCpb9aWoTnOOLj/vWkNnLMZi1vObk
-                  Te/KOTq/Pj3dq1HWVGJjCxD2L/55fXLeWqmxNSoI82BZYv/oHb+HMqo2CqzdhgXmWzZWD6rotRP1
-                  Usnmhn1myxxc8LvWjZGGfLPNYqwZ8W1tdbth6NtciPlWb6vtpvCfpW2tXU6SrKwyFi3lKBp64FsU
-                  XZXDba9xv8GJtR1u73lWzg+3IstlBSfRViFKUy7ZoveqeXjDh22WZDVYprYT56YoEnE7bS2q4luP
-                  GlifNo4ASCi3uwPtwWDfZhXXL1+01XyTT2C7/8BHQDGX8SpH1pZf0BSItzMk6Cowfetrzyi81ewO
-                  Q1tp63vto5uI4gwd3HZzc/egWpNLatkApv5qdvu2xZOoQSHZrJ9edaetvZttVUt2fWyxR+ZhihY1
-                  st0s8W2Z4lN9Elb+eYsyaAjp+baklDoH9H36F4lk+Q16yXYtZ8CHfAy3X02pTVt6ock2sewJiBdU
-                  FWcxf2xNOTblje3pMdAO7Ud5G3xw31Y0XddTbUnBsilCGtmEUAtO7OGYmJfb2rSdSW3F58zrNzC1
-                  YHaIQz9kEVC1EEYiH+/K1XKwzIcMV5BXaAsiN47DiAqXMdfz4iBJUtfnbuDKFIdiHQB7nRdjDaOI
-                  vWDzwMrGUh5Oy4RXAAnwb83MA1gzD8DytDEPqI2iQTqUPT8H5Oo4bx/kyPkgTjlkBg6eYjs3dnQN
-                  xXR9ShcAzq6XCA+r/iUuloi6gUSxcBPkcpFKiYPEHHcb0J09ipfQnWtgzo3wzuYm+fbozlsKZx3G
-                  M466bqT+dnHQ9aIuTMlnT/o+oThGEZYM0SRNUezJFBEmPNcLUpJyfwbyvBad+3XlKDxGsUs44sR3
-                  ERUiVHJkAnHmioCxVKZ8C5Tup1QSq3Jc4HbvitL9QnLkMY2k74aI8yhA1E8wigMlTCq4VhhUsLhi
-                  lHhCKNECUvdp/6DORY4PngJ1K3Vh2t0Wp/u6/6Y3u2DcB4xFUX1fR+gOKtLzHRC65xgUB1tgdFOf
-                  aufvKQU5jLNVoO6DBubxECnB6vtYS/jcBwtsizo0t1rvDK98t5513OyqJmzuhq9I81cbIbf/mg0B
-                  wXHyt0/KeZjRyCxHjzWcILB7qyGrh4efDpxyLFawRObnkA4IjuSke9o/+ayPmm45kfn9OImVU8lo
-                  5MMi/HTQrUOeTUuNA9iMO+OU9xxYOPLcKSUvixHgdBuMGI3eVUedAQzLOajmbTEuJSAFOuMseQKz
-                  ea+zAnf6c1yhWQLYk/lY3N9DvmukTZHDWc0f9KEsDH64k5pYi2rFVBQYgM88S+UC3hNqmpEo1JyW
-                  qu27zPRhVDyUt4Wco30WSkncGhQu9EXeZiJXantYqAbFo6iAcOCfDA5iNRYNrlIBRDZM21hW0Nll
-                  DWmznCNWphC1fQKKU/6k2dpntFn5o5NUlFsy0b81nTGIXxoLC/5Dw3vZ/8fAgFbc5bU3z3EcDW32
-                  ymC+ff136dyPi38BMtAjoPzMSqo6jrGpq5qBP83vgC2D2f1kmmwieNdwROrbbOwMARxo1k+Qg3Mv
-                  +Z36bMbXUcOR92pRQXNlZ2nGAAIzA4RPCSC7Ms1GsqyvRl46377+53qkwY0yQDJTa/52wvUaU+7A
-                  6LepNp0Pv339bzUFN1ING9JWymYuZf4FID4NnuUDPP3ClRgNhNwIUNnViGKA9HtcxY1dWsOwyOTY
-                  QCzBy3oGE3BUwd8fOkeAA28Q8XmiETLBligS/jgTTl/mUqgxqadq8yygRpNxcW/A0YZyNFXdgRtX
-                  EwCe+3TwtlAqA/bkENA+s0XJrHlpkn1ZvHYAr/2L09MgbpkGNq5lVOuDqQIMlZN/mqkfjYdOn6dq
-                  ZqoQqMGNfTdXAFd603Qv4XOViC11hrDCcbySv05z83i+VGrNX8maJ6/x5pUVj2bQeR/Npi2X/0GJ
-                  CxTppcFqvJSTsk7lXn40SsLpTSfT4cg51lpigeRxAzi1zo0Gqr0ySLI3mcak68NMlI4D+FUwgQv9
-                  v4Q6uHg8A3ozov7M05Rn4/Lv9QN4S6y35UNqCezNOF+L7+pobwsvbfb1HO5t8ba1ECeLn81Q2H7/
-                  Y/Hsqm3stcgCvdYfXFydHSt9c3x9Pri+6p07/bMBpDe/C8EwYVGwAjm2ihDXux5cOIOL66vvSM9s
-                  7doqa/TRd6V1t3ZqlS/66EJZ3K/cK7bSK8gmv3avwtVenZ99OHrtbmFsQdnrv3vtbpFV8L/Ls2O4
-                  +PvaPWsZRrKtXq1uxXfXP7/6VvwR2O7t68tCdX92rvp1euJ8PDu5+e7925Xr3meEWWpKjpWxKueo
-                  u62xvZvWVoP18NyWVJSjkRTFZNJuD2yZRHhuq0BWVl824sri05m0/UsGTTsr7WMX4zCMLJL4hd9N
-                  Vau7Nzl/taVRN/SprZTppLzTox0Dh4HOKO/TftWKfdJtORqATy5HWdZO2tS0Ym/dhgGW87YFHm5K
-                  m1ByGLgkoh7rBPiQ4ohgGq5PnPTA59BMY9McfMOO8lsK/aA3+NgxfCCdyjHrVJ5Z5xjIGeBD5ZV1
-                  LhdRF+Ohdar7GJ1LniQ5fLiZRVFuKmKTzs0YJifPHaTmxznJM+VWLzn7yii/HGt7Xzbnd57zFqee
-                  oylNiqYWAdcq0EbwHYaBFvF+SaB9e7qaKxrdlzo+9zAuJ129NPeYmxW687XTsQvf+Q7d2TBmQKuG
-                  2IZB/x9y9d3tZLhrwuzny76jqVC7ztH4ES7gysl48pivZFdmA0H9yaF1HBqDGwIUAFUtx38GFOsx
-                  T7JSHjpOrx7t0dQppTOBsCxgW2tY63jO5iBMqLujnot8mmRzPP3RhEMpwuxeZrmeY3VJlIvcjvLe
-                  mauD7ZvocYMXIln9QWdytmKP5g2XEOdb/fGzskuQVyJdjLtKxXu4C0L5LClOCXEDFIdEIioZQVzy
-                  AHFgVSZhQD0/2o7Et7Z6P/CJGtuD8wsfxzoovLKCFybRBx3cnE/6u6xUBlImNDfIsJJAqnE0K6LG
-                  TSJTctGMPpKP80cHM9dVQhPGEByaqFyhPpt4GnAhCHVgOqPpUKquql/ewiJTLZhjyTRdTnX0cAZF
-                  f6vePecD6uW8vFObdRHA3WMvbEHhzYIXovD+v5fJwDJQdRoMiofR3vvIk5TIxPNQrHYNogmjKE6p
-                  +iSiyFcfAhxsySa/rH8WKdLlDbTBs3n+8nPdKAjJFroYE/eFFuCGMQ22+9nz5Oh2XdYlXtev5Jgo
-                  jZf4NECCyQRRkriIKUGqc1vgiCaJG2LxVISBu5MIGyz0XUW3RTVL9FKSaxjKYP3XO0qKGEm5gRAi
-                  wRTxkFBEAy9EMU0JctMoSmMRhCJdkZQbhDtttib3eVdZbaHmPUxeaps1jWaw6Qc7CswzAvPVuNX+
-                  iRENBUGUxlgJLPYR9klKXZeEaRo+ERhVe2sXgTVFXOaHxexEO8qVdRUD01hf3BZFvodMt6hCwswL
-                  X/rsfv6AV4/FtnSqX+lUtS8DxgTCIlY61ecEscTzkUwFDiKW+CF+KnjiU7aL4Kswk7ItwE7OdfHB
-                  HjINttin1A9eRqYNYxms/3pHUQWVqHjk+q5MkVKsaqMSKVHsKZ8gxTxxfc/3XRE83aOBGzV6Anv6
-                  scBHCm5OxQWrRgHlD+op0OrNzMXU+VUt6qzykQy9aFWHoOzOD4UuXlS9gNDW4qcCzExteBrOb6g1
-                  mQEwcTVhuj4iB3MTqh+NyVltpnuwaHe38bdQFMx/LX/3x57x2do3oAlvzZv3tt1DKT3GCEPE5RhR
-                  RjiKpYcR8VMShIlHKEm3s93tpbJv+CiTuXMu01z3dvcg2S6LLhJEYOoz5CkfBVGPJChmJEUhDQj2
-                  oySJdf3hRjXnvngh9DNn4rlltZ4SPVscSl7sR8xTln1AI0Sx5CgiXoQ4IyLymBvwGG9VHt2s7f4H
-                  AAD//+xdW2/bOhJ+31/BzctpASsRJer2tknPpefSNkiyWxQ4i0ISKUentpQjWcm6wP73nSEl2bKo
-                  +N54F/tSFLEtDYdDzgz5fTMrE40otHaI7QkO4TlkwNh5E82mwUvi/2WDecheCbZHa/74oLJplU7L
-                  hxHZ91r10Z7Mm4y8+W6N3wrje/gSdUcwMpLMyCs2CgKXTF/jCruXc7zHjraB/fj0SNHsf4FWe/Z9
-                  uOM7yjm8EayYWxhaBZiu2uC0qcUjCGBCsFax9fHde4GHPqKIRDHbw2cjwBeRjmkXV5gI/A/CX1X/
-                  3zh8ACVWWfpnJbo9wlswoWpLjgRM3F6xM2mO+i3EHja7Qbq89qStxxnYaMc7OQ029vlzPCdXTU/N
-                  dyBcK+Dedhr7DDZUyP0gmAQXa4vYCIUZGdQLIH7klkspHbTTA/AYwLrPlogMknrfJTLIe500Oduc
-                  yTCUkaxwGWTXxN24DPVd09kGTIaPN7fYcmiFyCDHuTeR4RLbDNREhs7h29kwq4EZsn5lh9UQBKpE
-                  uI7a4HieafY+a6/xUrzDPdMgRoapDWuXWSeYGGJBXH8gV/m/CJOzOMSHkARdarrnPrlJY4gBOZav
-                  qGG8CnRzggqHlHxI4df38xL2jclLaPx5Ze5CStHIJa/1HrFPd8sckH59hj1+Ye3DftoC0fNYwA6K
-                  NBEJl4cNsnqQLYX9kWn64PfPyeWMUPvc6qYzo0W4kKp8qsRbjTL9KhDB/0lgg9tyhv1mOmoaLXp7
-                  r/wdo45b2J2/ikLmSbCPR7Cr87+Sj018Am+SfIpJ4xhGTd9j5QKUh5ggRwOLfqNUKuWSEs5Vc1+O
-                  MknKiwTsS66KCo2q8Rjbyy+uNeWP8ToIm3Wq+6AVhgA+p4X+ny8msIMqxygu5HgVVMosE4SIKhhH
-                  w5+ZYu1fqcrH+mwqrjupgztrmt0v2qf3DYe8evs0J+z1iDzdw4fKAFSP9VL2va+ZMrUFVNmC0NJZ
-                  gSNy+avqEt/Ip5qm+zj3MNpSFuatw8qfJiJbSIDj0Agm0felUgXJsOyI/Jm88RrVN1nN/RlK/aDo
-                  KyAzxKUWJNjqxQKNGd57mcX3eQFuDSWtm12bq8L9GKZFFGbIRoHhLOakgfQjuOEz0ir+tnBBG2L5
-                  u3vEAsu/AATpwfxL2KH1aP4tM8UVjP+rwPReE9+yDMeyj9lrndk9eOXt+w8fry9vcIP/RrDKgJ4o
-                  HlUrWB+Qevvx53fvXlqwU6FEaER7eUqERqgToERopDoF8oFGrFOkBWnEPAFCiW7LOAHmhk6sl+dH
-                  6KTqbxZvP9zc/nB1+eZXcvPz9y8t30nxEVC+HfkI1ERMna5nwcfwCYIUIhmkEheO4No9Cpy1b9LB
-                  4gOqbXLSphf/wCBzfjBWQvtGvSzaakq1PlZurSEEfwsJxXclhHcVT/M9ZdKWVpKfBLo+blfpmLQF
-                  QDv9ePaF0bfv7EnDmOPrqlHqU0GyIPSSa9lmbA8Tql89oCAdoeWuyifVNGvKopWHtaBAy2yxLaar
-                  DndVpDycPIp0UpdLPAjXQr1MpxFfXyWuplXnk+QgArQv0orgerrKqQOWcpfGXwRmxz/gydN+IskX
-                  a6dG1xNEHUFfSyzpoWZF1xBEKsvX9ZJqVXI402hfprdQjRC/5U9Y0fWgatDW7LOZ6+jqV6PPKsmH
-                  jLzFGy8sbr/Py+VL9Dag2Urr7f1g06/lnMkZ0W1TTbXCtpLzgWZ/aBFo/FtvqzyYKnTVAtE0dCZQ
-                  hCDBwbRQv0Y3EyajehucPhC2l97VkzWtHJit0/u7ECK7vAyxcOkjbAD5dCoKSWi6qkq5MzYXCju2
-                  c5Cv1c+Appzt25yPed72+TjYLOjrujOmcVF/l6eYB96O11ICaXDuOBB/eTaWUvSZ72M5+m/BCWyI
-                  gCu1Wka/QfifjWtSw3xBEJR97+8q+Yzbpp5TnzWod7Nng/zAAbe8jgkYLJD4S9Q36sAH+zMBN5dp
-                  mP82h2foOH8Dz9aw+54Z4i7svmdfvGYc2/L4LIOahuxQ8SyP72wVPKHWYCspVteWdt3pZJdmpJTN
-                  os6eBzcs6W8ZuEot3/PNYQW2YGTHXwNG3g3esPUY73b94RaQBHphsgtqX1jWhYWQhIB+FknMncAL
-                  DD8JE4OFjBqB6wjDEoIJFgQxuJxVVLLJhqGub+4L2FJSdLRi3pv5HyA/gT10Fmb19aIEQdojREgm
-                  QsxIGKGfkkW+JjmkUnlCVvL0dWCX5+xhA8IBCyz/OBCtA439rve4nW3ANpUNeJRy7jqmYcVISXBi
-                  24hMQQ1qU5c7SeLT2FmxAdtyWd8GYPrTjM/JL2GcR/3Z1+9N35VkGpYlXnaOsckqKVXJuZK8qovP
-                  cZHxAsKGseqiXk1fq6tbedWL+NkxRjdlByYrLyenORYtDKfInlOXkaVobqG7oVFzIboAHUV5NSMO
-                  XixKmNGKbLtZoeeA39oAckVN50g4wf+xKWgWg+zO29YqvJMVA2tRVkJgkKHz5S1BXWr1MAR1SQgt
-                  rB4e2Zwz0zdibsMOGoXUiLiXGJYf8YiaPndcXlemXV5BXo8uJ8FZ3RWDd+DkEssYZqg0BCTAAGRt
-                  yeVK4PIEddQiAOqRt3Mtyy7WzOvdDdfdgAayWmD4YHZ7HEXcdZ8+SXfaSzvWwGgQupHlGX6AvFeX
-                  mYZvmdTwPNsMBXdD03Q2tIaNt1PVnuQJWbxlPhWzdIreJZtg4c00/oJFTlUZVyHroZKywjRwRCJY
-                  Xk8Cy3VK8AVW4SSF+KN6FC1mGDzR0x4m85JE7m+pnl70rd6JGChSF5Z8lxfZjgFbx8C8OEo8L6IG
-                  E7ZvMB+3G+r5hu24pkM5xbbJm2OdL8hVHpEbWE99+7rEer2ihnndCgmdnai2kIV4QvxOA6qSeCdJ
-                  k5Eg87aoagu/IqFMs/GP0z3MaQOE/dHM6YjaaKznBtxeBOm3DAyXjyn3sxgRBWAwcQxbkgvhXYIh
-                  PkT1Bv6NeixyY+ZsYzHPbkpvQhgVR2jvtQi/LO3VsyYYANHzcZZ+xQNZVQy4t09/3LiIxDPGsgnB
-                  7FjGcgQt3OkfjamhrCaeZnWx273txRGRxQOPGTYPhcFYAOmADfbiWlEgYstDyPpW9nKaKaEMxjep
-                  9GA6R6Irn15GSL3ayQQ2c23TQnocM5hpRYYfUQdyw8COqRN5lhUfKIrphu6q2HdDH5yExRiJlxN1
-                  WIng3jHkJNGcPOJ9gnjdlLbHkysxw4xDYlWzXDn0GeoIfi+fOpJrEPQKjhkhtiqnUIsuLYiq5h6L
-                  8z2saYNwxwqOFSGfoh6H87MtTDTFwZYXvuX5bIWG6Nlb29tdlaHjlo2tU/TZxX340N+fH/A4a1yE
-                  D7DZ1m58C97zM27pmUPdo7ulg429F+/WGBrJFlh6y96+KIBU2rWwYpwTmAbjHBMrxzESj4ecW6YP
-                  nmlLZt9aA5H0hskXjPPUrXX3MFZh5vOHClaVdL8iLOcyONzDKoKXtIq9Brwgo/d+uffsU5tbdmwG
-                  hhmyGCIRO4RIJLEN7ieW4JBSW4678ez3JxryuHlYR084xiR8zAsUHrbBWDJEyln+sESouEvzcQjZ
-                  UiiPFlSeuMekP3OFdfQSCIcb/J3miZD63FZZKbbr+6QzATMJbc5gzllowz/UCYzISiLDFQnlInJs
-                  O9kwedFXJbhEakoVQf7Ws4/lDGzrGQ5jxtzIFkaQxIHBApDbZx5sXInpU8qc2A82WPPfot5AO8wh
-                  xtVWc6iKDEAcSWVFlTqhMK0gjlxDhAKXMSjE55yCLqyIua7HuGNv1oNtVpGfCjHOi00vF3aZOlnG
-                  iPme4XEBJhcH3IgouCDhRSan1AxtL9n+KPQYvdYOMV8BrjlLJgB2PV+R7YGNetSgbiLp9I4RCtfB
-                  fDDyhQ+e16f6XmvbBmOt7a1NkSEcQSZdTFocahuUPOXFhO8RtW9yS2yaR8oBD6uB3prePwCzGUx3
-                  4BkJixKD+RHYQhzDsnA903Np7FieN5AJ/p+wvp6w/unDLdJZjkJYX+68N4zX6U2IaZoQblMF7OgS
-                  qR3b75Ol1Z7pmXSYua5vymd12vj1eNQ159zxvIEvrW3PtzXjfEeNYbEHhMJoqOfDGkMQJWw/fWL6
-                  OvL5s0oLTDuAzGsygQVCvsceay+qvCF1UcnUt7ZSF6wK5rJTVdcQ6/59PiN/VNitrrkSkJmyul0K
-                  SXlf4MEoRNv31TTMVGs79DmKNl/Ci7KxYiur/V/UfHqZbS2VIKv/jGVSyplsjYZlxNJEjNpWfbNF
-                  S7zGyyzdnZ7/nv2e/ZgWmP8X+UzE9QUq9V02FBmiz4rwYOhLhh3qkOMOrh+SyZkosDtjWV+iKVo+
-                  fpTVtY9HSNku/6wwJJes7JGsFo5XbAkEDKoroFIVfIRD52SqsMM4IBhyNlvBA4yaWgYrXReVAqZV
-                  fC/75A1x7z/Vr+doBcstEckcZDbUjY3MfuV13mMaNtz1kjA6IhRCdfk5tcxF1YQn0M55nTpdY79w
-                  5B9gt0/yaukJ3d8gh/01qjaegAi87hPaIby/zx8FBDtFy86f4I3kO3gSTMEvVSbOyVsxgxHLf+cy
-                  tngQqnwDDkdOyxS+Ll+hyPcwVjCcGXaYVOURsCumtIrrCYiENaPkrSfY8E8Q2WFhAywwJQ8Jw4nU
-                  A4j4iH0UIUKoCpSItxrGB4JstSk0utWQ7hGJ+PlJRJ9hOcCqLHbh3i+v+U4fvQZ5qyffL6F0m8+H
-                  yfeD/mGFZm+ZwYXtWQb4iCX/uBPJ/p///st/AAAA//8DAFHV0+SvHAEA
+              string:
+                  "{\"METADATA\":{\"RESULTS\":{\"CURRENT_COUNT\":7,\"TOTAL_COUNT\":7},\"SEARCH_PARAMETERS\":{\"LIMIT\":1000,\"OFFSET\":0,\"QUERY\":\"Yosemite
+                  National Park\"}},\"RECDATA\":[{\"ACTIVITY\":[{\"ActivityID\":6,\"ActivityName\":\"BOATING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Boating\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"},{\"ActivityID\":9,\"ActivityName\":\"CAMPING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Camping\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"},{\"ActivityID\":11,\"ActivityName\":\"FISHING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Fishing\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"},{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Hiking\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"},{\"ActivityID\":20,\"ActivityName\":\"PICNICKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Picnic\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"},{\"ActivityID\":25,\"ActivityName\":\"WATER
+                  SPORTS\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Water
+                  Sports\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"},{\"ActivityID\":26,\"ActivityName\":\"WILDLIFE
+                  VIEWING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Wildlife
+                  Viewing\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"},{\"ActivityID\":37,\"ActivityName\":\"PLAYGROUND
+                  PARK SPECIALIZED SPORT SITE\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Playground\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"},{\"ActivityID\":103,\"ActivityName\":\"ENVIRONMENTAL
+                  EDUCATION\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"Environmental
+                  Education\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"481\"}],\"EVENT\":[],\"Enabled\":true,\"FACILITY\":[{\"FacilityID\":\"233509\",\"FacilityName\":\"HIDDEN
+                  VIEW\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/233509\"},{\"FacilityID\":\"233440\",\"FacilityName\":\"BUCK
+                  RIDGE\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/233440\"},{\"FacilityID\":\"247866\",\"FacilityName\":\"Hidden
+                  View Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247866\"},{\"FacilityID\":\"251647\",\"FacilityName\":\"Wakalumi
+                  Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/251647\"}],\"GEOJSON\":{\"COORDINATES\":[-119.88333,37.11],\"TYPE\":\"Point\"},\"Keywords\":\"\",\"LINK\":[{\"Description\":\"\",\"EntityID\":\"481\",\"EntityLinkID\":\"23b0a293fc5d5e95b35e2ae6eeabde72\",\"EntityType\":\"RecArea\",\"LinkType\":\"Official
+                  Web Site\",\"Title\":\"Hensley Lake Website\",\"URL\":\"https://corpsLakes.erdc.dren.mil/visitors/projects.cfm?ID=L268006\"}],\"LastUpdatedDate\":\"2022-04-14\",\"MEDIA\":[{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"481\",\"EntityMediaID\":\"2122\",\"EntityType\":\"RecArea\",\"Height\":295,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Brown
+                  butterfly resting on yellow flowers\",\"Title\":\"Wildlife in Action\",\"URL\":\"https://cdn.recreation.gov/public/images/2122.jpg\",\"Width\":480}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"USACE\",\"OrgID\":\"130\",\"OrgImageURL\":\"uasce.gif\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"US
+                  Army Corps of Engineers\",\"OrgParentID\":\"162\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.usace.army.mil\",\"OrgURLText\":\"\"}],\"OrgRecAreaID\":\"481\",\"ParentOrgID\":\"130\",\"RECAREAADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"Raymond\",\"LastUpdatedDate\":\"2015-06-30\",\"PostalCode\":\"93653-0085\",\"RecAreaAddressID\":\"465492\",\"RecAreaAddressType\":\"Default\",\"RecAreaID\":\"481\",\"RecAreaStreetAddress1\":\"P.O.
+                  Box 85\",\"RecAreaStreetAddress2\":\"25207 Road 407\",\"RecAreaStreetAddress3\":\"\"}],\"RecAreaDescription\":\"Less
+                  than an hour drive northeast of Fresno in the foothills of the Sierra Nevada
+                  enroute to Yosemite National Park. Lake activities include water skiing, fishing,
+                  swimming, horseback riding, mountain biking, hiking, and camping.\",\"RecAreaDirections\":\"Located
+                  17 miles northeast of Madera on County Road 400.\",\"RecAreaEmail\":\"\",\"RecAreaFeeDescription\":\"\",\"RecAreaID\":\"481\",\"RecAreaLatitude\":37.11,\"RecAreaLongitude\":-119.88333,\"RecAreaMapURL\":\"\",\"RecAreaName\":\"Hensley
+                  Lake\",\"RecAreaPhone\":\"(559) 673-5151\",\"RecAreaReservationURL\":\"\",\"Reservable\":false,\"StayLimit\":\"\"},{\"ACTIVITY\":[{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"13954\"},{\"ActivityID\":26,\"ActivityName\":\"WILDLIFE
+                  VIEWING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"13954\"}],\"EVENT\":[],\"Enabled\":true,\"FACILITY\":[{\"FacilityID\":\"258939\",\"FacilityName\":\"John
+                  Muir National Historic Site Visitor Center\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/258939\"}],\"GEOJSON\":{\"COORDINATES\":[-122.1326097,37.9828422],\"TYPE\":\"Point\"},\"Keywords\":\"Hiking,Wildlife
+                  Watching,John Muir National Historic Site\",\"LINK\":[{\"Description\":\"John
+                  Muir National Historic Site Official Website\",\"EntityID\":\"13954\",\"EntityLinkID\":\"10051178\",\"EntityType\":\"RecArea\",\"LinkType\":\"Official
+                  Web Site\",\"Title\":\"John Muir National Historic Site Official Website\",\"URL\":\"https://www.nps.gov/jomu/\"},{\"Description\":\"John
+                  Muir National Historic Site Map\",\"EntityID\":\"13954\",\"EntityLinkID\":\"10051179\",\"EntityType\":\"RecArea\",\"LinkType\":\"Map\",\"Title\":\"John
+                  Muir National Historic Site Map\",\"URL\":\"https://www.nps.gov/jomu/planyourvisit/maps.htm\"}],\"LastUpdatedDate\":\"2021-09-23\",\"MEDIA\":[{\"Credits\":\"NPS
+                  Photo\",\"Description\":\"John Muir Home at the John Muir National Historic
+                  Site\",\"EmbedCode\":\"\",\"EntityID\":\"13954\",\"EntityMediaID\":\"1757918\",\"EntityType\":\"RecArea\",\"Height\":295,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"John
+                  Muir Home at the John Muir National Historic Site\",\"Title\":\"John Muir
+                  Home at the John Muir National Historic Site\",\"URL\":\"https://cdn.recreation.gov/public/images/81529.jpg\",\"Width\":442},{\"Credits\":\"NPS
+                  photo, Luther Bailey\",\"Description\":\"Historic Copper Sprayer.\",\"EmbedCode\":\"\",\"EntityID\":\"13954\",\"EntityMediaID\":\"10088460\",\"EntityType\":\"RecArea\",\"Height\":576,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Historic
+                  Copper Sprayer.\",\"Title\":\"John Muir National Historic Site\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/16/17/12/13954_9be91ff5-163f-435d-94b4-a4918aafdde1.jpeg\",\"Width\":864},{\"Credits\":\"NPS
+                  photo, Luther Bailey\",\"Description\":\"Mount Wanda walking trail.\",\"EmbedCode\":\"\",\"EntityID\":\"13954\",\"EntityMediaID\":\"10088461\",\"EntityType\":\"RecArea\",\"Height\":880,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Mount
+                  Wanda walking trail.\",\"Title\":\"Mount Wanda\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/16/17/13/13954_01abfc8f-3b42-41ea-8c0b-33f73aa50d1e.jpeg\",\"Width\":1320},{\"Credits\":\"NPS
+                  photo, Luther Bailey\",\"Description\":\"The old windmill.\",\"EmbedCode\":\"\",\"EntityID\":\"13954\",\"EntityMediaID\":\"10088462\",\"EntityType\":\"RecArea\",\"Height\":576,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"The
+                  old windmill.\",\"Title\":\"John Muir National Historic Site\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/16/17/14/13954_f0724ae4-bb93-481b-97dd-a0eb6647a1c3.jpeg\",\"Width\":864},{\"Credits\":\"NPS
+                  photo, Luther Bailey\",\"Description\":\"John Muir's desk in the \\\"Scribble
+                  Den\\\".\",\"EmbedCode\":\"\",\"EntityID\":\"13954\",\"EntityMediaID\":\"10088463\",\"EntityType\":\"RecArea\",\"Height\":666,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"John
+                  Muir's desk in the \\\"Scribble Den\\\".\",\"Title\":\"John Muir National
+                  Historic Site\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/16/17/16/13954_5ee62534-c264-4392-a121-a4355ef8537a.jpeg\",\"Width\":999}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"NPS\",\"OrgID\":\"128\",\"OrgImageURL\":\"nps.gif\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"National
+                  Park Service\",\"OrgParentID\":\"139\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.nps.gov\",\"OrgURLText\":\"\"}],\"OrgRecAreaID\":\"JOMU\",\"ParentOrgID\":\"128\",\"RECAREAADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"Martinez\",\"LastUpdatedDate\":\"2017-04-12\",\"PostalCode\":\"94553\",\"RecAreaAddressID\":\"857364\",\"RecAreaAddressType\":\"Physical\",\"RecAreaID\":\"13954\",\"RecAreaStreetAddress1\":\"4202
+                  Alhambra Ave\",\"RecAreaStreetAddress2\":\"\",\"RecAreaStreetAddress3\":\"\"}],\"RecAreaDescription\":\"John
+                  Muir played many roles in his life, all of which helped him succeed in his
+                  role as an advocate for Nature. As America\u2019s most famous naturalist and
+                  conservationist, Muir fought to protect the wild places he loved, places we
+                  can still visit today. Muir\u2019s writings convinced the U.S. government
+                  to protect Yosemite, Sequoia, Grand Canyon and Mt. Rainier as national parks.\",\"RecAreaDirections\":\"Please
+                  visit our main website for specific directions to our park. You may call the
+                  John Muir Visitor Center for additional information.\",\"RecAreaEmail\":\"jomu_general_info@nps.gov\",\"RecAreaFeeDescription\":\"\",\"RecAreaID\":\"13954\",\"RecAreaLatitude\":37.9828422,\"RecAreaLongitude\":-122.1326097,\"RecAreaMapURL\":\"\",\"RecAreaName\":\"John
+                  Muir National Historic Site\",\"RecAreaPhone\":\"(925) 228-8860\",\"RecAreaReservationURL\":\"\",\"Reservable\":false,\"StayLimit\":\"\"},{\"ACTIVITY\":[],\"EVENT\":[],\"Enabled\":true,\"FACILITY\":[],\"GEOJSON\":{\"COORDINATES\":null,\"TYPE\":\"\"},\"Keywords\":\"\",\"LINK\":[{\"Description\":\"\",\"EntityID\":\"13732\",\"EntityLinkID\":\"3f1c69cf1f618a5d709ef79c6fd4f638\",\"EntityType\":\"RecArea\",\"LinkType\":\"Map\",\"Title\":\"Lee
+                  Vining Canyon Scenic Byway Map\",\"URL\":\"http://library.byways.org/a/static_maps/000/000/453/LeeVining_map.gif\"},{\"Description\":\"\",\"EntityID\":\"13732\",\"EntityLinkID\":\"47565f55e55e6eeddf4b3fe4b6916c09\",\"EntityType\":\"RecArea\",\"LinkType\":\"Official
+                  Web Site\",\"Title\":\"\",\"URL\":\"http://www.fhwa.dot.gov/byways/byways/2298\"}],\"LastUpdatedDate\":\"2020-12-09\",\"MEDIA\":[{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"13732\",\"EntityMediaID\":\"1497\",\"EntityType\":\"RecArea\",\"Height\":0,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Tioga
+                  Lake\",\"URL\":\"https://cdn.recreation.gov/public/images/1497.jpg\",\"Width\":0}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2019-02-14\",\"OrgAbbrevName\":\"DOT\",\"OrgID\":\"133\",\"OrgImageURL\":\"dot.gif\",\"OrgJurisdictionType\":\"Federal\",\"OrgName\":\"Department
+                  of Transportation\",\"OrgParentID\":\"157\",\"OrgType\":\"Federal Department\",\"OrgURLAddress\":\"http://www.dot.gov\",\"OrgURLText\":\"\"}],\"OrgRecAreaID\":\"\",\"ParentOrgID\":\"133\",\"RECAREAADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"ME\",\"City\":\"Ellsworth\",\"LastUpdatedDate\":\"2018-10-12\",\"PostalCode\":\"04605\",\"RecAreaAddressID\":\"10428\",\"RecAreaAddressType\":\"Default\",\"RecAreaID\":\"13732\",\"RecAreaStreetAddress1\":\"Route
+                  180\",\"RecAreaStreetAddress2\":\"One Hatchery Way\",\"RecAreaStreetAddress3\":\"\"}],\"RecAreaDescription\":\"Flanked
+                  by the Ansel Adams and Hoover Wilderness Areas and Yosemite National Park,
+                  Lee Vining Canyon Scenic Byway takes you through glacier and volcano-created
+                  scenery; a dichotomous conflict between two primal elements.\",\"RecAreaDirections\":\"<p><strong>Navigating
+                  the Byway:</strong><br/><h4>Driving the Byway</h4>\\n\\n<p>Follow Highway
+                  120 west through the Inyo National Forest from the town of Lee Vining to the
+                  Yosemite Entrance Station at Tioga Pass.</p>\\n\\n<h4>From Lee Vining, CA:</h4>\\n\\n<p>Head
+                  south on Interstate 395, and turn right onto Highway 120. The byway begins
+                  there.  </p>\\n\\n<h4>From Yosemite National Park:</h4>\\n\\n<p>Take Tioga
+                  Road Scenic Byway (Highway 120) and head north. Lee Vining Canyon Scenic Byway
+                  begins right after the National Park entrance at Tioga Pass. </p>\\n\\n</p>\",\"RecAreaEmail\":\"\",\"RecAreaFeeDescription\":\"\",\"RecAreaID\":\"13732\",\"RecAreaLatitude\":0,\"RecAreaLongitude\":0,\"RecAreaMapURL\":\"http://library.byways.org/a/static_maps/000/000/453/LeeVining_map.gif\",\"RecAreaName\":\"Lee
+                  Vining Canyon Scenic Byway\",\"RecAreaPhone\":\"800-400-4867\",\"RecAreaReservationURL\":\"\",\"Reservable\":false,\"StayLimit\":\"\"},{\"ACTIVITY\":[{\"ActivityID\":4,\"ActivityName\":\"AUTO
+                  TOURING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":5,\"ActivityName\":\"BIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":9,\"ActivityName\":\"CAMPING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":11,\"ActivityName\":\"FISHING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":20,\"ActivityName\":\"PICNICKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":24,\"ActivityName\":\"VISITOR
+                  CENTER\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":26,\"ActivityName\":\"WILDLIFE
+                  VIEWING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":32,\"ActivityName\":\"DAY
+                  USE AREA\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":104,\"ActivityName\":\"PHOTOGRAPHY\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":105,\"ActivityName\":\"PADDLING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"},{\"ActivityID\":100006,\"ActivityName\":\"WATER
+                  ACTIVITIES\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"610\"}],\"EVENT\":[],\"Enabled\":true,\"FACILITY\":[{\"FacilityID\":\"273838\",\"FacilityName\":\"Willow
+                  Placer Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/273838\"},{\"FacilityID\":\"273833\",\"FacilityName\":\"McCabe
+                  Flat Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/273833\"},{\"FacilityID\":\"273830\",\"FacilityName\":\"Briceburg
+                  Visitor Center\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/273830\"},{\"FacilityID\":\"273831\",\"FacilityName\":\"Cable
+                  Rock Day Use Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/273831\"},{\"FacilityID\":\"273835\",\"FacilityName\":\"North
+                  Fork Primitive Camp\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/273835\"},{\"FacilityID\":\"274292\",\"FacilityName\":\"Briceburg
+                  Put-in\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/274292\"},{\"FacilityID\":\"273836\",\"FacilityName\":\"Railroad
+                  Flat Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/273836\"}],\"GEOJSON\":{\"COORDINATES\":[-120.00355,37.59662],\"TYPE\":\"Point\"},\"Keywords\":\"\",\"LINK\":[{\"Description\":\"Merced
+                  River RMA Flickr Album\",\"EntityID\":\"610\",\"EntityLinkID\":\"f8a69a90349b180ba175e26fadd55111\",\"EntityType\":\"RecArea\",\"LinkType\":\"Flickr
+                  Album\",\"Title\":\"Merced River RMA Flickr Album\",\"URL\":\"https://www.flickr.com/photos/blmcalifornia/albums/72157666116149077\"},{\"Description\":\"This
+                  is the official website for the Merced River Recreation Area.\",\"EntityID\":\"610\",\"EntityLinkID\":\"79a998dc93939b5593f917bb9389341b\",\"EntityType\":\"RecArea\",\"LinkType\":\"Official
+                  Web Site\",\"Title\":\"Merced River Recreation Area\",\"URL\":\"https://www.blm.gov/visit/merced-river\"},{\"Description\":\"This
+                  is a link to the Merced Wild and Scenic River National Conservation Lands
+                  web site.\",\"EntityID\":\"610\",\"EntityLinkID\":\"d0010f33ba67ab96dd06ef200bc015a8\",\"EntityType\":\"RecArea\",\"LinkType\":\"Other\",\"Title\":\"Merced
+                  Wild and Scenic River - National Conservation Lands Special Designation\",\"URL\":\"https://www.blm.gov/programs/national-conservation-lands/california/merced-wsr\"},{\"Description\":\"Merced
+                  River BLM Campground Site Map\",\"EntityID\":\"610\",\"EntityLinkID\":\"10007868\",\"EntityType\":\"RecArea\",\"LinkType\":\"Map\",\"Title\":\"Merced
+                  River BLM Campground Site Map\",\"URL\":\"https://www.blm.gov/sites/blm.gov/files/Merced_Campground.pdf\"},{\"Description\":\"This
+                  is a map of the Merced River Recreation Area.\",\"EntityID\":\"610\",\"EntityLinkID\":\"05faf18c3c94e2c052084d5f47810826\",\"EntityType\":\"RecArea\",\"LinkType\":\"Map\",\"Title\":\"Map
+                  of the Merced River Recreation Area\",\"URL\":\"https://www.blm.gov/sites/blm.gov/files/docs/2021-06/MercedRiverRecArea8x14_map_508c.pdf\"}],\"LastUpdatedDate\":\"2022-09-21\",\"MEDIA\":[{\"Credits\":\"Photo
+                  by David Greenwood, BLM\",\"Description\":\"Birdseye view of Briceburg Put-in
+                  & Day Use Area.\",\"EmbedCode\":\"\",\"EntityID\":\"610\",\"EntityMediaID\":\"2469595\",\"EntityType\":\"RecArea\",\"Height\":525,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Merced
+                  River RMA\",\"URL\":\"https://cdn.recreation.gov/public/2022/06/01/17/19/610_5c8dd5ae-8177-4d9a-8de3-05a9c346f514_700.jpeg\",\"Width\":700},{\"Credits\":\"Photo
+                  by David Greenwood, BLM\",\"Description\":\"Where Hwy 140 meets the Merced
+                  River at Briceburg.\",\"EmbedCode\":\"\",\"EntityID\":\"610\",\"EntityMediaID\":\"2469594\",\"EntityType\":\"RecArea\",\"Height\":724,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Merced
+                  River RMA\",\"URL\":\"https://cdn.recreation.gov/public/2022/06/01/17/19/610_1954c727-754e-4989-9da4-a06ef2d152bb_1440.jpeg\",\"Width\":1440},{\"Credits\":\"Photo
+                  by David Greenwood, BLM\",\"Description\":\"BLM signs at Briceburg River Road\",\"EmbedCode\":\"\",\"EntityID\":\"610\",\"EntityMediaID\":\"2469593\",\"EntityType\":\"RecArea\",\"Height\":630,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Merced
+                  River RMA\",\"URL\":\"https://cdn.recreation.gov/public/2022/06/03/17/10/610_0b43f384-f8b9-48a0-85a2-0e1c49a24ed2_1440.jpeg\",\"Width\":1440},{\"Credits\":\"Photo
+                  by David Greenwood, BLM\",\"Description\":\"BLM welcome sign\",\"EmbedCode\":\"\",\"EntityID\":\"610\",\"EntityMediaID\":\"2483909\",\"EntityType\":\"RecArea\",\"Height\":936,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Merced
+                  River RMA\",\"URL\":\"https://cdn.recreation.gov/public/2022/06/03/17/10/610_d0c9d03b-239d-413e-a71e-b57e8de13a89_1440.jpeg\",\"Width\":1440},{\"Credits\":\"Photos
+                  by David Greenwood, BLM\",\"Description\":\"Briceburg Visitor Center in spring.\",\"EmbedCode\":\"\",\"EntityID\":\"610\",\"EntityMediaID\":\"2483908\",\"EntityType\":\"RecArea\",\"Height\":932,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Merced
+                  River RMA\",\"URL\":\"https://cdn.recreation.gov/public/2022/06/03/17/10/610_46667e12-dabc-4712-94c1-9735bb9c6324_1440.jpeg\",\"Width\":1440}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"BLM\",\"OrgID\":\"126\",\"OrgImageURL\":\"blm.gif\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"Bureau
+                  of Land Management\",\"OrgParentID\":\"139\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.blm.gov\",\"OrgURLText\":\"\"}],\"OrgRecAreaID\":\"\",\"ParentOrgID\":\"126\",\"RECAREAADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"Briceburg\",\"LastUpdatedDate\":\"2021-06-04\",\"PostalCode\":\"95345\",\"RecAreaAddressID\":\"825920\",\"RecAreaAddressType\":\"Default\",\"RecAreaID\":\"610\",\"RecAreaStreetAddress1\":\"Bureau
+                  of Land Management\",\"RecAreaStreetAddress2\":\"Merced River RMA\",\"RecAreaStreetAddress3\":\"\"}],\"RecAreaDescription\":\"<p>Remember
+                  your <a href=\\\"https://www.blm.gov/learn/outdoorethics\\\" rel=\\\"nofollow\\\">
+                  OUTDOOR ETHICS</a> when enjoying your public lands. Please<a href=\\\"https://www.recreateresponsibly.org\\\"
+                  rel=\\\"nofollow\\\"> RECREATE RESPONSIBLY</a>.</p>\\n\\n<p><strong>Closure
+                  Notice:</strong><br/>\\nThe Merced River Recreation Area and Campgrounds will
+                  temporarily be\_<strong>CLOSED</strong> beginning Friday, Oct. 7, 2022 thru
+                  Saturday, Nov. 5, 2022 due to a staffing shortage.</p>\\n\\n<p><strong>Toxic
+                  Algae Alert:\_</strong><br/>\\nToxic algal mats ARE present within the Merced
+                  River system. <em>(posted 9-20-2022)</em></p>\\n\\n<hr/>\\n<h3>Campgrounds,
+                  Trailheads and Day-Use Areas:\_\_</h3>\\n\\n<p>There are three (3) developed
+                  BLM campgrounds along the Merced River between Briceburg and Bagby. The campgrounds
+                  are accessed by crossing the suspension bridge just past the Briceburg Visitor
+                  Center and heading down river along the unpaved Briceburg River Road (old
+                  Yosemite Valley Railroad Grade).</p>\\n\\n<p>NOTE: It is NOT recommended for
+                  trailers over 18 feet and large RV's to cross over the suspension bridge.</p>\\n\\n<ul>\\n\\t<li><a
+                  href=\\\"https://www.blm.gov/visit/mccabe-flat-campground\\\" rel=\\\"nofollow\\\">McCabe
+                  Flat Campground</a> - 2.3 miles downstream from Briceburg</li>\\n\\t<li><a
+                  href=\\\"https://www.blm.gov/visit/willow-placer-campground\\\" rel=\\\"nofollow\\\">Willow
+                  Placer Campground</a> - 3.6 miles downstream from Briceburg</li>\\n\\t<li><a
+                  href=\\\"https://www.blm.gov/visit/railroad-flat-campground\\\" rel=\\\"nofollow\\\">Railroad
+                  Flat Campground</a> - 4.5 miles downstream from Briceburg</li>\\n\\t<li><a
+                  href=\\\"https://www.blm.gov/visit/north-fork-primitive-camp\\\" rel=\\\"nofollow\\\">North
+                  Fork Primitive Camp</a> - 2.5 miles downstream from Railroad Flat Campground</li>\\n\\t<li><a
+                  href=\\\"https://www.blm.gov/visit/cable-rock-day-use-site\\\" rel=\\\"nofollow\\\">Cable
+                  Rock Day Use Site</a> - 1.4 miles downstream from Briceburg</li>\\n\\t<li><a
+                  href=\\\"https://www.blm.gov/visit/search-details/274292/1\\\" rel=\\\"nofollow\\\">Briceburg
+                  Day Use/Put-in </a> - Hwy 140 at Merced River, 12 miles east of Mariposa</li>\\n</ul>\\n\\n<h3>Overview</h3>\\n\\n<p>The
+                  Merced River Recreation Management Area is a very special place just downstream
+                  from Yosemite. It is well known for excellent whitewater boating, wildflower
+                  viewing, camping, swimming, and recreational gold panning/prospecting. Bird
+                  watching is good throughout the area most of the year. Fishing is popular
+                  for trout and bass along the entire river. Biking along the gravel roads and
+                  trails is popular with families and experienced mountain bikers alike. Hiking
+                  is great anytime of the year. Easy access, un-damned flows, and excellent
+                  whitewater boating attract rafters and kayakers during the spring runoff (April
+                  through July). Commercial rafting trips are available from BLM permitted outfitters.</p>\\n\\n<p>The
+                  Merced River Trail continues on downstream from the end of the Briceburg River
+                  Road and brings hikers or bikers to the North Fork of the Merced River and
+                  beyond. The Burma Grade road is another popular route to explore on foot,
+                  bike, or high-clearance automobile. This scenic backroad climbs steeply out
+                  of the Merced River Canyon and eventually leads to Greely Hill or Buck Meadows
+                  (Highway 120).</p>\\n\\n<h3>Need a Map?</h3>\\n\\n<ul>\\n\\t<li><a href=\\\"https://www.blm.gov/sites/blm.gov/files/docs/2021-06/MercedRiverRecArea8x14_map_508c.pdf\\\"
+                  rel=\\\"nofollow\\\">Merced River Recreation Area Map</a></li>\\n\\t<li><a
+                  href=\\\"https://www.blm.gov/sites/blm.gov/files/Merced_Campground.pdf\\\"
+                  rel=\\\"nofollow\\\">Merced Campground Site Map</a></li>\\n\\t<li><a href=\\\"https://www.blm.gov/sites/blm.gov/files/documents/files/media-center-public-room-california-merced-river-recreation-map.pdf\\\"
+                  rel=\\\"nofollow\\\">Merced River Existing Mining Claims Map</a></li>\\n</ul>\\n\\n<h3>Helpful
+                  Links:</h3>\\n\\n<ul>\\n\\t<li>Recreation Passes: <a href=\\\"https://www.blm.gov/programs/recreation/passes\\\"
+                  rel=\\\"nofollow\\\">America the Beautiful \u2014 National Parks and Federal
+                  Recreational Lands Pass</a></li>\\n\\t<li>Return To: <a href=\\\"https://www.blm.gov/office/mother-lode-field-office\\\"
+                  rel=\\\"nofollow\\\">BLM, Mother Lode Field Office</a></li>\\n\\t<li>Visit:\_<a
+                  href=\\\"https://www.blm.gov/visit/briceburg-visitor-center\\\" rel=\\\"nofollow\\\">Briceburg
+                  Visitor Center</a></li>\\n</ul>\\n\",\"RecAreaDirections\":\"<p>From the city
+                  of Merced, located on U.S. Highway 99, travel 40 miles east on State Highway
+                  140 to the town of Mariposa. Then travel another 15 miles along Highway 140
+                  to the Briceburg Visitor Center at the Merced Wild & Scenic River.</p>\\n\\n<p>There
+                  are three developed BLM campgrounds along the Merced River between Briceburg
+                  and Bagby. The campgrounds are accessed by crossing the suspension bridge
+                  just past the Briceburg Visitor Center and heading down river along the unpaved
+                  Briceburg River Road (old Yosemite Valley Railroad Grade).</p>\\n\\n<p>NOTE:
+                  Trailers over 18 feet and large RV's are not recommended crossing the suspension
+                  bridge.</p>\\n\",\"RecAreaEmail\":\"BLM_CA_Web_ML@blm.gov\",\"RecAreaFeeDescription\":\"\",\"RecAreaID\":\"610\",\"RecAreaLatitude\":37.59662,\"RecAreaLongitude\":-120.00355,\"RecAreaMapURL\":\"https://www.blm.gov/sites/blm.gov/files/docs/2021-06/MercedRiverRecArea8x14_map_508c.pdf\",\"RecAreaName\":\"Merced
+                  River Recreation Management Area\",\"RecAreaPhone\":\"209-379-9414\",\"RecAreaReservationURL\":\"\",\"Reservable\":false,\"StayLimit\":\"\"},{\"ACTIVITY\":[{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"<p>\\n\\tDay
+                  hiking is a great activity in the Sierra National Forest. If you are planning
+                  to travel in the forest during the day with a big group, a group is limited
+                  to 15 people and 25 head of stock. Please remember to always pack out what
+                  you pack into any wilderness area.\_</p>\\n\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"1074\"},{\"ActivityID\":30,\"ActivityName\":\"FIRE
+                  LOOKOUTS/CABINS OVERNIGHT\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"<p>\\n\\tThe
+                  Sierra National Forest does not have <a href=\\\"http://www.fs.fed.us/r5/sequoia/recreation/rec_rentals/camp4_and_a_half.html\\\"
+                  rel=\\\"nofollow\\\">cabin rentals</a>.</p>\\n\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"1074\"}],\"EVENT\":[],\"Enabled\":true,\"FACILITY\":[{\"FacilityID\":\"233842\",\"FacilityName\":\"DRY
+                  GULCH\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/233842\"},{\"FacilityID\":\"232909\",\"FacilityName\":\"CRANE
+                  VALLEY\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232909\"},{\"FacilityID\":\"232880\",\"FacilityName\":\"KELTY
+                  MEADOW\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232880\"},{\"FacilityID\":\"10182463\",\"FacilityName\":\"Kirch
+                  Flat Group Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10182463\"},{\"FacilityID\":\"233839\",\"FacilityName\":\"DIRT
+                  FLAT\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/233839\"},{\"FacilityID\":\"AP236\",\"FacilityName\":\"Billy
+                  Creek Picnic Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/AP236\"},{\"FacilityID\":\"AP237\",\"FacilityName\":\"Dowville
+                  Picnic Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/AP237\"},{\"FacilityID\":\"232910\",\"FacilityName\":\"RECREATION
+                  POINT\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232910\"},{\"FacilityID\":\"232136\",\"FacilityName\":\"DINKEY
+                  CREEK\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232136\"},{\"FacilityID\":\"232821\",\"FacilityName\":\"DORABELLE
+                  CAMPGROUND\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232821\"},{\"FacilityID\":\"232817\",\"FacilityName\":\"MAMMOTH
+                  POOL\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232817\"},{\"FacilityID\":\"445858\",\"FacilityName\":\"Sierra
+                  National Forest Wilderness Permit\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/445858\"},{\"FacilityID\":\"232820\",\"FacilityName\":\"FISH
+                  CREEK (CA)\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232820\"},{\"FacilityID\":\"232877\",\"FacilityName\":\"SWEETWATER\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232877\"},{\"FacilityID\":\"232813\",\"FacilityName\":\"DEER
+                  CREEK\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232813\"},{\"FacilityID\":\"232802\",\"FacilityName\":\"LUPINE\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232802\"},{\"FacilityID\":\"232804\",\"FacilityName\":\"MONO
+                  CREEK\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232804\"},{\"FacilityID\":\"232878\",\"FacilityName\":\"Forks
+                  Campground (Sierra)\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232878\"},{\"FacilityID\":\"233837\",\"FacilityName\":\"SUMMERDALE
+                  CAMPGROUND\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/233837\"},{\"FacilityID\":\"232911\",\"FacilityName\":\"WISHON
+                  BASS LAKE\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232911\"},{\"FacilityID\":\"232135\",\"FacilityName\":\"BASS
+                  LAKE RECREATION AREA\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232135\"},{\"FacilityID\":\"232882\",\"FacilityName\":\"CHILKOOT\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232882\"},{\"FacilityID\":\"232812\",\"FacilityName\":\"COLLEGE\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232812\"},{\"FacilityID\":\"232815\",\"FacilityName\":\"RANCHERIA\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232815\"},{\"FacilityID\":\"232906\",\"FacilityName\":\"LOWER
+                  BILLY CREEK\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232906\"},{\"FacilityID\":\"232811\",\"FacilityName\":\"CATAVEE\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232811\"},{\"FacilityID\":\"232879\",\"FacilityName\":\"TEXAS
+                  FLATS\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232879\"},{\"FacilityID\":\"232805\",\"FacilityName\":\"MONO
+                  HOT SPRINGS\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232805\"},{\"FacilityID\":\"243633\",\"FacilityName\":\"Coolidge
+                  Meadow Fishing Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243633\"},{\"FacilityID\":\"232806\",\"FacilityName\":\"VERMILLION\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232806\"},{\"FacilityID\":\"232810\",\"FacilityName\":\"UPPER
+                  BILLY CREEK CG\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232810\"},{\"FacilityID\":\"243669\",\"FacilityName\":\"Goat
+                  Meadow Trailhead & Snow Play\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243669\"},{\"FacilityID\":\"247714\",\"FacilityName\":\"Patterson
+                  Mountain Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247714\"},{\"FacilityID\":\"243629\",\"FacilityName\":\"Lone
+                  Sequoia Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243629\"},{\"FacilityID\":\"243631\",\"FacilityName\":\"Windy
+                  Point Dispersed Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243631\"},{\"FacilityID\":\"243657\",\"FacilityName\":\"Ross
+                  Cabin Interpretive Site (minor)\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243657\"},{\"FacilityID\":\"232808\",\"FacilityName\":\"BADGER
+                  FLATS GROUP\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232808\"},{\"FacilityID\":\"243572\",\"FacilityName\":\"Onion
+                  Springs Overflow Camping Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243572\"},{\"FacilityID\":\"232814\",\"FacilityName\":\"KINNIKINNICK\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232814\"},{\"FacilityID\":\"232818\",\"FacilityName\":\"Rock
+                  Creek (Sierra National Forest, CA)\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232818\"},{\"FacilityID\":\"243627\",\"FacilityName\":\"Garnet
+                  Dike Boat Launching Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243627\"},{\"FacilityID\":\"247708\",\"FacilityName\":\"Courtright/Wishon
+                  Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247708\"},{\"FacilityID\":\"243630\",\"FacilityName\":\"Kamook
+                  Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243630\"},{\"FacilityID\":\"243651\",\"FacilityName\":\"Dorabelle
+                  Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243651\"},{\"FacilityID\":\"243521\",\"FacilityName\":\"Bear
+                  Ridge Cutoff Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243521\"},{\"FacilityID\":\"243666\",\"FacilityName\":\"Rocky
+                  Point Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243666\"},{\"FacilityID\":\"243624\",\"FacilityName\":\"Jackass
+                  Meadows Interpretive Site (minor)\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243624\"},{\"FacilityID\":\"243573\",\"FacilityName\":\"Gigantea
+                  Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243573\"},{\"FacilityID\":\"243668\",\"FacilityName\":\"Westfall
+                  Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243668\"},{\"FacilityID\":\"243616\",\"FacilityName\":\"Hermit's
+                  Hole Day Use Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243616\"},{\"FacilityID\":\"243644\",\"FacilityName\":\"Huntington
+                  Boat Ramp & Launching Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243644\"},{\"FacilityID\":\"243663\",\"FacilityName\":\"Lewis
+                  Creek Trail Nrt Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243663\"},{\"FacilityID\":\"243667\",\"FacilityName\":\"The
+                  Falls Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243667\"},{\"FacilityID\":\"243681\",\"FacilityName\":\"Recreation
+                  Point Picnic Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243681\"},{\"FacilityID\":\"243527\",\"FacilityName\":\"Potter
+                  Cutoff Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243527\"},{\"FacilityID\":\"243579\",\"FacilityName\":\"Summit
+                  Camping Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243579\"},{\"FacilityID\":\"247716\",\"FacilityName\":\"Mammoth
+                  Pool Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247716\"},{\"FacilityID\":\"243613\",\"FacilityName\":\"Eastwood
+                  Visitor Information Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243613\"},{\"FacilityID\":\"243635\",\"FacilityName\":\"Dinkey
+                  Fisherman Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243635\"},{\"FacilityID\":\"243640\",\"FacilityName\":\"Trails
+                  End Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243640\"},{\"FacilityID\":\"243670\",\"FacilityName\":\"Maxson
+                  Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243670\"},{\"FacilityID\":\"243642\",\"FacilityName\":\"Vermillion
+                  View Observation Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243642\"},{\"FacilityID\":\"243658\",\"FacilityName\":\"Shawdow
+                  Of The Giants Nrt Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243658\"},{\"FacilityID\":\"243660\",\"FacilityName\":\"Quartz
+                  Mountain Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243660\"},{\"FacilityID\":\"247710\",\"FacilityName\":\"San
+                  Joaquin River Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247710\"},{\"FacilityID\":\"247713\",\"FacilityName\":\"Yosemite
+                  South Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247713\"},{\"FacilityID\":\"247712\",\"FacilityName\":\"Dinkey
+                  Creek Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247712\"},{\"FacilityID\":\"247709\",\"FacilityName\":\"Merced
+                  River Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247709\"},{\"FacilityID\":\"243683\",\"FacilityName\":\"College
+                  Rock Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243683\"},{\"FacilityID\":\"247717\",\"FacilityName\":\"High
+                  Sierra Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247717\"},{\"FacilityID\":\"243649\",\"FacilityName\":\"Florence
+                  Lake Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243649\"},{\"FacilityID\":\"243687\",\"FacilityName\":\"Miami
+                  Creek OHV Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243687\"},{\"FacilityID\":\"247707\",\"FacilityName\":\"Huntington
+                  Lake Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247707\"},{\"FacilityID\":\"243625\",\"FacilityName\":\"Mono
+                  Creek Picnic Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243625\"},{\"FacilityID\":\"243524\",\"FacilityName\":\"Dutch/hidden
+                  Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243524\"},{\"FacilityID\":\"243643\",\"FacilityName\":\"Blue
+                  Canyon Vista Observation Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243643\"},{\"FacilityID\":\"243626\",\"FacilityName\":\"Cold
+                  Springs Summit Interpretive Site (minor)\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243626\"},{\"FacilityID\":\"243621\",\"FacilityName\":\"Redinger
+                  Overlook Observation Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243621\"},{\"FacilityID\":\"243565\",\"FacilityName\":\"Gravel
+                  Flat Camping Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243565\"},{\"FacilityID\":\"243564\",\"FacilityName\":\"High
+                  Sierra RD\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243564\"},{\"FacilityID\":\"243532\",\"FacilityName\":\"Logan
+                  Meadow Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243532\"},{\"FacilityID\":\"243531\",\"FacilityName\":\"Rattlesnake
+                  Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243531\"},{\"FacilityID\":\"243622\",\"FacilityName\":\"Portugese
+                  Overlook Observation Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243622\"},{\"FacilityID\":\"271741\",\"FacilityName\":\"Fresno
+                  Dome View Observation Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/271741\"},{\"FacilityID\":\"243618\",\"FacilityName\":\"Bass
+                  Lake Recreation Office Info Site/fee Station\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243618\"},{\"FacilityID\":\"243617\",\"FacilityName\":\"Badger
+                  Flat Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243617\"},{\"FacilityID\":\"243528\",\"FacilityName\":\"Potter
+                  Pass Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243528\"},{\"FacilityID\":\"243664\",\"FacilityName\":\"Lakeside
+                  Picnic Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243664\"},{\"FacilityID\":\"243523\",\"FacilityName\":\"Coyote
+                  Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243523\"},{\"FacilityID\":\"243619\",\"FacilityName\":\"Florence
+                  Lake Boating Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243619\"},{\"FacilityID\":\"232801\",\"FacilityName\":\"SPRING
+                  COVE\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232801\"},{\"FacilityID\":\"232912\",\"FacilityName\":\"CEDAR
+                  BLUFF\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232912\"},{\"FacilityID\":\"232881\",\"FacilityName\":\"SOQUEL
+                  CAMPGROUND\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232881\"},{\"FacilityID\":\"232803\",\"FacilityName\":\"JACKASS
+                  MEADOW\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232803\"},{\"FacilityID\":\"243654\",\"FacilityName\":\"Arch
+                  Rock Interpretive Site (minor)\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243654\"},{\"FacilityID\":\"243568\",\"FacilityName\":\"Oak
+                  Flat Camping Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243568\"},{\"FacilityID\":\"243526\",\"FacilityName\":\"Mono
+                  Creek Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243526\"},{\"FacilityID\":\"243525\",\"FacilityName\":\"Florence
+                  Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243525\"},{\"FacilityID\":\"243645\",\"FacilityName\":\"Lake
+                  Edison Boating Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243645\"},{\"FacilityID\":\"243659\",\"FacilityName\":\"Wishon
+                  Boating Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243659\"},{\"FacilityID\":\"243628\",\"FacilityName\":\"Kaiser
+                  Pass Toilet Area Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243628\"},{\"FacilityID\":\"243632\",\"FacilityName\":\"Wishon
+                  Dam Fishing Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243632\"},{\"FacilityID\":\"243519\",\"FacilityName\":\"Woodchuck
+                  Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243519\"},{\"FacilityID\":\"243520\",\"FacilityName\":\"Bear
+                  Creek Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243520\"},{\"FacilityID\":\"243522\",\"FacilityName\":\"Billy
+                  Creek Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243522\"},{\"FacilityID\":\"243530\",\"FacilityName\":\"Rancheria
+                  Falls Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243530\"},{\"FacilityID\":\"243671\",\"FacilityName\":\"Cabin
+                  Rentals\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243671\"},{\"FacilityID\":\"247715\",\"FacilityName\":\"Kings
+                  River Special Management Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247715\"},{\"FacilityID\":\"243569\",\"FacilityName\":\"Ross
+                  Crossing Camping Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243569\"},{\"FacilityID\":\"243612\",\"FacilityName\":\"A
+                  Group Group Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243612\"},{\"FacilityID\":\"243653\",\"FacilityName\":\"Redinger
+                  Boating Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243653\"},{\"FacilityID\":\"243567\",\"FacilityName\":\"Fence
+                  Meadow Camping Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243567\"},{\"FacilityID\":\"243650\",\"FacilityName\":\"Mile
+                  High Vista Observation Site\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243650\"},{\"FacilityID\":\"243536\",\"FacilityName\":\"Tamarack
+                  Ridge Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243536\"},{\"FacilityID\":\"243529\",\"FacilityName\":\"Portal
+                  Forebay Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243529\"},{\"FacilityID\":\"247718\",\"FacilityName\":\"Shaver
+                  Lake Recreation Area\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/247718\"},{\"FacilityID\":\"243533\",\"FacilityName\":\"Kings
+                  River Trailhead\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/243533\"},{\"FacilityID\":\"74829\",\"FacilityName\":\"Bass
+                  Lake RD\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/74829\"},{\"FacilityID\":\"74830\",\"FacilityName\":\"High
+                  Sierra RD\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/74830\"}],\"GEOJSON\":{\"COORDINATES\":[-119.175798,37.292851],\"TYPE\":\"Point\"},\"Keywords\":\"\",\"LINK\":[{\"Description\":\"\",\"EntityID\":\"1074\",\"EntityLinkID\":\"80bb784c099033b6ddf05a060ef17c08\",\"EntityType\":\"RecArea\",\"LinkType\":\"Official
+                  Web Site\",\"Title\":\"Sierra National Forest\",\"URL\":\"https://www.fs.usda.gov/sierra\"}],\"LastUpdatedDate\":\"2021-09-23\",\"MEDIA\":[{\"Credits\":\"Share
+                  the Experience, Gwen McFadden\",\"Description\":\"Sierra National Forest\",\"EmbedCode\":\"\",\"EntityID\":\"1074\",\"EntityMediaID\":\"c394102a-a250-4cc7-bc9c-a90c699fefa4\",\"EntityType\":\"RecArea\",\"Height\":525,\"IsGallery\":false,\"IsPreview\":true,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Sierra
+                  National Forest\",\"URL\":\"https://cdn.recreation.gov/public/2018/08/20/16/38/1074_ab48e507-aa86-45d1-b6ff-4cac09904c9b_700.jpg\",\"Width\":700},{\"Credits\":\"Share
+                  the Experience, Gwen McFadden\",\"Description\":\"Sierra National Forest\",\"EmbedCode\":\"\",\"EntityID\":\"1074\",\"EntityMediaID\":\"03dc3109-d01e-406e-bc0d-0acfee16d612\",\"EntityType\":\"RecArea\",\"Height\":341,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Sierra
+                  National Forest\",\"URL\":\"https://cdn.recreation.gov/public/2018/08/20/16/38/1074_3e55241b-81e9-4dff-b3ef-29c3036f2fa5_1440.jpg\",\"Width\":1440}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"FS\",\"OrgID\":\"131\",\"OrgImageURL\":\"fs.jpg\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"USDA
+                  Forest Service\",\"OrgParentID\":\"163\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.fs.fed.us\",\"OrgURLText\":\"\"}],\"OrgRecAreaID\":\"45420\",\"ParentOrgID\":\"131\",\"RECAREAADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"\",\"LastUpdatedDate\":\"2017-07-05\",\"PostalCode\":\"\",\"RecAreaAddressID\":\"869991\",\"RecAreaAddressType\":\"Default\",\"RecAreaID\":\"1074\",\"RecAreaStreetAddress1\":\"\",\"RecAreaStreetAddress2\":\"\",\"RecAreaStreetAddress3\":\"\"}],\"RecAreaDescription\":\"<p><img
+                  alt=\\\"A view of Florence Lake from a distance.\\\" src=\\\"http://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5309485.jpg\\\"/>Recreation
+                  use on the Sierra National Forest spans all seasons. People visit the forest
+                  for camping, horseback riding, swimming, picnicking, biking and hiking opportunities.
+                  Visitors also enjoy fishing, hunting, wildlife viewing, fall-colors, skiing,
+                  snowshoeing, and off-highway-vehicle, motorcycle and snowmobile riding.</p><p>The
+                  Sierra National Forest represents experiences through five wilderness areas;
+                  two nationally designated wild and scenic rivers; three nationally designated
+                  trails, and two national scenic byways.</p><p>The Sierra\u2019s proximity
+                  to Yosemite, Kings Canyon & Sequoia National Parks; and the Inyo National
+                  Forest with their many trails, high peaks, rivers, deep canyons, wilderness
+                  and big trees defines the forest as \u201CUnited in Breathtaking Tranquility.\u201D</p><p>We
+                  pride ourselves of the wide variety of natural beauty and recreational opportunities
+                  offered to the American public. Begin your adventure today.</p><p>Select a
+                  topic from the drop down menu below then \\\"Go\\\" for more information.</p><div>Select
+                  a Topic: Accessible Recreation OpportunitiesBoatingCampingFirearm SafetyFishingHikingHorseback
+                  Riding/Pack StationsLakesMining RegulationsNational Recreation Reservation
+                  SystemOff-Highway VehiclesRecreation Residence ProgramPetsScenic BywaysViewing
+                  Autumn ColorsWildernessWhite Water RaftingWinter Sports  \_</div>\",\"RecAreaDirections\":\"\",\"RecAreaEmail\":\"public_affairs@fs.fed.us\",\"RecAreaFeeDescription\":\"\",\"RecAreaID\":\"1074\",\"RecAreaLatitude\":37.292851,\"RecAreaLongitude\":-119.175798,\"RecAreaMapURL\":\"\",\"RecAreaName\":\"Sierra
+                  National Forest\",\"RecAreaPhone\":\"{}\",\"RecAreaReservationURL\":\"\",\"Reservable\":false,\"StayLimit\":\"\"},{\"ACTIVITY\":[{\"ActivityID\":8,\"ActivityName\":\"HISTORIC
+                  & CULTURAL SITE\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":4,\"ActivityName\":\"AUTO
+                  TOURING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":5,\"ActivityName\":\"BIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":6,\"ActivityName\":\"BOATING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":9,\"ActivityName\":\"CAMPING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":7,\"ActivityName\":\"CLIMBING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":11,\"ActivityName\":\"FISHING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":20,\"ActivityName\":\"PICNICKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":16,\"ActivityName\":\"HUNTING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":105,\"ActivityName\":\"PADDLING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"},{\"ActivityID\":26,\"ActivityName\":\"WILDLIFE
+                  VIEWING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2986\"}],\"EVENT\":[],\"Enabled\":true,\"FACILITY\":[{\"FacilityID\":\"259294\",\"FacilityName\":\"Copper
+                  Center Visitor Center\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/259294\"},{\"FacilityID\":\"259295\",\"FacilityName\":\"Kennecott
+                  Visitor Center\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/259295\"},{\"FacilityID\":\"259296\",\"FacilityName\":\"Chitina
+                  Ranger Station\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/259296\"},{\"FacilityID\":\"10117784\",\"FacilityName\":\"Yakutat\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10117784\"},{\"FacilityID\":\"10075403\",\"FacilityName\":\"Esker
+                  Stream Cabin\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10075403\"},{\"FacilityID\":\"259293\",\"FacilityName\":\"Kendesnii
+                  Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/259293\"},{\"FacilityID\":\"259297\",\"FacilityName\":\"Slana
+                  Ranger Station\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/259297\"}],\"GEOJSON\":{\"COORDINATES\":[-142.6028439,61.4182147],\"TYPE\":\"Point\"},\"Keywords\":\"Arts
+                  and Culture,Auto and ATV,Biking,Boating,Camping,Climbing,Fishing,Picnicking,Hiking,Hunting,Paddling,Wildlife
+                  Watching,Wrangell - St Elias National Park & Preserve\",\"LINK\":[{\"Description\":\"Wrangell
+                  - St Elias National Park & Preserve Official Website\",\"EntityID\":\"2986\",\"EntityLinkID\":\"10077697\",\"EntityType\":\"RecArea\",\"LinkType\":\"Official
+                  Web Site\",\"Title\":\"Wrangell - St Elias National Park & Preserve Official
+                  Website\",\"URL\":\"https://www.nps.gov/wrst/\"},{\"Description\":\"Wrangell
+                  - St Elias National Park & Preserve Map\",\"EntityID\":\"2986\",\"EntityLinkID\":\"10077698\",\"EntityType\":\"RecArea\",\"LinkType\":\"Map\",\"Title\":\"Wrangell
+                  - St Elias National Park & Preserve Map\",\"URL\":\"https://www.nps.gov/wrst/planyourvisit/maps.htm\"}],\"LastUpdatedDate\":\"2021-09-23\",\"MEDIA\":[{\"Credits\":\"NPS
+                  Photo/ Bryan Petrtyl\",\"Description\":\"The Wrangell Mountains dominate the
+                  view of the northern half of the park.   This range lies entirely within the
+                  park and reaches 16,390 ft (4,996 m) in height.\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"1759035\",\"EntityType\":\"RecArea\",\"Height\":810,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"The
+                  Wrangell Mountains dominate the view of the northern half of the park.   This
+                  range lies entirely within the park and reaches 16,390 ft (4,996 m) in height.\",\"Title\":\"Wrangell
+                  Mountains\",\"URL\":\"https://cdn.recreation.gov/public/2020/12/11/00/31/2986_1dd99634-d2bd-49d0-93ee-12db867a440e_1440.jpeg\",\"Width\":1440},{\"Credits\":\"NPS
+                  Photo/ Neal Herbert\",\"Description\":\"Wrangell-St. Elias National Park contains
+                  a diversity of natural features.  Landscapes unique to the North American
+                  continent are common here.\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"1759032\",\"EntityType\":\"RecArea\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":true,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"Wrangell-St.
+                  Elias National Park contains a diversity of natural features.  Landscapes
+                  unique to the North American continent are common here.\",\"Title\":\"Icy
+                  Bay with Mt. St. Elias\",\"URL\":\"https://cdn.recreation.gov/public/2020/12/11/00/31/2986_c846ab7b-3921-43ec-ae0b-179460d26111_1440.jpeg\",\"Width\":1440},{\"Credits\":\"Share
+                  the Experience, Daniel Lefler\",\"Description\":\"Wrangell - St Elias National
+                  Park & Preserve\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"8c2c1459-33e4-432d-b92f-7462158ddb05\",\"EntityType\":\"RecArea\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Wrangell
+                  - St Elias National Park & Preserve\",\"URL\":\"https://cdn.recreation.gov/public/2018/08/30/19/55/2986_d3b58934-0648-41ea-8238-a92c83906ab1_1440.jpg\",\"Width\":1440},{\"Credits\":\"NPS
+                  Photo/ Bryan Petrtyl\",\"Description\":\"Wrangell-St. Elias National Park
+                  is a backpacker's paradise.  A variety of routes take you into beautiful country,
+                  including the Mentasta Mountains.\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"1759031\",\"EntityType\":\"RecArea\",\"Height\":964,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Wrangell-St.
+                  Elias National Park is a backpacker's paradise.  A variety of routes take
+                  you into beautiful country, including the Mentasta Mountains.\",\"Title\":\"Backpackers
+                  in Mentasta Mountains\",\"URL\":\"https://cdn.recreation.gov/public/2020/12/11/00/31/2986_e41f2206-b72e-4e92-aea6-a4ed22764358_1440.jpeg\",\"Width\":1440},{\"Credits\":\"National
+                  Park Service\",\"Description\":\"Copper Center Visitor Center\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"10086721\",\"EntityType\":\"RecArea\",\"Height\":1200,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Copper
+                  Center Visitor Center\",\"Title\":\"Copper Center Visitor Center\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/09/23/51/2986_d643d546-c9ed-42d0-9bf4-09c184dd071c.jpeg\",\"Width\":1600},{\"Credits\":\"National
+                  Park Service\",\"Description\":\"Slana Ranger Station\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"10086722\",\"EntityType\":\"RecArea\",\"Height\":800,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Slana
+                  Ranger Station\",\"Title\":\"Slana Ranger Station\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/09/23/52/2986_06cccd14-a724-4637-b4f2-0f88fbc67cfc.jpeg\",\"Width\":1067},{\"Credits\":\"National
+                  Park Service\",\"Description\":\"Chitina Ranger Station\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"10086723\",\"EntityType\":\"RecArea\",\"Height\":3120,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Chitina
+                  Ranger Station\",\"Title\":\"Chitina Ranger Station\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/09/23/53/2986_5723d07b-47c2-44b1-b4b5-152f40027ff7.jpeg\",\"Width\":4160},{\"Credits\":\"National
+                  Park Service\",\"Description\":\"Kennecott Visitor Center in the historic
+                  Blackburn School\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"10086724\",\"EntityType\":\"RecArea\",\"Height\":1937,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Kennecott
+                  Visitor Center in the historic Blackburn School\",\"Title\":\"Kennecott Visitor
+                  Center\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/09/23/55/2986_db4f699c-1cbd-45a2-9d35-efc1689d5717.jpeg\",\"Width\":2549},{\"Credits\":\"National
+                  Park Service\",\"Description\":\"Yakutat coastal area\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"10086726\",\"EntityType\":\"RecArea\",\"Height\":3456,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Yakutat
+                  coastal area\",\"Title\":\"Yakutat coastal area\",\"URL\":\"https://cdn.recreation.gov/public/2020/10/09/23/56/2986_da8050ef-d14b-42ee-b392-f1ad053550c6.jpeg\",\"Width\":4608},{\"Credits\":\"NPS
+                  Photo/ Bryan Petrtyl\",\"Description\":\"Wrangell-St. Elias National Park
+                  contains the greatest concentration of glaciers in North America.  More than
+                  3000 glaciers covering over three million acres of land are found in the park.\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"1759034\",\"EntityType\":\"RecArea\",\"Height\":954,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Wrangell-St.
+                  Elias National Park contains the greatest concentration of glaciers in North
+                  America.  More than 3000 glaciers covering over three million acres of land
+                  are found in the park.\",\"Title\":\"Logan Glacier\",\"URL\":\"https://cdn.recreation.gov/public/2020/12/11/00/31/2986_7ee39929-20a1-492a-be31-25f267d3242f_1440.jpeg\",\"Width\":1440},{\"Credits\":\"NPS
+                  Photo/ Matthew Yarbrough\",\"Description\":\"Kennecott Mines National Historic
+                  Landmark is found within Wrangell-St. Elias National Park.  This early 1900's
+                  copper mining operation overcame numerous challenges and found success in
+                  the heart of the Alaskan wilderness.\",\"EmbedCode\":\"\",\"EntityID\":\"2986\",\"EntityMediaID\":\"1759033\",\"EntityType\":\"RecArea\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Kennecott
+                  Mines National Historic Landmark is found within Wrangell-St. Elias National
+                  Park.  This early 1900's copper mining operation overcame numerous challenges
+                  and found success in the heart of the Alaskan wilderness.\",\"Title\":\"Kennecott
+                  Mill Town\",\"URL\":\"https://cdn.recreation.gov/public/2020/12/11/00/31/2986_3e42ed33-b227-4d94-bf47-4c885f476164_1440.jpeg\",\"Width\":1440}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"NPS\",\"OrgID\":\"128\",\"OrgImageURL\":\"nps.gif\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"National
+                  Park Service\",\"OrgParentID\":\"139\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.nps.gov\",\"OrgURLText\":\"\"}],\"OrgRecAreaID\":\"WRST\",\"ParentOrgID\":\"128\",\"RECAREAADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"AK\",\"City\":\"Copper
+                  Center\",\"LastUpdatedDate\":\"2017-04-13\",\"PostalCode\":\"99573\",\"RecAreaAddressID\":\"857700\",\"RecAreaAddressType\":\"Mailing\",\"RecAreaID\":\"2986\",\"RecAreaStreetAddress1\":\"Wrangell-St.
+                  Elias National Park & Preserve\",\"RecAreaStreetAddress2\":\"PO Box 439\",\"RecAreaStreetAddress3\":\"Mile
+                  106.8 Richardson Highway\"},{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"AK\",\"City\":\"Copper
+                  Center\",\"LastUpdatedDate\":\"2017-04-13\",\"PostalCode\":\"99573\",\"RecAreaAddressID\":\"857699\",\"RecAreaAddressType\":\"Physical\",\"RecAreaID\":\"2986\",\"RecAreaStreetAddress1\":\"Wrangell-St.
+                  Elias National Park & Preserve\",\"RecAreaStreetAddress2\":\"Mile 106.8 Richardson
+                  Highway\",\"RecAreaStreetAddress3\":\"\"}],\"RecAreaDescription\":\"Wrangell-St.
+                  Elias is a vast national park that rises from the ocean all the way up to
+                  18,008 ft. At 13.2 million acres, the park is the same size as Yellowstone
+                  National Park, Yosemite National Park, and Switzerland combined! Within this
+                  wild landscape, people continue to live off the land as they have done for
+                  centuries. This rugged, beautiful land is filled with opportunities for adventure.\",\"RecAreaDirections\":\"The
+                  administrative building and main park visitor center are located along the
+                  Richardson Highway (Hwy 4), which is a paved state highway that runs through
+                  Copper Center, AK. The buildings are 8 miles south of the Glenn Highway and
+                  Richardson Highway intersection near Glennallen, Alaska.  This is approximately
+                  200 miles east of Anchorage, AK and 250 miles south of Fairbanks, AK.\",\"RecAreaEmail\":\"wrst_info@nps.gov\",\"RecAreaFeeDescription\":\"\",\"RecAreaID\":\"2986\",\"RecAreaLatitude\":61.4182147,\"RecAreaLongitude\":-142.6028439,\"RecAreaMapURL\":\"\",\"RecAreaName\":\"Wrangell
+                  - St Elias National Park & Preserve\",\"RecAreaPhone\":\"(907) 822-5234\",\"RecAreaReservationURL\":\"\",\"Reservable\":false,\"StayLimit\":\"\"},{\"ACTIVITY\":[{\"ActivityID\":43,\"ActivityName\":\"SNOWPARK\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":105,\"ActivityName\":\"PADDLING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":106,\"ActivityName\":\"SWIMMING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":4,\"ActivityName\":\"AUTO
+                  TOURING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":5,\"ActivityName\":\"BIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":6,\"ActivityName\":\"BOATING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":7,\"ActivityName\":\"CLIMBING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":8,\"ActivityName\":\"HISTORIC
+                  & CULTURAL SITE\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":9,\"ActivityName\":\"CAMPING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":11,\"ActivityName\":\"FISHING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":15,\"ActivityName\":\"HORSEBACK
+                  RIDING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"},{\"ActivityID\":26,\"ActivityName\":\"WILDLIFE
+                  VIEWING\",\"ActivityParentID\":\"\",\"RecAreaActivityDescription\":\"\",\"RecAreaActivityFeeDescription\":\"\",\"RecAreaID\":\"2991\"}],\"EVENT\":[],\"Enabled\":true,\"FACILITY\":[{\"FacilityID\":\"10091670\",\"FacilityName\":\"Yosemite
+                  Valley Visitor Center\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10091670\"},{\"FacilityID\":\"10091718\",\"FacilityName\":\"Wawona
+                  Visitor Center at Hill's Studio\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10091718\"},{\"FacilityID\":\"10091966\",\"FacilityName\":\"Big
+                  Oak Flat Information Station\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10091966\"},{\"FacilityID\":\"445859\",\"FacilityName\":\"Yosemite
+                  National Park Wilderness Permits\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/445859\"},{\"FacilityID\":\"10091995\",\"FacilityName\":\"Tuolumne
+                  Meadows Visitor Center\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10091995\"},{\"FacilityID\":\"10083845\",\"FacilityName\":\"Tamarack
+                  Flat Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10083845\"},{\"FacilityID\":\"10083840\",\"FacilityName\":\"Yosemite
+                  Creek Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10083840\"},{\"FacilityID\":\"10086745\",\"FacilityName\":\"Yosemite
+                  National Park Ticketed Entry\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10086745\"},{\"FacilityID\":\"10083567\",\"FacilityName\":\"White
+                  Wolf Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10083567\"},{\"FacilityID\":\"10220609\",\"FacilityName\":\"Wawona
+                  Horse Campsites\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10220609\"},{\"FacilityID\":\"232453\",\"FacilityName\":\"Bridalveil
+                  Creek Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232453\"},{\"FacilityID\":\"232450\",\"FacilityName\":\"Lower
+                  Pines Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232450\"},{\"FacilityID\":\"234652\",\"FacilityName\":\"Cables
+                  on Half Dome Permits\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/234652\"},{\"FacilityID\":\"232446\",\"FacilityName\":\"Wawona
+                  Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232446\"},{\"FacilityID\":\"232449\",\"FacilityName\":\"North
+                  Pines Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232449\"},{\"FacilityID\":\"232448\",\"FacilityName\":\"Tuolumne
+                  Meadows Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232448\"},{\"FacilityID\":\"232452\",\"FacilityName\":\"Crane
+                  Flat Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232452\"},{\"FacilityID\":\"10004152\",\"FacilityName\":\"Camp
+                  4\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/10004152\"},{\"FacilityID\":\"274348\",\"FacilityName\":\"Mariposa
+                  Grove Commercial Bus Parking\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/274348\"},{\"FacilityID\":\"232451\",\"FacilityName\":\"Hodgdon
+                  Meadow Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232451\"},{\"FacilityID\":\"232447\",\"FacilityName\":\"Upper
+                  Pines Campground\",\"ResourceLink\":\"http://localhost:3000/api/v1/facilities/232447\"}],\"GEOJSON\":{\"COORDINATES\":[-119.5571873,37.84883288],\"TYPE\":\"Point\"},\"Keywords\":\"Arts
+                  and Culture,Auto and ATV,Biking,Boating,Camping,Climbing,Fishing,Hiking,Horseback
+                  Riding,Living History,Paddling,Snow Tubing,Swimming,Wildlife Watching,Yosemite
+                  National Park\",\"LINK\":[{\"Description\":\"Yosemite National Park Official
+                  Website\",\"EntityID\":\"2991\",\"EntityLinkID\":\"10159917\",\"EntityType\":\"RecArea\",\"LinkType\":\"Official
+                  Web Site\",\"Title\":\"Yosemite National Park Official Website\",\"URL\":\"https://www.nps.gov/yose/\"},{\"Description\":\"Yosemite
+                  National Park Map\",\"EntityID\":\"2991\",\"EntityLinkID\":\"10159918\",\"EntityType\":\"RecArea\",\"LinkType\":\"Map\",\"Title\":\"Yosemite
+                  National Park Map\",\"URL\":\"https://www.nps.gov/yose/planyourvisit/maps.htm\"}],\"LastUpdatedDate\":\"2022-10-01\",\"MEDIA\":[{\"Credits\":\"NPS
+                  / Cindy Jacoby\",\"Description\":\"Giant Sequoia trees are the largest living
+                  things (by volume) on the planet. Though not the tallest trees, one feels
+                  miniature in their presence..\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759173\",\"EntityType\":\"RecArea\",\"Height\":295,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Giant
+                  Sequoia trees are the largest living things (by volume) on the planet. Though
+                  not the tallest trees, one feels miniature in their presence..\",\"Title\":\"Giant
+                  Sequoia Tree\",\"URL\":\"https://cdn.recreation.gov/public/images/82784.jpg\",\"Width\":173},{\"Credits\":\"NPS
+                  / Cindy Jacoby\",\"Description\":\"Cathedral Peak is one of the most recognizable
+                  peaks in the Yosemite Wilderness.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759164\",\"EntityType\":\"RecArea\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Cathedral
+                  Peak is one of the most recognizable peaks in the Yosemite Wilderness.\",\"Title\":\"Cathedral
+                  Peak and Lake in Autumn\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_5eb2d974-3dae-4493-b304-62b9ec27ae0b_1440.jpeg\",\"Width\":1440},{\"Credits\":\"NPS
+                  Photo\",\"Description\":\"Upper Yosemite Fall and Merced River in spring\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"10128780\",\"EntityType\":\"RecArea\",\"Height\":1587,\"IsGallery\":true,\"IsPreview\":true,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"Upper
+                  Yosemite Fall and Merced River in spring\",\"Title\":\"Upper Yosemite Fall
+                  and Merced River in spring\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/13/22/21/2991_efcd5979-8faf-4a41-965e-2ee4e499c004.jpeg\",\"Width\":2048},{\"Credits\":\"NPS
+                  Photo/ Christine Fey\",\"Description\":\"El Capitan rises over 3,000 feet
+                  above the floor of Yosemite Valley.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"10128783\",\"EntityType\":\"RecArea\",\"Height\":4928,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"El
+                  Capitan rises over 3,000 feet above the floor of Yosemite Valley.\",\"Title\":\"El
+                  Capitan\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/13/22/30/2991_711dd650-2cc2-45c3-b0e1-1316d5ff81c5.jpeg\",\"Width\":3264},{\"Credits\":\"NPS
+                  Photo / Cindy Jacoby\",\"Description\":\"The walk to Lower Yosemite Fall is
+                  a popular and easy hike.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759169\",\"EntityType\":\"RecArea\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"The
+                  walk to Lower Yosemite Fall is a popular and easy hike.\",\"Title\":\"Lower
+                  Yosemite Fall\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_13d23c09-0a4c-443a-b3f3-d8f2ed773256_1440.jpeg\",\"Width\":1440},{\"Credits\":\"NPS
+                  / Christine Fey\",\"Description\":\"El Capitan rises over 3,000 feet above
+                  the floor of Yosemite Valley.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759171\",\"EntityType\":\"RecArea\",\"Height\":1057,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"El
+                  Capitan rises over 3,000 feet above the floor of Yosemite Valley.\",\"Title\":\"El
+                  Capitan\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/13/22/17/2991_79346302-7464-402b-8b15-4593c15b722c_700.jpeg\",\"Width\":700},{\"Credits\":\"NPS
+                  / Bob Roney\",\"Description\":\"A hike up to Sentinel Dome rewards people
+                  with great views of the landscape around them.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759165\",\"EntityType\":\"RecArea\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"A
+                  hike up to Sentinel Dome rewards people with great views of the landscape
+                  around them.\",\"Title\":\"Rainbow over Half Dome\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_eb977bcc-8962-4f41-9004-7bcc174b6c45_1440.jpeg\",\"Width\":1440},{\"Credits\":\"Stu
+                  Gregory\",\"Description\":\"Yosemite National Park\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"86724487-7de3-4c9d-b121-e7b0d110a37f\",\"EntityType\":\"RecArea\",\"Height\":525,\"IsGallery\":false,\"IsPreview\":true,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Yosemite
+                  National Park\",\"URL\":\"https://cdn.recreation.gov/public/2019/04/24/13/33/2991_b3781171-16fd-49d5-ae65-3dab8e8dad81_700.jpg\",\"Width\":700},{\"Credits\":\"NPS
+                  / Cindy Jacoby\",\"Description\":\"Tunnel View is perhaps one of the most
+                  photographed views in the park.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759168\",\"EntityType\":\"RecArea\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Tunnel
+                  View is perhaps one of the most photographed views in the park.\",\"Title\":\"Yosemite
+                  Valley from Tunnel View\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_9bd76221-0590-4dd7-8955-f7dadd208b30_1440.jpeg\",\"Width\":1440},{\"Credits\":\"Share
+                  the Experience, Ann Hubard\",\"Description\":\"Half Dome\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"ac446b3e-9fc9-4959-8475-ff081145c899\",\"EntityType\":\"RecArea\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Half
+                  Dome, Yosemite National Park\",\"URL\":\"https://cdn.recreation.gov/public/2018/08/17/19/23/2991_5e029cb6-eaec-44c9-8dd1-ff2b46674d53_1440.jpg\",\"Width\":1440},{\"Credits\":\"NPS
+                  / Cindy Jacoby\",\"Description\":\"Yosemite National Park's massive giant
+                  sequoias (Sequoiadendron giganteum) live in three groves in the park. The
+                  most famous of these is the Mariposa Grove, which contains about 500 mature
+                  giant sequoias.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759172\",\"EntityType\":\"RecArea\",\"Height\":1050,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Yosemite
+                  National Park's massive giant sequoias (Sequoiadendron giganteum) live in
+                  three groves in the park. The most famous of these is the Mariposa Grove,
+                  which contains about 500 mature giant sequoias.\",\"Title\":\"Giant Sequoia
+                  Trees in the Mariposa Grove of Giant Sequoias\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_db3dd408-cd3f-4ba1-bd7f-28bdb108d56d_700.jpeg\",\"Width\":700},{\"Credits\":\"NPS\",\"Description\":\"Tenaya
+                  Lake is a favorite place to stop along the Tioga Road in summer.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759167\",\"EntityType\":\"RecArea\",\"Height\":954,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Tenaya
+                  Lake is a favorite place to stop along the Tioga Road in summer.\",\"Title\":\"Tenaya
+                  Lake at Sunset\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_0fa3d4f3-4a33-4159-b2fb-6ef1deb533f5_1440.jpeg\",\"Width\":1440},{\"Credits\":\"NPS
+                  / Cindy Jacoby\",\"Description\":\"Yosemite Falls will sometimes only trickle
+                  at the end of summer, but wet winters can rejuvenate the flow.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759163\",\"EntityType\":\"RecArea\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Yosemite
+                  Falls will sometimes only trickle at the end of summer, but wet winters can
+                  rejuvenate the flow.\",\"Title\":\"Yosemite Falls on a Winter Morning\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_7cbf77b1-4e38-48a1-b178-356051d13683_1440.jpeg\",\"Width\":1440},{\"Credits\":\"NPS\",\"Description\":\"Glen
+                  Auilin is one of five High Sierra Camps, located in the Yosemite high country.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759166\",\"EntityType\":\"RecArea\",\"Height\":525,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Glen
+                  Auilin is one of five High Sierra Camps, located in the Yosemite high country.\",\"Title\":\"Glen
+                  Aulin\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_419a6b27-8947-4640-8201-7730aed6a005_700.jpeg\",\"Width\":700},{\"Credits\":\"NPS
+                  / Cindy Jacoby\",\"Description\":\"Half Dome is one of the most recognizable
+                  granitic formations in the world.\",\"EmbedCode\":\"\",\"EntityID\":\"2991\",\"EntityMediaID\":\"1759170\",\"EntityType\":\"RecArea\",\"Height\":1007,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"Half
+                  Dome is one of the most recognizable granitic formations in the world.\",\"Title\":\"Half
+                  Dome\",\"URL\":\"https://cdn.recreation.gov/public/2021/04/14/00/55/2991_934ad897-f4bf-48b5-acc3-4670761c5277_700.jpeg\",\"Width\":700}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"NPS\",\"OrgID\":\"128\",\"OrgImageURL\":\"nps.gif\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"National
+                  Park Service\",\"OrgParentID\":\"139\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.nps.gov\",\"OrgURLText\":\"\"}],\"OrgRecAreaID\":\"YOSE\",\"ParentOrgID\":\"128\",\"RECAREAADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"Yosemite
+                  National Park\",\"LastUpdatedDate\":\"0001-01-01\",\"PostalCode\":\"95389\",\"RecAreaAddressID\":\"870100\",\"RecAreaAddressType\":\"Default\",\"RecAreaID\":\"2991\",\"RecAreaStreetAddress1\":\"PO
+                  Box 577\",\"RecAreaStreetAddress2\":\"\",\"RecAreaStreetAddress3\":\"\"},{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"Yosemite
+                  National Park\",\"LastUpdatedDate\":\"2020-10-13\",\"PostalCode\":\"95389\",\"RecAreaAddressID\":\"10087593\",\"RecAreaAddressType\":\"Physical\",\"RecAreaID\":\"2991\",\"RecAreaStreetAddress1\":\"9039
+                  Village Drive\",\"RecAreaStreetAddress2\":\"\",\"RecAreaStreetAddress3\":\"\"},{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"Yosemite\",\"LastUpdatedDate\":\"2021-04-12\",\"PostalCode\":\"95389\",\"RecAreaAddressID\":\"10128464\",\"RecAreaAddressType\":\"Physical\",\"RecAreaID\":\"2991\",\"RecAreaStreetAddress1\":\"9039
+                  Village Drive\",\"RecAreaStreetAddress2\":\"\",\"RecAreaStreetAddress3\":\"\"}],\"RecAreaDescription\":\"Not
+                  just a great valley, but a shrine to human foresight, the strength of granite,
+                  the power of glaciers, the persistence of life, and the tranquility of the
+                  High Sierra.\\n\\nFirst protected in 1864, Yosemite National Park is best
+                  known for its waterfalls, but within its nearly 1,200 square miles, you can
+                  find deep valleys, grand meadows, ancient giant sequoias, a vast wilderness
+                  area, and much more.\",\"RecAreaDirections\":\"You can drive to Yosemite year-round
+                  and enter via Highways 41, 140, and 120 from the west. Tioga Pass Entrance
+                  (via Highway 120 from the east) is closed from approximately November through
+                  late May or June. Hetch Hetchy is open all year but may close intermittently
+                  due to snow.\\n\\nPlease note that GPS units do not always provide accurate
+                  directions to or within Yosemite.\",\"RecAreaEmail\":\"yose_web_manager@nps.gov\",\"RecAreaFeeDescription\":\"\",\"RecAreaID\":\"2991\",\"RecAreaLatitude\":37.84883288,\"RecAreaLongitude\":-119.5571873,\"RecAreaMapURL\":\"\",\"RecAreaName\":\"Yosemite
+                  National Park\",\"RecAreaPhone\":\"209/372-0200\",\"RecAreaReservationURL\":\"\",\"Reservable\":false,\"StayLimit\":\"\"}]}\n"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -282,22 +521,24 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
+              Content-Length:
+                  - "72887"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Wed, 30 Nov 2022 06:13:17 GMT
-              Transfer-Encoding:
-                  - chunked
+                  - Sun, 12 Feb 2023 07:23:32 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 e5778a61da2e928608d7fdc9242d1f8e.cloudfront.net (CloudFront)
+                  - 1.1 350e87fe323bf8d725a381e15f465f40.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - 5f9M5Vs_zlh7ZH1jaTqEMXdusB9jsX3h-9QYHPgIm2noSm6_Hy3lxQ==
+                  - POdkiSZuqb9FTOIAkIxLmVBv5fr4NZt3Wjfq3xuPNRBgLqqRRh_XPg==
               X-Amz-Cf-Pop:
-                  - DEN52-P3
+                  - DEN52-C1
               X-Cache:
                   - Miss from cloudfront
           status:

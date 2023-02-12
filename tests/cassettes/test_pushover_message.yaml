@@ -1,6 +1,6 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -18,10 +18,11 @@ interactions:
           uri: https://api.pushover.net/1/messages.json?message=This+is+a+test+message%21&token=REDACTED&user=REDACTED
       response:
           body:
-              string: '{"status":1,"request":"7c8af003-b8c8-4d74-af54-20368dae4c1e"}'
+              string: '{"status":1,"request":"ae424a27-1cd4-403a-86d8-23f0619e564a"}'
           headers:
               Access-Control-Allow-Headers:
-                  - X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token, X-Pushover-App, Authorization
+                  - X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token,
+                    X-Pushover-App, Authorization
               Access-Control-Allow-Methods:
                   - POST, OPTIONS
               Access-Control-Allow-Origin:
@@ -35,9 +36,9 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 29 Nov 2022 05:51:28 GMT
+                  - Sun, 12 Feb 2023 07:21:03 GMT
               ETag:
-                  - W/"a0ad3e68f8bcb0a21a84773cecdaf7f3"
+                  - W/"883ec6d8198decde0f457df01f6bff29"
               Referrer-Policy:
                   - strict-origin-when-cross-origin
               Server:
@@ -56,17 +57,17 @@ interactions:
               X-Limit-App-Limit:
                   - "10000"
               X-Limit-App-Remaining:
-                  - "9996"
+                  - "9995"
               X-Limit-App-Reset:
-                  - "1669874400"
+                  - "1677650400"
               X-PO-H:
-                  - t
+                  - a
               X-Permitted-Cross-Domain-Policies:
                   - none
               X-Request-Id:
-                  - 7c8af003-b8c8-4d74-af54-20368dae4c1e
+                  - ae424a27-1cd4-403a-86d8-23f0619e564a
               X-Runtime:
-                  - "0.054488"
+                  - "0.055934"
               X-XSS-Protection:
                   - 1; mode=block
           status:

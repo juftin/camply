@@ -1,6 +1,6 @@
 interactions:
     - request:
-          body:
+          body: null
           headers:
               Accept:
                   - "*/*"
@@ -9,7 +9,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; de-DE) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/4.0.202.2 Safari/532.0
           method: GET
           uri: https://longpoint.goingtocamp.com/api/equipment
       response:
@@ -30,7 +31,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Tue, 06 Dec 2022 02:48:07 GMT
+                  - Sun, 12 Feb 2023 07:23:17 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -38,8 +39,10 @@ interactions:
               Request-Context:
                   - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8L3yave5z3lLtTxwV8PukffCn0xpWyEmdR0qUZGs06fcqCM5NSQExdjBUV2pyb0tPICOOfMihJHWFaHudc0b1n_V9sJGO7Hxd_ABqlXUDTYpXXW-P1oqips2mwoZqw1J0wl8xPs4xWBB0NZffC5DdNo; path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8L3yave5z3lLtTxwV8Pukfcb5-HazB1otM5kt67fptFD6GBQMzw1Vs-0221RB38ww9mosB76Kxsu4dO11zWNb0aC_5y-EMdY0xoejXTyj6Ks3CSOqIK_A1oVYxFIoHEvBOSV0-nH0mwNlZ5hQ4wHwpY; path=/; secure
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8CnXzG7UPapGgSMv5mpOJFadkdft10cnsvU_chy9Yhuy3TKmtNYKs5cptTIp5LwQ7egn1ZIZSlgPlG1g06aYyamuqB1u1zHKccO3GtCdfBR0yTAwTumba-p5qwCrdNWjnZU9wQjYwcZhHkg5RP42aZI;
+                    path=/; samesite=strict; httponly
+                  - XSRF-TOKEN=CfDJ8CnXzG7UPapGgSMv5mpOJFbxMBFFT69xK7JGz-RxXR9rueSSVhNu-hr1YgCUnhWGHBAwXSVNz0YUr8pVU7r2pUFAEcfj0iNjbd9wJPUtnCq9PuycsenJSPXtUtBW1oNm3BXI5QuvEVa8i6mDSSS9Ivc;
+                    path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
               Transfer-Encoding:
@@ -47,7 +50,7 @@ interactions:
               Vary:
                   - Accept-Encoding
               X-Azure-Ref:
-                  - 0aK2OYwAAAADeRJ3U842wRb9+iZDyrhwDREVOMzAxMDAwMTA5MDIxADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
+                  - 05pPoYwAAAAAHN/gmsX6HQZnBakwUn71XQ1lTMDEzMDUwNzA5MDM3ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
               X-Cache:
                   - CONFIG_NOCACHE
               X-Content-Type-Options:
