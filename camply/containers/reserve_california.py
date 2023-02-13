@@ -8,21 +8,6 @@ from typing import Any, Dict, List, Optional
 from camply.containers import CamplyModel
 
 
-class ReserveCaliforniaFacilityParent(CamplyModel):
-    """
-    Campground Representation for ReserveCalifornia
-    """
-
-    Name: str
-    Latitude: float
-    Longitude: float
-    IsActive: bool
-    EntityType: str
-    EnterpriseId: int
-    ParkSize: str
-    PlaceId: int
-
-
 class ReserveCaliforniaRestrictions(CamplyModel):
     """
     ReserveCalifornia: Campsite Restrictions
@@ -84,7 +69,7 @@ class ReserveCaliforniaAvailabilityUnit(CamplyModel):
     IsWebViewable: Optional[bool]
     IsFiltered: Optional[bool]
     UnitCategoryId: Optional[int]
-    SleepingUnitIds: List[int] = []
+    SleepingUnitIds: Optional[List[int]]
     UnitTypeGroupId: Optional[int]
     UnitTypeId: Optional[int]
     UseType: Optional[int]
@@ -195,28 +180,6 @@ class ReserveCaliforniaDetailedPlace(CamplyModel):
     IsWebViewable: bool
     WeekdayCheckdays: int
     WeekendCheckdays: int
-
-
-class ReserveCaliforniaPlaceResult(CamplyModel):
-    """
-    ReserveCalifornia: Place Response
-    """
-
-    SelectedPlaceId: Optional[int]
-    SelectedPlace: ReserveCaliforniaPlace
-    HighlightedPlaceId: Optional[int]
-    Latitude: float
-    Longitude: float
-    StartDate: datetime.date
-    EndDate: datetime.date
-    NightsRequested: int
-    NightsActual: int
-    CountNearby: bool
-    NearbyLimit: int
-    Sort: str
-    CustomerId: Optional[int]
-    Filters: Optional[Any]
-    AvailablePlaces: int
 
 
 class ReserveCaliforniaAvailabilityFacility(ReserveCaliforniaFacility):

@@ -4,15 +4,12 @@ ReserveCalifornia Provider
 
 import json
 import logging
-import os
 import pathlib
 import sys
 from datetime import date, datetime, timedelta
 from typing import Any, Dict, List, Optional, Union
-from urllib import parse
 
 import ratelimit
-from rich import traceback
 
 from camply.config import FileConfig
 from camply.config.api_config import ReserveCaliforniaConfig
@@ -24,16 +21,13 @@ from camply.containers.reserve_california import (
     ReserveCaliforniaCityPark,
     ReserveCaliforniaDetailedPlace,
     ReserveCaliforniaFacilityMetadata,
-    ReserveCaliforniaFacilityParent,
     ReserveCaliforniaMetadata,
-    ReserveCaliforniaPlaceResult,
 )
 from camply.exceptions import CamplyError
 from camply.providers.base_provider import BaseProvider
 from camply.utils.logging_utils import log_sorted_response
 
 logger = logging.getLogger(__name__)
-traceback.install(show_locals=True)
 
 
 class ReserveCalifornia(BaseProvider):
@@ -48,7 +42,7 @@ class ReserveCalifornia(BaseProvider):
     reserve_california_unit_type_groups: Dict[int, str] = {}
     metadata_refreshed: bool = False
     active_search: bool = False
-    force_stale_cache: bool = os.getenv("CAMPLY_STALE_CACHE", False)
+    offline_cache_dir = FileConfig.RESERVE_CALIFORNIA_PROVIDER
 
     def refresh_metadata(self) -> None:
         """
@@ -98,6 +92,8 @@ class ReserveCalifornia(BaseProvider):
                 "You must provide a search string to search `ReserveCalifornia` Recreation Areas"
             )
             sys.exit(1)
+        if query is not None:
+            logger.info(f'Searching for Recreation Areas: "{query}"')
         self.refresh_metadata()
         found_recareas = [
             rec_area
@@ -144,7 +140,39 @@ class ReserveCalifornia(BaseProvider):
                 "to search on ReserveCalifornia"
             )
             sys.exit(1)
+        if search_string is not None:
+            logger.info(f'Searching for Campgrounds: "{search_string}"')
         self.refresh_metadata()
+        found_campgrounds = self._search_for_campgrounds(
+            campground_id=campground_id,
+            rec_area_id=rec_area_id,
+            search_string=search_string,
+        )
+        if verbose is True:
+            logger.info(f"{len(found_campgrounds)} Matching Campgrounds Found")
+            log_sorted_response(found_campgrounds)
+        self.active_search = False
+        return found_campgrounds
+
+    def _search_for_campgrounds(
+        self,
+        campground_id: Optional[List[int]],
+        rec_area_id: Optional[List[int]],
+        search_string: Optional[str],
+    ) -> List[CampgroundFacility]:
+        """
+        Filter a campground array
+
+        Parameters
+        ----------
+        campground_id: Optional[List[int]]
+        rec_area_id: Optional[List[int]]
+        search_string: Optional[str]
+
+        Returns
+        -------
+        List[CampgroundFacility]
+        """
         found_campgrounds: List[CampgroundFacility] = []
         if len(campground_id) >= 1:
             for camp_id in campground_id:
@@ -168,25 +196,51 @@ class ReserveCalifornia(BaseProvider):
                 if search_string.lower() in campground.recreation_area.lower()
                 or search_string.lower() in campground.facility_name.lower()
             ]
-        if verbose is True:
-            logger.info(f"{len(found_campgrounds)} Matching Campgrounds Found")
-            log_sorted_response(found_campgrounds)
-        self.active_search = False
         return found_campgrounds
 
     @ratelimit.sleep_and_retry
     @ratelimit.limits(calls=1, period=1)
     def get_campsites(
-        self, campground_id: int, start_date: date, end_date: date
+        self,
+        campground_id: int,
+        start_date: Union[datetime, date],
+        end_date: Union[datetime, date],
+        is_ada: Optional[bool] = None,
+        min_vehicle_length: Optional[int] = None,
+        unit_category_id: Optional[int] = None,
+        web_only: Optional[bool] = True,
+        unit_type_group_ids: Optional[List[int]] = None,
+        sleeping_unit_id: Optional[int] = None,
+        unit_sort: Optional[str] = "orderby",
+        in_season_only: Optional[bool] = True,
     ) -> List[AvailableCampsite]:
         """
-        Get All Campsites
+        Get Campsites from ReserveCalifornia
 
         Parameters
         ----------
         campground_id: int
-        start_date: date
-        end_date: date
+            Facility ID of the campground
+        start_date: Union[datetime, date]
+            Search Start Date
+        end_date: Union[datetime, date]
+            Search End Date
+        is_ada: Optional[bool]
+            Search for ADA sites
+        min_vehicle_length: Optional[int]
+            Minimum Vehicle Length - defaults to 0 which doesn't filter
+        unit_category_id: Optional[int]
+            Unit Category ID (typically 0)
+        web_only: Optional[bool]
+            Search for sights bookable online
+        unit_type_group_ids: Optional[List[int]]
+            UnitTypeGroupIds - Search Param
+        sleeping_unit_id: Optional[int]
+            SleepingUnitId - search param
+        unit_sort: Optional[str]
+            Sort Order
+        in_season_only: Optional[bool]
+            Searching for in-season only campgrounds
 
         Returns
         -------
@@ -195,13 +249,26 @@ class ReserveCalifornia(BaseProvider):
         if self.metadata_refreshed is False:
             self.refresh_metadata()
         data = {
-            "FacilityId": campground_id,
+            "IsADA": is_ada,
+            "MinVehicleLength": min_vehicle_length,
+            "UnitCategoryId": unit_category_id,
             "StartDate": start_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
+            "WebOnly": web_only,
+            "UnitTypesGroupIds": unit_type_group_ids
+            if unit_type_group_ids is None
+            else unit_type_group_ids,
+            "SleepingUnitId": sleeping_unit_id,
             "EndDate": end_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
+            "UnitSort": unit_sort,
+            "InSeasonOnly": in_season_only,
+            "FacilityId": campground_id,
+        }
+        non_null_data = {
+            key: value for key, value in data.items() if value not in [None, [], ""]
         }
         url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.AVAILABILITY_ENDPOINT}"
         response = self.session.post(
-            url=url, data=json.dumps(data), headers=self.json_headers
+            url=url, data=json.dumps(non_null_data), headers=self.json_headers
         )
         response.raise_for_status()
         availability_response = ReserveCaliforniaAvailabilityResponse(**response.json())
@@ -240,13 +307,12 @@ class ReserveCalifornia(BaseProvider):
         """
         start_date = datetime.fromordinal(availability_slice.Date.toordinal())
         facility_id = availability_response.Facility.FacilityId
-        recreation_area_id = 678  # TODO: Lookup Rec Area
-        booking_url = (
-            f"{ReserveCaliforniaConfig.CAMPGROUND_URL}/Web/Default.aspx#!park/"
-            f"{recreation_area_id}/{facility_id}"
-        )
         facility = self.reserve_california_campgrounds[facility_id]
         recreation_area = self.reserve_california_rec_areas[facility.recreation_area_id]
+        booking_url = (
+            f"{ReserveCaliforniaConfig.CAMPGROUND_URL}/Web/Default.aspx#!park/"
+            f"{recreation_area.recreation_area_id}/{facility_id}"
+        )
         if unit.UnitCategoryId is None:
             unit.UnitCategoryId = -1
         if unit.UnitTypeGroupId is None:
@@ -292,21 +358,23 @@ class ReserveCalifornia(BaseProvider):
         Optional[Dict[Any, Any]]
         """
         if file_path.exists() is False:
-            return None
+            data = None
         else:
             modified_time = datetime.utcfromtimestamp(file_path.stat().st_mtime)
             current_time = datetime.utcnow()
             if (
                 current_time - modified_time > timedelta(days=1)
                 and self.active_search is False
-                and self.force_stale_cache is not False
             ):
-                return None
+                data = None
             else:
                 json_body: Dict[Any, Any] = json.loads(
                     file_path.read_text(encoding="utf-8")
                 )
-                return json_body
+                data = json_body
+        if data is None:
+            logger.debug("Refreshing ReserveCalifornia Metadata: %s", file_path.name)
+        return data
 
     def _get_campground_metadata(self) -> ReserveCaliforniaMetadata:
         """
@@ -316,17 +384,14 @@ class ReserveCalifornia(BaseProvider):
         -------
         ReserveCaliforniaMetadata
         """
-        campground_metadata = self._fetch_metadata_from_disk(
-            file_path=FileConfig.RESERVE_CALIFORNIA_FILTERS
-        )
+        metadata_file = self.offline_cache_dir.joinpath("filters.json")
+        campground_metadata = self._fetch_metadata_from_disk(file_path=metadata_file)
         if campground_metadata is None:
             url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.METADATA_PREFIX}"
             resp = self.session.get(url=url)
             resp.raise_for_status()
             campground_metadata = resp.json()
-            FileConfig.RESERVE_CALIFORNIA_FILTERS.write_text(
-                json.dumps(campground_metadata, indent=2)
-            )
+            metadata_file.write_text(json.dumps(campground_metadata, indent=2))
         data = ReserveCaliforniaMetadata(**campground_metadata)
         self.reserve_california_unit_categories = {
             item.UnitCategoryId: item.UnitCategoryName for item in data.UnitCategories
@@ -345,17 +410,14 @@ class ReserveCalifornia(BaseProvider):
         -------
         Dict[int, ReserveCaliforniaCityPark]
         """
-        city_park_data = self._fetch_metadata_from_disk(
-            file_path=FileConfig.RESERVE_CALIFORNIA_CITYPARKS
-        )
+        metadata_file = self.offline_cache_dir.joinpath("cityparks.json")
+        city_park_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if city_park_data is None:
             url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.CITYPARK_ENDPOINT}"
             resp = self.session.get(url=url)
             resp.raise_for_status()
             city_park_data: Dict[str, Dict[str, Any]] = resp.json()
-            FileConfig.RESERVE_CALIFORNIA_CITYPARKS.write_text(
-                json.dumps(city_park_data, indent=2)
-            )
+            metadata_file.write_text(json.dumps(city_park_data, indent=2))
         self.reserve_california_city_parks: Dict[int, ReserveCaliforniaCityPark] = {
             int(city_park_id): ReserveCaliforniaCityPark(**city_park_json)
             for city_park_id, city_park_json in city_park_data.items()
@@ -370,9 +432,8 @@ class ReserveCalifornia(BaseProvider):
         -------
         Dict[int, ReserveCaliforniaDetailedPlace]
         """
-        places_data = self._fetch_metadata_from_disk(
-            file_path=FileConfig.RESERVE_CALIFORNIA_PLACES
-        )
+        metadata_file = self.offline_cache_dir.joinpath("places.json")
+        places_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if places_data is None:
             url = (
                 f"{ReserveCaliforniaConfig.BASE_URL}/"
@@ -381,9 +442,7 @@ class ReserveCalifornia(BaseProvider):
             resp = self.session.get(url=url)
             resp.raise_for_status()
             places_data: List[Dict[str, Any]] = resp.json()
-            FileConfig.RESERVE_CALIFORNIA_PLACES.write_text(
-                json.dumps(places_data, indent=2)
-            )
+            metadata_file.write_text(json.dumps(places_data, indent=2))
         places_validated = [
             ReserveCaliforniaDetailedPlace(**place_json) for place_json in places_data
         ]
@@ -409,9 +468,8 @@ class ReserveCalifornia(BaseProvider):
         -------
         Dict[int, ReserveCaliforniaFacilityMetadata]
         """
-        facilities_data = self._fetch_metadata_from_disk(
-            file_path=FileConfig.RESERVE_CALIFORNIA_FACILITIES
-        )
+        metadata_file = self.offline_cache_dir.joinpath("facilities.json")
+        facilities_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if facilities_data is None:
             url = (
                 f"{ReserveCaliforniaConfig.BASE_URL}/"
@@ -420,9 +478,7 @@ class ReserveCalifornia(BaseProvider):
             resp = self.session.get(url=url)
             resp.raise_for_status()
             facilities_data: List[Dict[str, Any]] = resp.json()
-            FileConfig.RESERVE_CALIFORNIA_FACILITIES.write_text(
-                json.dumps(facilities_data, indent=2)
-            )
+            metadata_file.write_text(json.dumps(facilities_data, indent=2))
         if not isinstance(facilities_data, list):
             raise CamplyError("Unexpected data from facilities.json")
         facilities_validated = [
@@ -445,125 +501,3 @@ class ReserveCalifornia(BaseProvider):
                     recreation_area=rec_area.recreation_area,
                 )
         return facilities_data_validated
-
-    def _search_recareas_api(self, query: str) -> List[RecreationArea]:
-        """
-        Retrieve Recreation Areas via the API
-
-        Deprecated: This Function Has Been Deprecated in favor of using bulk updates and
-        local caching. This code has been left around as a temporary artifact.
-
-        Parameters
-        ----------
-        query: str
-
-        Returns
-        -------
-        List[RecreationArea]
-        """
-        url = (
-            f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.SEARCH_ENDPOINT}/"
-            f"{parse.quote(query)}"
-        )
-        response = self.session.get(url=url)
-        response.raise_for_status()
-        rec_areas = []
-        for item in response.json():
-            rc_facility = ReserveCaliforniaFacilityParent(**item)
-            if rc_facility.IsActive is True:
-                rec_area = RecreationArea(
-                    recreation_area=rc_facility.Name,
-                    recreation_area_id=rc_facility.PlaceId,
-                    recreation_area_location="California",
-                )
-                rec_areas.append(rec_area)
-                if (
-                    rec_area.recreation_area_id
-                    not in self.reserve_california_rec_areas.keys()
-                ):
-                    self.reserve_california_rec_areas[
-                        rec_area.recreation_area_id
-                    ] = rec_area
-        return rec_areas
-
-    def _search_for_campgrounds_api(
-        self,
-        place_id: int,
-        start_date: Optional[date] = None,
-    ) -> ReserveCaliforniaPlaceResult:
-        """
-        Search A Facility
-
-        Deprecated: This Function Has Been Deprecated in favor of using bulk updates and
-        local caching. This code has been left around as a temporary artifact.
-
-        Parameters
-        ----------
-        place_id: int
-        start_date: Optional[datetime.date]
-
-        Returns
-        -------
-        ReserveCaliforniaPlaceResult
-        """
-        if start_date is None:
-            start_date = datetime.today()
-        url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.PLACE_ENDPOINT}"
-        data = {
-            "PlaceId": place_id,
-            "StartDate": start_date.strftime("%m-%d-%Y"),
-        }
-        resp = self.session.post(
-            url=url, headers=self.json_headers, data=json.dumps(data)
-        )
-        resp.raise_for_status()
-        results = ReserveCaliforniaPlaceResult(**resp.json())
-        return results
-
-    def _get_campgrounds_api(
-        self,
-        rec_area_id: int,
-    ) -> List[CampgroundFacility]:
-        """
-        Retrieve Facility IDs
-
-        Deprecated: This Function Has Been Deprecated in favor of using bulk updates and
-        local caching. This code has been left around as a temporary artifact.
-
-        Parameters
-        ----------
-        rec_area_id: int
-
-        Returns
-        -------
-        List[CampgroundFacility]
-        """
-        response: ReserveCaliforniaPlaceResult = self._search_for_campgrounds_api(
-            place_id=rec_area_id, start_date=None
-        )
-        if response.SelectedPlace is None:
-            raise ValueError(
-                f"Could not find facilities in {rec_area_id} - try searching a different Rec Area."
-            )
-        campgrounds: List[CampgroundFacility] = []
-        for _facility_id, facility in response.SelectedPlace.Facilities.items():
-            if (
-                response.SelectedPlace.PlaceId
-                not in self.reserve_california_rec_areas.keys()
-            ):
-                self.reserve_california_rec_areas[
-                    response.SelectedPlace.PlaceId
-                ] = RecreationArea(
-                    recreation_area_id=response.SelectedPlace.PlaceId,
-                    recreation_area=response.SelectedPlace.Name,
-                    recreation_area_location="California",
-                )
-            camp = CampgroundFacility(
-                facility_id=facility.FacilityId,
-                facility_name=facility.Name,
-                recreation_area_id=response.SelectedPlace.PlaceId,
-                recreation_area=response.SelectedPlace.Name,
-                coordinates=(facility.Latitude, facility.Longitude),
-            )
-            campgrounds.append(camp)
-        return campgrounds

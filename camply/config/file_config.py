@@ -20,14 +20,6 @@ class FileConfig:
     CAMPLY_DIRECTORY = _config_dir.parent
     ROOT_DIRECTORY = CAMPLY_DIRECTORY.parent
 
-    PROVIDERS_DIRECTORY = CAMPLY_DIRECTORY.joinpath("providers")
-
-    RESERVE_CALIFORNIA = PROVIDERS_DIRECTORY.joinpath("reserve_california")
-    RESERVE_CALIFORNIA_CITYPARKS = RESERVE_CALIFORNIA.joinpath("cityparks.json")
-    RESERVE_CALIFORNIA_PLACES = RESERVE_CALIFORNIA.joinpath("places.json")
-    RESERVE_CALIFORNIA_FILTERS = RESERVE_CALIFORNIA.joinpath("filters.json")
-    RESERVE_CALIFORNIA_FACILITIES = RESERVE_CALIFORNIA.joinpath("facilities.json")
-
     DOT_CAMPLY_FIELDS = OrderedDict(
         PUSHOVER_PUSH_USER={"default": "", "notes": "Enables Pushover Notifications"},
         PUSHBULLET_API_TOKEN={
@@ -81,3 +73,6 @@ class FileConfig:
             "notes": "Personal Recreation.gov API Key (not required)",
         },
     )
+
+    PROVIDERS_DIRECTORY = CAMPLY_DIRECTORY.joinpath("providers")
+    RESERVE_CALIFORNIA_PROVIDER = PROVIDERS_DIRECTORY.joinpath("reserve_california")

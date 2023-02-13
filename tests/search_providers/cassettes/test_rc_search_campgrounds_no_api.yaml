@@ -3,14 +3,14 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US) AppleWebKit/532.0 (KHTML,
-                    like Gecko) Chrome/3.0.198.0 Safari/532.0
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34
+                    Safari/534.24
           method: GET
           uri: https://calirdr.usedirect.com/rdr/rdr/search/filters
       response:
           body:
               string:
-                  '{"Message":"Built in 0.3560 ms size 17084 bytes on CALIRDR2","UnitCategories":[{"UnitCategoryId":1,"UnitCategoryName":"Camping","HasEquipment":true,"Icon":"camping"},{"UnitCategoryId":7,"UnitCategoryName":"DailyUse","HasEquipment":false,"Icon":"dailyuse"},{"UnitCategoryId":1016,"UnitCategoryName":"Equestrian","HasEquipment":true,"Icon":"equestrian"},{"UnitCategoryId":2,"UnitCategoryName":"Group
+                  '{"Message":"Built in 0.3768 ms size 17084 bytes on CALIRDR6","UnitCategories":[{"UnitCategoryId":1,"UnitCategoryName":"Camping","HasEquipment":true,"Icon":"camping"},{"UnitCategoryId":7,"UnitCategoryName":"DailyUse","HasEquipment":false,"Icon":"dailyuse"},{"UnitCategoryId":1016,"UnitCategoryName":"Equestrian","HasEquipment":true,"Icon":"equestrian"},{"UnitCategoryId":2,"UnitCategoryName":"Group
                   Camping","HasEquipment":false,"Icon":"groupcamping"},{"UnitCategoryId":1015,"UnitCategoryName":"Hook
                   Up Camping","HasEquipment":true,"Icon":"hookupcamping"},{"UnitCategoryId":1008,"UnitCategoryName":"Lodging","HasEquipment":false,"Icon":"lodging"},{"UnitCategoryId":1014,"UnitCategoryName":"Remote
                   Camping","HasEquipment":true,"Icon":"remotecamping"}],"NightlySleepingUnits":[{"UnitCategoryId":1,"SleepingUnitId":75,"SleepingUnitName":"RV/Motorhome","IsWheeled":true,"Icon":"rvmotorhome"},{"UnitCategoryId":1,"SleepingUnitId":76,"SleepingUnitName":"Tent
@@ -245,7 +245,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 03:24:04 GMT
+                  - Mon, 13 Feb 2023 06:48:01 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -261,8 +261,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US) AppleWebKit/532.0 (KHTML,
-                    like Gecko) Chrome/3.0.198.0 Safari/532.0
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34
+                    Safari/534.24
           method: GET
           uri: https://calirdr.usedirect.com/rdr/rdr/fd/citypark
       response:
@@ -992,7 +992,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 03:24:04 GMT
+                  - Mon, 13 Feb 2023 06:48:01 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -1008,8 +1008,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US) AppleWebKit/532.0 (KHTML,
-                    like Gecko) Chrome/3.0.198.0 Safari/532.0
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34
+                    Safari/534.24
           method: GET
           uri: https://calirdr.usedirect.com/rdr/rdr/fd/places
       response:
@@ -1987,7 +1987,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 03:24:04 GMT
+                  - Mon, 13 Feb 2023 06:48:02 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -2003,8 +2003,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US) AppleWebKit/532.0 (KHTML,
-                    like Gecko) Chrome/3.0.198.0 Safari/532.0
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34
+                    Safari/534.24
           method: GET
           uri: https://calirdr.usedirect.com/rdr/rdr/fd/facilities
       response:
@@ -2960,7 +2960,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 03:24:05 GMT
+                  - Mon, 13 Feb 2023 06:48:02 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:

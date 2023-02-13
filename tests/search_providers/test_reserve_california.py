@@ -3,46 +3,22 @@ ReserveCalifornia Testing
 """
 
 import datetime
+import pathlib
 
 from dateutil.relativedelta import relativedelta
+from pytest import MonkeyPatch
 
 from camply.providers import ReserveCalifornia
-from tests.conftest import cli_status_checker, vcr_cassette
+from tests.conftest import CamplyRunner, cli_status_checker, vcr_cassette
 
 
 @vcr_cassette
-def test_rc_get_rec_areas_api():
-    """
-    Test Pinging the API Directly: Rec Areas
-    """
-    prov = ReserveCalifornia()
-    expected_rec_area = 678
-    rec_areas = prov._search_recareas_api(query="Millerton Lake SRA")
-    assert rec_areas[0].recreation_area_id == expected_rec_area
-
-
-@vcr_cassette
-def test_rc_get_campgrounds_api():
-    """
-    Test Pinging the API Directly: Campgrounds
-    """
-    prov = ReserveCalifornia()
-    expected_facility = 572
-    campgrounds = prov._get_campgrounds_api(rec_area_id=678)
-    found = False
-    for campground in campgrounds:
-        if campground.facility_name == "North Shore Group Camp":
-            assert campground.facility_id == expected_facility
-            found = True
-    assert found is True
-
-
-@vcr_cassette
-def test_rc_search_campgrounds_no_api():
+def test_rc_search_campgrounds_no_api(tmp_path: pathlib.Path) -> None:
     """
     Cached Results: Search Campgrounds
     """
     prov = ReserveCalifornia()
+    prov.offline_cache_dir = tmp_path
     expected_facility = 572
     campgrounds = prov.find_campgrounds(rec_area_id=[678])
     found = False
@@ -54,11 +30,12 @@ def test_rc_search_campgrounds_no_api():
 
 
 @vcr_cassette
-def test_rc_get_campsites():
+def test_rc_get_campsites(tmp_path: pathlib.Path) -> None:
     """
     Get Campsites
     """
     prov = ReserveCalifornia()
+    prov.offline_cache_dir = tmp_path
     start_date = datetime.date(2023, 6, 5)
     campsites = prov.get_campsites(
         campground_id=543,
@@ -70,39 +47,45 @@ def test_rc_get_campsites():
 
 
 @vcr_cassette
-def test_rc_get_metadata():
+def test_rc_get_metadata(tmp_path: pathlib.Path) -> None:
     """
     Cached Results: Metadata Fetching
     """
     prov = ReserveCalifornia()
+    prov.offline_cache_dir = tmp_path
     prov.refresh_metadata()
 
 
 @vcr_cassette
-def test_rc_search_recreation_area():
+def test_rc_search_recreation_area(tmp_path: pathlib.Path) -> None:
     """
     Cached Results: Search For RecArea
     """
     prov = ReserveCalifornia()
+    prov.offline_cache_dir = tmp_path
     results = prov.search_for_recreation_areas(query="Half Moon Bay")
     assert results[0].recreation_area_location == "Half Moon Bay, CA"
 
 
 @vcr_cassette
-def test_rc_search_campgrounds():
+def test_rc_search_campgrounds(tmp_path: pathlib.Path) -> None:
     """
     Cached Results: Search For Campground
     """
     prov = ReserveCalifornia()
+    prov.offline_cache_dir = tmp_path
     results = prov.find_campgrounds(search_string="Half Moon Bay", rec_area_id=[])
     assert results[0].recreation_area.__contains__("Half Moon Bay")
 
 
 @vcr_cassette
-def test_rc_cli_recreation_areas(cli_runner):
+def test_rc_cli_recreation_areas(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
     """
     CLI Testing - recreation-areas
     """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
     test_command = """
     camply recreation-areas --provider ReserveCalifornia --search "Los Angeles"
     """
@@ -112,10 +95,13 @@ def test_rc_cli_recreation_areas(cli_runner):
 
 
 @vcr_cassette
-def test_rc_cli_campgrounds(cli_runner):
+def test_rc_cli_campgrounds(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
     """
     CLI Testing - campgrounds
     """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
     test_command = """
     camply campgrounds --provider ReserveCalifornia --search "Sonoma Coast"
     """
@@ -125,10 +111,13 @@ def test_rc_cli_campgrounds(cli_runner):
 
 
 @vcr_cassette
-def test_rc_cli_campsites(cli_runner):
+def test_rc_cli_campsites(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
     """
     CLI Testing - Night Filtering
     """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
     test_command = """
     camply campsites \
         --provider ReserveCalifornia \
@@ -144,10 +133,13 @@ def test_rc_cli_campsites(cli_runner):
 
 
 @vcr_cassette
-def test_rc_cli_campsites_nights(cli_runner):
+def test_rc_cli_campsites_nights(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
     """
     CLI Testing - Night Filtering
     """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
     test_command = """
     camply campsites \
       --start-date 2023-06-01 \
