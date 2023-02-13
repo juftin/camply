@@ -13,7 +13,12 @@ import ratelimit
 
 from camply.config import FileConfig
 from camply.config.api_config import ReserveCaliforniaConfig
-from camply.containers import AvailableCampsite, CampgroundFacility, RecreationArea
+from camply.containers import (
+    AvailableCampsite,
+    CampgroundFacility,
+    CamplyModel,
+    RecreationArea,
+)
 from camply.containers.reserve_california import (
     ReserveCaliforniaAvailabilityResponse,
     ReserveCaliforniaAvailabilitySlice,
@@ -98,9 +103,7 @@ class ReserveCalifornia(BaseProvider):
         found_recareas = [
             rec_area
             for rec_area in self.reserve_california_rec_areas.values()
-            if query.lower() in rec_area.recreation_area.lower()
-            or query.lower() in rec_area.recreation_area_location.lower()
-            or query.lower() in str(rec_area.description).lower()
+            if self._search_camply_model(query=query, model=rec_area) is True
         ]
         return found_recareas
 
@@ -193,8 +196,8 @@ class ReserveCalifornia(BaseProvider):
             found_campgrounds = [
                 campground
                 for campground in self.reserve_california_campgrounds.values()
-                if search_string.lower() in campground.recreation_area.lower()
-                or search_string.lower() in campground.facility_name.lower()
+                if self._search_camply_model(query=search_string, model=campground)
+                is True
             ]
         return found_campgrounds
 
@@ -501,3 +504,21 @@ class ReserveCalifornia(BaseProvider):
                     recreation_area=rec_area.recreation_area,
                 )
         return facilities_data_validated
+
+    @classmethod
+    def _search_camply_model(cls, query: str, model: CamplyModel) -> bool:
+        """
+        Search a Camply Model
+
+        Parameters
+        ----------
+        query: str
+        model: CamplyModel
+
+        Returns
+        -------
+        bool
+        """
+        return any(
+            [query.lower() in str(value).lower() for value in model.dict().values()]
+        )
