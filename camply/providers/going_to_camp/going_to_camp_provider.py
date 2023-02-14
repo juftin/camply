@@ -38,64 +38,49 @@ RECREATION_AREAS = {
         recreation_area_id=3,
         recreation_area_location="Washington, USA",
     ),
-    "yukon.goingtocamp.com": RecreationArea(
-        recreation_area="Yukon (Backcountry)",
-        recreation_area_id=4,
-        recreation_area_location="Yukon, CA",
-    ),
-    "hamilton.goingtocamp.com": RecreationArea(
-        recreation_area="Hamilton",
-        recreation_area_id=5,
-        recreation_area_location="Ontario, CA",
-    ),
     "maitlandvalley.goingtocamp.com": RecreationArea(
         recreation_area="Maitland Valley",
-        recreation_area_id=6,
+        recreation_area_id=4,
         recreation_area_location="Ontario, CA",
-    ),
-    "orovillepark.goingtocamp.com": RecreationArea(
-        recreation_area="Oroville Park",
-        recreation_area_id=7,
-        recreation_area_location="Washington, USA",
     ),
     "saugeen.goingtocamp.com": RecreationArea(
         recreation_area="Saugeen Valley",
-        recreation_area_id=8,
+        recreation_area_id=5,
         recreation_area_location="Ontario, CA",
     ),
     "tacomapower.goingtocamp.com": RecreationArea(
         recreation_area="Tacoma Power Parks",
-        recreation_area_id=9,
+        recreation_area_id=6,
         recreation_area_location="Washington, USA",
     ),
     "wisconsin.goingtocamp.com": RecreationArea(
         recreation_area="Wisconsin State Parks",
-        recreation_area_id=10,
+        recreation_area_id=7,
         recreation_area_location="Wisconsin, USA",
     ),
     "ahtrails.ca": RecreationArea(
         recreation_area="Algonquin Highlands",
-        recreation_area_id=11,
+        recreation_area_id=8,
         recreation_area_location="Ontario, CA",
     ),
     "parkreservations.maryland.gov": RecreationArea(
         recreation_area="Maryland State Parks",
-        recreation_area_id=12,
+        recreation_area_id=9,
         recreation_area_location="Maryland, USA",
     ),
     "reservations.ncc-ccn.gc.ca": RecreationArea(
         recreation_area="Gatineau Park",
-        recreation_area_id=13,
+        recreation_area_id=10,
         recreation_area_location="Ottawa-Gatineau, Ontario-Quebec, CA",
     ),
     "www.nlcamping.ca": RecreationArea(
         recreation_area="Newfoundland & Labrador Provincial Parks",
-        recreation_area_id=14,
+        recreation_area_id=11,
         recreation_area_location="Newfoundland and Labrador, CA",
     ),
     "camping.bcparks.ca": RecreationArea(
         recreation_area="BC Parks",
-        recreation_area_id=15,
+        recreation_area_id=12,
         recreation_area_location="British Columbia, CA",
     ),
 }
