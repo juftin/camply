@@ -59,24 +59,20 @@ to filter searches by recreation area when using GoingToCamp.
 
 The GoingToCamp Provider currently contains the following Recreation Areas:
 
--   Algonquin Highlands, Ontario, CA (#11)
--   BC Parks, British Columbia, CA (#15)
--   Gatineau Park, Ottawa-Gatineau, Ontario-Quebec, CA (#13)
--   Hamilton, Ontario, CA (#5)
+-   Algonquin Highlands, Ontario, CA (#8)
+-   BC Parks, British Columbia, CA (#12)
+-   Gatineau Park, Ottawa-Gatineau, Ontario-Quebec, CA (#10)
 -   Long Point Region, Ontario, CA (#1)
--   Maitland Valley, Ontario, CA (#6)
--   Maryland State Parks, Maryland, USA (#12)
--   Newfoundland & Labrador Provincial Parks, Newfoundland and Labrador, CA (#14)
--   Oroville Park, Washington, USA (#7)
--   Saugeen Valley, Ontario, CA (#8)
+-   Maitland Valley, Ontario, CA (#4)
+-   Maryland State Parks, Maryland, USA (#9)
+-   Newfoundland & Labrador Provincial Parks, Newfoundland and Labrador, CA (#11)
+-   Saugeen Valley, Ontario, CA (#5)
 -   St. Clair Region, Ontario, CA (#2)
--   Tacoma Power Parks, Washington, USA (#9)
+-   Tacoma Power Parks, Washington, USA (#6)
 -   Washington State Parks, Washington, USA (#3)
--   Wisconsin State Parks, Wisconsin, USA (#10)
--   Yukon (Backcountry), Yukon, CA (#4)
+-   Wisconsin State Parks, Wisconsin, USA (#7)
 
-Check out the following documentation examples for more details on searching GoingToCamp recreation
-areas:
+Check out the following documentation examples for more details on searching GoingToCamp recreation areas:
 
 -   [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
 -   [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
