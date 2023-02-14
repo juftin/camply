@@ -97,8 +97,7 @@ class ReserveCalifornia(BaseProvider):
                 "You must provide a search string to search `ReserveCalifornia` Recreation Areas"
             )
             sys.exit(1)
-        if query is not None:
-            logger.info(f'Searching for Recreation Areas: "{query}"')
+        logger.info(f'Searching for Recreation Areas: "{query}"')
         self.refresh_metadata()
         found_recareas = [
             rec_area
@@ -249,15 +248,14 @@ class ReserveCalifornia(BaseProvider):
         -------
         List[AvailableCampsite]
         """
-        if self.metadata_refreshed is False:
-            self.refresh_metadata()
+        self.refresh_metadata()
         data = {
             "IsADA": is_ada,
             "MinVehicleLength": min_vehicle_length,
             "UnitCategoryId": unit_category_id,
             "StartDate": start_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
             "WebOnly": web_only,
-            "UnitTypesGroupIds": unit_type_group_ids
+            "UnitTypesGroupIds": []
             if unit_type_group_ids is None
             else unit_type_group_ids,
             "SleepingUnitId": sleeping_unit_id,
@@ -483,7 +481,7 @@ class ReserveCalifornia(BaseProvider):
             facilities_data: List[Dict[str, Any]] = resp.json()
             metadata_file.write_text(json.dumps(facilities_data, indent=2))
         if not isinstance(facilities_data, list):
-            raise CamplyError("Unexpected data from facilities.json")
+            raise CamplyError("Unexpected data from %s", metadata_file)
         facilities_validated = [
             ReserveCaliforniaFacilityMetadata(**facility_json)
             for facility_json in facilities_data
