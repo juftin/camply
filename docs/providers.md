@@ -106,3 +106,31 @@ camply campgrounds --provider RecreationDotGovTimedEntry --state OR
     -   [Tickets + Tours](command_line_usage.md#tickets-tours)
     -   [Timed Entry](command_line_usage.md#timed-entry)
     -   [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
+
+## ReserveCalifornia
+
+![](_static/reserve_california.png){: .center}
+
+[ReserveCalifornia](https://reservecalifornia.com/) is the Online Booking provider for California State Parks.
+With 279 park units, over 340 miles of coastline, 970 miles of lake and river frontage, 15,000 campsites,
+5,200 miles of trails, the California Department of Parks and Recreation (State Parks) contains the largest and
+most diverse recreational holdings of any state agency in the nation.
+
+```commandline
+camply recreation-areas --provider ReserveCalifornia --search "Los Angeles"
+```
+
+```commandline
+camply campgrounds --provider ReserveCalifornia --search "Sonoma Coast"
+```
+
+```commandline
+camply campsites \
+    --provider ReserveCalifornia \
+    --start-date 2023-07-01 \
+    --end-date 2023-08-01 \
+    --rec-area 718 \
+    --weekends
+```
+
+-   [Search ReserveCalifornia](command_line_usage.md#search-reservecalifornia)

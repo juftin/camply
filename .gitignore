@@ -133,3 +133,6 @@ dmypy.json
 
 # NodeJS
 node_modules/
+
+# Camply Data Files
+camply/providers/reserve_california/*.json

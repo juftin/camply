@@ -73,3 +73,6 @@ class FileConfig:
             "notes": "Personal Recreation.gov API Key (not required)",
         },
     )
+
+    PROVIDERS_DIRECTORY = CAMPLY_DIRECTORY.joinpath("providers")
+    RESERVE_CALIFORNIA_PROVIDER = PROVIDERS_DIRECTORY.joinpath("reserve_california")

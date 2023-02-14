@@ -43,7 +43,11 @@ def get_log_handler(
         "rich": rich_handler,
         "python": python_handler,
     }
-    log_handler: logging.Handler = _log_dict.get(LOG_HANDLER, rich_handler)
+    if getenv("PYTEST_CURRENT_TEST", None) is not None:
+        handler = "python"
+    else:
+        handler = LOG_HANDLER
+    log_handler: logging.Handler = _log_dict.get(handler, rich_handler)
     return log_handler, log_level
 
 
