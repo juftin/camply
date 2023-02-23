@@ -55,6 +55,7 @@ class SearchReserveCalifornia(BaseCampingSearch):
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
+            **kwargs,
         )
         self.campsite_finder: ReserveCalifornia
         self._recreation_area_ids: List[int] = make_list(recreation_area)
