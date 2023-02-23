@@ -12,6 +12,7 @@ continuous: true # DEFAULTS TO TRUE
 polling_interval: 5 # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
 notifications: email # (silent, email, pushover, pushbullet, and telegram), DEFAULTS TO `silent`
 search_forever: true # FALSE BY DEFAULT
+search_once: false # FALSE BY DEFAULT
 notify_first_try: false # FALSE BY DEFAULT
 equipment: # Array of Equipment Search Lists - DEFAULTS TO `null`
 offline_search: false # FALSE BY DEFAULT

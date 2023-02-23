@@ -3,8 +3,12 @@ CLI Testing - Campsites: `camply campsites...`
 """
 
 import logging
+import pathlib
+
+from pytest import MonkeyPatch
 
 import camply.config
+from camply.providers import ReserveCalifornia
 from tests.conftest import CamplyRunner, cli_status_checker, vcr_cassette
 
 logger = logging.getLogger(__name__)
@@ -303,3 +307,49 @@ def test_search_persist_pickle(cli_runner: CamplyRunner) -> None:
     assert "Campsite search is configured to save offline" in result_1.output
     assert "test_file.pickle" in result_2.output
     assert "campsites loaded from file" in result_2.output
+
+
+@vcr_cassette
+def test_search_once_failure(cli_runner: CamplyRunner) -> None:
+    """
+    Run Once + Continuous
+    """
+    test_command = """
+    camply campsites \
+        --rec-area 2725 \
+        --start-date 2023-07-10 \
+        --end-date 2023-07-18 \
+        --notifications pushover \
+        --search-once \
+        --continuous
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    cli_status_checker(result=result, exit_code_zero=False)
+    error_message = "You cannot specify `--search-once` alongside `--continuous`"
+    assert error_message in result.output
+
+
+@vcr_cassette
+def test_search_once_pushover(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
+    """
+    Run Once + Continuous
+    """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
+    test_command = """
+    camply campsites \
+        --campground 343 \
+        --start-date 2023-07-13 \
+        --end-date 2023-07-14 \
+        --provider ReserveCalifornia \
+        --search-once \
+        --notifications pushover
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    cli_status_checker(result=result, exit_code_zero=True)
+    assert (
+        "Notifications active via: <SilentNotifications>, <PushoverNotifications>"
+        in result.output
+    )
+    assert "1 New Campsites Found." in result.output

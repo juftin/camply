@@ -112,6 +112,7 @@ def yaml_file_to_arguments(
     notify_first_try = yaml_search.get("notify_first_try", False)
     notification_provider = yaml_search.get("notifications", "silent")
     search_forever = yaml_search.get("search_forever", False)
+    search_once = yaml_search.get("search_once", False)
     equipment = yaml_search.get("equipment", None)
     equipment = make_list(equipment)
     if isinstance(equipment, list):
@@ -140,5 +141,6 @@ def yaml_file_to_arguments(
         "notify_first_try": notify_first_try,
         "notification_provider": notification_provider,
         "search_forever": search_forever,
+        "search_once": search_once,
     }
     return provider, provider_kwargs, search_kwargs

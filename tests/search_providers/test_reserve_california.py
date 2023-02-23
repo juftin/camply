@@ -3,7 +3,9 @@ ReserveCalifornia Testing
 """
 
 import datetime
+import os
 import pathlib
+from unittest import mock
 
 from dateutil.relativedelta import relativedelta
 from pytest import MonkeyPatch
@@ -152,3 +154,21 @@ def test_rc_cli_campsites_nights(
     assert "Valley Oak Loop (sites 85-90)" in result.output
     assert "total sites found in month of June" in result.output
     assert "https://www.reservecalifornia.com" in result.output
+
+
+@vcr_cassette
+@mock.patch.dict(os.environ, {"CAMPLY_PROVIDER": "ReserveCalifornia"})
+def test_rc_cli_campgrounds_env_var(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
+    """
+    CLI Testing - campgrounds via env var
+    """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
+    test_command = """
+    camply campgrounds --search "Sonoma Coast"
+    """
+    result = cli_runner.run_camply_command(test_command)
+    cli_status_checker(result=result, exit_code_zero=True)
+    assert "Bodega Dunes" in result.output
+    assert 'Using Camply Provider: "ReserveCalifornia"' in result.output

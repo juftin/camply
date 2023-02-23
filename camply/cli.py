@@ -64,6 +64,7 @@ provider_argument = click.option(
     type=click.Choice(CAMPSITE_SEARCH_PROVIDER.keys(), case_sensitive=False),
     help="Camping Search Provider. Defaults to 'RecreationDotGov'",
     metavar="TEXT",
+    envvar="CAMPLY_PROVIDER",
 )
 debug_option = click.option(
     "--debug/--no-debug", default=None, help="Enable extra debugging output"
@@ -100,11 +101,13 @@ def _preferred_provider(context: CamplyContext, command_provider: Optional[str])
     The preferred provider is returned
     """
     if command_provider:
-        return command_provider
+        provider = command_provider
     elif command_provider is None and context.provider:
-        return context.provider
+        provider = context.provider
     else:
-        return DEFAULT_CAMPLY_PROVIDER
+        provider = DEFAULT_CAMPLY_PROVIDER
+    logger.info('Using Camply Provider: "%s"', provider)
+    return provider
 
 
 @click.group(cls=RichGroup)
@@ -381,6 +384,16 @@ search_forever_argument = click.option(
     "that it will never notify about the same identical campsite for "
     "the same booking date.",
 )
+search_once_argument = click.option(
+    "--search-once",
+    is_flag=True,
+    default=False,
+    help="Enables continuous searching features - but doesn't actually "
+    "search continuously. This option is only useful when you want to run camply "
+    "periodically in a CRON job fashion but still receive notifications - "
+    "it's strongly recommended you enable offline searching as well to "
+    "save results between searches.",
+)
 yaml_config_argument = click.option(
     "--yaml-config",
     "--yml-config",
@@ -437,7 +450,7 @@ def _get_equipment(equipment: Optional[List[str]]) -> List[Tuple[str, Optional[i
     Parse Equipment from CLI Args
     """
     equipment_list = []
-    for (equipment_name, equipment_length) in equipment:
+    for equipment_name, equipment_length in equipment:
         try:
             equipment_length = round(float(equipment_length), 0)
             if equipment_length == 0:
@@ -461,6 +474,7 @@ def _validate_campsites(
     notifications: List[str],
     notify_first_try: bool,
     search_forever: bool,
+    search_once: bool,
     **kwargs: Dict[str, Any],
 ) -> bool:
     """
@@ -513,6 +527,11 @@ def _validate_campsites(
                 f"{', '.join(mandatory_string_parameters)}"
             )
             sys.exit(1)
+    if search_once is True and (continuous is True or search_forever is not None):
+        logger.error(
+            "You cannot specify `--search-once` alongside `--continuous` or `--search-forever`"
+        )
+        sys.exit(1)
 
     if any(
         [
@@ -520,6 +539,7 @@ def _validate_campsites(
             search_forever is not None,
             notify_first_try is not None,
             polling_interval is not None,
+            search_once is True,
         ]
     ):
         continuous = True
@@ -530,6 +550,7 @@ def _validate_campsites(
 @yaml_config_argument
 @offline_search_path_argument
 @offline_search_argument
+@search_once_argument
 @search_forever_argument
 @notify_first_try_argument
 @notifications_argument
@@ -563,6 +584,7 @@ def campsites(
     notifications: Tuple[str],
     notify_first_try: Optional[str],
     search_forever: Optional[str],
+    search_once: bool,
     yaml_config: Optional[str],
     offline_search: bool,
     offline_search_path: Optional[str],
@@ -599,6 +621,7 @@ def campsites(
         notifications=notifications,
         notify_first_try=notify_first_try,
         search_forever=search_forever,
+        search_once=search_once,
     )
     if len(notifications) == 0:
         notifications = ["silent"]
@@ -645,6 +668,7 @@ def campsites(
             "notify_first_try": notify_first_try,
             "notification_provider": notifications,
             "search_forever": search_forever,
+            "search_once": search_once,
         }
     provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
     camping_finder = provider_class(**provider_kwargs)

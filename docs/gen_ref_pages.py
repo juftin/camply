@@ -12,7 +12,6 @@ source_code = project_dir.joinpath("camply")
 nav = mkdocs_gen_files.Nav()
 
 for path in sorted(source_code.rglob("*.py")):
-
     module_path = path.relative_to(project_dir).with_suffix("")
     doc_path = path.relative_to(source_code).with_suffix(".md")
     full_doc_path = Path("reference", doc_path)
