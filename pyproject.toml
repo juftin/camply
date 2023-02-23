@@ -1,93 +1,94 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
 
 [tool.poetry]
-name = "camply"
-description = "camply, the campsite finder 🏕"
-version = "0.13.1"
 authors = ["Justin Flannery <juftin@juftin.com>"]
-license = "MIT"
-readme = "README.md"
-homepage = "https://github.com/juftin/camply"
-repository = "https://github.com/juftin/camply"
-documentation = "https://juftin.github.io/camply"
 classifiers = [
-    "License :: OSI Approved :: MIT License",
-    "Development Status :: 5 - Production/Stable",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10"
+  "License :: OSI Approved :: MIT License",
+  "Development Status :: 5 - Production/Stable",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10"
 ]
+description = "camply, the campsite finder 🏕"
+documentation = "https://juftin.github.io/camply"
+homepage = "https://github.com/juftin/camply"
 keywords = ["recdotgov", "outdoors", "camping", "reservations", "national-parks"]
+license = "MIT"
+name = "camply"
+readme = "README.md"
+repository = "https://github.com/juftin/camply"
+version = "0.13.1"
 
 [tool.poetry.dependencies]
-python = ">=3.7.1,<4.0"
 PyYAML = ">=5.1,<7.0"
+click = ">=8.0.1"
+fake-useragent = "^1.1.1"
+pandas = "~1.3"
+pydantic = ">=1.2,<2.0"
+python = ">=3.7.1,<4.0"
 python-dotenv = ">=0.10.4"
 pytz = ">=2019.1"
-pandas = "~1.3"
+ratelimit = "^2.2.1"
 requests = ">=2.26.0"
-tenacity = ">=5.1.0"
-pydantic = ">=1.2,<2.0"
-click = ">=8.0.1"
 rich = ">=10.0.0"
 rich-click = "^1.6.1"
-twilio = { version = ">=7.14.0", optional = true }
-fake-useragent = "^1.1.1"
-ratelimit = "^2.2.1"
+tenacity = ">=5.1.0"
+twilio = {version = ">=7.14.0", optional = true}
 
 [tool.poetry.extras]
-twilio = ["twilio"]
 all = ["twilio"]
+twilio = ["twilio"]
 
 [tool.poetry.group.dev.dependencies]
-pytest = ">=5.2"
-coverage = { extras = ["toml"], version = ">=6.2" }
+coverage = {extras = ["toml"], version = ">=6.2"}
 flake8 = ">=3.0.0"
-tox = "^3.25.1"
-mypy = "^0.971"
 mkdocs = "^1.4.2"
 mkdocs-click = "^0.8.0"
-mkdocstrings = { extras = ["python"], version = "^0.19.0" }
-mkdocs-material = "^8.5.10"
 mkdocs-gen-files = "^0.4.0"
 mkdocs-literate-nav = "^0.5.0"
+mkdocs-material = "^8.5.10"
 mkdocs-section-index = "^0.3.4"
-pytest-vcr = "^1.0.2"
+mkdocstrings = {extras = ["python"], version = "^0.19.0"}
+mypy = "^0.971"
+pytest = ">=5.2"
 pytest-cov = "^4.0.0"
+pytest-vcr = "^1.0.2"
 pytest-xdist = "^3.1.0"
-ruff = "0.0.238"
+ruff = "0.0.252"
+tox = "^3.25.1"
 
 [tool.poetry.scripts]
 camply = "camply.cli:cli"
 
 [tool.poetry.urls]
-Changelog = "https://github.com/juftin/camply/releases"
 "Bug Tracker" = "https://github.com/juftin/camply/issues"
-Docker = "https://hub.docker.com/r/juftin/camply"
+Changelog = "https://github.com/juftin/camply/releases"
 Discussions = "https://github.com/juftin/camply/discussions"
+Docker = "https://hub.docker.com/r/juftin/camply"
 
 [tool.ruff]
-select = [
-    "E", # pycodestyle errors
-    "W", # pycodestyle warnings
-    "F", # pyflakes
-    "I", # isort
-    "C", # flake8-comprehensions
-    "Q", # flake8-quotes
-    "B", # flake8-bugbear
-    "PLE", # pylint
-    "PLR", # pylint
-    "PLW", # pylint
-    "RUF", # ruff
-    "C90", # mccabe
-    "I" # isort
-]
 ignore = [
-    "E501", # line too long, handled by black
-    "PLR0913", # Too many arguments to function call
+  "E501",  # line too long, handled by black
+  "PLR0913",  # Too many arguments to function call
+  "PLW2901"  # Outer for loop variable overwritten by inner assignment target
+]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "C",  # flake8-comprehensions
+  "Q",  # flake8-quotes
+  "B",  # flake8-bugbear
+  "PLE",  # pylint
+  "PLR",  # pylint
+  "PLW",  # pylint
+  "RUF",  # ruff
+  "C90",  # mccabe
+  "I"  # isort
 ]
