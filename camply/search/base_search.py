@@ -290,6 +290,7 @@ class BaseCampingSearch(ABC):
         continuous_search_attempts: int,
         notification_provider: Union[str, List[str], BaseNotifications, None],
         notify_first_try: bool,
+        search_once: bool = False,
     ) -> List[AvailableCampsite]:
         """
         Search for Campsites until at least one is found
@@ -313,6 +314,8 @@ class BaseCampingSearch(ABC):
             Used with `continuous=True`, whether to send all non-silent notifications if more
             than 5 matching campsites are found on the first try. Defaults to false which
             only sends the first 5.
+        search_once: bool
+            Whether to only search once (and not actually continuously)
 
         Returns
         -------
@@ -331,7 +334,10 @@ class BaseCampingSearch(ABC):
             wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60),
         )
         matching_campsites = retryer.__call__(
-            self._search_matching_campsites_available, False, False, True
+            fn=self._search_matching_campsites_available,
+            log=False,
+            verbose=False,
+            raise_error=not search_once,
         )
         found_campsites = set(matching_campsites)
         new_campsites = found_campsites.difference(self.campsites_found)
@@ -442,6 +448,7 @@ class BaseCampingSearch(ABC):
         notification_provider: str = "silent",
         notify_first_try: bool = False,
         search_forever: bool = False,
+        search_once: bool = False,
     ):
         """
         Continuously Search For Campsites
@@ -466,6 +473,8 @@ class BaseCampingSearch(ABC):
         search_forever: bool
             Used with `continuous=True`, This option searches for new campsites forever, with
             the caveat being that it will never notify about the same campsite.
+        search_once: bool
+            Whether to only search once (and not actually continuously)
 
         Returns
         -------
@@ -485,12 +494,15 @@ class BaseCampingSearch(ABC):
                 notification_provider=notification_provider,
                 notify_first_try=notify_first_try,
                 continuous_search_attempts=continuous_search_attempts,
+                search_once=search_once,
             )
             ending_count = len(self.campsites_found)
             continuous_search_attempts += 1
             if self.offline_search is True and ending_count > starting_count:
                 self.unload_campsites_to_file()
-            if search_forever is True:
+            if search_once is True:
+                continuous_search = False
+            elif search_forever is True:
                 sleep(int(polling_interval_minutes) * 60)
             else:
                 continuous_search = False
@@ -505,6 +517,7 @@ class BaseCampingSearch(ABC):
         notification_provider: str = "silent",
         notify_first_try: bool = False,
         search_forever: bool = False,
+        search_once: bool = False,
     ) -> List[AvailableCampsite]:
         """
         Perform the Search and Return Matching Availabilities
@@ -531,12 +544,14 @@ class BaseCampingSearch(ABC):
         search_forever: bool
             Used with `continuous=True`, This option searches for new campsites forever, with
             the caveat being that it will never notify about the same campsite.
+        search_once: bool
+            Whether to only search once (and not actually continuously)
 
         Returns
         -------
         List[AvailableCampsite]
         """
-        if continuous is True:
+        if continuous is True or search_once is True:
             self._search_campsites_continuous(
                 log=log,
                 verbose=verbose,
@@ -544,6 +559,7 @@ class BaseCampingSearch(ABC):
                 notification_provider=notification_provider,
                 notify_first_try=notify_first_try,
                 search_forever=search_forever,
+                search_once=search_once,
             )
         else:
             starting_count = len(self.campsites_found)

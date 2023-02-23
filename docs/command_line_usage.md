@@ -171,6 +171,12 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
         a serialized pickle file or a JSON file, depending on the file extension. When not specified,
         the filename will default to `camply_campsites.json`.
         [\*\*_example_](#saving-the-results-of-a-search)
+-   `--search-once`
+    -   Enables continuous searching features - but doesn't actually search continuously. This option
+        is only useful when you want to run camply periodically in a CRON job fashion but still
+        receive notifications - it's strongly recommended you enable offline searching as
+        well to save results between searches.
+        [\*\*_example_](#run-camply-as-a-cron-job)
 
 ```commandline
 camply campsites \
@@ -229,7 +235,7 @@ you need to set up [Pushover notifications](https://pushover.net)
 , [PushBullet](https://www.pushbullet.com/#settings/account), [Telegram](https://core.telegram.org/bots),
 or Email messages, everything can be done through the `configure` command. The end result is a file called
 [`.camply`](examples/example.camply) in your home folder. See
-the [Running in Docker](docker.md#running-in-docker) section to see how you can use environment variables
+the [Running in Docker](how_to_run.md#running-in-docker) section to see how you can use environment variables
 instead of a config file.
 
 ```commandline
@@ -305,8 +311,8 @@ once matches are found. Alternate notification methods are listed in the
 
     The use of **`--continuous`** in the below example isn't actually necessary.
     Continuous searching is enabled when any of the following options are provided:
-    **`--notifications`**, **`--search-forever`**, **`--polling-interval`**,
-    **`--notify-first-try`**.
+    **`--continuous`**, **`--notifications`**, **`--search-forever`**,
+    **`--polling-interval`**, **`--notify-first-try`**.
 
 ```commandline
 camply campsites \
@@ -369,7 +375,7 @@ camply campsites \
 Like all providers, `Pushover` requires that you share credentials/authentication - for `Pushover` this involves
 sharing your "Pushover User Key" with camply through a [configuration file](examples/example.camply)
 (via the **`camply configure`** command) or though environment variables (`PUSHOVER_PUSH_USER`). See the
-[Environment Variables](docker.md#environment-variables) section for a list of relevant environment variables
+[Environment Variables](how_to_run.md#environment-variables) section for a list of relevant environment variables
 per notification provider.
 
 !!! info
@@ -549,24 +555,7 @@ Sometimes, using a YAML configuration file is easier to manage all of your searc
 below [YAML example file](examples/example_search.yaml) and corresponding camply command:
 
 ```yaml
-provider: RecreationDotGov # RecreationDotGov IF NOT PROVIDED
-recreation_area: # (LIST OR SINGLE ENTRY)
-    - 2991 # Yosemite National Park, CA (All Campgrounds)
-    - 1074 # Sierra National Forest, CA (All Campgrounds)
-campgrounds: null # ENTIRE FIELD CAN BE OMITTED IF NOT USED - (LIST OR SINGLE ENTRY)
-campsites: null # OVERRIDES CAMPGROUNDS / RECREATION AREA - (LIST OR SINGLE ENTRY)
-start_date: 2023-09-12 # YYYY-MM-DD
-end_date: 2023-09-13 # YYYY-MM-DD
-weekends: false # FALSE BY DEFAULT
-nights: 1 # 1 BY DEFAULT
-continuous: true # DEFAULTS TO TRUE
-polling_interval: 5 # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
-notifications: email # (silent, email, pushover, pushbullet, and telegram), DEFAULTS TO `silent`
-search_forever: true # FALSE BY DEFAULT
-notify_first_try: false # FALSE BY DEFAULT
-equipment: null # Array of Equipment Search Lists - DEFAULTS TO `null`
-offline_search: false # FALSE BY DEFAULT
-offline_search_path: camply_campsites.json # Defaults to `camply_campsites.json`
+--8<-- "docs/examples/example_search.yaml"
 ```
 
 ```commandline
@@ -827,3 +816,24 @@ camply campsites \
 !!! note
 
     **`ReserveCalifornia`** doesn't yet support searching / filtering by *equipment*.
+
+### Run camply as a CRON Job
+
+In some instances you don't want to run camply as a continuous, blocking Python
+process. Instead you might want to run camply as a CRON job that checks for a campsite
+every 30 minutes (**`*/30 * * * *`**). In this case you would use the `--search-once` option
+which enables continuous searching functionality (like sending notifications) without
+actually searching continuously.
+
+Make sure to save your search results offline if running camply as a CRON job, this allows
+camply to save any campsites it finds between searches so that it only sends you a notification once:
+
+```commandline
+camply campsites \
+    --rec-area 2725 \
+    --start-date 2023-07-10 \
+    --end-date 2023-07-18 \
+    --notifications email \
+    --search-once \
+    --offline-search
+```

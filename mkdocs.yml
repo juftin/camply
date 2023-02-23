@@ -33,9 +33,9 @@ nav:
     - Installation ☀️: installation.md
     - Providers 🏕: providers.md
     - Usage 📝: command_line_usage.md
+    - How To Run Camply 🏃: how_to_run.md
     - Finding Campsites on Recreation.gov 🌲: recreationdotgov.md
     - Object Oriented Usage 🐍: python.md
-    - Docker ⛴: docker.md
     - Command Line Interface ⌨️: cli.md
     - API Documentation 🤖: reference/
     - Dependencies ♻️: dependencies.md

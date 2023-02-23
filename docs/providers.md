@@ -3,6 +3,12 @@
 camply works with a number of providers. A "provider" is an Online Booking
 Service that lists camping and recreation inventory.
 
+!!! info
+
+    Rather than specifiying provider with the **`--provider`** option on the
+    command line you can also set the **`CAMPLY_PROVIDER`** environnment
+    variable.
+
 ## Recreation.gov
 
 ![](_static/recreation_dot_gov_logo.png){: .center}
