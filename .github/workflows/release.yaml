@@ -42,7 +42,7 @@ jobs:
                   ref: ${{ github.ref }}
                   fetch-depth: 0
             - name: Set up Python Environment
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v4
               with:
                   python-version: "3.9"
             - name: Install Dependencies
