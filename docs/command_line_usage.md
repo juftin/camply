@@ -4,6 +4,12 @@ When installed, `camply`'s command line utility can be invoked with the command,
 tool accepts one of six sub-arguments: `campsites`, `recreation-areas`, `campgrounds`, `providers`,
 `equipment-types`, and `configure`.
 
+!!! important
+
+    The multi-line commands in this documentation correspond to running **`camply`** on a
+    MacOS or Linux Shell. If you are a Windows user take note that multi-line commands
+    on Windows Shells use the **`^`** character instead of **`\`** to escape new lines.
+
 ```console
 ❯ camply --help
 
