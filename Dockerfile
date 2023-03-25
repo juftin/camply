@@ -1,24 +1,13 @@
-FROM python:3.9-slim as python-base
+FROM python:3.10-slim
 
-FROM python-base as builder
-
-ENV POETRY_VERSION=1.3.1
-RUN python -m pip install --upgrade pip wheel
-RUN python -m pip install poetry==${POETRY_VERSION}
-
-COPY poetry.lock /tmp/camply/poetry.lock
 COPY pyproject.toml /tmp/camply/pyproject.toml
 COPY README.md /tmp/camply/README.md
 COPY camply/ /tmp/camply/camply/
 
-RUN cd /tmp/camply/ && poetry export -f requirements.txt --ansi --without-hashes --extras all -o /tmp/camply/requirements.txt
-
-FROM python-base as final
-
 MAINTAINER Justin Flannery <juftin@juftin.com>
 LABEL description="camply, the campsite finder"
 
-COPY --from=builder /tmp/camply/ /tmp/camply/
+COPY requirements/prod.txt /tmp/camply/requirements.txt
 
 RUN python -m pip install -r /tmp/camply/requirements.txt && \
     python -m pip install /tmp/camply --no-dependencies && \
