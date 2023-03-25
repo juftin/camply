@@ -66,6 +66,7 @@ class SearchYellowstone(BaseCampingSearch):
             nights=nights,
             offline_search=offline_search,
             offline_search_path=offline_search_path,
+            **kwargs,
         )
         self.campgrounds = make_list(campgrounds)
 

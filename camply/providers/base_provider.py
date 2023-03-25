@@ -50,7 +50,7 @@ class BaseProvider(ABC):
             )
             return sorted(truncated_months)
         elif len(truncated_months) == 0:
-            logger.info(SearchConfig.ERROR_MESSAGE)
+            logger.error(SearchConfig.ERROR_MESSAGE)
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
         else:
             return sorted(truncated_months)

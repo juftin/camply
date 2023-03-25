@@ -73,6 +73,7 @@ class SearchGoingToCamp(BaseCampingSearch):
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
+            **kwargs,
         )
 
         self._recreation_area_id = self._validate_rec_area(recreation_area)

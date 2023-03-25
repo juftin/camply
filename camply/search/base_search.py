@@ -12,7 +12,7 @@ from itertools import groupby, islice, tee
 from operator import itemgetter
 from os import getenv
 from time import sleep
-from typing import Any, Dict, Generator, Iterable, List, Optional, Set, Union
+from typing import Any, Dict, Generator, Iterable, List, Optional, Sequence, Set, Union
 
 import pandas as pd
 import tenacity
@@ -26,6 +26,7 @@ from camply.notifications.base_notifications import BaseNotifications
 from camply.notifications.multi_provider_notifications import MultiNotifierProvider
 from camply.providers import ProviderType
 from camply.utils import make_list
+from camply.utils.general_utils import days_of_the_week_base
 from camply.utils.logging_utils import get_emoji
 
 logger = logging.getLogger(__name__)
@@ -43,6 +44,7 @@ class BaseCampingSearch(ABC):
         nights: int = 1,
         offline_search: bool = False,
         offline_search_path: Optional[str] = None,
+        days_of_the_week: Optional[Sequence[int]] = None,
         **kwargs,
     ) -> None:
         """
@@ -64,10 +66,20 @@ class BaseCampingSearch(ABC):
         offline_search_path: Optional[str]
             When offline search is set to True, this is the name of the file to be saved/loaded.
             When not specified, the filename will default to `camply_campsites.json`
+        days_of_the_week: Optional[Sequence[int]]
+            Days of the week (by weekday integer) to search for.
         """
         self.campsite_finder: ProviderType = self.provider_class()
         self.search_window: List[SearchWindow] = make_list(search_window)
+        self.days_of_the_week = set(
+            days_of_the_week if days_of_the_week is not None else ()
+        )
         self.weekends_only: bool = weekends_only
+        if self.weekends_only is True:
+            self.days_of_the_week.add(4)
+            self.days_of_the_week.add(5)
+        if len(self.days_of_the_week) == 0:
+            self.days_of_the_week = {0, 1, 2, 3, 4, 5, 6}
         self._original_search_days: List[datetime] = self._get_search_days()
         self._original_search_months: List[
             datetime
@@ -588,16 +600,32 @@ class BaseCampingSearch(ABC):
                 date for date in window.get_date_range() if date >= current_date
             }
             search_nights.update(generated_dates)
-        if self.weekends_only is True:
-            logger.info("Limiting Search of Campgrounds to Weekend Availabilities")
-            search_nights = {x for x in search_nights if x.weekday() in [4, 5]}
+        search_nights: Set[datetime] = {
+            x for x in search_nights if x.weekday() in self.days_of_the_week
+        }
+        max_nights_to_list = 2
+        all_nights = 7
         if len(search_nights) > 0:
             logger.info(
                 f"{len(search_nights)} booking nights selected for search, "
                 f"ranging from {min(search_nights)} to {max(search_nights)}"
             )
+        if 0 < len(self.days_of_the_week) <= max_nights_to_list:
+            day_mapping = {value: key for key, value in days_of_the_week_base.items()}
+            week_nights = [day_mapping[item] for item in sorted(self.days_of_the_week)]
+            logger.info(
+                "Searching for booking nights on %s",
+                " and ".join(week_nights),
+            )
+        elif len(self.days_of_the_week) < all_nights:
+            logger.info(
+                "Searching across %s specific days of the week",
+                len(self.days_of_the_week),
+            )
+        elif len(self.days_of_the_week) == all_nights:
+            pass
         else:
-            logger.info(SearchConfig.ERROR_MESSAGE)
+            logger.error(SearchConfig.ERROR_MESSAGE)
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
         return sorted(search_nights)
 
