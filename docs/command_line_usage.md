@@ -25,26 +25,26 @@ tool accepts one of six sub-arguments: `campsites`, `recreation-areas`, `campgro
 
  visit the camply documentation at https://juftin.com/camply
 
-╭─ Options ──────────────────────────────────────────────────────────────────────────────╮
-│                                                                                        │
-│  --version                      Show the version and exit.                             │
-│  --debug/--no-debug             Enable extra debugging output                          │
-│  --provider              TEXT   Camping Search Provider. Defaults to                   │
-│                                 'RecreationDotGov'                                     │
-│  --help                         Show this message and exit.                            │
-│                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ─────────────────────────────────────────────────────────────────────────────╮
-│                                                                                        │
-│  campgrounds        Search for Campgrounds (inside of Recreation Areas) and list them  │
-│  campsites          Find Available Campsites with Custom Search Criteria               │
-│  configure          Set up camply configuration file with an interactive console       │
-│  equipment-types    Get a list of supported equipment                                  │
-│  providers          List the different camply providers                                │
-│  recreation-areas   Search for Recreation Areas and list them                          │
-│                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────╯
-
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                             │
+│  --version                      Show the version and exit.                                  │
+│  --debug/--no-debug             Enable extra debugging output                               │
+│  --provider              TEXT   Camping Search Provider. Defaults to                        │
+│                                 'RecreationDotGov'                                          │
+│  --help                         Show this message and exit.                                 │
+│                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ──────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                             │
+│  campgrounds             Search for Campgrounds (inside of Recreation Areas) and list them  │
+│  campsites               Find Available Campsites with Custom Search Criteria               │
+│  configure               Set up camply configuration file with an interactive console       │
+│  equipment-types         Get a list of supported equipment                                  │
+│  providers               List the different camply providers                                │
+│  recreation-areas        Search for Recreation Areas and list them                          │
+│  test-notifications      Test your notification provider setup                              │                                                                                        │
+│                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ## Simple Examples
@@ -96,8 +96,8 @@ Search for a campsite within camply. Campsites are returned based on the search 
 Campsites contain properties like booking date, site type (tent, RV, cabin, etc), capacity, price,
 and a link to make the booking. Required parameters include `--start-date`, `--end-date`,
 `--rec-area` / `--campground` / `--campsite`. Constant searching functionality can be enabled with
-`--continuous` and notifications via Email, Pushover, Pushbullet, and Telegram can be enabled using
-`--notifications`.
+`--continuous` and notifications via Email, Pushover, Pushbullet, Twilio, Slack, and Telegram can
+be enabled using `--notifications`.
 
 ### Arguments
 
@@ -249,6 +249,18 @@ instead of a config file.
 
 ```commandline
 camply configure
+```
+
+## test-notifications
+
+Test your notification provider setup.
+
+If you want to send yourself a test notification via camply, the `test-notifiactions`
+command is for you. See the [Send a Push Notification](#send-a-push-notification)
+section for more details on how to set up the notification provider of your choice.
+
+```commandline
+camply test-notifications --notifications email
 ```
 
 ## Examples

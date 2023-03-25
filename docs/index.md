@@ -45,6 +45,7 @@ becomes available, camply sends you a notification to book your spot!
     -   [recreation-areas](command_line_usage.md#recreation-areas)
     -   [campgrounds](command_line_usage.md#campgrounds)
     -   [configure](command_line_usage.md#configure)
+    -   [test-notifications](command_line_usage.md#test-notifications)
     -   [Examples](command_line_usage.md#examples)
         -   [Searching for a Campsite](command_line_usage.md#searching-for-a-campsite)
         -   [Searching for a Campsite by Campground ID](command_line_usage.md#searching-for-a-campsite-by-campground-id)

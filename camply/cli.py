@@ -5,7 +5,7 @@ Camply Command Line Interface
 import logging
 import sys
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Set, Tuple, Union
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Union
 
 import click
 from rich import traceback
@@ -15,6 +15,8 @@ from camply import __application__, __version__
 from camply.config import EquipmentOptions, SearchConfig, logging_config
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
+from camply.containers.examples import example_campsite
+from camply.notifications import MultiNotifierProvider
 from camply.providers import (
     GOING_TO_CAMP,
     RECREATION_DOT_GOV,
@@ -358,16 +360,16 @@ polling_interval_argument = click.option(
     help="Enables continuous searching. How often to wait in between "
     "checks (in minutes). Defaults to 10, cannot be less than 5.",
 )
-notifications_argument = click.option(
-    "--notifications",
-    multiple=True,
-    show_default=True,
-    default=[],
-    help="Enables continuous searching. Types of notifications to receive. "
+notification_kwargs = {
+    "multiple": True,
+    "show_default": True,
+    "default": [],
+    "help": "Enables continuous searching. Types of notifications to receive. "
     "Options available are 'email', 'pushover', "
     "'pushbullet', 'telegram', 'twilio', or 'silent'. Defaults to 'silent' - "
     "which just logs messages to console.",
-)
+}
+notifications_argument = click.option("--notifications", **notification_kwargs)
 notify_first_try_argument = click.option(
     "--notify-first-try",
     is_flag=True,
@@ -559,7 +561,6 @@ def _validate_campsites(
 
 
 @camply_command_line.command(cls=RichCommand)
-@day_of_the_week_argument
 @yaml_config_argument
 @offline_search_path_argument
 @offline_search_argument
@@ -574,6 +575,7 @@ def _validate_campsites(
 @nights_argument
 @provider_argument
 @weekends_argument
+@day_of_the_week_argument
 @end_date_argument
 @start_date_argument
 @campsite_id_argument
@@ -709,6 +711,35 @@ def providers(
             provider_name,
             search_class.__doc__.strip().splitlines()[0],
         )
+
+
+test_notifications_kwargs = notification_kwargs.copy()
+test_notifications_kwargs["help"] = test_notifications_kwargs["help"].replace(
+    "Enables continuous searching. ", ""
+)
+test_notifications_kwargs.pop("default")
+test_notifications_kwargs["required"] = True
+
+
+@camply_command_line.command(cls=RichCommand)
+@debug_option
+@click.option("--notifications", **test_notifications_kwargs)
+@click.pass_obj
+def test_notifications(
+    context: CamplyContext, debug: bool, notifications: Sequence[str]
+) -> None:
+    """
+    Test your notification provider setup
+    """
+    if context.debug is None:
+        context.debug = debug
+        _set_up_debug(debug=context.debug)
+    notification_providers = make_list(notifications)
+    provider = MultiNotifierProvider(provider=notification_providers)
+    logger.info("Testing your notification providers:")
+    for sub_provider in provider.providers:
+        logger.info('\t"%s"', sub_provider)
+    provider.send_campsites(campsites=[example_campsite])
 
 
 def cli():
