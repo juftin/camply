@@ -22,7 +22,7 @@ license = "MIT"
 name = "camply"
 readme = "README.md"
 repository = "https://github.com/juftin/camply"
-version = "0.14.0"
+version = "0.15.0"
 
 [tool.poetry.dependencies]
 PyYAML = ">=5.1,<7.0"
