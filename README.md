@@ -98,26 +98,26 @@ Head over to the [camply documentation](https://juftin.com/camply/) to see what 
 
  visit the camply documentation at https://juftin.com/camply
 
-╭─ Options ──────────────────────────────────────────────────────────────────────────────╮
-│                                                                                        │
-│  --version                      Show the version and exit.                             │
-│  --debug/--no-debug             Enable extra debugging output                          │
-│  --provider              TEXT   Camping Search Provider. Defaults to                   │
-│                                 'RecreationDotGov'                                     │
-│  --help                         Show this message and exit.                            │
-│                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ─────────────────────────────────────────────────────────────────────────────╮
-│                                                                                        │
-│  campgrounds        Search for Campgrounds (inside of Recreation Areas) and list them  │
-│  campsites          Find Available Campsites with Custom Search Criteria               │
-│  configure          Set up camply configuration file with an interactive console       │
-│  equipment-types    Get a list of supported equipment                                  │
-│  providers          List the different camply providers                                │
-│  recreation-areas   Search for Recreation Areas and list them                          │
-│                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────╯
-
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                             │
+│  --version                      Show the version and exit.                                  │
+│  --debug/--no-debug             Enable extra debugging output                               │
+│  --provider              TEXT   Camping Search Provider. Defaults to                        │
+│                                 'RecreationDotGov'                                          │
+│  --help                         Show this message and exit.                                 │
+│                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ──────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                             │
+│  campgrounds             Search for Campgrounds (inside of Recreation Areas) and list them  │
+│  campsites               Find Available Campsites with Custom Search Criteria               │
+│  configure               Set up camply configuration file with an interactive console       │
+│  equipment-types         Get a list of supported equipment                                  │
+│  providers               List the different camply providers                                │
+│  recreation-areas        Search for Recreation Areas and list them                          │
+│  test-notifications      Test your notification provider setup                              │                                                                                        │
+│                                                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ## Contributing
