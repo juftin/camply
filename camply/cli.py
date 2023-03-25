@@ -5,7 +5,6 @@ Camply Command Line Interface
 import logging
 import sys
 from dataclasses import dataclass
-from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import click
@@ -25,6 +24,7 @@ from camply.providers import (
 )
 from camply.search import CAMPSITE_SEARCH_PROVIDER
 from camply.utils import configure_camply, log_camply, make_list, yaml_utils
+from camply.utils.general_utils import handle_search_windows
 from camply.utils.logging_utils import log_sorted_response
 
 logging.Logger.camply = log_camply
@@ -318,11 +318,13 @@ def campgrounds(
 # `campsite` arguments
 start_date_argument = click.option(
     "--start-date",
+    multiple=True,
     default=None,
     help="(YYYY-MM-DD) Start of Search window. You will be arriving this day.",
 )
 end_date_argument = click.option(
     "--end-date",
+    multiple=True,
     default=None,
     help="(YYYY-MM-DD) End of Search window. You will be checking out this day.",
 )
@@ -465,8 +467,8 @@ def _validate_campsites(
     rec_area: Optional[int],
     campground: Optional[int],
     campsite: Optional[int],
-    start_date: Optional[str],
-    end_date: Optional[str],
+    start_date: Tuple[str],
+    end_date: Tuple[str],
     provider: str,
     yaml_config: Optional[str],
     continuous: bool,
@@ -476,7 +478,7 @@ def _validate_campsites(
     search_forever: bool,
     search_once: bool,
     **kwargs: Dict[str, Any],
-) -> bool:
+) -> Tuple[bool, List[SearchWindow]]:
     """
     Validate the campsites portion of the CLI
 
@@ -517,16 +519,10 @@ def _validate_campsites(
             "parameters."
         )
         sys.exit(1)
-
-    mandatory_parameters = [start_date, end_date]
-    mandatory_string_parameters = ["--start-date", "--end-date"]
-    for field in mandatory_parameters:
-        if field is None and yaml_config is None:
-            logger.error(
-                "Campsite searches require the following mandatory search parameters: "
-                f"{', '.join(mandatory_string_parameters)}"
-            )
-            sys.exit(1)
+    if yaml_config is None:
+        search_windows = handle_search_windows(start_date=start_date, end_date=end_date)
+    else:
+        search_windows = ()
     if search_once is True and (continuous is True or search_forever is not None):
         logger.error(
             "You cannot specify `--search-once` alongside `--continuous` or `--search-forever`"
@@ -543,7 +539,7 @@ def _validate_campsites(
         ]
     ):
         continuous = True
-    return continuous
+    return continuous, search_windows
 
 
 @camply_command_line.command(cls=RichCommand)
@@ -606,7 +602,7 @@ def campsites(
         context.debug = debug
         _set_up_debug(debug=context.debug)
     notifications = make_list(notifications)
-    continuous = _validate_campsites(
+    continuous, search_windows = _validate_campsites(
         rec_area=rec_area,
         campground=campground,
         campsite=campsite,
@@ -644,12 +640,8 @@ def campsites(
             if provider.lower() == provider_str.lower():
                 provider = provider_str
     else:
-        search_window = SearchWindow(
-            start_date=datetime.strptime(start_date, "%Y-%m-%d"),
-            end_date=datetime.strptime(end_date, "%Y-%m-%d"),
-        )
         provider_kwargs = {
-            "search_window": search_window,
+            "search_window": search_windows,
             "recreation_area": make_list(rec_area),
             "campgrounds": make_list(campground),
             "campsites": make_list(campsite),

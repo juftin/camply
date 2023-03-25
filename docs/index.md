@@ -50,6 +50,7 @@ becomes available, camply sends you a notification to book your spot!
         -   [Searching for a Campsite by Campground ID](command_line_usage.md#searching-for-a-campsite-by-campground-id)
         -   [Searching for a Specific Campsite by ID](command_line_usage.md#searching-for-a-specific-campsite-by-id)
         -   [Continuously Searching for A Campsite](command_line_usage.md#continuously-searching-for-a-campsite)
+        -   [Searching Across Multiple Time Windows](command_line_usage.md#searching-across-multiple-time-windows)
         -   [Continue Looking After The First Match Is Found](command_line_usage.md#continue-looking-after-the-first-match-is-found)
         -   [Send a Push Notification](command_line_usage.md#send-a-push-notification)
         -   [Send a Text Message](command_line_usage.md#send-a-text-message)

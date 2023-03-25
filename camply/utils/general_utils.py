@@ -3,8 +3,11 @@ Camply General Utilities
 """
 
 import logging
-from typing import Any, Callable, List, Optional
+import sys
+from datetime import date
+from typing import Any, Callable, Iterable, List, Optional, Union
 
+from camply import SearchWindow
 from camply.containers.base_container import CamplyModel
 
 logger = logging.getLogger(__name__)
@@ -34,3 +37,34 @@ def make_list(obj, coerce: Optional[Callable] = None) -> Optional[List[Any]]:
             return list(obj)
     else:
         return [coerce(obj) if coerce is not None else obj]
+
+
+def handle_search_windows(
+    start_date: Union[Iterable[str], str], end_date: Union[Iterable[str], str]
+) -> Union[List[SearchWindow], SearchWindow]:
+    """
+    Handle Multiple Search Windows by the CLI
+    """
+    if isinstance(start_date, (str, date)):
+        start_date = (start_date,)
+        assert isinstance(end_date, (str, date))
+        end_date = (end_date,)
+    search_windows: List[SearchWindow] = []
+    for field in [start_date, end_date]:
+        if field is None or (isinstance(field, (tuple, list)) and len(field) == 0):
+            logger.error("Campsite searches require a `start_date` and an `end_date`")
+            sys.exit(1)
+    if len(start_date) != len(end_date):
+        logger.error(
+            "When searching multiple date windows, you must provide the same amount "
+            "of `--start-dates` as `--end-dates`"
+        )
+        sys.exit(1)
+    for index, date_str in enumerate(start_date):
+        search_windows.append(
+            SearchWindow(start_date=date_str, end_date=end_date[index])
+        )
+    if len(search_windows) == 1:
+        return search_windows[0]
+    else:
+        return search_windows

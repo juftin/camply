@@ -353,3 +353,114 @@ def test_search_once_pushover(
         in result.output
     )
     assert "1 New Campsites Found." in result.output
+
+
+@vcr_cassette
+def test_multiple_search_windows_recdotgov(cli_runner: CamplyRunner) -> None:
+    """
+    Multiple Search Windows: RecreationDotGov
+    """
+    test_command = """
+    camply campsites \
+        --campground 232045 \
+        --start-date 2023-07-13 \
+        --end-date 2023-07-14 \
+        --start-date 2023-08-13 \
+        --end-date 2023-08-14
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    cli_status_checker(result=result, exit_code_zero=True)
+    assert "2 different months selected for search" in result.output
+    assert "2 booking nights selected for search" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+
+
+@vcr_cassette
+def test_multiple_search_windows_yellowstone(cli_runner: CamplyRunner) -> None:
+    """
+    Multiple Search Windows: Yellowstone
+    """
+    test_command = """
+    camply campsites \
+        --provider yellowstone \
+        --start-date 2023-07-13 \
+        --end-date 2023-07-14 \
+        --start-date 2023-08-13 \
+        --end-date 2023-08-14
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    cli_status_checker(result=result, exit_code_zero=True)
+    assert "2 different months selected for search" in result.output
+    assert "2 booking nights selected for search" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+
+
+@vcr_cassette
+def test_multiple_search_windows_reservecalifornia(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
+    """
+    Multiple Search Windows: ReserveCalifornia
+    """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
+    test_command = """
+    camply campsites \
+        --provider ReserveCalifornia \
+        --campground 343 \
+        --start-date 2023-07-13 \
+        --end-date 2023-07-14 \
+        --start-date 2023-08-13 \
+        --end-date 2023-08-14
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    cli_status_checker(result=result, exit_code_zero=True)
+    assert "2 different months selected for search" in result.output
+    assert "2 booking nights selected for search" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+
+
+@vcr_cassette
+def test_multiple_search_windows_goingtocamp(cli_runner: CamplyRunner) -> None:
+    """
+    Multiple Search Windows: GoingToCamp
+    """
+    test_command = """
+    camply \
+      campsites \
+      --provider goingtocamp \
+      --rec-area 1 \
+      --start-date 2023-09-01 \
+      --end-date 2023-09-02 \
+      --start-date 2023-10-01 \
+      --end-date 2023-10-02 \
+      --equipment-id -32768 \
+      --campground -2147483643
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "2 different months selected for search" in result.output
+    assert "2 booking nights selected for search" in result.output
+    assert "Long Point Region" in result.output
+    assert "Waterford North Conservation Area" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_multiple_search_windows_yaml(cli_runner: CamplyRunner) -> None:
+    """
+    Multiple Search Windows: YAML
+    """
+    test_command = """
+    camply \
+        campsites \
+        --yaml-config \
+        tests/yaml/double_window_campsite_search.yaml
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    logger.critical(result.output)
+    assert "2 different months selected for search" in result.output
+    assert "2 booking nights selected for search" in result.output
+    assert "YAML File Parsed: double_window_campsite_search.yaml" in result.output
+    assert "Ledgefork" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)
