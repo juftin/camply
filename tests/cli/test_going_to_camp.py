@@ -48,9 +48,8 @@ def test_goingtocamp_search_by_equipment_types(cli_runner: CamplyRunner) -> None
     """
     test_command = """
     camply \
-      --debug \
-      --provider goingtocamp \
       campsites \
+      --provider goingtocamp \
       --rec-area 1 \
       --start-date 2023-09-01 \
       --end-date 2023-09-02 \

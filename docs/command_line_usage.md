@@ -338,6 +338,30 @@ camply campsites \
     always encouraged to perform an initial online search before setting up a `camply` search. To bypass
     this behavior and send all notifications, pass the `--notify-first-try` argument.
 
+### Searching Across Multiple Time Windows
+
+There might be an occasion where you're looking to search for a campsite across
+multiple date ranges, i.e. any Monday in July. `camply` supports this quite nicely by
+passing multiple `--start-date` and `--end-date` options.
+
+!!! note
+
+    The important rule about multiple **`--start-date`** and **`--end-date`** options
+    is that ordering matters. If you provide multiple start dates and multiple end
+    dates the first end date will correspond to the first start date, and so on
+    and so forth.
+
+```commandline
+camply campsites \
+    --rec-area 2725 \
+    --start-date 2023-07-12 \
+    --end-date 2023-07-13 \
+    --start-date 2023-07-19 \
+    --end-date 2023-07-20 \
+    --start-date 2023-07-26 \
+    --end-date 2023-07-27
+```
+
 ### Continue Looking After The First Match Is Found
 
 Sometimes you want to search for all possible matches up until your arrival date. No problem. Add
