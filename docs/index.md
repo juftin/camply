@@ -55,6 +55,7 @@ becomes available, camply sends you a notification to book your spot!
         -   [Send a Push Notification](command_line_usage.md#send-a-push-notification)
         -   [Send a Text Message](command_line_usage.md#send-a-text-message)
         -   [Send a Notification to Different Services](command_line_usage.md#send-a-notification-to-different-services)
+        -   [Searching for Specific Weekdays](command_line_usage.md#searching-for-specific-weekdays)
         -   [Look for Weekend Campsite Availabilities](command_line_usage.md#look-for-weekend-campsite-availabilities)
         -   [Look for Consecutive Nights at the Same Campsite](command_line_usage.md#look-for-consecutive-nights-at-the-same-campsite)
         -   [Look for a Campsite Inside of Yellowstone](command_line_usage.md#look-for-a-campsite-inside-of-yellowstone)

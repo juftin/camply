@@ -68,3 +68,29 @@ def handle_search_windows(
         return search_windows[0]
     else:
         return search_windows
+
+
+days_of_the_week_base = {
+    "Monday": 0,
+    "Tuesday": 1,
+    "Wednesday": 2,
+    "Thursday": 3,
+    "Friday": 4,
+    "Saturday": 5,
+    "Sunday": 6,
+}
+days_of_the_week_mapping = days_of_the_week_base.copy()
+days_of_the_week_mapping.update(
+    {
+        "MON": 0,
+        "TUE": 1,
+        "TUES": 1,
+        "WED": 2,
+        "THU": 3,
+        "THUR": 3,
+        "THURS": 3,
+        "FRI": 4,
+        "SAT": 5,
+        "SUN": 6,
+    }
+)

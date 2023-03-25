@@ -88,6 +88,7 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
             nights=nights,
             offline_search=offline_search,
             offline_search_path=offline_search_path,
+            **kwargs,
         )
         self.campsite_finder: RecreationDotGov
         self._recreation_area_id = make_list(recreation_area)

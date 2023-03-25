@@ -1,0 +1,8 @@
+provider: RecreationDotGov
+campgrounds:
+    - 232446
+start_date: 2023-05-01
+end_date: 2023-08-01
+continuous: false
+days:
+    - Wednesday

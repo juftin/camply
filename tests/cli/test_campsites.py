@@ -90,7 +90,6 @@ def test_search_by_another_yaml(cli_runner: CamplyRunner) -> None:
         tests/yaml/example_campsite_search.yaml
     """
     result = cli_runner.run_camply_command(command=test_command)
-    logger.critical(result.output)
     assert "YAML File Parsed: example_campsite_search.yaml" in result.output
     assert "Ledgefork" in result.output
     cli_status_checker(result=result, exit_code_zero=True)
@@ -457,10 +456,48 @@ def test_multiple_search_windows_yaml(cli_runner: CamplyRunner) -> None:
         tests/yaml/double_window_campsite_search.yaml
     """
     result = cli_runner.run_camply_command(command=test_command)
-    logger.critical(result.output)
     assert "2 different months selected for search" in result.output
     assert "2 booking nights selected for search" in result.output
     assert "YAML File Parsed: double_window_campsite_search.yaml" in result.output
     assert "Ledgefork" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
+def test_search_specific_weekdays(cli_runner: CamplyRunner) -> None:
+    """
+    Only search for specific weekdays
+    """
+    test_command = """
+    camply campsites \
+        --campground 232446 \
+        --start-date 2023-05-01 \
+        --end-date 2023-08-01 \
+        --day Wednesday
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "13 booking nights selected for search" in result.output
+    assert "3 different months selected for search" in result.output
+    assert "Wawona Campground" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
+def test_search_specific_weekdays_yaml(cli_runner: CamplyRunner) -> None:
+    """
+    Only search for specific weekdays using YAML
+    """
+    test_command = """
+    camply \
+        campsites \
+        --yaml-config \
+        tests/yaml/weekday_search.yaml
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "13 booking nights selected for search" in result.output
+    assert "3 different months selected for search" in result.output
+    assert "Wawona Campground" in result.output
     assert "Reservable Campsites Matching Search Preferences" in result.output
     cli_status_checker(result=result, exit_code_zero=True)

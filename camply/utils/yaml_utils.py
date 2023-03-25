@@ -13,7 +13,7 @@ from yaml import SafeLoader, load
 
 from camply.config import SearchConfig
 from camply.utils import make_list
-from camply.utils.general_utils import handle_search_windows
+from camply.utils.general_utils import days_of_the_week_mapping, handle_search_windows
 
 logger = logging.getLogger(__name__)
 
@@ -105,6 +105,12 @@ def yaml_file_to_arguments(
     recreation_area = yaml_search.get("recreation_area", None)
     campgrounds = yaml_search.get("campgrounds", None)
     campsites = yaml_search.get("campsites", None)
+    days_of_the_week = yaml_search.get("days", None)
+    if days_of_the_week is not None:
+        lower_mapping = {
+            key.lower(): value for key, value in days_of_the_week_mapping.items()
+        }
+        days_of_the_week = [lower_mapping[item.lower()] for item in days_of_the_week]
     weekends_only = yaml_search.get("weekends", False)
     continuous = yaml_search.get("continuous", True)
     polling_interval = yaml_search.get(
@@ -127,6 +133,7 @@ def yaml_file_to_arguments(
         "campgrounds": campgrounds,
         "campsites": campsites,
         "weekends_only": weekends_only,
+        "days_of_the_week": days_of_the_week,
         "nights": nights,
         "equipment": equipment,
         "offline_search": offline_search,

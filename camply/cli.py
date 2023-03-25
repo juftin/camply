@@ -5,7 +5,7 @@ Camply Command Line Interface
 import logging
 import sys
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
 
 import click
 from rich import traceback
@@ -24,7 +24,7 @@ from camply.providers import (
 )
 from camply.search import CAMPSITE_SEARCH_PROVIDER
 from camply.utils import configure_camply, log_camply, make_list, yaml_utils
-from camply.utils.general_utils import handle_search_windows
+from camply.utils.general_utils import days_of_the_week_mapping, handle_search_windows
 from camply.utils.logging_utils import log_sorted_response
 
 logging.Logger.camply = log_camply
@@ -445,6 +445,16 @@ offline_search_path_argument = click.option(
     "a JSON file, depending on the file extension. When not specified, "
     "the filename will default to `camply_campsites.json`",
 )
+day_of_the_week_argument = click.option(
+    "--day",
+    multiple=True,
+    show_default=False,
+    type=click.Choice(
+        choices=list(days_of_the_week_mapping.keys()), case_sensitive=False
+    ),
+    metavar="TEXT",
+    help="Day(s) of the Week to search.",
+)
 
 
 def _get_equipment(equipment: Optional[List[str]]) -> List[Tuple[str, Optional[int]]]:
@@ -477,8 +487,9 @@ def _validate_campsites(
     notify_first_try: bool,
     search_forever: bool,
     search_once: bool,
+    day: Optional[Tuple[str]],
     **kwargs: Dict[str, Any],
-) -> Tuple[bool, List[SearchWindow]]:
+) -> Tuple[bool, List[SearchWindow], Set[int]]:
     """
     Validate the campsites portion of the CLI
 
@@ -498,12 +509,14 @@ def _validate_campsites(
     notifications: List[str]
     notify_first_try: bool
     search_forever: bool
+    day: Optional[Tuple[str]]
     **kwargs: Dict[str, Any]
 
     Returns
     -------
-    continuous: bool
-        Returns whether the search should be continuous
+    Tuple[bool, List[SearchWindow], Set[int]]
+        Tuple containing continuous run eval, search_windows,
+        and days of the week
     """
     if provider.startswith(RECREATION_DOT_GOV) and all(
         [
@@ -523,6 +536,9 @@ def _validate_campsites(
         search_windows = handle_search_windows(start_date=start_date, end_date=end_date)
     else:
         search_windows = ()
+    days_of_the_week = None
+    if day is not None:
+        days_of_the_week = {days_of_the_week_mapping[item] for item in day}
     if search_once is True and (continuous is True or search_forever is not None):
         logger.error(
             "You cannot specify `--search-once` alongside `--continuous` or `--search-forever`"
@@ -539,10 +555,11 @@ def _validate_campsites(
         ]
     ):
         continuous = True
-    return continuous, search_windows
+    return continuous, search_windows, days_of_the_week
 
 
 @camply_command_line.command(cls=RichCommand)
+@day_of_the_week_argument
 @yaml_config_argument
 @offline_search_path_argument
 @offline_search_argument
@@ -586,6 +603,7 @@ def campsites(
     offline_search_path: Optional[str],
     equipment: Tuple[Union[str, int]],
     equipment_id: Tuple[Union[str, int]],
+    day: Optional[Tuple[str]],
 ) -> None:
     """
     Find Available Campsites with Custom Search Criteria
@@ -602,7 +620,7 @@ def campsites(
         context.debug = debug
         _set_up_debug(debug=context.debug)
     notifications = make_list(notifications)
-    continuous, search_windows = _validate_campsites(
+    continuous, search_windows, days_of_the_week = _validate_campsites(
         rec_area=rec_area,
         campground=campground,
         campsite=campsite,
@@ -618,6 +636,7 @@ def campsites(
         notify_first_try=notify_first_try,
         search_forever=search_forever,
         search_once=search_once,
+        day=day,
     )
     if len(notifications) == 0:
         notifications = ["silent"]
@@ -651,6 +670,7 @@ def campsites(
             "offline_search_path": offline_search_path,
             "equipment": equipment,
             "equipment_id": equipment_id,
+            "days_of_the_week": days_of_the_week,
         }
         search_kwargs = {
             "log": True,

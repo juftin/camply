@@ -116,6 +116,9 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 -   `--end-date`: `END_DATE`
     -   `YYYY-MM-DD`: End of Search window. You will be checking out this day..
         [\*\*_example_](#searching-for-a-campsite)
+-   `--day`
+    -   Day(s) of the Week to search.
+        [\*\*_example_](#searching-for-specific-weekdays)
 -   `--weekends`
     -   Only search for weekend bookings (Fri/Sat nights).
         [\*\*_example_](#look-for-weekend-campsite-availabilities)
@@ -456,6 +459,24 @@ camply campsites \
     --notifications pushover
 ```
 
+### Searching for Specific Weekdays
+
+The below search spans across a three-month time window, but it only looks for campsites that
+are available on a Tuesday or Wednesday night.
+
+!!! note
+
+    You can use the day's full spelling or an abbreviation - and neither is case sensitive.
+
+```commandline
+camply campsites \
+    --campground 232446 \
+    --start-date 2023-05-01 \
+    --end-date 2023-08-01 \
+    --day Tuesday \
+    --day Wednesday
+```
+
 ### Look for Weekend Campsite Availabilities
 
 This below search looks across larger periods of time, but only if a campground is available to book
@@ -471,6 +492,11 @@ camply campsites \
     --notifications email \
     --polling-interval 5
 ```
+
+!!! note
+
+    Using the **`--weekends`** option is the same as specifying
+    **`--day Friday`** + **`--day Saturday`**.
 
 ### Look for Consecutive Nights at the Same Campsite
 
