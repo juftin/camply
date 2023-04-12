@@ -8,7 +8,7 @@ from camply.containers.base_container import CamplyModel
 
 class ResourceLocation(CamplyModel):
     """
-    /api/resourcelocation/rootmaps
+    /api/maps
     """
 
     id: Optional[int]
@@ -17,3 +17,4 @@ class ResourceLocation(CamplyModel):
     resource_categories: Optional[List[int]]
     resource_location_id: Optional[int]
     resource_location_name: str
+    region_name: str

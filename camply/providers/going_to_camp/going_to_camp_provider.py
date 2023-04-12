@@ -92,9 +92,9 @@ OVERFLOW_SITE = -2147483647
 GROUP_SITE = -2147483643
 
 ENDPOINTS = {
-    "CAMP_DETAILS": "https://{}/api/resourcelocation",
+    "CAMP_DETAILS": "https://{}/api/maps",
     "DAILY_AVAILABILITY": "https://{}/api/availability/resourcedailyavailability",
-    "LIST_CAMPGROUNDS": "https://{}/api/resourcelocation/rootmaps",
+    "LIST_CAMPGROUNDS": "https://{}/api/resourceLocation",
     "LIST_EQUIPMENT": "https://{}/api/equipment",
     "LIST_RESOURCE_CATEGORY": "https://{}/api/resourcecategory",
     "LIST_RESOURCE_STATUS": "https://{}/api/availability/resourcestatus",
@@ -437,21 +437,21 @@ class GoingToCampProvider(BaseProvider):
         for facil in facilities:
             try:
                 location_name = _fetch_nested_key(
-                    facil, "resourceLocationLocalizedValues", "en-US"
+                    facil, "localizedValues", 0, "fullName"
                 )
-                if not location_name:
-                    location_name = _fetch_nested_key(
-                        facil, "resourceLocationLocalizedValues", "en-CA"
-                    )
-
                 park_alerts = _fetch_nested_key(
                     facil, "park_alerts", "en-US", 0, "messageTitle"
                 )
                 if not park_alerts:
-                    _fetch_nested_key(facil, "park_alerts", "en-CA", 0, "messageTitle")
+                    park_alerts = _fetch_nested_key(
+                        facil, "park_alerts", "en-CA", 0, "messageTitle"
+                    )
+
+                region_name = _fetch_nested_key(facil, "region")
 
                 facility = ResourceLocation(
-                    id=facil.get("mapId"),
+                    id=None,
+                    region_name=region_name if region_name else "",
                     park_alerts=park_alerts,
                     rec_area_id=rec_area_id,
                     resource_categories=facil.get("resourceCategoryIds"),
@@ -494,16 +494,19 @@ class GoingToCampProvider(BaseProvider):
         -------
         Tuple[dict, CampgroundFacility]
         """
-        details = self.campground_details[facility.resource_location_id]
-        region = _fetch_nested_key(details, "region")
-        facility_name = _fetch_nested_key(details, "localizedValues", 0, "fullName")
-        if region:
-            formatted_recreation_area = f"{rec_area.recreation_area}, {region}"
+        self.campground_details[facility.resource_location_id]
+        facility.id = _fetch_nested_key(
+            self.campground_details, facility.resource_location_id, "mapId"
+        )
+        if facility.region_name:
+            formatted_recreation_area = (
+                f"{rec_area.recreation_area}, {facility.region_name}"
+            )
         else:
             formatted_recreation_area = f"{rec_area.recreation_area}"
 
         campground_facility = CampgroundFacility(
-            facility_name=facility_name,
+            facility_name=facility.resource_location_name,
             recreation_area=formatted_recreation_area,
             facility_id=facility.resource_location_id,
             recreation_area_id=facility.rec_area_id,
@@ -513,7 +516,6 @@ class GoingToCampProvider(BaseProvider):
 
     def _find_matching_resources(self, rec_area_id: int, search_filter: Dict[str, any]):
         results = self._api_request(rec_area_id, "MAPDATA", search_filter)
-
         availability_details = {
             search_filter["mapId"]: results["resourceAvailabilities"]
         }
@@ -580,6 +582,7 @@ class GoingToCampProvider(BaseProvider):
             "isReserving": True,
             "getDailyAvailability": False,
             "partySize": 1,
+            "numEquipment": 1,
             "equipmentCategoryId": NON_GROUP_EQUIPMENT,
             "filterData": [],
         }
