@@ -72,6 +72,7 @@ class RecreationBookingConfig:
         "Lottery",
         "Open",
         "NYR",
+        "Closed",
     ]
 
     CAMPSITE_LOCATION_LOOP_DEFAULT: str = "Default Loop"
