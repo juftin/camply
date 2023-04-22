@@ -3,8 +3,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/530.1 (KHTML,
-                    like Gecko) Chrome/2.0.164.0 Safari/530.1
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.7 (KHTML,
+                    like Gecko) Chrome/2.0.177.0 Safari/530.7
               accept:
                   - application/json
               apikey:
@@ -17,7 +17,7 @@ interactions:
                   '{"ACTIVITY":[{"ActivityID":5,"ActivityName":"BIKING","FacilityActivityDescription":"Biking","FacilityActivityFeeDescription":"","FacilityID":"234779"},{"ActivityID":6,"ActivityName":"BOATING","FacilityActivityDescription":"Boating","FacilityActivityFeeDescription":"","FacilityID":"234779"},{"ActivityID":9,"ActivityName":"CAMPING","FacilityActivityDescription":"Camping","FacilityActivityFeeDescription":"Camping","FacilityID":"234779"},{"ActivityID":11,"ActivityName":"FISHING","FacilityActivityDescription":"Fishing","FacilityActivityFeeDescription":"","FacilityID":"234779"},{"ActivityID":14,"ActivityName":"HIKING","FacilityActivityDescription":"Hiking","FacilityActivityFeeDescription":"","FacilityID":"234779"},{"ActivityID":15,"ActivityName":"HORSEBACK
                   RIDING","FacilityActivityDescription":"Horseback Riding","FacilityActivityFeeDescription":"","FacilityID":"234779"},{"ActivityID":24,"ActivityName":"VISITOR
                   CENTER","FacilityActivityDescription":"Emergency Services","FacilityActivityFeeDescription":"","FacilityID":"234779"}],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[{"AddressCountryCode":"USA","AddressStateCode":"OR","City":"Prineville","FacilityAddressID":"20440174","FacilityAddressType":"Default","FacilityID":"234779","FacilityStreetAddress1":"P.O.
-                  Box 739","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-01-10","PostalCode":"97754"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nHaystack
+                  Box 739","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-04-22","PostalCode":"97754"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nHaystack
                   Campground (East Shore) is located in central Oregon''s scenic Crooked River
                   National Grassland.  With a view of Mt. Jefferson in the distance, visitors
                   can enjoy the beautiful vistas while relaxing in the high desert.<h2>Recreation</h2>\nFishing
@@ -58,17 +58,17 @@ interactions:
                   State Tourism","EntityID":"234779","EntityLinkID":"717a5a903cd08ff3b6203547774ced7a","EntityType":"Facility","LinkType":"Other","Title":"Oregon
                   State Tourism","URL":"http://traveloregon.com"},{"Description":"Print Facility
                   Map","EntityID":"234779","EntityLinkID":"4a655d287457630f2164ca3f979e71aa","EntityType":"Facility","LinkType":"Other","Title":"Print
-                  Facility Map","URL":"http://www.recreation.gov/webphotos/facilitymaps/112239_C239.pdf"}],"LastUpdatedDate":"2023-01-10","LegacyFacilityID":"112239","MEDIA":[{"Credits":"none","Description":"Haystack
+                  Facility Map","URL":"http://www.recreation.gov/webphotos/facilitymaps/112239_C239.pdf"}],"LastUpdatedDate":"2023-04-22","LegacyFacilityID":"112239","MEDIA":[{"Credits":"none","Description":"Group
+                  sites have ample parking and lakeside access","EmbedCode":"","EntityID":"234779","EntityMediaID":"9ccd10fd-5b07-4838-9729-d4d88d20de55","EntityType":"Facility","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
+                  sites have ample parking","URL":"https://cdn.recreation.gov/public/2022/07/13/19/34/234779_2582f9af-d99e-49df-a826-23a3812f8248_700.jpg","Width":700},{"Credits":"none","Description":"camping
+                  is picture perfect at Haystack East Shore","EmbedCode":"","EntityID":"234779","EntityMediaID":"af75ebbc-4f14-4c15-9cf7-ecae7ba90b6c","EntityType":"Facility","Height":810,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"campground
+                  picture","URL":"https://cdn.recreation.gov/public/2022/07/13/19/31/234779_8f71e72d-8853-42f6-b58a-71504565604a_1440.jpg","Width":1440},{"Credits":"none","Description":"Camping
+                  at Haystack East Shore","EmbedCode":"","EntityID":"234779","EntityMediaID":"57483bfb-b37b-472b-b154-5d093edc12c6","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Camping
+                  at Haystack East Shore","URL":"https://cdn.recreation.gov/public/2022/07/13/19/29/234779_d5c364b8-d59b-4a7c-9fc1-647d29f40a99_700.jpg","Width":700},{"Credits":"none","Description":"Haystack
                   boat launch","EmbedCode":"","EntityID":"234779","EntityMediaID":"2581747","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Haystack
                   boat launch","URL":"https://cdn.recreation.gov/public/images/74545.jpg","Width":540},{"Credits":"none","Description":"Entrance
                   to Haystack Campground","EmbedCode":"","EntityID":"234779","EntityMediaID":"2581681","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Haystack
-                  Campground entrance","URL":"https://cdn.recreation.gov/public/images/74464.jpg","Width":540},{"Credits":"none","Description":"Group
-                  sites have ample parking and lakeside access","EmbedCode":"","EntityID":"234779","EntityMediaID":"9ccd10fd-5b07-4838-9729-d4d88d20de55","EntityType":"Facility","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
-                  sites have ample parking","URL":"https://cdn.recreation.gov/public/2022/07/13/19/34/234779_2582f9af-d99e-49df-a826-23a3812f8248_700.jpg","Width":700},{"Credits":"none","Description":"Camping
-                  at Haystack East Shore","EmbedCode":"","EntityID":"234779","EntityMediaID":"57483bfb-b37b-472b-b154-5d093edc12c6","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Camping
-                  at Haystack East Shore","URL":"https://cdn.recreation.gov/public/2022/07/13/19/29/234779_d5c364b8-d59b-4a7c-9fc1-647d29f40a99_700.jpg","Width":700},{"Credits":"none","Description":"camping
-                  is picture perfect at Haystack East Shore","EmbedCode":"","EntityID":"234779","EntityMediaID":"af75ebbc-4f14-4c15-9cf7-ecae7ba90b6c","EntityType":"Facility","Height":810,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"campground
-                  picture","URL":"https://cdn.recreation.gov/public/2022/07/13/19/31/234779_8f71e72d-8853-42f6-b58a-71504565604a_1440.jpg","Width":1440},{"Credits":"","Description":"","EmbedCode":"","EntityID":"234779","EntityMediaID":"2581654","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"HAYSTACK
+                  Campground entrance","URL":"https://cdn.recreation.gov/public/images/74464.jpg","Width":540},{"Credits":"","Description":"","EmbedCode":"","EntityID":"234779","EntityMediaID":"2581654","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"HAYSTACK
                   CAMPGROUND (EAST SHORE)","URL":"https://cdn.recreation.gov/public/images/74431.jpg","Width":540}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"FS","OrgID":"131","OrgImageURL":"fs.jpg","OrgJurisdictionType":"State","OrgName":"USDA
                   Forest Service","OrgParentID":"163","OrgType":"Federal Agency","OrgURLAddress":"http://www.fs.fed.us","OrgURLText":""}],"OrgFacilityID":"AN412239","PERMITENTRANCE":[],"ParentOrgID":"131","ParentRecAreaID":"74424","RECAREA":[],"Reservable":true,"StayLimit":"","TOUR":[]}
 
@@ -85,7 +85,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:22:55 GMT
+                  - Sat, 22 Apr 2023 17:55:50 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -93,11 +93,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 cf1928ef9a9a7bb589a35ead31bcb4ea.cloudfront.net (CloudFront)
+                  - 1.1 f65dcddaf4d3d1ea834dd4e676c13038.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - 8D9tnVmCiK9fzyDzcX5myTvy6c1py5dDC_7AfyHB2OsBpC0GrmDRLw==
+                  - _dIpOL4mPrsvWKsoNmlaT1wilbwCQK7XweCK7rPvxVo1DJXvjwdreg==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -121,75 +121,74 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.0) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.36
-                    Safari/536.5
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.0 (KHTML, like Gecko)
+                    Chrome/4.0.204.0 Safari/532.0
           method: GET
           uri: https://www.recreation.gov/api/search/campsites?fq=asset_id%3A234779&include_non_site_specific_campsites=True&size=1000&start=0
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+yda2/bOBaG/4rhT7tAJfN+ybds2pkpdtoGSTq7xWJh6EIl2jq215Yz0x30vy+l
-                  OJm0oe2MaFuURKNAY5vSMU2KPo/ecw5/HybR7XyZF2o5PPnX78MoSdRymccTNTwZZtFkqYavhtFy
-                  qYpxnuqXECacy8fXptFt2fCn00+XV6dnfx+cnb47//Hiw8f3rwd/eXN6eTW4/OnDxZu/PrYvvszL
-                  9mfa5vVitpqm5TtFscjj1eMneHg6TqJCXc8WX/QB5Qccp6qI8sny6SHVh5JPX1h/otJCli/U4HQy
-                  mf2qvrEzvosmq7LRJ23y66s6Jiky2HwX/TZ4v7odzLLBuZrNJ8polNU0CYGxm/MoyYsvo8v8f2pw
-                  ERX59Npo9VK/oT9QTdOm3p7dqOTzbFUMrvJbc08hOgFgcP6uplVuGtdLfcTgtJqkRpuvF/mdCt5O
-                  a9pk1GDzXBXLA80jzk19vIlS8zda3xCEm4Ywn24eQbsBpMx0kWh7uy8SuNmk+u8qn9+qabHZLt5+
-                  cf6ibvJkoswTyMoyMvW4mpK/Rl8Gl6tFFiXmDp9Hd3py2Zg2dfrR9Jtpoc9jMvy3KPm89Xp5gWnT
-                  RfNo+mc1vS5ujLbplrXwBcNMNgzzeny3WSbUxrJpJX67HLx5OHDwLpqmUTHb8JUXi9WWlVifbpoX
-                  uXpuFguD3R8X+WSyHP1Q/tZdbFr9P9UyB0z9fBfNB/8cnM1mizSf6tOYf+MQCzmpZRSaRvV8oq+b
-                  dDCb6m92/mcv2209NK2KZQ8/7ewhwCGWdYwy05J/nifTPBlcRfGGBVGP4L/163dqEV2r8eL+h/5E
-                  X3gP7tu9eyYRYmL45NWFWqrFnXpwvMqfz+ByrpI8y5On7ZZFVKy0Azb8MFfT8g3tVJS/EKuJNlk+
-                  186aXkLGySwtz/NRd04PyKU+qupiprQJdTufVM9Pfh9+yMr1PfpcnnH9p/YQ378+vXg9eP/h/Zuf
-                  35xdXbw904euW21pcbWIpvpD5rOpbvfHkw2t/xFNPg/elk3XfxnbfX011J81L1ZVdwgJiUSYEVA9
-                  INDnmcym1w/vBxDBEBKAuATrJlWL2fxlzu96lAFA5ZPVbawW41m2Hkb9felpOFtc3w8hxOW5y6fr
-                  oz5evj4d/DDTI1kMLvVg5tVPyDxalEuUyTX/5q2Xe+jfHLaeL8lTR32uFrd5ocd9/LhEVh77Hwvm
-                  2tjFL7r1bfTbeHK/Ap8QWs7e+ULd5erXcX5bzuHVYqKb3hTFfHkyGiXpNFyoZKGicmjD69ndaL6K
-                  J3kyQgChEeAjiEdQjAgZVXN8nCQCCspRQBVPAkIRCGKckkAgHiuJ4jSiYMwBCP8zL9fE++ugurxO
-                  yvX31bCc8ephPn9Y6Au3nPcP14l5bpXvlgO3WlYH6Utjml/fFPfLgCcnd1miQXjyGNNy7u4ROR3U
-                  sfXg1hlww6IpcMPgyI4+FTzktRz946LMcdmwNsQcGUNpKHBFTt9jkmTACpPez4rBxR8+ZT+BiQqw
-                  A5gwwusmoB4w4WG30OiqfOdbOMKgnKBPAaWih2MRyvW1PnNlSE0m2tr9LQb94+DppWf36xuEpGMD
-                  SwMccRif3jn0PBjfd9OTJqgxT9pdCaSXpNh6ZxvyEG1ZHF0BJQsU1D4t2HK9HojODLoPCQ3KjxDM
-                  Cmn6q/xgxBHCEFIgN4EMY1gQJgGpCzJkaFR+UPfxZn/aDx9Vs3wsFEs5TLKAUAIDAjMZSC6jAGUx
-                  5oggGGfMaz/u+aNdBrZGfO1+QWIz0mEDqHgAGj5wONWWu/KeJbzqtB9WpvV87/oOP5E0ZLUooyXI
-                  BljIeQvkJgtCNGk/FFqBktd+NDJRLHZoPxwCO+2HDrsFR8/D4txUfrDz7OJjqvZoqB8g2CC39CRo
-                  zSs/f86bbSyGyuHkl17S2kF8eypkCOrFrVkAEwEhwK4DU2vi8l6W8UOxtMKZ/uo+5JFQNkKMBh07
-                  iCk1ue5n/Bh0nz3m/MhRNcvHCMZMYEWDCDIcEJWKQKYZCwABGOBYlSlBXvdxz91vwAH2hNgNduoU
-                  yDTAxL10qLsJjGzLnfrDAiN1FxjdkSgsUI3zkGy5G3AQVMOShLyeoHZMfrKplvA9KAHudR9rZNL/
-                  tiMThIDYIRMfdguOnuk+lDaq+zjOJ/2Ahe6klXulpzECbKgw3x650+sNHo/2g0fbPOjmoh/d4ZPj
-                  JtnUhyHKQlmvdJwFDDEUHle2Mkg76DmxMOqLudXkFM7kNxTynFOwRHL9qMcp5dh0P6VnQ9TaPoQd
-                  CkbVHB9LGhGcSRTEipKAQCICAbEKUpYBJVSaKsS9sOOu39t+P9SzWjPpWQ2Qd18Semp70tzqdr+N
-                  J83cFRo8KR6XFF0hmQ7XVbPAJRbWTcaqD4YIh9rlNpZDMJET9eRUk5zIDoUHAYDsymBLMzl1LCju
-                  GTmxvYXEUViREx0LCXjMsizQOMsCkigZSJnFZYRcDGMhURZLB8hpY5G5kDjPVX0Is+pUpTDnWK4B
-                  sPIF9Q63vZAvlOABx2kpjNYSpFrCHpKGpJZW0xoFDGgnu14P95xshEMDWYkqPsuTVQ2yIghu16T0
-                  +9wqdq5CNgNZ0Y6T1R41KTyq5viYEUYFSuMg4RkICKAikJCzIFERYYTTWMrUAbJym528cuIdfL/j
-                  rcsU7oP5PMG4RzB2JSoOVRb9IEBDAAlBh4vMUcy0Z+s+sFmy0/eYRBiywiSfbKSBCXO2I4hPELsg
-                  PvjAQl1Bo40VuJ0rMwfKIvaO88vREzqac3mbyNRpgg67IlQ4RxLtDwLtpi+9TQ3walefWNEVV9sC
-                  lhAOaS2YaAksERTyeqUg9qz9GLKRBPSF5uoWmhM7qmVD/rhRak3lp8RNg/KDu4U3h1R+yKia42MY
-                  R5hIlgSQKhGQCIAgZjQJIgQRzwSmnAAHlJ/2btzas0C3Lm971IQs1Ju4wQbAsZlMpRZSlZvlBjxV
-                  uURVbWGOurscHb3EnkVhchLyY0cNGiPqKIcECUMZb8yBp6t6dAXwrpp0/LvIuz9NV9hMV9zT1Uvp
-                  io2qOT7W46WSNI0DoMkqIFzKIOZRHCAcARxlmKMMOUBXbhNUI3nzx/dG+1P9+WjA5kMV2xeq2Eu3
-                  +nDYeL6aTIKrG70YX980wo4QNBbeJtytsHEYx5+CkLUgXag9xcohCnnjpbyZsEtC8tF1RGJBwI7o
-                  Ogntdj+CZNhxQBK+lLdblNKT+/QNiSC9Ck88GpN1A5C6qfNs2yPlwMXwvM7jFJAehk8kCHG9gK8O
-                  80lLhDNEQmDGE+CTf6zxhNJdeCIgsUv+oV3HEwacTP1BIfv24X4mUBNc0Q2/0DlEPF5wXANc2CtC
-                  OxgF99LB7SbAbUsXOXCgXiu1Fu/pG+YQE6GoB04tSayiDIacmGPWnvMN5NiKb/obq4YkFRRSoP/b
-                  RDWIE0YB1w3qVdeGbGiMVSMdZx2yv+rafFTN8TFNUyzSiASAxklAqIKBiCkNBEn0IDHAIpg5EKu2
-                  CbNgCyosNBGs0w+JqA91y49NyD1JH2uQq+oHVdltHmTj6EOfktMXkn1Z7KAbvNMa9BAh5UevSoe0
-                  N+5CoQUcGpKBILETkHoMWByDtSa0CbAYIXZRbdwMWKzjgAX3mA0kRtUkH4tIJXECVcCwygLCFAs0
-                  GuMg5gwoHqsMABcIy22G6smeNh3PzPFq32ECQpuj06Z2KGptYoxsLi/GE5xTBHcQ0mAQhnTL2tVD
-                  bGtP3hGVIRIbkoGYFSz5aDuNTVjz0vZoO4SxHTaJYccBSTQbbec2pPRBjvDJ9V3R6/qzAVBj26h2
-                  z2ntaABdY1DmA+gcw4V2bBFLJQ5BPW3Hgk+0USiNfMKFXd1szyeaTwhG22u8ASkt906VXecT4osV
-                  OOW7d1zQ6Asq9KuaeV+KUvt7+h6P2otHjgCDjViDQMjr9dCnMJn4hIYCGyPQDPFngvli1DVBBX1X
-                  atoAKo8RavXKFqDyxIb4M9gtfDHsZLqvFB85AmBUzfJxlunhihAIUkZAQGKCAiFTHkQiS+KUZCrj
-                  Lmz24zY7HT0No8MI05PdQnuD291D0kMm8dhl0lgl8SB31QaPi71N4mnNFjuMoRC3oNK2TRUIFhKj
-                  wiOxj0CzBScoAd4RgaYfVgoPemCiriDS8xQd5CUeJ+/U9yeeqMs72TSAg8dG6+4UxzgsLlCfMNIT
-                  WmhSXNpWA/wwXjwloaxXj7q+Y82ADOXxk/EdJ5V97peDuAcUa0ARiO0IQePSLkUGoa4DCnW1IPW6
-                  kjgBWFJMK0fPbZjphWPYQARZI6DW5fJwTSg9nQvJ80jRJaRovNACBI3pbNt2IHVDcmlLgJxkIaon
-                  uLQn61+iEAhj1BoxRK1xu0Sb/katQcrJDrYRlNmxDR4ao9Zox4lH7C9mDY6qOT4mkstMChqgJGMB
-                  wVEcxCSKAs5JEnGaiDSBPmatdz6ia4RxbEJtAjT6U5qg3SGXncSIJpUJRwmit5x8GMTgIKxVL609
-                  hMGgDEmt6tPtQNKXbejDgZ0+1GNyYnxH2BqgUtiREzGTU8fyfQ5JTmhUzfExhRxEMVEBzBAJCI1R
-                  IFMCglTBjGQ45nEsj0dOundLzRn3DsByriYTPbDjaFXMktlC90t/aU/1sUVRzobyhLMimpRHff0/
-                  AAAA//8DAGXfosW/KwEA
+                  H4sIAAAAAAAAA9RXbY/iNhD+K1Y+9aSFvJAQ4BsF7m7V40WEveuqqiLjDOBu3uo47G1X9987DoFj
+                  VcNRttKqfML2zDyemWfGk2eD0SQvuITC6P32bFDGoCj4MgajZ6xoXIBxY9CiABnyCLecluv73cNe
+                  ShMl+LF/Hyz6g1/IoD+efZhP7yZD8tOoHyxI8HE6H707yMunXMkPEHMtsjKN1ImUgi/Lww32y5BR
+                  CetMPKGCumAYgaQ8Lo5VqkvZ9vFOfaXBBtgDT8mCJ/BCY0vjUgk4Pcsis7Hx7eYaTN/XYAYbGunB
+                  7tG564C8tgZojI5NyoRkKzKDLI/1oPaVkLaliyfNKePyyQz4X0DmVPJ0rUUN8AAvdGVYu7qwogbp
+                  V8TUIg4F30LjNr0Ss+1pMGcgC9KP4+wRov84o7Zziq5ZKU/z1X4dYT0d6ph+vYBH7SshdblUlb/i
+                  Aq6PLfxZ8jyBVJ52tXXe1c+w4SwGPZnOFM2PkR1dsVb0fKRPJCjFijJ9jGd0i8F4DbTO6QP0KJVo
+                  Rwf8M2UPZ2vnAmhdAR2gP0G6lhsttneGWRek2T2R5jq/55Bd7zXIuv54W5DRXpGMaRpRmZ0IuRTl
+                  mf6I5lIuOfwTttXR4H4QPI4L872qqfmpnnx/FZyl83NMc/IrGWSZiHiKZvQdw2k3ffcqUFuX1VmM
+                  dRORLMXI5v+2bM95qJsclIf3P/TQajVb3WtA27rJYcZZyhlZ0OWJHowZ/B33tyDoGkKxe357WHj7
+                  8W03nnUdp90xjnYFFCC2sB+81FPaCHJgfMXZsVwhqSxxADOmOaTqAJ961a7LGCHVGoc1bCEhyyJl
+                  5w6dw4QEqFW5uAKEgCSPq3Xv2Ziu1JNCH5TF+i9OiJNhfz4kk+lk9Gk0WMxvB6haS52RWAia4iV5
+                  lqLc98UJ6S80fiC3SrT+p5X7dmPgXbksK3dct+l2nVbbtaqfbaGdOEvX+/OG7dhN27Ucv2vVIpVE
+                  ll82/NZZtixHLcpkCSLMVnUaMV5Iw0ysdym0W8q2WtZad8GwT95nmElJAkwmr56QnArVonSj+Yuj
+                  yyf0F2o1X9jxoJ6DSLjEvIeHFllN7N8bZg02/4zSCf0axrsO3HM9xd5cwJbDY8gTxeFSxCi6kTIv
+                  eqbJorQpgAmgKrXNdbY183IZc2Y6luOYlm/aLdPumK5rVhwPGevYHc93Gh74rOF6jtVYtiK30XH8
+                  JXSdZUQ9K/Qtq/lHrnrirg6q8uqp/ntjKMbDns9TgYWreL+vEz231KlKXFlUSlgaKV9v5K4N/A+/
+                  nN7i4+JNpt83/KT5GwAA///s3c1u2zAMB/BXGXKXQkmkPl5ih2H3II7tXgbssvfHbK/r1sZxCsm2
+                  ZElFbykaFBUS/vQnmW2q4OQUlTXC9ybiNliLXNhWuGUDN2VjwU3BzoU+WcONV6G/L2X2taE3YnZm
+                  KHGrJjl9ZJLTEMSkrz9/ffn2r6YsE0xk4QmYlFSvPwJ+YFKnvGj0fXzkPY4UjAf0f6BMethLKC8v
+                  w2+enqj78WN4tj9XDMObQ/J6iVFyRhBTzSc2yicKy7l201LNfSofFvmAMhofjpj7HKTYFobLhZfi
+                  VKAUQMGhpoWFo7uRzmZyH+QzyY+1Oog05SY/ShoplRAE7hFktFYWtQP0hQyeZpMfmT9v1st+zHk6
+                  5Rfb6daIW8+QUDAUvWPOuCuTfaOMRCmaXtfsJ71cIo9r9GRNsVd9HynCK0P7G8mw6ikbPVE0PeFC
+                  +JKsngIKfnTEtZcyDkI20NyYA8RNAUKcy35IBEGpZj8DmUjZJ9mPERCW/dApLxzdt8Wlmfyo5O1S
+                  TN9ath1OMQKQCOItS6AbEa0KYm1BRGvfSnjuJp6QN6ntyToOfn1rAWBC4KBSB9Nh+vI+N/FDygVx
+                  ptzcB9+E8hAxA3TCEDNmcvlP/MzkPivO/LjzdMovUjTaqo7YVWjFsGstc22vGSAoUE03jgTV3CcV
+                  UhRS4kest4thcAnBYSw71dznIGrTCzf126qN0lVbOhFFANWM4bhA8k2ophxy49fMtqefQrYlfIQS
+                  mJr7BJNp+F4mkxCAYWQyp7xwdJf7EEXNfdL2SYxb+mzafAqpalMFWRk6WvMGYcspk3gpR7p9UtWD
+                  +3owHZ/sO2TjjyHS3PmtjgvAkJZ839hqJtqR92LRVJe5eTrFaPdOIfdOUU661y8/p4z/m/xHeh50
+                  ra0R7BCcpzN+cXRF1TvJmo6QoUDLrFAda3UPne3atpOmBjvpwSnzkZMoSIuQ6cSYrCmqMW4DoZVZ
+                  Tm/IRRMUcoRwUacbryTZFHeY/q202+BCuKT50hTaNjCUig8l9+w6hDk5UZWTp5zwScIjAWTYGmw3
+                  L6fMmuLu5KRXa4kjMcmJLtaBaXTfs4GzmuGtc8y5vhk75BrRWCf7xiUgp4dL5jgm76qyStUYGDhy
+                  gFHZmldqu+XYTVAsVAOplYVRpqAPbw9HHL2ymsMkYDAU2X5/4crDRorPyMpO/VlVVh6yQimWM6nh
+                  cRPUOzeRbUZWlLmsVsyk1Hk64xeNmqxsG3YzPTAEsswJo9mtu6JGQ41zbQKyStxOZXTW1Q812qHc
+                  35/h+bo02qKGAwZDYTsLMt1WXSTbNgENAnLIeMkcKT1UtumDLdBOH5mEWgYxqQ4bDWBSRj9p4rMY
+                  1sQn/looFxo93MCd3Jo5GJfYJ+6XMgY6CoubYqC0Lt04AAbz9EuNnapf0iq1A7AkFScvTBwESyi5
+                  8VsFsXL2MzONZEVdNOe7aM4+2ZYtzNsHpXomPyM3Z5IflRdvtkx+8Dyd8YtorgqdvjFBnWV4BWCN
+                  phu7SiFNbxUZhM8nP78BAAD//+ydyXIbIRCG38V3UAMNDW+RQ+6qWZODqpxKnGPePVhZKguW7GFm
+                  YABdfNFS0mC7P/W/tOLWnHijgv7WFHrFssPRK4GqdBF0jTGKYYwyGXpZPNtRmGNpy9HuEXsRweTI
+                  aW/VYFBRp0mgtIEYb0XQ6GoZXYG6l0lH/yjv3kxXKkxX1OjqtXRlTtczfvbXaxrGsWfgyYohOcd6
+                  6nomVQeqmxXJWWZAV3kTVCUTaUWLsATUdnS5WW6gvxkFN5BYFSTefb1c2PuP/o/xh49JaEJAMkmh
+                  zVdSuM3gr4GbA9iFjhNWLiSn5FHexsaZkJq6Dp2yCHfUdU7EtR8JfCgckGyL8s5r7ivc21+Mzz47
+                  vG2subl6rlHKQdYdt4phNs7Cy3edtw2fOOBqmeCrYD45yOJMIocwnkAz/0Tjidb38MQKjDP/6NLx
+                  xECW1h/Jzd+3/J1AKdK1UyQZVBD/lmDVUrLlqMS+paYcayi1DkrdcqtsrIy8seppk/7bJn1juT1A
+                  WPlyDtVGcMKwZu1/vhGkovimXq2adNpqocH/eIlqJKHRQP4Oy9K1hXkIatWwcNbB9dK16XQ942c9
+                  jsqOHTLQ/cBQT4LZXmtmcfAXyYDpxJyBVu0lzBIHSFioYPivy+5UuBeoHF9Oiu8eisSL9HqyuAah
+                  GMgQzX+VLe8cBj0s17R7Kp3003gOQQuKB8xAAuMWSBUDFin4uRN6CbAMYpyqjcKAZQoHLLGiG8ie
+                  rof8bLtp6AcxMaOmmaGZDPNorFhPBibqpxkgB8LKm6HqibwueczfXYBWhyunOODfECRcOl9Kw4hG
+                  y1uThhGC6xu/1BVi23F8R9pxaV8wA5koWGpqO49NyvPSbbWdVCoOm+xD4YBk06rt8oaUNMCQYgGS
+                  bt2zGx7VUMZTR8RGqwJ6i5grGR/FlRA1Plqbj/IZqffEhWNUxGqnOCzb7UTwiX9R4YJ8QjYuN7vx
+                  iecTVPJ2xhs4F9md6krnE2xhBXnNeyVaJ3LjhhocTftx3/44vQ0TVTm0NiirBsoyAYaYZY0ETs3C
+                  tB6faG5VUIEW0J9Z08KoF4KK/CdqOgAqvxVqy2IL5PMTB/Rnoix8CTSZrmXxcSeA0/WUn+fZX65O
+                  AhsNAsMeJbNuJNbZeehHnKeZcij7yZudira3p5BJtfVKw+0VcDsVOy13ssTZSaKcLDLfab7RalYS
+                  tD0n/sNU7BgjuTpA0nZMCoThGNzwONUUaLHgJByoOwo0f4va8MhfTFQKIv1v0ZFtxZPbEFaDHqyJ
+                  pZplJjf8LHJ0TbloictmjmEz3dxBe03xGrlblke9fLA24Ljb34yfOams2ZcjqQFKNKBYae5I0MjF
+                  WWSkLB1QdK6B1D+TxBGU00pfJ6C8YaaGfN8UbTcJejiriW+ohJ8azLwOZtIHp0EypMm4iDNHpCnW
+                  gB+Bas5wuWzhchzXv5McbFC1hgHVGsUZbepVrQlNeIdtrDZxbKMegqo1XTjx2PU0a+J0PeNndORm
+                  ZzWTw2wYqq5nPXYdI8KhIz3YcRBNs5bh1F3GF+u5IVvZUsCqAiwSFvo0iCgEIopE5bt7v20Qg4Av
+                  yks7DmEY4TguSp8+BpK+rtCHIG4/VDE5GbojWwPtbBw5YZicCvP7bElO8nQ942ctCLoeJyZmiQx1
+                  L5kbEdg4iRln1VPfu/3Iyb+7L36a+vFf4cun6XLxF/bcfX16HB4/+/flP7Q/92Ofn55Pw/MTPj51
+                  l+dHffsOAAD//wMAricRlr8rAQA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -202,17 +201,17 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:22:55 GMT
+                  - Sat, 22 Apr 2023 17:55:51 GMT
               Transfer-Encoding:
                   - chunked
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 db88a4a8e4f93b9bfeab5462f253c306.cloudfront.net (CloudFront)
+                  - 1.1 88bce767af5e31f726ade38ea5253bd4.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - cJ8FV-LtppUtg5Ad4I2shUx-WpjFakvS8afVcsZOOf2CvP9YOthkRQ==
+                  - 0gDvC27kzozvmXTlheuPo6h-tFsXwjNZriEsOW5h12TKkX_Swbm6MA==
               X-Amz-Cf-Pop:
-                  - DEN50-C1
+                  - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -236,27 +235,30 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/530.5 (KHTML,
-                    like Gecko) Chrome/2.0.172.2 Safari/530.5
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.0 (KHTML, like Gecko)
+                    Chrome/4.0.204.0 Safari/532.0
           method: GET
           uri: https://www.recreation.gov/api/camps/availability/campground/234779/month?start_date=2023-10-01T00%3A00%3A00.000Z
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+yUTU+DQBRF/wphpUmbzKMVLDtCiTUqGMBF3ZARp3WS4UM+GpvG/+4MjdrGzLho
-                  NyQkLODdGRbvnpydnuKsrGlDat3e6TMDWSBe8AZThl8oow3dRwYyJmNAYwQxQnb3POu27i9DffQb
-                  GqpwogqnqvBKFZqq0FKF16pwpggBqULVhkC1IVBtCP5u6HP0U19CX/lw39/BtCI1qTYkabYl4XnE
-                  Z+OoJCld0fToXMtEzXnL2MH0+1bs+HMnnGt+4Hv3nhuHt253ucQpbbZJhRuar7vf52tGeMSKouTf
-                  C2fJ77p3mus8PN6EwZM/1y48J4q1aBGE3iU/meGPJG+zpCRFya/aJh/R/GgEI/29xXnzD4ogwxBk
-                  CIIMP5ChBzLsQIYcyHADGWogwwxkiIEML5ChBTKsgCMlquflIWTxfuq25CVkJG8wSwQYXdN7TgQe
-                  SbFK2lqcDzakyun6rRFYzgyYGoNIeiwS0d8gkkEkZxAJnCYSazKIpM8i4f0NIhlEcg6RmKeIxDCv
-                  B5H0WCSiv/6J5AsAAP//7Ny7UcRAEIRhnzCIYLS6fQjvjCusO4s4wAGT3CmlQLdBU38Mo/qqdx4C
-                  kj8ISTUJkjmAJBmSOYAESByQNAmSfRaQBENy1g9IgMTxtNkVSC6dZmsyJGf93JDcr4/r6+1+e7zB
-                  x7/nozaJjwEf0XwMZjVA4skhEiR9P4AkGJKzfkACJI5EIs1qRpFIkiEZRSIBEk8i6RIkvQNJMiS9
-                  AwmQWBLJoUHC9kg2JGyPAIkHkiVBstgeiYZksT0CJBZINhGSCSTRkEwgARILJBcFklkkkmRIZpFI
-                  gMQCSdMgWYx/oyFZjH+BxJNIpGbrKp42yZCs4mkDJB5ISoJkI5FEQ7KRSIDEA0mTIBmc6kVDMjjV
-                  AxILJE1LJJNEEg3JJJEAiQcS6eZ3sUeSDQl7JEDigaSkqc2xA0kyJGf9gARIHIlEuv49Ov+Oj4ak
-                  8+94IPEkEulo76DZmg0JzVYgMUHy6x7J+V1+fL1/Pr+0y/fTDwAAAP//AwC0CNuE6WYAAA==
+                  H4sIAAAAAAAAA+yUQW+CMBiG/wrhtCWa9AMF8UaUzGUbLOgO24VUVl0TBCbFzCz77yuQbbpYW6NH
+                  Eg7y9SkxfZ++n3qMV3lBGSn04afuGMiG6gfeYJrgOU0oo82SgQyzC6iLYIbQsH5e9KHuZ0wLSUHW
+                  GzxPiN754wxFzlTkeopcX5GzFDlbkRsoco4aB0iRU8wDFPMAxTzgaB5fnV+xIvrK1xuzdqbrGiYR
+                  2+aEr0/5rDvNSUwXNN7jyqQSMC2TZGf6s2vm+mM3HGt+4Hv33mgW3o7qzTmOKdtGa8xouqw/ny7r
+                  v59kWc7fJ+4z3zu600buw+NNGDz5Y+3Kc6czbToJQu+akyv8EaXlKspJlvOtQ4uPaLo3go7+XuKU
+                  SS4JiG4FiK4BiLwHkeggMhtEKoPIXRDJCiI7QaQjiPwDkXAgMgy4UlX0PDyEbJ5PUeY8hBVJGU6i
+                  Sow66caTSo8oW0RlUfHBhqxTunxjlZaOAT3jpIpzG/BYux1ETDnSkyN9OWLJEVuODOSII0X+tdZB
+                  RH66ID9dkJ8uiE73QDlVTrTl1JbTBcoJzisn22zLqS2n/XLiTrTl1JbTJcrJOqecDGvQltOJ5fQN
+                  AAD//+zdu07DQBCF4Z7H4AnGl72YLkWUKql4BGihgZJ3RyuqWLayyxkj4fz9lpMvZ2Znk73jVGoC
+                  nMDJo63rJZxSZHLF5KriXOvkqlQWxEGcA3G9RNyQjPxF/rrCqdQEOIGTR3M4KDiNYXmsvlCz5ah3
+                  zZ4Pl8PpeD5enqnU3VeqdVKlxrYLIDoFOoW6TqFUFl/GEOfxZSwRF4aJToFO4QqnUhPgBE4e+Uu6
+                  RopG/iJ/bZG/opG/IM4nfwWJuBDIX+Sva5xCACdwcslfk4YTazzgNMeJNR5w8sEpSzhl1nhoDmvO
+                  NTeHmTUeiHMhrhOJSxAHcZsQlyAO4lyIGxXikrWlOFrM/beYychf4OSCU6/hlNuWI8hf5K+6/FUq
+                  C+IgziN/SSP+bG0t5p/lr5/Pz+vLumZLJ+LNE+nmibvOXtloDGWYbK1mba1Uba1C7R/DZBJMHYup
+                  NIYznDpSE6nJByfpfW2OvK8FpxlOkfe14OSCU68lp0RyAqcZTonkBE4+OEmP/3Pj1hY43QFO7FuB
+                  kw9OJt33TQMrpdz31Zxrve8rlQVxEOeRv6Tfe5gCf9sCcZsQF/jbFojzSXHSk+qpcTgPcRBXSRwj
+                  fohzIu7XU7RSl++fbx+PT/349fANAAD//wMAPeWdR5hvAAA=
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -269,7 +271,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:22:55 GMT
+                  - Sat, 22 Apr 2023 17:55:51 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -279,11 +281,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 c1ac198ab82768c141e2da4f5b4eb71c.cloudfront.net (CloudFront)
+                  - 1.1 bd96da9a6020f2a5d5499cedf78d68f2.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - S9UAJfmvoZo1jhuwaUNwPk8OOvWEVGmbdyyUsFFHprwiEWNYzjWSwQ==
+                  - t9S4ItMDNoFv2HZA5VuMxMxten9wT9GPvmlEjPNfiEhpbM6f1grteg==
               X-Amz-Cf-Pop:
-                  - DEN50-C1
+                  - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
           status:

@@ -13,12 +13,14 @@ interactions:
               Content-Type:
                   - application/json
               User-Agent:
-                  - python-requests/2.28.1
+                  - python-requests/2.28.2
           method: POST
           uri: https://api.pushover.net/1/messages.json?html=1&message=%3Cb%3ECampsite+Id%3A%3C%2Fb%3E+100%0A%3Cb%3EBooking+Date%3A%3C%2Fb%3E+2023-09-01%0A%3Cb%3EBooking+End+Date%3A%3C%2Fb%3E+2023-09-02%0A%3Cb%3EBooking+Nights%3A%3C%2Fb%3E+1%0A%3Cb%3ECampsite+Site+Name%3A%3C%2Fb%3E+Test+Campsite+Name%0A%3Cb%3ECampsite+Loop+Name%3A%3C%2Fb%3E+A1%0A%3Cb%3ECampsite+Type%3A%3C%2Fb%3E+Test%0A%3Cb%3ECampsite+Occupancy%3A%3C%2Fb%3E+%281%2C+5%29%0A%3Cb%3ECampsite+Use+Type%3A%3C%2Fb%3E+Test%0A%3Cb%3EAvailability+Status%3A%3C%2Fb%3E+Available%0A%3Cb%3ERecreation+Area%3A%3C%2Fb%3E+Test+Recreation+Area%0A%3Cb%3ERecreation+Area+Id%3A%3C%2Fb%3E+20%0A%3Cb%3EFacility+Name%3A%3C%2Fb%3E+Test+Campground%0A%3Cb%3EFacility+Id%3A%3C%2Fb%3E+50%0A%3Cb%3EBooking+Link%3A%3C%2Fb%3E+%3Ca+href%3D%27https%3A%2F%2Fyoutu.be%2FeBGIQ7ZuuiU%27%3Ehttps%3A%2F%2Fyoutu.be%2FeBGIQ7ZuuiU%3C%2Fa%3E%0A%3Cb%3EPermitted+Equipment%3A%3C%2Fb%3E+%0A++-+&title=Test+Recreation+Area+%7C+Test+Campground+%7C+2023-09-01&token=REDACTED&user=REDACTED
       response:
           body:
-              string: '{"status":1,"request":"2fc925c3-6665-45b7-ac5b-192df19113e3"}'
+              string: !!binary |
+                  H4sIAAAAAAAAAwTBQRKAIAgF0Lv8dSwkRMfbMIn7AldNd++9F5GWOzDKgcfv7ZEYaLy8sHdi6ReJ
+                  ipG5NpJZ5FyzirHi+wEAAP//AwA1ia9lPQAAAA==
           headers:
               Access-Control-Allow-Headers:
                   - X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token,
@@ -29,20 +31,26 @@ interactions:
                   - "*"
               Access-Control-Max-Age:
                   - "1728000"
+              CF-Cache-Status:
+                  - DYNAMIC
+              CF-RAY:
+                  - 7bbfafd079d01f42-DEN
               Cache-Control:
                   - max-age=0, private, must-revalidate
               Connection:
                   - keep-alive
+              Content-Encoding:
+                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:03 GMT
+                  - Sat, 22 Apr 2023 17:46:32 GMT
               ETag:
-                  - W/"dc782d238f0b93fbd3142918865d1e6e"
+                  - W/"6c6ffc29f7daee64c483799ece9bd0bd"
               Referrer-Policy:
                   - strict-origin-when-cross-origin
               Server:
-                  - nginx
+                  - cloudflare
               Strict-Transport-Security:
                   - max-age=31536000
               Transfer-Encoding:
@@ -57,17 +65,17 @@ interactions:
               X-Limit-App-Limit:
                   - "10000"
               X-Limit-App-Remaining:
-                  - "9994"
+                  - "9998"
               X-Limit-App-Reset:
-                  - "1677650400"
+                  - "1682917200"
               X-PO-H:
                   - a
               X-Permitted-Cross-Domain-Policies:
                   - none
               X-Request-Id:
-                  - 2fc925c3-6665-45b7-ac5b-192df19113e3
+                  - 72fe12e8-248c-464a-ae67-4d143fd54a26
               X-Runtime:
-                  - "0.058270"
+                  - "0.058920"
               X-XSS-Protection:
                   - 1; mode=block
           status:

@@ -3,8 +3,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0
-                    Safari/537.2
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.2 (KHTML,
+                    like Gecko) Chrome/6.0
               accept:
                   - application/json
               apikey:
@@ -60,7 +60,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sat, 22 Apr 2023 15:19:38 GMT
+                  - Sat, 22 Apr 2023 18:00:26 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -68,9 +68,9 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 e5eb6c7f102110906ece71324dc7e664.cloudfront.net (CloudFront)
+                  - 1.1 c1e0a7ac577ef4659f75bd73a73531f6.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - lej_u7c4oA043uCKipv-IPbfFlVOHmFSMcqOKcnPyjaJLoW9ngWObw==
+                  - WbK3U_GV-ZSy4Mg4UZoPfJTMPYPDG2hnEyU52JHWBQlSzr7L2mNocg==
               X-Amz-Cf-Pop:
                   - DEN52-P3
               X-Cache:
@@ -96,8 +96,8 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/534.10 (KHTML,
-                    like Gecko) Chrome/7.0.540.0 Safari/534.10
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.8 (KHTML,
+                    like Gecko) Chrome/2.0.178.0 Safari/530.8
           method: GET
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A10089508&fq=entity_type%3Atimedentry_tour&size=1000&start=0
       response:
@@ -119,7 +119,7 @@ interactions:
               Access-Control-Allow-Origin:
                   - "*"
               Age:
-                  - "101"
+                  - "21"
               Alt-Svc:
                   - h3=":443"; ma=86400
               Connection:
@@ -129,7 +129,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sat, 22 Apr 2023 15:17:57 GMT
+                  - Sat, 22 Apr 2023 18:00:05 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -139,9 +139,9 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 5957ea451aa45a9d254075e89c5df686.cloudfront.net (CloudFront)
+                  - 1.1 d09fd0ac0a8733df98f134da74eec098.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - qZGFEsDlozR-nqFSnWGAn7u4I-fqdgKKZbq6hGPMYav3V5PMx8OoSg==
+                  - 59i4Pc-hSOZyRkFdaZdhE9QQh-BWjGlKcbj2fVrDH2LsEygT2m_mjA==
               X-Amz-Cf-Pop:
                   - DEN52-P2
               X-Cache:
