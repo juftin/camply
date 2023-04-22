@@ -54,7 +54,8 @@ repos:
             exclude: |
                 (?x)(
                   docs/cli.md|
-                  PULL_REQUEST_TEMPLATE.md
+                  PULL_REQUEST_TEMPLATE.md|
+                  .github/semantic_release/release_notes.hbs
                 )
             additional_dependencies:
                 - prettier
