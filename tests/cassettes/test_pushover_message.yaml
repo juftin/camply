@@ -13,12 +13,14 @@ interactions:
               Content-Type:
                   - application/json
               User-Agent:
-                  - python-requests/2.28.1
+                  - python-requests/2.28.2
           method: POST
           uri: https://api.pushover.net/1/messages.json?message=This+is+a+test+message%21&token=REDACTED&user=REDACTED
       response:
           body:
-              string: '{"status":1,"request":"ae424a27-1cd4-403a-86d8-23f0619e564a"}'
+              string: !!binary |
+                  H4sIAAAAAAAAAwTByxGAIAwFwF7e2cwQPkHpBkIK0MDJsXd3X/jqazsaH3js3uYLDcrFYrkq9VyF
+                  ss5OZwxCOhKHKZxKHPh+AAAA//8DAJNmHpA9AAAA
           headers:
               Access-Control-Allow-Headers:
                   - X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token,
@@ -29,20 +31,26 @@ interactions:
                   - "*"
               Access-Control-Max-Age:
                   - "1728000"
+              CF-Cache-Status:
+                  - DYNAMIC
+              CF-RAY:
+                  - 7bbfafcd8c1f27e8-SLC
               Cache-Control:
                   - max-age=0, private, must-revalidate
               Connection:
                   - keep-alive
+              Content-Encoding:
+                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:03 GMT
+                  - Sat, 22 Apr 2023 17:46:32 GMT
               ETag:
-                  - W/"883ec6d8198decde0f457df01f6bff29"
+                  - W/"619dd65fbaccf94a8b0ee991d6326419"
               Referrer-Policy:
                   - strict-origin-when-cross-origin
               Server:
-                  - nginx
+                  - cloudflare
               Strict-Transport-Security:
                   - max-age=31536000
               Transfer-Encoding:
@@ -57,17 +65,17 @@ interactions:
               X-Limit-App-Limit:
                   - "10000"
               X-Limit-App-Remaining:
-                  - "9995"
+                  - "9999"
               X-Limit-App-Reset:
-                  - "1677650400"
+                  - "1682917200"
               X-PO-H:
-                  - a
+                  - t
               X-Permitted-Cross-Domain-Policies:
                   - none
               X-Request-Id:
-                  - ae424a27-1cd4-403a-86d8-23f0619e564a
+                  - c15e2597-a476-4cda-8206-cb310d61352b
               X-Runtime:
-                  - "0.055934"
+                  - "0.057934"
               X-XSS-Protection:
                   - 1; mode=block
           status:

@@ -4,7 +4,7 @@ CLI Testing: `camply list-campsites...`
 
 import pathlib
 
-from _pytest.monkeypatch import MonkeyPatch
+from pytest import MonkeyPatch
 
 from camply.providers import ReserveCalifornia
 from tests.conftest import CamplyRunner, cli_status_checker, vcr_cassette

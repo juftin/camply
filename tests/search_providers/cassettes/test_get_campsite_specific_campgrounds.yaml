@@ -3,8 +3,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/540.0 (KHTML, like Gecko)
-                    Ubuntu/10.10 Chrome/9.1.0.0 Safari/540.0
+                  - Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.75
+                    Safari/535.7
               accept:
                   - application/json
               apikey:
@@ -27,18 +27,18 @@ interactions:
                   Vehicle Length","AttributeValue":"23"},{"AttributeName":"Driveway Entry","AttributeValue":"Pull-through"},{"AttributeName":"Driveway
                   Grade","AttributeValue":"Slight"},{"AttributeName":"Driveway Length","AttributeValue":"97"},{"AttributeName":"Double
                   Driveway","AttributeValue":"No"},{"AttributeName":"IS EQUIPMENT MANDATORY","AttributeValue":"true"}],"CampsiteAccessible":false,"CampsiteID":"93740","CampsiteLatitude":29.2754711700001,"CampsiteLongitude":-103.305432091,"CampsiteName":"O","CampsiteReservable":true,"CampsiteType":"GROUP
-                  TENT ONLY AREA NONELECTRIC","CreatedDate":"2014-05-02","ENTITYMEDIA":[{"Credits":"NPS","Description":"Tent
-                  area and grill","EmbedCode":"","EntityID":"93740","EntityMediaID":"9590f0cb-a514-47e5-aa91-7c35fde08669","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
-                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/18/c3e4f62f-1665-411a-82c1-fd36d1456ad1_450.jpg","Width":450},{"Credits":"NPS","Description":"Parking
-                  sites","EmbedCode":"","EntityID":"93740","EntityMediaID":"2cdb9e4f-b025-4bce-b824-a4d3814c64fa","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Parking
-                  site, a tight pull through with green mountains in the background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/25/5f627484-54d2-43a4-8200-22ddd3c162c5_450.jpg","Width":450},{"Credits":"NPS","Description":"Flat,
+                  TENT ONLY AREA NONELECTRIC","CreatedDate":"2014-05-02","ENTITYMEDIA":[{"Credits":"NPS","Description":"Flat,
                   gravel area with picnic tables","EmbedCode":"","EntityID":"93740","EntityMediaID":"a2455bd6-66cd-443f-8680-70b3fc1deb2c","EntityType":"Campsite","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Shade
                   structure, flat gravel area with picnic tables in the background, mountains
-                  in the distance","URL":"https://cdn.recreation.gov/public/2022/12/09/22/15/93740_19b70ec5-8336-467f-a53c-2fd83eb30a2c_700.jpg","Width":700},{"Credits":"NPS","Description":"tent
-                  area","EmbedCode":"","EntityID":"93740","EntityMediaID":"c9946d61-2198-400b-8026-96a21c06312c","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
-                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2019/06/13/15/11/93740_0302db77-0ba1-4a2c-8733-68ecb09b2ca8_700.jpg","Width":700},{"Credits":"NPS","Description":"Shade
+                  in the distance","URL":"https://cdn.recreation.gov/public/2022/12/09/22/15/93740_19b70ec5-8336-467f-a53c-2fd83eb30a2c_700.jpg","Width":700},{"Credits":"NPS","Description":"Shade
                   structure, picnic tables, bear boxes, and grill ","EmbedCode":"","EntityID":"93740","EntityMediaID":"3ccc15b2-e140-4b9b-a25a-b74f9861191e","EntityType":"Campsite","Height":934,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Shade
-                  structure, picnic tables, bear boxes, and grill with mountains in the background","URL":"https://cdn.recreation.gov/public/2022/12/09/22/14/93740_b2f9e565-572d-4111-9ef4-ccdbda6b9830_700.jpg","Width":700}],"FacilityID":"234013","LastUpdatedDate":"2022-06-29","Loop":"Group
+                  structure, picnic tables, bear boxes, and grill with mountains in the background","URL":"https://cdn.recreation.gov/public/2022/12/09/22/14/93740_b2f9e565-572d-4111-9ef4-ccdbda6b9830_700.jpg","Width":700},{"Credits":"NPS","Description":"Parking
+                  sites","EmbedCode":"","EntityID":"93740","EntityMediaID":"2cdb9e4f-b025-4bce-b824-a4d3814c64fa","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Parking
+                  site, a tight pull through with green mountains in the background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/25/5f627484-54d2-43a4-8200-22ddd3c162c5_450.jpg","Width":450},{"Credits":"NPS","Description":"Tent
+                  area and grill","EmbedCode":"","EntityID":"93740","EntityMediaID":"9590f0cb-a514-47e5-aa91-7c35fde08669","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
+                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/18/c3e4f62f-1665-411a-82c1-fd36d1456ad1_450.jpg","Width":450},{"Credits":"NPS","Description":"tent
+                  area","EmbedCode":"","EntityID":"93740","EntityMediaID":"c9946d61-2198-400b-8026-96a21c06312c","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
+                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2019/06/13/15/11/93740_0302db77-0ba1-4a2c-8733-68ecb09b2ca8_700.jpg","Width":700}],"FacilityID":"234013","LastUpdatedDate":"2022-06-29","Loop":"Group
                   Sites L-R","PERMITTEDEQUIPMENT":[{"EquipmentName":"Tent","MaxLength":0},{"EquipmentName":"SMALL
                   TENT","MaxLength":0}],"TypeOfUse":"Overnight"}]
 
@@ -55,7 +55,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:24:38 GMT
+                  - Sat, 22 Apr 2023 17:48:07 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -63,11 +63,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 0fdea8d3b1fc76e3ff9d36e8164171e8.cloudfront.net (CloudFront)
+                  - 1.1 898cace407c8c555d5663d79cc4cc36a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - osdd2zcs0-8l8JL3nviiRfRZcYID9eUojQO2M4fsICVwbBEZGuq6IA==
+                  - lsUcjWoNE-YYF3gNhieBrOdOglbEmDCFs7oxcR4PqxKtToX9ZXYr9A==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -77,8 +77,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/540.0 (KHTML, like Gecko)
-                    Ubuntu/10.10 Chrome/9.1.0.0 Safari/540.0
+                  - Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.75
+                    Safari/535.7
               accept:
                   - application/json
               apikey:
@@ -94,7 +94,7 @@ interactions:
                   INTERPRETIVE WALKS","FacilityActivityDescription":"Guided Interpretive Walks","FacilityActivityFeeDescription":"","FacilityID":"234013"},{"ActivityID":100065,"ActivityName":"PICNIC
                   TABLES","FacilityActivityDescription":"Picnic Tables","FacilityActivityFeeDescription":"","FacilityID":"234013"}],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[{"AddressCountryCode":"USA","AddressStateCode":"TX","City":"BIG
                   BEND NAT. PARK","FacilityAddressID":"20439357","FacilityAddressType":"Default","FacilityID":"234013","FacilityStreetAddress1":"PO
-                  BOX 129","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-01-10","PostalCode":"79834"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nChisos
+                  BOX 129","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-04-22","PostalCode":"79834"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nChisos
                   Basin Group Campground, situated high in the rugged Chisos Mountains, is one
                   of the most sought-after campgrounds in Big Bend National Park. It has seven
                   group camping sites available for groups of nine to 20 people (size is site-dependent).
@@ -143,21 +143,21 @@ interactions:
                   State Road Conditions","EntityID":"234013","EntityLinkID":"46cc907e1daf89fa21989bb47fdc7ccd","EntityType":"Facility","LinkType":"Other","Title":"Texas
                   State Road Conditions","URL":"http://www.dot.state.tx.us/"},{"Description":"Texas
                   State Tourism","EntityID":"234013","EntityLinkID":"6ff2fea665fc575a6d6bb1fd2ed03433","EntityType":"Facility","LinkType":"Other","Title":"Texas
-                  State Tourism","URL":"http://www.traveltex.com/"}],"LastUpdatedDate":"2023-01-10","LegacyFacilityID":"73981","MEDIA":[{"Credits":"NPS","Description":"Group
-                  campground","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578377","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
-                  campground, situated among the mountains","URL":"https://cdn.recreation.gov/public/images/71504.jpg","Width":540},{"Credits":"NPS","Description":"Group
-                  campground view from the road","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578347","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
-                  Campground from road leading to the campsites","URL":"https://cdn.recreation.gov/public/images/71453.jpg","Width":540},{"Credits":"NPS","Description":"View
+                  State Tourism","URL":"http://www.traveltex.com/"}],"LastUpdatedDate":"2023-04-22","LegacyFacilityID":"73981","MEDIA":[{"Credits":"NPS","Description":"View
                   of Chisos Basin from the Lost Mine trail","EmbedCode":"","EntityID":"234013","EntityMediaID":"81844d94-2d83-472c-b788-0845608a603f","EntityType":"Facility","Height":1065,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"View
                   of Chisos Basin from the Lost Mine trail. Green vegetation with red mountains","URL":"https://cdn.recreation.gov/public/2018/08/07/20/14/fa47194a-5ca5-45fe-a5c9-092d261f8a35_1600.jpg","Width":1600},{"Credits":"NPS","Description":"View
                   of Chisos Basin from the Lost Mine trail","EmbedCode":"","EntityID":"234013","EntityMediaID":"a7317243-5e05-4573-993e-8c3758756b58","EntityType":"Facility","Height":1065,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"View
                   of Chisos Basin from the Lost Mine trail. Green vegetation with red mountains","URL":"https://cdn.recreation.gov/public/2019/06/13/15/45/234013_5ebcde96-d85d-4476-9c2f-f1348c62a7dd_1600.jpg","Width":1600},{"Credits":"NPS","Description":"Group
+                  campground","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578377","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
+                  campground, situated among the mountains","URL":"https://cdn.recreation.gov/public/images/71504.jpg","Width":540},{"Credits":"NPS","Description":"Group
                   campground view from the road","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578349","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
                   Campground from road leading to the campsites","URL":"https://cdn.recreation.gov/public/images/71456.jpg","Width":540},{"Credits":"NPS","Description":"Sign
                   on roadway leading to the Group Campground","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578409","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Sign
                   on roadway leading to the Group Campground","URL":"https://cdn.recreation.gov/public/images/71548.jpg","Width":540},{"Credits":"NPS","Description":"Campsite
                   R, with shade structure","EmbedCode":"","EntityID":"234013","EntityMediaID":"841f2e37-61bf-49de-8795-436f5fff35d9","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Campsite
-                  R, situated on a slope amidst the mountains","URL":"https://cdn.recreation.gov/public/2019/06/13/15/48/234013_fc8b1d21-a3d3-4622-ad41-70c6a91bd9ea_700.jpg","Width":700}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"NPS","OrgID":"128","OrgImageURL":"nps.gif","OrgJurisdictionType":"State","OrgName":"National
+                  R, situated on a slope amidst the mountains","URL":"https://cdn.recreation.gov/public/2019/06/13/15/48/234013_fc8b1d21-a3d3-4622-ad41-70c6a91bd9ea_700.jpg","Width":700},{"Credits":"NPS","Description":"Group
+                  campground view from the road","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578347","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
+                  Campground from road leading to the campsites","URL":"https://cdn.recreation.gov/public/images/71453.jpg","Width":540}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"NPS","OrgID":"128","OrgImageURL":"nps.gif","OrgJurisdictionType":"State","OrgName":"National
                   Park Service","OrgParentID":"139","OrgType":"Federal Agency","OrgURLAddress":"http://www.nps.gov","OrgURLText":""}],"OrgFacilityID":"AN373981","PERMITENTRANCE":[],"ParentOrgID":"128","ParentRecAreaID":"2584","RECAREA":[{"RecAreaID":"2584","RecAreaName":"Big
                   Bend National Park","ResourceLink":"http://localhost:3000/api/v1/recareas/2584"}],"Reservable":true,"StayLimit":"","TOUR":[]}
 
@@ -174,7 +174,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:24:40 GMT
+                  - Sat, 22 Apr 2023 17:48:08 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -182,11 +182,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 0fdea8d3b1fc76e3ff9d36e8164171e8.cloudfront.net (CloudFront)
+                  - 1.1 898cace407c8c555d5663d79cc4cc36a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - xJEfcyPgvuQ7V2dJGD7Mn7ck7XfSOypsCqcR_0Dnz4IurkMh4u4lGA==
+                  - pdvE7oepYgJlI8J_q39mdeEP_m5fpbblnU55AUxSfrzRHVkarj896A==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -196,8 +196,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/540.0 (KHTML, like Gecko)
-                    Ubuntu/10.10 Chrome/9.1.0.0 Safari/540.0
+                  - Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.75
+                    Safari/535.7
               accept:
                   - application/json
               apikey:
@@ -220,18 +220,18 @@ interactions:
                   Vehicle Length","AttributeValue":"23"},{"AttributeName":"Driveway Entry","AttributeValue":"Pull-through"},{"AttributeName":"Driveway
                   Grade","AttributeValue":"Slight"},{"AttributeName":"Driveway Length","AttributeValue":"97"},{"AttributeName":"Double
                   Driveway","AttributeValue":"No"},{"AttributeName":"IS EQUIPMENT MANDATORY","AttributeValue":"true"}],"CampsiteAccessible":false,"CampsiteID":"93740","CampsiteLatitude":29.2754711700001,"CampsiteLongitude":-103.305432091,"CampsiteName":"O","CampsiteReservable":true,"CampsiteType":"GROUP
-                  TENT ONLY AREA NONELECTRIC","CreatedDate":"2014-05-02","ENTITYMEDIA":[{"Credits":"NPS","Description":"Tent
-                  area and grill","EmbedCode":"","EntityID":"93740","EntityMediaID":"9590f0cb-a514-47e5-aa91-7c35fde08669","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
-                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/18/c3e4f62f-1665-411a-82c1-fd36d1456ad1_450.jpg","Width":450},{"Credits":"NPS","Description":"Parking
-                  sites","EmbedCode":"","EntityID":"93740","EntityMediaID":"2cdb9e4f-b025-4bce-b824-a4d3814c64fa","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Parking
-                  site, a tight pull through with green mountains in the background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/25/5f627484-54d2-43a4-8200-22ddd3c162c5_450.jpg","Width":450},{"Credits":"NPS","Description":"Flat,
+                  TENT ONLY AREA NONELECTRIC","CreatedDate":"2014-05-02","ENTITYMEDIA":[{"Credits":"NPS","Description":"Flat,
                   gravel area with picnic tables","EmbedCode":"","EntityID":"93740","EntityMediaID":"a2455bd6-66cd-443f-8680-70b3fc1deb2c","EntityType":"Campsite","Height":525,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Shade
                   structure, flat gravel area with picnic tables in the background, mountains
-                  in the distance","URL":"https://cdn.recreation.gov/public/2022/12/09/22/15/93740_19b70ec5-8336-467f-a53c-2fd83eb30a2c_700.jpg","Width":700},{"Credits":"NPS","Description":"tent
-                  area","EmbedCode":"","EntityID":"93740","EntityMediaID":"c9946d61-2198-400b-8026-96a21c06312c","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
-                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2019/06/13/15/11/93740_0302db77-0ba1-4a2c-8733-68ecb09b2ca8_700.jpg","Width":700},{"Credits":"NPS","Description":"Shade
+                  in the distance","URL":"https://cdn.recreation.gov/public/2022/12/09/22/15/93740_19b70ec5-8336-467f-a53c-2fd83eb30a2c_700.jpg","Width":700},{"Credits":"NPS","Description":"Shade
                   structure, picnic tables, bear boxes, and grill ","EmbedCode":"","EntityID":"93740","EntityMediaID":"3ccc15b2-e140-4b9b-a25a-b74f9861191e","EntityType":"Campsite","Height":934,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Shade
-                  structure, picnic tables, bear boxes, and grill with mountains in the background","URL":"https://cdn.recreation.gov/public/2022/12/09/22/14/93740_b2f9e565-572d-4111-9ef4-ccdbda6b9830_700.jpg","Width":700}],"FacilityID":"234013","LastUpdatedDate":"2022-06-29","Loop":"Group
+                  structure, picnic tables, bear boxes, and grill with mountains in the background","URL":"https://cdn.recreation.gov/public/2022/12/09/22/14/93740_b2f9e565-572d-4111-9ef4-ccdbda6b9830_700.jpg","Width":700},{"Credits":"NPS","Description":"Parking
+                  sites","EmbedCode":"","EntityID":"93740","EntityMediaID":"2cdb9e4f-b025-4bce-b824-a4d3814c64fa","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Parking
+                  site, a tight pull through with green mountains in the background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/25/5f627484-54d2-43a4-8200-22ddd3c162c5_450.jpg","Width":450},{"Credits":"NPS","Description":"Tent
+                  area and grill","EmbedCode":"","EntityID":"93740","EntityMediaID":"9590f0cb-a514-47e5-aa91-7c35fde08669","EntityType":"Campsite","Height":338,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
+                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2018/08/02/22/18/c3e4f62f-1665-411a-82c1-fd36d1456ad1_450.jpg","Width":450},{"Credits":"NPS","Description":"tent
+                  area","EmbedCode":"","EntityID":"93740","EntityMediaID":"c9946d61-2198-400b-8026-96a21c06312c","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Three
+                  tents set up in flat, gravelly area with green mountains in background","URL":"https://cdn.recreation.gov/public/2019/06/13/15/11/93740_0302db77-0ba1-4a2c-8733-68ecb09b2ca8_700.jpg","Width":700}],"FacilityID":"234013","LastUpdatedDate":"2022-06-29","Loop":"Group
                   Sites L-R","PERMITTEDEQUIPMENT":[{"EquipmentName":"Tent","MaxLength":0},{"EquipmentName":"SMALL
                   TENT","MaxLength":0}],"TypeOfUse":"Overnight"}]
 
@@ -248,7 +248,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:24:40 GMT
+                  - Sat, 22 Apr 2023 17:48:09 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -256,11 +256,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 0fdea8d3b1fc76e3ff9d36e8164171e8.cloudfront.net (CloudFront)
+                  - 1.1 898cace407c8c555d5663d79cc4cc36a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - JEhh9jVzUNBME-5CdAVKT1tJ4xPpKCEcdG1pBZ7Qgtj0GL98JoOspg==
+                  - E1YuVER55OXoAILyDeq6Cd_7AtucOb-KUrJGqy7YVKd1ya3o6IMHhg==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -270,8 +270,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/540.0 (KHTML, like Gecko)
-                    Ubuntu/10.10 Chrome/9.1.0.0 Safari/540.0
+                  - Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.75
+                    Safari/535.7
               accept:
                   - application/json
               apikey:
@@ -287,7 +287,7 @@ interactions:
                   INTERPRETIVE WALKS","FacilityActivityDescription":"Guided Interpretive Walks","FacilityActivityFeeDescription":"","FacilityID":"234013"},{"ActivityID":100065,"ActivityName":"PICNIC
                   TABLES","FacilityActivityDescription":"Picnic Tables","FacilityActivityFeeDescription":"","FacilityID":"234013"}],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[{"AddressCountryCode":"USA","AddressStateCode":"TX","City":"BIG
                   BEND NAT. PARK","FacilityAddressID":"20439357","FacilityAddressType":"Default","FacilityID":"234013","FacilityStreetAddress1":"PO
-                  BOX 129","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-01-10","PostalCode":"79834"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nChisos
+                  BOX 129","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2023-04-22","PostalCode":"79834"}],"FacilityAdaAccess":"N","FacilityDescription":"<h2>Overview</h2>\nChisos
                   Basin Group Campground, situated high in the rugged Chisos Mountains, is one
                   of the most sought-after campgrounds in Big Bend National Park. It has seven
                   group camping sites available for groups of nine to 20 people (size is site-dependent).
@@ -336,21 +336,21 @@ interactions:
                   State Road Conditions","EntityID":"234013","EntityLinkID":"46cc907e1daf89fa21989bb47fdc7ccd","EntityType":"Facility","LinkType":"Other","Title":"Texas
                   State Road Conditions","URL":"http://www.dot.state.tx.us/"},{"Description":"Texas
                   State Tourism","EntityID":"234013","EntityLinkID":"6ff2fea665fc575a6d6bb1fd2ed03433","EntityType":"Facility","LinkType":"Other","Title":"Texas
-                  State Tourism","URL":"http://www.traveltex.com/"}],"LastUpdatedDate":"2023-01-10","LegacyFacilityID":"73981","MEDIA":[{"Credits":"NPS","Description":"Group
-                  campground","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578377","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
-                  campground, situated among the mountains","URL":"https://cdn.recreation.gov/public/images/71504.jpg","Width":540},{"Credits":"NPS","Description":"Group
-                  campground view from the road","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578347","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
-                  Campground from road leading to the campsites","URL":"https://cdn.recreation.gov/public/images/71453.jpg","Width":540},{"Credits":"NPS","Description":"View
+                  State Tourism","URL":"http://www.traveltex.com/"}],"LastUpdatedDate":"2023-04-22","LegacyFacilityID":"73981","MEDIA":[{"Credits":"NPS","Description":"View
                   of Chisos Basin from the Lost Mine trail","EmbedCode":"","EntityID":"234013","EntityMediaID":"81844d94-2d83-472c-b788-0845608a603f","EntityType":"Facility","Height":1065,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"View
                   of Chisos Basin from the Lost Mine trail. Green vegetation with red mountains","URL":"https://cdn.recreation.gov/public/2018/08/07/20/14/fa47194a-5ca5-45fe-a5c9-092d261f8a35_1600.jpg","Width":1600},{"Credits":"NPS","Description":"View
                   of Chisos Basin from the Lost Mine trail","EmbedCode":"","EntityID":"234013","EntityMediaID":"a7317243-5e05-4573-993e-8c3758756b58","EntityType":"Facility","Height":1065,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"View
                   of Chisos Basin from the Lost Mine trail. Green vegetation with red mountains","URL":"https://cdn.recreation.gov/public/2019/06/13/15/45/234013_5ebcde96-d85d-4476-9c2f-f1348c62a7dd_1600.jpg","Width":1600},{"Credits":"NPS","Description":"Group
+                  campground","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578377","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
+                  campground, situated among the mountains","URL":"https://cdn.recreation.gov/public/images/71504.jpg","Width":540},{"Credits":"NPS","Description":"Group
                   campground view from the road","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578349","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
                   Campground from road leading to the campsites","URL":"https://cdn.recreation.gov/public/images/71456.jpg","Width":540},{"Credits":"NPS","Description":"Sign
                   on roadway leading to the Group Campground","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578409","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Sign
                   on roadway leading to the Group Campground","URL":"https://cdn.recreation.gov/public/images/71548.jpg","Width":540},{"Credits":"NPS","Description":"Campsite
                   R, with shade structure","EmbedCode":"","EntityID":"234013","EntityMediaID":"841f2e37-61bf-49de-8795-436f5fff35d9","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Campsite
-                  R, situated on a slope amidst the mountains","URL":"https://cdn.recreation.gov/public/2019/06/13/15/48/234013_fc8b1d21-a3d3-4622-ad41-70c6a91bd9ea_700.jpg","Width":700}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"NPS","OrgID":"128","OrgImageURL":"nps.gif","OrgJurisdictionType":"State","OrgName":"National
+                  R, situated on a slope amidst the mountains","URL":"https://cdn.recreation.gov/public/2019/06/13/15/48/234013_fc8b1d21-a3d3-4622-ad41-70c6a91bd9ea_700.jpg","Width":700},{"Credits":"NPS","Description":"Group
+                  campground view from the road","EmbedCode":"","EntityID":"234013","EntityMediaID":"2578347","EntityType":"Facility","Height":360,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Group
+                  Campground from road leading to the campsites","URL":"https://cdn.recreation.gov/public/images/71453.jpg","Width":540}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"NPS","OrgID":"128","OrgImageURL":"nps.gif","OrgJurisdictionType":"State","OrgName":"National
                   Park Service","OrgParentID":"139","OrgType":"Federal Agency","OrgURLAddress":"http://www.nps.gov","OrgURLText":""}],"OrgFacilityID":"AN373981","PERMITENTRANCE":[],"ParentOrgID":"128","ParentRecAreaID":"2584","RECAREA":[{"RecAreaID":"2584","RecAreaName":"Big
                   Bend National Park","ResourceLink":"http://localhost:3000/api/v1/recareas/2584"}],"Reservable":true,"StayLimit":"","TOUR":[]}
 
@@ -367,7 +367,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:24:42 GMT
+                  - Sat, 22 Apr 2023 17:48:10 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -375,11 +375,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 0fdea8d3b1fc76e3ff9d36e8164171e8.cloudfront.net (CloudFront)
+                  - 1.1 898cace407c8c555d5663d79cc4cc36a.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - yoWQdgM5J033Gi6eYREVp_Q_OcGn9azq3wrDjC0BvA6uxr_vVIBAjg==
+                  - -APjQvqCkpjgMylnXlronhyJRRwoZPLgS8WYqoUU7By1PMfy5FRqqg==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:

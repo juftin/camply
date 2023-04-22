@@ -3,8 +3,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.2 (KHTML,
-                    like Gecko) Chrome/6.0
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/3.0.195.21 Safari/532.0
               accept:
                   - application/json
               apikey:
@@ -24,12 +24,12 @@ interactions:
                   EQUIPMENT MANDATORY","AttributeValue":"true"},{"AttributeName":"Max Vehicle
                   Length","AttributeValue":"40"}],"CampsiteAccessible":false,"CampsiteID":"40107","CampsiteLatitude":40.7405084000001,"CampsiteLongitude":-111.0943189,"CampsiteName":"058","CampsiteReservable":true,"CampsiteType":"STANDARD
                   NONELECTRIC","CreatedDate":"2014-05-02","ENTITYMEDIA":[{"Credits":"Utah Recreation
-                  Company","Description":"Ledgefork Campground B - 058","EmbedCode":"","EntityID":"40107","EntityMediaID":"108a2d27-374d-48e6-95fd-e3ab46d4d9e5","EntityType":"Campsite","Height":960,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Ledgefork
+                  Company","Description":"Ledgefork Campground B - 058","EmbedCode":"","EntityID":"40107","EntityMediaID":"2dc27313-4cab-4460-818f-6b1ad1a69a62","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Ledgefork
+                  Campground B - 058","URL":"https://cdn.recreation.gov/public/2020/01/29/15/59/40107_ff3d00e3-87c3-4564-a379-6e66a4f6f957_700.jpg","Width":700},{"Credits":"Utah
+                  Recreation Company","Description":"Ledgefork Campground B - 058","EmbedCode":"","EntityID":"40107","EntityMediaID":"108a2d27-374d-48e6-95fd-e3ab46d4d9e5","EntityType":"Campsite","Height":960,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Ledgefork
                   Campground B - 058","URL":"https://cdn.recreation.gov/public/2020/01/29/15/58/40107_4085b1dc-8bc2-48c4-99a1-9a046ed738be_1440.jpg","Width":1440},{"Credits":"Utah
                   Recreation Company","Description":"Ledgefork Campground B - 058","EmbedCode":"","EntityID":"40107","EntityMediaID":"846e206f-a77b-4a02-bad3-0a9b18164ec0","EntityType":"Campsite","Height":340,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Ledgefork
-                  Campground B - 058","URL":"https://cdn.recreation.gov/public/2020/01/29/15/58/40107_d738a541-453c-4755-89d5-fe2acd9109f3_1440.jpg","Width":1440},{"Credits":"Utah
-                  Recreation Company","Description":"Ledgefork Campground B - 058","EmbedCode":"","EntityID":"40107","EntityMediaID":"2dc27313-4cab-4460-818f-6b1ad1a69a62","EntityType":"Campsite","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Ledgefork
-                  Campground B - 058","URL":"https://cdn.recreation.gov/public/2020/01/29/15/59/40107_ff3d00e3-87c3-4564-a379-6e66a4f6f957_700.jpg","Width":700}],"FacilityID":"231939","LastUpdatedDate":"2022-06-29","Loop":"B","PERMITTEDEQUIPMENT":[{"EquipmentName":"Trailer","MaxLength":40},{"EquipmentName":"Tent","MaxLength":40},{"EquipmentName":"RV","MaxLength":40}],"TypeOfUse":"Overnight"}]
+                  Campground B - 058","URL":"https://cdn.recreation.gov/public/2020/01/29/15/58/40107_d738a541-453c-4755-89d5-fe2acd9109f3_1440.jpg","Width":1440}],"FacilityID":"231939","LastUpdatedDate":"2022-06-29","Loop":"B","PERMITTEDEQUIPMENT":[{"EquipmentName":"Trailer","MaxLength":40},{"EquipmentName":"Tent","MaxLength":40},{"EquipmentName":"RV","MaxLength":40}],"TypeOfUse":"Overnight"}]
 
                   '
           headers:
@@ -44,7 +44,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:07 GMT
+                  - Sat, 22 Apr 2023 17:51:02 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -52,11 +52,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 cf1928ef9a9a7bb589a35ead31bcb4ea.cloudfront.net (CloudFront)
+                  - 1.1 730d0b7e5f5de3b777d629325ecdb89c.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - H8OMI_an0vIf_mSBoAbuHcI-NaLCXNDMJ70PSqbUKXBADkPaa060AQ==
+                  - X4WBnl2kFmosOTNo6zAAFSuUsrAVJ9-Io_EAqlKKPKg-WWdbq7aNKw==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -66,8 +66,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.2 (KHTML,
-                    like Gecko) Chrome/6.0
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/3.0.195.21 Safari/532.0
               accept:
                   - application/json
               apikey:
@@ -80,8 +80,8 @@ interactions:
                   "{\"ACTIVITY\":[{\"ActivityID\":6,\"ActivityName\":\"BOATING\",\"FacilityActivityDescription\":\"Boating\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":9,\"ActivityName\":\"CAMPING\",\"FacilityActivityDescription\":\"Camping\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":11,\"ActivityName\":\"FISHING\",\"FacilityActivityDescription\":\"Fishing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"FacilityActivityDescription\":\"Hiking\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":26,\"ActivityName\":\"WILDLIFE
                   VIEWING\",\"FacilityActivityDescription\":\"Wildlife Viewing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":106,\"ActivityName\":\"SWIMMING\",\"FacilityActivityDescription\":\"Swimming\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":100007,\"ActivityName\":\"KAYAKING\",\"FacilityActivityDescription\":\"Kayaking\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"},{\"ActivityID\":100008,\"ActivityName\":\"CANOEING\",\"FacilityActivityDescription\":\"Canoeing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"231939\"}],\"CAMPSITE\":[],\"EVENT\":[],\"Enabled\":true,\"FACILITYADDRESS\":[{\"AddressCountryCode\":\"\",\"AddressStateCode\":\"UT\",\"City\":\"Pleasant
                   Grove\",\"FacilityAddressID\":\"2319390\",\"FacilityAddressType\":\"Mailing\",\"FacilityID\":\"231939\",\"FacilityStreetAddress1\":\"564
-                  W 700 S\",\"FacilityStreetAddress2\":\"Ste.305, Box #5\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-01-10\",\"PostalCode\":\"84062\"},{\"AddressCountryCode\":\"\",\"AddressStateCode\":\"UT\",\"City\":\"Kamas\",\"FacilityAddressID\":\"2319391000\",\"FacilityAddressType\":\"Physical\",\"FacilityID\":\"231939\",\"FacilityStreetAddress1\":\"Uinta
-                  Wasatch Cache National Forest\",\"FacilityStreetAddress2\":\"FR051\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-01-10\",\"PostalCode\":\"84036\"}],\"FacilityAdaAccess\":\"N\",\"FacilityDescription\":\"<h2>Overview</h2>\\nLedgefork
+                  W 700 S\",\"FacilityStreetAddress2\":\"Ste.305, Box #5\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-04-22\",\"PostalCode\":\"84062\"},{\"AddressCountryCode\":\"\",\"AddressStateCode\":\"UT\",\"City\":\"Kamas\",\"FacilityAddressID\":\"2319391000\",\"FacilityAddressType\":\"Physical\",\"FacilityID\":\"231939\",\"FacilityStreetAddress1\":\"Uinta
+                  Wasatch Cache National Forest\",\"FacilityStreetAddress2\":\"FR051\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-04-22\",\"PostalCode\":\"84036\"}],\"FacilityAdaAccess\":\"N\",\"FacilityDescription\":\"<h2>Overview</h2>\\nLedgefork
                   Campground is located just above Smith and Morehouse Reservoir on the western
                   edge of the Uinta Mountains in northeastern Utah. The town of Oakley is just
                   14 miles away. Visitors enjoy fishing, canoeing and exploring the Smith and
@@ -174,11 +174,11 @@ interactions:
                   Canyon Rs. Turn right (east) onto Weber Canyon Rd. Stay on Weber Canyon Rd
                   to FR 33. Turn right (south) onto FR 33 and travel past Smith Morehouse Reservoir
                   to Ledgefork. (FR33 distance ~16 miles) </p>\",\"FacilityEmail\":\"comments@AmericanLL.com\",\"FacilityID\":\"231939\",\"FacilityLatitude\":40.7425,\"FacilityLongitude\":-111.0994444,\"FacilityMapURL\":\"\",\"FacilityName\":\"LEDGEFORK\",\"FacilityPhone\":\"KAMAS
-                  RANGER DISTRICT 435-783-4338 OR UTAH RECREATION COMPANY 385-273-1100\",\"FacilityReservationURL\":\"\",\"FacilityTypeDescription\":\"Campground\",\"FacilityUseFeeDescription\":\"<p>67
-                  single sites - $26.00, capacity - 8 people</p>\\n<p>6 double sites - $52.00,
-                  capacity - 16 people</p>\\n<p>Day use/picnicking - $10.00</p>\\n<p>Extra vehicle
-                  - $10.00 per vehicle</p>\\n<p>Boat Launch - $10.00 (Not Included in campsite
-                  fee)</p>\\n<p>Season Boat Launch Pass - $60.00</p>\\n\",\"GEOJSON\":{\"COORDINATES\":[-111.0994444,40.7425],\"TYPE\":\"Point\"},\"Keywords\":\"LEDG,WASATCH-CACHE
+                  RANGER DISTRICT 435-783-4338 OR UTAH RECREATION COMPANY 385-273-1100\",\"FacilityReservationURL\":\"\",\"FacilityTypeDescription\":\"Campground\",\"FacilityUseFeeDescription\":\"<p>Cash,
+                  Check, or Scan & Pay</p>\\n<p>68 single sites - $29.00, capacity - 8 people</p>\\n<p>2
+                  double sites - $57.00, capacity - 16 people</p>\\n<p>Day use/picnicking -
+                  $15.00</p>\\n<p>Extra vehicle - $10.00 per vehicle</p>\\n<p>Boat Launch -
+                  $10.00 (Not Included in campsite fee)</p>\\n<p>Season Boat Launch Pass - $60.00</p>\\n\",\"GEOJSON\":{\"COORDINATES\":[-111.0994444,40.7425],\"TYPE\":\"Point\"},\"Keywords\":\"LEDG,WASATCH-CACHE
                   NF - FS\",\"LINK\":[{\"Description\":\"American Land and Leisure\",\"EntityID\":\"231939\",\"EntityLinkID\":\"de2100ca4aa6388b8bf7675ad55c8486\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Forest
                   Service Concessionaire\",\"URL\":\"http://www.AmericanLL.com\"},{\"Description\":\"Print
                   Facility Map\",\"EntityID\":\"231939\",\"EntityLinkID\":\"96b767dd398579d6dde0afc01f602d4b\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Print
@@ -186,17 +186,17 @@ interactions:
                   State Road Conditions\",\"EntityID\":\"231939\",\"EntityLinkID\":\"43e38b36f815a84b227cef7552c38379\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Utah
                   State Road Conditions\",\"URL\":\"http://www.udot.utah.gov/\"},{\"Description\":\"Utah
                   State Tourism\",\"EntityID\":\"231939\",\"EntityLinkID\":\"4f63b15f30ddbcf43148f7d48890a3a2\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Utah
-                  State Tourism\",\"URL\":\"http://www.visitutah.com\"}],\"LastUpdatedDate\":\"2023-01-10\",\"LegacyFacilityID\":\"70133\",\"MEDIA\":[{\"Credits\":\"Utah
-                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"220f30c2-600b-404e-aeec-518cfd82a452\",\"EntityType\":\"Facility\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
-                  CAMPGROUND\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/07/231939_4d0ca709-f72a-4813-adf7-b731cbb362e4_1440.jpg\",\"Width\":1440},{\"Credits\":\"Utah
-                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"e5538335-1ca3-4489-bcad-9c65ff8281ff\",\"EntityType\":\"Facility\",\"Height\":1050,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
-                  CAMPGROUND 2\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/08/231939_cf39f20e-411e-4a61-8362-bdaa5b21f8b7_700.jpg\",\"Width\":700},{\"Credits\":\"Utah
-                  Recreation Company\",\"Description\":\"SMITH MOREHOUSE RESERVOIR\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"f605f23a-1f38-45b0-b9f4-90187fbcb744\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"SMITH
-                  MOREHOUSE RESERVOIR\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/08/231939_a7061342-72ab-4217-82cb-a61fa4c83d2f_700.jpg\",\"Width\":700},{\"Credits\":\"Utah
+                  State Tourism\",\"URL\":\"http://www.visitutah.com\"}],\"LastUpdatedDate\":\"2023-04-22\",\"LegacyFacilityID\":\"70133\",\"MEDIA\":[{\"Credits\":\"Utah
+                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"5b64bf06-1023-4b95-928d-b8ec174340e9\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":false,\"IsPreview\":true,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
+                  CAMPGROUND\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/07/231939_87d17596-2f22-489e-a656-108ffd75fb2b_700.jpg\",\"Width\":700},{\"Credits\":\"Utah
                   Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"956cf3d6-6457-4612-bf12-deabb1093b5d\",\"EntityType\":\"Facility\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
                   CAMPGROUND\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/07/231939_800523da-ce41-477e-bf14-64f87e667ae6_1440.jpg\",\"Width\":1440},{\"Credits\":\"Utah
-                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"5b64bf06-1023-4b95-928d-b8ec174340e9\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":false,\"IsPreview\":true,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
-                  CAMPGROUND\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/07/231939_87d17596-2f22-489e-a656-108ffd75fb2b_700.jpg\",\"Width\":700}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"FS\",\"OrgID\":\"131\",\"OrgImageURL\":\"fs.jpg\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"USDA
+                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"e5538335-1ca3-4489-bcad-9c65ff8281ff\",\"EntityType\":\"Facility\",\"Height\":1050,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
+                  CAMPGROUND 2\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/08/231939_cf39f20e-411e-4a61-8362-bdaa5b21f8b7_700.jpg\",\"Width\":700},{\"Credits\":\"Utah
+                  Recreation Company\",\"Description\":\"LEDGEFORK CAMPGROUND\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"220f30c2-600b-404e-aeec-518cfd82a452\",\"EntityType\":\"Facility\",\"Height\":960,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"LEDGEFORK
+                  CAMPGROUND\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/07/231939_4d0ca709-f72a-4813-adf7-b731cbb362e4_1440.jpg\",\"Width\":1440},{\"Credits\":\"Utah
+                  Recreation Company\",\"Description\":\"SMITH MOREHOUSE RESERVOIR\",\"EmbedCode\":\"\",\"EntityID\":\"231939\",\"EntityMediaID\":\"f605f23a-1f38-45b0-b9f4-90187fbcb744\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"SMITH
+                  MOREHOUSE RESERVOIR\",\"URL\":\"https://cdn.recreation.gov/public/2020/01/31/19/08/231939_a7061342-72ab-4217-82cb-a61fa4c83d2f_700.jpg\",\"Width\":700}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"FS\",\"OrgID\":\"131\",\"OrgImageURL\":\"fs.jpg\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"USDA
                   Forest Service\",\"OrgParentID\":\"163\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.fs.fed.us\",\"OrgURLText\":\"\"}],\"OrgFacilityID\":\"AN370133\",\"PERMITENTRANCE\":[],\"ParentOrgID\":\"131\",\"ParentRecAreaID\":\"1035\",\"RECAREA\":[{\"RecAreaID\":\"1035\",\"RecAreaName\":\"Uinta-Wasatch-Cache
                   National Forest\",\"ResourceLink\":\"http://localhost:3000/api/v1/recareas/1035\"}],\"Reservable\":true,\"StayLimit\":\"\",\"TOUR\":[]}\n"
           headers:
@@ -207,11 +207,11 @@ interactions:
               Connection:
                   - keep-alive
               Content-Length:
-                  - "13799"
+                  - "13834"
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:09 GMT
+                  - Sat, 22 Apr 2023 17:51:03 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -219,11 +219,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 cf1928ef9a9a7bb589a35ead31bcb4ea.cloudfront.net (CloudFront)
+                  - 1.1 730d0b7e5f5de3b777d629325ecdb89c.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - w6i-zdbs-XOj-r4pv6Br2BF-5J_7vRm1Flb9Sf0_uZE6nZxDIZ5HMg==
+                  - k9ligfHYUfuagh0H-m2FFzqYl0LkMSfv4RjtGMM6aezPiadRE-3b5Q==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:

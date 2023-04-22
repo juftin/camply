@@ -3,8 +3,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/534.30 (KHTML,
-                    like Gecko) Chrome/12.0.742.100 Safari/534.30
+                  - Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.120
+                    Safari/535.2
               accept:
                   - application/json
               apikey:
@@ -28,22 +28,22 @@ interactions:
                   underpass following signs to Lava River Cave. Cave is about 1 mile down the
                   road on your left.","FacilityEmail":"","FacilityID":"10089508","FacilityLatitude":0,"FacilityLongitude":0,"FacilityMapURL":"","FacilityName":"Lava
                   River Cave Timed Reservation Tickets","FacilityPhone":"","FacilityReservationURL":"","FacilityTypeDescription":"Timed
-                  Entry","FacilityUseFeeDescription":"","GEOJSON":{"COORDINATES":null,"TYPE":""},"Keywords":"","LINK":[],"LastUpdatedDate":"2022-06-23","LegacyFacilityID":"","MEDIA":[{"Credits":"USFS","Description":"Stairway
-                  to the cave","EmbedCode":"","EntityID":"10089508","EntityMediaID":"1271ce21-1c95-434b-9ed4-e2a4910c7c70","EntityType":"Facility","Height":653,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Stairway
-                  to the cave","URL":"https://cdn.recreation.gov/public/2022/06/30/00/19/10089508_0fba2904-5aa1-4626-a1cb-51bbf97962d5_700.jpg","Width":700},{"Credits":"USFS
+                  Entry","FacilityUseFeeDescription":"","GEOJSON":{"COORDINATES":null,"TYPE":""},"Keywords":"","LINK":[],"LastUpdatedDate":"2022-06-23","LegacyFacilityID":"","MEDIA":[{"Credits":"USFS","Description":"Collapsed
+                  corridor pathway to the cave entrance","EmbedCode":"","EntityID":"10089508","EntityMediaID":"a5080d61-1766-4292-9e58-0edba6438d67","EntityType":"Facility","Height":934,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Collapsed
+                  Corridor","URL":"https://cdn.recreation.gov/public/2022/06/30/00/17/10089508_dca6788e-298e-4769-9960-67ee9e88cbc9_700.jpg","Width":700},{"Credits":"USFS","Description":"Welcome
+                  Station for recreation pass, souvenirs and light rentals","EmbedCode":"","EntityID":"10089508","EntityMediaID":"609b717a-035c-47f7-958f-74d413f68788","EntityType":"Facility","Height":738,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Welcome
+                  Station","URL":"https://cdn.recreation.gov/public/2022/06/30/00/14/10089508_3b8abcdf-5472-41f1-b12f-8e2821135b65_700.jpg","Width":700},{"Credits":"USFS
                   Kevin Sperl","Description":"Dont expect this lighting when you visit!  Solar
                   charged lights available to rent on site.","EmbedCode":"","EntityID":"10089508","EntityMediaID":"fea87754-887d-4a1e-a686-457dffa4b1db","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Exploring
                   Lava River Cave","URL":"https://cdn.recreation.gov/public/2022/06/23/21/03/10089508_168256bf-1463-400d-957c-fe8df4ffe59c_700.jpg","Width":700},{"Credits":"USFS","Description":"Vehicle
                   Parking","EmbedCode":"","EntityID":"10089508","EntityMediaID":"049bb737-5a39-4561-9b56-492152c5a6e4","EntityType":"Facility","Height":868,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Vehicle
-                  Parking","URL":"https://cdn.recreation.gov/public/2022/06/30/00/11/10089508_a1e9acb6-a3cb-46f1-85a1-7ed1f4c970f3_1440.jpg","Width":1440},{"Credits":"USFS","Description":"Welcome
-                  Station for recreation pass, souvenirs and light rentals","EmbedCode":"","EntityID":"10089508","EntityMediaID":"609b717a-035c-47f7-958f-74d413f68788","EntityType":"Facility","Height":738,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Welcome
-                  Station","URL":"https://cdn.recreation.gov/public/2022/06/30/00/14/10089508_3b8abcdf-5472-41f1-b12f-8e2821135b65_700.jpg","Width":700},{"Credits":"USFS","Description":"Collapsed
-                  corridor pathway to the cave entrance","EmbedCode":"","EntityID":"10089508","EntityMediaID":"a5080d61-1766-4292-9e58-0edba6438d67","EntityType":"Facility","Height":934,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Collapsed
-                  Corridor","URL":"https://cdn.recreation.gov/public/2022/06/30/00/17/10089508_dca6788e-298e-4769-9960-67ee9e88cbc9_700.jpg","Width":700},{"Credits":"USFS","Description":"Boot
+                  Parking","URL":"https://cdn.recreation.gov/public/2022/06/30/00/11/10089508_a1e9acb6-a3cb-46f1-85a1-7ed1f4c970f3_1440.jpg","Width":1440},{"Credits":"USFS","Description":"Boot
                   cleaning station and walkway to cave entrance.","EmbedCode":"","EntityID":"10089508","EntityMediaID":"1d21aa6e-13b8-4684-a256-1a8b8ddbb9e2","EntityType":"Facility","Height":934,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Walkway
                   to Cave","URL":"https://cdn.recreation.gov/public/2022/06/30/00/15/10089508_7bbc6b55-7218-4f09-97d6-0cf82f0a7bb9_700.jpg","Width":700},{"Credits":"USFS","Description":"Hiker''s
                   on their way back out","EmbedCode":"","EntityID":"10089508","EntityMediaID":"8d8008f1-5516-4fbd-af4e-467d87ab31bd","EntityType":"Facility","Height":811,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Hiker''s
-                  on their way back out","URL":"https://cdn.recreation.gov/public/2022/06/23/21/00/10089508_9a049824-d990-43e3-9374-a31988d17566_1440.jpg","Width":1440}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"FS","OrgID":"131","OrgImageURL":"fs.jpg","OrgJurisdictionType":"State","OrgName":"USDA
+                  on their way back out","URL":"https://cdn.recreation.gov/public/2022/06/23/21/00/10089508_9a049824-d990-43e3-9374-a31988d17566_1440.jpg","Width":1440},{"Credits":"USFS","Description":"Stairway
+                  to the cave","EmbedCode":"","EntityID":"10089508","EntityMediaID":"1271ce21-1c95-434b-9ed4-e2a4910c7c70","EntityType":"Facility","Height":653,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Stairway
+                  to the cave","URL":"https://cdn.recreation.gov/public/2022/06/30/00/19/10089508_0fba2904-5aa1-4626-a1cb-51bbf97962d5_700.jpg","Width":700}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"FS","OrgID":"131","OrgImageURL":"fs.jpg","OrgJurisdictionType":"State","OrgName":"USDA
                   Forest Service","OrgParentID":"163","OrgType":"Federal Agency","OrgURLAddress":"http://www.fs.fed.us","OrgURLText":""}],"OrgFacilityID":"","PERMITENTRANCE":[],"ParentOrgID":"131","ParentRecAreaID":"14492","RECAREA":[{"RecAreaID":"14492","RecAreaName":"Deschutes
                   National Forest","ResourceLink":"http://localhost:3000/api/v1/recareas/14492"}],"Reservable":true,"StayLimit":"","TOUR":[]}
 
@@ -60,7 +60,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:23:55 GMT
+                  - Sat, 22 Apr 2023 18:00:05 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -68,11 +68,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 20ebec22e4be2753f048f31dfe94e426.cloudfront.net (CloudFront)
+                  - 1.1 c11dc3a4786e038ddffb5e925a892302.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - kHUjqHipvJppEkz6DX6jXSL0FZqQmxhaVAs1B1rGdfaeidLp6Xb3dg==
+                  - QYphSxxj5xF6g_HsAPeR7PrVYn_2D6yt7GT9Wf-uzV-odOi89kGFKA==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -96,8 +96,8 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.0 (KHTML, like Gecko)
-                    Chrome/4.0.211.0 Safari/532.0
+                  - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.12 (KHTML, like Gecko)
+                    Chrome/9.0.579.0 Safari/534.12
           method: GET
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A10089508&fq=entity_type%3Atimedentry_tour&size=1000&start=0
       response:
@@ -127,7 +127,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:23:56 GMT
+                  - Sat, 22 Apr 2023 18:00:05 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -137,11 +137,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 6858de87a9a441b83cd7cbdcd1cf2b40.cloudfront.net (CloudFront)
+                  - 1.1 61ff1927788a811372346b5470412a78.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - cRtBPs4MpHskyI1rj4jiwzO9-aO4JJEqEuKgbJStxj2_MAQiJ0WxHQ==
+                  - gPK0s2wYU21z8jTE-HHliM4assFp1pvxvxrtrQlvrU5_PMm4JR_3Kw==
               X-Amz-Cf-Pop:
-                  - DEN50-C1
+                  - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -165,8 +165,8 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.90
-                    Safari/537.36
+                  - Mozilla/5.0 (X11; U; CrOS i686 0.9.128; en-US) AppleWebKit/534.10 (KHTML,
+                    like Gecko) Chrome/8.0.552.343 Safari/534.10
           method: GET
           uri: https://www.recreation.gov/api/timedentry/availability/facility/10089508/monthlyAvailabilitySummaryView?inventoryBucket=FIT&month=06&year=2023
       response:
@@ -195,7 +195,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:23:56 GMT
+                  - Sat, 22 Apr 2023 18:00:05 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -205,11 +205,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 5426e173edd65a7a7e49d28e75692b50.cloudfront.net (CloudFront)
+                  - 1.1 3fddcbe99f78632bf14e5e80e6c14058.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - ZH3TCfVVF-SadyD2GWAVm6dxPp-sZ6EFm4_nuQR-bjrNxg6cguTUnQ==
+                  - C57a2TFdYNueHBZet0pcBtxBEq0nPFoyiQ0myPzUWyrlKDdoK5Ysdw==
               X-Amz-Cf-Pop:
-                  - DEN50-C1
+                  - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
           status:

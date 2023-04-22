@@ -3,8 +3,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.1 (KHTML, like Gecko)
-                    Chrome/4.0.213.0 Safari/532.1
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.10 (KHTML,
+                    like Gecko) Chrome/8.0.552.215 Safari/534.10
               accept:
                   - application/json
               apikey:
@@ -16,7 +16,7 @@ interactions:
               string:
                   "{\"ACTIVITY\":[{\"ActivityID\":5,\"ActivityName\":\"BIKING\",\"FacilityActivityDescription\":\"Biking\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"},{\"ActivityID\":6,\"ActivityName\":\"BOATING\",\"FacilityActivityDescription\":\"Canoeing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"},{\"ActivityID\":9,\"ActivityName\":\"CAMPING\",\"FacilityActivityDescription\":\"Camping\",\"FacilityActivityFeeDescription\":\"Camping\",\"FacilityID\":\"232045\"},{\"ActivityID\":11,\"ActivityName\":\"FISHING\",\"FacilityActivityDescription\":\"Fishing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"},{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"FacilityActivityDescription\":\"Hiking\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"},{\"ActivityID\":34,\"ActivityName\":\"SWIMMING
                   SITE\",\"FacilityActivityDescription\":\"Swimming\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"}],\"CAMPSITE\":[],\"EVENT\":[],\"Enabled\":true,\"FACILITYADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"Foresthill\",\"FacilityAddressID\":\"20437400\",\"FacilityAddressType\":\"Default\",\"FacilityID\":\"232045\",\"FacilityStreetAddress1\":\"22830
-                  Foresthill Road\",\"FacilityStreetAddress2\":\"\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-01-10\",\"PostalCode\":\"95631\"}],\"FacilityAdaAccess\":\"N\",\"FacilityDescription\":\"<h2>Overview</h2>\\nForbes
+                  Foresthill Road\",\"FacilityStreetAddress2\":\"\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-04-22\",\"PostalCode\":\"95631\"}],\"FacilityAdaAccess\":\"N\",\"FacilityDescription\":\"<h2>Overview</h2>\\nForbes
                   Creek Group Campground is located near the southeast shore of Sugar Pine Reservoir
                   in the Tahoe National Forest. Visitors enjoy the area for its fishing, canoeing
                   and hiking opportunities. This facility is operated and maintained by the
@@ -47,13 +47,13 @@ interactions:
                   State Tourism\",\"EntityID\":\"232045\",\"EntityLinkID\":\"60217acbf4be21db4ffa79eb82b5b513\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"California
                   State Tourism\",\"URL\":\"http://gocalif.ca.gov/AM/Template.cfm?Section=Home\"},{\"Description\":\"Print
                   Facility Map\",\"EntityID\":\"232045\",\"EntityLinkID\":\"7126b5c5f6110fa73149b633df8d09a0\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Print
-                  Facility Map\",\"URL\":\"http://www.recreation.gov/webphotos/facilitymaps/70266_FORB.pdf\"}],\"LastUpdatedDate\":\"2023-01-10\",\"LegacyFacilityID\":\"70266\",\"MEDIA\":[{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570605\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
-                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/64168.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570442\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
-                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/63996.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570533\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
-                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/64092.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570422\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
-                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/63975.jpg\",\"Width\":540},{\"Credits\":\"Joel
+                  Facility Map\",\"URL\":\"http://www.recreation.gov/webphotos/facilitymaps/70266_FORB.pdf\"}],\"LastUpdatedDate\":\"2023-04-22\",\"LegacyFacilityID\":\"70266\",\"MEDIA\":[{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570533\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/64092.jpg\",\"Width\":540},{\"Credits\":\"Joel
                   Miller USFS November 2018.\",\"Description\":\"Sugar pine\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"8bd74a9a-adaf-4c8b-b06e-b5e8610bfa61\",\"EntityType\":\"Facility\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Sugar
-                  pine\",\"URL\":\"https://cdn.recreation.gov/public/2018/11/15/00/31/232045_26f2c941-82f7-4a5f-9dee-0ab2cd6931e9_1440.jpg\",\"Width\":1440},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570434\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  pine\",\"URL\":\"https://cdn.recreation.gov/public/2018/11/15/00/31/232045_26f2c941-82f7-4a5f-9dee-0ab2cd6931e9_1440.jpg\",\"Width\":1440},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570442\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/63996.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570422\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/63975.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570605\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/64168.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570434\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
                   CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/63987.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570491\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
                   CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/64047.jpg\",\"Width\":540}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"FS\",\"OrgID\":\"131\",\"OrgImageURL\":\"fs.jpg\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"USDA
                   Forest Service\",\"OrgParentID\":\"163\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.fs.fed.us\",\"OrgURLText\":\"\"}],\"OrgFacilityID\":\"AN370266\",\"PERMITENTRANCE\":[],\"ParentOrgID\":\"131\",\"ParentRecAreaID\":\"1077\",\"RECAREA\":[{\"RecAreaID\":\"1077\",\"RecAreaName\":\"Tahoe
@@ -70,7 +70,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:43 GMT
+                  - Sat, 22 Apr 2023 17:54:20 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -78,11 +78,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 f9a3ca802cab4ac43bafc4dd8667ef98.cloudfront.net (CloudFront)
+                  - 1.1 21d788b44c2b3d335a275c07a54548b6.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - o5vxkL5tlT6YUOL3jhqnqGb3W8m-MM3va860b5p3D9c23XW_JmX-rQ==
+                  - Jf8UKLHiKmQBmofi-tBOKtQ0fTPmzcX2TzVSFsitgFO7fpvsqReN5g==
               X-Amz-Cf-Pop:
-                  - DEN52-C1
+                  - DEN52-P3
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -106,35 +106,35 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_3) AppleWebKit/535.1 (KHTML, like
-                    Gecko) Chrome/13.0.782.41 Safari/535.1
+                  - Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/534.3
+                    (KHTML, like Gecko) Chrome/6.0.461.0 Safari/534.3
           method: GET
           uri: https://www.recreation.gov/api/search/campsites?fq=asset_id%3A232045&include_non_site_specific_campsites=True&size=1000&start=0
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+xX227jNhD9FULPsXXzLX7z2t5F0E1sWE4WRVEINEXJbChSpSgnaZB/71CWHXtL
-                  Z1snDwXaN4k8M4cznBufHYLzomSals7wl2cHE0LLkq04dYaOVhV1LhxcllTHLIGVIAy8Tne/JnBu
-                  cJ9ni0/TCI0X0+lP+z39VJi9MajPlKxEYna0VmxV7cl2vzHBmmZSPYGAOUucUI0ZLw9F6gP4weFK
-                  Qz9eU3IvK42WLKdHIhvMK4Pwg6Hnofm183JxDmuva2GdU12iEefygSZW0p/ByvP4+n0LX7TGid26
-                  zxXnZzJ1bf68xo/opsqRTNGcyoLbWbvemZy+Z7tDXGDC9JMbsT8oWmDNRGaljWADTnQmtX8qfJg4
-                  HT3vC55uz+Zi4Puxi/3TlPT3ihU5Ffo0b/j21d7RNSOclnbmwXuoA5vJE8U29AE/oahSKSZ2i+d4
-                  A9n0Hmqb1XvqqdCgx0b8CZP71pV4l8M7JxzeeBp9pSLTays91NR3MNsS6qpE050gusYiwVqesL0u
-                  8yfpQZ1gmtG/R2vKfcoUpDDkqT22voN8EDHcsYAsztA30KCsxN9BPoj4i2Kc2y1ttj6IaM6IYAQt
-                  8epU1h4jPoj2DlccWqtkHBqelfYY8fIrYDZU4YzGalvHh5CUuzFjO0cMwkHfdw5WFS2p2tDd1BDB
-                  WisqKGEpI4e4UmNdwfTgzAoqzAb0DNMCJSjQa3C3WYNpA/I8JjIxum7BWJqgCCRrk1MKNDQveP0/
-                  fHZmqanC+N5obT6/LGa3cxQtRzeT0WKCbmY306/T8XJxNQYFDfaHuKXCAg7NpAD068+bMt8wv0dX
-                  RqD5egP9cuGADUxXtZnhZdsPvV6/2/d7nucFHmjjUmS7/ZYfeO3+IOh5l75nEN4WIQtTpkaTBWiG
-                  hV1UR+Z6hNSMNMOapo/a2LFmJTJXgWBUlHkuE+NG1EMaCk3ZBqHmCh+wEubyTRj+U1kmUlkHkqjy
-                  FVWxTJtQgqPAxCJVtg0jPzSnNL/NsW+jyQhtgwFFEFCs7jMFVqZ82ubYoy37OHsEaQ5IDqfagqqc
-                  aYixeF+qa4+9Fu5G8eIO0Dl+jPm2Eww7XeOdv+CWRsMx0rMDFfSDutodY8FzhaIbRh9ilptErBQH
-                  +Frrohy6LklEW1GiKDbx2M7kxi2qFWfEDTx/4Pq+63ddz3ODjlsnakw6HS9JSb816PTDVgd7YQt3
-                  aR9CioSXvY5Pw1UQ+wBq/1aYsW2bzbh+RZjucuGYvKW7jBxjzlIJ4YFfr/zNrDAYEwRVaaAzqC6C
-                  ZWu9LXH/7hfL/2+H//rb4U8AAAD//+zXPQvCMBAG4L8i7qG5XNNY1woiDkI3J0lNCkKxpa2j/91r
-                  O1mpg9gv6BZChrzJHdwzOTuMI+xldh9+du9ZieJLG4+oxB/FEtzyzqQfh+aulhlhoi0HdHGRw9/l
-                  AFx6AhWpADrkgBsJPseWHMJTcDyvwsNu/6YHMQU9LE7ozwmCkMAdQIcWHJ26LS8RKMNReSxSyjA3
-                  Bsl8qw2zhvaFBVAgGydk90GdQEELGg5rPRaZTRKqrYt+lOk1zSkh/cl6G+ukaG6QV+VW1XiZlpoe
-                  RDxfAAAA//8DAH8I6AwnGQAA
+                  H4sIAAAAAAAAA+xXUW/iOBD+K1aeC3ECAcobS9lVdduCCO3qtFpFxnGCr4mdcxzabtX/fuMQKOyZ
+                  7h7tw0l3b8T+PJ9n5pvx8ORQkhcl16x0hl+fHEIpK0u+zJgzdLSqmHPmkLJkOuIxrPgdH3eD3Zog
+                  ucF9nM4/TEI0nk8mv+329GNh9sZgPlWyErHZ0VrxZbUj235GlGiWSvUIB8xdophpwrNy/0h9gaC3
+                  v9LQX3GBrqscyQTNmCwydnBsTbLKoDzn+ewUSs+3UI5XjN7JSqMFz4/Q+UOM0ezqRNZeYGGdMV2i
+                  UZbJexZbSX+HwJ7G1+9b+MIVie3efayy7ESmwBbPK/LwCykM8Kk5xLYckoJQrh/dkH9naE40F6mV
+                  NoQNuNGJ1N4x+YBqj6rnp+Jhf1a8yJnQR4n9joX4QvE1uyePaCI02LFRfyD0rnUp3kIddI+k+Jat
+                  OM0Y+sxEqldWeugub2C25fmyRJPtQXRFREy0POJ73fDe4rgt5nvabvwv7R1j8KZ02zrjLt1hpRJC
+                  7VqbkTW0k6PUYElwzdmvBdu0+4QrqCcoGrufP0DeiRhcFVBSKfoCFpSV+AfIOxF/UjzL7J42W+9E
+                  NONUcIoWZHlMQYeId6K9JVUG75zkGbw+VtpDxPM3wKyZIimL1KapDqEstmPGZo4YdAZ9z9lbVaxk
+                  as22U0MIa62wYJQnnO7jSk10BdODMy2YMBvQwM17JMGAXkG4zRpMG9DdIipjY+sGnGUxCuFk7XLC
+                  gIblRVZ/D5+caWJeHXJnrDY/P82nNzMULkbXF6P5BbqeXk8+T8aL+eUYDDTYn+IWigi4NJcC0C8f
+                  r575QrI7dGkONL9eQT+fOeAD11XtZue87XVwrx/0vR7G2MdgLZMi3e63PB+3+wO/h889bBB4g5CF
+                  6VGjizlYhoWtqkOTHiE1p82wptmDNn6seIlMKhCMijLPZWzCiHpIQ3cq23CoSeE9UcIk38jwn57l
+                  IpG1kESVL5mKZNJICa4C44NU6UZGXsfc0nw2174JL0ZoIwYUgqB43fMKokzrtM2xB1v2cfYA0lyQ
+                  7k+1BVM516CxaNem64i9NO3G8PwW0Dl5iLLN+zfsBiY6f8MtjIVDJLYDFbwFdbc7xELkCsXWnN1H
+                  PDeFWKkM4Cuti3LoujQWbcWoYsTosZ3KtVtUy4xT18fewPU81wtcjF2/69aFGtFuF8cJ7bcG3X6n
+                  1SW40yIB64OkaOe81/VYZ+lHHoDafxRmhtpUM6n/RZg39cwxdcu2FTkmGU8kyIO8pPzVqjAYI4Kq
+                  NNApdBfB05XetLh/9z+W/wf5//og/xcAAAD//+zXPQuDMBAG4L9SugdzOWNqVwuldCi4dZLYRCiE
+                  KmrH/veeOtVil35QxS2EDHfJe5DnDQVOibuzWCYnFvFijMcnluhcDnb6dGjsahkRJvpyQB9nOXxc
+                  DsBlIFCRCmBADriSEHLsySE+RPvjIt5ttg96EP+gh9kJ33OCICRwD9CjBUevHcskBWU4qoClShnm
+                  ZyBZaLVh1tC+sAAKZOeE4vJTJ1CjFX0OWz1WhXWOspXoa52f8pI6pDdZrjPtqq6Csolbk/E6rzVd
+                  iLjdAQAA//8DAIs1v8InGQAA
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -147,17 +147,17 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:43 GMT
+                  - Sat, 22 Apr 2023 17:54:20 GMT
               Transfer-Encoding:
                   - chunked
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 7fd13f5c4b32635feca1c61001387a16.cloudfront.net (CloudFront)
+                  - 1.1 1c13683c7de319f25e08f83861fc6dc2.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - Pof8yHyXnVCoboOlSVr6IC74riB3XIgghIC5aExITJx0Z8UbNJs9Lg==
+                  - udJwLmbciLVcw3u7omkfpPFZvqB0oRidZi51RuIhf0NjWIDtIxuEgA==
               X-Amz-Cf-Pop:
-                  - DEN50-C1
+                  - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -181,24 +181,23 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532.0 (KHTML,
-                    like Gecko) Chrome/3.0.195.3 Safari/532.0
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.2 (KHTML, like Gecko)
+                    Chrome/4.0.222.5 Safari/532.2
           method: GET
           uri: https://www.recreation.gov/api/camps/availability/campground/232045/month?start_date=2023-07-01T00%3A00%3A00.000Z
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+yWwW7aQBRFfwV5DdKdGQiEHQIURWmhMnTRbiyXTMhIxrjYRo2i/ntn7KgFiaun
-                  bJosIrFAM8djc+V7eM/RJt0VpatsGY2fo5ExfRO+pMfUZekPl7nKtVsa2vQw7EGtgXHz+R6No9iW
-                  9nC091H3H6FFwpwRk/ZmmT1F+jIykJErGRnKyEj8QdfiIQoyomREy4iRnlb1RWIgElciMRQJMVd1
-                  LREaIiG+sFp8YbWYqRYz1WKmWsxUi5lqMVMtZmrETA3J9Hf3r08Sd+93WqGcrB5aNKmeCuv3V36t
-                  tyrsxj24zRlXZ8E7eZ1lJ6svV93Ey69fOqv1ZDGbxLPOYrmYf5pP1/HttDmiSDeuekoOaeXybXOT
-                  fNtUJNvvi/C4y+ndt058O7uZ+8Vd+ivJ611S2H3hqfEAfs3lZ2uqG/2s07wSbAgmQTD3KWY8xTyn
-                  mN0Uc5piJgMTmGLaUkxWiilKMTGB+QhMQ2D2AZMOmGvAFANmFjChgHkETB9g1gCTBZgjwNQAZgQw
-                  EYD1H6z28G0PrQyFXGnfpLIufFt2Nq/SLAmdberXVjg0N9k/JHUZ+OXRHnK3fayCMUZmNFT/fei4
-                  RIgOf/3IcekQUeKvHjgu/XWKEldiqEoM9WPY+Bg23tGwEUTyzoaNz5NZ7C9560EDTHNgdqODBpjK
-                  wAxGBw0wX4FpCsxOYFJ660HjDwAAAP//Gm1oULWhYUhuQwNUXOSX5pUoWRnVcgEAAAD//wMA/wui
-                  EvgQAAA=
+                  H4sIAAAAAAAAA+yWUWviQBSF3/dXSJ4Vzkza6uZNVEppV0u0D92XMGundiBOsmYiLaX/vTNJaRV6
+                  ubAvW4vgQ7hzovKR8+U+R0u1LivjdBUlz9Egjk/icKG2yuTqj8mNM+2RhIx76PcgFkDSfH5HSZTq
+                  Sm+2+i7qfiQkm4jZxAmbOGUTZ2yizyYGbOInlxBgE/tMhy38XO9GJB9hqQqWqmCpCpaqYKkKlqpg
+                  qUqWqmSfVMk+qZJlKlmmkmUqWaaSZSpZppJlGrNMY4LpS/ddJJm58yetSXammzaauadS+/O5n/Xm
+                  pV6ae7Pcy9V5EI6t83xn+nbXeTq7ue7MF8PpeJiOO9PZdHI1GS3Si1HzFaVaGveUbZQzdtX8iF01
+                  FcmLogx/dza6vO2kF+PziR+u1WNm63VW6qL0qeQUfmbs3kx0o7+1so7RICj7gZIeKNeBUhwos4ES
+                  GiiPgdIXKGuBkpWgFCUoMYHyESgNgbIPKOmAcg0oxYAyCyihgPIIKH2AsgYoWYByBCg1gDICKBGA
+                  6j+o2sO3PbQyFHIufZOquvRtWWvrVJ6Fzjb1ayscmpsV91ldhfxsqzfWrB5cMMYgHvTFQW4bn71+
+                  D3bd+CzBQj0uG8dl4wstG0EkX2zZ+DUcp/6Ww1s0BOW0/7pogLITKCkdF41vtWiIf100gi6K2roo
+                  kS8/XgEAAP//AwAGruaW8RAAAA==
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -211,7 +210,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:43 GMT
+                  - Sat, 22 Apr 2023 17:54:20 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -221,11 +220,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 f6d641e44b5f98899da25792ac166784.cloudfront.net (CloudFront)
+                  - 1.1 05fe6f95b77eb54d0691950915c27264.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - vQD87ZirgQDH0D8gAMQC5iMLLbntFVlIDDpFrggVw9pe-A6VPiFLYA==
+                  - aQ9ZTmKZi-awMuvN4q_5XpS0gxrnTVnTewtUfUlroYVx6CI19ks0qA==
               X-Amz-Cf-Pop:
-                  - DEN50-C1
+                  - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -249,23 +248,23 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/532.0 (KHTML,
-                    like Gecko) Chrome/3.0.195.6 Safari/532.0
+                  - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_7) AppleWebKit/535.1 (KHTML, like
+                    Gecko) Chrome/14.0.803.0 Safari/535.1
           method: GET
           uri: https://www.recreation.gov/api/camps/availability/campground/232045/month?start_date=2023-08-01T00%3A00%3A00.000Z
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+yWQWvbQBCF7/0VRmcbZlZ2rOhmbBNCW7vI7qG9CNXZuAuypFor0xDy37srldYG
-                  P4akFEIw6GBmn7S7j5nP7zHYZLuqNlbXQfwYRGE4DP2P7JCZPPtmcmNNt6RIhQOKBsRrorh9vgZx
-                  kOha7w/6Luj/VShREYqKoagYiYorUTE+UUy6S+f6WBLJkmtpHyZRIbrKoqssuspD8TI8kiVXsmQs
-                  HiUSFaKtSrRVsXhUJfqqRF+V2K1K7FYldquSu1XJ3aquRUlIsgQZ+9T/Q5TU3LmlDilH1X13s9Q+
-                  VNqtr1xtsKr0xtybzYmuyT15iibPj6q/37pJlp8/9VbryWI2SWa9xXIx/zCfrpPbafuJKtsY+5Du
-                  M2uKbbtJsW3Pn5dl5d1dTt9/6SW3s5u5K+6yn2nR7NJKl5VTxSNyNVOc1Lgf/Giywgo8JIRBQvQj
-                  BD1CrCOEOEJkY8QzRhQjBC9CzCKEKkKEIgQmRjhiBCFG6CFEHEKgIcQXQlhhBBNCDCGEDkLEIAQK
-                  QnxgRAVGLGBEAEZzz27a/VT6gVwpN0l1U7lp2enCZnnqZ7Ydv26E/eSm5X3a1F6/POh9YbbfrSdG
-                  FEZjvsSOf4odZ/+GZZD/h+BxdptL8pCSx1mJ7KySnVWys283fXiyvLL08XEyS9wrl+RxDmSM8MUI
-                  Ws9PHozA9FaSByOEMAIHI1wwgsTrSR780uThcVE2hQ1i9fTuFwAAAP//AwC9lZUSCxEAAA==
+                  H4sIAAAAAAAAA+yW0YraQBSG7/sUkmuFcya6ZnMnKsvSVku0F+1NSN1ZOxCT1Eyky7Lv3pmktAr+
+                  HNgtVJYFL+TMFzNzmPP5PwabbFfVxuo6iB+DKAyHof+SHTKTZ99MbqzplhSpcEDRgHhNFLefr0Ec
+                  JLrW+4O+C/p/CSUSoUgMRWIkElciMT4hJt2hc32MRDJyLb2HSSTErrLYVRa7ykPxMDySkSsZGYtb
+                  iURCbKsS26pY3KoS+6rEvirxtirxtirxtir5tir5tqprEQlJRlBjn/p/jJKaO7fUKeWouu9OltqH
+                  Srv1lasNVpXemHuzOeGa3JunaPL8qPr7qZtk+flTb7WeLGaTZNZbLBfzD/PpOrmdtj9RZRtjH9J9
+                  Zk2xbV9SbNv952VZ+e4up++/9JLb2c3cFXfZz7Rodmmly8pR8YhczRQnNe4HP5qssIIPCWmQkP0I
+                  SY+Q6wgpjpDZGPmMkcUIyYuQswipipChCImJkY4YSYiReggZh5BoCPmFkFYYyYSQQwipg5AxCImC
+                  kB8YWYGRCxgZgNHcs5t2P5V+IFfKTVLdVG5adrqwWZ76mW3HrxthP7lpeZ82teeXB70vzPa79caI
+                  wmjMb7HjRbHj7N+wLPL/EjzOEWJfX3XsOIuEMiIHOiUHutcbPbxWLix6fJzMEvfIW+w4ZzFG7mJk
+                  rH8YOwjZiJCELjN2MFIII3Ew0gUjSVxO7ODnxg6vi7IpbBCrp3e/AAAA//8DAOYhtCsIEQAA
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -278,7 +277,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:43 GMT
+                  - Sat, 22 Apr 2023 17:54:20 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -288,11 +287,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 68aef80d7f290793b86c83a688a0464e.cloudfront.net (CloudFront)
+                  - 1.1 f9a5caa2a18f480171fad57618db559e.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - CYb2xQ4_woggQw_tMQyM3o4RI4XC5UgW0FLbT8hpaKoOcaB0vao7bg==
+                  - YamaNQOU-M3sVmNPt1k5kk9cdaVVFzIZyI2LwClVVrKEKJKT0B7zaA==
               X-Amz-Cf-Pop:
-                  - DEN50-C1
+                  - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
           status:
@@ -316,23 +315,23 @@ interactions:
               Upgrade-Insecure-Requests:
                   - "1"
               User-Agent:
-                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Ubuntu/11.10
-                    Chromium/18.0.1025.142 Chrome/18.0.1025.142 Safari/535.19
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.2 (KHTML,
+                    like Gecko) Chrome/4.0.222.7 Safari/532.2
           method: GET
           uri: https://www.recreation.gov/api/camps/availability/campground/232045/month?start_date=2023-09-01T00%3A00%3A00.000Z
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAAA+yWTWvCQBCG/4rkrLCz8SN6C0ZE2poS7aG9hK2udiHGNNlIpfS/dzcprYLDUNqD
-                  tIKHMPvELMO8D/PqLMQmK5SWhTN4dTzXbbv2QeyESsSjSpRW9RFn3G2xfovBnLFB9XtwBk4kC5nv
-                  5NJpfhGcJFySaB8Rfn2dRB4iHRrp0kiPRjzytn2KAEZ+BoBGOI24NNImb9shiS5J0I0Fj0b6JMLp
-                  1nK6tZxuLadby+mx5fTYcnpsOd1dTneX0911se6+NT/VEaulOardcVDN66GI9T6T5nxmaq1ZJhdq
-                  pRZHXJlYxaRlkhxUP94aR+HdbWM296eBHwWNaTgdXY+G82gyrP4iEwul93EutErX1UfSdXX/ZLvN
-                  7GCGw6v7RjQJxiNT3IiXOC03cSa3maEGHWZqKj2qQdN5LkWqCfExzHcM0xzD7AaY0wAzGWD+Asxa
-                  DJMVwxwFmJkA8xFgFgLMPQxTDsNMwzDBAKYVwGQCmEIAEwdgugBMEoCpATAhAKYBwMIPWOQBCzpg
-                  8QYTahs+m7sZN4EpysyEYiNTLZLYRrNKWZ1UG9B4u4rLwvLhTuapWj9pKwbP9XpwWSP+1RpxEvn9
-                  PeIUcVkj/tQaYd1xZmvEjR9E5pXLCnF2KwRgtvn+CsEwpfxshXgHAAD//xrBTQhDcpsQoFIhvzSv
-                  RMnKqJYLAAAA//8DADW2fZ+kEAAA
+                  H4sIAAAAAAAAA+yWXYvaQBSG7/srJNcK50z8iLkTFZG2WqK9aG/CrI52IE5SM5Euy/73ziSlVfBw
+                  dpelLKzghcw8MeNw3of3IdjIQ1Fqq8ogfgiiMOyG/os8SZ3JO51pq5stASLswLADuAaI68/3IA4S
+                  VarjSW2D9j9CsETIEt0LYtQcJ1PnSI9H+jwy4JGIPe2QIxDY1yDyiOCRkEe67Gl7LNFnCf5iMeKR
+                  IYsI/moFf7WCHVrBDq3gh1bwQyv4oRX83Qr+bgU7tSFcJx7bf7WR6q3babxxtnps0NTeF8rtr9xa
+                  Z1Wojd7pzQVXZV4vpsqys9U/T82S5dcvrdV6tJiMkklrsVxMP03H62Q+rn+ikBtt79OjtNrs65eY
+                  ff0Hszwv/HGX44/fWsl8Mpu6xYP8lZrqkBYqLxwV98CtaXOxhu3gZyWNZaQHlOuAUhxQZkPKZ0hZ
+                  DCl3IWUsoEQFlJ+QshJSLkLKQEh5ByjdAGUZoOSClFKQEglS+kBKGkipAihDACUGpHSAlASQij5S
+                  gUcq5kClG1yoffh87lbCBaasCheKgzJWZqmPZp2yJqk+oGm+S6vS88uTOhq9/2G9GKIwGuCtQryr
+                  CnEVef0OcY24VYj/VSGunfY1G4TXxhtrEJ9Hk8Q9cmsPb649ICWa57cHoGzyftsDUBF/WnvAl7YH
+                  b4W8MjaIxeOH3wAAAP//AwCCnuUCmxAAAA==
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -345,7 +344,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 12 Feb 2023 07:21:44 GMT
+                  - Sat, 22 Apr 2023 17:54:21 GMT
               Server:
                   - CloudFront
               Strict-Transport-Security:
@@ -355,11 +354,11 @@ interactions:
               Vary:
                   - Accept-Encoding
               Via:
-                  - 1.1 d1d7584dba4cb255d83d636982110e0a.cloudfront.net (CloudFront)
+                  - 1.1 96971091469e558c8f8e351ccf0d7212.cloudfront.net (CloudFront)
               X-Amz-Cf-Id:
-                  - uZUDBpcfsHu1kweOuXXqIBa9m2HBqlY9wj3EwDr0xgzNXXRtg6d52g==
+                  - YCpPRIudMA_h8c09ukj5dPXWvy5AIAw9I4SwrhONPi3qdCGJXarYrg==
               X-Amz-Cf-Pop:
-                  - DEN50-C1
+                  - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
           status:
