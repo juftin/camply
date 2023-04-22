@@ -19,7 +19,6 @@ from camply.containers.api_responses import (
     RecDotGovCampsite,
     RecDotGovCampsiteResponse,
 )
-from camply.containers.base_container import CamplyModel
 from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
 from camply.utils import api_utils
 
@@ -41,7 +40,7 @@ class RecreationDotGov(RecreationDotGovBase):
 
     def paginate_recdotgov_campsites(
         self, facility_id: int, equipment: Optional[List[str]] = None
-    ) -> List[CamplyModel]:
+    ) -> List[RecDotGovCampsite]:
         """
         Paginate through the RecDotGov Campsite Metadata
         """
@@ -62,7 +61,7 @@ class RecreationDotGov(RecreationDotGovBase):
             "fq": fq_list,
             "include_non_site_specific_campsites": True,
         }
-        campsites = []
+        campsites: List[RecDotGovCampsite] = []
         while continue_paginate is True:
             response = self.make_recdotgov_request_retry(
                 method="GET",

@@ -5,12 +5,21 @@ Camply General Utilities
 import logging
 import sys
 from datetime import date
-from typing import Any, Callable, Iterable, List, Optional, Union
+from typing import Any, Callable, Iterable, List, Optional, Set, Tuple, Union
 
 from camply import SearchWindow
 from camply.containers.base_container import CamplyModel
 
 logger = logging.getLogger(__name__)
+
+ListLike = Union[List[Any], Set[Any], Tuple[Any]]
+
+
+def is_list_like(obj: Any) -> bool:
+    """
+    Define if an object is list-like
+    """
+    return isinstance(obj, (list, set, tuple))
 
 
 def make_list(obj, coerce: Optional[Callable] = None) -> Optional[List[Any]]:
@@ -30,8 +39,8 @@ def make_list(obj, coerce: Optional[Callable] = None) -> Optional[List[Any]]:
         return None
     elif isinstance(obj, CamplyModel):
         return [coerce(obj) if coerce is not None else obj]
-    elif isinstance(obj, (set, list, tuple)):
-        if coerce is True:
+    elif is_list_like(obj) is True:
+        if coerce is not None:
             return [coerce(item) for item in obj]
         else:
             return list(obj)

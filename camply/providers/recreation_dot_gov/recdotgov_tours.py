@@ -6,7 +6,7 @@ import json
 import logging
 from abc import ABC, abstractmethod
 from datetime import date, datetime, time, timedelta, timezone
-from typing import Any, Dict, List, Optional, Tuple, Type
+from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 import requests
@@ -57,7 +57,7 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
 
     def paginate_recdotgov_campsites(
         self, facility_id: int, equipment: Optional[List[str]] = None
-    ) -> List[Type[CamplyModel]]:
+    ) -> List[RecDotGovSearchResult]:
         """
         Paginate through the RecDotGov Campsite Metadata
         """
@@ -79,7 +79,7 @@ class RecreationDotGovTours(RecreationDotGovBase, ABC):
             "size": 1000,
             "fq": fq_list,
         }
-        campsites = []
+        campsites: List[RecDotGovSearchResult] = []
         while continue_paginate is True:
             response = self.make_recdotgov_request_retry(
                 method="GET",

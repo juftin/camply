@@ -1,0 +1,152 @@
+interactions:
+    - request:
+          body: null
+          headers:
+              User-Agent:
+                  - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0
+                    Safari/537.2
+              accept:
+                  - application/json
+              apikey:
+                  - REDACTED
+          method: GET
+          uri: https://ridb.recreation.gov/api/v1/facilities/10089508?full=True
+      response:
+          body:
+              string:
+                  '{"ACTIVITY":[],"CAMPSITE":[],"EVENT":[],"Enabled":true,"FACILITYADDRESS":[{"AddressCountryCode":"USA","AddressStateCode":"OR","City":"Sunriver","FacilityAddressID":"e7e8be7d-1896-4f06-9e04-fadf6018747f","FacilityAddressType":"Default","FacilityID":"10089508","FacilityStreetAddress1":"placeholder","FacilityStreetAddress2":"","FacilityStreetAddress3":"","LastUpdatedDate":"2022-06-23","PostalCode":"97707"}],"FacilityAdaAccess":"","FacilityDescription":"Lava
+                  River Cave, part of the Newberry National Volcanic Monument, offers self-guided
+                  exploration of a mile-long lava tube. Formed 75,000 years ago during a dramatic
+                  eruption of Newberry Volcano, Lava River Cave was one of the first lava tubes
+                  to be discovered in Oregon and is the longest continuous cave in the state.
+                  It takes approximately 1 hour to tour the entire cave (~2.2 miles roundtrip).
+                  Initial access descends stairs to a combination of flat boardwalk, and uneven
+                  walking surfaces. Located near the city of Bend, OR Lava Rive Cave is a popular
+                  tourist destination and an excellent location for the general public to be
+                  exposed to caving.","FacilityDirections":"From Bend, OR travel south on Highway
+                  97 to Exit 151/Cottonwood Rd. Turn left after exiting and proceed through
+                  underpass following signs to Lava River Cave. Cave is about 1 mile down the
+                  road on your left.","FacilityEmail":"","FacilityID":"10089508","FacilityLatitude":0,"FacilityLongitude":0,"FacilityMapURL":"","FacilityName":"Lava
+                  River Cave Timed Reservation Tickets","FacilityPhone":"","FacilityReservationURL":"","FacilityTypeDescription":"Timed
+                  Entry","FacilityUseFeeDescription":"","GEOJSON":{"COORDINATES":null,"TYPE":""},"Keywords":"","LINK":[],"LastUpdatedDate":"2022-06-23","LegacyFacilityID":"","MEDIA":[{"Credits":"USFS","Description":"Collapsed
+                  corridor pathway to the cave entrance","EmbedCode":"","EntityID":"10089508","EntityMediaID":"a5080d61-1766-4292-9e58-0edba6438d67","EntityType":"Facility","Height":934,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Collapsed
+                  Corridor","URL":"https://cdn.recreation.gov/public/2022/06/30/00/17/10089508_dca6788e-298e-4769-9960-67ee9e88cbc9_700.jpg","Width":700},{"Credits":"USFS","Description":"Welcome
+                  Station for recreation pass, souvenirs and light rentals","EmbedCode":"","EntityID":"10089508","EntityMediaID":"609b717a-035c-47f7-958f-74d413f68788","EntityType":"Facility","Height":738,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Welcome
+                  Station","URL":"https://cdn.recreation.gov/public/2022/06/30/00/14/10089508_3b8abcdf-5472-41f1-b12f-8e2821135b65_700.jpg","Width":700},{"Credits":"USFS
+                  Kevin Sperl","Description":"Dont expect this lighting when you visit!  Solar
+                  charged lights available to rent on site.","EmbedCode":"","EntityID":"10089508","EntityMediaID":"fea87754-887d-4a1e-a686-457dffa4b1db","EntityType":"Facility","Height":525,"IsGallery":false,"IsPreview":true,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Exploring
+                  Lava River Cave","URL":"https://cdn.recreation.gov/public/2022/06/23/21/03/10089508_168256bf-1463-400d-957c-fe8df4ffe59c_700.jpg","Width":700},{"Credits":"USFS","Description":"Vehicle
+                  Parking","EmbedCode":"","EntityID":"10089508","EntityMediaID":"049bb737-5a39-4561-9b56-492152c5a6e4","EntityType":"Facility","Height":868,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Vehicle
+                  Parking","URL":"https://cdn.recreation.gov/public/2022/06/30/00/11/10089508_a1e9acb6-a3cb-46f1-85a1-7ed1f4c970f3_1440.jpg","Width":1440},{"Credits":"USFS","Description":"Boot
+                  cleaning station and walkway to cave entrance.","EmbedCode":"","EntityID":"10089508","EntityMediaID":"1d21aa6e-13b8-4684-a256-1a8b8ddbb9e2","EntityType":"Facility","Height":934,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Walkway
+                  to Cave","URL":"https://cdn.recreation.gov/public/2022/06/30/00/15/10089508_7bbc6b55-7218-4f09-97d6-0cf82f0a7bb9_700.jpg","Width":700},{"Credits":"USFS","Description":"Hiker''s
+                  on their way back out","EmbedCode":"","EntityID":"10089508","EntityMediaID":"8d8008f1-5516-4fbd-af4e-467d87ab31bd","EntityType":"Facility","Height":811,"IsGallery":false,"IsPreview":false,"IsPrimary":true,"MediaType":"Image","Subtitle":"","Title":"Hiker''s
+                  on their way back out","URL":"https://cdn.recreation.gov/public/2022/06/23/21/00/10089508_9a049824-d990-43e3-9374-a31988d17566_1440.jpg","Width":1440},{"Credits":"USFS","Description":"Stairway
+                  to the cave","EmbedCode":"","EntityID":"10089508","EntityMediaID":"1271ce21-1c95-434b-9ed4-e2a4910c7c70","EntityType":"Facility","Height":653,"IsGallery":true,"IsPreview":false,"IsPrimary":false,"MediaType":"Image","Subtitle":"","Title":"Stairway
+                  to the cave","URL":"https://cdn.recreation.gov/public/2022/06/30/00/19/10089508_0fba2904-5aa1-4626-a1cb-51bbf97962d5_700.jpg","Width":700}],"ORGANIZATION":[{"LastUpdatedDate":"2018-06-26","OrgAbbrevName":"FS","OrgID":"131","OrgImageURL":"fs.jpg","OrgJurisdictionType":"State","OrgName":"USDA
+                  Forest Service","OrgParentID":"163","OrgType":"Federal Agency","OrgURLAddress":"http://www.fs.fed.us","OrgURLText":""}],"OrgFacilityID":"","PERMITENTRANCE":[],"ParentOrgID":"131","ParentRecAreaID":"14492","RECAREA":[{"RecAreaID":"14492","RecAreaName":"Deschutes
+                  National Forest","ResourceLink":"http://localhost:3000/api/v1/recareas/14492"}],"Reservable":true,"StayLimit":"","TOUR":[]}
+
+                  '
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Length:
+                  - "5468"
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Sat, 22 Apr 2023 15:19:38 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 e5eb6c7f102110906ece71324dc7e664.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - lej_u7c4oA043uCKipv-IPbfFlVOHmFSMcqOKcnPyjaJLoW9ngWObw==
+              X-Amz-Cf-Pop:
+                  - DEN52-P3
+              X-Cache:
+                  - Miss from cloudfront
+          status:
+              code: 200
+              message: OK
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate, br
+              Accept-Language:
+                  - en-US,en;q=0.9,la;q=0.8
+              Cache-Control:
+                  - max-age=0
+              Connection:
+                  - keep-alive
+              Referer:
+                  - https://www.recreation.gov/
+              Upgrade-Insecure-Requests:
+                  - "1"
+              User-Agent:
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/534.10 (KHTML,
+                    like Gecko) Chrome/7.0.540.0 Safari/534.10
+          method: GET
+          uri: https://www.recreation.gov/api/search?fq=asset_id%3A10089508&fq=entity_type%3Atimedentry_tour&size=1000&start=0
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA6xUy27cMAz8FcLnXduy931LgxY95FAkQS9pYWhl2qtGlgxKtpsE+fdS+0CaFr3V
+                  wD7AociZIeWXhNAPJvhk9/CSyLYlbGXASqExlXIjkmwx2RVpIbbxWYnNssyL9XKWyBNYkQzatslu
+                  ka4KDivZ9V5zifDUY+WaavBc4CGxMvk+S2r0inQftLPJLvlCbtQcgsYROIvQkx65PYx40MogBAe9
+                  pEeQAcIBIdZNE66iCVWswbSTb0Oel6o//uA9MS3DfOCzbg+TfILtGvYYJkQLH9DWIPlzN1huhDSD
+                  jz91ALEU2bULwdnJuRpu6xTuB7KA0geQTUAC5LxYNZ7uySnEmhmRG9oDDLZG6qWPMoxxU8zzurU+
+                  0r+Ro4Tb2AyumVp6/AbtQe7dwK2h06yzdpM9KuwZreGT46kEuEMatUIgJ2vWkZfs0TFriqhn58A1
+                  x0DMSE9GZGcnvlk2Cm3Q4anSNfsk8nyzXebbt3CcEANBd1hziDjiBmL8EDpT/Z9RvWtd/d3K8PaE
+                  oY48FmXKWWWRX54IO9te8LkoRFquNovFJUFwhpVdBP/wGb6ead2iZxflaVk4e+j2SHEtT2vLCyRE
+                  MUsctWeXyliUlTDLd75t3sL/aHkfxf3ekCPqEYN/O3l2vJFKG55ABAhHjVOlu3iXBjIMH0Lo/S7L
+                  VG1TXnTCY7W0dWPWD3ujVVbkRZHlq6wos0JkeZldSFZitSmWq30zF4tVOWen6vl2uVbzBjd1s2ga
+                  XG5Vtc7z9Effcns6sd0bphVowNlxG6pnnjATueqQtJLZjfPVlW3RYNRyFnHSHKf4yhfb62cOCv7T
+                  86uDna3kEJxyFG8qso+NNJ7L+yAp8Ok43OCCZL3i9RcAAAD//wMAP08sUYYEAAA=
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Age:
+                  - "101"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Sat, 22 Apr 2023 15:17:57 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 5957ea451aa45a9d254075e89c5df686.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - qZGFEsDlozR-nqFSnWGAn7u4I-fqdgKKZbq6hGPMYav3V5PMx8OoSg==
+              X-Amz-Cf-Pop:
+                  - DEN52-P2
+              X-Cache:
+                  - Hit from cloudfront
+          status:
+              code: 200
+              message: OK
+version: 1

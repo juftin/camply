@@ -10,6 +10,7 @@ from datetime import date, datetime, timedelta
 from typing import Any, Dict, List, Optional, Union
 
 import ratelimit
+from pydantic import ValidationError
 
 from camply.config import FileConfig
 from camply.config.api_config import ReserveCaliforniaConfig
@@ -35,6 +36,12 @@ from camply.utils.logging_utils import log_sorted_response
 logger = logging.getLogger(__name__)
 
 
+class ReserveCaliforniaError(CamplyError):
+    """
+    ReserveCalifornia Provider Error
+    """
+
+
 class ReserveCalifornia(BaseProvider):
     """
     Camply Provider for Reserve California
@@ -45,6 +52,8 @@ class ReserveCalifornia(BaseProvider):
     reserve_california_campgrounds: Dict[int, CampgroundFacility] = {}
     reserve_california_unit_categories: Dict[int, str] = {}
     reserve_california_unit_type_groups: Dict[int, str] = {}
+    reserve_california_campsites: Dict[int, ReserveCaliforniaAvailabilityUnit] = {}
+    campsite_ids: List[int] = []
     metadata_refreshed: bool = False
     active_search: bool = False
     offline_cache_dir = FileConfig.RESERVE_CALIFORNIA_PROVIDER
@@ -113,7 +122,7 @@ class ReserveCalifornia(BaseProvider):
         state: str = "CA",
         verbose: bool = True,
         campground_id: Optional[List[int]] = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> List[CampgroundFacility]:
         """
         Search A Facility via Offline Metadata
@@ -158,8 +167,8 @@ class ReserveCalifornia(BaseProvider):
 
     def _search_for_campgrounds(
         self,
-        campground_id: Optional[List[int]],
-        rec_area_id: Optional[List[int]],
+        campground_id: List[int],
+        rec_area_id: List[int],
         search_string: Optional[str],
     ) -> List[CampgroundFacility]:
         """
@@ -167,8 +176,8 @@ class ReserveCalifornia(BaseProvider):
 
         Parameters
         ----------
-        campground_id: Optional[List[int]]
-        rec_area_id: Optional[List[int]]
+        campground_id: List[int]
+        rec_area_id: List[int]
         search_string: Optional[str]
 
         Returns
@@ -202,6 +211,87 @@ class ReserveCalifornia(BaseProvider):
 
     @ratelimit.sleep_and_retry
     @ratelimit.limits(calls=1, period=1)
+    def get_campsites_response(
+        self,
+        campground_id: int,
+        start_date: Union[datetime, date],
+        end_date: Union[datetime, date],
+        is_ada: Optional[bool] = None,
+        min_vehicle_length: Optional[int] = None,
+        unit_category_id: Optional[int] = None,
+        web_only: Optional[bool] = True,
+        unit_type_group_ids: Optional[List[int]] = None,
+        sleeping_unit_id: Optional[int] = None,
+        unit_sort: Optional[str] = "orderby",
+        in_season_only: Optional[bool] = True,
+    ) -> ReserveCaliforniaAvailabilityResponse:
+        """
+        Get Campsites from ReserveCalifornia
+
+        Parameters
+        ----------
+        campground_id: int
+            Facility ID of the campground
+        start_date: Union[datetime, date]
+            Search Start Date
+        end_date: Union[datetime, date]
+            Search End Date
+        is_ada: Optional[bool]
+            Search for ADA sites
+        min_vehicle_length: Optional[int]
+            Minimum Vehicle Length - defaults to 0 which doesn't filter
+        unit_category_id: Optional[int]
+            Unit Category ID (typically 0)
+        web_only: Optional[bool]
+            Search for sights bookable online
+        unit_type_group_ids: Optional[List[int]]
+            UnitTypeGroupIds - Search Param
+        sleeping_unit_id: Optional[int]
+            SleepingUnitId - search param
+        unit_sort: Optional[str]
+            Sort Order
+        in_season_only: Optional[bool]
+            Searching for in-season only campgrounds
+
+        Returns
+        -------
+        ReserveCaliforniaAvailabilityResponse
+        """
+        data = {
+            "IsADA": is_ada,
+            "MinVehicleLength": min_vehicle_length,
+            "UnitCategoryId": unit_category_id,
+            "StartDate": start_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
+            "WebOnly": web_only,
+            "UnitTypesGroupIds": []
+            if unit_type_group_ids is None
+            else unit_type_group_ids,
+            "SleepingUnitId": sleeping_unit_id,
+            "EndDate": end_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
+            "UnitSort": unit_sort,
+            "InSeasonOnly": in_season_only,
+            "FacilityId": campground_id,
+        }
+        non_null_data = {
+            key: value for key, value in data.items() if value not in [None, [], ""]
+        }
+        url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.AVAILABILITY_ENDPOINT}"
+        response = self.session.post(
+            url=url, data=json.dumps(non_null_data), headers=self.json_headers
+        )
+        response.raise_for_status()
+        response_json = response.json()
+        try:
+            return ReserveCaliforniaAvailabilityResponse(**response.json())
+        except ValidationError as e:
+            error_message = (
+                "Error Parsing ReserveCalifornia Availability Response "
+                f"- Facility ID # {campground_id}."
+            )
+            if "Message" in response_json:
+                error_message += " " + response_json["Message"]
+            raise ReserveCaliforniaError(error_message) from e
+
     def get_campsites(
         self,
         campground_id: int,
@@ -249,30 +339,19 @@ class ReserveCalifornia(BaseProvider):
         List[AvailableCampsite]
         """
         self.refresh_metadata()
-        data = {
-            "IsADA": is_ada,
-            "MinVehicleLength": min_vehicle_length,
-            "UnitCategoryId": unit_category_id,
-            "StartDate": start_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
-            "WebOnly": web_only,
-            "UnitTypesGroupIds": []
-            if unit_type_group_ids is None
-            else unit_type_group_ids,
-            "SleepingUnitId": sleeping_unit_id,
-            "EndDate": end_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
-            "UnitSort": unit_sort,
-            "InSeasonOnly": in_season_only,
-            "FacilityId": campground_id,
-        }
-        non_null_data = {
-            key: value for key, value in data.items() if value not in [None, [], ""]
-        }
-        url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.AVAILABILITY_ENDPOINT}"
-        response = self.session.post(
-            url=url, data=json.dumps(non_null_data), headers=self.json_headers
+        availability_response = self.get_campsites_response(
+            campground_id=campground_id,
+            start_date=start_date,
+            end_date=end_date,
+            is_ada=is_ada,
+            min_vehicle_length=min_vehicle_length,
+            unit_category_id=unit_category_id,
+            web_only=web_only,
+            unit_type_group_ids=unit_type_group_ids,
+            sleeping_unit_id=sleeping_unit_id,
+            unit_sort=unit_sort,
+            in_season_only=in_season_only,
         )
-        response.raise_for_status()
-        availability_response = ReserveCaliforniaAvailabilityResponse(**response.json())
         campsites: List[AvailableCampsite] = []
         if availability_response.Facility.Units is None:
             return campsites
@@ -283,8 +362,13 @@ class ReserveCalifornia(BaseProvider):
                     availability_response=availability_response,
                     unit=unit,
                 )
-                if campsite.availability_status == "Available":
-                    campsites.append(campsite)
+                campsite_available = campsite.availability_status == "Available"
+                if campsite_available is True:
+                    if (
+                        len(self.campsite_ids) == 0
+                        or campsite.campsite_id in self.campsite_ids
+                    ):
+                        campsites.append(campsite)
         return campsites
 
     def _get_available_campsite(
@@ -520,3 +604,111 @@ class ReserveCalifornia(BaseProvider):
         return any(
             [query.lower() in str(value).lower() for value in model.dict().values()]
         )
+
+    def get_campsites_per_facility(
+        self, facility_id: int
+    ) -> List[ReserveCaliforniaAvailabilityUnit]:
+        """
+        Get Campsites Per Facility
+
+        Parameters
+        ----------
+        facility_id: int
+
+        Returns
+        -------
+        List[ReserveCaliforniaAvailabilityUnit]
+        """
+        resp = self.get_campsites_response(
+            campground_id=facility_id, start_date=date.today(), end_date=date.today()
+        )
+        campsites: List[ReserveCaliforniaAvailabilityUnit] = list(
+            resp.Facility.Units.values()
+        )
+        for campsite in campsites:
+            campsite.FacilityId = facility_id
+        return campsites
+
+    def get_campsite_metadata(
+        self, facility_ids: List[int]
+    ) -> Dict[int, ReserveCaliforniaAvailabilityUnit]:
+        """
+        Get the Campsite Metadata
+
+        Parameters
+        ----------
+        facility_ids: List[int]
+            List of facility ids to fetch metadata for
+
+        Returns
+        -------
+        Dict[int, ReserveCaliforniaAvailabilityUnit]
+        """
+        campsites: Dict[int, ReserveCaliforniaAvailabilityUnit] = {}
+        for facility_id in facility_ids:
+            found_campsites = self.get_campsites_per_facility(facility_id=facility_id)
+            campsite_dict = {item.UnitId: item for item in found_campsites}
+            campsites.update(campsite_dict)
+        self.reserve_california_campsites.update(campsites)
+        return campsites
+
+    def _prepare_facility_ids(
+        self,
+        recreation_area_ids: Optional[List[int]] = None,
+        campground_ids: Optional[List[int]] = None,
+    ) -> List[int]:
+        """
+        Prepare Facility Ids
+
+        Parameters
+        ----------
+        recreation_area_ids: Optional[List[int]]
+        campground_ids: Optional[List[int]]
+
+        Returns
+        -------
+        List[int]
+        """
+        if not self.reserve_california_campgrounds:
+            self.refresh_metadata()
+        recreation_area_ids = recreation_area_ids or []
+        campground_ids = campground_ids or []
+        facility_ids = []
+        if len(recreation_area_ids) == 0 and len(campground_ids) == 0:
+            raise CamplyError("Must specify either a recreation area or campground id")
+        elif len(recreation_area_ids) > 0:
+            logger.info(
+                "Searching %s Recreation Areas for campgrounds",
+                len(recreation_area_ids),
+            )
+            for recreation_area_id in recreation_area_ids:
+                facility_ids += [
+                    facility_id
+                    for facility_id, facility in self.reserve_california_campgrounds.items()
+                    if facility.recreation_area_id == int(recreation_area_id)
+                ]
+        else:
+            facility_ids = campground_ids
+        facility_ids = [int(x) for x in facility_ids]
+        return facility_ids
+
+    def validate_campsites(self, campsites: List[int], facility_ids: List[int]) -> None:
+        """
+        Validate Campsites
+
+        Parameters
+        ----------
+        campsites: List[int]
+
+        Returns
+        -------
+        None
+        """
+        self.get_campsite_metadata(facility_ids=facility_ids)
+        for campsite_id in campsites:
+            if campsite_id not in self.reserve_california_campsites:
+                raise CamplyError(f"Campsite {campsite_id} not found")
+            else:
+                campsite = self.reserve_california_campsites[campsite_id]
+                logger.info("Searching Specific campsite: %s", campsite.Name)
+        self.campsite_ids = list(campsites)

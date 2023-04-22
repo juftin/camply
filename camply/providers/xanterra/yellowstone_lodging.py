@@ -35,16 +35,6 @@ class YellowstoneLodging(BaseProvider):
         recreation_area_location="USA",
     )
 
-    def __repr__(self):
-        """
-        String Representation
-
-        Returns
-        -------
-        str
-        """
-        return "<YellowstoneLodging>"
-
     def _get_monthly_availability(self, month: datetime, nights: int = None) -> dict:
         """
         Check All Lodging in Yellowstone for Campground Data

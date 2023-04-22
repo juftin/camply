@@ -122,3 +122,35 @@ def test_recdotgov_daily_ticket_campsites_equipment(cli_runner: CamplyRunner) ->
     assert "Joshua Tree National Park Tours" in result.output
     assert "total sites found in month of" in result.output
     cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
+def test_list_campsites_ticket(cli_runner: CamplyRunner) -> None:
+    """
+    Provider: RecreationDotGovTicket - List Campsites
+    """
+    test_command = """
+    camply list-campsites \
+        --provider RecreationDotGovTicket \
+        --campground 253731
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Searching for campsites to list" in result.output
+    assert "Haleakala Sunrise - Summit - (#255)" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
+def test_list_campsites_time_entry(cli_runner: CamplyRunner) -> None:
+    """
+    Provider: RecreationDotGovTimedEntry - List Campsites
+    """
+    test_command = """
+    camply list-campsites \
+        --provider RecreationDotGovTimedEntry \
+        --campground 10089508
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Searching for campsites to list" in result.output
+    assert "Lava River Cave Vehicle Reservations - (#10089509)" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)

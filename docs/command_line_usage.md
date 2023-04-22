@@ -263,6 +263,33 @@ section for more details on how to set up the notification provider of your choi
 camply test-notifications --notifications email
 ```
 
+## list-campsites
+
+When [searching for a specific campsite by ID](#searching-for-a-specific-campsite-by-id), it can be useful
+to list the campsites that were found. This command will list the campsites that were found given specific
+camground / recreation area ID.
+
+```commandline
+camply list-campsites --campground 598 --provider ReserveCalifornia
+```
+
+That search above would tell you that `Premium Campsite #88` has ID #43473. Using that information you can then
+search for that specific campsite by ID:
+
+```commandline
+camply campsites \
+  --provider ReserveCalifornia \
+  --campground 598 \
+  --campsite 43473 \
+  --start-date 2023-07-13 \
+  --end-date 2023-07-14
+```
+
+!!! note
+
+    Some providers require that you pass a campsite ID **and** and a campground ID, while
+    others only require a campsite ID.
+
 ## Examples
 
 Read through the examples below to get a better understanding of `camply`, its features, and the
@@ -311,8 +338,11 @@ times to search for different campsites.
 
 !!! note
 
-    **`--campsite`** arguments override any **`--rec-area`** or **`--campground`** options
+    For **RecreationDotGov**, **`--campsite`** arguments override any **`--rec-area`** or **`--campground`** options
     provided. And **`--campground`** will override the **`--rec-area`** option.
+
+    However other providers may need you to provide both a **`--campground`** and **`--campsite`** ID.
+    See the [list-campsites](#list-campsites) example for more information.
 
 ```commandline
 camply campsites \

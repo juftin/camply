@@ -56,7 +56,7 @@ class ReserveCaliforniaAvailabilitySlice(CamplyModel):
 
 class ReserveCaliforniaAvailabilityUnit(CamplyModel):
     """
-    UNit of Availability in Availability Request
+    Unit of Availability in Availability Request
     """
 
     UnitId: Optional[int]
@@ -81,6 +81,7 @@ class ReserveCaliforniaAvailabilityUnit(CamplyModel):
     Slices: Dict[datetime.datetime, ReserveCaliforniaAvailabilitySlice] = {}
     StartTime: Any
     EndTime: Any
+    FacilityId: Optional[int]
 
 
 class ReserveCaliforniaFacility(CamplyModel):

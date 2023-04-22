@@ -10,6 +10,7 @@ from typing import Any, Dict, List, Optional, Union
 from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
+from camply.containers.data_containers import ListedCampsite
 from camply.providers.reserve_california import ReserveCalifornia
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
@@ -58,8 +59,13 @@ class SearchReserveCalifornia(BaseCampingSearch):
             **kwargs,
         )
         self.campsite_finder: ReserveCalifornia
-        self._recreation_area_ids: List[int] = make_list(recreation_area)
-        self._campground_ids: List[int] = make_list(campgrounds)
+        self._recreation_area_ids: List[int] = make_list(recreation_area, coerce=int)
+        self._campground_ids: List[int] = make_list(campgrounds, coerce=int)
+        campsites = make_list(kwargs.get("campsites", []), coerce=int)
+        if len(campsites) > 0:
+            self.campsite_finder.validate_campsites(
+                campsites=campsites, facility_ids=self._campground_ids
+            )
         try:
             assert any([self._campground_ids != [], self._recreation_area_ids != []])
         except AssertionError:
@@ -141,3 +147,27 @@ class SearchReserveCalifornia(BaseCampingSearch):
         logger.info(f"{len(rec_areas)} Matching Recreation Areas Found")
         log_sorted_response(rec_areas)
         return rec_areas
+
+    def list_campsite_units(self) -> List[ListedCampsite]:
+        """
+        List Campsite Units
+
+        Returns
+        -------
+        List[ListedCampsite]
+        """
+        if not self.campsite_finder.reserve_california_campsites:
+            self.campsite_finder.get_campsite_metadata(facility_ids=self.campground_ids)
+        sorted_campsites = sorted(
+            self.campsite_finder.reserve_california_campsites.values(),
+            key=lambda x: x.OrderByRaw,
+        )
+        logged_campsites = [
+            ListedCampsite(id=item.UnitId, name=item.Name, facility_id=item.FacilityId)
+            for item in sorted_campsites
+        ]
+        self.log_listed_campsites(
+            campsites=logged_campsites,
+            facilities=self.campgrounds,
+        )
+        return logged_campsites

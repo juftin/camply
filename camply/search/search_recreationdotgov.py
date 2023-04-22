@@ -13,6 +13,8 @@ import pandas as pd
 from camply.config import RecreationBookingConfig
 from camply.config.search_config import EquipmentConfig, EquipmentOptions
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
+from camply.containers.api_responses import RecDotGovCampsite, RecDotGovSearchResult
+from camply.containers.data_containers import ListedCampsite
 from camply.exceptions import SearchError
 from camply.providers import (
     RecreationDotGov,
@@ -344,6 +346,57 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
             campsites["campsite_id"].isin(matching_ids)
         ].copy()
         return original_campsites
+
+    def _get_listable_campsites(
+        self, campsites: Union[List[RecDotGovCampsite], List[RecDotGovSearchResult]]
+    ) -> List[ListedCampsite]:
+        """
+        Get Listable Campsites
+
+        Returns
+        -------
+        List[ListedCampsite]
+        """
+        if isinstance(campsites[0], RecDotGovCampsite):
+            return [
+                ListedCampsite(
+                    id=item.campsite_id,
+                    facility_id=item.asset_id,
+                    name=item.name,
+                )
+                for item in campsites
+            ]
+        elif isinstance(campsites[0], RecDotGovSearchResult):
+            return [
+                ListedCampsite(
+                    id=item.entity_id,
+                    facility_id=item.parent_id,
+                    name=item.name,
+                )
+                for item in campsites
+            ]
+        else:
+            raise NotImplementedError(
+                f"Cannot get listable campsites from type {type(campsites[0])}"
+            )
+
+    def list_campsite_units(self) -> List[ListedCampsite]:
+        """
+        List Campsite Units
+
+        Returns
+        -------
+        List[ListedCampsite]
+        """
+        recdotgov_campsites = self.campsite_finder.get_internal_campsites(
+            facility_ids=[item.facility_id for item in self.campgrounds]
+        )
+        listable_campsites = self._get_listable_campsites(campsites=recdotgov_campsites)
+        self.log_listed_campsites(
+            campsites=listable_campsites,
+            facilities=self.campgrounds,
+        )
+        return listable_campsites
 
 
 class SearchRecreationDotGov(SearchRecreationDotGovBase):

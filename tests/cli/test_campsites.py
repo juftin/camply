@@ -501,3 +501,26 @@ def test_search_specific_weekdays_yaml(cli_runner: CamplyRunner) -> None:
     assert "Wawona Campground" in result.output
     assert "Reservable Campsites Matching Search Preferences" in result.output
     cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
+def test_search_by_campsites_reservecalifornia(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
+    """
+    Search by Campsite: ReserveCalifornia
+    """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
+    test_command = """
+    camply campsites \
+      --provider ReserveCalifornia \
+      --campground 598 \
+      --campsite 43476 \
+      --start-date 2023-07-04 \
+      --end-date 2023-07-06
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Campground Northern End (sites 44-111)" in result.output
+    assert "Campsite #91" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)
