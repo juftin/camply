@@ -8,6 +8,7 @@ on:
 jobs:
     pypi-publish:
         name: PyPI
+        if: github.repository_owner == 'juftin'
         runs-on: ubuntu-latest
         steps:
             - name: Check out the repository
@@ -37,6 +38,7 @@ jobs:
 
     docker-hub-publish:
         name: docker-hub
+        if: github.repository_owner == 'juftin'
         runs-on: ubuntu-latest
         steps:
             - name: Check out the repository
