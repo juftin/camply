@@ -702,7 +702,7 @@ class BaseCampingSearch(ABC):
             k_wise = tee(map(itemgetter(1), consec_run), length)
             for n, it in enumerate(k_wise):
                 next(islice(it, n, n), None)
-            yield from zip(*k_wise)  # noqa: B905
+            yield from zip(*k_wise)
 
     @classmethod
     def _find_consecutive_nights(cls, dataframe: DataFrame, nights: int) -> DataFrame:

@@ -1,20 +1,23 @@
 # Contributing
 
-### Requirements
+## Quickstart
 
-camply uses [Poetry] to manage its Python environment.
-To get started first install `poetry`:
-
-```commandline
-pipx install poetry
+```shell
+pipx install pre-commit
+pipx install hatch
+pre-commit install
+hatch env create
+hatch shell
 ```
 
-[pipx] is preferred, but you can also install with `pip install --user`.
+## Tools
 
-### Coding
+This project makes use of a couple tools to streamline the development process:
+[pre-commit](https://pre-commit.com/) and [hatch](https://hatch.pypa.io/).
 
-camply makes use of a couple tools to help with contributing via
-[pre-commit]. `pre-commit` is a tool to manage git-hooks scripts, which are useful
+### pre-commit
+
+[pre-commit] is a tool to manage git-hooks scripts, which are useful
 for identifying simple issues before submission to code review.
 
 ```commandline
@@ -22,89 +25,96 @@ pipx install pre-commit
 pre-commit install
 ```
 
--   `camply`'s instance of `pre-commit` uses tools like [black](https://github.com/psf/black)
-    and
-    [isort](https://pycqa.github.io/isort/) to format your code in a standardized way.
--   After cloning this repo run `pre-commit install`.
--   Done, now pre-commit will run automatically on git commit. To run it manually on your changed
-    code run `pre-commit run` on your command line.
+To use pre-commit, you must first install it. [pipx] is preferred, but you can also install with
+`pip`. Once [pre-commit] is installed, run `pre-commit install` to install the git-hooks scripts
+into the local repository. Done, now pre-commit will run automatically on git commit. To run it
+manually on your changed files run `pre-commit run` on your command line.
 
-### Running
+### hatch
 
-Run the command-line interface from the source tree:
-
-```commandline
-poetry install
-poetry run camply
-```
-
-Run an interactive Python session:
+[hatch](https://hatch.pypa.io/) is a tool to manage the packaging and distribution of Python packages. It also
+used to manage the virtual environment for the project and running common scripts.
 
 ```commandline
-poetry install
-poetry run python
+pipx install hatch
+hatch env create
+hatch run test
 ```
 
-### Testing
+## Commit Message Format
 
--   [tox](https://tox.wiki/en/latest/) is a tool to standardize and manage testing and routines
-    using Python virtual environments
--   `camply`'s instance of `tox` runs Python unit tests, and uses tools like
-    [mypy](https://github.com/python/mypy) and [flake8](https://flake8.pycqa.org/en/latest/pre) to
-    format.
--   To run all `tox` tests (which get run as part of GitHub Actions) locally, just enter `tox`
-    into your command line or use poetry.
-
-Run the Full Test Suite:
-
-```tox
-poetry run tox
-```
-
-Run Just One Testing Tool:
-
-```commandline
-poetry run tox -e mypy
-```
-
-### Releasing
-
-Releases are handled entirely by CI/CD via Pull requests being merged into
-the main branch. Contributions follow the [gitmoji] standards with [conventional commits],
+Releases for this project are handled entirely by CI/CD via Pull requests being merged into
+the `main` branch. Contributions follow the [gitmoji] standards with [conventional commits],
 orchestration is handled by the [semantic-release] tool.
 
 While you can denote other changes on your commit messages with gitmoji, the following
 commit message emoji prefixes are the only ones to trigger new releases:
 
-| Unicode | Shortcode   | Description                 | Semver |
-| ------- | ----------- | --------------------------- | ------ |
-| 💥      | :boom:      | Introduce breaking changes. | Major  |
-| ✨      | :sparkles:  | Introduce new features.     | Minor  |
-| 🐛      | :bug:       | Fix a bug.                  | Patch  |
-| 🚑      | :ambulance: | Critical hotfix.            | Patch  |
-| 🔒      | :lock:      | Fix security issues.        | Patch  |
+| Emoji | Shortcode   | Description                 | Semver |
+| ----- | ----------- | --------------------------- | ------ |
+| 💥    | :boom:      | Introduce breaking changes. | Major  |
+| ✨    | :sparkles:  | Introduce new features.     | Minor  |
+| 🐛    | :bug:       | Fix a bug.                  | Patch  |
+| 🚑    | :ambulance: | Critical hotfix.            | Patch  |
+| 🔒    | :lock:      | Fix security issues.        | Patch  |
 
-The Release workflow performs the following automated steps:
+Most features can be squash merged into a single commit. If you're working on a
+feature, your commit message might look like:
 
--   Publish a GitHub Release.
--   Apply a version tag to the repository.
--   Build and upload the package to PyPI.
--   Build and upload the package to Docker Hub.
+```text
+✨ New Feature Description
+```
 
-[codecov]: https://codecov.io/
-[cookiecutter]: https://github.com/audreyr/cookiecutter
-[github]: https://github.com/
-[install-poetry.py]: https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py
-[nox]: https://nox.thea.codes/
-[nox-poetry]: https://nox-poetry.readthedocs.io/
+Bug fix commits would look like this:
+
+```text
+🐛 Bug Fix Description
+```
+
+## Scripts
+
+All common scripts for this repository are managed by [hatch](#hatch).
+
+```shell
+hatch run <script>
+```
+
+| Script         | Script Description                                      |
+| -------------- | ------------------------------------------------------- |
+| `format`       | Code Formatting [black] and [ruff]                      |
+| `lint`         | Code Linting [black] and [ruff]                         |
+| `check`        | Type Checking with [mypy]                               |
+| `test`         | Unit Testing with [pytest]                              |
+| `all`          | Run multiple scripts: `format`, `lint`, `check`, `test` |
+| `docs-serve`   | Documentation Serving [MkDocs] and [mkdocs-material]    |
+| `requirements` | Lock File Updates with [pip-tools]                      |
+
+!!! note
+
+    While the camply codebase is undergoing some refactoring, the `check` script is not
+    required. Once the codebase is fully typed, the `check` script will be required to pass
+    before a Pull Request can be merged. In the meantime, please use
+    [type annotations](https://docs.python.org/3/library/typing.html) on any new changes.
+
+## Dependencies
+
+Dependencies are managed by [pip-tools / pip-compile](https://github.com/jazzband/pip-tools/).
+After updating dependencies in the `pyproject.toml` file, run the following to update the
+underlying `requirements.txt` files:
+
+```shell
+hatch run requirements
+```
+
 [pipx]: https://pipxproject.github.io/pipx/
-[poetry]: https://python-poetry.org/
-[poetry version]: https://python-poetry.org/docs/cli/#version
-[pyenv]: https://github.com/pyenv/pyenv
-[pypi]: https://pypi.org/
-[read the docs]: https://readthedocs.org/
-[testpypi]: https://test.pypi.org/
 [pre-commit]: https://pre-commit.com/
 [gitmoji]: https://gitmoji.dev/
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [semantic-release]: https://github.com/semantic-release/semantic-release
+[black]: https://github.com/psf/black
+[ruff]: https://github.com/charliermarsh/ruff
+[mypy]: https://mypy.readthedocs.io/en/stable/
+[pytest]: https://docs.pytest.org/en/stable/
+[MkDocs]: https://www.mkdocs.org/
+[mkdocs-material]: https://squidfunk.github.io/mkdocs-material/
+[pip-tools]: https://github.com/jazzband/pip-tools/

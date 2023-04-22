@@ -1,6 +1,6 @@
 # Dependencies
 
-`camply` is compatible with any Python version >= `3.8.1`. Here are the current dependencies:
+`camply` is compatible with any Python version >= `3.8`. Here are the current dependencies:
 
 -   [click](https://docs.python-requests.org/en/master/)
     -   The `click` package is used to leverage it's simple Command Line Interface

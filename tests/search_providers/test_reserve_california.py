@@ -45,7 +45,7 @@ def test_rc_get_campsites(tmp_path: pathlib.Path) -> None:
         end_date=start_date + relativedelta(days=2),
     )
     assert len({item.campsite_id for item in campsites}) > 1
-    assert any([item.campsite_site_name == "Campsite #M93" for item in campsites])
+    assert any(item.campsite_site_name == "Campsite #M93" for item in campsites)
 
 
 @vcr_cassette

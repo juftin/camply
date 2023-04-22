@@ -7,7 +7,7 @@ COPY camply/ /tmp/camply/camply/
 MAINTAINER Justin Flannery <juftin@juftin.com>
 LABEL description="camply, the campsite finder"
 
-COPY requirements/prod.txt /tmp/camply/requirements.txt
+COPY requirements/requirements-prod.txt /tmp/camply/requirements.txt
 
 RUN python -m pip install -r /tmp/camply/requirements.txt && \
     python -m pip install /tmp/camply --no-dependencies && \
@@ -20,7 +20,7 @@ ENV CAMPLY_LOG_HANDLER="PYTHON"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-RUN _CAMPLY_COMPLETE=bash_source camply > /root/.camply-complete.bash && \
-    echo "[[ ! -f /root/.camply-complete.bash ]] || source /root/.camply-complete.bash" >> /root/.bashrc
+RUN _CAMPLY_COMPLETE=bash_source camply > ${HOME}/.camply-complete.bash && \
+    echo "[[ ! -f ${HOME}/.camply-complete.bash ]] || source ${HOME}/.camply-complete.bash" >> ${HOME}/.bashrc
 
 CMD ["camply", "--help"]

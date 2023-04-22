@@ -602,7 +602,7 @@ class ReserveCalifornia(BaseProvider):
         bool
         """
         return any(
-            [query.lower() in str(value).lower() for value in model.dict().values()]
+            query.lower() in str(value).lower() for value in model.dict().values()
         )
 
     def get_campsites_per_facility(
