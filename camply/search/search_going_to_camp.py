@@ -5,7 +5,7 @@ Going To Camp API search utilities
 import logging
 import sys
 from datetime import datetime, time
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from camply.containers import (
     AvailableCampsite,
@@ -17,6 +17,7 @@ from camply.providers import GoingToCampProvider
 from camply.providers.going_to_camp.going_to_camp_provider import NON_GROUP_EQUIPMENT
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import make_list
+from camply.utils.general_utils import is_list_like
 
 logger = logging.getLogger(__name__)
 
@@ -27,6 +28,7 @@ class SearchGoingToCamp(BaseCampingSearch):
     """
 
     provider_class = GoingToCampProvider
+    list_campsites_supported: bool = False
 
     @classmethod
     def find_recreation_areas(
@@ -101,7 +103,7 @@ class SearchGoingToCamp(BaseCampingSearch):
             logger.error("At least one --rec-area must be provided")
             sys.exit(1)
 
-        if not isinstance(recreation_area, List) or len(recreation_area) > 1:
+        if is_list_like(recreation_area) is False or len(recreation_area) > 1:
             logger.error(
                 "Going To Camp only allows a single recreation area to be searched at a time"
             )
@@ -246,3 +248,13 @@ class SearchGoingToCamp(BaseCampingSearch):
         return self.campsite_finder.find_campgrounds(
             rec_area_id=self._recreation_area_id,
         )
+
+    def list_campsite_units(self) -> Any:
+        """
+        List Campsite Units
+
+        Returns
+        -------
+        Any
+        """
+        raise NotImplementedError

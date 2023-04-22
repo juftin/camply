@@ -20,7 +20,8 @@ from pandas import DataFrame, Series, Timedelta, concat, date_range
 from pydantic.json import pydantic_encoder
 
 from camply.config import CampsiteContainerFields, DataColumns, SearchConfig
-from camply.containers import AvailableCampsite, SearchWindow
+from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
+from camply.containers.data_containers import ListedCampsite
 from camply.exceptions import CamplyError, CampsiteNotFoundError
 from camply.notifications.base_notifications import BaseNotifications
 from camply.notifications.multi_provider_notifications import MultiNotifierProvider
@@ -36,6 +37,9 @@ class BaseCampingSearch(ABC):
     """
     Camping Search Object
     """
+
+    campgrounds: List[CampgroundFacility] = []
+    list_campsites_supported: bool = True
 
     def __init__(
         self,
@@ -69,6 +73,7 @@ class BaseCampingSearch(ABC):
         days_of_the_week: Optional[Sequence[int]]
             Days of the week (by weekday integer) to search for.
         """
+        self._verbose = kwargs.get("verbose", True)
         self.campsite_finder: ProviderType = self.provider_class()
         self.search_window: List[SearchWindow] = make_list(search_window)
         self.days_of_the_week = set(
@@ -605,7 +610,7 @@ class BaseCampingSearch(ABC):
         }
         max_nights_to_list = 2
         all_nights = 7
-        if len(search_nights) > 0:
+        if len(search_nights) > 0 and self._verbose is True:
             logger.info(
                 f"{len(search_nights)} booking nights selected for search, "
                 f"ranging from {min(search_nights)} to {max(search_nights)}"
@@ -661,7 +666,7 @@ class BaseCampingSearch(ABC):
             campsite_grouping[CampsiteContainerFields.CAMPSITE_GROUP] = group_identifier
             # USE THE ASSEMBLED GROUPS TO CREATE UPDATED CAMPSITES AND REMOVE DUPLICATES
             for _campsite_group, campsite_group_slice in campsite_grouping.groupby(
-                [CampsiteContainerFields.CAMPSITE_GROUP]
+                CampsiteContainerFields.CAMPSITE_GROUP
             ):
                 composed_grouping = campsite_group_slice.sort_values(
                     by=CampsiteContainerFields.BOOKING_DATE, ascending=True
@@ -876,7 +881,7 @@ class BaseCampingSearch(ABC):
                         booking_nights,
                         nightly_availability,
                     ) in campground_availability.groupby(
-                        [DataColumns.BOOKING_NIGHTS_COLUMN]
+                        DataColumns.BOOKING_NIGHTS_COLUMN
                     ):
                         unique_urls = nightly_availability[
                             DataColumns.BOOKING_URL_COLUMN
@@ -987,3 +992,39 @@ class BaseCampingSearch(ABC):
         if not path_obj.parent.exists():
             raise FileNotFoundError(f"That directory doesn't exist: {path_obj.parent}")
         return path_obj
+
+    @abstractmethod
+    def list_campsite_units(self) -> Any:
+        """
+        List Campsite Units
+
+        Returns
+        -------
+        Any
+        """
+
+    @classmethod
+    def log_listed_campsites(
+        cls,
+        campsites: Sequence[ListedCampsite],
+        facilities: Sequence[CampgroundFacility],
+    ) -> None:
+        """
+        Print the campsites to the console
+
+        Parameters
+        ----------
+        facilities: List[CampgroundFacility]
+        campsites: List[ListedCampsite]
+
+        Returns
+        -------
+        None
+        """
+        logger.info("Found %s campgrounds to search", len(facilities))
+        logger.info("Found %s Campsites", len(campsites))
+        for facility in sorted(facilities, key=lambda x: x.facility_id):
+            logger.info("🏕  %s - (#%s)", facility.facility_name, facility.facility_id)
+            for item in campsites:
+                if item.facility_id == facility.facility_id:
+                    logger.info("    ⛺️ %s - (#%s)", item.name, item.id)

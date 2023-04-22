@@ -132,3 +132,13 @@ class AvailableResource(CamplyModel):
 
     resource_id: int
     map_id: int
+
+
+class ListedCampsite(CamplyModel):
+    """
+    A Campsite Meant to Be Listed
+    """
+
+    name: str
+    id: int
+    facility_id: int

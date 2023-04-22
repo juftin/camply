@@ -1,0 +1,172 @@
+interactions:
+    - request:
+          body: null
+          headers:
+              User-Agent:
+                  - Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/534.2
+                    (KHTML, like Gecko) Chrome/6.0.451.0 Safari/534.2
+              accept:
+                  - application/json
+              apikey:
+                  - REDACTED
+          method: GET
+          uri: https://ridb.recreation.gov/api/v1/facilities/253731?full=True
+      response:
+          body:
+              string:
+                  "{\"ACTIVITY\":[],\"CAMPSITE\":[],\"EVENT\":[],\"Enabled\":true,\"FACILITYADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"HI\",\"City\":\"Makawao\",\"FacilityAddressID\":\"20440421\",\"FacilityAddressType\":\"Default\",\"FacilityID\":\"253731\",\"FacilityStreetAddress1\":\"PO
+                  Box 369\",\"FacilityStreetAddress2\":\"\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2018-06-26\",\"PostalCode\":\"96768\"}],\"FacilityAdaAccess\":\"N\",\"FacilityDescription\":\"<h2>Overview:</h2>Haleakala
+                  National Park is home to Maui's highest peak. Rising 10,023 (3,005 m) feet
+                  above sea level, Haleakala means \\\"house of the sun\\\" and is where demigod
+                  Maui lassoed the sun, slowing its passage so people had more time to dry kapa
+                  (cloth) and grow food. The dormant volcano's \\\"crater\\\" is actually a
+                  valley carved by erosion.<p>Sunrise at the summit of Haleakala has been a
+                  visitor attraction since the late 1800s when Samuel Clemens wrote: \\\"It
+                  was the sublimest spectacle I ever witnessed, and I think the memory of it
+                  will remain with me always.\\\"</p><p>The park's Summit District begins at
+                  7,000 feet (2,134 m) of elevation and reaches 10,023 feet (3,055 m).  The
+                  summit's high elevation, the lack of light, and environmental pollution, and
+                  dynamic weather patterns make it an ideal and popular place to view the sky.</p><p>Due
+                  to the popularity of sunrise viewing at the summit and limited parking, Haleakala
+                  National Park now requires reservations for each vehicle entering the park
+                  before sunrise (3:00 a.m. to 7:00 a.m.).</p>\\n<p>\\n<a href=\\\"http://www.recreation.gov/marketing.do?format&path&backLink&goto=/resource/contracts/nrso/Summary_Fees_145490.html\\\"
+                  rel=\\\"nofollow\\\">Summary of Fees - Haleakala National Park Summit Sunrise
+                  Reservations</a>\\n</p>\",\"FacilityDirections\":\"The Summit District of
+                  Haleakala National Park can be reached from Kahului via Route 37 to 377 to
+                  378 (Crater Road). Driving time to the summit (10,000 feet elevation) from:
+                  Kahului is 2.5 hours, Wailea is 3 hours, Lahaina is 3.5 hours. These drive
+                  times take into account expected heavy traffic and steep, winding roads. Your
+                  last 30 minutes of driving will take place inside the park, after passing
+                  the entrance station at 7,000 feet (2,133 meters) of elevation. The summit's
+                  elevation is 10,023 feet (3,055 meters).  Always respect speed limits. Crater
+                  Road crosses through endangered wildlife habitat. \\\"Speed Kills Wildlife.\\\"\",\"FacilityEmail\":\"hale_commercial_manager@nps.gov\",\"FacilityID\":\"253731\",\"FacilityLatitude\":20.7097222,\"FacilityLongitude\":-156.1644444,\"FacilityMapURL\":\"\",\"FacilityName\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"FacilityPhone\":\"808-572-4443\",\"FacilityReservationURL\":\"\",\"FacilityTypeDescription\":\"Ticket
+                  Facility\",\"FacilityUseFeeDescription\":\"\",\"GEOJSON\":{\"COORDINATES\":[-156.1644444,20.7097222],\"TYPE\":\"Point\"},\"Keywords\":\"\",\"LINK\":[{\"Description\":\"Hawaii
+                  State Road Conditions\",\"EntityID\":\"253731\",\"EntityLinkID\":\"139db9235a852882ea9e42af3424c7bb\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Hawaii
+                  State Road Conditions\",\"URL\":\"http://hawaii.gov/dot\"},{\"Description\":\"Hawaii
+                  State Tourism\",\"EntityID\":\"253731\",\"EntityLinkID\":\"c6466a5120a6524a5c5886c54d9cfdf3\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Hawaii
+                  State Tourism\",\"URL\":\"http://gohawaii.com\"}],\"LastUpdatedDate\":\"2021-09-23\",\"LegacyFacilityID\":\"147940\",\"MEDIA\":[{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"7364bf62-8854-4c7e-8ea5-cfd067b28052\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/2019/09/03/19/24/253731_c6e7d46b-4423-4d4c-b91b-91192356d540.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582843\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77248.jpg\",\"Width\":540},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582840\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77245.jpg\",\"Width\":540},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582841\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77246.jpg\",\"Width\":540},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"e6313f90-59ee-4b9a-aab9-be9596947ff5\",\"EntityType\":\"Facility\",\"Height\":525,\"IsGallery\":false,\"IsPreview\":true,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park\",\"URL\":\"https://cdn.recreation.gov/public/2018/10/31/23/39/253731_63ebcd8a-ad11-465e-afdb-ab495866c2c2_700.jpg\",\"Width\":700},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582842\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77247.jpg\",\"Width\":540},{\"Credits\":\"Share
+                  the Experience, Joseph James\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2e8d828d-5a09-440b-9f14-82d28c8824fc\",\"EntityType\":\"Facility\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park\",\"URL\":\"https://cdn.recreation.gov/public/2018/09/22/16/19/253731_7e898aaa-6bab-45cc-b337-553064eab71d_1440.jpg\",\"Width\":1440},{\"Credits\":\"Haleakala
+                  National Park\",\"Description\":\"Haleakala National Park\",\"EmbedCode\":\"\",\"EntityID\":\"253731\",\"EntityMediaID\":\"2582839\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Haleakala
+                  National Park Summit Sunrise Reservations\",\"URL\":\"https://cdn.recreation.gov/public/images/77244.jpg\",\"Width\":540}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"NPS\",\"OrgID\":\"128\",\"OrgImageURL\":\"nps.gif\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"National
+                  Park Service\",\"OrgParentID\":\"139\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.nps.gov\",\"OrgURLText\":\"\"}],\"OrgFacilityID\":\"AN447940\",\"PERMITENTRANCE\":[],\"ParentOrgID\":\"128\",\"ParentRecAreaID\":\"2751\",\"RECAREA\":[{\"RecAreaID\":\"2751\",\"RecAreaName\":\"Haleakal\u0101
+                  National Park\",\"ResourceLink\":\"http://localhost:3000/api/v1/recareas/2751\"}],\"Reservable\":true,\"StayLimit\":\"\",\"TOUR\":[]}\n"
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Length:
+                  - "7189"
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Sat, 22 Apr 2023 15:19:38 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 270fdef5b99b63ae592608f44e3043b6.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - 8t22hd2k19gsnUdE0LeSH6E4Tmc1L_6vUpAOBbTop5-ulVrzoRt8WQ==
+              X-Amz-Cf-Pop:
+                  - DEN52-P3
+              X-Cache:
+                  - Miss from cloudfront
+          status:
+              code: 200
+              message: OK
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate, br
+              Accept-Language:
+                  - en-US,en;q=0.9,la;q=0.8
+              Cache-Control:
+                  - max-age=0
+              Connection:
+                  - keep-alive
+              Referer:
+                  - https://www.recreation.gov/
+              Upgrade-Insecure-Requests:
+                  - "1"
+              User-Agent:
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/530.0 (KHTML,
+                    like Gecko) Chrome/2.0.160.0 Safari/530.0
+          method: GET
+          uri: https://www.recreation.gov/api/search?fq=asset_id%3A253731&fq=entity_type%3Atour&size=1000&start=0
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA+xV247bNhD9lYFeugvYsi62ZfutaB4CpJcgWSBok0IYU5TELiUKJOXtJsi/51CS
+                  4wTpJ9QQYGlmNHPOmeHoU2SlG7V30en9p4ibxsqGvSyF1LoU5iItNzI6pfHhuM8PxWGbH4vtfpsd
+                  VxHPztKyV30TnbbxbrtLj2m+igR3g1NI458HWZq6HB2SvI96jv5eRZV0wqrBK9NHp+iPs5P2Iunt
+                  2FvlJNXWdPSSteRH1gxz1ylPyhHTYIZRsyUWXl2UfybuTN/QRaGWsY68od94VDG9ZvsITMSefCv/
+                  M5tWuJFVTA8tniACQHCARLJ3I57xJl5/NiM9Ka2pBd0AYcnsBhYy5De9JFNPZWozWnILjYuSTyFQ
+                  GzGldVcwboIQR9BBWSkmH2R4aOUV3QvlvFXCh7w36L9PaVhP5EhwT2cJ3CxaWc2iveJ21KNCaaY3
+                  ZvSS8iJokhfL34HufkG3pIWbq/uYXljoCJBedTKE3PDRXZqskiShWkpPUstZnPup0ulrKUiXxTtq
+                  wdyt6B0roA3G/Gr6lVtW/Wy7BgbNoTdVqC6n2hCbHyWpHhhYCDP2qPnvAHXArZV8eSZvua6VIO4r
+                  cl7KYYW+9FVAb0EGSf8M8mt2nvKEOtVDABckrBaSUxunOoMOzVO9U5WcOIeurojrIM3Azk2awC57
+                  lO0R6/w8G+hhcZPlLluleU6dxHvuPtT6KtTEcdHyJ3ezByGCslm+pMhXyW53TRET/ayf+HkayEAf
+                  cyYhwTSsoPhN90hY49w0ptaMTQusFfeNtAgH00qrWmJozwrIY/oQvZ0SvYIGjt4t/vhDhDEESZyl
+                  UlWYwmy3u1nC4YXNQ1cYG1Nq9KusAAFWiJCup+shSU7T9ReiWt/p8v8DPh/wq6TlIqFGoB+rIF+W
+                  xEVyLLIsS+ZfcIPr1b9Od/s43W/Dbw5IEdFzF5zf0p3BrBfiIWbsztKGpTsvZiyXPE2wr41t5ian
+                  2QFxIIo+X9ueF3l6M/5Q5/vls4h8Lf7mpq275Vimp2ahNFoZHFYG0UrVhc/GaDXcrfeDO202oupj
+                  bEPss+n0NOayGcazVmKTJelxk+SbrNik+SbNNkHQI4Y53R2z9S7Zi/W2SpL1+XwQa2ZRHIWsBe/3
+                  ZZEk8T9Dg8pL988aiLwd5SoKW6f8iN4Cw2tAxGrZvDS90VhreGEBD9qYFHoI7fuML5dTH8PHEDcD
+                  vo8Qt+TRG2GsnVZVdKpZO2THurA+HJKQyngG0/TzFwAAAP//AwCNMqtIawcAAA==
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Age:
+                  - "60"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Sat, 22 Apr 2023 15:18:38 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 88bce767af5e31f726ade38ea5253bd4.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - M4Y9YXteJK4VBrtCx4wJkRefqz5K84jUY4bJrDZJBKGW9m7KHVdWNQ==
+              X-Amz-Cf-Pop:
+                  - DEN52-P2
+              X-Cache:
+                  - Hit from cloudfront
+          status:
+              code: 200
+              message: OK
+version: 1

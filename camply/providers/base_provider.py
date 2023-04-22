@@ -21,6 +21,16 @@ class BaseProvider(ABC):
     Base Provider Class
     """
 
+    def __repr__(self):
+        """
+        String Representation
+
+        Returns
+        -------
+        str
+        """
+        return f"<{self.__class__.__name__}>"
+
     def __init__(self):
         """
         Initialize with a session

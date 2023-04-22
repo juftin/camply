@@ -5,7 +5,8 @@ Camply Command Line Interface
 import logging
 import sys
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple, Union
+from datetime import date, timedelta
+from typing import Any, Container, Dict, List, Optional, Sequence, Set, Tuple, Union
 
 import click
 from rich import traceback
@@ -726,7 +727,7 @@ test_notifications_kwargs["required"] = True
 @click.option("--notifications", **test_notifications_kwargs)
 @click.pass_obj
 def test_notifications(
-    context: CamplyContext, debug: bool, notifications: Sequence[str]
+    context: CamplyContext, debug: bool, notifications: Container[str]
 ) -> None:
     """
     Test your notification provider setup
@@ -740,6 +741,53 @@ def test_notifications(
     for sub_provider in provider.providers:
         logger.info('\t"%s"', sub_provider)
     provider.send_campsites(campsites=[example_campsite])
+
+
+@camply_command_line.command(cls=RichCommand)
+@debug_option
+@campground_argument
+@rec_area_argument
+@provider_argument
+@click.pass_obj
+def list_campsites(
+    context: CamplyContext,
+    debug: bool,
+    campground: Sequence[int],
+    rec_area: Sequence[int],
+    provider: str,
+) -> None:
+    """
+    List campsite IDs for a given campground or recreation area
+    """
+    provider = _preferred_provider(context, provider)
+    if context.debug is None:
+        context.debug = debug
+        _set_up_debug(debug=context.debug)
+    if all(
+        [
+            len(rec_area) == 0,
+            len(campground) == 0,
+        ]
+    ):
+        logger.error(
+            "You must provide a `--campground` or `--rec-area` to list campsites"
+        )
+        sys.exit(1)
+    search_provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
+    if search_provider_class.list_campsites_supported is False:
+        logger.error("That provider does not support listing campsites")
+        sys.exit(1)
+    camp_search = search_provider_class(
+        search_window=SearchWindow(
+            start_date=date.today() + timedelta(days=1),
+            end_date=date.today() + timedelta(days=2),
+        ),
+        recreation_area=rec_area,
+        campgrounds=campground,
+        verbose=False,
+    )
+    logger.info("Searching for campsites to list")
+    camp_search.list_campsite_units()
 
 
 def cli():

@@ -8,7 +8,7 @@ from abc import ABC, abstractmethod
 from base64 import b64decode
 from datetime import datetime
 from json import loads
-from typing import Any, Dict, List, Optional, Tuple, Type, Union
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Type, Union
 from urllib import parse
 
 import pandas as pd
@@ -30,6 +30,7 @@ from camply.containers.api_responses import (
     TourResponse,
 )
 from camply.containers.base_container import CamplyModel
+from camply.containers.data_containers import ListedCampsite
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
 from camply.utils import api_utils
 from camply.utils.logging_utils import log_sorted_response
@@ -115,16 +116,6 @@ class RecreationDotGovBase(BaseProvider, ABC):
         Pydantic Object Representing the API Response.
         """
         pass
-
-    def __repr__(self):
-        """
-        String Representation
-
-        Returns
-        -------
-        str
-        """
-        return "<RecreationDotGov>"
 
     def find_recreation_areas(self, search_string: str = None, **kwargs) -> List[dict]:
         """
@@ -763,16 +754,62 @@ class RecreationDotGovBase(BaseProvider, ABC):
             )
         return facilities
 
-    def get_internal_campsite_metadata(self, facility_ids: List[int]) -> pd.DataFrame:
+    def get_internal_campsites(
+        self, facility_ids: List[int]
+    ) -> List[RecDotGovCampsite]:
         """
-        Retrieve Metadata About all of the underlying Campsites to Search
+        Retrieve all of the underlying Campsites to Search
         """
         all_campsites: List[RecDotGovCampsite] = []
         for facility_id in facility_ids:
             all_campsites += self.paginate_recdotgov_campsites(facility_id=facility_id)
+        return all_campsites
+
+    def get_internal_campsite_metadata(self, facility_ids: List[int]) -> pd.DataFrame:
+        """
+        Retrieve Metadata About all of the underlying Campsites to Search
+        """
+        all_campsites: List[RecDotGovCampsite] = self.get_internal_campsites(
+            facility_ids=facility_ids
+        )
         all_campsite_df = pd.DataFrame(
             [item.dict() for item in all_campsites],
             columns=self.api_search_result_class.__fields__,
         )
         all_campsite_df.set_index(self.api_search_result_key, inplace=True)
         return all_campsite_df
+
+    def list_campsite_units(
+        self,
+        recreation_area_ids: Optional[Sequence[int]] = None,
+        campground_ids: Optional[Sequence[int]] = None,
+    ) -> List[ListedCampsite]:
+        """
+        List Campsite Units
+
+        Parameters
+        ----------
+        recreation_area_ids: Optional[List[int]]
+        campground_ids: Optional[List[int]]
+
+        Returns
+        -------
+        List[ListedCampsite]
+        """
+        super().list_campsite_units(
+            recreation_area_ids=recreation_area_ids, campground_ids=campground_ids
+        )
+
+    @abstractmethod
+    def paginate_recdotgov_campsites(self, facility_id) -> List[RecDotGovCampsite]:
+        """
+        Paginate Campsites
+
+        Parameters
+        ----------
+        facility_id
+
+        Returns
+        -------
+        List[RecDotGovCampsite]
+        """

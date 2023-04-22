@@ -4,7 +4,7 @@ Yellowstone Lodging Web Searching Utilities
 
 import logging
 from datetime import datetime, timedelta
-from typing import List, Optional, Set, Union
+from typing import Any, List, Optional, Set, Union
 
 import pandas as pd
 
@@ -26,6 +26,7 @@ class SearchYellowstone(BaseCampingSearch):
 
     recreation_area = YellowstoneLodging.recreation_area
     provider_class = YellowstoneLodging
+    list_campsites_supported: bool = False
 
     # noinspection PyUnusedLocal
     def __init__(
@@ -163,3 +164,13 @@ class SearchYellowstone(BaseCampingSearch):
         """
         log_sorted_response([cls.recreation_area])
         return [cls.recreation_area]
+
+    def list_campsite_units(self) -> Any:
+        """
+        List Campsite Units
+
+        Returns
+        -------
+        Any
+        """
+        raise NotImplementedError
