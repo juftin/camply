@@ -40,9 +40,10 @@ tool accepts one of six sub-arguments: `campsites`, `recreation-areas`, `campgro
 │  campsites               Find Available Campsites with Custom Search Criteria               │
 │  configure               Set up camply configuration file with an interactive console       │
 │  equipment-types         Get a list of supported equipment                                  │
+│  list-campsites          List campsite IDs for a given campground or recreation area        │
 │  providers               List the different camply providers                                │
 │  recreation-areas        Search for Recreation Areas and list them                          │
-│  test-notifications      Test your notification provider setup                              │                                                                                        │
+│  test-notifications      Test your notification provider setup                              │
 │                                                                                             │
 ╰─────────────────────────────────────────────────────────────────────────────────────────────╯
 ```

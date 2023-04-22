@@ -24,19 +24,21 @@ jobs:
               uses: actions/setup-python@v4
               with:
                   python-version: "3.10"
-            - name: Install Dependencies
+            - name: Install Hatch
               run: |
-                  pip install --upgrade pip
-                  pip install packaging poetry
+                  python -m pip install --upgrade pip
+                  python -m pip install -q hatch
+                  hatch env create
+                  hatch --version
             - name: Declare Version Variable
               run: |
-                  PROJECT_VERSION=$(poetry version --short)
-                  PROJECT_NAME=$(poetry version | awk '{ print $1 }')
-                  echo PROJECT_VERSION=${PROJECT_VERSION} >> $GITHUB_ENV
-                  echo PROJECT_NAME=${PROJECT_NAME} >> $GITHUB_ENV
+                  PACKAGE_VERSION=$(hatch version)
+                  PACKAGE_NAME=$(hatch project metadata | jq -r .name)
+                  echo PACKAGE_VERSION=${PACKAGE_VERSION} >> $GITHUB_ENV
+                  echo PACKAGE_NAME=${PACKAGE_NAME} >> $GITHUB_ENV
             - name: Docker Image Building and Publishing
               id: docker_build
               uses: docker/build-push-action@v3
               with:
                   push: false
-                  tags: juftin/${{ env.PROJECT_NAME }}:latest
+                  tags: juftin/${{ env.PACKAGE_NAME }}:latest

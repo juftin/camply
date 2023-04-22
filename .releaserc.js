@@ -33,20 +33,7 @@ module.exports = {
         [
             "@semantic-release/exec",
             {
-                prepareCmd: "poetry version ${nextRelease.version} && poetry build",
-            },
-        ],
-        [
-            "@google/semantic-release-replace-plugin",
-            {
-                replacements: [
-                    {
-                        files: ["*/_version.py"],
-                        ignore: ["tests/*"],
-                        from: '__version__ = ".*"',
-                        to: '__version__ = "${nextRelease.version}"',
-                    },
-                ],
+                prepareCmd: "hatch version ${nextRelease.version} && hatch build",
             },
         ],
         [

@@ -4,7 +4,6 @@
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/github": "^8.0.7",
         "semantic-release": "^21.0.1",
-        "semantic-release-gitmoji": "^1.6.4",
-        "@google/semantic-release-replace-plugin": "^1.2.0"
+        "semantic-release-gitmoji": "^1.6.4"
     }
 }

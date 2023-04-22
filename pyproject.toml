@@ -1,9 +1,9 @@
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.0.0"]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
 
-[tool.poetry]
-authors = ["Justin Flannery <juftin@juftin.com>"]
+[project]
+authors = [{name = "Justin Flannery", email = "justin.flannery@juftin.com"}]
 classifiers = [
   "License :: OSI Approved :: MIT License",
   "Development Status :: 5 - Production/Stable",
@@ -14,61 +14,132 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11"
 ]
+dependencies = [
+  "click~=8.1.3",
+  "fake-useragent~=1.1.3",
+  "pandas~=1.5.3",
+  "pydantic~=1.10.7",
+  "python-dotenv~=1.0.0",
+  "pytz~=2023.2",
+  "pyyaml~=6.0",
+  "ratelimit~=2.2.1",
+  "requests~=2.28.2",
+  "rich~=13.3.2",
+  "rich-click~=1.6.1",
+  "tenacity~=8.2.2"
+]
 description = "camply, the campsite finder 🏕"
-documentation = "https://juftin.github.io/camply"
-homepage = "https://github.com/juftin/camply"
+dynamic = ["version"]
 keywords = ["recdotgov", "outdoors", "camping", "reservations", "national-parks"]
 license = "MIT"
 name = "camply"
 readme = "README.md"
-repository = "https://github.com/juftin/camply"
-version = "0.17.0"
+requires-python = ">=3.8,<4"
 
-[tool.poetry.dependencies]
-click = "^8.1.3"
-fake-useragent = "^1.1.3"
-pandas = "^1.5.3"
-pydantic = "^1.10.7"
-python = ">=3.8.1,<4.0"
-python-dotenv = "^1.0.0"
-pytz = "^2023.2"
-pyyaml = "^6.0"
-ratelimit = "^2.2.1"
-requests = "^2.28.2"
-rich = "^13.3.2"
-rich-click = "^1.6.1"
-tenacity = "^8.2.2"
-twilio = {version = "^7.17.0", optional = true}
+[project.optional-dependencies]
+all = [
+  "twilio~=7.17.0"
+]
+twilio = [
+  "twilio~=7.17.0"
+]
 
-[tool.poetry.extras]
-all = ["twilio"]
-twilio = ["twilio"]
-
-[tool.poetry.group.dev.dependencies]
-coverage = {extras = ["toml"], version = "^7.2.2"}
-flake8 = "^6.0.0"
-mkdocs = "^1.4.2"
-mkdocs-click = "^0.8.0"
-mkdocs-gen-files = "^0.4.0"
-mkdocs-literate-nav = "^0.6.0"
-mkdocs-material = "^9.1.4"
-mkdocstrings = {extras = ["python"], version = "^0.20.0"}
-mypy = "^1.1.1"
-pytest = "^7.2.2"
-pytest-cov = "^4.0.0"
-pytest-vcr = "^1.0.2"
-pytest-xdist = "^3.2.1"
-ruff = "^0.0.259"
-tox = "^4.4.7"
-
-[tool.poetry.scripts]
+[project.scripts]
 camply = "camply.cli:cli"
 
-[tool.poetry.urls]
-"Bug Tracker" = "https://github.com/juftin/camply/issues"
+[project.urls]
 Changelog = "https://github.com/juftin/camply/releases"
 Discussions = "https://github.com/juftin/camply/discussions"
 Docker = "https://hub.docker.com/r/juftin/camply"
+Documentation = "https://github.com/juftin/camply#readme"
+Issues = "https://github.com/juftin/camply/issues"
+Source = "https://github.com/juftin/camply"
+
+[tool.coverage.report]
+exclude_lines = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+
+[tool.coverage.run]
+branch = true
+omit = ["camply/_version.py"]
+parallel = true
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pytest~=7.3.1",
+  "pytest-cov~=4.0.0",
+  "pytest-mock~=3.10.0",
+  "pytest-vcr~=1.0.2",
+  "pytest-xdist~=3.2.1",
+  "mkdocs~=1.4.2",
+  "mkdocs-material~=9.1.6",
+  "mkdocs-click~=0.8.0",
+  "mkdocs-gen-files~=0.4.0",
+  "mkdocs-literate-nav~=0.6.0",
+  "mkdocs-section-index~=0.3.5",
+  "mkdocstrings[python]~=0.21.2",
+  "black~=23.3.0",
+  "ruff~=0.0.261",
+  "mypy~=1.2.0",
+  "pandas-stubs~=2.0.0.230412",
+  "pip-tools~=6.13.0"
+]
+pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
+
+[tool.hatch.envs.default.env-vars]
+PUSHOVER_PUSH_TOKEN = "{env:PUSHOVER_PUSH_TOKEN:placeholder}"
+PUSHOVER_PUSH_USER = "{env:PUSHOVER_PUSH_USER:placeholder}"
+
+[tool.hatch.envs.default.scripts]
+_pip_compile = "pip-compile --resolver=backtracking --generate-hashes --all-extras {args:}"
+_sed_requirements = "sed -i.bak 's/-r requirements.in/camply (pyproject.toml)/' {args}"
+all = ["format", "lint", "test"]
+check = [
+  "mypy --install-types --strict-optional --non-interactive {args:camply/ tests/}"
+]
+docs-build = "python -m mkdocs build --clean --strict"
+docs-deploy = "python -m mkdocs gh-deploy {args:}"
+docs-serve = "python -m mkdocs serve --dev-addr localhost:8000"
+format = ["ruff --fix {args:.}", "black {args:.}"]
+lint = ["ruff {args:.}", "black --check {args:.}"]
+requirements = [
+  "hatch dep show requirements --project-only --all > requirements.in",
+  "_pip_compile --output-file requirements/requirements-prod.txt{args:}",
+  "_sed_requirements requirements/requirements-prod.txt",
+  "hatch dep show requirements --all > requirements.in",
+  "_pip_compile --output-file requirements/requirements-dev.txt{args:}",
+  "_sed_requirements requirements/requirements-dev.txt",
+  "rm requirements.in"
+]
+semantic-release = [
+  "npm install --prefix .github/semantic_release/",
+  "npx --prefix .github/semantic_release/ semantic-release {args:}"
+]
+test = "pytest -n auto --cov=camply --cov-report={env:COVERAGE_REPORT:term-missing} --cov-config=pyproject.toml {args:tests/ -v}"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.8", "3.9", "3.10", "3.11"]
+
+[tool.hatch.envs.test.scripts]
+matrix = "test"
+
+[tool.hatch.version]
+path = "camply/_version.py"
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_untyped_defs = true
+follow_imports = "silent"
+no_implicit_reexport = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+filterwarnings = [
+  "error",
+  "ignore::DeprecationWarning:pkg_resources",
+  "ignore:The --rsyncdir command line argument and rsyncdirs config variable are deprecated.:DeprecationWarning"
+]
 
 [tool.ruff]
 ignore = [
@@ -88,6 +159,10 @@ select = [
   "PLR",  # pylint
   "PLW",  # pylint
   "RUF",  # ruff
-  "C90",  # mccabe
-  "I"  # isort
+  "C90"  # mccabe
+]
+
+[tool.ruff.per-file-ignores]
+"tests/**" = [
+  "PLR2004"  # Magic value used in comparison
 ]

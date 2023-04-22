@@ -39,7 +39,7 @@ nav:
     - Command Line Interface ⌨️: cli.md
     - API Documentation 🤖: reference/
     - Dependencies ♻️: dependencies.md
-    - Contributing 👥: contributing.md
+    - Contributing 🤝: contributing.md
     - GitHub 🛠: https://github.com/juftin/camply
     - Changelog 📝: https://github.com/juftin/camply/releases
 extra:
