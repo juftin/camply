@@ -3,11 +3,12 @@ Default Notifier: Silent + Extras
 """
 
 import logging
-from typing import List, Union
+from typing import Dict, List, Type, Union
 
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications, NotificationError
 from camply.notifications.email_notifications import EmailNotifications
+from camply.notifications.ntfy import NtfyNotifications
 from camply.notifications.pushbullet import PushbulletNotifications
 from camply.notifications.pushover import PushoverNotifications
 from camply.notifications.silent_notifications import SilentNotifications
@@ -17,14 +18,15 @@ from camply.notifications.twilio import TwilioNotifications
 
 logger = logging.getLogger(__name__)
 
-CAMPSITE_NOTIFICATIONS: dict = {
+CAMPSITE_NOTIFICATIONS: Dict[str, Type[BaseNotifications]] = {
     "pushover": PushoverNotifications,
     "email": EmailNotifications,
-    "silent": SilentNotifications,
+    "ntfy": NtfyNotifications,
     "pushbullet": PushbulletNotifications,
     "slack": SlackNotifications,
     "telegram": TelegramNotifications,
     "twilio": TwilioNotifications,
+    "silent": SilentNotifications,
 }
 
 

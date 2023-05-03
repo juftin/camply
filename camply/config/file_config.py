@@ -68,6 +68,10 @@ class FileConfig:
             "default": "",
             "notes": "Pushover Notifications From Your Custom App " "(not required)",
         },
+        NTFY_TOPIC={
+            "default": "",
+            "notes": "NTFY Notification Topic",
+        },
         RIDB_API_KEY={
             "default": "",
             "notes": "Personal Recreation.gov API Key (not required)",

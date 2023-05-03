@@ -97,8 +97,8 @@ Search for a campsite within camply. Campsites are returned based on the search 
 Campsites contain properties like booking date, site type (tent, RV, cabin, etc), capacity, price,
 and a link to make the booking. Required parameters include `--start-date`, `--end-date`,
 `--rec-area` / `--campground` / `--campsite`. Constant searching functionality can be enabled with
-`--continuous` and notifications via Email, Pushover, Pushbullet, Twilio, Slack, and Telegram can
-be enabled using `--notifications`.
+`--continuous` and notifications can be enabled using `--notifications` (see the
+[Send a Push Notification](#send-a-push-notification) section for more information).
 
 ### Arguments
 
@@ -145,8 +145,8 @@ be enabled using `--notifications`.
         [\*\*_example_](#continue-looking-after-the-first-match-is-found)
 -   `--notifications`: `NOTIFICATIONS`
     -   Enables continuous searching. Types of notifications to receive. Options available
-        are`email`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
-        messages to console.
+        are `pushover`, `email`, `ntfy`, `pushbullet`, `slack`, `telegram`, `twilio`, `silent`.
+        Defaults to `silent` - which just logs messages to console.
         [\*\*_example_](#send-a-push-notification)
 -   `--equipment`
     -   Search for campsites compatible with your camping equipment. This argument accepts two
@@ -433,12 +433,14 @@ camply campsites \
 
 camply supports notifications via a number of services:
 
--   `Email`
--   `Pushover`
--   `Pushbullet`
--   `Telegram`
--   `Slack`
--   `Twilio` (SMS)
+-   [Pushover](https://pushover.net)
+-   Email
+-   [Ntfy](https://ntfy.sh)
+-   [Pushbullet](https://www.pushbullet.com/#settings/account)
+-   [Slack](https://slack.com)
+-   [Telegram](https://core.telegram.org/bots)
+-   [Twilio (SMS)](https://www.twilio.com)
+-   Silent
 
 ```commandline
 camply campsites \
@@ -464,7 +466,7 @@ per notification provider.
 
     I personally use [Pushover](https://pushover.net) notifications - it's built for push notifications, easy to set up,
     and includes a 30-day trial and a one-time fee of $5 after that to unlock lifetime programmatic push notifications.
-    There are other notification providers like `Slack` and `Email` that are free to use if that's more your style.
+    There are other notification providers like `Ntfy`, `Slack` and `Email` that are free to use if that's more your style.
 
 ### Send a Text Message
 

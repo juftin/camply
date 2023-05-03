@@ -126,6 +126,8 @@ available.
     -   `EMAIL_SUBJECT_LINE` (defaults to "camply Notification")
     -   `EMAIL_SMTP_SERVER` (defaults to "smtp.gmail.com")
     -   `EMAIL_SMTP_PORT` (defaults to 465)
+-   Ntfy Notifications
+    -   `NTFY_TOPIC`
 -   Pushbullet Notifications
     -   `PUSHBULLET_API_TOKEN`
 -   Twilio Notifications
