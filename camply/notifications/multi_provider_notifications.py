@@ -8,6 +8,7 @@ from typing import List, Union
 from camply.containers import AvailableCampsite
 from camply.notifications.base_notifications import BaseNotifications, NotificationError
 from camply.notifications.email_notifications import EmailNotifications
+from camply.notifications.ntfy import NtfyNotifications
 from camply.notifications.pushbullet import PushbulletNotifications
 from camply.notifications.pushover import PushoverNotifications
 from camply.notifications.silent_notifications import SilentNotifications
@@ -25,6 +26,7 @@ CAMPSITE_NOTIFICATIONS: dict = {
     "slack": SlackNotifications,
     "telegram": TelegramNotifications,
     "twilio": TwilioNotifications,
+    "ntfy": NtfyNotifications,
 }
 
 

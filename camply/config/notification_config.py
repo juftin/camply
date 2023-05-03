@@ -57,6 +57,15 @@ class EmailConfig:
     ]
 
 
+class NtfyConfig:
+    """
+    Ntfy Notification Config Class
+    """
+
+    NTFY_API_ENDPOINT: str = "https://ntfy.sh/"
+    NTFY_TOPIC = getenv("NTFY_TOPIC", None)
+
+
 class PushbulletConfig:
     """
     Pushbullet Notification Config Class

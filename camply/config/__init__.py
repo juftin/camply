@@ -7,6 +7,7 @@ from .data_columns import CampsiteContainerFields, DataColumns
 from .file_config import FileConfig
 from .notification_config import (
     EmailConfig,
+    NtfyConfig,
     PushbulletConfig,
     PushoverConfig,
     SlackConfig,
@@ -24,6 +25,7 @@ __all__ = [
     "DataColumns",
     "FileConfig",
     "EmailConfig",
+    "NtfyConfig",
     "PushbulletConfig",
     "PushoverConfig",
     "SlackConfig",

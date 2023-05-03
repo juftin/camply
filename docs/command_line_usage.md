@@ -145,7 +145,7 @@ be enabled using `--notifications`.
         [\*\*_example_](#continue-looking-after-the-first-match-is-found)
 -   `--notifications`: `NOTIFICATIONS`
     -   Enables continuous searching. Types of notifications to receive. Options available
-        are`email`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
+        are`email`, `ntfy`, `pushover`, `pushbullet`, `telegram`, or `silent`. Defaults to `silent` - which just logs
         messages to console.
         [\*\*_example_](#send-a-push-notification)
 -   `--equipment`
