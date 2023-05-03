@@ -17,7 +17,7 @@ from camply.config import EquipmentOptions, SearchConfig, logging_config
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
 from camply.containers.examples import example_campsite
-from camply.notifications import MultiNotifierProvider
+from camply.notifications import CAMPSITE_NOTIFICATIONS, MultiNotifierProvider
 from camply.providers import (
     GOING_TO_CAMP,
     RECREATION_DOT_GOV,
@@ -361,13 +361,20 @@ polling_interval_argument = click.option(
     help="Enables continuous searching. How often to wait in between "
     "checks (in minutes). Defaults to 10, cannot be less than 5.",
 )
+
+
+_joined_notifications = [f"`{item}`" for item in CAMPSITE_NOTIFICATIONS.keys()]
 notification_kwargs = {
     "multiple": True,
     "show_default": True,
+    "metavar": "TEXT",
+    "type": click.Choice(
+        choices=list(CAMPSITE_NOTIFICATIONS.keys()), case_sensitive=False
+    ),
     "default": [],
     "help": "Enables continuous searching. Types of notifications to receive. "
-    "Options available are 'email', 'pushover', "
-    "'pushbullet', 'telegram', 'twilio', or 'silent'. Defaults to 'silent' - "
+    f"Options available are {', '.join(_joined_notifications)}. "
+    "Defaults to `silent` - "
     "which just logs messages to console.",
 }
 notifications_argument = click.option("--notifications", **notification_kwargs)
