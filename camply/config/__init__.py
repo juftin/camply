@@ -6,6 +6,7 @@ from .api_config import STANDARD_HEADERS, RecreationBookingConfig, RIDBConfig
 from .data_columns import CampsiteContainerFields, DataColumns
 from .file_config import FileConfig
 from .notification_config import (
+    AppriseConfig,
     EmailConfig,
     NtfyConfig,
     PushbulletConfig,
@@ -24,6 +25,7 @@ __all__ = [
     "CampsiteContainerFields",
     "DataColumns",
     "FileConfig",
+    "AppriseConfig",
     "EmailConfig",
     "NtfyConfig",
     "PushbulletConfig",

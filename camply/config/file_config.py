@@ -72,6 +72,7 @@ class FileConfig:
             "default": "",
             "notes": "NTFY Notification Topic",
         },
+        APPRISE_URL={"default": "", "notes": "Apprise notification URL"},
         RIDB_API_KEY={
             "default": "",
             "notes": "Personal Recreation.gov API Key (not required)",
