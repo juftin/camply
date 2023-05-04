@@ -27,6 +27,14 @@ class PushoverConfig:
     PUSH_USER: str = getenv("PUSHOVER_PUSH_USER", None)
 
 
+class AppriseConfig:
+    """
+    Apprise Notification Config Class
+    """
+
+    APPRISE_URL: str = getenv("APPRISE_URL", None)
+
+
 class EmailConfig:
     """
     Email Notification Config Class

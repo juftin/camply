@@ -6,6 +6,7 @@ import logging
 from typing import Dict, List, Type, Union
 
 from camply.containers import AvailableCampsite
+from camply.notifications.apprise import AppriseNotifications
 from camply.notifications.base_notifications import BaseNotifications, NotificationError
 from camply.notifications.email_notifications import EmailNotifications
 from camply.notifications.ntfy import NtfyNotifications
@@ -22,6 +23,7 @@ CAMPSITE_NOTIFICATIONS: Dict[str, Type[BaseNotifications]] = {
     "pushover": PushoverNotifications,
     "email": EmailNotifications,
     "ntfy": NtfyNotifications,
+    "apprise": AppriseNotifications,
     "pushbullet": PushbulletNotifications,
     "slack": SlackNotifications,
     "telegram": TelegramNotifications,

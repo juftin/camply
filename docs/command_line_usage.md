@@ -145,7 +145,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
         [\*\*_example_](#continue-looking-after-the-first-match-is-found)
 -   `--notifications`: `NOTIFICATIONS`
     -   Enables continuous searching. Types of notifications to receive. Options available
-        are `pushover`, `email`, `ntfy`, `pushbullet`, `slack`, `telegram`, `twilio`, `silent`.
+        are `pushover`, `email`, `ntfy`, `apprise`, `pushbullet`, `slack`, `telegram`, `twilio`, `silent`.
         Defaults to `silent` - which just logs messages to console.
         [\*\*_example_](#send-a-push-notification)
 -   `--equipment`
@@ -436,6 +436,7 @@ camply supports notifications via a number of services:
 -   [Pushover](https://pushover.net)
 -   Email
 -   [Ntfy](https://ntfy.sh)
+-   [Apprise](https://github.com/caronc/apprise)
 -   [Pushbullet](https://www.pushbullet.com/#settings/account)
 -   [Slack](https://slack.com)
 -   [Telegram](https://core.telegram.org/bots)
@@ -502,6 +503,19 @@ camply campsites \
     --end-date 2023-09-21 \
     --notifications email \
     --notifications pushover
+```
+
+### Send a Notification Using Apprise-Compatible Services
+
+In addition to the built-in notification providers, you can also send notifications using one of the
+many popular services supported by [Apprise](https://github.com/caronc/apprise). You'll need
+to set up a supported notification URL using the `APPRISE_URL` config value; Refer to the Apprise
+documentation to learn how to format a URL to fit your needs.
+
+Using Apprise notifications requires the `apprise` extras:
+
+```
+pip install camply[apprise]
 ```
 
 ### Searching for Specific Weekdays
