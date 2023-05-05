@@ -42,10 +42,9 @@ jobs:
               run: |
                   python -m pip install --upgrade pip
                   python -m pip install -q hatch
-                  hatch env create
                   hatch --version
             - name: Test Suite
               run: |
                   echo "::add-matcher::.github/matchers/python.json"
-                  hatch run test
+                  hatch run +py="${{ matrix.python }}" test:matrix
                   echo "::remove-matcher owner=python::"
