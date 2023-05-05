@@ -74,6 +74,7 @@ dependencies = [
   "pytest-mock~=3.10.0",
   "pytest-vcr~=1.0.2",
   "pytest-xdist~=3.2.1",
+  "freezegun~=1.2.1",
   "mkdocs~=1.4.2",
   "mkdocs-material~=9.1.6",
   "mkdocs-click~=0.8.0",
@@ -87,7 +88,9 @@ dependencies = [
   "pandas-stubs~=2.0.0.230412",
   "pip-tools~=6.13.0"
 ]
+features = ["all"]
 pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
+python = "3.9"
 
 [tool.hatch.envs.default.env-vars]
 PUSHOVER_PUSH_TOKEN = "{env:PUSHOVER_PUSH_TOKEN:placeholder}"
