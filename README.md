@@ -89,36 +89,35 @@ Head over to the [camply documentation](https://juftin.com/camply/) to see what 
  Usage: camply [OPTIONS] COMMAND [ARGS]...
 
  Welcome to camply, the campsite finder.
- Finding reservations at sold out campgrounds can be tough. That's where camply comes in.
- It searches the APIs of booking services like https://recreation.gov (which indexes
- thousands of campgrounds across the USA) to continuously check for cancellations and
- availabilities to pop up. Once a campsite becomes available, camply sends you a
- notification to book your spot!
+ Finding reservations at sold out campgrounds can be tough. That's where camply comes in. It searches the
+ APIs of booking services like https://recreation.gov (which indexes thousands of campgrounds across the
+ USA) to continuously check for cancellations and availabilities to pop up. Once a campsite becomes
+ available, camply sends you a notification to book your spot!
 
 
  visit the camply documentation at https://juftin.com/camply
 
-╭─ Options ───────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                             │
-│  --version                      Show the version and exit.                                  │
-│  --debug/--no-debug             Enable extra debugging output                               │
-│  --provider              TEXT   Camping Search Provider. Defaults to                        │
-│                                 'RecreationDotGov'                                          │
-│  --help                         Show this message and exit.                                 │
-│                                                                                             │
-╰─────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ──────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                             │
-│  campgrounds             Search for Campgrounds (inside of Recreation Areas) and list them  │
-│  campsites               Find Available Campsites with Custom Search Criteria               │
-│  configure               Set up camply configuration file with an interactive console       │
-│  equipment-types         Get a list of supported equipment                                  │
-│  list-campsites          List campsite IDs for a given campground or recreation area        │
-│  providers               List the different camply providers                                │
-│  recreation-areas        Search for Recreation Areas and list them                          │
-│  test-notifications      Test your notification provider setup                              │
-│                                                                                             │
-╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                        │
+│  --debug/--no-debug             Enable extra debugging output                                          │
+│  --provider              TEXT   Camping Search Provider. Defaults to 'RecreationDotGov'                │
+│  --version                      Show the version and exit.                                             │
+│  --help                         Show this message and exit.                                            │
+│                                                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                        │
+│  campgrounds              Search for Campgrounds (inside of Recreation Areas) and list them            │
+│  campsites                Find Available Campsites with Custom Search Criteria                         │
+│  configure                Set up camply configuration file with an interactive console                 │
+│  equipment-types          Get a list of supported equipment                                            │
+│  list-campsites           List campsite IDs for a given campground or recreation area                  │
+│  providers                List the different camply providers                                          │
+│  recreation-areas         Search for Recreation Areas and list them                                    │
+│  test-notifications       Test your notification provider setup                                        │
+│  tui                      Open Textual TUI.                                                            │
+│                                                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ## Contributing

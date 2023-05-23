@@ -49,6 +49,23 @@ rich_click.STYLE_COMMANDS_TABLE_BOX = "SIMPLE_HEAVY"
 if logging_config.LOG_HANDLER == "python":
     rich_click.COLOR_SYSTEM = None
 
+try:
+    from trogon import tui
+except ImportError:
+
+    def tui(*args, **kwargs):
+        """
+        TUI Placeholder - trogon not installed
+        """
+
+        def placeholder(app: click.Group):
+            """
+            Return the group in place
+            """
+            return app
+
+        return placeholder
+
 
 @dataclass
 class CamplyContext:
@@ -113,10 +130,11 @@ def _preferred_provider(context: CamplyContext, command_provider: Optional[str])
     return provider
 
 
+@tui()
 @click.group(cls=RichGroup)
-@click.version_option(version=__version__, prog_name=__application__)
 @debug_option
 @provider_argument
+@click.version_option(version=__version__, prog_name=__application__)
 @click.pass_context
 def camply_command_line(
     ctx: click.core.Context, debug: bool, provider: Optional[str]
@@ -362,7 +380,6 @@ polling_interval_argument = click.option(
     "checks (in minutes). Defaults to 10, cannot be less than 5.",
 )
 
-
 _joined_notifications = [f"`{item}`" for item in CAMPSITE_NOTIFICATIONS.keys()]
 notification_kwargs = {
     "multiple": True,
@@ -569,26 +586,26 @@ def _validate_campsites(
 
 
 @camply_command_line.command(cls=RichCommand)
-@yaml_config_argument
-@offline_search_path_argument
-@offline_search_argument
-@search_once_argument
-@search_forever_argument
-@notify_first_try_argument
-@notifications_argument
-@polling_interval_argument
-@continuous_argument
-@equipment_argument
-@equipment_id_argument
+@rec_area_argument
+@campground_argument
+@campsite_id_argument
+@start_date_argument
+@end_date_argument
 @nights_argument
-@provider_argument
 @weekends_argument
 @day_of_the_week_argument
-@end_date_argument
-@start_date_argument
-@campsite_id_argument
-@campground_argument
-@rec_area_argument
+@notifications_argument
+@continuous_argument
+@search_forever_argument
+@yaml_config_argument
+@offline_search_argument
+@offline_search_path_argument
+@search_once_argument
+@polling_interval_argument
+@notify_first_try_argument
+@equipment_argument
+@equipment_id_argument
+@provider_argument
 @debug_option
 @click.pass_obj
 def campsites(
@@ -730,8 +747,8 @@ test_notifications_kwargs["required"] = True
 
 
 @camply_command_line.command(cls=RichCommand)
-@debug_option
 @click.option("--notifications", **test_notifications_kwargs)
+@debug_option
 @click.pass_obj
 def test_notifications(
     context: CamplyContext, debug: bool, notifications: Container[str]
@@ -751,10 +768,10 @@ def test_notifications(
 
 
 @camply_command_line.command(cls=RichCommand)
-@debug_option
-@campground_argument
 @rec_area_argument
+@campground_argument
 @provider_argument
+@debug_option
 @click.pass_obj
 def list_campsites(
     context: CamplyContext,
