@@ -16,36 +16,35 @@ tool accepts one of six sub-arguments: `campsites`, `recreation-areas`, `campgro
  Usage: camply [OPTIONS] COMMAND [ARGS]...
 
  Welcome to camply, the campsite finder.
- Finding reservations at sold out campgrounds can be tough. That's where camply comes in.
- It searches the APIs of booking services like https://recreation.gov (which indexes
- thousands of campgrounds across the USA) to continuously check for cancellations and
- availabilities to pop up. Once a campsite becomes available, camply sends you a
- notification to book your spot!
+ Finding reservations at sold out campgrounds can be tough. That's where camply comes in. It searches the
+ APIs of booking services like https://recreation.gov (which indexes thousands of campgrounds across the
+ USA) to continuously check for cancellations and availabilities to pop up. Once a campsite becomes
+ available, camply sends you a notification to book your spot!
 
 
  visit the camply documentation at https://juftin.com/camply
 
-╭─ Options ───────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                             │
-│  --version                      Show the version and exit.                                  │
-│  --debug/--no-debug             Enable extra debugging output                               │
-│  --provider              TEXT   Camping Search Provider. Defaults to                        │
-│                                 'RecreationDotGov'                                          │
-│  --help                         Show this message and exit.                                 │
-│                                                                                             │
-╰─────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ──────────────────────────────────────────────────────────────────────────────────╮
-│                                                                                             │
-│  campgrounds             Search for Campgrounds (inside of Recreation Areas) and list them  │
-│  campsites               Find Available Campsites with Custom Search Criteria               │
-│  configure               Set up camply configuration file with an interactive console       │
-│  equipment-types         Get a list of supported equipment                                  │
-│  list-campsites          List campsite IDs for a given campground or recreation area        │
-│  providers               List the different camply providers                                │
-│  recreation-areas        Search for Recreation Areas and list them                          │
-│  test-notifications      Test your notification provider setup                              │
-│                                                                                             │
-╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                        │
+│  --debug/--no-debug             Enable extra debugging output                                          │
+│  --provider              TEXT   Camping Search Provider. Defaults to 'RecreationDotGov'                │
+│  --version                      Show the version and exit.                                             │
+│  --help                         Show this message and exit.                                            │
+│                                                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ─────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                        │
+│  campgrounds              Search for Campgrounds (inside of Recreation Areas) and list them            │
+│  campsites                Find Available Campsites with Custom Search Criteria                         │
+│  configure                Set up camply configuration file with an interactive console                 │
+│  equipment-types          Get a list of supported equipment                                            │
+│  list-campsites           List campsite IDs for a given campground or recreation area                  │
+│  providers                List the different camply providers                                          │
+│  recreation-areas         Search for Recreation Areas and list them                                    │
+│  test-notifications       Test your notification provider setup                                        │
+│  tui                      Open Textual TUI.                                                            │
+│                                                                                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ## Simple Examples
@@ -290,6 +289,25 @@ camply campsites \
 
     Some providers require that you pass a campsite ID **and** and a campground ID, while
     others only require a campsite ID.
+
+## tui
+
+Camply has an optional TUI interface thanks to [textual](https://github.com/textualize/textual) and
+[trogon](https://github.com/Textualize/trogon). A TUI is a text-based user interface that allows you to
+interact with camply in a more visual way, it's a visual application that runs in your terminal.
+The TUI config is a great way to set up your camp search with your mouse and keyboard, and then run
+camply like you normally would.
+
+!!! note
+
+    Camply's TUI command requires that the **`tui`** extra is installed. To install camply with
+    the TUI extra, run **`pipx install "camply[tui]"`**.
+
+```commandline
+camply tui
+```
+
+![camply TUI](_static/tui.png)
 
 ## Examples
 

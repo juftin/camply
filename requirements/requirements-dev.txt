@@ -133,6 +133,7 @@ click==8.1.3 \
     #   mkdocs-click
     #   pip-tools
     #   rich-click
+    #   trogon
 colorama==0.4.6 \
     --hash=sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44 \
     --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
@@ -228,6 +229,7 @@ importlib-metadata==6.6.0 \
     # via
     #   markdown
     #   mkdocs
+    #   textual
 importlib-resources==5.12.0 \
     --hash=sha256:4be82589bf5c1d7999aedf2a45159d10cb3ca4f19b2271f8792bc8e6da7b22f6 \
     --hash=sha256:7b1deeebbf351c7578e09bf2f63fa2ce8b5ffec296e0d349139d43cca061a81a
@@ -243,6 +245,10 @@ jinja2==3.1.2 \
     #   mkdocs
     #   mkdocs-material
     #   mkdocstrings
+linkify-it-py==2.0.2 \
+    --hash=sha256:19f3060727842c254c808e99d465c80c49d2c7306788140987a1a7a29b0d6ad2 \
+    --hash=sha256:a3a24428f6c96f27370d7fe61d2ac0be09017be5190d68d8658233171f1b6541
+    # via markdown-it-py
 markdown==3.3.7 \
     --hash=sha256:cbb516f16218e643d8e0a95b309f77eb118cb138d39a4f27851e6a63581db874 \
     --hash=sha256:f5da449a6e1c989a4cea2631aa8ee67caa5a2ef855d551c88f9e309f4634c621
@@ -254,10 +260,13 @@ markdown==3.3.7 \
     #   mkdocs-material
     #   mkdocstrings
     #   pymdown-extensions
-markdown-it-py==2.2.0 \
+markdown-it-py[linkify,plugins]==2.2.0 \
     --hash=sha256:5a35f8d1870171d9acc47b99612dc146129b631baf04970128b568f190d0cc30 \
     --hash=sha256:7c9a5e412688bc771c67432cbfebcdd686c93ce6484913dccf06cb5a0bea35a1
-    # via rich
+    # via
+    #   mdit-py-plugins
+    #   rich
+    #   textual
 markupsafe==2.1.2 \
     --hash=sha256:0576fe974b40a400449768941d5d0858cc624e3249dfd1e0c33674e5c7ca7aed \
     --hash=sha256:085fd3201e7b12809f9e6e9bc1e5c96a368c8523fad5afb02afe3c051ae4afcc \
@@ -312,6 +321,10 @@ markupsafe==2.1.2 \
     # via
     #   jinja2
     #   mkdocstrings
+mdit-py-plugins==0.3.5 \
+    --hash=sha256:ca9a0714ea59a24b2b044a1831f48d817dd0c817e84339f20e7889f392d77c4e \
+    --hash=sha256:eee0adc7195e5827e17e02d2a258a2ba159944a0748f59c5099a4a27f78fcf6a
+    # via markdown-it-py
 mdurl==0.1.2 \
     --hash=sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8 \
     --hash=sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba
@@ -807,6 +820,7 @@ rich==13.3.4 \
     # via
     #   camply (pyproject.toml)
     #   rich-click
+    #   textual
 rich-click==1.6.1 \
     --hash=sha256:0fcf4d1a09029d79322dd814ab0b2e66ac183633037561881d45abae8a161d95 \
     --hash=sha256:f8ff96693ec6e261d1544e9f7d9a5811c5ef5d74c8adb4978430fc0dac16777e
@@ -840,6 +854,10 @@ tenacity==8.2.2 \
     --hash=sha256:2f277afb21b851637e8f52e6a613ff08734c347dc19ade928e519d7d2d8569b0 \
     --hash=sha256:43af037822bd0029025877f3b2d97cc4d7bb0c2991000a3d59d71517c5c969e0
     # via camply (pyproject.toml)
+textual==0.26.0 \
+    --hash=sha256:1efd04e9f61b3e95fd1c65436d3262f99e3f86cdeb524d13045bb551eb615c02 \
+    --hash=sha256:78094c83017d2836b726513abdf434cc034a0e68cc45e63b3b056c9b8b7fa673
+    # via trogon
 tomli==2.0.1 \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
     --hash=sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f
@@ -850,6 +868,10 @@ tomli==2.0.1 \
     #   mypy
     #   pyproject-hooks
     #   pytest
+trogon==0.2.1 \
+    --hash=sha256:874e6760e7147ecfbc4d1db45eaafc202ef455f23f46f9115ba19accc40729dd \
+    --hash=sha256:f7c91e226af3f8404d2d2e93ce0838464baea25553efafeb006391f5db458f2c
+    # via camply (pyproject.toml)
 twilio==7.17.0 \
     --hash=sha256:312e25b0a1ca782974a359d95123f270574e6e4b195b0e2095a156219ad7b7ec \
     --hash=sha256:f43de32cdc27f8853bb02ab0b8703a487beffbb9dcc8118398b6757e1376e6ed
@@ -866,6 +888,11 @@ typing-extensions==4.5.0 \
     #   mkdocstrings
     #   mypy
     #   pydantic
+    #   textual
+uc-micro-py==1.0.2 \
+    --hash=sha256:30ae2ac9c49f39ac6dce743bd187fcd2b574b16ca095fa74cd9396795c954c54 \
+    --hash=sha256:8c9110c309db9d9e87302e2f4ad2c3152770930d88ab385cd544e7a7e75f3de0
+    # via linkify-it-py
 urllib3==1.26.15 \
     --hash=sha256:8a388717b9476f934a21484e8c8e61875ab60644d29b9b39e11e4b9dc1c6b305 \
     --hash=sha256:aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42

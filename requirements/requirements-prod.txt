@@ -98,6 +98,7 @@ click==8.1.3 \
     #   camply (pyproject.toml)
     #   apprise
     #   rich-click
+    #   trogon
 fake-useragent==1.1.3 \
     --hash=sha256:1c06f0aa7d6e4894b919b30b9c7ebd72ff497325191057fbb5df3d5db06b93fc \
     --hash=sha256:695d3b1bf7d11d04ab0f971fb73b0ca8de98b78bbadfbc8bacbc9a48423f7531
@@ -109,19 +110,32 @@ idna==3.4 \
 importlib-metadata==6.6.0 \
     --hash=sha256:43dd286a2cd8995d5eaef7fee2066340423b818ed3fd70adf0bad5f1fac53fed \
     --hash=sha256:92501cdf9cc66ebd3e612f1b4f0c0765dfa42f0fa38ffb319b6bd84dd675d705
-    # via markdown
+    # via
+    #   markdown
+    #   textual
 importlib-resources==5.12.0 \
     --hash=sha256:4be82589bf5c1d7999aedf2a45159d10cb3ca4f19b2271f8792bc8e6da7b22f6 \
     --hash=sha256:7b1deeebbf351c7578e09bf2f63fa2ce8b5ffec296e0d349139d43cca061a81a
     # via fake-useragent
+linkify-it-py==2.0.2 \
+    --hash=sha256:19f3060727842c254c808e99d465c80c49d2c7306788140987a1a7a29b0d6ad2 \
+    --hash=sha256:a3a24428f6c96f27370d7fe61d2ac0be09017be5190d68d8658233171f1b6541
+    # via markdown-it-py
 markdown==3.4.3 \
     --hash=sha256:065fd4df22da73a625f14890dd77eb8040edcbd68794bcd35943be14490608b2 \
     --hash=sha256:8bf101198e004dc93e84a12a7395e31aac6a9c9942848ae1d99b9d72cf9b3520
     # via apprise
-markdown-it-py==2.2.0 \
+markdown-it-py[linkify,plugins]==2.2.0 \
     --hash=sha256:5a35f8d1870171d9acc47b99612dc146129b631baf04970128b568f190d0cc30 \
     --hash=sha256:7c9a5e412688bc771c67432cbfebcdd686c93ce6484913dccf06cb5a0bea35a1
-    # via rich
+    # via
+    #   mdit-py-plugins
+    #   rich
+    #   textual
+mdit-py-plugins==0.3.5 \
+    --hash=sha256:ca9a0714ea59a24b2b044a1831f48d817dd0c817e84339f20e7889f392d77c4e \
+    --hash=sha256:eee0adc7195e5827e17e02d2a258a2ba159944a0748f59c5099a4a27f78fcf6a
+    # via markdown-it-py
 mdurl==0.1.2 \
     --hash=sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8 \
     --hash=sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba
@@ -315,6 +329,7 @@ rich==13.3.4 \
     # via
     #   camply (pyproject.toml)
     #   rich-click
+    #   textual
 rich-click==1.6.1 \
     --hash=sha256:0fcf4d1a09029d79322dd814ab0b2e66ac183633037561881d45abae8a161d95 \
     --hash=sha256:f8ff96693ec6e261d1544e9f7d9a5811c5ef5d74c8adb4978430fc0dac16777e
@@ -327,6 +342,14 @@ tenacity==8.2.2 \
     --hash=sha256:2f277afb21b851637e8f52e6a613ff08734c347dc19ade928e519d7d2d8569b0 \
     --hash=sha256:43af037822bd0029025877f3b2d97cc4d7bb0c2991000a3d59d71517c5c969e0
     # via camply (pyproject.toml)
+textual==0.26.0 \
+    --hash=sha256:1efd04e9f61b3e95fd1c65436d3262f99e3f86cdeb524d13045bb551eb615c02 \
+    --hash=sha256:78094c83017d2836b726513abdf434cc034a0e68cc45e63b3b056c9b8b7fa673
+    # via trogon
+trogon==0.2.1 \
+    --hash=sha256:874e6760e7147ecfbc4d1db45eaafc202ef455f23f46f9115ba19accc40729dd \
+    --hash=sha256:f7c91e226af3f8404d2d2e93ce0838464baea25553efafeb006391f5db458f2c
+    # via camply (pyproject.toml)
 twilio==7.17.0 \
     --hash=sha256:312e25b0a1ca782974a359d95123f270574e6e4b195b0e2095a156219ad7b7ec \
     --hash=sha256:f43de32cdc27f8853bb02ab0b8703a487beffbb9dcc8118398b6757e1376e6ed
@@ -334,7 +357,13 @@ twilio==7.17.0 \
 typing-extensions==4.5.0 \
     --hash=sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb \
     --hash=sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4
-    # via pydantic
+    # via
+    #   pydantic
+    #   textual
+uc-micro-py==1.0.2 \
+    --hash=sha256:30ae2ac9c49f39ac6dce743bd187fcd2b574b16ca095fa74cd9396795c954c54 \
+    --hash=sha256:8c9110c309db9d9e87302e2f4ad2c3152770930d88ab385cd544e7a7e75f3de0
+    # via linkify-it-py
 urllib3==1.26.15 \
     --hash=sha256:8a388717b9476f934a21484e8c8e61875ab60644d29b9b39e11e4b9dc1c6b305 \
     --hash=sha256:aa751d169e23c7479ce47a0cb0da579e3ede798f994f5816a74e4f4500dcea42
