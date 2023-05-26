@@ -6,7 +6,18 @@ import logging
 import sys
 from dataclasses import dataclass
 from datetime import date, timedelta
-from typing import Any, Container, Dict, List, Optional, Sequence, Set, Tuple, Union
+from typing import (
+    Any,
+    Container,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    Set,
+    Tuple,
+    Type,
+    Union,
+)
 
 import click
 from rich import traceback
@@ -25,7 +36,7 @@ from camply.providers import (
     GoingToCampProvider,
     RecreationDotGov,
 )
-from camply.search import CAMPSITE_SEARCH_PROVIDER
+from camply.search import CAMPSITE_SEARCH_PROVIDER, BaseCampingSearch
 from camply.utils import configure_camply, log_camply, make_list, yaml_utils
 from camply.utils.general_utils import days_of_the_week_mapping, handle_search_windows
 from camply.utils.logging_utils import log_sorted_response
@@ -709,8 +720,8 @@ def campsites(
             "search_forever": search_forever,
             "search_once": search_once,
         }
-    provider_class = CAMPSITE_SEARCH_PROVIDER[provider]
-    camping_finder = provider_class(**provider_kwargs)
+    provider_class: Type[BaseCampingSearch] = CAMPSITE_SEARCH_PROVIDER[provider]
+    camping_finder: BaseCampingSearch = provider_class(**provider_kwargs)
     camping_finder.get_matching_campsites(**search_kwargs)
 
 
