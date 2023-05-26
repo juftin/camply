@@ -2,6 +2,7 @@
 Default Notifier: Silent + Extras
 """
 
+import datetime
 import logging
 from typing import Dict, List, Type, Union
 
@@ -105,3 +106,22 @@ class MultiNotifierProvider(BaseNotifications):
                 f"Only {self.providers[0]} enabled. "
                 "I hope you're watching these logs."
             )
+
+    def last_gasp(self, error: Exception) -> None:
+        """
+        Make a `last gasp` notification before exiting
+
+        Returns
+        -------
+        None
+        """
+        logger.info("Exception encountered, emitting notification last gasp.")
+        date_string = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        error_string = str(error)
+        error_message = (
+            "camply encountered an error and exited 😟 "
+            f"[{date_string}] - ({error.__class__.__name__}) {error_string}"
+        )
+        for provider in self.providers:
+            provider.send_message(error_message)
+        raise RuntimeError(error_message) from error

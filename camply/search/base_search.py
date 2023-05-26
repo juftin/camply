@@ -40,6 +40,7 @@ class BaseCampingSearch(ABC):
 
     campgrounds: List[CampgroundFacility] = []
     list_campsites_supported: bool = True
+    notifier: Optional[MultiNotifierProvider] = None
 
     def __init__(
         self,
@@ -341,11 +342,11 @@ class BaseCampingSearch(ABC):
         polling_interval_minutes = self._get_polling_minutes(
             polling_interval=polling_interval
         )
-        notifier = MultiNotifierProvider(provider=notification_provider)
+        self.notifier = MultiNotifierProvider(provider=notification_provider)
         logger.info(
             f"Searching for campsites every {polling_interval_minutes} minutes. "
         )
-        notifier.log_providers()
+        self.notifier.log_providers()
         retryer = tenacity.Retrying(
             retry=tenacity.retry_if_exception_type(CampsiteNotFoundError),
             wait=tenacity.wait.wait_fixed(int(polling_interval_minutes) * 60),
@@ -366,7 +367,7 @@ class BaseCampingSearch(ABC):
         logged_campsites = list(new_campsites)
         self._handle_notifications(
             retryer=retryer,
-            notifier=notifier,
+            notifier=self.notifier,
             logged_campsites=logged_campsites,
             continuous_search_attempts=continuous_search_attempts,
             notify_first_try=notify_first_try,
@@ -569,15 +570,19 @@ class BaseCampingSearch(ABC):
         List[AvailableCampsite]
         """
         if continuous is True or search_once is True:
-            self._search_campsites_continuous(
-                log=log,
-                verbose=verbose,
-                polling_interval=polling_interval,
-                notification_provider=notification_provider,
-                notify_first_try=notify_first_try,
-                search_forever=search_forever,
-                search_once=search_once,
-            )
+            try:
+                self._search_campsites_continuous(
+                    log=log,
+                    verbose=verbose,
+                    polling_interval=polling_interval,
+                    notification_provider=notification_provider,
+                    notify_first_try=notify_first_try,
+                    search_forever=search_forever,
+                    search_once=search_once,
+                )
+            except Exception as e:
+                self.notifier.last_gasp(error=e)
+                raise e
         else:
             starting_count = len(self.campsites_found)
             matching_campsites = self._search_matching_campsites_available(
