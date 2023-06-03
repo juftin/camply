@@ -12,7 +12,11 @@ from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.containers.data_containers import ListedCampsite
-from camply.providers.usedirect.variations import NorthernTerritory, ReserveCalifornia
+from camply.providers.usedirect.variations import (
+    FloridaStateParks,
+    NorthernTerritory,
+    ReserveCalifornia,
+)
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
 from camply.utils.logging_utils import format_log_string, log_sorted_response
@@ -195,3 +199,11 @@ class SearchNorthernTerritory(SearchUseDirect):
     """
 
     provider_class = NorthernTerritory
+
+
+class SearchFloridaStateParks(SearchUseDirect):
+    """
+    Search Florida State Parks
+    """
+
+    provider_class = FloridaStateParks

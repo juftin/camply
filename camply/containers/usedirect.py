@@ -174,7 +174,7 @@ class UseDirectDetailedPlace(CamplyModel):
     City: str
     State: str
     Zip: str
-    VoicePhone: str
+    VoicePhone: Optional[str]
     UDate: datetime.datetime
     UserId: int
     RowGuid: str

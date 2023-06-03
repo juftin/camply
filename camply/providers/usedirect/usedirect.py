@@ -60,7 +60,10 @@ class UseDirectProvider(BaseProvider, ABC):
 
     __offline_cache_dir__: Optional[pathlib.Path] = None
 
-    rdr_path = "rdr"
+    rdr_path: str = "rdr"
+
+    booking_path_params: bool = True
+    booking_path: str = "Web/Default.aspx"
 
     @property
     @abstractmethod
@@ -424,10 +427,9 @@ class UseDirectProvider(BaseProvider, ABC):
         facility_id = availability_response.Facility.FacilityId
         facility = self.usedirect_campgrounds[facility_id]
         recreation_area = self.usedirect_rec_areas[facility.recreation_area_id]
-        booking_url = (
-            f"{self.campground_url}/Web/Default.aspx#!park/"
-            f"{recreation_area.recreation_area_id}/{facility_id}"
-        )
+        booking_url = f"{self.campground_url}/{self.booking_path}"
+        if self.booking_path_params is True:
+            booking_url = f"{booking_url}#!park/{recreation_area.recreation_area_id}/{facility_id}"
         if unit.UnitCategoryId is None:
             unit.UnitCategoryId = -1
         if unit.UnitTypeGroupId is None:
@@ -535,6 +537,7 @@ class UseDirectProvider(BaseProvider, ABC):
         self.usedirect_city_parks: Dict[int, UseDirectCityPark] = {
             int(city_park_id): UseDirectCityPark(**city_park_json)
             for city_park_id, city_park_json in city_park_data.items()
+            if city_park_json["Name"] is not None
         }
         return self.usedirect_city_parks
 

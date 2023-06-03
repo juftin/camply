@@ -22,3 +22,16 @@ class NorthernTerritory(UseDirectProvider):
     base_url = "https://northernterritoryrdr.usedirect.com"
     campground_url = "https://parkbookings.nt.gov.au"
     rdr_path = "NorthernTerritoryRDR"
+    booking_path = "Web/Facilities/SearchViewUnitAvailabity.aspx"
+    booking_path_params = False
+
+
+class FloridaStateParks(UseDirectProvider):
+    """
+    Florida State Parks
+    """
+
+    base_url = "https://floridardr.usedirect.com"
+    campground_url = "https://www.reserve.floridastateparks.org"
+    rdr_path = "FloridaRDR"
+    booking_path = "Web"

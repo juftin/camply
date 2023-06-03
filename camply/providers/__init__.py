@@ -13,7 +13,11 @@ from .recreation_dot_gov.recdotgov_tours import (
     RecreationDotGovTicket,
     RecreationDotGovTimedEntry,
 )
-from .usedirect.variations import NorthernTerritory, ReserveCalifornia
+from .usedirect.variations import (
+    FloridaStateParks,
+    NorthernTerritory,
+    ReserveCalifornia,
+)
 from .xanterra.yellowstone_lodging import YellowstoneLodging
 
 # Provider Class Names
@@ -26,6 +30,7 @@ RECREATION_DOT_GOV_TICKET = "RecreationDotGovTicket"
 RECREATION_DOT_GOV_TIMED_ENTRY = "RecreationDotGovTimedEntry"
 RESERVE_CALIFORNIA = "ReserveCalifornia"
 NORTHERN_TERRITORY = "NorthernTerritory"
+FLORIDA_STATE_PARKS = "FloridaStateParks"
 
 ProviderType = Union[
     GoingToCampProvider,
@@ -37,6 +42,7 @@ ProviderType = Union[
     YellowstoneLodging,
     ReserveCalifornia,
     NorthernTerritory,
+    FloridaStateParks,
 ]
 
 __all__ = [
@@ -60,4 +66,6 @@ __all__ = [
     "RESERVE_CALIFORNIA",
     "NorthernTerritory",
     "NORTHERN_TERRITORY",
+    "FloridaStateParks",
+    "FLORIDA_STATE_PARKS",
 ]
