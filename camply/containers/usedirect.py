@@ -142,7 +142,7 @@ class UseDirectPlace(CamplyModel):
     Restrictions: UseDirectRestrictions
     Facilities: Dict[int, UseDirectFacility]
     IsAvailableForGreatwalk: bool
-    FacilityDefaultZoom: Optional[int]
+    FacilityDefaultZoom: int
 
 
 class UseDirectDetailedPlace(CamplyModel):
@@ -160,7 +160,7 @@ class UseDirectDetailedPlace(CamplyModel):
     ParkActivity: int
     ParkPopularity: int
     IsAvailableForGreatwalk: bool
-    FacilityDefaultZoom: Optional[int]
+    FacilityDefaultZoom: int
     RegionId: int
     ShortName: str
     OrderBy: int
@@ -174,7 +174,7 @@ class UseDirectDetailedPlace(CamplyModel):
     City: str
     State: str
     Zip: str
-    VoicePhone: Optional[str]
+    VoicePhone: str
     UDate: datetime.datetime
     UserId: int
     RowGuid: str
@@ -200,11 +200,11 @@ class UseDirectAvailabilityFacility(UseDirectFacility):
     SliceCount: int
     AvailableSliceCount: int
     TimebaseMaxHours: int
-    TimebaseMinHours: Optional[int]
-    TimebaseDuration: Optional[float]
-    IsReservationDraw: Optional[bool]
-    DrawBookingStartDate: Optional[datetime.datetime]
-    DrawBookingEndDate: Optional[datetime.datetime]
+    TimebaseMinHours: int
+    TimebaseDuration: float
+    IsReservationDraw: bool
+    DrawBookingStartDate: datetime.datetime
+    DrawBookingEndDate: datetime.datetime
     Units: Optional[Dict[str, UseDirectAvailabilityUnit]]
 
 
@@ -243,7 +243,7 @@ class UseDirectUnitCategory(CamplyModel):
     UnitCategoryId: int
     UnitCategoryName: str
     HasEquipment: bool
-    Icon: Optional[str]
+    Icon: str
 
 
 class UseDirectNightlySleepingUnit(CamplyModel):
@@ -255,7 +255,7 @@ class UseDirectNightlySleepingUnit(CamplyModel):
     SleepingUnitId: int
     SleepingUnitName: str
     IsWheeled: bool
-    Icon: Optional[str]
+    Icon: str
 
 
 class UseDirectMinVehicleLength(CamplyModel):
@@ -266,7 +266,7 @@ class UseDirectMinVehicleLength(CamplyModel):
     SleepingUnitId: int
     MinVehicleLength: int
     MinVehicleName: str
-    Icon: Optional[str]
+    Icon: str
 
 
 class UseDirectUnitTypeGroup(CamplyModel):
@@ -277,7 +277,7 @@ class UseDirectUnitTypeGroup(CamplyModel):
     UnitCategoryId: int
     UnitTypesGroupId: int
     UnitTypesGroupName: str
-    Icon: Optional[str]
+    Icon: str
 
 
 class UseDirectAmenity(CamplyModel):
@@ -290,7 +290,7 @@ class UseDirectAmenity(CamplyModel):
     ShortName: str
     AmenityType: int
     IsSearchable: bool
-    Description: Optional[str]
+    Description: str
     OrderBy: int
     IDate: datetime.datetime
     UDate: datetime.datetime
@@ -356,9 +356,9 @@ class UseDirectFacilityMetadata(CamplyModel):
     IsAvailableForEducationalGroup: Optional[bool]
     IsAvailableForCto: Optional[bool]
     IsCaptcha: bool
-    FacilityBehaviourType: Optional[int]
-    EnableCheckOccupancy: Optional[bool]
+    FacilityBehaviourType: int
+    EnableCheckOccupancy: bool
     IsTrail: Optional[bool]
-    TimebaseMaxHours: Optional[int]
-    TimebaseMinHours: Optional[int]
-    TimebaseDuration: Optional[int]
+    TimebaseMaxHours: int
+    TimebaseMinHours: int
+    TimebaseDuration: int

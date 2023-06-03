@@ -12,9 +12,7 @@ from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.containers.data_containers import ListedCampsite
-from camply.providers.usedirect.variations import (
-    ReserveCalifornia,
-)
+from camply.providers.usedirect.variations import NorthernTerritory, ReserveCalifornia
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
 from camply.utils.logging_utils import format_log_string, log_sorted_response
@@ -152,7 +150,7 @@ class SearchUseDirect(BaseCampingSearch, ABC):
         Return the UseDirect Recreation Areas
         """
         rec_areas = cls.provider_class().search_for_recreation_areas(
-            query=search_string, state=kwargs.get("state")
+            query=search_string, state=kwargs.get("state", "CA")
         )
         logger.info(f"{len(rec_areas)} Matching Recreation Areas Found")
         log_sorted_response(rec_areas)
@@ -189,3 +187,11 @@ class SearchReserveCalifornia(SearchUseDirect):
     """
 
     provider_class = ReserveCalifornia
+
+
+class SearchNorthernTerritory(SearchUseDirect):
+    """
+    Search Northern Territory
+    """
+
+    provider_class = NorthernTerritory

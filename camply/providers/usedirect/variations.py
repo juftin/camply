@@ -12,4 +12,13 @@ class ReserveCalifornia(UseDirectProvider):
 
     base_url = "https://calirdr.usedirect.com"
     campground_url = "https://www.reservecalifornia.com"
-    state_code = "CA"
+
+
+class NorthernTerritory(UseDirectProvider):
+    """
+    Australian NorthernTerritory
+    """
+
+    base_url = "https://northernterritoryrdr.usedirect.com"
+    campground_url = "https://parkbookings.nt.gov.au"
+    rdr_path = "NorthernTerritoryRDR"

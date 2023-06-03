@@ -60,10 +60,7 @@ class UseDirectProvider(BaseProvider, ABC):
 
     __offline_cache_dir__: Optional[pathlib.Path] = None
 
-    rdr_path: str = "rdr"
-
-    booking_path_params: bool = True
-    booking_path: str = "Web/Default.aspx"
+    rdr_path = "rdr"
 
     @property
     @abstractmethod
@@ -78,14 +75,6 @@ class UseDirectProvider(BaseProvider, ABC):
     def campground_url(self) -> str:
         """
         Campground URL for the Provider
-        """
-        pass
-
-    @property
-    @abstractmethod
-    def state_code(self) -> str:
-        """
-        State Code for the Provider
         """
         pass
 
@@ -126,7 +115,7 @@ class UseDirectProvider(BaseProvider, ABC):
     def search_for_recreation_areas(
         self,
         query: Optional[str] = None,
-        state: Optional[str] = None,
+        state: str = "CA",
     ) -> List[RecreationArea]:
         """
         Retrieve Recreation Areas
@@ -140,10 +129,8 @@ class UseDirectProvider(BaseProvider, ABC):
         -------
         List[RecreationArea]
         """
-        if state is not None and state.upper() != self.state_code.upper():
-            raise CamplyError(
-                f"{self.__class__.__name__} doesn't support states outside {self.state_code}"
-            )
+        if state.upper() != "CA":
+            raise CamplyError("UseDirect doesn't support states outside CA")
         if query is None:
             logger.error(
                 "You must provide a search string to search `UseDirect` Recreation Areas"
@@ -437,9 +424,10 @@ class UseDirectProvider(BaseProvider, ABC):
         facility_id = availability_response.Facility.FacilityId
         facility = self.usedirect_campgrounds[facility_id]
         recreation_area = self.usedirect_rec_areas[facility.recreation_area_id]
-        booking_url = f"{self.campground_url}/{self.booking_path}"
-        if self.booking_path_params is True:
-            booking_url = f"{booking_url}#!park/{recreation_area.recreation_area_id}/{facility_id}"
+        booking_url = (
+            f"{self.campground_url}/Web/Default.aspx#!park/"
+            f"{recreation_area.recreation_area_id}/{facility_id}"
+        )
         if unit.UnitCategoryId is None:
             unit.UnitCategoryId = -1
         if unit.UnitTypeGroupId is None:
@@ -547,7 +535,6 @@ class UseDirectProvider(BaseProvider, ABC):
         self.usedirect_city_parks: Dict[int, UseDirectCityPark] = {
             int(city_park_id): UseDirectCityPark(**city_park_json)
             for city_park_id, city_park_json in city_park_data.items()
-            if city_park_json["Name"] is not None
         }
         return self.usedirect_city_parks
 
