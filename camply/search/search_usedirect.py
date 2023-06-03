@@ -17,6 +17,8 @@ from camply.providers.usedirect.variations import (
     NorthernTerritory,
     OregonMetro,
     ReserveCalifornia,
+    ReserveOhio,
+    ReserveVAParks,
 )
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
@@ -216,3 +218,19 @@ class SearchOregonMetro(SearchUseDirect):
     """
 
     provider_class = OregonMetro
+
+
+class SearchReserveOhio(SearchUseDirect):
+    """
+    Search ReserveOhio
+    """
+
+    provider_class = ReserveOhio
+
+
+class SearchReserveVAParks(SearchUseDirect):
+    """
+    Search ReserveVAParks
+    """
+
+    provider_class = ReserveVAParks

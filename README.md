@@ -73,6 +73,11 @@ service that lists camping and recreation inventory.
 -   **`Yellowstone`**: Searches on [YellowstoneNationalParkLodges.com](https://yellowstonenationalparklodges.com) for Campsites
 -   **`GoingToCamp`**: Searches on [GoingToCamp.com](https://goingtocamp.com) for Campsites
 -   **`ReserveCalifornia`**: Searches on [ReserveCalifornia.com](https://reservecalifornia.com) for Campsites
+-   **`NorthernTerritory`**: Searches the [Australian Northern Territory](https://parkbookings.nt.gov.au) for Campsites
+-   **`OregonMetro`**: Searches on [OregonMetro.gov](https://oregonmetro.gov) for Campsites
+-   **`FloridaStateParks`**: Searches on [FloridaStateParks.org](https://www.reserve.floridastateparks.org) for Campsites
+-   **`ReserveOhio`**: Searches on [ReserveOhio.com](https://reserveohio.com) for Campsites
+-   **`ReserveVAParks`**: Searches on [ReserveVAParks.com](https://reservevaparks.com) for Campsites
 -   **`RecreationDotGovTicket`**: Searches on [Recreation.gov](https://recreation.gov) for Tickets and Tours
 -   **`RecreationDotGovTimedEntry`**: Searches on [Recreation.gov](https://recreation.gov) for Timed Entries
 

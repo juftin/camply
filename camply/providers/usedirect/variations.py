@@ -47,3 +47,25 @@ class OregonMetro(UseDirectProvider):
     rdr_path = "oregonmetrordr"
     booking_path = "MetroWeb/Facilities/SearchViewUnitAvailabity.aspx"
     booking_path_params = False
+
+
+class ReserveOhio(UseDirectProvider):
+    """
+    Ohio State Parks
+    """
+
+    base_url = "https://ohiordr.usedirect.com"
+    campground_url = "https://www.reserveohio.com"
+    rdr_path = "ohiordr"
+    booking_path = "OhioCampWeb"
+
+
+class ReserveVAParks(UseDirectProvider):
+    """
+    Virginia State Parks
+    """
+
+    base_url = "https://virginiardr.usedirect.com"
+    campground_url = "https://reservevaparks.com"
+    rdr_path = "virginiardr"
+    booking_path = "Web"

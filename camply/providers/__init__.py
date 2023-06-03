@@ -18,6 +18,8 @@ from .usedirect.variations import (
     NorthernTerritory,
     OregonMetro,
     ReserveCalifornia,
+    ReserveOhio,
+    ReserveVAParks,
 )
 from .xanterra.yellowstone_lodging import YellowstoneLodging
 
@@ -33,6 +35,8 @@ RESERVE_CALIFORNIA = "ReserveCalifornia"
 NORTHERN_TERRITORY = "NorthernTerritory"
 FLORIDA_STATE_PARKS = "FloridaStateParks"
 OREGON_METRO = "OregonMetro"
+RESERVE_OHIO = "ReserveOhio"
+RESERVE_VA_PARKS = "ReserveVAParks"
 
 ProviderType = Union[
     GoingToCampProvider,
@@ -46,6 +50,8 @@ ProviderType = Union[
     NorthernTerritory,
     FloridaStateParks,
     OregonMetro,
+    ReserveOhio,
+    ReserveVAParks,
 ]
 
 __all__ = [
@@ -71,6 +77,10 @@ __all__ = [
     "NORTHERN_TERRITORY",
     "FloridaStateParks",
     "FLORIDA_STATE_PARKS",
-    "OREGON_METRO",
     "OregonMetro",
+    "OREGON_METRO",
+    "ReserveOhio",
+    "RESERVE_OHIO",
+    "ReserveVAParks",
+    "RESERVE_VA_PARKS",
 ]
