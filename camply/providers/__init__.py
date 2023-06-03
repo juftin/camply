@@ -14,6 +14,7 @@ from .recreation_dot_gov.recdotgov_tours import (
     RecreationDotGovTimedEntry,
 )
 from .usedirect.variations import (
+    AZStateParks,
     FloridaStateParks,
     NorthernTerritory,
     OregonMetro,
@@ -37,6 +38,7 @@ FLORIDA_STATE_PARKS = "FloridaStateParks"
 OREGON_METRO = "OregonMetro"
 RESERVE_OHIO = "ReserveOhio"
 RESERVE_VA_PARKS = "ReserveVAParks"
+AZ_STATE_PARKS = "AZStateParks"
 
 ProviderType = Union[
     GoingToCampProvider,
@@ -52,6 +54,7 @@ ProviderType = Union[
     OregonMetro,
     ReserveOhio,
     ReserveVAParks,
+    AZStateParks,
 ]
 
 __all__ = [
@@ -83,4 +86,6 @@ __all__ = [
     "RESERVE_OHIO",
     "ReserveVAParks",
     "RESERVE_VA_PARKS",
+    "AZStateParks",
+    "AZ_STATE_PARKS",
 ]

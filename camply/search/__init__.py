@@ -5,6 +5,7 @@ camply search __init__ file
 from typing import Dict, Type
 
 from camply.providers import (
+    AZ_STATE_PARKS,
     FLORIDA_STATE_PARKS,
     GOING_TO_CAMP,
     NORTHERN_TERRITORY,
@@ -29,6 +30,7 @@ from camply.search.search_recreationdotgov import (
     SearchRecreationDotGovTimedEntry,
 )
 from camply.search.search_usedirect import (
+    SearchAZStateParks,
     SearchFloridaStateParks,
     SearchNorthernTerritory,
     SearchOregonMetro,
@@ -48,6 +50,7 @@ CAMPSITE_SEARCH_PROVIDER: Dict[str, Type[BaseCampingSearch]] = {
     OREGON_METRO: SearchOregonMetro,
     RESERVE_OHIO: SearchReserveOhio,
     RESERVE_VA_PARKS: SearchReserveVAParks,
+    AZ_STATE_PARKS: SearchAZStateParks,
     # Tours and Timed Entry (RecDotGov)
     RECREATION_DOT_GOV_TICKET: SearchRecreationDotGovTicket,
     RECREATION_DOT_GOV_TIMED_ENTRY: SearchRecreationDotGovTimedEntry,

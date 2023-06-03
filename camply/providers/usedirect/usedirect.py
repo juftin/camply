@@ -82,6 +82,14 @@ class UseDirectProvider(BaseProvider, ABC):
         pass
 
     @property
+    @abstractmethod
+    def state_code(self) -> str:
+        """
+        State Code for the Provider
+        """
+        pass
+
+    @property
     def offline_cache_dir(self) -> pathlib.Path:
         """
         Offline Cache Directory
@@ -118,7 +126,7 @@ class UseDirectProvider(BaseProvider, ABC):
     def search_for_recreation_areas(
         self,
         query: Optional[str] = None,
-        state: str = "CA",
+        state: Optional[str] = None,
     ) -> List[RecreationArea]:
         """
         Retrieve Recreation Areas
@@ -132,8 +140,10 @@ class UseDirectProvider(BaseProvider, ABC):
         -------
         List[RecreationArea]
         """
-        if state.upper() != "CA":
-            raise CamplyError("UseDirect doesn't support states outside CA")
+        if state is not None and state.upper() != self.state_code.upper():
+            raise CamplyError(
+                f"{self.__class__.__name__} doesn't support states outside {self.state_code}"
+            )
         if query is None:
             logger.error(
                 "You must provide a search string to search `UseDirect` Recreation Areas"

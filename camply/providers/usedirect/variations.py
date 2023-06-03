@@ -12,6 +12,7 @@ class ReserveCalifornia(UseDirectProvider):
 
     base_url = "https://calirdr.usedirect.com"
     campground_url = "https://www.reservecalifornia.com"
+    state_code = "CA"
 
 
 class NorthernTerritory(UseDirectProvider):
@@ -24,6 +25,7 @@ class NorthernTerritory(UseDirectProvider):
     rdr_path = "NorthernTerritoryRDR"
     booking_path = "Web/Facilities/SearchViewUnitAvailabity.aspx"
     booking_path_params = False
+    state_code = "NT"
 
 
 class FloridaStateParks(UseDirectProvider):
@@ -35,6 +37,7 @@ class FloridaStateParks(UseDirectProvider):
     campground_url = "https://www.reserve.floridastateparks.org"
     rdr_path = "FloridaRDR"
     booking_path = "Web"
+    state_code = "FL"
 
 
 class OregonMetro(UseDirectProvider):
@@ -47,6 +50,7 @@ class OregonMetro(UseDirectProvider):
     rdr_path = "oregonmetrordr"
     booking_path = "MetroWeb/Facilities/SearchViewUnitAvailabity.aspx"
     booking_path_params = False
+    state_code = "OR"
 
 
 class ReserveOhio(UseDirectProvider):
@@ -58,6 +62,7 @@ class ReserveOhio(UseDirectProvider):
     campground_url = "https://www.reserveohio.com"
     rdr_path = "ohiordr"
     booking_path = "OhioCampWeb"
+    state_code = "OH"
 
 
 class ReserveVAParks(UseDirectProvider):
@@ -69,3 +74,16 @@ class ReserveVAParks(UseDirectProvider):
     campground_url = "https://reservevaparks.com"
     rdr_path = "virginiardr"
     booking_path = "Web"
+    state_code = "VA"
+
+
+class AZStateParks(UseDirectProvider):
+    """
+    Arizona State Parks
+    """
+
+    base_url = "https://azrdr.usedirect.com"
+    campground_url = "https://azstateparks.com"
+    rdr_path = "azrdr"
+    booking_path = "reserve"
+    state_code = "AZ"

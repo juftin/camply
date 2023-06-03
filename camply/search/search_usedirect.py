@@ -13,6 +13,7 @@ from dateutil.relativedelta import relativedelta
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.containers.data_containers import ListedCampsite
 from camply.providers.usedirect.variations import (
+    AZStateParks,
     FloridaStateParks,
     NorthernTerritory,
     OregonMetro,
@@ -157,7 +158,7 @@ class SearchUseDirect(BaseCampingSearch, ABC):
         Return the UseDirect Recreation Areas
         """
         rec_areas = cls.provider_class().search_for_recreation_areas(
-            query=search_string, state=kwargs.get("state", "CA")
+            query=search_string, state=kwargs.get("state")
         )
         logger.info(f"{len(rec_areas)} Matching Recreation Areas Found")
         log_sorted_response(rec_areas)
@@ -234,3 +235,11 @@ class SearchReserveVAParks(SearchUseDirect):
     """
 
     provider_class = ReserveVAParks
+
+
+class SearchAZStateParks(SearchUseDirect):
+    """
+    Search AZStateParks
+    """
+
+    provider_class = AZStateParks
