@@ -200,11 +200,11 @@ class UseDirectAvailabilityFacility(UseDirectFacility):
     SliceCount: int
     AvailableSliceCount: int
     TimebaseMaxHours: int
-    TimebaseMinHours: int
-    TimebaseDuration: float
-    IsReservationDraw: bool
-    DrawBookingStartDate: datetime.datetime
-    DrawBookingEndDate: datetime.datetime
+    TimebaseMinHours: Optional[int]
+    TimebaseDuration: Optional[float]
+    IsReservationDraw: Optional[bool]
+    DrawBookingStartDate: Optional[datetime.datetime]
+    DrawBookingEndDate: Optional[datetime.datetime]
     Units: Optional[Dict[str, UseDirectAvailabilityUnit]]
 
 
@@ -356,9 +356,9 @@ class UseDirectFacilityMetadata(CamplyModel):
     IsAvailableForEducationalGroup: Optional[bool]
     IsAvailableForCto: Optional[bool]
     IsCaptcha: bool
-    FacilityBehaviourType: int
-    EnableCheckOccupancy: bool
+    FacilityBehaviourType: Optional[int]
+    EnableCheckOccupancy: Optional[bool]
     IsTrail: Optional[bool]
-    TimebaseMaxHours: int
-    TimebaseMinHours: int
-    TimebaseDuration: int
+    TimebaseMaxHours: Optional[int]
+    TimebaseMinHours: Optional[int]
+    TimebaseDuration: Optional[int]
