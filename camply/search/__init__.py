@@ -8,6 +8,7 @@ from camply.providers import (
     FLORIDA_STATE_PARKS,
     GOING_TO_CAMP,
     NORTHERN_TERRITORY,
+    OREGON_METRO,
     RECREATION_DOT_GOV,
     RECREATION_DOT_GOV_DAILY_TICKET,
     RECREATION_DOT_GOV_DAILY_TIMED_ENTRY,
@@ -28,6 +29,7 @@ from camply.search.search_recreationdotgov import (
 from camply.search.search_usedirect import (
     SearchFloridaStateParks,
     SearchNorthernTerritory,
+    SearchOregonMetro,
     SearchReserveCalifornia,
 )
 from camply.search.search_yellowstone import SearchYellowstone
@@ -44,6 +46,7 @@ CAMPSITE_SEARCH_PROVIDER: Dict[str, Type[BaseCampingSearch]] = {
     RECREATION_DOT_GOV_DAILY_TICKET: SearchRecreationDotGovDailyTicket,
     RECREATION_DOT_GOV_DAILY_TIMED_ENTRY: SearchRecreationDotGovDailyTimedEntry,
     FLORIDA_STATE_PARKS: SearchFloridaStateParks,
+    OREGON_METRO: SearchOregonMetro,
 }
 
 __all__ = [

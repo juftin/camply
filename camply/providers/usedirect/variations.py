@@ -35,3 +35,15 @@ class FloridaStateParks(UseDirectProvider):
     campground_url = "https://www.reserve.floridastateparks.org"
     rdr_path = "FloridaRDR"
     booking_path = "Web"
+
+
+class OregonMetro(UseDirectProvider):
+    """
+    Oregon Metro Parks
+    """
+
+    base_url = "https://oregonrdr.usedirect.com"
+    campground_url = "https://reservemetro.usedirect.com"
+    rdr_path = "oregonmetrordr"
+    booking_path = "MetroWeb/Facilities/SearchViewUnitAvailabity.aspx"
+    booking_path_params = False

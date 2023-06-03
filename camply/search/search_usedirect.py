@@ -15,6 +15,7 @@ from camply.containers.data_containers import ListedCampsite
 from camply.providers.usedirect.variations import (
     FloridaStateParks,
     NorthernTerritory,
+    OregonMetro,
     ReserveCalifornia,
 )
 from camply.search.base_search import BaseCampingSearch
@@ -207,3 +208,11 @@ class SearchFloridaStateParks(SearchUseDirect):
     """
 
     provider_class = FloridaStateParks
+
+
+class SearchOregonMetro(SearchUseDirect):
+    """
+    Search Oregon Metro
+    """
+
+    provider_class = OregonMetro
