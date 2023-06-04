@@ -17,6 +17,7 @@ from camply.search.search_usedirect import (
     SearchAZStateParks,
     SearchFloridaStateParks,
     SearchMaricopaCountyParks,
+    SearchMissouriStateParks,
     SearchNorthernTerritory,
     SearchOregonMetro,
     SearchReserveCalifornia,
@@ -39,6 +40,7 @@ __search_providers__: List[Type[BaseCampingSearch]] = [
     SearchReserveVAParks,
     SearchAZStateParks,
     SearchMaricopaCountyParks,
+    SearchMissouriStateParks,
     # Tours and Timed Entry (RecDotGov)
     SearchRecreationDotGovTicket,
     SearchRecreationDotGovTimedEntry,

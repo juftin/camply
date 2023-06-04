@@ -97,5 +97,18 @@ class MaricopaCountyParks(UseDirectProvider):
     base_url = "https://maricopardr.usedirect.com"
     campground_url = "https://www.maricopacountyparks.org"
     rdr_path = "maricopardr"
-    booking_path = "MaricopaWeb"
+    booking_path = "MaricopaWeb/Facilities/SearchViewUnitAvailabity.aspx"
+    booking_path_params = False
     state_code = "AZ"
+
+
+class MissouriStateParks(UseDirectProvider):
+    """
+    Missouri State Parks
+    """
+
+    base_url = "https://msprdr.usedirect.com"
+    campground_url = "https://icampmo1.usedirect.com"
+    rdr_path = "msprdr"
+    booking_path = "MSPWeb"
+    state_code = "MO"

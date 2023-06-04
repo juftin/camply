@@ -17,6 +17,7 @@ from .usedirect.variations import (
     AZStateParks,
     FloridaStateParks,
     MaricopaCountyParks,
+    MissouriStateParks,
     NorthernTerritory,
     OregonMetro,
     ReserveCalifornia,
@@ -41,6 +42,7 @@ ProviderType = Union[
     ReserveVAParks,
     AZStateParks,
     MaricopaCountyParks,
+    MissouriStateParks,
 ]
 
 __all__ = [
@@ -61,4 +63,5 @@ __all__ = [
     "ReserveVAParks",
     "AZStateParks",
     "MaricopaCountyParks",
+    "MissouriStateParks",
 ]

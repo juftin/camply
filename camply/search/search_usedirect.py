@@ -16,6 +16,7 @@ from camply.providers.usedirect.variations import (
     AZStateParks,
     FloridaStateParks,
     MaricopaCountyParks,
+    MissouriStateParks,
     NorthernTerritory,
     OregonMetro,
     ReserveCalifornia,
@@ -252,3 +253,11 @@ class SearchMaricopaCountyParks(SearchUseDirect):
     """
 
     provider_class = MaricopaCountyParks
+
+
+class SearchMissouriStateParks(SearchUseDirect):
+    """
+    Search MissouriStateParks
+    """
+
+    provider_class = MissouriStateParks

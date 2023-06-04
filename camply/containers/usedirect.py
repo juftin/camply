@@ -290,7 +290,7 @@ class UseDirectAmenity(CamplyModel):
     ShortName: str
     AmenityType: int
     IsSearchable: bool
-    Description: str
+    Description: Optional[str]
     OrderBy: int
     IDate: datetime.datetime
     UDate: datetime.datetime
