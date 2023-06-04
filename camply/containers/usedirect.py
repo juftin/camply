@@ -243,7 +243,7 @@ class UseDirectUnitCategory(CamplyModel):
     UnitCategoryId: int
     UnitCategoryName: str
     HasEquipment: bool
-    Icon: str
+    Icon: Optional[str]
 
 
 class UseDirectNightlySleepingUnit(CamplyModel):
@@ -255,7 +255,7 @@ class UseDirectNightlySleepingUnit(CamplyModel):
     SleepingUnitId: int
     SleepingUnitName: str
     IsWheeled: bool
-    Icon: str
+    Icon: Optional[str]
 
 
 class UseDirectMinVehicleLength(CamplyModel):
@@ -266,7 +266,7 @@ class UseDirectMinVehicleLength(CamplyModel):
     SleepingUnitId: int
     MinVehicleLength: int
     MinVehicleName: str
-    Icon: str
+    Icon: Optional[str]
 
 
 class UseDirectUnitTypeGroup(CamplyModel):
@@ -277,7 +277,7 @@ class UseDirectUnitTypeGroup(CamplyModel):
     UnitCategoryId: int
     UnitTypesGroupId: int
     UnitTypesGroupName: str
-    Icon: str
+    Icon: Optional[str]
 
 
 class UseDirectAmenity(CamplyModel):

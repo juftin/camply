@@ -13,6 +13,7 @@ from dateutil.relativedelta import relativedelta
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.containers.data_containers import ListedCampsite
 from camply.providers.usedirect.variations import (
+    AlabamaStateParks,
     AZStateParks,
     FloridaStateParks,
     MaricopaCountyParks,
@@ -261,3 +262,11 @@ class SearchMissouriStateParks(SearchUseDirect):
     """
 
     provider_class = MissouriStateParks
+
+
+class SearchAlabamaStateParks(SearchUseDirect):
+    """
+    Search AlabamaStateParks
+    """
+
+    provider_class = AlabamaStateParks

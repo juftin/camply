@@ -14,6 +14,7 @@ from .recreation_dot_gov.recdotgov_tours import (
     RecreationDotGovTimedEntry,
 )
 from .usedirect.variations import (
+    AlabamaStateParks,
     AZStateParks,
     FloridaStateParks,
     MaricopaCountyParks,
@@ -43,6 +44,7 @@ ProviderType = Union[
     AZStateParks,
     MaricopaCountyParks,
     MissouriStateParks,
+    AlabamaStateParks,
 ]
 
 __all__ = [
@@ -64,4 +66,5 @@ __all__ = [
     "AZStateParks",
     "MaricopaCountyParks",
     "MissouriStateParks",
+    "AlabamaStateParks",
 ]
