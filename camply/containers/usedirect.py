@@ -142,7 +142,7 @@ class UseDirectPlace(CamplyModel):
     Restrictions: UseDirectRestrictions
     Facilities: Dict[int, UseDirectFacility]
     IsAvailableForGreatwalk: bool
-    FacilityDefaultZoom: int
+    FacilityDefaultZoom: Optional[int]
 
 
 class UseDirectDetailedPlace(CamplyModel):
@@ -160,7 +160,7 @@ class UseDirectDetailedPlace(CamplyModel):
     ParkActivity: int
     ParkPopularity: int
     IsAvailableForGreatwalk: bool
-    FacilityDefaultZoom: int
+    FacilityDefaultZoom: Optional[int]
     RegionId: int
     ShortName: str
     OrderBy: int

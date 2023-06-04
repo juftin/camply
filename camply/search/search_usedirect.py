@@ -15,6 +15,7 @@ from camply.containers.data_containers import ListedCampsite
 from camply.providers.usedirect.variations import (
     AZStateParks,
     FloridaStateParks,
+    MaricopaCountyParks,
     NorthernTerritory,
     OregonMetro,
     ReserveCalifornia,
@@ -243,3 +244,11 @@ class SearchAZStateParks(SearchUseDirect):
     """
 
     provider_class = AZStateParks
+
+
+class SearchMaricopaCountyParks(SearchUseDirect):
+    """
+    Search MaricopaCountyParks
+    """
+
+    provider_class = MaricopaCountyParks

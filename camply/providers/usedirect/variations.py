@@ -87,3 +87,15 @@ class AZStateParks(UseDirectProvider):
     rdr_path = "azrdr"
     booking_path = "reserve"
     state_code = "AZ"
+
+
+class MaricopaCountyParks(UseDirectProvider):
+    """
+    Maricopa County Parks
+    """
+
+    base_url = "https://maricopardr.usedirect.com"
+    campground_url = "https://www.maricopacountyparks.org"
+    rdr_path = "maricopardr"
+    booking_path = "MaricopaWeb"
+    state_code = "AZ"
