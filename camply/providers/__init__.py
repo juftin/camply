@@ -16,6 +16,7 @@ from .recreation_dot_gov.recdotgov_tours import (
 from .usedirect.variations import (
     AlabamaStateParks,
     AZStateParks,
+    FairfaxCountyParks,
     FloridaStateParks,
     MaricopaCountyParks,
     MissouriStateParks,
@@ -45,6 +46,7 @@ ProviderType = Union[
     MaricopaCountyParks,
     MissouriStateParks,
     AlabamaStateParks,
+    FairfaxCountyParks,
 ]
 
 __all__ = [

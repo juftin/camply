@@ -125,3 +125,16 @@ class AlabamaStateParks(UseDirectProvider):
     booking_path = "AlabamaWebHome/Facilities/SearchViewUnitAvailabity.aspx"
     booking_path_params = False
     state_code = "AL"
+
+
+class FairfaxCountyParks(UseDirectProvider):
+    """
+    Fairfax County Parks
+    """
+
+    base_url = "https://fairfaxrdr.usedirect.com"
+    campground_url = "https://fairfax.usedirect.com"
+    rdr_path = "FCPARDR"
+    booking_path = "FairfaxFCPAWeb/Facilities/SearchViewUnitAvailabity.aspx"
+    booking_path_params = False
+    state_code = "VA"

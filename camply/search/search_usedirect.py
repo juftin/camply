@@ -15,6 +15,7 @@ from camply.containers.data_containers import ListedCampsite
 from camply.providers.usedirect.variations import (
     AlabamaStateParks,
     AZStateParks,
+    FairfaxCountyParks,
     FloridaStateParks,
     MaricopaCountyParks,
     MissouriStateParks,
@@ -270,3 +271,11 @@ class SearchAlabamaStateParks(SearchUseDirect):
     """
 
     provider_class = AlabamaStateParks
+
+
+class SearchFairfaxCountyParks(SearchUseDirect):
+    """
+    Search FairfaxCountyParks
+    """
+
+    provider_class = FairfaxCountyParks
