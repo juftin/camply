@@ -14,13 +14,13 @@ repos:
           - id: mixed-line-ending
 
     - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-      rev: v2.8.0
+      rev: v2.9.0
       hooks:
           - id: pretty-format-toml
             args: [--autofix]
 
     - repo: https://github.com/pre-commit/mirrors-prettier
-      rev: v3.0.0-alpha.6
+      rev: v3.0.0-alpha.9-for-vscode
       hooks:
           - id: prettier
             args: [--print-width=88, --tab-width=4]

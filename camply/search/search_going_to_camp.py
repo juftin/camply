@@ -13,7 +13,7 @@ from camply.containers import (
     RecreationArea,
     SearchWindow,
 )
-from camply.providers import GoingToCampProvider
+from camply.providers import GoingToCamp
 from camply.providers.going_to_camp.going_to_camp_provider import NON_GROUP_EQUIPMENT
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import make_list
@@ -27,7 +27,7 @@ class SearchGoingToCamp(BaseCampingSearch):
     Searches on GoingToCamp.com for Campsites
     """
 
-    provider_class = GoingToCampProvider
+    provider_class = GoingToCamp
     list_campsites_supported: bool = False
 
     @classmethod
@@ -37,7 +37,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         """
         Return the GoingToCamp Recreation Areas
         """
-        return GoingToCampProvider.find_recreation_areas(search_string=search_string)
+        return GoingToCamp.find_recreation_areas(search_string=search_string)
 
     # noinspection PyUnusedLocal
     def __init__(
@@ -70,7 +70,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         nights: int
             minimum number of consecutive nights to search per campsite,defaults to 1
         """
-        self.provider = GoingToCampProvider
+        self.provider = GoingToCamp
         super().__init__(
             search_window=search_window,
             weekends_only=weekends_only,

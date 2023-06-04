@@ -1,3 +1,3 @@
 """
-GoingToCampProvider __init__
+GoingToCamp __init__
 """

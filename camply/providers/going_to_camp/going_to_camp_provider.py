@@ -104,20 +104,10 @@ ENDPOINTS = {
 }
 
 
-class GoingToCampProvider(BaseProvider):
+class GoingToCamp(BaseProvider):
     """
     Going To Camp API provider
     """
-
-    def __repr__(self):
-        """
-        String Representation
-
-        Returns
-        -------
-        str
-        """
-        return "<GoingToCampProvider>"
 
     @classmethod
     def find_recreation_areas(

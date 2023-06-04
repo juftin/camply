@@ -11,7 +11,7 @@ import pandas as pd
 from camply.config import YellowstoneConfig
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.exceptions import SearchError
-from camply.providers import YellowstoneLodging
+from camply.providers import Yellowstone
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import make_list
 from camply.utils.logging_utils import log_sorted_response
@@ -24,8 +24,8 @@ class SearchYellowstone(BaseCampingSearch):
     Searches on YellowstoneNationalParkLodges.com for Campsites
     """
 
-    recreation_area = YellowstoneLodging.recreation_area
-    provider_class = YellowstoneLodging
+    recreation_area = Yellowstone.recreation_area
+    provider_class = Yellowstone
     list_campsites_supported: bool = False
 
     # noinspection PyUnusedLocal
