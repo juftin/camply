@@ -1,11 +1,12 @@
 """
-ReserveCalifornia Provider
+UseDirect Provider
 """
 
 import json
 import logging
 import pathlib
 import sys
+from abc import ABC, abstractmethod
 from datetime import date, datetime, timedelta
 from typing import Any, Dict, List, Optional, Union
 
@@ -13,21 +14,21 @@ import ratelimit
 from pydantic import ValidationError
 
 from camply.config import FileConfig
-from camply.config.api_config import ReserveCaliforniaConfig
+from camply.config.api_config import UseDirectConfig
 from camply.containers import (
     AvailableCampsite,
     CampgroundFacility,
     CamplyModel,
     RecreationArea,
 )
-from camply.containers.reserve_california import (
-    ReserveCaliforniaAvailabilityResponse,
-    ReserveCaliforniaAvailabilitySlice,
-    ReserveCaliforniaAvailabilityUnit,
-    ReserveCaliforniaCityPark,
-    ReserveCaliforniaDetailedPlace,
-    ReserveCaliforniaFacilityMetadata,
-    ReserveCaliforniaMetadata,
+from camply.containers.usedirect import (
+    UseDirectAvailabilityResponse,
+    UseDirectAvailabilitySlice,
+    UseDirectAvailabilityUnit,
+    UseDirectCityPark,
+    UseDirectDetailedPlace,
+    UseDirectFacilityMetadata,
+    UseDirectMetadata,
 )
 from camply.exceptions import CamplyError
 from camply.providers.base_provider import BaseProvider
@@ -36,27 +37,67 @@ from camply.utils.logging_utils import log_sorted_response
 logger = logging.getLogger(__name__)
 
 
-class ReserveCaliforniaError(CamplyError):
+class UseDirectError(CamplyError):
     """
-    ReserveCalifornia Provider Error
-    """
-
-
-class ReserveCalifornia(BaseProvider):
-    """
-    Camply Provider for Reserve California
+    UseDirect Provider Error
     """
 
-    reserve_california_city_parks: Dict[int, ReserveCaliforniaCityPark] = {}
-    reserve_california_rec_areas: Dict[int, RecreationArea] = {}
-    reserve_california_campgrounds: Dict[int, CampgroundFacility] = {}
-    reserve_california_unit_categories: Dict[int, str] = {}
-    reserve_california_unit_type_groups: Dict[int, str] = {}
-    reserve_california_campsites: Dict[int, ReserveCaliforniaAvailabilityUnit] = {}
+
+class UseDirectProvider(BaseProvider, ABC):
+    """
+    Camply Provider for UseDirect RDR Campgrounds
+    """
+
+    usedirect_city_parks: Dict[int, UseDirectCityPark] = {}
+    usedirect_rec_areas: Dict[int, RecreationArea] = {}
+    usedirect_campgrounds: Dict[int, CampgroundFacility] = {}
+    usedirect_unit_categories: Dict[int, str] = {}
+    usedirect_unit_type_groups: Dict[int, str] = {}
+    usedirect_campsites: Dict[int, UseDirectAvailabilityUnit] = {}
     campsite_ids: List[int] = []
     metadata_refreshed: bool = False
     active_search: bool = False
-    offline_cache_dir = FileConfig.RESERVE_CALIFORNIA_PROVIDER
+
+    __offline_cache_dir__: Optional[pathlib.Path] = None
+
+    rdr_path: str = "rdr"
+
+    booking_path_params: bool = True
+    booking_path: str = "Web/Default.aspx"
+
+    @property
+    @abstractmethod
+    def base_url(self) -> str:
+        """
+        Base URL for the Provider
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def campground_url(self) -> str:
+        """
+        Campground URL for the Provider
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def state_code(self) -> str:
+        """
+        State Code for the Provider
+        """
+        pass
+
+    @property
+    def offline_cache_dir(self) -> pathlib.Path:
+        """
+        Offline Cache Directory
+        """
+        if self.__offline_cache_dir__ is None:
+            return FileConfig.USEDIRECT_PROVIDER / self.__class__.__name__
+        else:
+            return self.__offline_cache_dir__
 
     def refresh_metadata(self) -> None:
         """
@@ -64,7 +105,7 @@ class ReserveCalifornia(BaseProvider):
 
         This is the way that this provider caches all of its metadata
         offline. It makes a number of GET requests and saves the entire output
-        as JSON alongside the provider code itself (calirdr.usedirect.com):
+        as JSON alongside the provider code itself (<subdomain>.usedirect.com):
 
         - /rdr/rdr/search/filters
         - /rdr/rdr/search/citypark
@@ -85,7 +126,7 @@ class ReserveCalifornia(BaseProvider):
     def search_for_recreation_areas(
         self,
         query: Optional[str] = None,
-        state: str = "CA",
+        state: Optional[str] = None,
     ) -> List[RecreationArea]:
         """
         Retrieve Recreation Areas
@@ -99,18 +140,20 @@ class ReserveCalifornia(BaseProvider):
         -------
         List[RecreationArea]
         """
-        if state.upper() != "CA":
-            raise CamplyError("ReserveCalifornia doesn't support states outside CA")
+        if state is not None and state.upper() != self.state_code.upper():
+            raise CamplyError(
+                f"{self.__class__.__name__} doesn't support states outside {self.state_code}"
+            )
         if query is None:
             logger.error(
-                "You must provide a search string to search `ReserveCalifornia` Recreation Areas"
+                "You must provide a search string to search `UseDirect` Recreation Areas"
             )
             sys.exit(1)
         logger.info(f'Searching for Recreation Areas: "{query}"')
         self.refresh_metadata()
         found_recareas = [
             rec_area
-            for rec_area in self.reserve_california_rec_areas.values()
+            for rec_area in self.usedirect_rec_areas.values()
             if self._search_camply_model(query=query, model=rec_area) is True
         ]
         return found_recareas
@@ -140,7 +183,7 @@ class ReserveCalifornia(BaseProvider):
         """
         self.active_search = True
         if state.upper() != "CA":
-            raise CamplyError("ReserveCalifornia doesn't support states outside CA")
+            raise CamplyError("UseDirect doesn't support states outside CA")
         if campground_id is None:
             campground_id = []
         if rec_area_id is None:
@@ -148,7 +191,7 @@ class ReserveCalifornia(BaseProvider):
         if all([rec_area_id == [], search_string is None, campground_id == []]):
             logger.error(
                 "You must provide a search string, campground ID, or recreation area ID "
-                "to search on ReserveCalifornia"
+                "to search on UseDirect"
             )
             sys.exit(1)
         if search_string is not None:
@@ -189,21 +232,21 @@ class ReserveCalifornia(BaseProvider):
             for camp_id in campground_id:
                 found_campgrounds += [
                     campground
-                    for campground in self.reserve_california_campgrounds.values()
+                    for campground in self.usedirect_campgrounds.values()
                     if campground.facility_id == int(camp_id)
                 ]
         elif len(rec_area_id) >= 1:
             for rec_area in rec_area_id:
                 found_campgrounds += [
                     campground
-                    for campground in self.reserve_california_campgrounds.values()
+                    for campground in self.usedirect_campgrounds.values()
                     if campground.recreation_area_id == int(rec_area)
                 ]
         else:
             assert isinstance(search_string, str)
             found_campgrounds = [
                 campground
-                for campground in self.reserve_california_campgrounds.values()
+                for campground in self.usedirect_campgrounds.values()
                 if self._search_camply_model(query=search_string, model=campground)
                 is True
             ]
@@ -224,9 +267,9 @@ class ReserveCalifornia(BaseProvider):
         sleeping_unit_id: Optional[int] = None,
         unit_sort: Optional[str] = "orderby",
         in_season_only: Optional[bool] = True,
-    ) -> ReserveCaliforniaAvailabilityResponse:
+    ) -> UseDirectAvailabilityResponse:
         """
-        Get Campsites from ReserveCalifornia
+        Get Campsites from UseDirect
 
         Parameters
         ----------
@@ -255,19 +298,19 @@ class ReserveCalifornia(BaseProvider):
 
         Returns
         -------
-        ReserveCaliforniaAvailabilityResponse
+        UseDirectAvailabilityResponse
         """
         data = {
             "IsADA": is_ada,
             "MinVehicleLength": min_vehicle_length,
             "UnitCategoryId": unit_category_id,
-            "StartDate": start_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
+            "StartDate": start_date.strftime(UseDirectConfig.DATE_FORMAT),
             "WebOnly": web_only,
             "UnitTypesGroupIds": []
             if unit_type_group_ids is None
             else unit_type_group_ids,
             "SleepingUnitId": sleeping_unit_id,
-            "EndDate": end_date.strftime(ReserveCaliforniaConfig.DATE_FORMAT),
+            "EndDate": end_date.strftime(UseDirectConfig.DATE_FORMAT),
             "UnitSort": unit_sort,
             "InSeasonOnly": in_season_only,
             "FacilityId": campground_id,
@@ -275,22 +318,22 @@ class ReserveCalifornia(BaseProvider):
         non_null_data = {
             key: value for key, value in data.items() if value not in [None, [], ""]
         }
-        url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.AVAILABILITY_ENDPOINT}"
+        url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.AVAILABILITY_ENDPOINT}"
         response = self.session.post(
             url=url, data=json.dumps(non_null_data), headers=self.json_headers
         )
         response.raise_for_status()
         response_json = response.json()
         try:
-            return ReserveCaliforniaAvailabilityResponse(**response.json())
+            return UseDirectAvailabilityResponse(**response.json())
         except ValidationError as e:
             error_message = (
-                "Error Parsing ReserveCalifornia Availability Response "
+                "Error Parsing UseDirect Availability Response "
                 f"- Facility ID # {campground_id}."
             )
             if "Message" in response_json:
                 error_message += " " + response_json["Message"]
-            raise ReserveCaliforniaError(error_message) from e
+            raise UseDirectError(error_message) from e
 
     def get_campsites(
         self,
@@ -307,7 +350,7 @@ class ReserveCalifornia(BaseProvider):
         in_season_only: Optional[bool] = True,
     ) -> List[AvailableCampsite]:
         """
-        Get Campsites from ReserveCalifornia
+        Get Campsites from UseDirect
 
         Parameters
         ----------
@@ -373,18 +416,18 @@ class ReserveCalifornia(BaseProvider):
 
     def _get_available_campsite(
         self,
-        availability_slice: ReserveCaliforniaAvailabilitySlice,
-        availability_response: ReserveCaliforniaAvailabilityResponse,
-        unit: ReserveCaliforniaAvailabilityUnit,
+        availability_slice: UseDirectAvailabilitySlice,
+        availability_response: UseDirectAvailabilityResponse,
+        unit: UseDirectAvailabilityUnit,
     ) -> AvailableCampsite:
         """
         Create an AvailableCampsite Object from the Availability Grid Response
 
         Parameters
         ----------
-        availability_slice: ReserveCaliforniaAvailabilitySlice
-        availability_response: ReserveCaliforniaAvailabilityResponse
-        unit: ReserveCaliforniaAvailabilityUnit
+        availability_slice: UseDirectAvailabilitySlice
+        availability_response: UseDirectAvailabilityResponse
+        unit: UseDirectAvailabilityUnit
 
         Returns
         -------
@@ -392,20 +435,17 @@ class ReserveCalifornia(BaseProvider):
         """
         start_date = datetime.fromordinal(availability_slice.Date.toordinal())
         facility_id = availability_response.Facility.FacilityId
-        facility = self.reserve_california_campgrounds[facility_id]
-        recreation_area = self.reserve_california_rec_areas[facility.recreation_area_id]
-        booking_url = (
-            f"{ReserveCaliforniaConfig.CAMPGROUND_URL}/Web/Default.aspx#!park/"
-            f"{recreation_area.recreation_area_id}/{facility_id}"
-        )
+        facility = self.usedirect_campgrounds[facility_id]
+        recreation_area = self.usedirect_rec_areas[facility.recreation_area_id]
+        booking_url = f"{self.campground_url}/{self.booking_path}"
+        if self.booking_path_params is True:
+            booking_url = f"{booking_url}#!park/{recreation_area.recreation_area_id}/{facility_id}"
         if unit.UnitCategoryId is None:
             unit.UnitCategoryId = -1
         if unit.UnitTypeGroupId is None:
             unit.UnitTypeGroupId = -1
-        campsite_type = self.reserve_california_unit_categories.get(
-            unit.UnitCategoryId, None
-        )
-        campsite_use_type = self.reserve_california_unit_type_groups.get(
+        campsite_type = self.usedirect_unit_categories.get(unit.UnitCategoryId, None)
+        campsite_use_type = self.usedirect_unit_type_groups.get(
             unit.UnitTypeGroupId, None
         )
         campsite = AvailableCampsite(
@@ -458,83 +498,82 @@ class ReserveCalifornia(BaseProvider):
                 )
                 data = json_body
         if data is None:
-            logger.debug("Refreshing ReserveCalifornia Metadata: %s", file_path.name)
+            logger.debug("Refreshing UseDirect Metadata: %s", file_path.name)
         return data
 
-    def _get_campground_metadata(self) -> ReserveCaliforniaMetadata:
+    def _get_campground_metadata(self) -> UseDirectMetadata:
         """
         Return Metadata for Campgrounds
 
         Returns
         -------
-        ReserveCaliforniaMetadata
+        UseDirectMetadata
         """
         metadata_file = self.offline_cache_dir.joinpath("filters.json")
         campground_metadata = self._fetch_metadata_from_disk(file_path=metadata_file)
         if campground_metadata is None:
-            url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.METADATA_PREFIX}"
+            self.offline_cache_dir.mkdir(parents=True, exist_ok=True)
+            url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.METADATA_PREFIX}"
             resp = self.session.get(url=url)
             resp.raise_for_status()
             campground_metadata = resp.json()
             metadata_file.write_text(json.dumps(campground_metadata, indent=2))
-        data = ReserveCaliforniaMetadata(**campground_metadata)
-        self.reserve_california_unit_categories = {
+        data = UseDirectMetadata(**campground_metadata)
+        self.usedirect_unit_categories = {
             item.UnitCategoryId: item.UnitCategoryName for item in data.UnitCategories
         }
-        self.reserve_california_unit_type_groups = {
+        self.usedirect_unit_type_groups = {
             item.UnitTypesGroupId: item.UnitTypesGroupName
             for item in data.UnitTypesGroups
         }
         return data
 
-    def _get_city_parks(self) -> Dict[int, ReserveCaliforniaCityPark]:
+    def _get_city_parks(self) -> Dict[int, UseDirectCityPark]:
         """
         Fetch Metadata On Every CityPark
 
         Returns
         -------
-        Dict[int, ReserveCaliforniaCityPark]
+        Dict[int, UseDirectCityPark]
         """
         metadata_file = self.offline_cache_dir.joinpath("cityparks.json")
         city_park_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if city_park_data is None:
-            url = f"{ReserveCaliforniaConfig.BASE_URL}/{ReserveCaliforniaConfig.CITYPARK_ENDPOINT}"
+            url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.CITYPARK_ENDPOINT}"
             resp = self.session.get(url=url)
             resp.raise_for_status()
             city_park_data: Dict[str, Dict[str, Any]] = resp.json()
             metadata_file.write_text(json.dumps(city_park_data, indent=2))
-        self.reserve_california_city_parks: Dict[int, ReserveCaliforniaCityPark] = {
-            int(city_park_id): ReserveCaliforniaCityPark(**city_park_json)
+        self.usedirect_city_parks: Dict[int, UseDirectCityPark] = {
+            int(city_park_id): UseDirectCityPark(**city_park_json)
             for city_park_id, city_park_json in city_park_data.items()
+            if city_park_json["Name"] is not None
         }
-        return self.reserve_california_city_parks
+        return self.usedirect_city_parks
 
-    def _get_places(self) -> Dict[int, ReserveCaliforniaDetailedPlace]:
+    def _get_places(self) -> Dict[int, UseDirectDetailedPlace]:
         """
         Fetch Metadata On Every Place
 
         Returns
         -------
-        Dict[int, ReserveCaliforniaDetailedPlace]
+        Dict[int, UseDirectDetailedPlace]
         """
         metadata_file = self.offline_cache_dir.joinpath("places.json")
         places_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if places_data is None:
-            url = (
-                f"{ReserveCaliforniaConfig.BASE_URL}/"
-                f"{ReserveCaliforniaConfig.LIST_PLACES_ENDPOINT}"
-            )
+            url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.LIST_PLACES_ENDPOINT}"
             resp = self.session.get(url=url)
             resp.raise_for_status()
             places_data: List[Dict[str, Any]] = resp.json()
             metadata_file.write_text(json.dumps(places_data, indent=2))
         places_validated = [
-            ReserveCaliforniaDetailedPlace(**place_json) for place_json in places_data
+            UseDirectDetailedPlace(**place_json) for place_json in places_data
         ]
-        places_data_validated: Dict[int, ReserveCaliforniaDetailedPlace] = {
+        places_data_validated: Dict[int, UseDirectDetailedPlace] = {
             item.PlaceId: item for item in places_validated
         }
-        self.reserve_california_rec_areas: Dict[int, RecreationArea] = {
+        self.usedirect_rec_areas: Dict[int, RecreationArea] = {
             place.PlaceId: RecreationArea(
                 recreation_area=place.Name,
                 recreation_area_id=place.PlaceId,
@@ -545,21 +584,18 @@ class ReserveCalifornia(BaseProvider):
         }
         return places_data_validated
 
-    def _get_facilities(self) -> Dict[int, ReserveCaliforniaFacilityMetadata]:
+    def _get_facilities(self) -> Dict[int, UseDirectFacilityMetadata]:
         """
         Fetch Metadata On Every Facility
 
         Returns
         -------
-        Dict[int, ReserveCaliforniaFacilityMetadata]
+        Dict[int, UseDirectFacilityMetadata]
         """
         metadata_file = self.offline_cache_dir.joinpath("facilities.json")
         facilities_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if facilities_data is None:
-            url = (
-                f"{ReserveCaliforniaConfig.BASE_URL}/"
-                f"{ReserveCaliforniaConfig.LIST_FACILITIES_ENDPOINT}"
-            )
+            url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.LIST_FACILITIES_ENDPOINT}"
             resp = self.session.get(url=url)
             resp.raise_for_status()
             facilities_data: List[Dict[str, Any]] = resp.json()
@@ -567,19 +603,17 @@ class ReserveCalifornia(BaseProvider):
         if not isinstance(facilities_data, list):
             raise CamplyError("Unexpected data from %s", metadata_file)
         facilities_validated = [
-            ReserveCaliforniaFacilityMetadata(**facility_json)
+            UseDirectFacilityMetadata(**facility_json)
             for facility_json in facilities_data
         ]
-        facilities_data_validated: Dict[int, ReserveCaliforniaFacilityMetadata] = {
+        facilities_data_validated: Dict[int, UseDirectFacilityMetadata] = {
             item.FacilityId: item for item in facilities_validated
         }
-        self.reserve_california_campgrounds: Dict[int, CampgroundFacility] = {}
+        self.usedirect_campgrounds: Dict[int, CampgroundFacility] = {}
         for facility in facilities_data_validated.values():
-            rec_area = self.reserve_california_rec_areas.get(facility.PlaceId, None)
+            rec_area = self.usedirect_rec_areas.get(facility.PlaceId, None)
             if rec_area is not None:
-                self.reserve_california_campgrounds[
-                    facility.FacilityId
-                ] = CampgroundFacility(
+                self.usedirect_campgrounds[facility.FacilityId] = CampgroundFacility(
                     facility_name=facility.Name,
                     facility_id=facility.FacilityId,
                     recreation_area_id=facility.PlaceId,
@@ -607,7 +641,7 @@ class ReserveCalifornia(BaseProvider):
 
     def get_campsites_per_facility(
         self, facility_id: int
-    ) -> List[ReserveCaliforniaAvailabilityUnit]:
+    ) -> List[UseDirectAvailabilityUnit]:
         """
         Get Campsites Per Facility
 
@@ -617,21 +651,19 @@ class ReserveCalifornia(BaseProvider):
 
         Returns
         -------
-        List[ReserveCaliforniaAvailabilityUnit]
+        List[UseDirectAvailabilityUnit]
         """
         resp = self.get_campsites_response(
             campground_id=facility_id, start_date=date.today(), end_date=date.today()
         )
-        campsites: List[ReserveCaliforniaAvailabilityUnit] = list(
-            resp.Facility.Units.values()
-        )
+        campsites: List[UseDirectAvailabilityUnit] = list(resp.Facility.Units.values())
         for campsite in campsites:
             campsite.FacilityId = facility_id
         return campsites
 
     def get_campsite_metadata(
         self, facility_ids: List[int]
-    ) -> Dict[int, ReserveCaliforniaAvailabilityUnit]:
+    ) -> Dict[int, UseDirectAvailabilityUnit]:
         """
         Get the Campsite Metadata
 
@@ -642,14 +674,14 @@ class ReserveCalifornia(BaseProvider):
 
         Returns
         -------
-        Dict[int, ReserveCaliforniaAvailabilityUnit]
+        Dict[int, UseDirectAvailabilityUnit]
         """
-        campsites: Dict[int, ReserveCaliforniaAvailabilityUnit] = {}
+        campsites: Dict[int, UseDirectAvailabilityUnit] = {}
         for facility_id in facility_ids:
             found_campsites = self.get_campsites_per_facility(facility_id=facility_id)
             campsite_dict = {item.UnitId: item for item in found_campsites}
             campsites.update(campsite_dict)
-        self.reserve_california_campsites.update(campsites)
+        self.usedirect_campsites.update(campsites)
         return campsites
 
     def _prepare_facility_ids(
@@ -669,7 +701,7 @@ class ReserveCalifornia(BaseProvider):
         -------
         List[int]
         """
-        if not self.reserve_california_campgrounds:
+        if not self.usedirect_campgrounds:
             self.refresh_metadata()
         recreation_area_ids = recreation_area_ids or []
         campground_ids = campground_ids or []
@@ -684,7 +716,7 @@ class ReserveCalifornia(BaseProvider):
             for recreation_area_id in recreation_area_ids:
                 facility_ids += [
                     facility_id
-                    for facility_id, facility in self.reserve_california_campgrounds.items()
+                    for facility_id, facility in self.usedirect_campgrounds.items()
                     if facility.recreation_area_id == int(recreation_area_id)
                 ]
         else:
@@ -706,9 +738,9 @@ class ReserveCalifornia(BaseProvider):
         """
         self.get_campsite_metadata(facility_ids=facility_ids)
         for campsite_id in campsites:
-            if campsite_id not in self.reserve_california_campsites:
+            if campsite_id not in self.usedirect_campsites:
                 raise CamplyError(f"Campsite {campsite_id} not found")
             else:
-                campsite = self.reserve_california_campsites[campsite_id]
+                campsite = self.usedirect_campsites[campsite_id]
                 logger.info("Searching Specific campsite: %s", campsite.Name)
         self.campsite_ids = list(campsites)

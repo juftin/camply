@@ -135,7 +135,7 @@ dmypy.json
 node_modules/
 
 # Camply Data Files
-camply/providers/reserve_california/*.json
+camply/providers/usedirect/*/*.json
 
 # Camply Requirements Files
 requirements/*.bak

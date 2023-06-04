@@ -20,7 +20,7 @@ def test_rc_search_campgrounds_no_api(tmp_path: pathlib.Path) -> None:
     Cached Results: Search Campgrounds
     """
     prov = ReserveCalifornia()
-    prov.offline_cache_dir = tmp_path
+    prov.__offline_cache_dir__ = tmp_path
     expected_facility = 572
     campgrounds = prov.find_campgrounds(rec_area_id=[678])
     found = False
@@ -37,7 +37,7 @@ def test_rc_get_campsites(tmp_path: pathlib.Path) -> None:
     Get Campsites
     """
     prov = ReserveCalifornia()
-    prov.offline_cache_dir = tmp_path
+    prov.__offline_cache_dir__ = tmp_path
     start_date = datetime.date(2023, 6, 5)
     campsites = prov.get_campsites(
         campground_id=543,
@@ -54,7 +54,7 @@ def test_rc_get_metadata(tmp_path: pathlib.Path) -> None:
     Cached Results: Metadata Fetching
     """
     prov = ReserveCalifornia()
-    prov.offline_cache_dir = tmp_path
+    prov.__offline_cache_dir__ = tmp_path
     prov.refresh_metadata()
 
 
@@ -64,7 +64,7 @@ def test_rc_search_recreation_area(tmp_path: pathlib.Path) -> None:
     Cached Results: Search For RecArea
     """
     prov = ReserveCalifornia()
-    prov.offline_cache_dir = tmp_path
+    prov.__offline_cache_dir__ = tmp_path
     results = prov.search_for_recreation_areas(query="Half Moon Bay")
     assert results[0].recreation_area_location == "Half Moon Bay, CA"
 
@@ -75,7 +75,7 @@ def test_rc_search_campgrounds(tmp_path: pathlib.Path) -> None:
     Cached Results: Search For Campground
     """
     prov = ReserveCalifornia()
-    prov.offline_cache_dir = tmp_path
+    prov.__offline_cache_dir__ = tmp_path
     results = prov.find_campgrounds(search_string="Half Moon Bay", rec_area_id=[])
     assert results[0].recreation_area.__contains__("Half Moon Bay")
 

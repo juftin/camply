@@ -23,17 +23,14 @@ import click
 from rich import traceback
 from rich_click import RichCommand, RichGroup, rich_click
 
-from camply import __application__, __version__
+from camply import Yellowstone, __application__, __version__
 from camply.config import EquipmentOptions, SearchConfig, logging_config
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
 from camply.containers.examples import example_campsite
 from camply.notifications import CAMPSITE_NOTIFICATIONS, MultiNotifierProvider
 from camply.providers import (
-    GOING_TO_CAMP,
-    RECREATION_DOT_GOV,
-    YELLOWSTONE,
-    GoingToCampProvider,
+    GoingToCamp,
     RecreationDotGov,
 )
 from camply.search import CAMPSITE_SEARCH_PROVIDER, BaseCampingSearch
@@ -44,7 +41,7 @@ from camply.utils.logging_utils import log_sorted_response
 logging.Logger.camply = log_camply
 logger = logging.getLogger(__name__)
 
-DEFAULT_CAMPLY_PROVIDER: str = RECREATION_DOT_GOV
+DEFAULT_CAMPLY_PROVIDER: str = RecreationDotGov.__name__
 
 rich_click.STYLE_OPTION = "bold green"
 rich_click.STYLE_SWITCH = "bold blue"
@@ -229,15 +226,15 @@ def equipment_types(
     and recreation areas have different types of equipment for which reservations can be made.
     """
     provider = _preferred_provider(context, provider)
-    if not rec_area and provider == GOING_TO_CAMP:
+    if not rec_area and provider == GoingToCamp.__name__:
         logger.error(
             "This provider requires --rec-area to be specified when listing equipment types"
         )
         sys.exit(1)
 
-    if provider == GOING_TO_CAMP:
-        GoingToCampProvider().list_equipment_types(rec_area[0])
-    elif provider.startswith(RECREATION_DOT_GOV):
+    if provider == GoingToCamp.__name__:
+        GoingToCamp().list_equipment_types(rec_area[0])
+    elif provider.startswith(RecreationDotGov.__name__):
         log_sorted_response(response_array=EquipmentOptions.__all_accepted_equipment__)
     else:
         logger.warning("That Provider doesn't support equipment based searching, yet 🙂")
@@ -268,16 +265,20 @@ def recreation_areas(
         context.debug = debug
         _set_up_debug(debug=context.debug)
     if all(
-        [search is None, state is not None, provider in [YELLOWSTONE, GOING_TO_CAMP]]
+        [
+            search is None,
+            state is not None,
+            provider in [Yellowstone.__name__, GoingToCamp.__name__],
+        ]
     ):
         # State Filtering Not Supported
         logger.error(
             f"{provider} does not support filtering recreation areas by state. Leave --state blank."
         )
         sys.exit(1)
-    if provider == GOING_TO_CAMP:
-        rec_area_finder = GoingToCampProvider()
-    elif provider.startswith(RECREATION_DOT_GOV):
+    if provider == GoingToCamp.__name__:
+        rec_area_finder = GoingToCamp()
+    elif provider.startswith(RecreationDotGov.__name__):
         rec_area_finder = RecreationDotGov()
     else:
         rec_area_finder = CAMPSITE_SEARCH_PROVIDER[provider]
@@ -325,7 +326,7 @@ def campgrounds(
             len(rec_area) == 0,
             len(campground) == 0,
             len(campsite) == 0,
-            provider not in [YELLOWSTONE, GOING_TO_CAMP],
+            provider not in [Yellowstone.__name__, GoingToCamp.__name__],
         ]
     ):
         logger.error(
@@ -556,7 +557,7 @@ def _validate_campsites(
         Tuple containing continuous run eval, search_windows,
         and days of the week
     """
-    if provider.startswith(RECREATION_DOT_GOV) and all(
+    if provider.startswith(RecreationDotGov.__name__) and all(
         [
             len(rec_area) == 0,
             len(campground) == 0,
