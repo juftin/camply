@@ -138,3 +138,15 @@ class FairfaxCountyParks(UseDirectProvider):
     booking_path = "FairfaxFCPAWeb/Facilities/SearchViewUnitAvailabity.aspx"
     booking_path_params = False
     state_code = "VA"
+
+
+class MinnesotaStateParks(UseDirectProvider):
+    """
+    Minnesota State Parks
+    """
+
+    base_url = "https://mnrdr.usedirect.com"
+    campground_url = "https://reservemn.usedirect.com"
+    rdr_path = "minnesotardr"
+    booking_path = "MinnesotaWeb"
+    state_code = "MN"

@@ -18,6 +18,7 @@ from camply.providers.usedirect.variations import (
     FairfaxCountyParks,
     FloridaStateParks,
     MaricopaCountyParks,
+    MinnesotaStateParks,
     MissouriStateParks,
     NorthernTerritory,
     OregonMetro,
@@ -279,3 +280,11 @@ class SearchFairfaxCountyParks(SearchUseDirect):
     """
 
     provider_class = FairfaxCountyParks
+
+
+class SearchMinnesotaStateParks(SearchUseDirect):
+    """
+    Search MinnesotaStateParks
+    """
+
+    provider_class = MinnesotaStateParks
