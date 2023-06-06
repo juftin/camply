@@ -5,11 +5,11 @@
 </a>
 </div>
 
-**`camply`**, the campsite finder ⛺️, is a tool to help you book a campground online. Finding
-reservations at sold out campgrounds can be tough. That's where camply comes in. It searches the
-APIs of booking services like https://recreation.gov (which indexes thousands of campgrounds across
-the USA) to continuously check for cancellations and availabilities to pop up. Once a campsite
-becomes available, camply sends you a notification to book your spot!
+**`camply`**, the campsite finder ⛺️, is a tool to help you book a campsite online. Finding
+reservations at sold out campgrounds can be tough. That's where camply comes in. It searches
+thousands of campgrounds across the ~~USA~~ world via the APIs of booking services like
+https://recreation.gov. It continuously checks for cancellations and availabilities to pop up -
+once a campsite becomes available, camply sends you a notification to book your spot!
 
 ---
 
@@ -72,7 +72,18 @@ service that lists camping and recreation inventory.
 -   **`RecreationDotGov`**: Searches on [Recreation.gov](https://recreation.gov) for Campsites (default provider)
 -   **`Yellowstone`**: Searches on [YellowstoneNationalParkLodges.com](https://yellowstonenationalparklodges.com) for Campsites
 -   **`GoingToCamp`**: Searches on [GoingToCamp.com](https://goingtocamp.com) for Campsites
--   **`ReserveCalifornia`**: Searches on [ReserveCalifornia.com](https://reservecalifornia.com) for Campsites
+-   **`ReserveCalifornia`**: Searches on [ReserveCalifornia.com](https://reservecalifornia.com) for Campsites (California State Parks)
+-   **`AlabamaStateParks`**: Searches on [ReserveAlaPark.com](https://reservealapark.com) for Campsites
+-   **`ArizonaStateParks`**: Searches on [AZStateParks.com](https://azstateparks.com) for Campsites
+-   **`FloridaStateParks`**: Searches on [FloridaStateParks.org](https://www.reserve.floridastateparks.org) for Campsites
+-   **`MinnesotaStateParks`**: Searches on [ReserveMN.usedirect.com](https://reservemn.usedirect.com) for Campsites
+-   **`MissouriStateParks`**: Searches on [icampmo1.usedirect.com](https://icampmo1.usedirect.com) for Campsites
+-   **`OhioStateParks`**: Searches on [ReserveOhio.com](https://reserveohio.com) for Campsites
+-   **`VirginiaStateParks`**: Searches on [ReserveVAParks.com](https://reservevaparks.com) for Campsites
+-   **`NorthernTerritory`**: Searches the [Australian Northern Territory](https://parkbookings.nt.gov.au) for Campsites
+-   **`FairfaxCountyParks`**: Searches on [fairfax.usedirect.com](https://fairfax.usedirect.com) for Campsites (Virginia)
+-   **`MaricopaCountyParks`**: Searches on [MaricopaCountyParks.org](https://maricopacountyparks.org) for Campsites (Arizona)
+-   **`OregonMetro`**: Searches on [OregonMetro.gov](https://oregonmetro.gov) for Campsites (Portland Metro)
 -   **`RecreationDotGovTicket`**: Searches on [Recreation.gov](https://recreation.gov) for Tickets and Tours
 -   **`RecreationDotGovTimedEntry`**: Searches on [Recreation.gov](https://recreation.gov) for Timed Entries
 

@@ -14,7 +14,18 @@ from camply.search.search_recreationdotgov import (
     SearchRecreationDotGovTimedEntry,
 )
 from camply.search.search_usedirect import (
+    SearchAlabamaStateParks,
+    SearchArizonaStateParks,
+    SearchFairfaxCountyParks,
+    SearchFloridaStateParks,
+    SearchMaricopaCountyParks,
+    SearchMinnesotaStateParks,
+    SearchMissouriStateParks,
+    SearchNorthernTerritory,
+    SearchOhioStateParks,
+    SearchOregonMetro,
     SearchReserveCalifornia,
+    SearchVirginiaStateParks,
 )
 from camply.search.search_yellowstone import SearchYellowstone
 
@@ -25,6 +36,17 @@ __search_providers__: List[Type[BaseCampingSearch]] = [
     SearchGoingToCamp,
     # UseDirect
     SearchReserveCalifornia,
+    SearchAlabamaStateParks,
+    SearchArizonaStateParks,
+    SearchFloridaStateParks,
+    SearchMinnesotaStateParks,
+    SearchMissouriStateParks,
+    SearchOhioStateParks,
+    SearchVirginiaStateParks,
+    SearchNorthernTerritory,
+    SearchFairfaxCountyParks,
+    SearchMaricopaCountyParks,
+    SearchOregonMetro,
     # Tours and Timed Entry (RecDotGov)
     SearchRecreationDotGovTicket,
     SearchRecreationDotGovTimedEntry,

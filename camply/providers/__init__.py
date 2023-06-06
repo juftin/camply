@@ -14,7 +14,18 @@ from .recreation_dot_gov.recdotgov_tours import (
     RecreationDotGovTimedEntry,
 )
 from .usedirect.variations import (
+    AlabamaStateParks,
+    ArizonaStateParks,
+    FairfaxCountyParks,
+    FloridaStateParks,
+    MaricopaCountyParks,
+    MinnesotaStateParks,
+    MissouriStateParks,
+    NorthernTerritory,
+    OhioStateParks,
+    OregonMetro,
     ReserveCalifornia,
+    VirginiaStateParks,
 )
 from .xanterra.yellowstone_lodging import Yellowstone
 
@@ -27,6 +38,17 @@ ProviderType = Union[
     RecreationDotGovTimedEntry,
     Yellowstone,
     ReserveCalifornia,
+    NorthernTerritory,
+    FloridaStateParks,
+    OregonMetro,
+    OhioStateParks,
+    VirginiaStateParks,
+    ArizonaStateParks,
+    MaricopaCountyParks,
+    MissouriStateParks,
+    AlabamaStateParks,
+    FairfaxCountyParks,
+    MinnesotaStateParks,
 ]
 
 __all__ = [
@@ -40,4 +62,15 @@ __all__ = [
     "RecreationDotGovTimedEntry",
     "Yellowstone",
     "ReserveCalifornia",
+    "NorthernTerritory",
+    "FloridaStateParks",
+    "OregonMetro",
+    "OhioStateParks",
+    "VirginiaStateParks",
+    "ArizonaStateParks",
+    "MaricopaCountyParks",
+    "MissouriStateParks",
+    "AlabamaStateParks",
+    "FairfaxCountyParks",
+    "MinnesotaStateParks",
 ]
