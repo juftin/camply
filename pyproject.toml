@@ -114,10 +114,19 @@ format = ["ruff --fix {args:.}", "black {args:.}"]
 lint = ["ruff {args:.}", "black --check {args:.}"]
 requirements = [
   "hatch dep show requirements --project-only --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-prod.txt{args:}",
+  "_pip_compile --output-file requirements/requirements-prod.txt",
   "_sed_requirements requirements/requirements-prod.txt",
   "hatch dep show requirements --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-dev.txt{args:}",
+  "_pip_compile --output-file requirements/requirements-dev.txt",
+  "_sed_requirements requirements/requirements-dev.txt",
+  "rm requirements.in"
+]
+requirements-upgrade = [
+  "hatch dep show requirements --project-only --all > requirements.in",
+  "_pip_compile --output-file requirements/requirements-prod.txt --upgrade",
+  "_sed_requirements requirements/requirements-prod.txt",
+  "hatch dep show requirements --all > requirements.in",
+  "_pip_compile --output-file requirements/requirements-dev.txt --upgrade",
   "_sed_requirements requirements/requirements-dev.txt",
   "rm requirements.in"
 ]
