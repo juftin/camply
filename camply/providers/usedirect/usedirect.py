@@ -162,7 +162,7 @@ class UseDirectProvider(BaseProvider, ABC):
         self,
         search_string: Optional[str] = None,
         rec_area_id: Optional[List[int]] = None,
-        state: str = "CA",
+        state: Optional[str] = None,
         verbose: bool = True,
         campground_id: Optional[List[int]] = None,
         **kwargs: Any,
@@ -173,7 +173,7 @@ class UseDirectProvider(BaseProvider, ABC):
         Parameters
         ----------
         rec_area_id: Optional[int]
-        state: str = "CA"
+        state: Optional[str]
         search_string: Optional[str]
         campground_id: Optional[List[int]]
 
@@ -182,8 +182,10 @@ class UseDirectProvider(BaseProvider, ABC):
         List[CampgroundFacility]
         """
         self.active_search = True
-        if state.upper() != "CA":
-            raise CamplyError("UseDirect doesn't support states outside CA")
+        if state is not None and state.upper() != self.state_code:
+            raise CamplyError(
+                f"{self.__class__.__name__} doesn't support states outside {self.state_code}"
+            )
         if campground_id is None:
             campground_id = []
         if rec_area_id is None:
@@ -327,6 +329,7 @@ class UseDirectProvider(BaseProvider, ABC):
         try:
             return UseDirectAvailabilityResponse(**response.json())
         except ValidationError as e:
+            raise
             error_message = (
                 "Error Parsing UseDirect Availability Response "
                 f"- Facility ID # {campground_id}."

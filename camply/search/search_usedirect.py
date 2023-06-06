@@ -14,17 +14,17 @@ from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.containers.data_containers import ListedCampsite
 from camply.providers.usedirect.variations import (
     AlabamaStateParks,
-    AZStateParks,
+    ArizonaStateParks,
     FairfaxCountyParks,
     FloridaStateParks,
     MaricopaCountyParks,
     MinnesotaStateParks,
     MissouriStateParks,
     NorthernTerritory,
+    OhioStateParks,
     OregonMetro,
     ReserveCalifornia,
-    ReserveOhio,
-    ReserveVAParks,
+    VirginiaStateParks,
 )
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
@@ -204,7 +204,7 @@ class SearchReserveCalifornia(SearchUseDirect):
 
 class SearchNorthernTerritory(SearchUseDirect):
     """
-    Search Northern Territory
+    Searches the Australian Northern Territory for Campsites
     """
 
     provider_class = NorthernTerritory
@@ -212,7 +212,7 @@ class SearchNorthernTerritory(SearchUseDirect):
 
 class SearchFloridaStateParks(SearchUseDirect):
     """
-    Search Florida State Parks
+    Searches on FloridaStateParks.org for Campsites
     """
 
     provider_class = FloridaStateParks
@@ -220,39 +220,39 @@ class SearchFloridaStateParks(SearchUseDirect):
 
 class SearchOregonMetro(SearchUseDirect):
     """
-    Search Oregon Metro
+    Searches on OregonMetro.gov for Campsites (Portland Metro)
     """
 
     provider_class = OregonMetro
 
 
-class SearchReserveOhio(SearchUseDirect):
+class SearchOhioStateParks(SearchUseDirect):
     """
-    Search ReserveOhio
-    """
-
-    provider_class = ReserveOhio
-
-
-class SearchReserveVAParks(SearchUseDirect):
-    """
-    Search ReserveVAParks
+    Searches on ReserveOhio.com for Campsites
     """
 
-    provider_class = ReserveVAParks
+    provider_class = OhioStateParks
 
 
-class SearchAZStateParks(SearchUseDirect):
+class SearchVirginiaStateParks(SearchUseDirect):
     """
-    Search AZStateParks
+    Searches on ReserveVAParks.com for Campsites
     """
 
-    provider_class = AZStateParks
+    provider_class = VirginiaStateParks
+
+
+class SearchArizonaStateParks(SearchUseDirect):
+    """
+    Searches on AZStateParks.com for Campsites
+    """
+
+    provider_class = ArizonaStateParks
 
 
 class SearchMaricopaCountyParks(SearchUseDirect):
     """
-    Search MaricopaCountyParks
+    Searches on MaricopaCountyParks.org for Campsites (Arizona)
     """
 
     provider_class = MaricopaCountyParks
@@ -260,7 +260,7 @@ class SearchMaricopaCountyParks(SearchUseDirect):
 
 class SearchMissouriStateParks(SearchUseDirect):
     """
-    Search MissouriStateParks
+    Searches on icampmo1.usedirect.com for Campsites
     """
 
     provider_class = MissouriStateParks
@@ -268,7 +268,7 @@ class SearchMissouriStateParks(SearchUseDirect):
 
 class SearchAlabamaStateParks(SearchUseDirect):
     """
-    Search AlabamaStateParks
+    Searches on ReserveAlaPark.com for Campsites
     """
 
     provider_class = AlabamaStateParks
@@ -276,7 +276,7 @@ class SearchAlabamaStateParks(SearchUseDirect):
 
 class SearchFairfaxCountyParks(SearchUseDirect):
     """
-    Search FairfaxCountyParks
+    Searches on fairfax.usedirect.com for Campsites (Virginia)
     """
 
     provider_class = FairfaxCountyParks
@@ -284,7 +284,7 @@ class SearchFairfaxCountyParks(SearchUseDirect):
 
 class SearchMinnesotaStateParks(SearchUseDirect):
     """
-    Search MinnesotaStateParks
+    Searches on ReserveMN.usedirect.com for Campsites
     """
 
     provider_class = MinnesotaStateParks

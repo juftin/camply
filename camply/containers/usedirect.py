@@ -18,7 +18,7 @@ class UseDirectRestrictions(CamplyModel):
     MinimumStay: int
     MaximumStay: int
     IsRestrictionValid: bool
-    Time: str
+    Time: Optional[str]
 
 
 class UseDirectUnitType(CamplyModel):
@@ -51,7 +51,7 @@ class UseDirectAvailabilitySlice(CamplyModel):
     ReservationId: int
     Lock: Any
     MinStay: int
-    IsReservationDraw: bool
+    IsReservationDraw: Optional[bool]
 
 
 class UseDirectAvailabilityUnit(CamplyModel):
@@ -65,7 +65,7 @@ class UseDirectAvailabilityUnit(CamplyModel):
     RecentPopups: Optional[int]
     IsAda: Optional[bool]
     AllowWebBooking: Optional[bool]
-    MapInfo: Dict[str, Any] = {}
+    MapInfo: Optional[Dict[str, Any]] = {}
     IsWebViewable: Optional[bool]
     IsFiltered: Optional[bool]
     UnitCategoryId: Optional[int]

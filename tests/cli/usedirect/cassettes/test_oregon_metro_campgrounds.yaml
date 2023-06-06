@@ -3,14 +3,14 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.10 (KHTML,
-                    like Gecko) Chrome/7.0.548.0 Safari/534.10
+                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko)
+                    Chrome/16.0.912.63 Safari/535.7xs5D9rRDFpg2g
           method: GET
           uri: https://oregonrdr.usedirect.com/oregonmetrordr/rdr/search/filters
       response:
           body:
               string:
-                  "{\"Message\":\"Built in 0.5853 ms size 12154 bytes on ORMETRO-RDR\",\"UnitCategories\":[{\"UnitCategoryId\":1,\"UnitCategoryName\":\"Camping\",\"HasEquipment\":false,\"Icon\":\"camping\"},{\"UnitCategoryId\":2,\"UnitCategoryName\":\"Day
+                  "{\"Message\":\"Built in 0.5103 ms size 12154 bytes on ORMETRO-RDR\",\"UnitCategories\":[{\"UnitCategoryId\":1,\"UnitCategoryName\":\"Camping\",\"HasEquipment\":false,\"Icon\":\"camping\"},{\"UnitCategoryId\":2,\"UnitCategoryName\":\"Day
                   Use Areas\",\"HasEquipment\":false,\"Icon\":\"dayuseareas\"},{\"UnitCategoryId\":6,\"UnitCategoryName\":\"Sports
                   Use Areas\",\"HasEquipment\":true,\"Icon\":\"sportsuseareas\"}],\"NightlySleepingUnits\":[{\"UnitCategoryId\":6,\"SleepingUnitId\":2,\"SleepingUnitName\":\"RV/Motorhome\",\"IsWheeled\":true,\"Icon\":\"rvmotorhome\"},{\"UnitCategoryId\":6,\"SleepingUnitId\":3,\"SleepingUnitName\":\"Tent
                   Only\",\"IsWheeled\":false,\"Icon\":\"tentonly\"},{\"UnitCategoryId\":6,\"SleepingUnitId\":5,\"SleepingUnitName\":\"Tent\",\"IsWheeled\":false,\"Icon\":\"tent\"},{\"UnitCategoryId\":6,\"SleepingUnitId\":6,\"SleepingUnitName\":\"Trailer
@@ -185,7 +185,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 04 Jun 2023 05:42:16 GMT
+                  - Tue, 06 Jun 2023 03:00:14 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -209,8 +209,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.10 (KHTML,
-                    like Gecko) Chrome/7.0.548.0 Safari/534.10
+                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko)
+                    Chrome/16.0.912.63 Safari/535.7xs5D9rRDFpg2g
           method: GET
           uri: https://oregonrdr.usedirect.com/oregonmetrordr/rdr/fd/citypark
       response:
@@ -437,7 +437,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 04 Jun 2023 05:42:16 GMT
+                  - Tue, 06 Jun 2023 03:00:14 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -461,8 +461,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.10 (KHTML,
-                    like Gecko) Chrome/7.0.548.0 Safari/534.10
+                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko)
+                    Chrome/16.0.912.63 Safari/535.7xs5D9rRDFpg2g
           method: GET
           uri: https://oregonrdr.usedirect.com/oregonmetrordr/rdr/fd/places
       response:
@@ -883,7 +883,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 04 Jun 2023 05:42:16 GMT
+                  - Tue, 06 Jun 2023 03:00:14 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -907,8 +907,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.10 (KHTML,
-                    like Gecko) Chrome/7.0.548.0 Safari/534.10
+                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko)
+                    Chrome/16.0.912.63 Safari/535.7xs5D9rRDFpg2g
           method: GET
           uri: https://oregonrdr.usedirect.com/oregonmetrordr/rdr/fd/facilities
       response:
@@ -1557,7 +1557,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 04 Jun 2023 05:42:17 GMT
+                  - Tue, 06 Jun 2023 03:00:14 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:

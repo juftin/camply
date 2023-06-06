@@ -3,14 +3,14 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.5 (KHTML,
-                    like Gecko) Chrome/2.0.174.0 Safari/530.5
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.20
+                    Safari/535.1
           method: GET
           uri: https://mnrdr.usedirect.com/minnesotardr/rdr/search/filters
       response:
           body:
               string:
-                  '{"Message":"Built in 0.3528 ms size 10231 bytes on MNDNR-RDR2","UnitCategories":[{"UnitCategoryId":25,"UnitCategoryName":"Camping","HasEquipment":true,"Icon":"camping"},{"UnitCategoryId":19,"UnitCategoryName":"Day
+                  '{"Message":"Built in 0.3518 ms size 10231 bytes on MNDNR-RDR2","UnitCategories":[{"UnitCategoryId":25,"UnitCategoryName":"Camping","HasEquipment":true,"Icon":"camping"},{"UnitCategoryId":19,"UnitCategoryName":"Day
                   Use Facilities","HasEquipment":false,"Icon":"dayusefacilities"},{"UnitCategoryId":24,"UnitCategoryName":"Equipment
                   Rental","HasEquipment":false,"Icon":"equipmentrental"},{"UnitCategoryId":20,"UnitCategoryName":"Group
                   Camping","HasEquipment":false,"Icon":"groupcamping"},{"UnitCategoryId":26,"UnitCategoryName":"Group
@@ -156,7 +156,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 04 Jun 2023 05:24:19 GMT
+                  - Tue, 06 Jun 2023 02:55:22 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -178,8 +178,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.5 (KHTML,
-                    like Gecko) Chrome/2.0.174.0 Safari/530.5
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.20
+                    Safari/535.1
           method: GET
           uri: https://mnrdr.usedirect.com/minnesotardr/rdr/fd/citypark
       response:
@@ -455,7 +455,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 04 Jun 2023 05:24:19 GMT
+                  - Tue, 06 Jun 2023 02:55:22 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -477,8 +477,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.5 (KHTML,
-                    like Gecko) Chrome/2.0.174.0 Safari/530.5
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.20
+                    Safari/535.1
           method: GET
           uri: https://mnrdr.usedirect.com/minnesotardr/rdr/fd/places
       response:
@@ -767,7 +767,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 04 Jun 2023 05:24:19 GMT
+                  - Tue, 06 Jun 2023 02:55:22 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
@@ -789,8 +789,8 @@ interactions:
           body: null
           headers:
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.5 (KHTML,
-                    like Gecko) Chrome/2.0.174.0 Safari/530.5
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.20
+                    Safari/535.1
           method: GET
           uri: https://mnrdr.usedirect.com/minnesotardr/rdr/fd/facilities
       response:
@@ -1272,7 +1272,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sun, 04 Jun 2023 05:24:20 GMT
+                  - Tue, 06 Jun 2023 02:55:23 GMT
               Server:
                   - Kestrel
               Strict-Transport-Security:
