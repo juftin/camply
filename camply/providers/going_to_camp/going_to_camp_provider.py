@@ -198,7 +198,7 @@ class GoingToCamp(BaseProvider):
         return self.find_facilities_per_recreation_area(
             rec_area_id=rec_area_id,
             campground_id=campground_id,
-            searching_string=search_string,
+            search_string=search_string,
         )
 
     def _get_attr_val(self, attribute, attribute_detail) -> any:
@@ -304,9 +304,9 @@ class GoingToCamp(BaseProvider):
 
     def find_facilities_per_recreation_area(
         self,
-        rec_area_id: Union[List[int], int] = None,
-        campground_id: int = None,
-        search_string: str = None,
+        rec_area_id: Optional[Union[List[int], int]] = None,
+        campground_id: Optional[Union[List[int], int]] = None,
+        search_string: Optional[str] = None,
         **kwargs,
     ) -> List[CampgroundFacility]:
         """
@@ -314,12 +314,10 @@ class GoingToCamp(BaseProvider):
 
         Parameters
         ----------
-        rec_area_id: int
+        rec_area_id: Optional[Union[List[int], int]]
             Recreation Area ID
-
-        campground_id: Optional[List[int]]
+        campground_id: Optional[Union[List[int], int]]
             Campground IDs
-
         search_string: Optional[str]
             A string to search for in the facility name
 
@@ -370,9 +368,12 @@ class GoingToCamp(BaseProvider):
                 continue
             if not campground_id:
                 campgrounds.append(campground_facility)
-            if campground_id and str(campground_facility.facility_id) in campground_id:
+            campground_strings = make_list(campground_id, coerce=str)
+            if (
+                campground_id
+                and str(campground_facility.facility_id) in campground_strings
+            ):
                 campgrounds.append(campground_facility)
-
         logger.info(f"{len(campgrounds)} Matching Campgrounds Found")
         log_sorted_response(response_array=campgrounds)
         return campgrounds
@@ -410,18 +411,21 @@ class GoingToCamp(BaseProvider):
         return json.loads(response.content)
 
     def _filter_facilities_responses(
-        self, rec_area_id: int, facilities=List[dict]
+        self, rec_area_id: int, facilities=List[Dict[str, Any]]
     ) -> List[ResourceLocation]:
         """
         Filter Facilities to Actual Reservable Campsites
 
         Parameters
         ----------
-        responses
+        rec_area_id: int
+            Recreation Area ID
+        facilities: List[Dict[str, Any]]
+            List of facilities
 
         Returns
         -------
-        List[dict]
+        List[ResourceLocation]
         """
         filtered_facilities = []
         for facil in facilities:
