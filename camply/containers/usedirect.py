@@ -13,11 +13,11 @@ class UseDirectRestrictions(CamplyModel):
     UseDirect: Campsite Restrictions
     """
 
-    FutureBookingStarts: datetime.datetime
-    FutureBookingEnds: datetime.datetime
-    MinimumStay: int
-    MaximumStay: int
-    IsRestrictionValid: bool
+    FutureBookingStarts: Optional[datetime.datetime]
+    FutureBookingEnds: Optional[datetime.datetime]
+    MinimumStay: Optional[int]
+    MaximumStay: Optional[int]
+    IsRestrictionValid: Optional[bool]
     Time: Optional[str]
 
 
@@ -30,13 +30,13 @@ class UseDirectUnitType(CamplyModel):
     UseType: int
     Name: str
     Available: bool
-    AvailableFiltered: bool
-    UnitCategoryId: int
-    UnitTypeGroupId: int
-    MaxVehicleLength: int
-    HasAda: bool
+    AvailableFiltered: Optional[bool]
+    UnitCategoryId: Optional[int]
+    UnitTypeGroupId: Optional[int]
+    MaxVehicleLength: Optional[int]
+    HasAda: Optional[bool]
     Restrictions: Optional[Any]
-    AvailableCount: int
+    AvailableCount: Optional[int]
 
 
 class UseDirectAvailabilitySlice(CamplyModel):
@@ -46,11 +46,11 @@ class UseDirectAvailabilitySlice(CamplyModel):
 
     Date: datetime.date
     IsFree: bool
-    IsBlocked: bool
-    IsWalkin: bool
-    ReservationId: int
+    IsBlocked: Optional[bool]
+    IsWalkin: Optional[bool]
+    ReservationId: Optional[int]
     Lock: Any
-    MinStay: int
+    MinStay: Optional[int]
     IsReservationDraw: Optional[bool]
 
 
@@ -90,17 +90,17 @@ class UseDirectFacility(CamplyModel):
     """
 
     FacilityId: int
-    Name: str
-    Description: str
+    Name: Optional[str]
+    Description: Optional[str]
     RateMessage: Optional[str]
     FacilityType: Optional[int]
     FacilityTypeNew: Optional[int]
     InSeason: Optional[bool]
     Available: Optional[bool]
     AvailableFiltered: Optional[bool]
-    Restrictions: UseDirectRestrictions
-    Latitude: float
-    Longitude: float
+    Restrictions: Optional[UseDirectRestrictions]
+    Latitude: Optional[float]
+    Longitude: Optional[float]
     Category: Optional[str]
     EnableCheckOccupancy: Optional[bool]
     AvailableOccupancy: Any
@@ -120,28 +120,28 @@ class UseDirectPlace(CamplyModel):
 
     PlaceId: int
     Name: str
-    Description: str
-    HasAlerts: bool
-    IsFavourite: bool
-    Allhighlights: str
-    Url: str
-    ImageUrl: str
-    BannerUrl: str
-    ParkSize: str
-    Latitude: float
-    Longitude: float
-    TimeZone: str
-    TimeStamp: datetime.datetime
-    MilesFromSelected: int
+    Description: Optional[str]
+    HasAlerts: Optional[bool]
+    IsFavourite: Optional[bool]
+    Allhighlights: Optional[str]
+    Url: Optional[str]
+    ImageUrl: Optional[str]
+    BannerUrl: Optional[str]
+    ParkSize: Optional[str]
+    Latitude: Optional[float]
+    Longitude: Optional[float]
+    TimeZone: Optional[str]
+    TimeStamp: Optional[datetime.datetime]
+    MilesFromSelected: Optional[int]
     Available: bool
-    AvailableFiltered: bool
-    ParkCategoryId: int
-    ParkActivity: int
-    ParkPopularity: int
-    AvailableUnitCount: int
-    Restrictions: UseDirectRestrictions
-    Facilities: Dict[int, UseDirectFacility]
-    IsAvailableForGreatwalk: bool
+    AvailableFiltered: Optional[bool]
+    ParkCategoryId: Optional[int]
+    ParkActivity: Optional[int]
+    ParkPopularity: Optional[int]
+    AvailableUnitCount: Optional[int]
+    Restrictions: Optional[UseDirectRestrictions]
+    Facilities: Dict[int, UseDirectFacility] = {}
+    IsAvailableForGreatwalk: Optional[bool]
     FacilityDefaultZoom: Optional[int]
 
 
@@ -154,33 +154,33 @@ class UseDirectDetailedPlace(CamplyModel):
     Name: str
     Description: Optional[str]
     ParkSize: Optional[str]
-    Latitude: float
-    Longitude: float
+    Latitude: Optional[float]
+    Longitude: Optional[float]
     ParkCategoryId: Optional[int]
-    ParkActivity: int
-    ParkPopularity: int
-    IsAvailableForGreatwalk: bool
+    ParkActivity: Optional[int]
+    ParkPopularity: Optional[int]
+    IsAvailableForGreatwalk: Optional[bool]
     FacilityDefaultZoom: Optional[int]
-    RegionId: int
-    ShortName: str
-    OrderBy: int
-    AllowWebBooking: bool
-    InventoryLocking: bool
-    InventoryLockDuration: int
-    UsePrepend: bool
-    PrependCode: str
-    Address1: str
+    RegionId: Optional[int]
+    ShortName: Optional[str]
+    OrderBy: Optional[int]
+    AllowWebBooking: Optional[bool]
+    InventoryLocking: Optional[bool]
+    InventoryLockDuration: Optional[int]
+    UsePrepend: Optional[bool]
+    PrependCode: Optional[str]
+    Address1: Optional[str]
     Address2: Optional[str]
-    City: str
-    State: str
-    Zip: str
+    City: Optional[str]
+    State: Optional[str]
+    Zip: Optional[str]
     VoicePhone: Optional[str]
     UDate: datetime.datetime
-    UserId: int
-    RowGuid: str
-    IsWebViewable: bool
-    WeekdayCheckdays: int
-    WeekendCheckdays: int
+    UserId: Optional[int]
+    RowGuid: Optional[str]
+    IsWebViewable: Optional[bool]
+    WeekdayCheckdays: Optional[int]
+    WeekendCheckdays: Optional[int]
 
 
 class UseDirectAvailabilityFacility(UseDirectFacility):
@@ -193,13 +193,13 @@ class UseDirectAvailabilityFacility(UseDirectFacility):
     FacilityImageVBT: Optional[str]
     DatesInSeason: Optional[int]
     DatesOutOfSeason: Optional[int]
-    SeasonDates: Dict[datetime.datetime, bool]
-    TrafficStatuses: Dict[str, Any]
-    UnitCount: int
-    AvailableUnitCount: int
-    SliceCount: int
-    AvailableSliceCount: int
-    TimebaseMaxHours: int
+    SeasonDates: Dict[datetime.datetime, bool] = {}
+    TrafficStatuses: Dict[str, Any] = {}
+    UnitCount: Optional[int]
+    AvailableUnitCount: Optional[int]
+    SliceCount: Optional[int]
+    AvailableSliceCount: Optional[int]
+    TimebaseMaxHours: Optional[int]
     TimebaseMinHours: Optional[int]
     TimebaseDuration: Optional[float]
     IsReservationDraw: Optional[bool]
@@ -214,25 +214,25 @@ class UseDirectAvailabilityResponse(CamplyModel):
     """
 
     Message: str
-    Filters: Dict[str, Any]
+    Filters: Dict[str, Any] = {}
     UnitTypeId: int
-    StartDate: datetime.date
-    EndDate: datetime.date
-    NightsRequested: int
-    NightsActual: int
-    TodayDate: datetime.date
-    TimeZone: str
-    TimeStamp: datetime.datetime
-    MinDate: datetime.date
-    MaxDate: datetime.date
-    AvailableUnitsOnly: bool
-    UnitSort: str
-    TimeGrid: bool
-    ForUnit: bool
-    UnitId: int
-    TimeBetween: str
-    TimeBetweenEval: str
-    Facility: UseDirectAvailabilityFacility
+    StartDate: Optional[datetime.date]
+    EndDate: Optional[datetime.date]
+    NightsRequested: Optional[int]
+    NightsActual: Optional[int]
+    TodayDate: Optional[datetime.date]
+    TimeZone: Optional[str]
+    TimeStamp: Optional[datetime.datetime]
+    MinDate: Optional[datetime.date]
+    MaxDate: Optional[datetime.date]
+    AvailableUnitsOnly: Optional[bool]
+    UnitSort: Optional[str]
+    TimeGrid: Optional[bool]
+    ForUnit: Optional[bool]
+    UnitId: Optional[int]
+    TimeBetween: Optional[str]
+    TimeBetweenEval: Optional[str]
+    Facility: Optional[UseDirectAvailabilityFacility]
 
 
 class UseDirectUnitCategory(CamplyModel):
@@ -242,7 +242,7 @@ class UseDirectUnitCategory(CamplyModel):
 
     UnitCategoryId: int
     UnitCategoryName: str
-    HasEquipment: bool
+    HasEquipment: Optional[bool]
     Icon: Optional[str]
 
 
@@ -254,7 +254,7 @@ class UseDirectNightlySleepingUnit(CamplyModel):
     UnitCategoryId: int
     SleepingUnitId: int
     SleepingUnitName: str
-    IsWheeled: bool
+    IsWheeled: Optional[bool]
     Icon: Optional[str]
 
 
@@ -288,12 +288,12 @@ class UseDirectAmenity(CamplyModel):
     AmenityId: int
     Name: str
     ShortName: str
-    AmenityType: int
-    IsSearchable: bool
+    AmenityType: Optional[str]
+    IsSearchable: Optional[bool]
     Description: Optional[str]
-    OrderBy: int
-    IDate: datetime.datetime
-    UDate: datetime.datetime
+    OrderBy: Optional[int]
+    IDate: Optional[datetime.datetime]
+    UDate: Optional[datetime.datetime]
     ImagePath: Optional[str]
     UCashierName: Optional[str]
     UStoreId: Optional[int]
@@ -307,12 +307,12 @@ class UseDirectMetadata(CamplyModel):
     """
 
     Message: str
-    UnitCategories: List[UseDirectUnitCategory]
-    NightlySleepingUnits: List[UseDirectNightlySleepingUnit]
-    MinVehicleLengths: List[UseDirectMinVehicleLength]
-    UnitTypesGroups: List[UseDirectUnitTypeGroup]
-    PlaceHighlights: List[Any]
-    AllAmenity: List[UseDirectAmenity]
+    UnitCategories: List[UseDirectUnitCategory] = []
+    NightlySleepingUnits: List[UseDirectNightlySleepingUnit] = []
+    MinVehicleLengths: List[UseDirectMinVehicleLength] = []
+    UnitTypesGroups: List[UseDirectUnitTypeGroup] = []
+    PlaceHighlights: List[Any] = []
+    AllAmenity: List[UseDirectAmenity] = []
 
 
 class UseDirectCityPark(CamplyModel):
@@ -327,7 +327,7 @@ class UseDirectCityPark(CamplyModel):
     IsActive: bool
     EntityType: Optional[str]
     EnterpriseId: Optional[int]
-    ParkSize: str
+    ParkSize: Optional[str]
     PlaceId: int
 
 
@@ -337,25 +337,25 @@ class UseDirectFacilityMetadata(CamplyModel):
     """
 
     FacilityId: int
-    RegionId: int
+    RegionId: Optional[int]
     PlaceId: int
     Name: str
-    ShortName: str
+    ShortName: Optional[str]
     Description: Optional[str]
-    OrderBy: int
-    FacilityType: int
-    UsePrepend: bool
-    PrependCode: str
-    AllowWebBooking: bool
-    AutoOpenInventory: bool
-    UDate: datetime.datetime
-    RowGuid: str
+    OrderBy: Optional[int]
+    FacilityType: Optional[int]
+    UsePrepend: Optional[bool]
+    PrependCode: Optional[str]
+    AllowWebBooking: Optional[bool]
+    AutoOpenInventory: Optional[bool]
+    UDate: Optional[datetime.datetime]
+    RowGuid: Optional[str]
     FacilityTypeNew: Optional[int]
-    MaxPersonOccupancy: int
-    IsAvailableForGroup: bool
+    MaxPersonOccupancy: Optional[int]
+    IsAvailableForGroup: Optional[bool]
     IsAvailableForEducationalGroup: Optional[bool]
     IsAvailableForCto: Optional[bool]
-    IsCaptcha: bool
+    IsCaptcha: Optional[bool]
     FacilityBehaviourType: Optional[int]
     EnableCheckOccupancy: Optional[bool]
     IsTrail: Optional[bool]
