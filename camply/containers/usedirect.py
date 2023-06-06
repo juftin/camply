@@ -1,5 +1,5 @@
 """
-ReserveCalifornia API Responses
+UseDirect API Responses
 """
 
 import datetime
@@ -8,9 +8,9 @@ from typing import Any, Dict, List, Optional
 from camply.containers import CamplyModel
 
 
-class ReserveCaliforniaRestrictions(CamplyModel):
+class UseDirectRestrictions(CamplyModel):
     """
-    ReserveCalifornia: Campsite Restrictions
+    UseDirect: Campsite Restrictions
     """
 
     FutureBookingStarts: datetime.datetime
@@ -18,12 +18,12 @@ class ReserveCaliforniaRestrictions(CamplyModel):
     MinimumStay: int
     MaximumStay: int
     IsRestrictionValid: bool
-    Time: str
+    Time: Optional[str]
 
 
-class ReserveCaliforniaUnitType(CamplyModel):
+class UseDirectUnitType(CamplyModel):
     """
-    ReserveCalifornia: Unit Types
+    UseDirect: Unit Types
     """
 
     UnitTypeId: int
@@ -39,7 +39,7 @@ class ReserveCaliforniaUnitType(CamplyModel):
     AvailableCount: int
 
 
-class ReserveCaliforniaAvailabilitySlice(CamplyModel):
+class UseDirectAvailabilitySlice(CamplyModel):
     """
     Slice of Availability per Date
     """
@@ -51,10 +51,10 @@ class ReserveCaliforniaAvailabilitySlice(CamplyModel):
     ReservationId: int
     Lock: Any
     MinStay: int
-    IsReservationDraw: bool
+    IsReservationDraw: Optional[bool]
 
 
-class ReserveCaliforniaAvailabilityUnit(CamplyModel):
+class UseDirectAvailabilityUnit(CamplyModel):
     """
     Unit of Availability in Availability Request
     """
@@ -65,7 +65,7 @@ class ReserveCaliforniaAvailabilityUnit(CamplyModel):
     RecentPopups: Optional[int]
     IsAda: Optional[bool]
     AllowWebBooking: Optional[bool]
-    MapInfo: Dict[str, Any] = {}
+    MapInfo: Optional[Dict[str, Any]] = {}
     IsWebViewable: Optional[bool]
     IsFiltered: Optional[bool]
     UnitCategoryId: Optional[int]
@@ -78,15 +78,15 @@ class ReserveCaliforniaAvailabilityUnit(CamplyModel):
     OrderByRaw: Optional[int]
     SliceCount: Optional[int]
     AvailableCount: Optional[int]
-    Slices: Dict[datetime.datetime, ReserveCaliforniaAvailabilitySlice] = {}
+    Slices: Dict[datetime.datetime, UseDirectAvailabilitySlice] = {}
     StartTime: Any
     EndTime: Any
     FacilityId: Optional[int]
 
 
-class ReserveCaliforniaFacility(CamplyModel):
+class UseDirectFacility(CamplyModel):
     """
-    Campground Representation for ReserveCalifornia
+    Campground Representation for UseDirect
     """
 
     FacilityId: int
@@ -98,14 +98,14 @@ class ReserveCaliforniaFacility(CamplyModel):
     InSeason: Optional[bool]
     Available: Optional[bool]
     AvailableFiltered: Optional[bool]
-    Restrictions: ReserveCaliforniaRestrictions
+    Restrictions: UseDirectRestrictions
     Latitude: float
     Longitude: float
     Category: Optional[str]
     EnableCheckOccupancy: Optional[bool]
     AvailableOccupancy: Any
     FacilityAllowWebBooking: Optional[bool]
-    UnitTypes: Dict[int, ReserveCaliforniaUnitType] = {}
+    UnitTypes: Dict[int, UseDirectUnitType] = {}
     IsAvailableForGroup: Optional[bool]
     IsAvailableForPatron: Optional[bool]
     IsAvailableForEducationalGroup: Optional[bool]
@@ -113,9 +113,9 @@ class ReserveCaliforniaFacility(CamplyModel):
     FacilityBehaviourType: Optional[int]
 
 
-class ReserveCaliforniaPlace(CamplyModel):
+class UseDirectPlace(CamplyModel):
     """
-    ReserveCalifornia: Place Object
+    UseDirect: Place Object
     """
 
     PlaceId: int
@@ -139,13 +139,13 @@ class ReserveCaliforniaPlace(CamplyModel):
     ParkActivity: int
     ParkPopularity: int
     AvailableUnitCount: int
-    Restrictions: ReserveCaliforniaRestrictions
-    Facilities: Dict[int, ReserveCaliforniaFacility]
+    Restrictions: UseDirectRestrictions
+    Facilities: Dict[int, UseDirectFacility]
     IsAvailableForGreatwalk: bool
-    FacilityDefaultZoom: int
+    FacilityDefaultZoom: Optional[int]
 
 
-class ReserveCaliforniaDetailedPlace(CamplyModel):
+class UseDirectDetailedPlace(CamplyModel):
     """
     https://calirdr.usedirect.com/RDR/rdr/fd/places
     """
@@ -160,7 +160,7 @@ class ReserveCaliforniaDetailedPlace(CamplyModel):
     ParkActivity: int
     ParkPopularity: int
     IsAvailableForGreatwalk: bool
-    FacilityDefaultZoom: int
+    FacilityDefaultZoom: Optional[int]
     RegionId: int
     ShortName: str
     OrderBy: int
@@ -174,7 +174,7 @@ class ReserveCaliforniaDetailedPlace(CamplyModel):
     City: str
     State: str
     Zip: str
-    VoicePhone: str
+    VoicePhone: Optional[str]
     UDate: datetime.datetime
     UserId: int
     RowGuid: str
@@ -183,9 +183,9 @@ class ReserveCaliforniaDetailedPlace(CamplyModel):
     WeekendCheckdays: int
 
 
-class ReserveCaliforniaAvailabilityFacility(ReserveCaliforniaFacility):
+class UseDirectAvailabilityFacility(UseDirectFacility):
     """
-    ReserveCalifornia: Facility w/ Availability
+    UseDirect: Facility w/ Availability
     """
 
     FacilityMapSize: Optional[bool]
@@ -200,15 +200,15 @@ class ReserveCaliforniaAvailabilityFacility(ReserveCaliforniaFacility):
     SliceCount: int
     AvailableSliceCount: int
     TimebaseMaxHours: int
-    TimebaseMinHours: int
-    TimebaseDuration: float
-    IsReservationDraw: bool
-    DrawBookingStartDate: datetime.datetime
-    DrawBookingEndDate: datetime.datetime
-    Units: Optional[Dict[str, ReserveCaliforniaAvailabilityUnit]]
+    TimebaseMinHours: Optional[int]
+    TimebaseDuration: Optional[float]
+    IsReservationDraw: Optional[bool]
+    DrawBookingStartDate: Optional[datetime.datetime]
+    DrawBookingEndDate: Optional[datetime.datetime]
+    Units: Optional[Dict[str, UseDirectAvailabilityUnit]]
 
 
-class ReserveCaliforniaAvailabilityResponse(CamplyModel):
+class UseDirectAvailabilityResponse(CamplyModel):
     """
     API Response from /rdr/rdr/search/grid
     """
@@ -232,57 +232,57 @@ class ReserveCaliforniaAvailabilityResponse(CamplyModel):
     UnitId: int
     TimeBetween: str
     TimeBetweenEval: str
-    Facility: ReserveCaliforniaAvailabilityFacility
+    Facility: UseDirectAvailabilityFacility
 
 
-class ReserveCaliforniaUnitCategory(CamplyModel):
+class UseDirectUnitCategory(CamplyModel):
     """
-    ReserveCalifornia: Unit Categories
+    UseDirect: Unit Categories
     """
 
     UnitCategoryId: int
     UnitCategoryName: str
     HasEquipment: bool
-    Icon: str
+    Icon: Optional[str]
 
 
-class ReserveCaliforniaNightlySleepingUnit(CamplyModel):
+class UseDirectNightlySleepingUnit(CamplyModel):
     """
-    ReserveCalifornia: Nightly Sleeping Units
+    UseDirect: Nightly Sleeping Units
     """
 
     UnitCategoryId: int
     SleepingUnitId: int
     SleepingUnitName: str
     IsWheeled: bool
-    Icon: str
+    Icon: Optional[str]
 
 
-class ReserveCaliforniaMinVehicleLength(CamplyModel):
+class UseDirectMinVehicleLength(CamplyModel):
     """
-    ReserveCalifornia: Vehicle Length
+    UseDirect: Vehicle Length
     """
 
     SleepingUnitId: int
     MinVehicleLength: int
     MinVehicleName: str
-    Icon: str
+    Icon: Optional[str]
 
 
-class ReserveCaliforniaUnitTypeGroup(CamplyModel):
+class UseDirectUnitTypeGroup(CamplyModel):
     """
-    ReserveCalifornia: Unit Type Groups
+    UseDirect: Unit Type Groups
     """
 
     UnitCategoryId: int
     UnitTypesGroupId: int
     UnitTypesGroupName: str
-    Icon: str
+    Icon: Optional[str]
 
 
-class ReserveCaliforniaAmenity(CamplyModel):
+class UseDirectAmenity(CamplyModel):
     """
-    ReserveCalifornia: Amenities
+    UseDirect: Amenities
     """
 
     AmenityId: int
@@ -290,7 +290,7 @@ class ReserveCaliforniaAmenity(CamplyModel):
     ShortName: str
     AmenityType: int
     IsSearchable: bool
-    Description: str
+    Description: Optional[str]
     OrderBy: int
     IDate: datetime.datetime
     UDate: datetime.datetime
@@ -301,23 +301,23 @@ class ReserveCaliforniaAmenity(CamplyModel):
     Value: Optional[Any]
 
 
-class ReserveCaliforniaMetadata(CamplyModel):
+class UseDirectMetadata(CamplyModel):
     """
     Campground Metadata Responses
     """
 
     Message: str
-    UnitCategories: List[ReserveCaliforniaUnitCategory]
-    NightlySleepingUnits: List[ReserveCaliforniaNightlySleepingUnit]
-    MinVehicleLengths: List[ReserveCaliforniaMinVehicleLength]
-    UnitTypesGroups: List[ReserveCaliforniaUnitTypeGroup]
+    UnitCategories: List[UseDirectUnitCategory]
+    NightlySleepingUnits: List[UseDirectNightlySleepingUnit]
+    MinVehicleLengths: List[UseDirectMinVehicleLength]
+    UnitTypesGroups: List[UseDirectUnitTypeGroup]
     PlaceHighlights: List[Any]
-    AllAmenity: List[ReserveCaliforniaAmenity]
+    AllAmenity: List[UseDirectAmenity]
 
 
-class ReserveCaliforniaCityPark(CamplyModel):
+class UseDirectCityPark(CamplyModel):
     """
-    ReserveCalifornia: City Parks
+    UseDirect: City Parks
     """
 
     CityParkId: int
@@ -331,9 +331,9 @@ class ReserveCaliforniaCityPark(CamplyModel):
     PlaceId: int
 
 
-class ReserveCaliforniaFacilityMetadata(CamplyModel):
+class UseDirectFacilityMetadata(CamplyModel):
     """
-    ReserveCalifornia: Facility Metadata
+    UseDirect: Facility Metadata
     """
 
     FacilityId: int
@@ -356,9 +356,9 @@ class ReserveCaliforniaFacilityMetadata(CamplyModel):
     IsAvailableForEducationalGroup: Optional[bool]
     IsAvailableForCto: Optional[bool]
     IsCaptcha: bool
-    FacilityBehaviourType: int
-    EnableCheckOccupancy: bool
+    FacilityBehaviourType: Optional[int]
+    EnableCheckOccupancy: Optional[bool]
     IsTrail: Optional[bool]
-    TimebaseMaxHours: int
-    TimebaseMinHours: int
-    TimebaseDuration: int
+    TimebaseMaxHours: Optional[int]
+    TimebaseMinHours: Optional[int]
+    TimebaseDuration: Optional[int]

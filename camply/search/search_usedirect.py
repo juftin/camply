@@ -4,14 +4,28 @@ Search Implementation: Reserve California
 
 import logging
 import sys
+from abc import ABC, abstractmethod
 from datetime import timedelta
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Type, Union
 
 from dateutil.relativedelta import relativedelta
 
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.containers.data_containers import ListedCampsite
-from camply.providers.reserve_california import ReserveCalifornia
+from camply.providers.usedirect.variations import (
+    AlabamaStateParks,
+    ArizonaStateParks,
+    FairfaxCountyParks,
+    FloridaStateParks,
+    MaricopaCountyParks,
+    MinnesotaStateParks,
+    MissouriStateParks,
+    NorthernTerritory,
+    OhioStateParks,
+    OregonMetro,
+    ReserveCalifornia,
+    VirginiaStateParks,
+)
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
 from camply.utils.logging_utils import format_log_string, log_sorted_response
@@ -19,12 +33,18 @@ from camply.utils.logging_utils import format_log_string, log_sorted_response
 logger = logging.getLogger(__name__)
 
 
-class SearchReserveCalifornia(BaseCampingSearch):
+class SearchUseDirect(BaseCampingSearch, ABC):
     """
-    Searches on ReserveCalifornia.com for Campsites
+    Searches on UseDirect.com for Campsites
     """
 
-    provider_class = ReserveCalifornia
+    @property
+    @abstractmethod
+    def provider_class(self) -> Type[BaseCampingSearch]:
+        """
+        Provider Class to be used for Search
+        """
+        pass
 
     def __init__(
         self,
@@ -58,7 +78,6 @@ class SearchReserveCalifornia(BaseCampingSearch):
             nights=nights,
             **kwargs,
         )
-        self.campsite_finder: ReserveCalifornia
         self._recreation_area_ids: List[int] = make_list(recreation_area, coerce=int)
         self._campground_ids: List[int] = make_list(campgrounds, coerce=int)
         campsites = make_list(kwargs.get("campsites", []), coerce=int)
@@ -70,7 +89,7 @@ class SearchReserveCalifornia(BaseCampingSearch):
             assert any([self._campground_ids != [], self._recreation_area_ids != []])
         except AssertionError:
             logger.error(
-                "You must provide a Campground ID or a Recreation Area ID to ReserveCalifornia"
+                f"You must provide a Campground ID or a Recreation Area ID to {self.provider_class.__name__}"
             )
             sys.exit(1)
         if self._campground_ids:
@@ -88,11 +107,13 @@ class SearchReserveCalifornia(BaseCampingSearch):
             logger.error("No Campsites Found Matching Your Search Criteria")
             sys.exit(1)
         if kwargs.get("equipment", ()):
-            logger.warning("ReserveCalifornia Doesn't Support Equipment, yet 🙂")
+            logger.warning(
+                "%s Doesn't Support Equipment, yet 🙂", self.provider_class.__name__
+            )
 
     def get_all_campsites(self, **kwargs: Dict[str, Any]) -> List[AvailableCampsite]:
         """
-        Retrieve All Campsites from the ReserveCalifornia API
+        Retrieve All Campsites from the UseDirect API
 
         Parameters
         ----------
@@ -139,10 +160,10 @@ class SearchReserveCalifornia(BaseCampingSearch):
         cls, search_string: str, **kwargs
     ) -> List[RecreationArea]:
         """
-        Return the ReserveCalifornia Recreation Areas
+        Return the UseDirect Recreation Areas
         """
         rec_areas = cls.provider_class().search_for_recreation_areas(
-            query=search_string, state=kwargs.get("state", "CA")
+            query=search_string, state=kwargs.get("state")
         )
         logger.info(f"{len(rec_areas)} Matching Recreation Areas Found")
         log_sorted_response(rec_areas)
@@ -156,10 +177,10 @@ class SearchReserveCalifornia(BaseCampingSearch):
         -------
         List[ListedCampsite]
         """
-        if not self.campsite_finder.reserve_california_campsites:
+        if not self.campsite_finder.usedirect_campsites:
             self.campsite_finder.get_campsite_metadata(facility_ids=self.campground_ids)
         sorted_campsites = sorted(
-            self.campsite_finder.reserve_california_campsites.values(),
+            self.campsite_finder.usedirect_campsites.values(),
             key=lambda x: x.OrderByRaw,
         )
         logged_campsites = [
@@ -171,3 +192,99 @@ class SearchReserveCalifornia(BaseCampingSearch):
             facilities=self.campgrounds,
         )
         return logged_campsites
+
+
+class SearchReserveCalifornia(SearchUseDirect):
+    """
+    Search ReserveCalifornia
+    """
+
+    provider_class = ReserveCalifornia
+
+
+class SearchNorthernTerritory(SearchUseDirect):
+    """
+    Searches the Australian Northern Territory for Campsites
+    """
+
+    provider_class = NorthernTerritory
+
+
+class SearchFloridaStateParks(SearchUseDirect):
+    """
+    Searches on FloridaStateParks.org for Campsites
+    """
+
+    provider_class = FloridaStateParks
+
+
+class SearchOregonMetro(SearchUseDirect):
+    """
+    Searches on OregonMetro.gov for Campsites (Portland Metro)
+    """
+
+    provider_class = OregonMetro
+
+
+class SearchOhioStateParks(SearchUseDirect):
+    """
+    Searches on ReserveOhio.com for Campsites
+    """
+
+    provider_class = OhioStateParks
+
+
+class SearchVirginiaStateParks(SearchUseDirect):
+    """
+    Searches on ReserveVAParks.com for Campsites
+    """
+
+    provider_class = VirginiaStateParks
+
+
+class SearchArizonaStateParks(SearchUseDirect):
+    """
+    Searches on AZStateParks.com for Campsites
+    """
+
+    provider_class = ArizonaStateParks
+
+
+class SearchMaricopaCountyParks(SearchUseDirect):
+    """
+    Searches on MaricopaCountyParks.org for Campsites (Arizona)
+    """
+
+    provider_class = MaricopaCountyParks
+
+
+class SearchMissouriStateParks(SearchUseDirect):
+    """
+    Searches on icampmo1.usedirect.com for Campsites
+    """
+
+    provider_class = MissouriStateParks
+
+
+class SearchAlabamaStateParks(SearchUseDirect):
+    """
+    Searches on ReserveAlaPark.com for Campsites
+    """
+
+    provider_class = AlabamaStateParks
+
+
+class SearchFairfaxCountyParks(SearchUseDirect):
+    """
+    Searches on fairfax.usedirect.com for Campsites (Virginia)
+    """
+
+    provider_class = FairfaxCountyParks
+
+
+class SearchMinnesotaStateParks(SearchUseDirect):
+    """
+    Searches on ReserveMN.usedirect.com for Campsites
+    """
+
+    provider_class = MinnesotaStateParks

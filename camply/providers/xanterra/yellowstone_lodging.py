@@ -24,7 +24,7 @@ from camply.utils.logging_utils import log_sorted_response
 logger = logging.getLogger(__name__)
 
 
-class YellowstoneLodging(BaseProvider):
+class Yellowstone(BaseProvider):
     """
     Scanner for Lodging in Yellowstone
     """
@@ -123,9 +123,7 @@ class YellowstoneLodging(BaseProvider):
         dict
         """
         try:
-            content = YellowstoneLodging._try_retry_get_data(
-                endpoint=endpoint, params=params
-            )
+            content = Yellowstone._try_retry_get_data(endpoint=endpoint, params=params)
         except RuntimeError as re:
             raise RuntimeError(f"error_message: {re}") from re
         return content
