@@ -72,6 +72,7 @@ The GoingToCamp Provider currently contains the following Recreation Areas:
 -   Maitland Valley, Ontario, CA (#4)
 -   Maryland State Parks, Maryland, USA (#9)
 -   Newfoundland & Labrador Provincial Parks, Newfoundland and Labrador, CA (#11)
+-   Nova Scotia Parks, Nova Scotia, CA (#13)
 -   Saugeen Valley, Ontario, CA (#5)
 -   St. Clair Region, Ontario, CA (#2)
 -   Tacoma Power Parks, Washington, USA (#6)

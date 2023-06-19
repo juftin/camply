@@ -83,6 +83,11 @@ RECREATION_AREAS = {
         recreation_area_id=12,
         recreation_area_location="British Columbia, CA",
     ),
+    "novascotia.goingtocamp.com": RecreationArea(
+        recreation_area="Nova Scotia Parks",
+        recreation_area_id=13,
+        recreation_area_location="Nova Scotia, CA",
+    ),
 }
 
 NON_GROUP_EQUIPMENT = -32768
