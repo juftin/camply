@@ -78,7 +78,7 @@ class UseDirectAvailabilityUnit(CamplyModel):
     OrderByRaw: Optional[int]
     SliceCount: Optional[int]
     AvailableCount: Optional[int]
-    Slices: Dict[datetime.datetime, UseDirectAvailabilitySlice] = {}
+    Slices: Optional[Dict[datetime.datetime, UseDirectAvailabilitySlice]] = {}
     StartTime: Any
     EndTime: Any
     FacilityId: Optional[int]
@@ -105,7 +105,7 @@ class UseDirectFacility(CamplyModel):
     EnableCheckOccupancy: Optional[bool]
     AvailableOccupancy: Any
     FacilityAllowWebBooking: Optional[bool]
-    UnitTypes: Dict[int, UseDirectUnitType] = {}
+    UnitTypes: Optional[Dict[int, UseDirectUnitType]] = {}
     IsAvailableForGroup: Optional[bool]
     IsAvailableForPatron: Optional[bool]
     IsAvailableForEducationalGroup: Optional[bool]
@@ -140,7 +140,7 @@ class UseDirectPlace(CamplyModel):
     ParkPopularity: Optional[int]
     AvailableUnitCount: Optional[int]
     Restrictions: Optional[UseDirectRestrictions]
-    Facilities: Dict[int, UseDirectFacility] = {}
+    Facilities: Optional[Dict[int, UseDirectFacility]] = {}
     IsAvailableForGreatwalk: Optional[bool]
     FacilityDefaultZoom: Optional[int]
 
@@ -193,8 +193,8 @@ class UseDirectAvailabilityFacility(UseDirectFacility):
     FacilityImageVBT: Optional[str]
     DatesInSeason: Optional[int]
     DatesOutOfSeason: Optional[int]
-    SeasonDates: Dict[datetime.datetime, bool] = {}
-    TrafficStatuses: Dict[str, Any] = {}
+    SeasonDates: Optional[Dict[datetime.datetime, bool]] = {}
+    TrafficStatuses: Optional[Dict[str, Any]] = {}
     UnitCount: Optional[int]
     AvailableUnitCount: Optional[int]
     SliceCount: Optional[int]
@@ -214,7 +214,7 @@ class UseDirectAvailabilityResponse(CamplyModel):
     """
 
     Message: str
-    Filters: Dict[str, Any] = {}
+    Filters: Optional[Dict[str, Any]] = {}
     UnitTypeId: int
     StartDate: Optional[datetime.date]
     EndDate: Optional[datetime.date]
@@ -307,12 +307,12 @@ class UseDirectMetadata(CamplyModel):
     """
 
     Message: str
-    UnitCategories: List[UseDirectUnitCategory] = []
-    NightlySleepingUnits: List[UseDirectNightlySleepingUnit] = []
-    MinVehicleLengths: List[UseDirectMinVehicleLength] = []
-    UnitTypesGroups: List[UseDirectUnitTypeGroup] = []
-    PlaceHighlights: List[Any] = []
-    AllAmenity: List[UseDirectAmenity] = []
+    UnitCategories: Optional[List[UseDirectUnitCategory]] = []
+    NightlySleepingUnits: Optional[List[UseDirectNightlySleepingUnit]] = []
+    MinVehicleLengths: Optional[List[UseDirectMinVehicleLength]] = []
+    UnitTypesGroups: Optional[List[UseDirectUnitTypeGroup]] = []
+    PlaceHighlights: Optional[List[Any]] = []
+    AllAmenity: Optional[List[UseDirectAmenity]] = []
 
 
 class UseDirectCityPark(CamplyModel):
