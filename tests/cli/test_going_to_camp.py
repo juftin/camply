@@ -61,3 +61,22 @@ def test_goingtocamp_search_by_equipment_types(cli_runner: CamplyRunner) -> None
     assert "Waterford North Conservation Area" in result.output
     assert "Reservable Campsites Matching Search Preferences" in result.output
     cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_goingtocamp_search_nova_scotia(cli_runner: CamplyRunner) -> None:
+    """
+    Testing GoingToCamp - Nova Scotia
+    """
+    test_command = """
+    camply campsites \
+        --campground -2147483629 \
+        --start-date 2023-07-01 \
+        --end-date 2023-07-14 \
+        --provider GoingToCamp \
+        --rec-area 13
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Whycocomagh Provincial Park" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result)
