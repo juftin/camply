@@ -597,6 +597,88 @@ def _validate_campsites(
     return continuous, search_windows, days_of_the_week
 
 
+def _get_provider_kwargs_from_cli(
+    rec_area: Tuple[Union[str, int]],
+    campground: Tuple[Union[str, int]],
+    campsite: Tuple[Union[str, int]],
+    start_date: str,
+    end_date: str,
+    weekends: bool,
+    nights: int,
+    provider: Optional[str],
+    continuous: bool,
+    polling_interval: Optional[str],
+    notifications: Tuple[str],
+    notify_first_try: Optional[str],
+    search_forever: Optional[str],
+    search_once: bool,
+    yaml_config: Optional[str],
+    offline_search: bool,
+    offline_search_path: Optional[str],
+    equipment: Tuple[Union[str, int]],
+    equipment_id: Tuple[Union[str, int]],
+    day: Optional[Tuple[str]],
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    """
+    Get Provider kwargs from CLI
+    """
+    notifications = make_list(notifications)
+    continuous, search_windows, days_of_the_week = _validate_campsites(
+        rec_area=rec_area,
+        campground=campground,
+        campsite=campsite,
+        start_date=start_date,
+        end_date=end_date,
+        weekends=weekends,
+        nights=nights,
+        provider=provider,
+        yaml_config=yaml_config,
+        continuous=continuous,
+        polling_interval=polling_interval,
+        notifications=notifications,
+        notify_first_try=notify_first_try,
+        search_forever=search_forever,
+        search_once=search_once,
+        day=day,
+    )
+    if len(notifications) == 0:
+        notifications = ["silent"]
+    if polling_interval is None:
+        polling_interval = SearchConfig.RECOMMENDED_POLLING_INTERVAL
+    if notify_first_try is None:
+        notify_first_try = False
+    else:
+        notify_first_try = True
+    if search_forever is None:
+        search_forever = False
+    else:
+        search_forever = True
+    provider_kwargs = {
+        "search_window": search_windows,
+        "recreation_area": make_list(rec_area),
+        "campgrounds": make_list(campground),
+        "campsites": make_list(campsite),
+        "weekends_only": weekends,
+        "nights": int(nights),
+        "offline_search": offline_search,
+        "offline_search_path": offline_search_path,
+        "equipment": equipment,
+        "equipment_id": equipment_id,
+        "days_of_the_week": days_of_the_week,
+    }
+    search_kwargs = {
+        "log": True,
+        "verbose": True,
+        "continuous": continuous,
+        "polling_interval": float(polling_interval),
+        "notify_first_try": notify_first_try,
+        "notification_provider": notifications,
+        "search_forever": search_forever,
+        "search_once": search_once,
+    }
+    return provider_kwargs, search_kwargs
+
+
 @camply_command_line.command(cls=RichCommand)
 @rec_area_argument
 @campground_argument
@@ -654,73 +736,38 @@ def campsites(
     functionality can be enabled with  `--continuous` and notifications can be enabled using
     `--notifications`.
     """
-    provider = _preferred_provider(context, provider)
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
-    notifications = make_list(notifications)
-    continuous, search_windows, days_of_the_week = _validate_campsites(
-        rec_area=rec_area,
-        campground=campground,
-        campsite=campsite,
-        start_date=start_date,
-        end_date=end_date,
-        weekends=weekends,
-        nights=nights,
-        provider=provider,
-        yaml_config=yaml_config,
-        continuous=continuous,
-        polling_interval=polling_interval,
-        notifications=notifications,
-        notify_first_try=notify_first_try,
-        search_forever=search_forever,
-        search_once=search_once,
-        day=day,
-    )
-    if len(notifications) == 0:
-        notifications = ["silent"]
-    if polling_interval is None:
-        polling_interval = SearchConfig.RECOMMENDED_POLLING_INTERVAL
-    if notify_first_try is None:
-        notify_first_try = False
-    else:
-        notify_first_try = True
-    if search_forever is None:
-        search_forever = False
-    else:
-        search_forever = True
-
     if yaml_config is not None:
         provider, provider_kwargs, search_kwargs = yaml_utils.yaml_file_to_arguments(
             file_path=yaml_config
         )
-        for provider_str in CAMPSITE_SEARCH_PROVIDER.keys():
-            if provider.lower() == provider_str.lower():
-                provider = provider_str
+        provider = _preferred_provider(context, provider)
     else:
-        provider_kwargs = {
-            "search_window": search_windows,
-            "recreation_area": make_list(rec_area),
-            "campgrounds": make_list(campground),
-            "campsites": make_list(campsite),
-            "weekends_only": weekends,
-            "nights": int(nights),
-            "offline_search": offline_search,
-            "offline_search_path": offline_search_path,
-            "equipment": equipment,
-            "equipment_id": equipment_id,
-            "days_of_the_week": days_of_the_week,
-        }
-        search_kwargs = {
-            "log": True,
-            "verbose": True,
-            "continuous": continuous,
-            "polling_interval": float(polling_interval),
-            "notify_first_try": notify_first_try,
-            "notification_provider": notifications,
-            "search_forever": search_forever,
-            "search_once": search_once,
-        }
+        provider = _preferred_provider(context, provider)
+        provider_kwargs, search_kwargs = _get_provider_kwargs_from_cli(
+            rec_area=rec_area,
+            campground=campground,
+            campsite=campsite,
+            start_date=start_date,
+            end_date=end_date,
+            weekends=weekends,
+            nights=nights,
+            provider=provider,
+            continuous=continuous,
+            polling_interval=polling_interval,
+            notifications=notifications,
+            notify_first_try=notify_first_try,
+            search_forever=search_forever,
+            search_once=search_once,
+            offline_search=offline_search,
+            offline_search_path=offline_search_path,
+            equipment=equipment,
+            equipment_id=equipment_id,
+            day=day,
+            yaml_config=yaml_config,
+        )
     provider_class: Type[BaseCampingSearch] = CAMPSITE_SEARCH_PROVIDER[provider]
     camping_finder: BaseCampingSearch = provider_class(**provider_kwargs)
     camping_finder.get_matching_campsites(**search_kwargs)
