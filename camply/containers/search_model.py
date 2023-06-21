@@ -67,11 +67,3 @@ class YamlSearchFile(CamplyModel):
             return lowercase_enum_dict[value.lower()]
         else:
             return value
-
-
-if __name__ == "__main__":
-    yaml_model = YamlSearchFile(
-        start_date="2023-01-01",
-        end_date="2023-01-02",
-    )
-    print(yaml_model.schema_json(indent=2))
