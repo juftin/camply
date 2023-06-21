@@ -8,6 +8,9 @@ on:
             - pyproject.toml
             - .github/workflows/docker.yaml
             - Dockerfile
+concurrency:
+    group: ${{ github.workflow }}
+    cancel-in-progress: true
 jobs:
     docker-ci-test:
         runs-on: ubuntu-latest
