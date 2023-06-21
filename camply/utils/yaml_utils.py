@@ -4,6 +4,7 @@ YAML Utilities for Camply
 
 import logging
 import os
+from enum import Enum
 from pathlib import Path
 from re import compile
 from typing import Any, Dict, Tuple
@@ -97,7 +98,10 @@ def yaml_file_to_arguments(
     yaml_search = read_yaml(path=file_path)
     logger.info(f"YAML File Parsed: {Path(file_path).name}")
     yaml_model = YamlSearchFile(**yaml_search)
-    provider = yaml_model.provider.value
+    if isinstance(yaml_model.provider, Enum):
+        provider = yaml_model.provider.value
+    else:
+        provider = yaml_model.provider
     search_window = handle_search_windows(
         start_date=yaml_model.start_date, end_date=yaml_model.end_date
     )
