@@ -4,7 +4,8 @@ on:
     release:
         types:
             - published
-
+concurrency:
+    group: ${{ github.workflow }}
 jobs:
     pypi-publish:
         name: PyPI

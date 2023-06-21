@@ -102,14 +102,12 @@ class SearchGoingToCamp(BaseCampingSearch):
         if recreation_area in [(), [], None]:
             logger.error("At least one --rec-area must be provided")
             sys.exit(1)
-
-        if is_list_like(recreation_area) is False or len(recreation_area) > 1:
+        if is_list_like(recreation_area) is True and len(recreation_area) > 1:
             logger.error(
                 "Going To Camp only allows a single recreation area to be searched at a time"
             )
             sys.exit(1)
-
-        return int(recreation_area[0])
+        return int(make_list(recreation_area)[0])
 
     @classmethod
     def _validate_equipment(cls, equipment_id: Optional[int], rec_area: int):

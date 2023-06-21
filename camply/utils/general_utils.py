@@ -2,6 +2,7 @@
 Camply General Utilities
 """
 
+import datetime
 import logging
 import sys
 from datetime import date
@@ -49,7 +50,8 @@ def make_list(obj, coerce: Optional[Callable] = None) -> Optional[List[Any]]:
 
 
 def handle_search_windows(
-    start_date: Union[Iterable[str], str], end_date: Union[Iterable[str], str]
+    start_date: Union[Iterable[str], str, Iterable[datetime.date], datetime.date],
+    end_date: Union[Iterable[str], str, Iterable[datetime.date], datetime.date],
 ) -> Union[List[SearchWindow], SearchWindow]:
     """
     Handle Multiple Search Windows by the CLI

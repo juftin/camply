@@ -1,0 +1,238 @@
+{
+  "title": "YamlSearchFile",
+  "description": "Campsite Search Data Model",
+  "type": "object",
+  "properties": {
+    "provider": {
+      "description": "Campsite provider",
+      "default": "RecreationDotGov",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProviderEnum"
+        }
+      ]
+    },
+    "recreation_area": {
+      "title": "Recreation Area",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "campgrounds": {
+      "title": "Campgrounds",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "campsites": {
+      "title": "Campsites",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "start_date": {
+      "title": "Start Date",
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      ]
+    },
+    "end_date": {
+      "title": "End Date",
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      ]
+    },
+    "days": {
+      "title": "Days",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "weekends": {
+      "title": "Weekends",
+      "default": false,
+      "type": "boolean"
+    },
+    "nights": {
+      "title": "Nights",
+      "default": 1,
+      "type": "integer"
+    },
+    "continuous": {
+      "title": "Continuous",
+      "default": true,
+      "type": "boolean"
+    },
+    "polling_interval": {
+      "title": "Polling Interval",
+      "default": 10,
+      "type": "integer"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "default": "silent",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "search_forever": {
+      "title": "Search Forever",
+      "default": false,
+      "type": "boolean"
+    },
+    "search_once": {
+      "title": "Search Once",
+      "default": false,
+      "type": "boolean"
+    },
+    "notify_first_try": {
+      "title": "Notify First Try",
+      "default": false,
+      "type": "boolean"
+    },
+    "equipment": {
+      "title": "Equipment",
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "offline_search": {
+      "title": "Offline Search",
+      "default": false,
+      "type": "boolean"
+    },
+    "offline_search_path": {
+      "title": "Offline Search Path",
+      "type": "string"
+    }
+  },
+  "required": [
+    "start_date",
+    "end_date"
+  ],
+  "definitions": {
+    "ProviderEnum": {
+      "title": "ProviderEnum",
+      "description": "Campsite Provider Names",
+      "enum": [
+        "RecreationDotGov",
+        "Yellowstone",
+        "GoingToCamp",
+        "ReserveCalifornia",
+        "AlabamaStateParks",
+        "ArizonaStateParks",
+        "FloridaStateParks",
+        "MinnesotaStateParks",
+        "MissouriStateParks",
+        "OhioStateParks",
+        "VirginiaStateParks",
+        "NorthernTerritory",
+        "FairfaxCountyParks",
+        "MaricopaCountyParks",
+        "OregonMetro",
+        "RecreationDotGovTicket",
+        "RecreationDotGovTimedEntry",
+        "RecreationDotGovDailyTicket",
+        "RecreationDotGovDailyTimedEntry"
+      ],
+      "type": "string"
+    }
+  }
+}

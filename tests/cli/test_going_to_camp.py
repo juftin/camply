@@ -80,3 +80,18 @@ def test_goingtocamp_search_nova_scotia(cli_runner: CamplyRunner) -> None:
     assert "Whycocomagh Provincial Park" in result.output
     assert "Reservable Campsites Matching Search Preferences" in result.output
     cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_goingtocamp_search_nova_scotia_yaml(cli_runner: CamplyRunner) -> None:
+    """
+    Testing GoingToCamp - Nova Scotia - YAML
+    """
+    test_command = """
+    camply campsites \
+        --yaml-config tests/yaml/goingtocamp.yaml
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Boylston Provincial Park" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result)

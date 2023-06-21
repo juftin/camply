@@ -2,6 +2,8 @@ name: Release
 on:
     push:
         branches: [main, next, beta, alpha, "*.x"]
+concurrency:
+    group: ${{ github.workflow }}
 jobs:
     release:
         name: Release

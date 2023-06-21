@@ -1,0 +1,11 @@
+provider: GoingToCamp
+recreation_area: 13
+start_date: 2023-07-07
+end_date: 2023-07-09
+nights: 2
+campgrounds:
+    - -2147483648
+    - -2147483647
+    - -2147483646
+    - -2147483645
+continuous: false
