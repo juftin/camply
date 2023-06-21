@@ -695,6 +695,11 @@ below [YAML example file](examples/example_search.yaml) and corresponding camply
 camply campsites --yaml-config example_search.yaml
 ```
 
+!!! note
+
+    A JSON Schema for the YAML configuration file can be found at
+    [docs/yaml_search.json](yaml_search.json)
+
 ### Searching for a Campsite That Fits Your Equipment
 
 Camply can help you filter campsites to fit your specific equipment, like a Trailer or an RV.

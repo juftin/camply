@@ -39,8 +39,4 @@ with mkdocs_gen_files.open("reference/SUMMARY.md", "w") as nav_file:
     nav_file.writelines(nav.build_literate_nav())
 
 schema_file = FileConfig.ROOT_DIRECTORY.joinpath("docs/yaml_search.json")
-yaml_model = YamlSearchFile(
-    start_date="2023-01-01",
-    end_date="2023-01-02",
-)
-schema_file.write_text(yaml_model.schema_json(indent=2))
+schema_file.write_text(YamlSearchFile.schema_json(indent=2))
