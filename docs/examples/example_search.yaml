@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/juftin/camply/main/docs/yaml_search.json
-
 provider: RecreationDotGov # RecreationDotGov IF NOT PROVIDED
 recreation_area: # (LIST OR SINGLE ENTRY)
     - 2991 # Yosemite National Park, CA (All Campgrounds)
