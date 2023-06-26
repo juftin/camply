@@ -88,6 +88,11 @@ RECREATION_AREAS = {
         recreation_area_id=13,
         recreation_area_location="Nova Scotia, CA",
     ),
+    "reservation.pc.gc.ca": RecreationArea(
+        recreation_area="Parks Canada",
+        recreation_area_id=14,
+        recreation_area_location="CA",
+    ),
 }
 
 NON_GROUP_EQUIPMENT = -32768

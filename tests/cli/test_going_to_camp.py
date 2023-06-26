@@ -95,3 +95,37 @@ def test_goingtocamp_search_nova_scotia_yaml(cli_runner: CamplyRunner) -> None:
     assert "Boylston Provincial Park" in result.output
     assert "Reservable Campsites Matching Search Preferences" in result.output
     cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_goingtocamp_search_parks_canada_campgrounds(cli_runner: CamplyRunner) -> None:
+    """
+    Testing GoingToCamp - Parks Canada Campgrounds
+    """
+    test_command = """
+    camply campgrounds --provider GoingToCamp --rec-area 14 --search "Two Jack"
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Banff" in result.output
+    assert "Two Jack Lakeside" in result.output
+    cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_goingtocamp_search_parks_canada_campsites(cli_runner: CamplyRunner) -> None:
+    """
+    Testing GoingToCamp - Parks Canada Campsites
+    """
+    test_command = """
+    camply campsites \
+        --provider GoingToCamp \
+        --rec-area 14 \
+        --start-date 2023-07-01 \
+        --end-date 2023-07-14 \
+        --campground -2147483643
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Banff" in result.output
+    assert "Two Jack Lakeside" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result)

@@ -73,6 +73,7 @@ The GoingToCamp Provider currently contains the following Recreation Areas:
 -   Maryland State Parks, Maryland, USA (#9)
 -   Newfoundland & Labrador Provincial Parks, Newfoundland and Labrador, CA (#11)
 -   Nova Scotia Parks, Nova Scotia, CA (#13)
+-   Parks Canada, Canada (#14) (https://reservation.pc.gc.ca/)
 -   Saugeen Valley, Ontario, CA (#5)
 -   St. Clair Region, Ontario, CA (#2)
 -   Tacoma Power Parks, Washington, USA (#6)
