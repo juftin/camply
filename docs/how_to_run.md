@@ -139,6 +139,8 @@ available.
     -   `TWILIO_DEST_NUMBERS`
 -   Slack Notifications
     -   `SLACK_WEBHOOK`
+-   Discord Notifications
+    -   `DISCORD_WEBHOOK`
 -   Telegram Notifications
     -   `TELEGRAM_BOT_TOKEN`
     -   `TELEGRAM_CHAT_ID`
