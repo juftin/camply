@@ -514,8 +514,78 @@ class RecDotGovSearchResponse(CamplyModel):
     Parent Response from Search Results
     """
 
-    results: List[RecDotGovSearchResult]
+    results: Optional[List[RecDotGovSearchResult]]
     size: int
     spelling_autocorrected: Any
     start: int
     total: int
+
+
+class RecDotGovPermitMapping(CamplyModel):
+    day_use_permit_ids: List[str]
+    early_access_permit_ids: List[str]
+    hunting_permit_ids: List[str]  
+    itinerary_permit_ids: List[str]
+    land_permit_ids: List[str]
+    lottery_permit_ids: List[str]
+    vehicle_permit_ids: List[str]
+    water_permit_ids: List[str]
+
+
+class RecDotGovPermitMappingResponse(CamplyModel):
+    payload: RecDotGovPermitMapping
+
+
+class _PermitEntranceAttribute(CamplyModel):
+    AttributeID: Optional[int]
+    AttributeName: str
+    AttributeValue: str
+
+
+class _PermitEntranceZone(CamplyModel):
+    PermitEntranceZoneID: int
+    Zone: str
+
+
+class PermitEntranceResponse(CoreRecDotGovResponse):
+    """
+    https://ridb.recreation.gov/api/v1/permitentrances/<PERMIT ENTRANCE ID>
+    """
+
+    PermitEntranceID: int
+    FacilityID: int
+    PermitEntranceName: str
+    PermitEntranceDescription: str
+    District: str
+    Town: str
+    PermitEntranceAccessible: bool
+    Longitude: float
+    Latitude: float
+    CreatedDate: datetime.date
+    LastUpdatedDate: datetime.date
+    ATTRIBUTES: List[_PermitEntranceAttribute]
+    ZONES: List[_PermitEntranceZone]
+
+    def __str__(self) -> str:
+        """
+        String Representation
+        """
+        return f"{self.PermitEntranceName} (#{self.PermitEntranceID})"
+
+
+class PermitEntranceForFacilityResponse(CoreRecDotGovResponse):
+    """
+    https://ridb.recreation.gov/api/v1/facilities/<FACILITY ID>/permitentrances
+    """
+    RECDATA: List[PermitEntranceResponse]
+    METADATA: Dict[str, Dict[str, Union[int, str]]]
+
+
+class PermitAvailability(CamplyModel):
+    total: int
+    remaining: int
+    is_walkup: bool
+
+
+class PermitMonthlyAvailabilityResponse(CamplyModel):
+    payload: Dict[datetime.date, Dict[int, PermitAvailability]]
