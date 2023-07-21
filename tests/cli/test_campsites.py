@@ -524,3 +524,57 @@ def test_search_by_campsites_reservecalifornia(
     assert "Campsite #91" in result.output
     assert "Reservable Campsites Matching Search Preferences" in result.output
     cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
+def test_yaml_search_equipment_array(cli_runner: CamplyRunner) -> None:
+    """
+    Search by Equipment Array: YAML
+    """
+    test_command = """
+    camply campsites \
+      --yaml-config \
+      tests/yaml/equipment_scenario_1.yaml
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "YAML File Parsed:" in result.output
+    assert "Rocky Mountain National Park" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
+def test_yaml_search_equipment_single(cli_runner: CamplyRunner) -> None:
+    """
+    Search by Equipment Single: YAML
+    """
+    test_command = """
+    camply campsites \
+      --yaml-config \
+      tests/yaml/equipment_scenario_2.yaml
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "YAML File Parsed:" in result.output
+    assert "Rocky Mountain National Park" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)
+
+
+@vcr_cassette
+def test_search_by_yaml_reservecalifornia(
+    cli_runner: CamplyRunner, tmp_path: pathlib.Path, monkeypatch: MonkeyPatch
+) -> None:
+    """
+    Search by Campsite YAML: ReserveCalifornia
+    """
+    monkeypatch.setattr(ReserveCalifornia, "offline_cache_dir", tmp_path)
+    test_command = """
+    camply campsites \
+      --yaml-config \
+      tests/yaml/reserve_california.yaml
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "YAML File Parsed:" in result.output
+    assert "Andrew Molera SP" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result, exit_code_zero=True)
