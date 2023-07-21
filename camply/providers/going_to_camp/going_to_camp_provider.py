@@ -73,7 +73,7 @@ RECREATION_AREAS = {
         recreation_area_id=10,
         recreation_area_location="Ottawa-Gatineau, Ontario-Quebec, CA",
     ),
-    "www.nlcamping.ca": RecreationArea(
+    "nlcamping.ca": RecreationArea(
         recreation_area="Newfoundland & Labrador Provincial Parks",
         recreation_area_id=11,
         recreation_area_location="Newfoundland and Labrador, CA",
@@ -92,6 +92,11 @@ RECREATION_AREAS = {
         recreation_area="Parks Canada",
         recreation_area_id=14,
         recreation_area_location="CA",
+    ),
+    "manitoba.goingtocamp.com": RecreationArea(
+        recreation_area="Manitoba Parks",
+        recreation_area_id=15,
+        recreation_area_location="Manitoba, CA",
     ),
 }
 

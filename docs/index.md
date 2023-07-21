@@ -10,8 +10,9 @@
 **`camply`**, the campsite finder ⛺️, is a tool to help you book a campsite online. Finding
 reservations at sold out campgrounds can be tough. That's where camply comes in. It searches
 thousands of campgrounds across the ~~USA~~ world via the APIs of booking services like
-https://recreation.gov. It continuously checks for cancellations and availabilities to pop up -
-once a campsite becomes available, camply sends you a notification to book your spot!
+[recreation.gov](https://recreation.gov). It continuously checks for cancellations and
+availabilities to pop up - once a campsite becomes available, camply sends you a notification
+to book your spot!
 
 ---
 

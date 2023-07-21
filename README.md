@@ -8,8 +8,9 @@
 **`camply`**, the campsite finder ⛺️, is a tool to help you book a campsite online. Finding
 reservations at sold out campgrounds can be tough. That's where camply comes in. It searches
 thousands of campgrounds across the ~~USA~~ world via the APIs of booking services like
-https://recreation.gov. It continuously checks for cancellations and availabilities to pop up -
-once a campsite becomes available, camply sends you a notification to book your spot!
+[recreation.gov](https://recreation.gov). It continuously checks for cancellations and
+availabilities to pop up - once a campsite becomes available, camply sends you a notification
+to book your spot!
 
 ---
 
@@ -70,9 +71,26 @@ camply works with a number of providers. A "provider" is an online booking
 service that lists camping and recreation inventory.
 
 -   **`RecreationDotGov`**: Searches on [Recreation.gov](https://recreation.gov) for Campsites (default provider)
--   **`Yellowstone`**: Searches on [YellowstoneNationalParkLodges.com](https://yellowstonenationalparklodges.com) for Campsites
--   **`GoingToCamp`**: Searches on [GoingToCamp.com](https://goingtocamp.com) for Campsites
--   **`ReserveCalifornia`**: Searches on [ReserveCalifornia.com](https://reservecalifornia.com) for Campsites (California State Parks)
+-   **`Yellowstone`**: Searches on [YellowstoneNationalParkLodges.com](https://yellowstonenationalparklodges.com) for
+    Campsites
+-   **`ReserveCalifornia`**: Searches on [ReserveCalifornia.com](https://reservecalifornia.com) for Campsites (California
+    State Parks)
+-   **`GoingToCamp`**: Searches on [GoingToCamp](https://goingtocamp.com) for Campsites
+    -   Parks Canada - Canada National Parks (#14) - [reservation.pc.gc.ca](https://reservation.pc.gc.ca/)
+    -   Washington State Parks - Washington, USA (#3) - [washington.goingtocamp.com](https://washington.goingtocamp.com)
+    -   Wisconsin State Parks - Wisconsin, USA (#7) - [wisconsin.goingtocamp.com](https://wisconsin.goingtocamp.com)
+    -   BC Parks - British Columbia, CA (#12) - [camping.bcparks.ca](https://camping.bcparks.ca)
+    -   Maryland State Parks - Maryland, USA (#9) - [parkreservations.maryland.gov](https://parkreservations.maryland.gov)
+    -   Nova Scotia Parks - Nova Scotia, CA (#13) - [novascotia.goingtocamp.com](https://novascotia.goingtocamp.com)
+    -   Manitoba Parks - Manitoba, CA (#15) - [manitoba.goingtocamp.com](https://manitoba.goingtocamp.com)
+    -   Newfoundland & Labrador Provincial Parks - Newfoundland and Labrador, CA (#11) - [nlcamping.ca](https://nlcamping.ca)
+    -   Long Point Region - Ontario, CA (#1) - [longpoint.goingtocamp.com](https://longpoint.goingtocamp.com)
+    -   Algonquin Highlands - Ontario, CA (#8) - [ahtrails.ca](https://ahtrails.ca)
+    -   Maitland Valley, Ontario, CA (#4) - [maitlandvalley.goingtocamp.com](https://maitlandvalley.goingtocamp.com)
+    -   Saugeen Valley - Ontario, CA (#5) - [saugeen.goingtocamp.com](https://saugeen.goingtocamp.com)
+    -   St. Clair Region - Ontario, CA (#2) - [stclair.goingtocamp.com](https://stclair.goingtocamp.com)
+    -   Tacoma Power Parks, Washington, USA (#6) - [tacomapower.goingtocamp.com](https://tacomapower.goingtocamp.com)
+    -   Gatineau Park - Ontario-Quebec, CA (#10) - [reservations.ncc-ccn.gc.ca](https://reservations.ncc-ccn.gc.ca)
 -   **`AlabamaStateParks`**: Searches on [ReserveAlaPark.com](https://reservealapark.com) for Campsites
 -   **`ArizonaStateParks`**: Searches on [AZStateParks.com](https://azstateparks.com) for Campsites
 -   **`FloridaStateParks`**: Searches on [FloridaStateParks.org](https://www.reserve.floridastateparks.org) for Campsites
@@ -82,7 +100,8 @@ service that lists camping and recreation inventory.
 -   **`VirginiaStateParks`**: Searches on [ReserveVAParks.com](https://reservevaparks.com) for Campsites
 -   **`NorthernTerritory`**: Searches the [Australian Northern Territory](https://parkbookings.nt.gov.au) for Campsites
 -   **`FairfaxCountyParks`**: Searches on [fairfax.usedirect.com](https://fairfax.usedirect.com) for Campsites (Virginia)
--   **`MaricopaCountyParks`**: Searches on [MaricopaCountyParks.org](https://maricopacountyparks.org) for Campsites (Arizona)
+-   **`MaricopaCountyParks`**: Searches on [MaricopaCountyParks.org](https://maricopacountyparks.org) for Campsites (
+    Arizona)
 -   **`OregonMetro`**: Searches on [OregonMetro.gov](https://oregonmetro.gov) for Campsites (Portland Metro)
 -   **`RecreationDotGovTicket`**: Searches on [Recreation.gov](https://recreation.gov) for Tickets and Tours
 -   **`RecreationDotGovTimedEntry`**: Searches on [Recreation.gov](https://recreation.gov) for Timed Entries
