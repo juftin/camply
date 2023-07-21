@@ -80,13 +80,18 @@ class SearchUseDirect(BaseCampingSearch, ABC):
         )
         self._recreation_area_ids: List[int] = make_list(recreation_area, coerce=int)
         self._campground_ids: List[int] = make_list(campgrounds, coerce=int)
-        campsites = make_list(kwargs.get("campsites", []), coerce=int)
+        campsites = make_list(kwargs.get("campsites", []), coerce=int) or []
         if len(campsites) > 0:
             self.campsite_finder.validate_campsites(
                 campsites=campsites, facility_ids=self._campground_ids
             )
         try:
-            assert any([self._campground_ids != [], self._recreation_area_ids != []])
+            assert any(
+                [
+                    self._campground_ids not in (None, []),
+                    self._recreation_area_ids not in (None, []),
+                ]
+            )
         except AssertionError:
             logger.error(
                 f"You must provide a Campground ID or a Recreation Area ID to {self.provider_class.__name__}"
