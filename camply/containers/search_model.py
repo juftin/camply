@@ -4,7 +4,7 @@ Pydantic model for YAML files
 
 import datetime
 from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Optional, Tuple, Union
 
 from pydantic import Field, validator
 
@@ -15,6 +15,8 @@ from camply.search import CAMPSITE_SEARCH_PROVIDER
 ArrayOrSingleInt = Optional[Union[int, List[int]]]
 ArrayOrSingleStr = Optional[Union[str, List[str]]]
 ArrayOrSingle = Optional[Union[ArrayOrSingleInt, ArrayOrSingleStr]]
+EquipmentTuple = Optional[Tuple[str, int]]
+ArrayOrSingleEquipment = Optional[Union[EquipmentTuple, List[EquipmentTuple]]]
 
 
 class StrEnum(str, Enum):
@@ -51,7 +53,7 @@ class YamlSearchFile(CamplyModel):
     search_forever: bool = False
     search_once: bool = False
     notify_first_try: bool = False
-    equipment: ArrayOrSingle = None
+    equipment: ArrayOrSingleEquipment = None
     offline_search: bool = False
     offline_search_path: Optional[str] = None
 
@@ -65,5 +67,20 @@ class YamlSearchFile(CamplyModel):
         }
         if value.lower() in lowercase_enum_dict.keys():
             return lowercase_enum_dict[value.lower()]
+        else:
+            return value
+
+    @validator("equipment", pre=True)
+    def validate_equipment(cls, value) -> ArrayOrSingleEquipment:
+        """
+        Validate equipment
+        """
+        equipment_tuple_length = 2
+        if (
+            isinstance(value, list)
+            and len(value) == equipment_tuple_length
+            and isinstance(value[0], str)
+        ):
+            return [tuple(value)]
         else:
             return value
