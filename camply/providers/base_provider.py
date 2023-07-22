@@ -5,13 +5,14 @@ BaseProvider Base Class
 import logging
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Type, Union
 
 import requests
 import tenacity
 from fake_useragent import UserAgent
 
 from camply.config import SearchConfig
+from camply.config.api_config import APIConfig
 from camply.containers import CampgroundFacility
 
 logger = logging.getLogger(__name__)
@@ -34,6 +35,7 @@ class BaseProvider(ABC):
     Base Provider Class
     """
 
+    RETRY_CONFIG: Type[APIConfig] = APIConfig
     FIVE_HUNDRED_STATUS_CODES = [
         # Official Server Errors
         500,  # Internal Server Error
@@ -116,12 +118,55 @@ class BaseProvider(ABC):
         List Recreation Areas for the provider
         """
 
-    @tenacity.retry(
-        wait=tenacity.wait_random_exponential(multiplier=2, max=10),
-        stop=tenacity.stop.stop_after_delay(15),
-        retry=tenacity.retry_if_exception_type(ProviderError),
-    )
     def make_http_request(
+        self,
+        url: str,
+        method: str = "GET",
+        data: Optional[Union[Dict[str, Any], str]] = None,
+        headers: Optional[Dict[str, Any]] = None,
+        retry_response_codes: Optional[List[int]] = None,
+    ) -> requests.Response:
+        """
+        Make an HTTP Request
+
+        Parameters
+        ----------
+        url: str
+            URL to make the request to
+        method: str
+            HTTP Method to use. Defaults to GET
+        data: Optional[Union[Dict[str, Any], str]]
+            Data to send with the request
+        headers: Optional[Dict[str, Any]]
+            Headers to send with the request
+        retry_response_codes: Optional[List[int]]
+            List of response codes to raise a ProviderError. on. Defaults to 500 range
+
+        Returns
+        -------
+        response: requests.Response
+
+        Raises
+        ------
+        ProviderError
+            If the response code is in the retry_response_codes list
+        HTTPError
+            If the response code is not in the retry_response_codes list and the request fails
+        """
+        if retry_response_codes is None:
+            retry_response_codes = self.FIVE_HUNDRED_STATUS_CODES
+        response = self.session.request(
+            method=method, url=url, data=data, headers=headers
+        )
+        if response.status_code not in retry_response_codes:
+            response.raise_for_status()
+        else:
+            raise ProviderError(
+                f"HTTP Error - {self.__class__.__name__} - {response.status_code} - {response.text}"
+            )
+        return response
+
+    def make_http_request_retry(
         self,
         url: str,
         method: str = "GET",
@@ -152,15 +197,22 @@ class BaseProvider(ABC):
         -------
         response: requests.Response
         """
-        if retry_response_codes is None:
-            retry_response_codes = self.FIVE_HUNDRED_STATUS_CODES
-        response = self.session.request(
-            method=method, url=url, data=data, headers=headers
+        retryer = tenacity.Retrying(
+            wait=tenacity.wait_random_exponential(
+                multiplier=self.RETRY_CONFIG.RETRY_API_MULTIPLIER,
+                max=self.RETRY_CONFIG.RETRY_MAX_API_ATTEMPTS,
+            ),
+            stop=tenacity.stop.stop_after_delay(
+                self.RETRY_CONFIG.RETRY_MAX_API_TIMEOUT
+            ),
+            retry=tenacity.retry_if_exception_type(ProviderError),
         )
-        if response.status_code not in retry_response_codes:
-            response.raise_for_status()
-        else:
-            raise ProviderError(
-                f"HTTP Error - {response.status_code} - {response.text}"
-            )
+        response: requests.Response = retryer.__call__(
+            fn=self.make_http_request,
+            url=url,
+            method=method,
+            data=data,
+            headers=headers,
+            retry_response_codes=retry_response_codes,
+        )
         return response

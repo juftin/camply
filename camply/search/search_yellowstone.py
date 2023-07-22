@@ -8,7 +8,7 @@ from typing import Any, List, Optional, Set, Union
 
 import pandas as pd
 
-from camply.config import YellowstoneConfig
+from camply.config.api_config import YellowstoneConfig
 from camply.containers import AvailableCampsite, RecreationArea, SearchWindow
 from camply.exceptions import SearchError
 from camply.providers import Yellowstone
