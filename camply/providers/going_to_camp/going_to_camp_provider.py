@@ -16,7 +16,7 @@ from camply.containers import AvailableResource, CampgroundFacility, RecreationA
 from camply.containers.base_container import GoingToCampEquipment
 from camply.containers.gtc_api_responses import ResourceLocation
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
-from camply.providers.going_to_camp.providers import RECREATION_AREAS
+from camply.providers.going_to_camp.rec_areas import RECREATION_AREAS
 from camply.utils import make_list
 from camply.utils.logging_utils import log_sorted_response
 
