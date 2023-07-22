@@ -321,13 +321,15 @@ class UseDirectProvider(BaseProvider, ABC):
             key: value for key, value in data.items() if value not in [None, [], ""]
         }
         url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.AVAILABILITY_ENDPOINT}"
-        response = self.session.post(
-            url=url, data=json.dumps(non_null_data), headers=self.json_headers
+        response = self.make_http_request(
+            url=url,
+            method="POST",
+            data=json.dumps(non_null_data),
+            headers=self.json_headers,
         )
-        response.raise_for_status()
         response_json = response.json()
         try:
-            return UseDirectAvailabilityResponse(**response.json())
+            return UseDirectAvailabilityResponse(**response_json)
         except ValidationError as e:
             raise
             error_message = (
@@ -517,7 +519,7 @@ class UseDirectProvider(BaseProvider, ABC):
         if campground_metadata is None:
             self.offline_cache_dir.mkdir(parents=True, exist_ok=True)
             url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.METADATA_PREFIX}"
-            resp = self.session.get(url=url)
+            resp = self.make_http_request(url=url)
             resp.raise_for_status()
             campground_metadata = resp.json()
             metadata_file.write_text(json.dumps(campground_metadata, indent=2))
@@ -543,7 +545,7 @@ class UseDirectProvider(BaseProvider, ABC):
         city_park_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if city_park_data is None:
             url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.CITYPARK_ENDPOINT}"
-            resp = self.session.get(url=url)
+            resp = self.make_http_request(url=url)
             resp.raise_for_status()
             city_park_data: Dict[str, Dict[str, Any]] = resp.json()
             metadata_file.write_text(json.dumps(city_park_data, indent=2))
@@ -566,7 +568,7 @@ class UseDirectProvider(BaseProvider, ABC):
         places_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if places_data is None:
             url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.LIST_PLACES_ENDPOINT}"
-            resp = self.session.get(url=url)
+            resp = self.make_http_request(url=url)
             resp.raise_for_status()
             places_data: List[Dict[str, Any]] = resp.json()
             metadata_file.write_text(json.dumps(places_data, indent=2))
@@ -599,7 +601,7 @@ class UseDirectProvider(BaseProvider, ABC):
         facilities_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if facilities_data is None:
             url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.LIST_FACILITIES_ENDPOINT}"
-            resp = self.session.get(url=url)
+            resp = self.make_http_request(url=url)
             resp.raise_for_status()
             facilities_data: List[Dict[str, Any]] = resp.json()
             metadata_file.write_text(json.dumps(facilities_data, indent=2))
