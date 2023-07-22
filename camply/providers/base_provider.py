@@ -161,9 +161,10 @@ class BaseProvider(ABC):
         if response.status_code not in retry_response_codes:
             response.raise_for_status()
         else:
-            raise ProviderError(
-                f"HTTP Error - {self.__class__.__name__} - {response.status_code} - {response.text}"
-            )
+            error_message = f"HTTP Error - {self.__class__.__name__} - {response.url} - {response.status_code}"
+            logger.warning(error_message)
+            error_message += f": {response.text}"
+            raise ProviderError(error_message)
         return response
 
     def make_http_request_retry(
