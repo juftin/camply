@@ -16,89 +16,11 @@ from camply.containers import AvailableResource, CampgroundFacility, RecreationA
 from camply.containers.base_container import GoingToCampEquipment
 from camply.containers.gtc_api_responses import ResourceLocation
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
+from camply.providers.going_to_camp.providers import RECREATION_AREAS
 from camply.utils import make_list
 from camply.utils.logging_utils import log_sorted_response
 
 logger = logging.getLogger(__name__)
-
-# Map going to camp subdomains to RecreationAreas
-RECREATION_AREAS = {
-    "longpoint.goingtocamp.com": RecreationArea(
-        recreation_area="Long Point Region",
-        recreation_area_id=1,
-        recreation_area_location="Ontario, CA",
-    ),
-    "stclair.goingtocamp.com": RecreationArea(
-        recreation_area="St. Clair Region",
-        recreation_area_id=2,
-        recreation_area_location="Ontario, CA",
-    ),
-    "washington.goingtocamp.com": RecreationArea(
-        recreation_area="Washington State Parks",
-        recreation_area_id=3,
-        recreation_area_location="Washington, USA",
-    ),
-    "maitlandvalley.goingtocamp.com": RecreationArea(
-        recreation_area="Maitland Valley",
-        recreation_area_id=4,
-        recreation_area_location="Ontario, CA",
-    ),
-    "saugeen.goingtocamp.com": RecreationArea(
-        recreation_area="Saugeen Valley",
-        recreation_area_id=5,
-        recreation_area_location="Ontario, CA",
-    ),
-    "tacomapower.goingtocamp.com": RecreationArea(
-        recreation_area="Tacoma Power Parks",
-        recreation_area_id=6,
-        recreation_area_location="Washington, USA",
-    ),
-    "wisconsin.goingtocamp.com": RecreationArea(
-        recreation_area="Wisconsin State Parks",
-        recreation_area_id=7,
-        recreation_area_location="Wisconsin, USA",
-    ),
-    "ahtrails.ca": RecreationArea(
-        recreation_area="Algonquin Highlands",
-        recreation_area_id=8,
-        recreation_area_location="Ontario, CA",
-    ),
-    "parkreservations.maryland.gov": RecreationArea(
-        recreation_area="Maryland State Parks",
-        recreation_area_id=9,
-        recreation_area_location="Maryland, USA",
-    ),
-    "reservations.ncc-ccn.gc.ca": RecreationArea(
-        recreation_area="Gatineau Park",
-        recreation_area_id=10,
-        recreation_area_location="Ottawa-Gatineau, Ontario-Quebec, CA",
-    ),
-    "nlcamping.ca": RecreationArea(
-        recreation_area="Newfoundland & Labrador Provincial Parks",
-        recreation_area_id=11,
-        recreation_area_location="Newfoundland and Labrador, CA",
-    ),
-    "camping.bcparks.ca": RecreationArea(
-        recreation_area="BC Parks",
-        recreation_area_id=12,
-        recreation_area_location="British Columbia, CA",
-    ),
-    "novascotia.goingtocamp.com": RecreationArea(
-        recreation_area="Nova Scotia Parks",
-        recreation_area_id=13,
-        recreation_area_location="Nova Scotia, CA",
-    ),
-    "reservation.pc.gc.ca": RecreationArea(
-        recreation_area="Parks Canada",
-        recreation_area_id=14,
-        recreation_area_location="CA",
-    ),
-    "manitoba.goingtocamp.com": RecreationArea(
-        recreation_area="Manitoba Parks",
-        recreation_area_id=15,
-        recreation_area_location="Manitoba, CA",
-    ),
-}
 
 NON_GROUP_EQUIPMENT = -32768
 
@@ -418,8 +340,7 @@ class GoingToCamp(BaseProvider):
         }
         response = requests.get(url=url, headers=user_agent, params=params, timeout=30)
         if response.ok is False:
-            error_message = "Receiving bad data from GoingToCamp API: status_code: "
-            f"{response.status_code}: {response.text}"
+            error_message = f"Receiving bad data from GoingToCamp API: status_code: {response.status_code}: {response.text}"
             logger.error(error_message)
             raise ConnectionError(error_message)
 
