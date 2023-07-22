@@ -53,9 +53,9 @@ The Yellowstone Provider currently supports the following Campgrounds:
 [GoingToCamp](https://goingtocamp.com/) provides campground listing and booking services for several US state and
 Canadian provincial parks.
 
-To get a listing of GoingToCamp recreation areas
+To get a listing of GoingToCamp recreation areas, and their IDs, run the following command:
 
-```
+```shell
 camply --provider goingtocamp recreation-areas
 ```
 
@@ -63,22 +63,25 @@ Unlike other camply providers, when using GoingToCamp you must restrict campgrou
 recreation area. Since recreation areas may list every campground in a state or provincial park system, it feels natural
 to filter searches by recreation area when using GoingToCamp.
 
-The GoingToCamp Provider currently contains the following Recreation Areas:
+Currently, the following recreation areas are supported:
 
--   Algonquin Highlands, Ontario, CA (#8)
--   BC Parks, British Columbia, CA (#12)
--   Gatineau Park, Ottawa-Gatineau, Ontario-Quebec, CA (#10)
--   Long Point Region, Ontario, CA (#1)
--   Maitland Valley, Ontario, CA (#4)
--   Maryland State Parks, Maryland, USA (#9)
--   Newfoundland & Labrador Provincial Parks, Newfoundland and Labrador, CA (#11)
--   Nova Scotia Parks, Nova Scotia, CA (#13)
--   Parks Canada, Canada (#14) (https://reservation.pc.gc.ca/)
--   Saugeen Valley, Ontario, CA (#5)
--   St. Clair Region, Ontario, CA (#2)
--   Tacoma Power Parks, Washington, USA (#6)
--   Washington State Parks, Washington, USA (#3)
--   Wisconsin State Parks, Wisconsin, USA (#7)
+-   Parks Canada - Canada National Parks - [reservation.pc.gc.ca](https://reservation.pc.gc.ca/)
+-   Washington State Parks - Washington, USA - [washington.goingtocamp.com](https://washington.goingtocamp.com)
+-   Wisconsin State Parks - Wisconsin, USA - [wisconsin.goingtocamp.com](https://wisconsin.goingtocamp.com)
+-   Michigan State Parks - Michigan, USA - [midnrreservations.com](https://midnrreservations.com/)
+-   BC Parks - British Columbia, CA - [camping.bcparks.ca](https://camping.bcparks.ca)
+-   Maryland State Parks - Maryland, USA - [parkreservations.maryland.gov](https://parkreservations.maryland.gov)
+-   Nova Scotia Parks - Nova Scotia, CA - [novascotia.goingtocamp.com](https://novascotia.goingtocamp.com)
+-   Manitoba Parks - Manitoba, CA - [manitoba.goingtocamp.com](https://manitoba.goingtocamp.com)
+-   New Brunswick Provincial Parks - New Brunswick, CA - [parcsnbparks.info](https://parcsnbparks.info/)
+-   Newfoundland & Labrador Provincial Parks - Newfoundland and Labrador, CA - [nlcamping.ca](https://nlcamping.ca)
+-   Long Point Region - Ontario, CA - [longpoint.goingtocamp.com](https://longpoint.goingtocamp.com)
+-   Algonquin Highlands - Ontario, CA - [ahtrails.ca](https://ahtrails.ca)
+-   Maitland Valley, Ontario, CA - [maitlandvalley.goingtocamp.com](https://maitlandvalley.goingtocamp.com)
+-   Saugeen Valley - Ontario, CA - [saugeen.goingtocamp.com](https://saugeen.goingtocamp.com)
+-   St. Clair Region - Ontario, CA - [stclair.goingtocamp.com](https://stclair.goingtocamp.com)
+-   Tacoma Power Parks, Washington, USA - [tacomapower.goingtocamp.com](https://tacomapower.goingtocamp.com)
+-   Gatineau Park - Ontario-Quebec, CA - [reservations.ncc-ccn.gc.ca](https://reservations.ncc-ccn.gc.ca)
 
 Check out the following documentation examples for more details on searching GoingToCamp recreation areas:
 

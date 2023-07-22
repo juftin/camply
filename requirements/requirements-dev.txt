@@ -348,6 +348,7 @@ mkdocs==1.4.3 \
     # via
     #   camply (pyproject.toml)
     #   mkdocs-autorefs
+    #   mkdocs-exclude-search
     #   mkdocs-gen-files
     #   mkdocs-literate-nav
     #   mkdocs-material
@@ -360,6 +361,10 @@ mkdocs-autorefs==0.4.1 \
 mkdocs-click==0.8.0 \
     --hash=sha256:965f38231eb04d8c980406c5ab4becf7303ef3ffc68fdb29be91927eff1adfbe \
     --hash=sha256:f9c26d4abd505bca4113d1529d03d1ae709a68a82fc364db289634788d029353
+    # via camply (pyproject.toml)
+mkdocs-exclude-search==0.6.5 \
+    --hash=sha256:475e372dd17195700acd00213bcc804280d63f39cb7a0c76a801aceefd2807a6 \
+    --hash=sha256:6a126367653caf946c56e446ff30ffdec931438a3e2a8740feff3f8682d52a54
     # via camply (pyproject.toml)
 mkdocs-gen-files==0.4.0 \
     --hash=sha256:3241a4c947ecd11763ca77cc645015305bf71a0e1b9b886801c114fcf9971e71 \

@@ -175,21 +175,32 @@
       "anyOf": [
         {
           "type": "array",
-          "items": {
-            "type": "integer"
-          }
-        },
-        {
-          "type": "integer"
+          "minItems": 2,
+          "maxItems": 2,
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            }
+          ]
         },
         {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
           }
-        },
-        {
-          "type": "string"
         }
       ]
     },

@@ -8,8 +8,9 @@
 **`camply`**, the campsite finder ⛺️, is a tool to help you book a campsite online. Finding
 reservations at sold out campgrounds can be tough. That's where camply comes in. It searches
 thousands of campgrounds across the ~~USA~~ world via the APIs of booking services like
-https://recreation.gov. It continuously checks for cancellations and availabilities to pop up -
-once a campsite becomes available, camply sends you a notification to book your spot!
+[recreation.gov](https://recreation.gov). It continuously checks for cancellations and
+availabilities to pop up - once a campsite becomes available, camply sends you a notification
+to book your spot!
 
 ---
 
@@ -70,9 +71,28 @@ camply works with a number of providers. A "provider" is an online booking
 service that lists camping and recreation inventory.
 
 -   **`RecreationDotGov`**: Searches on [Recreation.gov](https://recreation.gov) for Campsites (default provider)
--   **`Yellowstone`**: Searches on [YellowstoneNationalParkLodges.com](https://yellowstonenationalparklodges.com) for Campsites
--   **`GoingToCamp`**: Searches on [GoingToCamp.com](https://goingtocamp.com) for Campsites
--   **`ReserveCalifornia`**: Searches on [ReserveCalifornia.com](https://reservecalifornia.com) for Campsites (California State Parks)
+-   **`Yellowstone`**: Searches on [YellowstoneNationalParkLodges.com](https://yellowstonenationalparklodges.com) for
+    Campsites
+-   **`ReserveCalifornia`**: Searches on [ReserveCalifornia.com](https://reservecalifornia.com) for Campsites (California
+    State Parks)
+-   **`GoingToCamp`**: Searches on [GoingToCamp](https://goingtocamp.com) for Campsites
+    -   Parks Canada - Canada National Parks - [reservation.pc.gc.ca](https://reservation.pc.gc.ca/)
+    -   Washington State Parks - Washington, USA - [washington.goingtocamp.com](https://washington.goingtocamp.com)
+    -   Wisconsin State Parks - Wisconsin, USA - [wisconsin.goingtocamp.com](https://wisconsin.goingtocamp.com)
+    -   Michigan State Parks - Michigan, USA - [midnrreservations.com](https://midnrreservations.com/)
+    -   BC Parks - British Columbia, CA - [camping.bcparks.ca](https://camping.bcparks.ca)
+    -   Maryland State Parks - Maryland, USA - [parkreservations.maryland.gov](https://parkreservations.maryland.gov)
+    -   Nova Scotia Parks - Nova Scotia, CA - [novascotia.goingtocamp.com](https://novascotia.goingtocamp.com)
+    -   Manitoba Parks - Manitoba, CA - [manitoba.goingtocamp.com](https://manitoba.goingtocamp.com)
+    -   New Brunswick Provincial Parks - New Brunswick, CA - [parcsnbparks.info](https://www.parcsnbparks.info/)
+    -   Newfoundland & Labrador Provincial Parks - Newfoundland and Labrador, CA - [nlcamping.ca](https://nlcamping.ca)
+    -   Long Point Region - Ontario, CA - [longpoint.goingtocamp.com](https://longpoint.goingtocamp.com)
+    -   Algonquin Highlands - Ontario, CA - [ahtrails.ca](https://ahtrails.ca)
+    -   Maitland Valley, Ontario, CA - [maitlandvalley.goingtocamp.com](https://maitlandvalley.goingtocamp.com)
+    -   Saugeen Valley - Ontario, CA - [saugeen.goingtocamp.com](https://saugeen.goingtocamp.com)
+    -   St. Clair Region - Ontario, CA - [stclair.goingtocamp.com](https://stclair.goingtocamp.com)
+    -   Tacoma Power Parks, Washington, USA - [tacomapower.goingtocamp.com](https://tacomapower.goingtocamp.com)
+    -   Gatineau Park - Ontario-Quebec, CA - [reservations.ncc-ccn.gc.ca](https://reservations.ncc-ccn.gc.ca)
 -   **`AlabamaStateParks`**: Searches on [ReserveAlaPark.com](https://reservealapark.com) for Campsites
 -   **`ArizonaStateParks`**: Searches on [AZStateParks.com](https://azstateparks.com) for Campsites
 -   **`FloridaStateParks`**: Searches on [FloridaStateParks.org](https://www.reserve.floridastateparks.org) for Campsites

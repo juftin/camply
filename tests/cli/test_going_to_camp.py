@@ -129,3 +129,23 @@ def test_goingtocamp_search_parks_canada_campsites(cli_runner: CamplyRunner) -> 
     assert "Two Jack Lakeside" in result.output
     assert "Reservable Campsites Matching Search Preferences" in result.output
     cli_status_checker(result=result)
+
+
+@vcr_cassette
+def test_goingtocamp_search_manitoba(cli_runner: CamplyRunner) -> None:
+    """
+    Testing GoingToCamp - Manitoba Campsites
+    """
+    test_command = """
+    camply campsites \
+        --provider GoingToCamp \
+        --rec-area 15 \
+        --start-date 2023-08-01 \
+        --end-date 2023-08-14 \
+        --campground -2147483632
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Manitoba" in result.output
+    assert "Winnipeg Beach Campground" in result.output
+    assert "Reservable Campsites Matching Search Preferences" in result.output
+    cli_status_checker(result=result)
