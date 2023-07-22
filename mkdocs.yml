@@ -82,3 +82,7 @@ plugins:
                       - https://pandas.pydata.org/docs/objects.inv
                   options:
                       docstring_style: numpy
+    - exclude-search:
+          exclude:
+              - reference/*
+          exclude_unreferenced: true

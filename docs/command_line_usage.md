@@ -614,6 +614,12 @@ camply campsites \
 
 ### Look for a Campsite from GoingToCamp
 
+!!! note
+
+    The GoingToCamp provider supports lots of different park systems, including
+    Washington State Parks, Canada National Parks, and more. See the
+    [GoingToCamp](providers.md#goingtocamp) provider documentation for more information.
+
 The `GoingToCamp` provider requires that you specify both a Recreation Area and a
 Campground in your search. First you'll need to find your Recreation Area ID:
 
