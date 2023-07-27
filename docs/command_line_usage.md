@@ -144,7 +144,7 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
         [\*\*_example_](#continue-looking-after-the-first-match-is-found)
 -   `--notifications`: `NOTIFICATIONS`
     -   Enables continuous searching. Types of notifications to receive. Options available
-        are `pushover`, `email`, `ntfy`, `apprise`, `pushbullet`, `slack`, `telegram`, `twilio`, `silent`.
+        are `pushover`, `email`, `ntfy`, `apprise`, `pushbullet`, `slack`, `discord`, `telegram`, `twilio`, `silent`.
         Defaults to `silent` - which just logs messages to console.
         [\*\*_example_](#send-a-push-notification)
 -   `--equipment`
@@ -457,6 +457,7 @@ camply supports notifications via a number of services:
 -   [Apprise](https://github.com/caronc/apprise)
 -   [Pushbullet](https://www.pushbullet.com/#settings/account)
 -   [Slack](https://slack.com)
+-   [Discord](https://discord.com)
 -   [Telegram](https://core.telegram.org/bots)
 -   [Twilio (SMS)](https://www.twilio.com)
 -   Silent

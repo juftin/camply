@@ -27,6 +27,7 @@ class FileConfig:
             "notes": "Enables Pushbullet Notifications",
         },
         SLACK_WEBHOOK={"default": "", "notes": "Enables Slack Notifications"},
+        DISCORD_WEBHOOK={"default": "", "notes": "Enables Discord Notifications"},
         TELEGRAM_BOT_TOKEN={"default": "", "notes": "Enables Telegram Notifications"},
         TELEGRAM_CHAT_ID={
             "default": "",

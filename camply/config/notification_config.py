@@ -104,6 +104,13 @@ class SlackConfig:
 
     SLACK_WEBHOOK: Optional[str] = getenv("SLACK_WEBHOOK", None)
 
+class DiscordConfig:
+    """
+    Discord Notification Config Class
+    """
+
+    DISCORD_WEBHOOK: Optional[str] = getenv("DISCORD_WEBHOOK", None)
+
 
 class TelegramConfig:
     """

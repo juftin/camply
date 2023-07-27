@@ -3,6 +3,7 @@ Notifications __init__ file
 """
 
 from .apprise import AppriseNotifications
+from .discord import DiscordNotifications
 from .email_notifications import EmailNotifications
 from .multi_provider_notifications import CAMPSITE_NOTIFICATIONS, MultiNotifierProvider
 from .pushbullet import PushbulletNotifications
@@ -17,6 +18,7 @@ __all__ = [
     "PushbulletNotifications",
     "PushoverNotifications",
     "TelegramNotifications",
+    "DiscordNotifications",
     "TwilioNotifications",
     "EmailNotifications",
     "SilentNotifications",
