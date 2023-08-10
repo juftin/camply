@@ -89,7 +89,7 @@ class Yellowstone(BaseProvider):
         """
         yellowstone_headers = {}
         user_agent = {
-            "User-Agent": UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+            "User-Agent": UserAgent(browsers=["chrome"]).random
         }
         yellowstone_headers.update(user_agent)
         yellowstone_headers.update(STANDARD_HEADERS)
