@@ -58,7 +58,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
             "accept": "application/json",
             "apikey": _api_key,
         }
-        _user_agent = UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+        _user_agent = UserAgent(browsers=["chrome"]).random
         self._user_agent = {"User-Agent": _user_agent}
 
     @property
