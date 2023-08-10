@@ -336,7 +336,7 @@ class GoingToCamp(BaseProvider):
         if endpoint:
             url = endpoint.format(hostname)
         user_agent = {
-            "User-Agent": UserAgent(use_external_data=False, browsers=["chrome"]).chrome
+            "User-Agent": UserAgent(browsers=["chrome"]).random
         }
         response = requests.get(url=url, headers=user_agent, params=params, timeout=30)
         if response.ok is False:
