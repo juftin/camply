@@ -14,7 +14,12 @@ from pydantic import ValidationError
 
 from camply.containers import AvailableResource, CampgroundFacility, RecreationArea
 from camply.containers.base_container import GoingToCampEquipment
-from camply.containers.gtc_api_responses import ResourceLocation
+from camply.containers.gtc_api_responses import (
+    AvailabilityResponse,
+    ResourceAvailabilityUnit,
+    ResourceLocation,
+    SearchFilter,
+)
 from camply.providers.base_provider import BaseProvider, ProviderSearchError
 from camply.providers.going_to_camp.rec_areas import RECREATION_AREAS
 from camply.utils import make_list
@@ -326,7 +331,7 @@ class GoingToCamp(BaseProvider):
         rec_area_id: int,
         endpoint_name: str,
         params: Optional[Dict[str, str]] = None,
-    ) -> str:
+    ) -> Dict[str, Any]:
         if params is None:
             params = {}
 
@@ -444,13 +449,17 @@ class GoingToCamp(BaseProvider):
         )
         return facility, campground_facility
 
-    def _find_matching_resources(self, rec_area_id: int, search_filter: Dict[str, any]):
-        results = self._api_request(rec_area_id, "MAPDATA", search_filter)
+    def _find_matching_resources(
+        self, rec_area_id: int, search_filter: SearchFilter
+    ) -> Tuple[Dict[int, Dict[int, List[ResourceAvailabilityUnit]]], List[str]]:
+        results = self._api_request(
+            rec_area_id, "MAPDATA", search_filter.dict(exclude_unset=True)
+        )
+        result_parsed = AvailabilityResponse(**results)
         availability_details = {
-            search_filter["mapId"]: results["resourceAvailabilities"]
+            result_parsed.mapId: result_parsed.resourceAvailabilities
         }
-
-        return availability_details, list(results["mapLinkAvailabilities"].keys())
+        return availability_details, list(result_parsed.mapLinkAvailabilities.keys())
 
     def list_equipment_types(self, rec_area_id: int) -> Dict[str, int]:
         """
@@ -503,41 +512,37 @@ class GoingToCamp(BaseProvider):
         available_sites: List[AvailableResource]
             The list of available sites
         """
-        search_filter = {
-            "mapId": campground.map_id,
-            "resourceLocationId": campground.facility_id,
-            "bookingCategoryId": 0,
-            "startDate": start_date.isoformat(),
-            "endDate": end_date.isoformat(),
-            "isReserving": True,
-            "getDailyAvailability": False,
-            "partySize": 1,
-            "numEquipment": 1,
-            "equipmentCategoryId": NON_GROUP_EQUIPMENT,
-            "filterData": [],
-        }
-        if equipment_type_id:
-            search_filter["subEquipmentCategoryId"] = equipment_type_id
-
-        resources, additional_resources = self._find_matching_resources(
-            campground.recreation_area_id, search_filter
+        search_filter = SearchFilter(
+            mapId=campground.map_id,
+            resourceLocationId=campground.facility_id,
+            bookingCategoryId=0,
+            startDate=start_date.isoformat(),
+            endDate=end_date.isoformat(),
+            isReserving=True,
+            getDailyAvailability=False,
+            partySize=1,
+            numEquipment=1,
+            equipmentCategoryId=NON_GROUP_EQUIPMENT,
+            filterData=[],
         )
-
+        if equipment_type_id:
+            search_filter.subEquipmentCategoryId = equipment_type_id
+        resources, additional_resources = self._find_matching_resources(
+            rec_area_id=campground.recreation_area_id, search_filter=search_filter
+        )
         # Resources are often deeply nested; fetch nested resources
         for map_id in additional_resources:
-            search_filter["mapId"] = map_id
+            search_filter.mapId = map_id
             avail, _ = self._find_matching_resources(
-                campground.recreation_area_id, search_filter
+                rec_area_id=campground.recreation_area_id, search_filter=search_filter
             )
             resources.update(avail)
-
         availabilities = []
         for map_id, resource_details in resources.items():
             for resource_id, availability_details in resource_details.items():
-                if availability_details[0]["availability"] == 0:
+                if availability_details[0].availability in [0, 5]:
                     ar = AvailableResource(resource_id=resource_id, map_id=map_id)
                     availabilities.append(ar)
-
         return availabilities
 
 

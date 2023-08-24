@@ -9,8 +9,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.0 (KHTML, like Gecko)
-                    Chrome/3.0.197.0 Safari/532.0
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/4.0.212.0 Safari/532.0
           method: GET
           uri: https://longpoint.goingtocamp.com/api/equipment
       response:
@@ -33,7 +33,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Sat, 22 Apr 2023 17:58:30 GMT
+                  - Thu, 24 Aug 2023 02:02:36 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -41,9 +41,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8CnXzG7UPapGgSMv5mpOJFYMHpAgEmuZULKN88thRalPTR28P_1djG1MiQ5365yZUhb6JVFCIVBGhbPAcgmZuoBeVILcvE7GHRk16hj9-6bgdfP1XgmP-0xr4votZWnh9KeVsz_y3E0ZHbkbBGE5wkE;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q5lNBMjn83HKnTfOsXb5WuBppnPRSSWzAOqtlroLxlyXT0KBToVQvRlX9iwo3r2d3jiAx6X_FbtKmBhGrgqybwv8oDKXKyTrx5VnHpv5crY71E6tsrK2uEvNNSZ7xqKkBk;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8CnXzG7UPapGgSMv5mpOJFbV-Q1ho-6sINEDsGACo53Y_baPUErn7Y0nIerq41UWQsM8kybc9ZklvbLLQzZfCPeKjoKX_R9PDuMUFsJXNmPaTi_BCWcjo0-AA9ZdhQDd9IcQEE3OUUqORU_7b9a1G_Q;
+                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q6TIHE-G76soKT_7ZrHperZhe9abn0K1K_Gg6_B-YswH4q-nOICTIKA-rgdyCw_oetoVGAXGaYA8s0IS9lBXo2VZcGLWqn8yP48m4PkdCzMG5_3_7m2rpmqQ42ZEWV4vQc;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -60,7 +60,7 @@ interactions:
               X-XSS-Protection:
                   - "1"
               x-azure-ref:
-                  - 20230422T175830Z-whu0m374n55zbbqt6rxaenaw1s00000000v0000000009vud
+                  - 20230824T020236Z-q15212mfxx66dcpxhvrn2zbt9g000000021g00000000rr1g
           status:
               code: 200
               message: OK
