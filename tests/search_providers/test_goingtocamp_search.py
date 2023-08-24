@@ -41,8 +41,8 @@ def going_to_camp_finder(search_window) -> SearchGoingToCamp:
     """
     gtc_finder = SearchGoingToCamp(
         search_window=search_window,
-        recreation_area=[1],  # Long Point Region, Ontario
-        campgrounds="-2147483643",  # Waterford North Conservation Area
+        recreation_area=[14],  # Parks Canada
+        campgrounds="-2147483617",  # Fundy - Chignecto
     )
     logger.info("GoingToCamp Campsite Searcher Established.")
     logger.info(f"Search Months: {gtc_finder.search_months}")
