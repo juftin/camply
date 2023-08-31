@@ -46,6 +46,25 @@ ENDPOINTS = {
 }
 
 
+class AvailabilityStatuses:
+    """
+    Availability Statuses
+
+    These represent the values from the GoingToCamp
+    "Availability Legend"
+    """
+
+    AVAILABLE = 0
+    UNAVAILABLE = 1
+    NOT_OPERATING = 2
+    NON_RESERVABLE = 3
+    CLOSED = 4
+    INVALID = 5
+    INVALID_BOOKING_CATEGORY = 6
+    PARTIALLY_AVAILABLE = 7
+    HELD = 8
+
+
 class GoingToCamp(BaseProvider):
     """
     Going To Camp API provider
@@ -538,7 +557,14 @@ class GoingToCamp(BaseProvider):
         availabilities = []
         for map_id, resource_details in resources.items():
             for resource_id, availability_details in resource_details.items():
-                if availability_details[0].availability in [0, 5]:
+                availability_enum = availability_details[0].availability
+                if any(
+                    [
+                        availability_enum == AvailabilityStatuses.AVAILABLE,
+                        availability_enum == AvailabilityStatuses.INVALID
+                        and equipment_type_id is None,
+                    ]
+                ):
                     ar = AvailableResource(resource_id=resource_id, map_id=map_id)
                     availabilities.append(ar)
         return availabilities
