@@ -54,6 +54,6 @@ class SearchFilter(CamplyModel):
     getDailyAvailability: bool
     partySize: int
     numEquipment: int
-    equipmentCategoryId: int
+    equipmentCategoryId: Optional[int] = None
     filterData: List[Any] = []
     subEquipmentCategoryId: Optional[int] = None

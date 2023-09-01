@@ -7,6 +7,7 @@ import logging
 import sys
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
+from urllib.parse import urlencode
 
 import requests
 from fake_useragent import UserAgent
@@ -240,28 +241,20 @@ class GoingToCamp(BaseProvider):
         """
         if not sub_equipment_id:
             sub_equipment_id = ""
-
-        return (
-            "https://%s/create-booking/results?mapId=%s"
-            "&bookingCategoryId=0"
-            "&startDate=%s"
-            "&endDate=%s"
-            "&isReserving=true"
-            "&equipmentId=%s"
-            "&subEquipmentId=%s"
-            "&partySize=%s"
-            "&resourceLocationId=%s"
-            % (
-                rec_area_domain_name,
-                map_id,
-                start_date.isoformat(),
-                end_date.isoformat(),
-                equipment_id,
-                sub_equipment_id,
-                party_size,
-                resource_location_id,
-            )
-        )
+        url = f"https://{rec_area_domain_name}/create-booking/results"
+        query_params = {
+            "mapId": map_id,
+            "bookingCategoryId": 0,
+            "startDate": start_date.isoformat(),
+            "endDate": end_date.isoformat(),
+            "isReserving": True,
+            "equipmentId": equipment_id,
+            "subEquipmentId": sub_equipment_id,
+            "partySize": party_size,
+            "resourceLocationId": resource_location_id,
+        }
+        booking_url = url + "?" + urlencode(query_params)
+        return booking_url
 
     def find_facilities_per_recreation_area(
         self,
@@ -472,7 +465,9 @@ class GoingToCamp(BaseProvider):
         self, rec_area_id: int, search_filter: SearchFilter
     ) -> Tuple[Dict[int, Dict[int, List[ResourceAvailabilityUnit]]], List[str]]:
         results = self._api_request(
-            rec_area_id, "MAPDATA", search_filter.dict(exclude_unset=True)
+            rec_area_id,
+            "MAPDATA",
+            search_filter.dict(exclude_unset=True, exclude_none=True),
         )
         result_parsed = AvailabilityResponse(**results)
         availability_details = {
@@ -541,10 +536,10 @@ class GoingToCamp(BaseProvider):
             getDailyAvailability=False,
             partySize=1,
             numEquipment=1,
-            equipmentCategoryId=NON_GROUP_EQUIPMENT,
             filterData=[],
         )
         if equipment_type_id:
+            search_filter.equipmentCategoryId = NON_GROUP_EQUIPMENT
             search_filter.subEquipmentCategoryId = equipment_type_id
         resources, additional_resources = self._find_matching_resources(
             rec_area_id=campground.recreation_area_id, search_filter=search_filter
@@ -560,13 +555,7 @@ class GoingToCamp(BaseProvider):
         for map_id, resource_details in resources.items():
             for resource_id, availability_details in resource_details.items():
                 availability_enum = availability_details[0].availability
-                if any(
-                    [
-                        availability_enum == AvailabilityStatuses.AVAILABLE,
-                        availability_enum == AvailabilityStatuses.INVALID
-                        and equipment_type_id is None,
-                    ]
-                ):
+                if availability_enum == AvailabilityStatuses.AVAILABLE:
                     ar = AvailableResource(resource_id=resource_id, map_id=map_id)
                     availabilities.append(ar)
         return availabilities

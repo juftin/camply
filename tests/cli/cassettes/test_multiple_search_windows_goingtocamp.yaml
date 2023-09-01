@@ -9,8 +9,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/531.0 (KHTML,
-                    like Gecko) Chrome/3.0.191.0 Safari/531.0
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.19 (KHTML,
+                    like Gecko) Chrome/0.2.152.0 Safari/525.19
           method: GET
           uri: https://longpoint.goingtocamp.com/api/resourceLocation
       response:
@@ -95,7 +95,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:22:23 GMT
+                  - Thu, 31 Aug 2023 15:39:08 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -103,9 +103,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q4HVn7d9stt2RPGcDkivg5-jEYBylmYKOjy3G7IwVJrq5LTqeNWkadv96DGZF53nGY8hG2bjo8VPA8Z2qCio53bPMyF3LEi7od60c_mrX04JBNfnjrhau0TLYtYnyhwHCU;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q7fZ8tsp2qwihcU6LUyPUPClK2vU1DwSJu1jLVSrj_qIos4lSU-ONa4OOsXDzdqb6zQgUqZrvrqN5fm9Mq74pWF9F-1I8wlz1TXZSpyE28WBLSuZf8O8j3nqkWUJuBFKpk;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q6Ov9DqKfHOuKziyytFVut-4BN28PQzNWluYEGxWjHsjYGKKl7CSR7oYUUAEl1n_WGCaKhRdyluJ9NWI7Xxi8UAvKVEdzGrkAMr01jmq_l7QYHouoVqbmuN6vWy0CE_Cis;
+                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q64YoTe8GwskJKjdL2nOaN2qkngXnCs9YCsCT3VEd5XSN1AEkdXXkFBLNG42ettBrOQv-GEbip_CN1iwSUcPsmLqvv2tk6t7dh8ip-Cg3BqF4SWEHU-FOZ3hBbj1djMdOs;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -122,7 +122,7 @@ interactions:
               X-XSS-Protection:
                   - "1"
               x-azure-ref:
-                  - 20230824T022223Z-w32uwtvbvh2nvd9skgdwa74u7w000000021g00000000c3yu
+                  - 20230831T153908Z-bmrvv137sd2r314ffnzk0s4434000000011g00000000r11x
           status:
               code: 200
               message: OK
@@ -136,8 +136,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41
-                    Safari/535.1
+                  - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/535.1 (KHTML, like
+                    Gecko) Chrome/13.0.782.215 Safari/535.1
           method: GET
           uri: https://longpoint.goingtocamp.com/api/maps
       response:
@@ -984,7 +984,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:22:23 GMT
+                  - Thu, 31 Aug 2023 15:39:08 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -992,9 +992,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q4Y37Js54iA3LacXKMIJFqkmSVDy2_-cP7FM3OTJSJcQbPuAetPyCD6ArDXk2ACl2kTZu_-tQgtGOncdYeleoX9N0TaJ4N8Doow5boeH5XUIo2v9FfMoyOU678azxgiQqU;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q7ghnD3xzCQE8fDNMj-VENGaFf_p57Hqj8Rz3a2SuZSblrCnSX88e0twJP1CsVycaYmwEVQJjGcRAQyA5jptAgfoIrj2s_T_enZYLYlGwkSC0aNZMrtk7hwXRYyYnvlDfM;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q7RjEKK2eL7O0BwphPhA2oE_cJcFmUlEIYCMXYaByfyvsuxBzNk0EVTgXIHEdM4N-PMSipcaYUwTHz7oWxh8D-XDxo9dh9BnWdX8j7Ua-vgNxdZNKyuqriDFjuGxlkxYrQ;
+                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q6XAW4ng97btwiucEdb_pZMy_mbYmENp03W2dDWAUHzClByOpy4DjHGV1QICbFUMeLVny1mXMTN_sFza8pG5p_rKd6GoCgunsdlaX1pfN9FDfkAmPQv8_Qze31bkNCYF9g;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -1003,7 +1003,7 @@ interactions:
               Vary:
                   - Accept-Encoding
               X-Azure-Ref:
-                  - 0377mZAAAAABrFq8n2V/iR6jmMHIgpZzIREVOMzAxMDAwMTA5MDE3ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
+                  - 0HLTwZAAAAADIo5ipTap0Tr+sXWkFzMBrREVOMzAxMDAwMTA5MDI1ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
               X-Cache:
                   - CONFIG_NOCACHE
               X-Content-Type-Options:
@@ -1025,8 +1025,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.43
-                    Safari/534.24
+                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+                    Chrome/31.0.1623.0 Safari/537.36
           method: GET
           uri: https://longpoint.goingtocamp.com/api/availability/map?bookingCategoryId=0&endDate=2023-09-02&equipmentCategoryId=-32768&getDailyAvailability=False&isReserving=True&mapId=-2147483629&numEquipment=1&partySize=1&resourceLocationId=-2147483643&startDate=2023-09-01&subEquipmentCategoryId=-32768
       response:
@@ -1041,111 +1041,6 @@ interactions:
           headers:
               Cache-Control:
                   - no-cache, no-store
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:22:23 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q6a9c3Ck9R2KsF0zR4FzeJJdYutNYFGYCVswlZiipYbM1JmJIFNUpsNPL6X-t2KV3gxA1rQA0unuUn4Uvve8QLcEuajdcrU3XHaWdsQiccCS6VlEcFfTyWiAA3fU4zuYac;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q45CL0dOVxD4OXJZ1tYImxfZq9Bqj5qTPQcLTnGotTEJU6ROPA4kPObRPaXzRbMK0H72U-pshEO3aa8Kgp-qdpwtZI-oyRdF5jR2YDurGfea6brVpt_mN-yonQIjqJtLA8;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Azure-Ref:
-                  - 0377mZAAAAAD3YWfKarENSJ/2YVV9rAMHREVOMzAxMDAwMTA5MDMzADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.10 (KHTML, like
-                    Gecko) Chrome/8.0.552.215 Safari/534.10
-          method: GET
-          uri: https://longpoint.goingtocamp.com/api/attribute/filterable
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECrzSXUvDMBQG4L8i5zodSb9ScycWQRARHQrKLrLmTANpWtJ0OMv+u3RdO7wbUpbL
-                  9yXh5OF0EEQhTzMQHZTavkrTIgi2oP0hUMrvMUroGErvnV63HnPcaKu9ruy9AjE8RGCLrhmjkMU8
-                  zqI05lOeS48gIKSMB4wGYbRkmQiZoNkiivk7ENBNrhu5NqhAbKRpkEDlFDoQ1315p41H1/dTPU20
-                  3NUIghKQaittgeoZ68r5452hta0xBExVSKN/UB3+14D46EDppjZy9yjLfsIX7fHqAe2n/wICRWt8
-                  6/DYoQ1ub2C/2pPBj8/ld3I6kE5+6Sx+jF4c8E2rM/zSufxOTn/9kln8wosu4JNU5+5f8l+/XwAA
-                  AP//Qs+/iHBCDT8TqoSfMV3THyj8iEt+JtQKPkQwoQafMXWCj67Jz680Nym1SCE/TSEkNa9EwbEo
-                  NbGYYEFoTK2QRIQYakgaUSUkTeiaEOHhp+CfR3SVYkStkESEGGpIGoJCEgAAAP//AlfVlFTJJob0
-                  rFJQQ5KozG0KztyZxb6lOSWZwak5qckl8HZDSmpaYmlOSXBqYlFyBqRd4ZpXmgtt8kAaCmWgJhGk
-                  fZCKkDOAt0nA/ndMLsksS1WyKikqTdVRykzOz1OyIradEZmKL1tVKyHZagi31QgU6pTY6pePOy/H
-                  6ijBW1SYbTxTHIWcMSLLUpKgDM3omaA88otLFEAtPdyhAWniGQ/2ZBSaV5RaXFKUmVySmoLHM2jp
-                  CQAAAP//grWsKU5P4JwZkEi01UZwq40pTcpBRPgbf5I2xpGkDamTpI0t6JmkEWUkuL9DoOtiagmq
-                  Z0aLR7TOHwXFoyW8XkWqbw3NTXHUt4a6hgYhBiZWhmZWBqZ6ppYEusDg3EK9LjAAAAD//8LfBQ4o
-                  Ss3NLM0lqoA0BffhRhMS9RIS1r6sobmpATyBodSzJCYkQxN6FkpBiSmZ+QqOOTn55XirJ/Bwigm4
-                  OzuIk5JHamKKgmfeAFSzTonJ2STYTLCWBQAAAP//Ir6ZGlxSlJiZnlGi4FKUWZZaklFUSqz3jeFV
-                  PTjJUdJqDSjNydEF2a3gk5pWQqwDTOAOMKW0rYFwQBAoMHC7AH+DwwTrOIuhuQmi8qAkbxuB/Ylc
-                  S0A6JvBWPTXHScHDVPnJiaBxYNzhAWlFmxqMtjawDDVT0NpAVAYorQ0TC+IqCQAAAAD//yLQ2jCi
-                  6zhJeEZqak5yRmJmkYJ/Xk4lwcQEHnUfxNXEkOvZY519MDTHNXtDaosD3MlELpWgszs0KZZA3aBi
-                  olscI7UXBAAAAP//wt/+J79cQqrIUMslRKOWogqOrqOOwamJxfl5iTnE9YPAQ+CjpRL1+kGIQRjU
-                  pIRoQ1GSlAzN6dkPCkvNyEzOSSW+YALPzNMuNQEAAAD//6J49DogP78IT0VNq+FGx7LUosR0fKO2
-                  KDZTsR/knp9P9CAnFXs+rhXJqTk5qXnkdzkQLULUbIQY+6QkGxnRtXIPLE3MySwh3EIc7LknODcx
-                  J2cAso9vakpmaa6SjhIAAAD//0rGsayFVrnHJ7GI+FxLxewToZuD32b8/XVTXJkHUTdRknnoOj8Q
-                  nFmFr9wEj8CZGo7206nbT0eM/qOWvojZeUoSkCG5K0MAAAAA//8ia2UcUj/dMTk5tbg4E7QYD3dh
-                  AhnUHewTqO5FiWWpA1EYBySW4R0Tp1VZ7F6UWEz00gMqlsUumUXkt2IQrRXUfITIX5TkIyO6Lj4A
-                  jZwGlxalJSYTzj00ml0DAAAA//+Czf9T3A9wK83JUQjOSEzB5xWUlEzFxQd++RCr9SGuKMU3Do3i
-                  Bir2CwISi0oyQWMEoDBQ0FVw9FUIJt4hVMxe6A4JIMkh1JwrQQ4R3NUD/paXCWLACDXDIwa+Kcrw
-                  dJ0FBS8pJ5RJIA0w8PI/2vf7AQAAAP//Gjmr1hANLZR0ZEydGTdDujbhA1JJGNoe7LMkoyNIoN0m
-                  iB0lKBUUFesFrCNIAAAAAP//Au90gdtNoCjGMT0EWt6GbSUxidNDRnRe2pRZlphMeARpsC9FGXJz
-                  jIhRe9RyGJG4KKnPDTFWPtByjjE8MYfAahxwZW48eKeEAAAAAP//ghQAo11f1HJQh1ZlMP6uL6q1
-                  VGyJByfmET1nYQrvE4L7wpSs1grKT87WKNYkt+mPtKEAtahAdAkoKSpM6DpjgViVDdoDRGSv35jm
-                  yxIAAAAA//+icBfJUKt9kFr7qEkKUStRkqRAKZZ+G5TdMotSFQIy8YylQbeuDPZZsCGXihANXtRU
-                  RJ3ZINBuFHqlIgAAAAD//7JSCshMzstMVggBb6gnMIZvjK0vCVlaOii20g1YO4aUCpaKY46DcwSf
-                  Zs0YStsTiC4GarZFDA1RVPjTtevhXpRfmpei4Jxflopv/Q1k6g33qmsAAAAA//9SGhT51gB3ExE1
-                  MVFxzsCQWDupmF+NiLWTisM+oXk5mbmZeDeFEhj2QYy0o2Yb6ky5GdO1Ge6flqYLHoWHLsRTCEgs
-                  ys7MS8cTMZAuPLZxoEFU8/nlZxbjG8xC6dAi5SIAAAAA//+itAMQnpmXQrS9VMxJoEFjBZeixMw8
-                  ElYBUjFXOSbll6UqOJal6ymAU1JpTmKRQkhRYlpaZjKetIQSDVTs4CM5JyA1BbwfOjGPVPdQsecf
-                  kJ9ZnJ+n4FlGdNowgw87gNfjUjLs4JxflJdaRGixNkpUmMNtB8/jUGJ7cEFOZomCT2pZKsH14ihO
-                  sIA7AbyWhxInhGWmlhPpfQAAAAD//4Kc92UJtxtyQhQllsOmn4lwBP56xxjRJ0etdxD1EUXNNbqu
-                  +3bOz0sBn5SGb8ENpLE22Gd+B2i+jpR111SsaCifNUP0LlCSMegsMWrMmlE28QwAAAD//yoi7Uw8
-                  0Iol38S81FLQ8vukTGLWYJsM9qWko52PWtROFhWbSZR3PhCdDNTcgxiCo6gSoOs+Mv88svoeJjSc
-                  PgQAAAD//wKdqknxLEBwDv698KjJi4q9D9/8lNQi0HmiuMctUdpYVKwXglPLUouItpiqWSq1LBXP
-                  Akf8jSoTxBA1an5CjI1Rkp+M6NqoAq+fzckvwBcN4DaV2WAfAPPLz8PnCZRETMX8Y2gKAAAA//9S
-                  cMwtwNckRbEZkYopPrPL2ICAzfiTsRmiD4BIxuZGFqBDbdAbVUYGuoaGugYmIYaWVsYGVgagc4wJ
-                  HXuAPgFDxvEZBsScMewKOo6wKDMZtG44tagsk/BCcLPB3pzyy8/ThXmL2HKZikmaVKupWCXArFbQ
-                  VghPLME7LI8jW1F8Pg66ExS0FYJTy/E4BQAAAP//qiWQz7A1v8yNDI2w5TNDXQNjXUOLEANjKwNI
-                  PjM0xn+eN0bri4x8ZkhMPoNmLgViTsQzxrbVYhAN9QaBhvfy84nevUnFzOWUmpiM7zB0lGRNxZzl
-                  nliUlJiequCSWVyQX5xI9CYtRIVFcc5yyk+pBJ2FTFLOpuIIL9hehZDEAmLLVOJGcwEAAAD//yLq
-                  JPyAnMTKdPB8I7GWU3E01y0zNYfoxWtUHMclfoIIJdVTcRg3PLUkJzEvRd83saiY6FxHzFCukhIx
-                  ZWZAfj6ejIa/3jBGLNFDtM/MLC0NEOLwboaRsa6Boa6xIegQTGi9YYS/2gCZTr8FMo4pWYnJoBPQ
-                  Q/AcmVwLAAAA//8DAPU+fcNJYwAA
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
               Connection:
                   - keep-alive
               Content-Encoding:
@@ -1153,7 +1048,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:22:24 GMT
+                  - Thu, 31 Aug 2023 15:39:08 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -1161,9 +1056,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q4a26gqdag2_z04NYSxMjh7o6dFJELYgTyKyg7RXKbCZGuxCO36YBB1bsZLmoMxCbrogQsziEf4zGc39YBtvihB1Cd4rUmgqHR4bHL6XgN4ghNgbW9o-Uqw1tUvz_gzK48;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q7Xw0gIY62uLTYui02vff-uCvsd3Fb6kn0D7N43AnZgvUeTqg1xkVkDQZ9voz_mT1Natb6z8BfeOe3WNADTrqXgUrnKViBuitgqapbCDXoduaIROYn-_0xLnBIEA9RuqQM;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q5AsWB0wYm4dv9nbTAP780lZV26lka4_g4_D4zs4twPaXZ_MReTbYksj2WeK5H8erHdwGMzxZnEU42-WEjv13b76DwlvPsLODl5wuv-m3whe1K6fU4KQyTFtxRL5aqtD8o;
+                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q7AsjyMA90zRlvJ2zzQicyLH_4gRLw4ehHWyOOWBvNJC8qHeeU1MIrG3Szz3sbNNNV_2d-GRuB75Iph1oY4eOxQja8hifhboO5ajqZqhwcHsH7vwPTno7rIJUwxwIpLsuU;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -1180,7 +1075,7 @@ interactions:
               X-XSS-Protection:
                   - "1"
               x-azure-ref:
-                  - 20230824T022224Z-w32uwtvbvh2nvd9skgdwa74u7w00000002200000000063ge
+                  - 20230831T153908Z-wygm2atgq91k95y7v3t28fg52s00000001a000000000h9gs
           status:
               code: 200
               message: OK
@@ -1194,78 +1089,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.809.0
-                    Safari/535.1
-          method: GET
-          uri: https://longpoint.goingtocamp.com/api/resource/details?resourceId=-2147481664
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECpyST2+DMAzFv4vPQQJCA+VWdTtM2nbsZeqBP14VLSQdJJs61O8+wQQYTXQTR+c9
-                  //xspYUaG+PqAh9KSL0wiOIoCYSI2CjsM4snU1+IgYtITIZHU2RWGj03cAa5MW9SnyhAO6WmzidT
-                  ooLUZ6BMkSn5heUhUw4bSF9aKJyyrsbnrEJIAbW33wED/VNyPwAGJTZFLc/ddEgBrkcGmVLmE8v7
-                  dyfPFWrbo3CoaBaPh7FIGDQuH92/9Y5ZuMaaamdtLXNn+3jHbvir1FjOnlv4GBbgXZih5a7zyvFK
-                  PIy5IPJ0uk2YbBOiHGQjc6mkvUDqXxnhJ3/wN4Qy58dEWeb7t/nCJ5Q5n262ms+3i3y62TI/uJ0/
-                  Ws4fkcnr+QGhzO/DibKeT68w54f/4vf/8xsAAP//rNOxDQAgDAPBoQCJ/Sej/S8sI8QCR3DifJ+T
-                  Kdjnz/L85X4Wp7TPzTz7gy2Sv3lZ2S/3s6jY58vZb/mwRfb/9JdbtM+X8/yz9IuKfV5u9lv+TNk+
-                  Lzf7LX+mbP+uv82nYp/NeJ+fKdvH5g8AAAD//4yWXWvCMBSG/0rJ1QZFip1u6506GILoxQbCwItj
-                  e5IWahJOjh9j+N9HaukHm+hd8uacl+SFQx687n8r/65L3/+++b3l33Xp+T93J69//00odnD6YPgW
-                  yQU16u3cTZQiVMDYnBR6BhbS6mttiv+Rpgb4jUByp9NrC9SK80aE01/RlYVdF1lb5faU5kAK55mH
-                  nE3FQkgH2Jb4SaAdpB4SWqTyVTWWxeOnUdiuh9VjbRvNSzwevvoArG/v0dRPjU+JeCeztwHoLFgd
-                  kGRpjsHDGhhJGsqCpSHOH8U5FFzs8MtoXEnpkEUSR9EgOv8CAAD//wMAbWf7yC8KAAA=
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
-              Connection:
-                  - keep-alive
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:22:24 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q42t4kZF7I6mvckHXmS1CAuX-pB_1_H5um7k8M-ZYmbpgyrD7QOyRhGmoZtQAFspW44G2m2XX5Vp6I6CDmvQ_vqmK2IQfWw8GeK92PeaqF6qm9QHy4u73Y5hZVzamS7xPc;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q59S3F_m3FQfS2ovEgfq2umk0MS_FZi-M89ZEGBR3U_jwePPm7qsubfmOy8rycV1lOrweS_Ne5OC02HvUGlQ064fFiDkTnA6VsoKs6t0_psa_owoiUF9nlNqZQ2SRZb_cU;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
-              x-azure-ref:
-                  - 20230824T022224Z-s6zvr8ssrx7p99wnsvdg6dafpw00000001u000000000v596
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/530.5 (KHTML,
-                    like Gecko) Chrome/2.0.172.6 Safari/530.5
+                  - Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko)
+                    Chrome/13.0.782.24 Safari/535.1
           method: GET
           uri: https://longpoint.goingtocamp.com/api/availability/map?bookingCategoryId=0&endDate=2023-10-02&equipmentCategoryId=-32768&getDailyAvailability=False&isReserving=True&mapId=-2147483629&numEquipment=1&partySize=1&resourceLocationId=-2147483643&startDate=2023-10-01&subEquipmentCategoryId=-32768
       response:
@@ -1287,7 +1112,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:22:24 GMT
+                  - Thu, 31 Aug 2023 15:39:09 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -1295,9 +1120,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q5hu_nZhD_BDsCawJWXw00uf-NU6E26WykHqtU8imJHNlPGo_x6Ry1CIJkNouho90fnCG_xC6mi0nF4C8ipBl_Skn3z-ATXE-FW0PkhCuV7Ctd0DyutY47xcN5NAbYchos;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q4uW4Nv3yfTiC_F0HZZ1Pws0y6iQTKMRBFQYJwZh41p2ZVPwCcW1DDntXv5H5_pP9nyugnZYtaLN2aSEemA0_Tme23gbYQ2Qs_Bxvs7M-6bJ4tbMPR87bGFMw8ILMU82Ig;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q7YLYdIQYIWg4kWQB4SXTCj3lVPhEI1HoWqmTaDzNi9suIUt8b8i5odh1Htg71o-rjzF5Fc13f9Pz1nXsKycqMhGTePadIxZqoYMoGjd0BMD5bwTEYY6xBxvSSPPV98JYY;
+                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q5TqIc-iyNC9mFog7ZY-MlCoJWTWcG8c5J6nEnBVDV4kuqxMCwOtrF51sUuETrRqwjbtBb-WxBRKJanPbL2wdUA1Kc7gaRv7GdEtjDcnP8Dx4wrTwAlBbYxcIszUD2THws;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -1314,77 +1139,7 @@ interactions:
               X-XSS-Protection:
                   - "1"
               x-azure-ref:
-                  - 20230824T022224Z-pswyannn894qve60z1pkfa04kn00000001tg00000001mdvf
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/532.2 (KHTML,
-                    like Gecko) Chrome/4.0.223.1 Safari/532.2
-          method: GET
-          uri: https://longpoint.goingtocamp.com/api/resource/details?resourceId=-2147481664
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECpyST2+DMAzFv4vPQQJCA+VWdTtM2nbsZeqBP14VLSQdJJs61O8+wQQYTXQTR+c9
-                  //xspYUaG+PqAh9KSL0wiOIoCYSI2CjsM4snU1+IgYtITIZHU2RWGj03cAa5MW9SnyhAO6WmzidT
-                  ooLUZ6BMkSn5heUhUw4bSF9aKJyyrsbnrEJIAbW33wED/VNyPwAGJTZFLc/ddEgBrkcGmVLmE8v7
-                  dyfPFWrbo3CoaBaPh7FIGDQuH92/9Y5ZuMaaamdtLXNn+3jHbvir1FjOnlv4GBbgXZih5a7zyvFK
-                  PIy5IPJ0uk2YbBOiHGQjc6mkvUDqXxnhJ3/wN4Qy58dEWeb7t/nCJ5Q5n262ms+3i3y62TI/uJ0/
-                  Ws4fkcnr+QGhzO/DibKeT68w54f/4vf/8xsAAP//rNOxDQAgDAPBoQCJ/Sej/S8sI8QCR3DifJ+T
-                  Kdjnz/L85X4Wp7TPzTz7gy2Sv3lZ2S/3s6jY58vZb/mwRfb/9JdbtM+X8/yz9IuKfV5u9lv+TNk+
-                  Lzf7LX+mbP+uv82nYp/NeJ+fKdvH5g8AAAD//4yWXWvCMBSG/0rJ1QZFip1u6506GILoxQbCwItj
-                  e5IWahJOjh9j+N9HaukHm+hd8uacl+SFQx687n8r/65L3/+++b3l33Xp+T93J69//00odnD6YPgW
-                  yQU16u3cTZQiVMDYnBR6BhbS6mttiv+Rpgb4jUByp9NrC9SK80aE01/RlYVdF1lb5faU5kAK55mH
-                  nE3FQkgH2Jb4SaAdpB4SWqTyVTWWxeOnUdiuh9VjbRvNSzwevvoArG/v0dRPjU+JeCeztwHoLFgd
-                  kGRpjsHDGhhJGsqCpSHOH8U5FFzs8MtoXEnpkEUSR9EgOv8CAAD//wMAbWf7yC8KAAA=
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
-              Connection:
-                  - keep-alive
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:22:25 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:03d8b028-e287-44e2-a3af-4195efd11ce4
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8Kcxd2mnrChGmVWDGR44_Q6xc9IvwZBIqtLRyPjna0Ufh9wBI3za9bNncZHSN1ZWlVBt-hQb9dSQjd6L3XG2aa8OnHL4XaPwjIJK-4Y9GTdgWzHkBgjwaPlFmHHhAiHUP2fGusNRdqdWg1PdWd_f_0w;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8Kcxd2mnrChGmVWDGR44_Q5pe5Owi2hUZpuwNKAMVxoOCKrSHoKRxCDDY3gZrdtLOmX7cV7Vo083s1wAdKl6nyXQggNy7hbtQYMrxxf3IPrQu0mVrOvmdi-8GDbkYMiW4iBbEOlvt5y0XV3CuHSVv7E;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
-              x-azure-ref:
-                  - 20230824T022225Z-q15212mfxx66dcpxhvrn2zbt9g000000022g000000003z8x
+                  - 20230831T153909Z-wh39f7yfup07p01vgzbaxrxbpg00000001hg00000000rqhm
           status:
               code: 200
               message: OK

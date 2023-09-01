@@ -9,8 +9,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.15 (KHTML, like Gecko)
-                    Ubuntu/10.10 Chromium/10.0.611.0 Chrome/10.0.611.0 Safari/534.15
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; it-IT) AppleWebKit/532.5 (KHTML,
+                    like Gecko) Chrome/4.0.249.25 Safari/532.5
           method: GET
           uri: https://novascotia.goingtocamp.com/api/resourceLocation
       response:
@@ -225,7 +225,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:02:36 GMT
+                  - Thu, 31 Aug 2023 15:36:37 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -233,9 +233,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_300y20K4TCsbrqHQvUo6yv68X5Ks10ZXhj4jU3oZCRSbmbhLZrhdpVqjDDwIPBcMtC2ZS9ERwUqscgbGb2zXm58AT86ck2WZ1zgDPg0ENs7oXSfv9ei6qd403alHMkM-hhg;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_300PntZ5r2gXJxEEVStXqkA5P92FKZ9C27-tt2--SVhZElidNZ0oTZygepxb81PozhK19bShsHN5Ot8ctUbyj0Ud07GZHOR9VAbemQVmQf_IF-NObZjXg5HoPFIS4q5XI0c;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_303iB_rdI6sXlNQ69SOkfClh771q9vNckPmHfXceLKZfHRy0OWocOWyQMqFjFGmc3oA5Ii9Nb1OQyGp53QFx5yovoIz41y_7-T9HySwiiC2ggN8-m5eKVrA_Mho7CwE-vi4;
+                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_3031dfo5QkAyxQ03c_fC89Bgzhgfg4fDVNHMoZFzwN0yA-kVd-QIkXwFdj9_LNtFh0AWgF1EP46JquO_JAVuw75mpl305MW2i3b6NNN6EsT_Tfp9zBKLwtvUACCDU_QSbd8;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -244,7 +244,7 @@ interactions:
               Vary:
                   - Accept-Encoding
               X-Azure-Ref:
-                  - 0PbrmZAAAAABsihTqNs5dRJ2J7o3d+KEHREVOMzAxMDAwMTA5MDM5ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
+                  - 0hbPwZAAAAACXs/huD3zMQYT3xZmzw46HREVOMzAxMDAwMTA5MDQ3ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
               X-Cache:
                   - CONFIG_NOCACHE
               X-Content-Type-Options:
@@ -266,8 +266,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML,
-                    like Gecko) Chrome/52.0.2762.73 Safari/537.36
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/3.0.195.27 Safari/532.0
           method: GET
           uri: https://novascotia.goingtocamp.com/api/maps
       response:
@@ -2093,64 +2093,6 @@ interactions:
           headers:
               Cache-Control:
                   - no-cache, no-store
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:02:37 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_301SXKRSAlgPuB3_zj07cO7lkZ5aMnBJnV7Zl2AQxYQnwBuSXUKon4LxHHVMERtV-7FCZ5xZpfmrFp5kmEPAWFFWBpjOVZyf5tcZs1APBrPw9OW87WeOtODYilIHgcSrq3Y;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_300qs6FeTcccpIIaOF4IL8vNm05cy5mdmDWc0kkQA4jOfTRn4nbkPDwHD5VFBYm8NUe51mmvIEgAFRBg0IyvCb8mOrJuSl0UTEAWzcVCoK9nAruQ-Aq2tYtWNrV64_NsCSc;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Azure-Ref:
-                  - 0PbrmZAAAAABlaEKonPMTQongllY7ZbCTREVOMzAxMDAwMTA5MDM5ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.04
-                    Chromium/15.0.871.0 Chrome/15.0.871.0 Safari/535.2
-          method: GET
-          uri: https://novascotia.goingtocamp.com/api/availability/map?bookingCategoryId=0&endDate=2023-07-14&equipmentCategoryId=-32768&getDailyAvailability=False&isReserving=True&mapId=-2147483569&numEquipment=1&partySize=1&resourceLocationId=-2147483629&startDate=2023-07-01
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECqpWyk0s8ExRstI1MjQxN7EwNjWz1AGJOZYlZuYkJmXmZJZkphYrWUWbx+ooFaUW
-                  55cWJaeiS1bXgvX4ZOZlY0gpIUy2gBqDEDEHi9TWAgAAAP//AwC5xBtYhwAAAA==
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
               Connection:
                   - keep-alive
               Content-Encoding:
@@ -2158,7 +2100,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:02:37 GMT
+                  - Thu, 31 Aug 2023 15:36:37 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -2166,9 +2108,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_301iBBfHw89GNNQIlAHi7WssystGOi1Y6_Tm-Zckl1qV7HDDUcL9IdrmZWyYKsBSJggMvHBEZC9-0WlxX8qTiQXO28CIQR2IR8zgYtic4UF7I5lJsES2W5AE0KINLe7Bd98;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_303Y9YsG186Hvl6hFHphl3ZjFBwfpugae8mevBgIv7t3bQ6jDpkpijB6gjXT5Fn7EVmPQEZedYDmji8eD1lNUrjwRP4MtjrgewBT3gI0Vd1ztkRWA8WOdjXbVDuub_YSe7A;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_303fY0dwaQ_YdC6x3I2KwbEd22hbNPOCasQQQVZwR3C5A74OZUjMHrM-bvg-zt_Mo45ITkWwd0O0sE2gCvYejGi9yywvF4z7bi3rHcTqx8G2zIlagoRdIukXbsYMe2I2x_s;
+                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_3006c6OcUAgSG5e5nJNEZ5Ke4VCPEk33Rjr0FNUZbBePjN6VXBTVP8acL13cYz1rg0TJ-xQzqDJ6Ag9TbkSG8jk5CR7Qegh2ntdwK24COxlh0ltw0GZxLUv8xGPnqbNnotA;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -2185,7 +2127,7 @@ interactions:
               X-XSS-Protection:
                   - "1"
               x-azure-ref:
-                  - 20230824T020237Z-w32uwtvbvh2nvd9skgdwa74u7w000000021g000000007pcb
+                  - 20230831T153637Z-wh39f7yfup07p01vgzbaxrxbpg00000001hg00000000r07s
           status:
               code: 200
               message: OK
@@ -2199,17 +2141,15 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML,
-                    like Gecko) Chrome/4.0.203.0 Safari/532.0
+                  - Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.6 (KHTML,
+                    like Gecko) Chrome/7.0.498.0 Safari/534.6
           method: GET
-          uri: https://novascotia.goingtocamp.com/api/availability/map?bookingCategoryId=0&endDate=2023-07-14&equipmentCategoryId=-32768&getDailyAvailability=False&isReserving=True&mapId=-2147483568&numEquipment=1&partySize=1&resourceLocationId=-2147483629&startDate=2023-07-01
+          uri: https://novascotia.goingtocamp.com/api/availability/map?bookingCategoryId=0&endDate=2023-07-14&getDailyAvailability=False&isReserving=True&mapId=-2147483569&numEquipment=1&partySize=1&resourceLocationId=-2147483629&startDate=2023-07-01
       response:
           body:
               string: !!binary |
-                  H4sIAAAAAAAECpyTywrCMBBF/2XWdZE2L7NzKbhxXbqIWmQwTaUPQUr+XSqCoiMM3SYczr0zzASN
-                  v25P4Fa5kEbaQmmbzW+bm8fgDxhwwLoHV5oqg67u27E71t+fE7xwUVgNrpzAv/E7ODGjjceI8bwf
-                  28GDi2MIqco+QEmAhgMKAuQYjSVAjtFQHVlgThg5UTUVlQUujaqpdbCMBdGRMxy1JkCOUS0djloa
-                  VVJROR0ltY6/HdPzEncYLz8Hl9IDAAD//wMAKXcuLroDAAA=
+                  H4sIAAAAAAAECqpWyk0s8ExRstI1MjQxN7EwNjWz1AGJOZYlZuYkJmXmZJZkphYrWUWbx+ooFaUW
+                  55cWJaeiS1bXgvX4ZOZlY0gpIUy2gBqDEDEHi9TWAgAAAP//AwC5xBtYhwAAAA==
           headers:
               Cache-Control:
                   - no-cache, no-store
@@ -2218,7 +2158,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:02:37 GMT
+                  - Thu, 31 Aug 2023 15:36:37 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -2226,9 +2166,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_300FSGuUIZ4BGvDKbGJso4TxbKC4s9nKe0vkkQfLVCwPF6MxhbR1-E4NkUAKTjlmssgNYZqGUzjPVH_Tyca4EEe14-1PY8p-XpwJJrM7EqiU-Fp2rzqCG5g3_8P840XkOm4;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_302-G_IeNSSkUYQ_a8WHYR17slzPNIVZWZx5bhnT00h3RREP0pN3hDqmSRt3tM7TktGViBRKUzM7_oY4OxO_sE5FpBRusuMc0WkbCI6UN_LerbofcFJE64korATzXtZzBzU;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_301hHtCIuOFijjchTdG8bwrKpVBSMJ9foXW1Vw6p5rB7B47BS6ZTN8mFi_oi2DBjLwIhcX5MCSviJGzqt1pSDaaLxUmnB3liiPOqyFiPWOcKlcf-RISnr-30lSjD7JTuHDM;
+                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_300Gzu4rzgjya2G8NsSRyIQ4LDTGDmrGaGDiKowcp5GbI8VsfZ1cqRQIQVyDECa4nEDKu0qrQpn6C_3mHQs4NBcjkNe6z7ZkkdSjRPLy1pCUUJ8w-d5721wCY2t3J5E7VoU;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -2237,7 +2177,7 @@ interactions:
               Vary:
                   - Accept-Encoding
               X-Azure-Ref:
-                  - 0PbrmZAAAAAA50cYIiFkTSKAt8QjVazSYREVOMzAxMDAwMTA5MDExADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
+                  - 0hrPwZAAAAADdByNOA/MfQ4tLcQ5PlzMqREVOMzAxMDAwMTA5MDI1ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
               X-Cache:
                   - CONFIG_NOCACHE
               X-Content-Type-Options:
@@ -2259,10 +2199,70 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML,
-                    like Gecko) Chrome/3.0.197.11 Safari/532.0
+                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.16 SUSE/10.0.626.0
+                    (KHTML, like Gecko) Chrome/10.0.626.0 Safari/534.16
           method: GET
-          uri: https://novascotia.goingtocamp.com/api/availability/map?bookingCategoryId=0&endDate=2023-07-14&equipmentCategoryId=-32768&getDailyAvailability=False&isReserving=True&mapId=-2147483567&numEquipment=1&partySize=1&resourceLocationId=-2147483629&startDate=2023-07-01
+          uri: https://novascotia.goingtocamp.com/api/availability/map?bookingCategoryId=0&endDate=2023-07-14&getDailyAvailability=False&isReserving=True&mapId=-2147483568&numEquipment=1&partySize=1&resourceLocationId=-2147483629&startDate=2023-07-01
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAECpyTywrCMBBF/2XWdZE2L7NzKbhxXbqIWmQwTaUPQUr+XSqCoiMM3SYczr0zzASN
+                  v25P4Fa5kEbaQmmbzW+bm8fgDxhwwLoHV5oqg67u27E71t+fE7xwUVgNrpzAv/E7ODGjjceI8bwf
+                  28GDi2MIqco+QEmAhgMKAuQYjSVAjtFQHVlgThg5UTUVlQUujaqpdbCMBdGRMxy1JkCOUS0djloa
+                  VVJROR0ltY6/HdPzEncYLz8Hl9IDAAD//wMAKXcuLroDAAA=
+          headers:
+              Cache-Control:
+                  - no-cache, no-store
+              Content-Encoding:
+                  - gzip
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Thu, 31 Aug 2023 15:36:39 GMT
+              Pragma:
+                  - no-cache
+              Referrer-Policy:
+                  - strict-origin-when-cross-origin
+              Request-Context:
+                  - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
+              Set-Cookie:
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_303v61xGka3yho0Y58D6RsdZFg_v2E8WuQylFWApxfVUbCTpZKKriv8imDnRqudh_eFz76yFIuw_5nWgbFWxPT12DwnMQFYzOJIas3BEE5CIPTVxpXtzYpGh9hE6ZEsCpXc;
+                    path=/; samesite=strict; httponly
+                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_3026QHXOFH0Bzz_V3Fdv78MW3TM7RzFeEGwhCmxYAtLfj-xhLazXw_gBWoJZ4pPQaSRFx5Ziqrj1_oSUpHxWk6aV6BKFGuh9Cc4jxZl9coD9lAFptwg4cfalR4C1cvNhPtg;
+                    path=/; secure
+              Strict-Transport-Security:
+                  - max-age=31536000
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept-Encoding
+              X-Azure-Ref:
+                  - 0hrPwZAAAAACPj/1sf4wlS6MbXoVmtwF7REVOMzAxMDAwMTA5MDUxADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
+              X-Cache:
+                  - CONFIG_NOCACHE
+              X-Content-Type-Options:
+                  - nosniff
+              X-Frame-Options:
+                  - DENY
+              X-XSS-Protection:
+                  - "1"
+          status:
+              code: 200
+              message: OK
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate
+              Connection:
+                  - keep-alive
+              User-Agent:
+                  - Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.12
+                    Safari/535.11
+          method: GET
+          uri: https://novascotia.goingtocamp.com/api/availability/map?bookingCategoryId=0&endDate=2023-07-14&getDailyAvailability=False&isReserving=True&mapId=-2147483567&numEquipment=1&partySize=1&resourceLocationId=-2147483629&startDate=2023-07-01
       response:
           body:
               string: !!binary |
@@ -2281,7 +2281,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:02:38 GMT
+                  - Thu, 31 Aug 2023 15:36:39 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -2289,9 +2289,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_302PWzojZ9djtnx0XnL-cGcdkE0fR-LdkO4p37-P51Xbl2nT47rXWd1XJe-g4nfyvYT9rdAM8dQ1-ebZLDd8Ogyt0AJH67yHEZR8r1Qy7tpiQRVToeJLjibXayce-hYwdMg;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_300CezZ999Txt48eURZWERw0dPQUhb0vj4WM4IeeBeOGMl_hkXp_9u18aU9lBTMkvJzQc4REX4pMKuAb91Us9vu-AVHzzwMX6gJvGEwo1egYwPOYSgi3RnJrKXM6akfAr20;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_3032-TU-A4cuof_rV3L3HFoCwM254y42-FTvhWK99KUf9otn957xIdOln9HpA3EftmkVOWtzJKl2R8QMqqOoPxvCg3XI1oPPCYli-NqvKJpjknAa3HuL_2_RQNI2t0IYcLM;
+                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_300cYPYqw5CHjm0sz5sHLfC9z8JLKsXeSQ0RKsznjSr-gPJbi01gXcfVtGzA43X7wv3ck74okJd9KkfJPU9IG6sYnKTuDVXah5xlUEe_Ur-G3exFlwkrL1qHoXFtsUTBp9c;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -2308,373 +2308,7 @@ interactions:
               X-XSS-Protection:
                   - "1"
               x-azure-ref:
-                  - 20230824T020238Z-5cgpe7wkgt0n5d20zmnc6dfrms000000021g00000000fu03
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1061.1
-                    Safari/536.3
-          method: GET
-          uri: https://novascotia.goingtocamp.com/api/attribute/filterable
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECtSTPU/DMBCG/0p1s4McJyWVt4qCxMCHaOkA6uDaF3rCdSrHjlSq/ncUUoIYKip1
-                  YvR7H8/Zfm8HSSaKSw5yB1TfRRtoihZ1AFkqWyMDg6WKNkxReb26IRvQX7u4nisbEaSL1jJo2kMN
-                  8nUH+BPjDCpv0INMGVA91oEaBBl8RAakK/ddbiutLH2g+Wra9TFUb6za3qs1ggQODHS0IXo8KOiS
-                  qzHsF3v2i5n2THEuMz2VKXpmdi5TnMrMemZ+LvPZWVpTQHOcvWCgQvC0jAEnWJKjQJW7NSA79zBo
-                  0NffkkjzIi9Gw2He6xMV2m8UXPCEF4nIZmkuuZCcX/A0e4H2DhOq1dKi6Z13MI8Y8TbcWa/N6BP6
-                  mWbbDYLkDJRplNNonnBT+XCo6aKdU/+22kNZJlMKOJjjirTFwaPy7+Tejr8O63Yo/Y879AkAAP//
-                  Gs1DoPJpEOQhQ3heAWcreB4yhotTlIfM6ZuH8sjLQsaDPAu5FyWWpebgKQloVRe5FyUWFxNrLyn1
-                  EQAAAP//IlDvBifm4akWUKteKlZJwfmZRIeyCbwmNKW0JgzKT87GE8oEakFETkXNwYicTVEONqVr
-                  DnYvyi/NS1Fwzi9LLcKT7sA1n+lgbz1GpuKJVdRETMX2o18+7oDDn5RAUY21QYUQpygpmSCSEgAA
-                  AP//KqJ9g8opsSgptbA0FXdoQBpQpoO9ATXkkhGi5EEpkUws4cmLomRkTNdk5JZZlFqQWUIwFRkN
-                  8jbE4EpFAAAAAP//AvWgCRRGRvDUgpqKTOHilKQiQ8zeHWSAgCadu4DSnJySjKL80vQMgglpsDdG
-                  h1xCwtFAMqHOMIEhZheHhgkpPCM1NSc5IzGzSMExOTm1uDgTNDCBe5AK0lAyHXRlEwAAAP//Qh1m
-                  G3JJClEGoZZNiDKLorKJvm3ukNS8kmIFx5yc/HJ8g3HQ1pL5aFoCDzijpmAKGt3m8PoMNS1Rp9Ft
-                  SN/WknNibkE6pA/nkV9cogAa0cRWPAEAAAD//4KO/0FGMAd7kgrOTcwhelyAij0539SUzNJcPMGH
-                  MuxDxeEXn8SidHzRhmIvFcdfXCtKihIVCNiOv9lohiM7GVOn80Hfkhk8HxCcWYUvLiBZaLDX8G6l
-                  OTkKwRmJKVCvAAAAAP//ouuMWkBiUUlmItR+BV0FR1+F4NK8AchX6A4JIMkhVMxoKA4hNiCoOOLp
-                  l08oMRDI5VgbYAZmhtja9Ia6Bsa6xoYhRoZWJhZWBoZ6JqYEZv4MMUYYaNikB+UKIub5TC2GU8ML
-                  AAAA//+CzdBTPFtOQcPLAlvDy8DMENFfRDTiSU9D9ExC4YklqUUKHvn52bqlBXiyM6SuMBvkCcmH
-                  0LIAmg2dO5alFiUS3/KhYovLPT9/ICa8XCuSU3NyUvPwDG8SKIjNcGQibD1hpEwEAAAA//8isiA2
-                  oGcuCijKLEtMriSUf0wtB3n+GXKjKYimOVIP2MDUEkdlbqJrYBhiaG5lAlnHY0xgHQ9mZQ5dYUaT
-                  kV7n/Ny0/KISheCSRNBaJUKJyWyw1+r46lfUchjRPCWiUgcAAAD//8K/7M7IQN/YQMExt4Do+VNE
-                  25TitXAk2mwKb8tQvJrHlJCfCZTF2Bs0pqaILjFKg8ZE18A4xMDYysAA1Cg2MsLfKMYcR6Jhm9gV
-                  tBS0KDMZ1GlLLSrLTMbXbYS0akywlMoQFw6KlaR++ZnF+KoWlCEVKraPwzPzUoi2l4oNmoD8/CIF
-                  l6LEzDysDSoAAAAA//+CjwCi+BtRhFCclzwy0zMgSylLcxKLFEKKEtPSMpPxFMcoDkEUJxQv7gE7
-                  JCA1JbW4pCgzMY9UlyCKFzNKlxk55xflpRYRGpJFCQczeOFmTqntwQU5mSUKPqllqTkkOcEc7gQL
-                  Sp0QlplaTpLdFnC7LSm1GzbiQoQbCJTyiFYRcmvJwAQxJIJSypvqGsJLeQM9M0v8pbyREUaLmyat
-                  JQAAAAD//4KupgcPcDrn56WAF3bjyZ2QMh7bGotBVMYHgfJ4fj7RI/ZULOadUhOT8S0tQMnVVCzm
-                  g1LTSotTFVwyiwvyixOJniShYkHvlJ9SqZCfpgAeA8GTglBCgIrlO2TsJSQR37gLit1ULNEDchIr
-                  IbNtxHqcigW6W2ZqDtFjFuilOAAAAP//omBPDuF9ESjBTcUyPDy1JCcxL0XfN7GoGE9mI1B+I0ZG
-                  EOW3maWZBaJcR5TfRroGhrpGpiGGZlbGFuBdK8bmBApwM7oW4I4pWYnJqXklCiF4Vp3WAgAAAP//
-                  AwBh3mcC7jUAAA==
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:02:38 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_300tS4Lmn3QdF00cxYBVXtLVA2VGy8CfScG_ItV3wgvjnkViVPP2nSwhgMpGeJGPo4YXjZa2iRta7_lvMEwAe_i_hGGybL1XY7_3qM1WRjYdSfX4jmSWcjAl-Mvo5tJ-cE4;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_301e6My4H5srL9j8uNJqX0XQlT-o9tViIdNNvj297mzHscUCRJCoFwKZ_zmb-9V6dhyMV1o2jZI6bR8WLNgui4RA3HJx64wsVrQs_XFLywZ3R5s5KImEvzFfIMSrivIKFVU;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Azure-Ref:
-                  - 0PrrmZAAAAAC+LYzT3+O3R6S05DUpEpcrREVOMzAxMDAwMTA5MDM5ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (X11; CrOS i686 13.587.48) AppleWebKit/535.1 (KHTML, like Gecko)
-                    Chrome/13.0.782.43 Safari/535.1
-          method: GET
-          uri: https://novascotia.goingtocamp.com/api/resource/details?resourceId=-2147481377
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECoTSPW/CMBAG4L9i3dDJoHyYBLIh2qFSW3VCqhCDEx/UwtjUH60o4r9XaQU4Q5ox
-                  ec9Pznc5gUVngm3wUUA1ylJWsmmalyW9BgvucWvsMSrIi3x2K3gyDffS6E5BNqNQG7OTehsD7Hbs
-                  2QhUUCUUlGm4kt8ollwFdFCtTtAE5YPFF75HqAD1aDEHCvrvkSVAQaBrrDy0X4YKMuLQO2I2pA56
-                  R2oUjhLPa4XkjhSkeefSujF5bYu4RaKNJwe0e+k9CiI1eQvWuzGc1xS4UuYLxcNHkIc9ag/Vak2h
-                  Cc6b/dx7K+vgf9tct11spEbReX2Cz8tFkpa7HLlva+V1VHlWTmZRfJsfY2WeRclSOllLJf0RquRM
-                  Iz8d8MtI6fpplPT72f9+UURK10+ipN9nA348hY7f/l/Xwfb7Q/OfRErXn0ZJvz8d6J9FStePN9Pv
-                  D+y3iLfY9ePN9Ps/AAAA//+clbsKgDAMRf+ls0uRdnATJ2dnhyBSBBXxAfr3Qod6M4RIx9JySM5N
-                  qOanFOtHczJfqd/J+aI5ma/NJ1rmfrAzma/5wSnnfOwsm+9xCjkfk8/mO6RwPnYm85V8PVpmfPtv
-                  f0tlv3AKOR+Tz68fLXD+v/1S/DgxX4ud8fr7wix0dyc9plqveU7H9qhD2MdA55huprWhjYb4ddj4
-                  8jv7wrwAAAD//8pNrHDKTyxxKUpMK0HSAxLzSc1LL8mAC0IUogoW52QWhGemIFQVlxYlZyQWpad6
-                  poCq8VhwbZ9aVAaqh0OKEvOKE5NB1R+ixQBSBW11GJuZmOjA2cbmSGwzBNvIDOz9AkRkWBibmpmD
-                  fFIAMhalHVENbThYKQVnlqQWKxiaKZTkK5gY6EBqex0F96L80gIFkKRSrY5SSWZualR+Xqp/Wlpx
-                  aomSlZGJgZ5BLQAAAP//AwDWwm3EIwkAAA==
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
-              Connection:
-                  - keep-alive
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:02:38 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_300-9xJzPsBnO-8QQtauRxA5NMImE1pN5Oa4rJxqQODHDJQdq9HixBeyspASRLNcR-yzo86Z_4qKjqftf4eBISFugajkaeRaFPZgD8ydoUXFeeY5dH1rsSqcYq6NaK3TwFY;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_302X2yrIpXu8B8P7ZSCkofUMWyDB7Z6MvyxW81THBbOmOYwJSPHmumWnMJAq_EBGFQcooLKqGyvAYtUJdhMT2GKBNafCy-paCzH8UKzH4xKzDMrIBzitZMokMSngUpSlIXc;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
-              x-azure-ref:
-                  - 20230824T020238Z-0b74ay0x9x1u93wga7mhm2mxm80000000220000000003eh5
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.2 (KHTML,
-                    like Gecko) Chrome/4.0.222.7 Safari/532.2
-          method: GET
-          uri: https://novascotia.goingtocamp.com/api/resource/details?resourceId=-2147481369
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECqzRTU/CMBgH8K/SPAdPhbBX2G4EPZio8URiCIdufcCGrsW+aJDw3c00YHcYEONx
-                  ff779b9nezBotTc13nMoB3GUjtNJlOQFPQ1mzOFam10QSPIkCDzomjmhVScQFxQqrTdCrUMg/XUf
-                  NUcJ5YiC1DWT4hP5nEmPFsrFHmovnTf4xBqEElANZlOgoH4ekwIocLS1Edv2ZighJhadJXpFKq82
-                  pEJuKXGskkhuSE7qVyaMHZLnNsQMEqUd2aJphHPIiVDkxRtnh3BYUmBS6g/kd29ebBtUDsrFkkLt
-                  rdPN1DkjKu++ay7bFiuhkHeO9/B+/JC45Y6v3LZZcVpVEo/zPBj/7i9NsyIKJnNhRSWkcDsoRwca
-                  +NEFP1S6/uhf/FDp+JPiKn90vn/W70+u8pPzfj4OlG7/cNK//wv987Bl1w///J/9LOntnwWTfv8L
-                  AAD//4yVsQqDQBBE/+VqG0W9kC5YWae2WIIcgpGgBpK/Fyx0thjG8tjj7fJuh1P7w/nlJX4p/BdA
-                  8X6wM59f+K/QgudjZ84XfircEs/H5HH+TfhBy56PyeB85QdT6vgRK5yv/ND9j1jhfJVf+r7xWr7U
-                  /Lgl3g925vMr/7glno8v7/ldFt72e672D/fpO47HsV0eKc19srU/KsPU2Mde+9eR7zfPc52FDQAA
-                  ///KTaxwyk8scSlKTCtB0gMS80nNSy/JgAtCFKIKFudkFoRnpiBUFZcWJWckFqWneqaAqvFYcG2f
-                  WlQGqodDihLzihOTQdUfosUAUgVtdRibmZjowNnG5khsMwTbyAzs/QJEYFkYm4KK8dzEApCxKO2I
-                  amjDwUopOLMktVjB0EyhJF/BxEAHUtvrKLgX5ZcWKIAklWp1lEoyc1Oj8vNS/dPSilNLlKyMTAz0
-                  DGoBAAAA//8DAGHmr1YjCQAA
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
-              Connection:
-                  - keep-alive
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:02:39 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_300UAmuNKtNjhm9YnMF7NuZgSOa_gFgcWitgCcEQuqkU3FbYENIxHe10kp8t5augm-RGOmkugpayqUa9G0PxQoR_cLtGQFMMyeeqL1sh6t1nkXmIv7QpyV0gRkpyP-a8dII;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_300bU5_Z8rKPnzHdk_Rdr3Qb_h3Yb8pRl_sIDCUVWVsBEujHn2Q2cCW5WdkthInEicYuOdF5Al-1NqnK3iyN51dlc_Ue_M_OikQe9iKNAxreKQEID2Bnf71QW2Ems3R2Dds;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
-              x-azure-ref:
-                  - 20230824T020238Z-0b74ay0x9x1u93wga7mhm2mxm8000000021g000000006gyw
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/534.7 (KHTML,
-                    like Gecko) Chrome/7.0.514.0 Safari/534.7
-          method: GET
-          uri: https://novascotia.goingtocamp.com/api/resource/details?resourceId=-2147481360
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECpyRT2/CMAzFvwryOUj9E1roDbFpm7TtyGXikKYeshYa1iQwVvHdpzABqaYyxDF5
-                  zz8/2y00aLRrJD5VUAyTmOd8HKdZxE7CTFhc6mYXGNKM87PhWUthSdcdQzJhUGr9QfUyBNROqXPl
-                  i65QQRExUFoKRd9YzYVyaKB4a0E6ZV2Dr2KFUADWw9kUGNS/z4ckBwYVGtnQ2neHAh7JtxvYRpAy
-                  bIBfEg+SUIMN4dZIsUbYLxgIpfQWq/tPR+sV1vbQDo+vMO8wTfJszMC48uT+q+9ZC7eX5z6SdMbq
-                  1dTahkpnDxtY+Pneqcaq893C5rij2M9yLLnzXjodIk3yURLI5+twztNJoMzJUEmK7A6KyI9yNT8K
-                  KF3+OFD6+fxy/mwUULr8PFD6+dFl/ijcQpefXcX/Z/9ZGlC6/HCy2/PHvXweKP38ePEDAAD//5yV
-                  Pw/CIBDFv0vnDhUTBzf/LE3cHDp1uLRIm2htAJP67Q1o6CN6knTkDn45Ho872PbDP3z9mOH5Kf1R
-                  hVgfvBnPF//r36BLYj46l+evE3x0ScR33S98TJ6f0Mc1nkCJ+Zjh+an3ZfURmFnOxyrj+lG5xXw3
-                  pRh90Fk8P6U/ujCun/9fdZ7daDpbembb97T7LEuzU0pLRVaGTD8caKTGt96VPzivRVH4yP5O9qjp
-                  YuGUi53koGwXgjR9B821H6u+nXeZh2460kqWrZuxdf4CAAD//wLV8qlFZYlJOakhRYl5xYnJoAoE
-                  UaNDVeUmFiD8b2FsCspZuYkFIHUotXY1tJq2UgrOLEktVjA0UyjJVzAx0FGILC0qKdZRcC/KLy1Q
-                  AEkq1eoolWTmpkbl56X6p6UVp5YoWRmZGOgZ1AIAAAD//wMA+TasCJQIAAA=
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:02:39 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_300EN6HqxcPdQv-tEXgbWgrAziAXV6CNZ_PtGP4ZSce1cJ2PAaSX0Ax7aIAPRV1r_NA8IDvEqxaELT9kpjo7Rb6jNjjg9YXB6EWtVU_vFl9pImNbMLT-vpr-X8w2YYbGjUs;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_302kxEB54ZllWucWlpW24yXd34gGSIKAoXCcIEEpLNdEzOoDbeITxFfVFu9HSPeP9-hKNWKV9Z7Md4r2jztA11Klioh7ktP4ZI2fQAHi5J6QbVrAA_0ax3RXESiWj4fFMvM;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Azure-Ref:
-                  - 0P7rmZAAAAACU0seLLSozSpGAlferSftsREVOMzAxMDAwMTA5MDMxADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
-          status:
-              code: 200
-              message: OK
-    - request:
-          body: null
-          headers:
-              Accept:
-                  - "*/*"
-              Accept-Encoding:
-                  - gzip, deflate
-              Connection:
-                  - keep-alive
-              User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/530.1 (KHTML,
-                    like Gecko) Chrome/2.0.170.0 Safari/530.1
-          method: GET
-          uri: https://novascotia.goingtocamp.com/api/resource/details?resourceId=-2147481354
-      response:
-          body:
-              string: !!binary |
-                  H4sIAAAAAAAECoTRTU/DMAwG4L8S+cApTF3bdVtvMDggAeKEhNAOaeuBtTQZ+WAaE/8dFcTmHrod
-                  U7994th7cOhtdDXeNVBepuN8ms/G2SSXh8JCBXyzbscCWZHNj4F7W6tA1vQC6VxCZe2azBsHmPtg
-                  G9RQJhK0rZWmL2yelY7ooXzdQx11iA4fVYtQAprLxRVIMH/HbAYSGvS1o013M5RwjSoGWkUtPgm3
-                  I5EKj8ELuxJVNGtRYeOlCKrSKC5EIep3Rc6PxFMXUg6FsUFs0LUUAjaCjHiJLvgRfC8lKK3tFpvb
-                  j0ibFk2A8nUpoY4+2PYqBEdVDL9tL7uuVmSw6X3ew+f/w9KO+//lpsvSYXRZOi0KVj7OM8+zPGGV
-                  Z/JUkaawgzL5lszPz/g5U3p+t9BDY8N+ctqfZEzp+zNWGfbHZ/wpU/o+rwz72Wm/4Erf55sZ9s/0
-                  X/At9v0Je9mwf27+Y6b0fb75o/8DAAD//5yVvQqAMAyE36VzFwt1cBMnZ2eHIFIELeIP6NuLDnIZ
-                  QrRjCXw5Lpf0b36cyMfJy3xNP7rA9WNnma/5L/uDlXQ+usD14+ST+R63iPHve/thfxV/PLrM+dhZ
-                  1q/MN0cK5+PmJfM9usD53/ZXu59iPh1W0vVjSrh+TBbnt9ZMdDQbnaaI+zi+z3otQ1j6QFv/VoZY
-                  0Uzd83Vk1lwAAAD//8pNrEDwzcB8p/zEEpeixLQSJD0gMZ/UvPSSDLhgYgWmYHFOZkF4ZgpCVXFp
-                  UXJGYlF6qmcKqFqPBTcaUovKQPVwSFFiXnFiMqj6Q7QgQKqgrRBjMxMTHTjb2ByJbYZgG5mBvV+A
-                  CCwLY1NQMZ6bWAAyFqVdUQ1tSFgpBWeWpBYrGJoplOQrmBjoQGp7HQX3ovzSAgWQpFKtjlJJZm5q
-                  VH5eqn9aWnFqiZKVkYmBnkEtAAAA//8DAABjk0IzCQAA
-          headers:
-              Cache-Control:
-                  - no-cache, no-store
-              Content-Encoding:
-                  - gzip
-              Content-Type:
-                  - application/json; charset=utf-8
-              Date:
-                  - Thu, 24 Aug 2023 02:02:39 GMT
-              Pragma:
-                  - no-cache
-              Referrer-Policy:
-                  - strict-origin-when-cross-origin
-              Request-Context:
-                  - appId=cid-v1:99c63aa7-fc3a-4f1f-88fc-005261ce506d
-              Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8A2pRUxhldZHkK-00Ep_303YBTimDI_7aEMOy59BXI4aj2rWMrubEOsD99ZEcUC-LHMd356j01dJJkcRu9bH0pJSN8kolJtU1fRuP0hMjmAlM6VmfzXWDuKd79a01XYIC8eq6mOQI3FsQYdPocAZSMk;
-                    path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8A2pRUxhldZHkK-00Ep_300LzLkEamzLngOCJ2NYOeHGUIWOfH_W8YEmIe388Y-oFszZnf9EYzq5XFsz5DByyQPmFtBpymR41mfmJPvYaYPXRcPrcSlD62REhhW4rA9c8xtMjNJBXTagnRR12eKfkcI;
-                    path=/; secure
-              Strict-Transport-Security:
-                  - max-age=31536000
-              Transfer-Encoding:
-                  - chunked
-              Vary:
-                  - Accept-Encoding
-              X-Azure-Ref:
-                  - 0P7rmZAAAAABfegmTQgQuRaJX1VKT66xIREVOMzAxMDAwMTA5MDUzADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
-              X-Cache:
-                  - CONFIG_NOCACHE
-              X-Content-Type-Options:
-                  - nosniff
-              X-Frame-Options:
-                  - DENY
-              X-XSS-Protection:
-                  - "1"
+                  - 20230831T153639Z-2mhz55830p2ah0vyhgf3rpq03s000000019g00000000srtz
           status:
               code: 200
               message: OK

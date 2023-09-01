@@ -24,8 +24,8 @@ def search_window() -> SearchWindow:
     SearchWindow
     """
     search_window = SearchWindow(
-        start_date=datetime(2023, 9, 1),
-        end_date=datetime(2023, 9, 2),
+        start_date=datetime(2023, 9, 15),
+        end_date=datetime(2023, 9, 16),
     )
     return search_window
 

@@ -9,8 +9,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/532.2 (KHTML, like Gecko)
-                    Chrome/4.0.222.1 Safari/532.2
+                  - Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.2309.372
+                    Safari/537.36
           method: GET
           uri: https://reservation.pc.gc.ca/api/resourceLocation
       response:
@@ -868,7 +868,7 @@ interactions:
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:02:47 GMT
+                  - Thu, 31 Aug 2023 15:36:47 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -876,9 +876,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:457c363e-62f6-428d-b751-53bf9af52257
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8EGOiuseYf1OrgoF_Q9VxaX18PwcV9vXefCs4MCIPSyTEkyURP0rxRK-AS1OUyuzAEML1cfllsCftey9ZimP-xUakwIrYNx2XuBtK50JpE-ECUy0XdH3jJrpM3dxrXNFLzy1TYdfEQ_uNpV9oMT5iX8;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8JzD0eHo_U1EjXUzbHNfu2SM9rgqwBRhFJMimfP95Hb_Ro6LTCBsQ2BB2AiqeFQABkkLOkw_h2reWZaJC21zLXa8hf99xHJE3zpkn_IeUV3gyh8esUh-n6zpTScFVRX5CP9QirfL3PRow5aURI6SNqE;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8EGOiuseYf1OrgoF_Q9VxaUJIqUGPz-Ja7TW_fHIcI9a5651e3RG3AhhH5zQeiyMcT95FPPplPy3cExh4eBs1QTfSy61k-8_T3yWYoXeLyLrjIRccjdRZ0AHFIfnkSeU7Biqt2fuB-aIqol-Y_AhEhI;
+                  - XSRF-TOKEN=CfDJ8JzD0eHo_U1EjXUzbHNfu2S0YpN_2s6bMP6IyBIs4478J8KvUYigyi3n1HYV8_Aa2vF-MtnB3JzBAzHWiOohaQ5SVldl-w3PoNEBv-ShV9Cq_DCtUdzV84q8jHPSBQDxFmF2jH2FgXF2dOeh5V8BKUI;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -887,7 +887,7 @@ interactions:
               Vary:
                   - Accept-Encoding
               X-Azure-Ref:
-                  - 0R7rmZAAAAABuO1UrHVZWRYPFU8XMCB1AREVOMzAxMDAwMTA5MDQ3ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
+                  - 0kLPwZAAAAAA4Cn+ZmMYYQIJoleDoSqRfREVOMzAxMDAwMTA5MDM5ADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
               X-Cache:
                   - CONFIG_NOCACHE
               X-Content-Type-Options:
@@ -909,8 +909,8 @@ interactions:
               Connection:
                   - keep-alive
               User-Agent:
-                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/532.9 (KHTML,
-                    like Gecko) Chrome/5.0.310.0 Safari/532.9
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/3.0.201.0 Safari/532.0
           method: GET
           uri: https://reservation.pc.gc.ca/api/maps
       response:
@@ -8962,14 +8962,12 @@ interactions:
           headers:
               Cache-Control:
                   - no-cache, no-store
-              Connection:
-                  - keep-alive
               Content-Encoding:
                   - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
-                  - Thu, 24 Aug 2023 02:02:48 GMT
+                  - Thu, 31 Aug 2023 15:36:48 GMT
               Pragma:
                   - no-cache
               Referrer-Policy:
@@ -8977,9 +8975,9 @@ interactions:
               Request-Context:
                   - appId=cid-v1:457c363e-62f6-428d-b751-53bf9af52257
               Set-Cookie:
-                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8EGOiuseYf1OrgoF_Q9VxaWAccMYuNbbYsR3PzXBxqYFSwJtrufDTQHDcDeRlN2whfbF3jtDdtZhMgbyNAT-UlFN9-XEN80cQ7yY4FLX6iWbnFM11cQFaO7KDZXl163Cf6W7DItfMIFwe2LqX8ded4E;
+                  - .AspNetCore.Antiforgery.3YREhQdkuHQ=CfDJ8JzD0eHo_U1EjXUzbHNfu2QKGMpOXqzM8ir11cG5g2U4ZDsQ2SBRHTykUGATi00q07AKFS7EiX-sUqcVsKpWKdbbWdLMJFTU5Ge8nuAoqrSdCyfrgFR956iDVJwsGO0Z9A7Ene_lDi2uuKQ5hrEjFw8;
                     path=/; samesite=strict; httponly
-                  - XSRF-TOKEN=CfDJ8EGOiuseYf1OrgoF_Q9VxaUwIc2IFY2bNTEx9nn53W2tzfpMqn8SVwbyVTmVYDV2H9ToMlVL0scv2awosgfI3jBE_aBPIFUbfdva3c-gvkIXYIVhNqHSLOHwI934LA5rknxix1dFx13UyqTkmhvkekk;
+                  - XSRF-TOKEN=CfDJ8JzD0eHo_U1EjXUzbHNfu2S6Oy7BM3jkEmXEyvvFauvxmhQ-YceZIju8y_nEolDR6eAMi-cZ5_m6x0GTPA6_p7mRoIsu1knqvcjzMlWYvOW7r7MA8jaZ3l9O26_A2ZS-N1IDG5IlR0vbN6-ED8zxwL0;
                     path=/; secure
               Strict-Transport-Security:
                   - max-age=31536000
@@ -8987,6 +8985,8 @@ interactions:
                   - chunked
               Vary:
                   - Accept-Encoding
+              X-Azure-Ref:
+                  - 0kLPwZAAAAAAaF/oc2rC2SY4SjplbKqQyREVOMzAxMDAwMTA5MDExADg4ZmU1OGI1LTFmZTEtNGEyMC1hYTU1LWEzMGJhNDQ3ZWI4OQ==
               X-Cache:
                   - CONFIG_NOCACHE
               X-Content-Type-Options:
@@ -8995,8 +8995,6 @@ interactions:
                   - DENY
               X-XSS-Protection:
                   - "1"
-              x-azure-ref:
-                  - 20230824T020248Z-8bq60hqas107h9rv2kkxvxy7hc000000021g00000000enyz
           status:
               code: 200
               message: OK
