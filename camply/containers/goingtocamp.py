@@ -40,9 +40,9 @@ class AvailabilityResponse(CamplyModel):
     mapLinkAvailabilities: Dict[str, Any] = {}
 
 
-class SearchFilter(CamplyModel):
+class ParamsBaseModel(CamplyModel):
     """
-    /api/availability/map: API Filter
+    API and Booking URL Params
     """
 
     mapId: int
@@ -51,9 +51,25 @@ class SearchFilter(CamplyModel):
     startDate: str
     endDate: str
     isReserving: bool
-    getDailyAvailability: bool
     partySize: int
-    numEquipment: int
+
+
+class SearchFilter(ParamsBaseModel):
+    """
+    /api/availability/map: API Filter
+    """
+
     equipmentCategoryId: Optional[int] = None
     filterData: List[Any] = []
     subEquipmentCategoryId: Optional[int] = None
+    numEquipment: int
+    getDailyAvailability: bool
+
+
+class BookingUrlParams(ParamsBaseModel):
+    """
+    Booking URL Params
+    """
+
+    equipmentId: Optional[int] = None
+    subEquipmentId: Optional[int] = None

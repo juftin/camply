@@ -15,8 +15,9 @@ from pydantic import ValidationError
 
 from camply.containers import AvailableResource, CampgroundFacility, RecreationArea
 from camply.containers.base_container import GoingToCampEquipment
-from camply.containers.gtc_api_responses import (
+from camply.containers.goingtocamp import (
     AvailabilityResponse,
+    BookingUrlParams,
     ResourceAvailabilityUnit,
     ResourceLocation,
     SearchFilter,
@@ -242,18 +243,24 @@ class GoingToCamp(BaseProvider):
         if not sub_equipment_id:
             sub_equipment_id = ""
         url = f"https://{rec_area_domain_name}/create-booking/results"
-        query_params = {
-            "mapId": map_id,
-            "bookingCategoryId": 0,
-            "startDate": start_date.isoformat(),
-            "endDate": end_date.isoformat(),
-            "isReserving": True,
-            "equipmentId": equipment_id,
-            "subEquipmentId": sub_equipment_id,
-            "partySize": party_size,
-            "resourceLocationId": resource_location_id,
-        }
-        booking_url = url + "?" + urlencode(query_params)
+        if sub_equipment_id in (None, ""):
+            sub_equipment_id = NON_GROUP_EQUIPMENT
+        query_params = BookingUrlParams(
+            mapId=map_id,
+            bookingCategoryId=0,
+            startDate=start_date.isoformat(),
+            endDate=end_date.isoformat(),
+            isReserving=True,
+            equipmentId=equipment_id,
+            subEquipmentId=sub_equipment_id,
+            partySize=party_size,
+            resourceLocationId=resource_location_id,
+        )
+        booking_url = (
+            url
+            + "?"
+            + urlencode(query_params.dict(exclude_unset=True, exclude_none=True))
+        )
         return booking_url
 
     def find_facilities_per_recreation_area(
