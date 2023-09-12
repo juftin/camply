@@ -2,9 +2,10 @@
 Project Configuration for Pushover Variables
 """
 
+import json
 import logging
 from os import getenv
-from typing import List, Optional
+from typing import Any, Dict, List, Optional
 
 from dotenv import load_dotenv
 
@@ -120,3 +121,15 @@ class TelegramConfig:
         "parse_mode": "MarkdownV2",
         "disable_web_page_preview": "true",
     }
+
+
+class WebhookConfig:
+    """
+    Webhook Notification Config Class
+    """
+
+    WEBHOOK_URL: Optional[str] = getenv("WEBHOOK_URL", None)
+    DEFAULT_HEADERS: Dict[str, Any] = {"Content-Type": "application/json"}
+    WEBHOOK_HEADERS: Dict[str, Any] = json.loads(
+        getenv("WEBHOOK_HEADERS", None) or "{}"
+    )

@@ -144,7 +144,8 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
         [\*\*_example_](#continue-looking-after-the-first-match-is-found)
 -   `--notifications`: `NOTIFICATIONS`
     -   Enables continuous searching. Types of notifications to receive. Options available
-        are `pushover`, `email`, `ntfy`, `apprise`, `pushbullet`, `slack`, `telegram`, `twilio`, `silent`.
+        are `pushover`, `email`, `ntfy`, `apprise`, `pushbullet`, `slack`, `telegram`, `twilio`,
+        `webhook`, `silent`.
         Defaults to `silent` - which just logs messages to console.
         [\*\*_example_](#send-a-push-notification)
 -   `--equipment`
@@ -996,4 +997,89 @@ camply campsites \
     --notifications email \
     --search-once \
     --offline-search
+```
+
+### Send a webhook notification
+
+Camply supports sending notifications to a webhook URL.
+This can be useful if you want to integrate camply with
+services that accept webhooks, like [IFTTT](https://ifttt.com/).
+
+Webhook notifications require the `WEBHOOK_URL` environment variable /
+config value to be set. Optionally, you can also set the `WEBHOOK_HEADERS`
+config value to a JSON object containing any headers you want to send with
+the webhook POST request.
+
+```commandline
+export WEBHOOK_URL="https://webhook.site/api/webhook"
+export WEBHOOK_HEADERS='{"Authorization": "Bearer 1234"}'
+```
+
+Unless explicitly set otherwise, `WEBHOOK_HEADERS` will have
+`Content-Type: application/json` set.
+
+```commandline
+camply campsites \
+    --campground 232451 \
+    --start-date 2023-09-10 \
+    --end-date 2023-09-13 \
+    --notifications webhook
+```
+
+The JSON POST body is an array of available campsites:
+
+```json
+[
+    {
+        "campsite_id": 981,
+        "booking_date": "2023-09-12T00:00:00",
+        "booking_end_date": "2023-09-13T00:00:00",
+        "booking_nights": 1,
+        "campsite_site_name": "C",
+        "campsite_loop_name": "Tent Only Group Area",
+        "campsite_type": "GROUP TENT ONLY AREA NONELECTRIC",
+        "campsite_occupancy": [13, 30],
+        "campsite_use_type": "Overnight",
+        "availability_status": "Available",
+        "recreation_area": "Yosemite National Park, CA",
+        "recreation_area_id": 2991,
+        "facility_name": "Hodgdon Meadow Campground",
+        "facility_id": 232451,
+        "booking_url": "https://www.recreation.gov/camping/campsites/981",
+        "permitted_equipment": [
+            {
+                "equipment_name": "Tent",
+                "max_length": 0.0
+            },
+            {
+                "equipment_name": "Large Tent Over 9X12`",
+                "max_length": 0.0
+            },
+            {
+                "equipment_name": "Small Tent",
+                "max_length": 0.0
+            }
+        ],
+        "campsite_attributes": [
+            {
+                "attribute_category": "site_details",
+                "attribute_id": 11,
+                "attribute_name": "Checkin Time",
+                "attribute_value": "12:00 PM"
+            },
+            {
+                "attribute_category": "site_details",
+                "attribute_id": 56,
+                "attribute_name": "Min Num of People",
+                "attribute_value": "13"
+            },
+            {
+                "attribute_category": "site_details",
+                "attribute_id": 9,
+                "attribute_name": "Campfire Allowed",
+                "attribute_value": "Yes"
+            }
+        ]
+    }
+]
 ```

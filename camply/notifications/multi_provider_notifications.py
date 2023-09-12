@@ -17,6 +17,7 @@ from camply.notifications.silent_notifications import SilentNotifications
 from camply.notifications.slack import SlackNotifications
 from camply.notifications.telegram import TelegramNotifications
 from camply.notifications.twilio import TwilioNotifications
+from camply.notifications.webhook import WebhookNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +30,7 @@ CAMPSITE_NOTIFICATIONS: Dict[str, Type[BaseNotifications]] = {
     "slack": SlackNotifications,
     "telegram": TelegramNotifications,
     "twilio": TwilioNotifications,
+    "webhook": WebhookNotifications,
     "silent": SilentNotifications,
 }
 
@@ -123,5 +125,6 @@ class MultiNotifierProvider(BaseNotifications):
             f"[{date_string}] - ({error.__class__.__name__}) {error_string}"
         )
         for provider in self.providers:
-            provider.send_message(error_message)
+            if provider.last_gasp is True:
+                provider.send_message(error_message)
         raise RuntimeError(error_message) from error

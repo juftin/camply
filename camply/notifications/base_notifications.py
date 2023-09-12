@@ -25,6 +25,8 @@ class BaseNotifications(ABC):
     Base Notifications
     """
 
+    last_gasp: bool = True
+
     def __init__(self) -> None:
         """
         Instantiate with a Requests Session
