@@ -79,6 +79,7 @@ to book your spot!
             -   [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
         -   [Search ReserveCalifornia](command_line_usage.md#search-reservecalifornia)
         -   [Run camply as a CRON Job](command_line_usage.md#run-camply-as-a-cron-job)
+        -   [Send a Webhook Notification](command_line_usage.md#send-a-webhook-notification)
 -   [How to Run Camply](how_to_run.md#how-to-run-camply)
     -   [Run Modes](how_to_run.md#run-modes)
         -   [non-continuous](how_to_run.md#non-continuous)

@@ -1026,60 +1026,64 @@ camply campsites \
     --notifications webhook
 ```
 
-The JSON POST body is an array of available campsites:
+The JSON POST body is an array of available campsites
+under a `campsites` key.
 
 ```json
-[
-    {
-        "campsite_id": 981,
-        "booking_date": "2023-09-12T00:00:00",
-        "booking_end_date": "2023-09-13T00:00:00",
-        "booking_nights": 1,
-        "campsite_site_name": "C",
-        "campsite_loop_name": "Tent Only Group Area",
-        "campsite_type": "GROUP TENT ONLY AREA NONELECTRIC",
-        "campsite_occupancy": [13, 30],
-        "campsite_use_type": "Overnight",
-        "availability_status": "Available",
-        "recreation_area": "Yosemite National Park, CA",
-        "recreation_area_id": 2991,
-        "facility_name": "Hodgdon Meadow Campground",
-        "facility_id": 232451,
-        "booking_url": "https://www.recreation.gov/camping/campsites/981",
-        "permitted_equipment": [
-            {
-                "equipment_name": "Tent",
-                "max_length": 0.0
-            },
-            {
-                "equipment_name": "Large Tent Over 9X12`",
-                "max_length": 0.0
-            },
-            {
-                "equipment_name": "Small Tent",
-                "max_length": 0.0
-            }
-        ],
-        "campsite_attributes": [
-            {
-                "attribute_category": "site_details",
-                "attribute_id": 11,
-                "attribute_name": "Checkin Time",
-                "attribute_value": "12:00 PM"
-            },
-            {
-                "attribute_category": "site_details",
-                "attribute_id": 56,
-                "attribute_name": "Min Num of People",
-                "attribute_value": "13"
-            },
-            {
-                "attribute_category": "site_details",
-                "attribute_id": 9,
-                "attribute_name": "Campfire Allowed",
-                "attribute_value": "Yes"
-            }
-        ]
-    }
-]
+{
+    "campsites": [
+        {
+            "campsite_id": 981,
+            "booking_date": "2023-09-12T00:00:00",
+            "booking_end_date": "2023-09-13T00:00:00",
+            "booking_nights": 1,
+            "campsite_site_name": "C",
+            "campsite_loop_name": "Tent Only Group Area",
+            "campsite_type": "GROUP TENT ONLY AREA NONELECTRIC",
+            "campsite_occupancy": [13, 30],
+            "campsite_use_type": "Overnight",
+            "availability_status": "Available",
+            "recreation_area": "Yosemite National Park, CA",
+            "recreation_area_id": 2991,
+            "facility_name": "Hodgdon Meadow Campground",
+            "facility_id": 232451,
+            "booking_url": "https://www.recreation.gov/camping/campsites/981",
+            "permitted_equipment": [
+                {
+                    "equipment_name": "Tent",
+                    "max_length": 0.0
+                },
+                {
+                    "equipment_name": "Large Tent Over 9X12`",
+                    "max_length": 0.0
+                },
+                {
+                    "equipment_name": "Small Tent",
+                    "max_length": 0.0
+                }
+            ],
+            "campsite_attributes": [
+                {
+                    "attribute_category": "site_details",
+                    "attribute_id": 11,
+                    "attribute_name": "Checkin Time",
+                    "attribute_value": "12:00 PM"
+                },
+                {
+                    "attribute_category": "site_details",
+                    "attribute_id": 56,
+                    "attribute_name": "Min Num of People",
+                    "attribute_value": "13"
+                },
+                {
+                    "attribute_category": "site_details",
+                    "attribute_id": 9,
+                    "attribute_name": "Campfire Allowed",
+                    "attribute_value": "Yes"
+                }
+            ]
+        }
+    ],
+    "timestamp": "2023-09-10T01:57:00.729918+00:00"
+}
 ```

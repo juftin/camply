@@ -2,15 +2,14 @@
 Generic Webhook Notifications
 """
 
-import json
 import logging
-from typing import Any, Dict, List, Union
+from typing import List
 
 import requests
-from pydantic.json import pydantic_encoder
 
 from camply.config.notification_config import WebhookConfig
 from camply.containers import AvailableCampsite
+from camply.containers.data_containers import WebhookBody
 from camply.notifications.base_notifications import BaseNotifications
 
 logger = logging.getLogger(__name__)
@@ -40,9 +39,7 @@ class WebhookNotifications(BaseNotifications):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
-    def send_message(
-        self, message: List[Union[AvailableCampsite, Dict[str, Any]]], **kwargs
-    ) -> requests.Response:
+    def send_message(self, message: str, **kwargs) -> requests.Response:
         """
         Send a message via Webhook
 
@@ -54,9 +51,16 @@ class WebhookNotifications(BaseNotifications):
         -------
         requests.Response
         """
-        json_message = json.dumps(message, default=pydantic_encoder)
-        resp = self.session.post(url=self.webhook_url, json=json_message)
-        return resp
+        response = self.session.post(url=self.webhook_url, data=message)
+        try:
+            response.raise_for_status()
+        except requests.HTTPError as he:
+            logger.warning(
+                f"Notifications weren't able to be sent to {self.webhook_url}. "
+                "Your configuration might be incorrect."
+            )
+            raise ConnectionError(response.text) from he
+        return response
 
     def send_campsites(self, campsites: List[AvailableCampsite], **kwargs):
         """
@@ -66,4 +70,5 @@ class WebhookNotifications(BaseNotifications):
         ----------
         campsites: List[AvailableCampsite]
         """
-        self.send_message(message=campsites)
+        webhook_body = WebhookBody(campsites=campsites).json()
+        self.send_message(message=webhook_body)
