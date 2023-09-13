@@ -50,6 +50,7 @@ class BaseCampingSearch(ABC):
         offline_search: bool = False,
         offline_search_path: Optional[str] = None,
         days_of_the_week: Optional[Sequence[int]] = None,
+        exact_windows: bool = False,
         **kwargs,
     ) -> None:
         """
@@ -73,10 +74,18 @@ class BaseCampingSearch(ABC):
             When not specified, the filename will default to `camply_campsites.json`
         days_of_the_week: Optional[Sequence[int]]
             Days of the week (by weekday integer) to search for.
+        exact_windows: bool
+            When set to True, only availabilities exactly matching a passed
+            search_window will be returned. Useful when you have multiple search
+            windows with different numbers of nights, but only want to book a
+            given window if all days are available.
         """
         self._verbose = kwargs.get("verbose", True)
         self.campsite_finder: ProviderType = self.provider_class()
-        self.search_window: List[SearchWindow] = make_list(search_window)
+        self.exact_windows: bool = exact_windows
+        self._original_search_windows: List[SearchWindow] = self._valid_search_windows(
+            make_list(search_window)
+        )
         self.days_of_the_week = set(
             days_of_the_week if days_of_the_week is not None else ()
         )
@@ -125,6 +134,13 @@ class BaseCampingSearch(ABC):
         """
         current_date = datetime.now().date()
         return [day for day in self._original_search_days if day >= current_date]
+
+    @property
+    def search_windows(self) -> List[SearchWindow]:
+        """
+        Get the list of search windows that need to be searched
+        """
+        return self._valid_search_windows(self._original_search_windows)
 
     @property
     def search_months(self) -> List[datetime]:
@@ -181,6 +197,31 @@ class BaseCampingSearch(ABC):
         else:
             return False
 
+    def _has_matching_window(
+        self,
+        date: datetime,
+        periods: int,
+    ) -> bool:
+        """
+        Determine if there is a matching search window when using exact_windows
+
+        Parameters
+        ----------
+        date: datetime
+            Start date of window to search for
+        periods: int
+            Number of days of window to search for
+
+        Returns
+        -------
+        bool
+        """
+        return any(
+            window.start_date == date.date()
+            and (window.end_date - window.start_date).days == periods
+            for window in self.search_windows
+        )
+
     def _compare_date_overlap(self, campsite: AvailableCampsite) -> bool:
         """
         See whether a campsite should be returned as found
@@ -193,11 +234,17 @@ class BaseCampingSearch(ABC):
         -------
         bool
         """
-        intersection = self._get_intersection_date_overlap(
-            date=campsite.booking_date,
-            periods=campsite.booking_nights,
-            search_days=self.search_days,
-        )
+        if self.exact_windows:
+            intersection = self._has_matching_window(
+                date=campsite.booking_date,
+                periods=campsite.booking_nights,
+            )
+        else:
+            intersection = self._get_intersection_date_overlap(
+                date=campsite.booking_date,
+                periods=campsite.booking_nights,
+                search_days=self.search_days,
+            )
         return intersection
 
     def _filter_date_overlap(self, campsites: DataFrame) -> pd.DataFrame:
@@ -605,7 +652,7 @@ class BaseCampingSearch(ABC):
         """
         current_date = datetime.now().date()
         search_nights = set()
-        for window in self.search_window:
+        for window in self.search_windows:
             generated_dates = {
                 date for date in window.get_date_range() if date >= current_date
             }
@@ -639,9 +686,30 @@ class BaseCampingSearch(ABC):
             raise RuntimeError(SearchConfig.ERROR_MESSAGE)
         return sorted(search_nights)
 
-    @classmethod
+    def _valid_search_windows(self, windows: List[SearchWindow]) -> List[SearchWindow]:
+        """
+        Return the subset of windows which have not yet expired
+
+        Parameters
+        ----------
+        windows: List[SearchWindow]
+
+        Returns
+        -------
+        List[SearchWindow]
+        """
+        current_date = datetime.now().date()
+        if self.exact_windows:
+            # In this case we are only interested if no days of the window have
+            # yet elapsed.
+            return [w for w in windows if w.start_date >= current_date]
+        else:
+            # In this case we are interested as long as there is still at least
+            # one day that has not yet elapsed.
+            return [w for w in windows if w.end_date >= current_date]
+
     def _consolidate_campsites(
-        cls, campsite_df: DataFrame, nights: int
+        self, campsite_df: DataFrame, nights: int
     ) -> pd.DataFrame:
         """
         Consolidate Single Night Campsites into Multiple Night Campsites
@@ -679,13 +747,100 @@ class BaseCampingSearch(ABC):
                 composed_grouping.drop(
                     columns=[CampsiteContainerFields.CAMPSITE_GROUP], inplace=True
                 )
-                nightly_breakouts = cls._find_consecutive_nights(
-                    dataframe=composed_grouping, nights=nights
+                nightly_breakouts = self._find_night_groupings(
+                    dataframe=composed_grouping
                 )
                 composed_groupings.append(nightly_breakouts)
         if len(composed_groupings) == 0:
             composed_groupings = [DataFrame()]
         return concat(composed_groupings, ignore_index=True)
+
+    def _find_night_groupings(self, dataframe: DataFrame) -> DataFrame:
+        """
+        Find all matching night groupings in dataframe
+
+        Matching criteria depends on the value of self.exact_windows.
+
+        Parameters
+        ----------
+        dataframe: DataFrame
+
+        Returns
+        -------
+        DataFrame
+        """
+        if self.exact_windows:
+            return self._find_matching_windows(dataframe)
+        else:
+            return self._find_consecutive_nights(dataframe, self.nights)
+
+    @staticmethod
+    def _booking_in_window(booking: Series, window: SearchWindow) -> bool:
+        """
+        Return true only if the dates of booking are completely inside window
+
+        Parameters
+        ----------
+        booking: Series
+            AvailableCampsite converted to a Series
+        window: SearchWindow
+
+        Returns
+        -------
+        bool
+        """
+        return (
+            window.start_date <= booking["booking_date"].date()
+            and booking["booking_end_date"].date() <= window.end_date
+        )
+
+    def _find_matching_windows(self, dataframe: DataFrame) -> DataFrame:
+        """
+        Find all sub sequences of dataframe that exactly match a search window
+
+        Parameters
+        ----------
+        dataframe: DataFrame
+            Each row contains a consecutive available night for the same
+            campsite
+
+        Returns
+        -------
+        DataFrame
+        """
+        duplicate_subset = set(dataframe.columns) - AvailableCampsite.__unhashable__
+        matching_windows = []
+        for window in self.search_windows:
+            if (
+                dataframe.booking_date.min().date() <= window.start_date
+                and window.end_date <= dataframe.booking_end_date.max().date()
+            ):
+                intersect_criteria = dataframe.apply(
+                    self._booking_in_window, axis=1, window=window
+                )
+                window_intersection = dataframe[intersect_criteria].copy()
+
+                window_intersection.booking_date = (
+                    window_intersection.booking_date.min()
+                )
+                window_intersection.booking_end_date = (
+                    window_intersection.booking_end_date.max()
+                )
+                window_intersection.booking_url = window_intersection.booking_url.iloc[
+                    0
+                ]
+                window_intersection.booking_nights = (
+                    window_intersection.booking_end_date
+                    - window_intersection.booking_date
+                ).dt.days
+                window_intersection.drop_duplicates(
+                    inplace=True, subset=duplicate_subset
+                )
+                matching_windows.append(window_intersection)
+
+        if len(matching_windows) == 0:
+            matching_windows = [DataFrame()]
+        return concat(matching_windows, ignore_index=True)
 
     @classmethod
     def _consecutive_subseq(cls, iterable: Iterable, length: int) -> Generator:

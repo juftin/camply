@@ -138,7 +138,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         List[AvailableCampsite]
         """
         available_sites = []
-        for search_window in self.search_window:
+        for search_window in self.search_windows:
             current_start_date = search_window.get_current_start_date()
             for campground in self.campgrounds:
                 sites = self.campsite_finder.list_site_availability(

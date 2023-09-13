@@ -125,6 +125,7 @@ def yaml_file_to_arguments(
         "equipment": equipment,
         "offline_search": yaml_model.offline_search,
         "offline_search_path": yaml_model.offline_search_path,
+        "exact_windows": yaml_model.exact_windows,
     }
     search_kwargs = {
         "log": True,
