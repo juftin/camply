@@ -142,6 +142,9 @@ available.
 -   Telegram Notifications
     -   `TELEGRAM_BOT_TOKEN`
     -   `TELEGRAM_CHAT_ID`
+-   Webhook Notifications
+    -   `WEBHOOK_URL`
+    -   `WEBHOOK_HEADERS` (optional, defaults to `{"Content-Type": "application/json"}`)
 -   Optional Environment Variables
     -   `LOG_LEVEL` (sets logging level, defaults to "INFO")
     -   `PUSHOVER_PUSH_TOKEN` (Personal Pushover App Token)

@@ -4,9 +4,10 @@ Storage Containers for the Application
 
 import datetime
 import logging
+from functools import partial
 from typing import List, Optional, Tuple, Union
 
-from pydantic import validator
+from pydantic import Field, validator
 
 from camply.containers.base_container import (
     CamplyModel,
@@ -142,3 +143,14 @@ class ListedCampsite(CamplyModel):
     name: str
     id: int
     facility_id: int
+
+
+class WebhookBody(CamplyModel):
+    """
+    Webhook Body
+    """
+
+    campsites: List[AvailableCampsite]
+    timestamp: datetime.datetime = Field(
+        default_factory=partial(datetime.datetime.now, tz=datetime.timezone.utc)
+    )

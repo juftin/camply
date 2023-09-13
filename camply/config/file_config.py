@@ -73,6 +73,8 @@ class FileConfig:
             "notes": "NTFY Notification Topic",
         },
         APPRISE_URL={"default": "", "notes": "Apprise notification URL"},
+        WEBHOOK_URL={"default": "", "notes": "Webhook URL"},
+        WEBHOOK_HEADERS={"default": "", "notes": "Webhook JSON Headers"},
         RIDB_API_KEY={
             "default": "",
             "notes": "Personal Recreation.gov API Key (not required)",

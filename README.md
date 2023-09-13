@@ -54,7 +54,8 @@ camply campgrounds --search "Fire Lookout Towers" --state CA
 Search for available campsites, get a notification whenever one becomes
 available, and continue searching after the first one is found. The below command
 is using `silent` notifications as an example but camply also supports `Email`,
-`Slack`, `Twilio` (SMS), `Pushover`, `Pushbullet`, `Ntfy`, `Apprise`, and `Telegram`.
+`Slack`, `Twilio` (SMS), `Pushover`, `Pushbullet`, `Ntfy`, `Apprise`, `Telegram`,
+and `Webhook`.
 
 ```commandline
 camply campsites \
