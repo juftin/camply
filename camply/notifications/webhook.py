@@ -51,7 +51,7 @@ class WebhookNotifications(BaseNotifications):
         -------
         requests.Response
         """
-        response = self.session.post(url=self.webhook_url, data=message)
+        response = self.session.post(url=self.webhook_url, data=message.encode("utf-8"))
         try:
             response.raise_for_status()
         except requests.HTTPError as he:
