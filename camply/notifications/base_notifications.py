@@ -27,6 +27,11 @@ class BaseNotifications(ABC):
 
     last_gasp: bool = True
 
+    ignored_notification_fields = [
+        CampsiteContainerFields.LOCATION,
+        CampsiteContainerFields.CAMPSITE_ATTRIBUTES,
+    ]
+
     def __init__(self) -> None:
         """
         Instantiate with a Requests Session
@@ -97,7 +102,7 @@ class BaseNotifications(ABC):
                 value = "\n  - " + "\n  - ".join(
                     {item.equipment_name for item in equipment}
                 )
-            if key not in [CampsiteContainerFields.CAMPSITE_ATTRIBUTES]:
+            if key not in cls.ignored_notification_fields:
                 formatted_key = key.replace("_", " ").title()
                 fields[formatted_key] = value
         return message_title, fields

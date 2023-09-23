@@ -21,6 +21,7 @@ from camply.containers import (
     CamplyModel,
     RecreationArea,
 )
+from camply.containers.data_containers import CampsiteLocation
 from camply.containers.usedirect import (
     UseDirectAvailabilityResponse,
     UseDirectAvailabilitySlice,
@@ -470,6 +471,10 @@ class UseDirectProvider(BaseProvider, ABC):
             campsite_occupancy=(0, 1),
             campsite_type=campsite_type,
             campsite_use_type=campsite_use_type,
+            location=CampsiteLocation(
+                latitude=availability_response.Facility.Latitude,
+                longitude=availability_response.Facility.Longitude,
+            ),
         )
         return campsite
 

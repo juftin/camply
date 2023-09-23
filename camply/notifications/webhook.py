@@ -39,19 +39,22 @@ class WebhookNotifications(BaseNotifications):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
 
-    def send_message(self, message: str, **kwargs) -> requests.Response:
+    def send_message(self, message: str, **kwargs) -> None:
         """
-        Send a message via Webhook
+        Webhooks only send campsite objects, not messages.
+        """
+        pass
+
+    def send_campsites(self, campsites: List[AvailableCampsite], **kwargs) -> None:
+        """
+        Send a message with a campsite object
 
         Parameters
         ----------
-        message: str
-
-        Returns
-        -------
-        requests.Response
+        campsites: List[AvailableCampsite]
         """
-        response = self.session.post(url=self.webhook_url, data=message)
+        webhook_body = WebhookBody(campsites=campsites).json().encode("utf-8")
+        response = self.session.post(url=self.webhook_url, data=webhook_body)
         try:
             response.raise_for_status()
         except requests.HTTPError as he:
@@ -60,15 +63,3 @@ class WebhookNotifications(BaseNotifications):
                 "Your configuration might be incorrect."
             )
             raise ConnectionError(response.text) from he
-        return response
-
-    def send_campsites(self, campsites: List[AvailableCampsite], **kwargs):
-        """
-        Send a message with a campsite object
-
-        Parameters
-        ----------
-        campsites: List[AvailableCampsite]
-        """
-        webhook_body = WebhookBody(campsites=campsites).json()
-        self.send_message(message=webhook_body)
