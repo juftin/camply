@@ -72,6 +72,15 @@ class SearchWindow(CamplyModel):
         return max((datetime.datetime.now().date(), self.start_date))
 
 
+class CampsiteLocation(CamplyModel):
+    """
+    Campsite Location Storage
+    """
+
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+
+
 class AvailableCampsite(CamplyModel):
     """
     Campsite Storage
@@ -94,11 +103,12 @@ class AvailableCampsite(CamplyModel):
     facility_name: str
     facility_id: Union[int, str]
     booking_url: str
+    location: Optional[CampsiteLocation] = None
 
     permitted_equipment: Optional[List[RecDotGovEquipment]]
     campsite_attributes: Optional[List[RecDotGovAttribute]]
 
-    __unhashable__ = {"permitted_equipment", "campsite_attributes"}
+    __unhashable__ = {"permitted_equipment", "campsite_attributes", "location"}
 
 
 class CampgroundFacility(CamplyModel):

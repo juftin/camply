@@ -19,6 +19,7 @@ from camply.containers.api_responses import (
     RecDotGovCampsite,
     RecDotGovCampsiteResponse,
 )
+from camply.containers.data_containers import CampsiteLocation
 from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
 from camply.utils import api_utils
 
@@ -122,11 +123,11 @@ class RecreationDotGov(RecreationDotGovBase):
             return item
 
     @classmethod
-    def _get_equipment_and_attributes(
+    def _get_equipment_attributes_location(
         cls,
         campsite_id: int,
         campsite_metadata: pd.DataFrame,
-    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], Optional[CampsiteLocation]]:
         """
         Index a DataFrame in a Complicated Way
         """
@@ -138,9 +139,18 @@ class RecreationDotGov(RecreationDotGovBase):
             attributes = campsite_metadata.at[campsite_id, "attributes"]
         except LookupError:
             attributes = None
+        try:
+            latitude = campsite_metadata.at[campsite_id, "latitude"]
+            longitude = campsite_metadata.at[campsite_id, "longitude"]
+            location = CampsiteLocation(
+                latitude=latitude,
+                longitude=longitude,
+            )
+        except LookupError:
+            location = None
         equipment = cls._items_to_unique_dicts(item=equipment)
         attributes = cls._items_to_unique_dicts(item=attributes)
-        return equipment, attributes
+        return equipment, attributes, location
 
     @classmethod
     def process_campsite_availability(
@@ -192,7 +202,11 @@ class RecreationDotGov(RecreationDotGovBase):
                     booking_url = (
                         f"{RecreationBookingConfig.CAMPSITE_BOOKING_URL}/{campsite_id}"
                     )
-                    equipment, attributes = cls._get_equipment_and_attributes(
+                    (
+                        equipment,
+                        attributes,
+                        location,
+                    ) = cls._get_equipment_attributes_location(
                         campsite_id=campsite_id, campsite_metadata=campsite_metadata
                     )
                     available_campsite = AvailableCampsite(
@@ -216,6 +230,7 @@ class RecreationDotGov(RecreationDotGovBase):
                         booking_url=booking_url,
                         permitted_equipment=equipment,
                         campsite_attributes=attributes,
+                        location=location,
                     )
                     total_campsite_availability.append(available_campsite)
         return total_campsite_availability
