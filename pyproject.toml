@@ -92,7 +92,7 @@ dependencies = [
   "mkdocstrings[python]~=0.21.2",
   "mkdocs-exclude-search~=0.6.5",
   "ruff~=0.1.3",
-  "mypy~=1.2.0",
+  "mypy~=1.5.1",
   "pandas-stubs~=2.0.0.230412",
   "pip-tools~=6.13.0"
 ]
