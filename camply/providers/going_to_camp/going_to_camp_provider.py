@@ -103,7 +103,7 @@ class GoingToCamp(BaseProvider):
 
     def find_campgrounds(
         self,
-        search_string: str = None,
+        search_string: Optional[str] = None,
         rec_area_id: Optional[List[int]] = None,
         campground_id: Optional[List[int]] = None,
         campsite_id: Optional[List[int]] = None,
@@ -114,7 +114,7 @@ class GoingToCamp(BaseProvider):
 
         Parameters
         ----------
-        search_string: str
+        search_string: Optional[str]
             Search Keyword(s)
         rec_area_id: Optional[List[int]]
             Recreation Area ID by which to filter

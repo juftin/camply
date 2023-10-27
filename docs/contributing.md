@@ -81,8 +81,8 @@ hatch run <script>
 
 | Script         | Script Description                                      |
 | -------------- | ------------------------------------------------------- |
-| `format`       | Code Formatting [black] and [ruff]                      |
-| `lint`         | Code Linting [black] and [ruff]                         |
+| `format`       | Code Formatting [ruff]                                  |
+| `lint`         | Code Linting [ruff]                                     |
 | `check`        | Type Checking with [mypy]                               |
 | `test`         | Unit Testing with [pytest]                              |
 | `all`          | Run multiple scripts: `format`, `lint`, `check`, `test` |
@@ -111,7 +111,6 @@ hatch run requirements
 [gitmoji]: https://gitmoji.dev/
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [semantic-release]: https://github.com/semantic-release/semantic-release
-[black]: https://github.com/psf/black
 [ruff]: https://github.com/charliermarsh/ruff
 [mypy]: https://mypy.readthedocs.io/en/stable/
 [pytest]: https://docs.pytest.org/en/stable/

@@ -36,7 +36,9 @@ class Yellowstone(BaseProvider):
         recreation_area_location="USA",
     )
 
-    def _get_monthly_availability(self, month: datetime, nights: int = None) -> dict:
+    def _get_monthly_availability(
+        self, month: datetime, nights: Optional[int] = None
+    ) -> dict:
         """
         Check All Lodging in Yellowstone for Campground Data
 

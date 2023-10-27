@@ -237,7 +237,9 @@ def equipment_types(
     elif provider.startswith(RecreationDotGov.__name__):
         log_sorted_response(response_array=EquipmentOptions.__all_accepted_equipment__)
     else:
-        logger.warning("That Provider doesn't support equipment based searching, yet 🙂")
+        logger.warning(
+            "That Provider doesn't support equipment based searching, yet 🙂"
+        )
     sys.exit(0)
 
 

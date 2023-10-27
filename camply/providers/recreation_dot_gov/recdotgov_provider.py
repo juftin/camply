@@ -43,7 +43,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
     Python Class for Working with Recreation.gov API / NPS APIs
     """
 
-    def __init__(self, api_key: str = None):
+    def __init__(self, api_key: Optional[str] = None):
         """
         Initialize with Search Dates
         """
@@ -117,13 +117,15 @@ class RecreationDotGovBase(BaseProvider, ABC):
         """
         pass
 
-    def find_recreation_areas(self, search_string: str = None, **kwargs) -> List[dict]:
+    def find_recreation_areas(
+        self, search_string: Optional[str] = None, **kwargs
+    ) -> List[dict]:
         """
         Find Matching Campsites Based on Search String
 
         Parameters
         ----------
-        search_string: str
+        search_string: Optional[str]
             Search Keyword(s)
 
         Returns
@@ -167,7 +169,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
 
     def find_campgrounds(
         self,
-        search_string: str = None,
+        search_string: Optional[str] = None,
         rec_area_id: Optional[List[int]] = None,
         campground_id: Optional[List[int]] = None,
         campsite_id: Optional[List[int]] = None,
@@ -178,7 +180,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
 
         Parameters
         ----------
-        search_string: str
+        search_string: Optional[str]
             Search Keyword(s)
         rec_area_id: Optional[List[int]]
             Recreation Area ID to filter with
@@ -222,14 +224,14 @@ class RecreationDotGovBase(BaseProvider, ABC):
         return facilities
 
     def find_facilities_per_recreation_area(
-        self, rec_area_id: int = None, **kwargs
+        self, rec_area_id: Optional[int] = None, **kwargs
     ) -> List[CampgroundFacility]:
         """
         Find Matching Campsites Based from Recreation Area
 
         Parameters
         ----------
-        rec_area_id: int
+        rec_area_id: Optional[int]
             Recreation Area ID
 
         Returns
@@ -725,7 +727,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
         return list(set(campground_ids)), list(campgrounds)
 
     def _process_specific_campsites_provided(
-        self, campsite_id: List[int] = None
+        self, campsite_id: Optional[List[int]] = None
     ) -> List[CampgroundFacility]:
         """
         Process Requests for Campgrounds into Facilities

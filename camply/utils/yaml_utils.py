@@ -7,7 +7,7 @@ import os
 from enum import Enum
 from pathlib import Path
 from re import compile
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 import yaml
 from yaml import SafeLoader, load
@@ -19,7 +19,7 @@ from camply.utils.general_utils import days_of_the_week_mapping, handle_search_w
 logger = logging.getLogger(__name__)
 
 
-def read_yaml(path: str = None):
+def read_yaml(path: Optional[str] = None):
     """
     Read a YAML File
 
@@ -29,7 +29,7 @@ def read_yaml(path: str = None):
 
     Parameters
     ----------
-    path: str
+    path: Optional[str]
         File Path of YAML Object to Read
 
     Examples
@@ -92,7 +92,7 @@ def yaml_file_to_arguments(
 
     Returns
     -------
-    provider, provider_kwargs, search_kwargs: Tuple[str, Dict[str, object], Dict[str, object]]
+    Tuple[str, Dict[str, object], Dict[str, object]]
         Tuple containing provider string, provider **kwargs, and search **kwargs
     """
     yaml_search = read_yaml(path=file_path)

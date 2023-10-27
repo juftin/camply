@@ -87,8 +87,7 @@ dependencies = [
   "mkdocs-section-index~=0.3.5",
   "mkdocstrings[python]~=0.21.2",
   "mkdocs-exclude-search~=0.6.5",
-  "black~=23.3.0",
-  "ruff~=0.0.261",
+  "ruff~=0.1.3",
   "mypy~=1.2.0",
   "pandas-stubs~=2.0.0.230412",
   "pip-tools~=6.13.0"
@@ -111,8 +110,8 @@ check = [
 docs-build = "python -m mkdocs build --clean --strict"
 docs-deploy = "python -m mkdocs gh-deploy {args:}"
 docs-serve = "python -m mkdocs serve --dev-addr localhost:8000"
-format = ["ruff --fix {args:.}", "black {args:.}"]
-lint = ["ruff {args:.}", "black --check {args:.}"]
+format = ["ruff --fix {args:.}", "ruff format {args:.}"]
+lint = ["ruff {args:.}", "ruff format --check {args:.}"]
 requirements = [
   "hatch dep show requirements --project-only --all > requirements.in",
   "_pip_compile --output-file requirements/requirements-prod.txt",
@@ -164,9 +163,10 @@ filterwarnings = [
 
 [tool.ruff]
 ignore = [
-  "E501",  # line too long, handled by black
+  "E501",  # line too long
   "PLR0913",  # Too many arguments to function call
-  "PLW2901"  # Outer for loop variable overwritten by inner assignment target
+  "PLW2901",  # Outer for loop variable overwritten by inner assignment target
+  "RUF012"  # Mutable class attributes should be annotated with `typing.ClassVar`
 ]
 select = [
   "E",  # pycodestyle errors
