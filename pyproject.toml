@@ -97,7 +97,7 @@ dependencies = [
   "pip-tools~=6.13.0"
 ]
 features = ["all"]
-pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
+pre-install-commands = ["pip install -U -r requirements/requirements-dev.txt"]
 python = "3.11"
 
 [tool.hatch.envs.default.env-vars]
