@@ -106,7 +106,7 @@ PUSHOVER_PUSH_USER = "{env:PUSHOVER_PUSH_USER:placeholder}"
 
 [tool.hatch.envs.default.scripts]
 _pip_compile = "pip-compile --resolver=backtracking --generate-hashes --all-extras {args:}"
-_sed_requirements = "sed -i.bak 's/-r requirements.in/camply (pyproject.toml)/' {args}"
+_sed_requirements = "sed -i.bak 's/-r requirements.in/camply (pyproject.toml)/'"
 all = ["format", "lint", "test"]
 check = [
   "mypy --install-types --strict-optional --non-interactive {args:camply/ tests/}"
