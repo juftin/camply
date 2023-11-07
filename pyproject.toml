@@ -98,7 +98,7 @@ dependencies = [
 ]
 features = ["all"]
 pre-install-commands = ["pip install -U --no-deps -r requirements/requirements-dev.txt"]
-python = "3.9"
+python = "3.11"
 
 [tool.hatch.envs.default.env-vars]
 PUSHOVER_PUSH_TOKEN = "{env:PUSHOVER_PUSH_TOKEN:placeholder}"
