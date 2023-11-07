@@ -97,7 +97,7 @@ dependencies = [
   "pip-tools~=6.13.0"
 ]
 features = ["all"]
-pre-install-commands = ["pip install -U -r requirements/requirements-dev.txt"]
+pre-install-commands = ["python -m pip install --no-deps -r requirements.txt"]
 python = "3.11"
 
 [tool.hatch.envs.default.env-vars]
@@ -105,8 +105,6 @@ PUSHOVER_PUSH_TOKEN = "{env:PUSHOVER_PUSH_TOKEN:placeholder}"
 PUSHOVER_PUSH_USER = "{env:PUSHOVER_PUSH_USER:placeholder}"
 
 [tool.hatch.envs.default.scripts]
-_pip_compile = "pip-compile --resolver=backtracking --generate-hashes --all-extras {args:}"
-_sed_requirements = "sed -i.bak 's/-r requirements.in/camply (pyproject.toml)/'"
 all = ["format", "lint", "test"]
 check = [
   "mypy --install-types --strict-optional --non-interactive {args:camply/ tests/}"
@@ -116,24 +114,8 @@ docs-deploy = "python -m mkdocs gh-deploy {args:}"
 docs-serve = "python -m mkdocs serve --dev-addr localhost:8000"
 format = ["ruff --fix {args:.}", "ruff format {args:.}"]
 lint = ["ruff {args:.}", "ruff format --check {args:.}"]
-requirements = [
-  "hatch dep show requirements --project-only --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-prod.txt",
-  "_sed_requirements requirements/requirements-prod.txt",
-  "hatch dep show requirements --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-dev.txt",
-  "_sed_requirements requirements/requirements-dev.txt",
-  "rm requirements.in"
-]
-requirements-upgrade = [
-  "hatch dep show requirements --project-only --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-prod.txt --upgrade",
-  "_sed_requirements requirements/requirements-prod.txt",
-  "hatch dep show requirements --all > requirements.in",
-  "_pip_compile --output-file requirements/requirements-dev.txt --upgrade",
-  "_sed_requirements requirements/requirements-dev.txt",
-  "rm requirements.in"
-]
+requirements = "pip-compile {args:} --generate-hashes --output-file requirements.txt --resolver=backtracking --all-extras"
+requirements-upgrade = "pip-compile {args:} --upgrade --generate-hashes --output-file requirements.txt --resolver=backtracking --all-extras"
 semantic-release = [
   "npm install --prefix .github/semantic_release/",
   "npx --prefix .github/semantic_release/ semantic-release {args:}"

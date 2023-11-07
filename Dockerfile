@@ -7,7 +7,7 @@ COPY camply/ /tmp/camply/camply/
 MAINTAINER Justin Flannery <juftin@juftin.com>
 LABEL description="camply, the campsite finder"
 
-COPY requirements/requirements-prod.txt /tmp/camply/requirements.txt
+COPY requirements.txt /tmp/camply/requirements.txt
 
 RUN python -m pip install -r /tmp/camply/requirements.txt && \
     python -m pip install /tmp/camply --no-dependencies && \
