@@ -9,7 +9,7 @@ from typing import Any, Dict
 
 import pytest
 from click.testing import CliRunner, Result
-from freezegun import freeze_time
+from time_machine import TimeMachineFixture
 
 from camply import AvailableCampsite
 from camply.cli import camply_command_line
@@ -27,7 +27,7 @@ module_scope = pytest.fixture(scope="module")
 
 
 @pytest.fixture(autouse=True)
-def freeze_current_time():
+def freeze_current_time(time_machine: TimeMachineFixture):
     """
     Freeze the Current Time to April 28, 2023 at Noon
 
@@ -37,8 +37,7 @@ def freeze_current_time():
     year = 2023
     time_of_year = [4, 28, 12, 0, 0]  # April 28th
     frozen_time = datetime.datetime(year, *time_of_year)
-    with freeze_time(frozen_time, tick=True):
-        yield
+    time_machine.move_to(frozen_time)
 
 
 class CamplyRunner(CliRunner):
