@@ -15,21 +15,20 @@ interactions:
           uri: https://longpoint.goingtocamp.com/api/equipment
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAECqyQO2/CMBSF/0p0Z6e1nae8IejQpRNiKGIwyaWy5NipH0gt4r9XUAgLraI24z1X
-                  Ot+nsz7AHp1X1jy3IFLO8iqvWFUX5JovZEAQwClnKeMp5UuaC0oFpQ+UZa9AQPmF8nKrsQWxk9oj
-                  AXyPqu/QhLkM+Gbdx7k941VZE7CuRQeCEdC2kVp9YruSOqIHsT5AE3WIDl9kd8KiSeczIGC+z6dr
-                  LxBo0TdO9UFZAwJun+OGgI/bIbgoqEv/ndcPdsrPmqD2CCK4iH+wZckSTYDj5kgO95Ru3GpYhZ/2
-                  /CeXn7l+DLgcwNkE4JU0j3PZ9ejGsIuBnU/AXjqpNLok9kmwCat3o4bPB4dicgdejHPIBodycoeM
-                  /+7wBQAA//8CZXpQtjSCu8Gc6m4wMSDKDSYIN1hQ0Q35ZalFCjAnxNbGAgAAAP//AwBI5KtG8gQA
-                  AA==
+              string:
+                  '[{"versionId":-2147471785,"versionDate":"2021-12-02T04:00:00.013Z","isDisabled":false,"equipmentCategoryId":-32768,"order":1,"localizedValues":[{"cultureName":"en-CA","name":"Equipment","description":"Equipment"}],"subEquipmentCategories":[{"subEquipmentCategoryId":-32768,"order":1,"isActive":true,"localizedValues":[{"cultureName":"en-CA","name":"1
+                  Tent"}]},{"subEquipmentCategoryId":-32767,"order":2,"isActive":true,"localizedValues":[{"cultureName":"en-CA","name":"2
+                  Tents"}]},{"subEquipmentCategoryId":-32766,"order":3,"isActive":true,"localizedValues":[{"cultureName":"en-CA","name":"Van/Camper"}]},{"subEquipmentCategoryId":-32765,"order":4,"isActive":true,"localizedValues":[{"cultureName":"en-CA","name":"Trailer
+                  up to 18ft"}]},{"subEquipmentCategoryId":-32764,"order":5,"isActive":true,"localizedValues":[{"cultureName":"en-CA","name":"Trailer
+                  up to 25ft"}]},{"subEquipmentCategoryId":-32763,"order":6,"isActive":true,"localizedValues":[{"cultureName":"en-CA","name":"Trailer
+                  up to 32ft"}]},{"subEquipmentCategoryId":-32762,"order":7,"isActive":true,"localizedValues":[{"cultureName":"en-CA","name":"Trailer
+                  up to 40ft"}]},{"subEquipmentCategoryId":-32742,"order":8,"isActive":true,"localizedValues":[{"cultureName":"en-CA","name":"Trailer
+                  over 40ft"}]}]}]'
           headers:
               Cache-Control:
                   - no-cache, no-store
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -59,6 +58,8 @@ interactions:
                   - DENY
               X-XSS-Protection:
                   - "1"
+              content-length:
+                  - "1266"
               x-azure-ref:
                   - 20230422T175830Z-whu0m374n55zbbqt6rxaenaw1s00000000v0000000009vud
           status:

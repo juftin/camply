@@ -216,57 +216,241 @@ interactions:
           uri: https://www.recreation.gov/api/search/campsites?fq=asset_id%3A234013&include_non_site_specific_campsites=True&size=1000&start=0
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA7yXX2+jOBDAv8qI5ybHf0rfSEq36BJgA91udTpFDjipVQIcON1WVb/7jmnS6+05
-                  6YpUzUsAe+bnGc+MPU9KRtZ1yzhtlbO/nhSSZbRt2aKgypmyJEVLlROFrFYNXRFO5xktinlW3dOG
-                  rHCGPtTV7mc69qnhaDbObVvK5yxHcd0wVc1Qdt9KshZKx5dBEiUw8pIghC+z6CqGsTeNxVN4/jqZ
-                  P9bdZFzcqqk2ZS5GOG/YYvO61N3rPMOlrarmEQWEJfOccsKK9q1ItyJNe/tlt55bmt2xElK2pv+R
-                  uCfFRkzQzlQV4qnyfNKHadkS5hR54WYN1RJiWtWFHOz2RGoy5Lgqc8ZZVcKMcFaupMTwD68vU9/n
-                  2mrDD/hWP8q5tiWhxpS34BVF9YPmUugNBlA/niOzMm6qB7Zm/BF4Bdeoqflg31oy6pQ8/EYI6Wpf
-                  S10JM0EJ8LoKIaWdN+yeDoJyP5P+s2H1mpZ8L1iVcIMW/J0gTEmZEy7UyZbAG/z7YPyeyD3g2vc5
-                  lrlnT7/RW5YVFCa0XPFbKdo4iqzLoum82mDJh24DfxC5a8PqUxx7ME8+kKMbn4I5LkqMw5m/DRZ5
-                  NppHRYnsDNmFBySbZkkyecmJyT3W3WPQMqNf0X7J96R+TBpSFLT4lG01D0QPipV41NL/q5cl/Wj0
-                  VX5K9QHYjuyAYlnJMkjJYs8p0QtlyOrIRVXlMKmyuz2HYC+SKb1cjEhLRR4saNP/HnUIKouFX6AH
-                  8+9A5h/wqirDTkkN32FcVU3OSlQj5dn2UHNN19VV2zJ11+mF12QhGheY7Dng3REXIj8N+9kqu48L
-                  W2/es9XSrKFr2o7jGKbhWMrz3zjrpSuZNy/32zNziDVs1928dCSuYaunypuvDW1pc0937Ya44AyS
-                  mmZsybK381pO+AbbDiWqaSkG8LonwoGtYETLHEIirtakACxCd2IcWxasU9gq5ULvFXoAHZigls4P
-                  S4pIuq6L7v3sSYmWIoLJnSBsH19ao9QPU4jCyQ14M9+DMAr9iT9OZ8EY1WwlFpZlUOpmg9OlSgam
-                  lpGB6xrGwMqxO3M1S7WWBGenDSnbrgVAmX9ffoNzTYo7CITY9uldmecTBW1jfNOZr7tD3bFc29Ac
-                  0SxqKuosqnK1Gx9oqjE0VMtQHVxv11B2M6oaB79g+1eD2JkWJoMZDmwDZSIeK86ybT/I6QPHzx5M
-                  gzCYXk1FgrpQd3UBSENh5n+9Cmb+ubini50VAc1vWQtii4cA8cT3Eh/OIzQlhVEU/bntT5Mg9RO4
-                  iGYv7wlEFzDxkwTSSy9ERuxHKAs4nl76iEn82TcvDaIQroPJTwAAAP//7J1dc+I2FIb/iifXEZZk
-                  feau2dnpRdPd7ZKL9oraRg60JDCG7DI70/9eSTaEsIYYDEgmMBnGgIws+ejjPLzn5C64/ag93E8f
-                  Pt7d6bpv/7KFvvzy9beObkBpeN/j/MkYrRlFZTv0Mj981Mv803K2memVa3oT2O4rzxs+ZWNr/EWp
-                  3jgrzV93ifaNxvlDYfgIG7M3L8vOe2WwQVcPgqFdzye6o/T6WOXFv/qopjP/6pzymtNVn36icu06
-                  6cHRWy7O9ma+LNVlTffmk+urx3jeGxVb4xtoeuungt1HvQsIKovrfprk6ttQfe8NH81U8ZyP9BmD
-                  2WwyvQnDtP/UyVWaK9s3nYfxt3Cit8XDNMQQyRCyEEUhomFEQjuR9BjDSCCSAZlhBkgmIJA4JgDq
-                  0diHfSL6Ku5pk+/8MzH+djHZ2FX4xvgp11dmWlGLSeJezePpy62tMS5NSXPLn6fmhM96/nsaPgxm
-                  xVy8K8gRlCOyfPac5BzJPb3Qoyb06Fe9+bvgo+OAHLQvyKncxn6IJ7HZwoTd4Q+1NxD02X/dgeM4
-                  gSlbjeiQlIO5olTNanbIHxwTyH3xx22c/guGB2evO89GB6ymO3rZzvgKJxo4sYzjjvZeURRxISHz
-                  kyg1ABIYwQ6jSAgqBYu0B+I30HJEfJzQrQacp4K0RB1mH7yCt1B5drylZmnXvIVDUvAWuIm3MCR3
-                  4C2/e8hbjs1a6DpqeTnnfqDyop2zQa7sUTw1TZ1ojyW2XxAMVxp8EyA8RzDIZtcBQosjvZUIMJwj
-                  qV911iur5jrswnUOx3UwDJH+kyFGIWWhnbB6OKFC9RkCWD8DkuEUyDRjIM7ShGIYC9IeriP8Bjlt
-                  csG3OKSuXPALJGsbJPNQYuW9S1zbYWRbfvQ8JFRpxIwuoo4TizoaUSw3ePBEWiu0l09+UpHA0QGH
-                  K6HHectnGmAjJFlHMEhIhBDVG9YTUznCeAdDiYWkFHKxl9HuTa0qZSz2F9kKLQuO8IWtuGErjKE3
-                  2ArirGQrqAZb+fQO2Qqvz1YmZm2xcEU7ooHuwvIrMJ4jURAVfYSXRAXJOcZVRKWyiu/jYKJNXV93
-                  MBqn1vqnQTbOV9nNpNyHBIzbWpLi15YAo/rghl/AzQHBDQ4RDqEM9QHEoZ0Ne4InhGWCApFlGJBE
-                  RkDwCIOUQCb0S65P8wvc+Ixmqlbw0ke5Vf2d90L+cZlzcuJ9IyQu4NOpYaIL2OVUz1PbsdymPveZ
-                  kNRu4FFUJpU1NYz22pe7PI9GQG++xs8PAy+0Hq2CLSdko43g1mlC4BA9tfBE4g6XkHEpI8TIftzJ
-                  kRrk2LjrhMqok2JCN5Br/wAmwjuEIBFFRDIo94Jch6RMWyQ8nMALZnKDmQhHb4RMkQjvIOH57Ddm
-                  6jrkTCsQqFDyxLNX2p1AH8bBZGVbFJjeLnhQYG7N9bLQghX1F/ssIhaFahMpqx+qupIV5kU2UK5q
-                  /BRd8NNx4sEQCu0s2YMRxP2EcwCTGAES49TgpwgwodIEygSnsfALP23UDfmNptxQFF613nYHcX/D
-                  QtsuruAk7MuRMsoBD2uR0O08kgZVj5Etgocj+9ptVe4cxM33N5KuDeFWzdlYWwR8zWzoWNzYB5py
-                  TqmDqsyhrKk7UKOZyqtv0XqZDVlf7INW6GX4+cUitSP3CxHyrVikaCeQ8aWVIOOgSV/2lrJYSrHQ
-                  rxRuYbAgCuajJb5YfBODtaU0Vq2zgi7Wq6ZzRIuaxByR4ggWyp13Gf10F+cPysKJwLjrgfwT4b99
-                  wRomHErPmb0IpUmEMAY4YQkgClOQYIRAxhBMmZ5hIirbgTVQh/oNNs7Ia3vPAMdFRFKrmFEDAZUj
-                  ZHQEfuN31IxrXYMzDZA7yuNb7mLejOg4jDbzRwq0YR3zghtduEaLuEYFz7ChJRee4YBnSPFW/A+k
-                  HEoozaMGz/jDb55xojy2W5DGayLxwjZeZ1gZPylDMJB40WSUb3G6kwIjGz/n6wTFXPV6Rhe4yOOC
-                  oyXZ4Isj894OZIOcFdmorc/wGYFgk+lXv9VjCjOWRhnAShFApBQg7qcJUDwTfSF4inhLEIjvyo53
-                  lCvFCew5YwTyLsJ/zilmrX0ApHow+uHNHbAqei7/YaotgTjNgNV7TChUf3TuFX10TljidDDnuMIO
-                  hCtEHRyyCwRxAkEoXog6NkWnEHN76os6vvoNQZyJOooUKG/JOkrQsS7skBZFGIpivusnkoINvrA5
-                  U+jhVB5LFkLoPCr5CN0pVkVcWIgXLESEUNgkKygkImQpzzIkCcgg5YDwiIKYKgFwHAtFcJ/LJO4h
-                  5gCD6DZOhz+UzbEznajRSJtRL36ejdNxrhun79HVjUUj9hJyY8927I1nse4L/t//AAAA//8DAFGd
-                  GFoHewAA
+              string:
+                  '{"campsites":[{"accessible":"false","aggregate_cell_coverage":2.200000047683716,"asset_id":"234013","asset_name":"CHISOS
+                  BASIN GROUP CAMPGROUND","asset_type":"Campground","attributes":[{"attribute_category":"site_details","attribute_id":11,"attribute_name":"Checkin
+                  Time","attribute_value":"1:00 PM"},{"attribute_category":"site_details","attribute_id":56,"attribute_name":"Min
+                  Num of People","attribute_value":"9"},{"attribute_category":"site_details","attribute_id":16,"attribute_name":"Condition
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":12,"attribute_name":"Checkout
+                  Time","attribute_value":"12:00 PM"},{"attribute_category":"site_details","attribute_id":65,"attribute_name":"Pets
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":72,"attribute_name":"Proximity
+                  to Water","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":52,"attribute_name":"Max
+                  Num of People","attribute_value":"20"},{"attribute_category":"site_details","attribute_id":79,"attribute_name":"Site
+                  Access","attribute_value":"Drive-In"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"Is
+                  Equipment Mandatory","attribute_value":"true"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"120"},{"attribute_category":"equipment_details","attribute_id":54,"attribute_name":"Max
+                  Vehicle Length","attribute_value":"30"},{"attribute_category":"equipment_details","attribute_id":22,"attribute_name":"Double
+                  Driveway","attribute_value":"No"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"N/A"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"23"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"0"},{"attribute_category":"equipment_details","attribute_id":53,"attribute_name":"Max
+                  Num of Vehicles","attribute_value":"4"},{"attribute_category":"equipment_details","attribute_id":26,"attribute_name":"Driveway
+                  Surface","attribute_value":"Paved"},{"attribute_category":"equipment_details","attribute_id":23,"attribute_name":"Driveway
+                  Entry","attribute_value":"Parallel"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"43"},{"attribute_category":"amenities","attribute_id":4,"attribute_name":"BBQ","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":67,"attribute_name":"Picnic
+                  Table","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":32,"attribute_name":"Food
+                  Locker","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":412,"attribute_name":"Base
+                  Number of People","attribute_value":"9"},{"attribute_category":"amenities","attribute_id":410,"attribute_name":"Base
+                  Number of Vehicles","attribute_value":"0"},{"attribute_category":"amenities","attribute_id":300,"attribute_name":"Map
+                  X Coordinate","attribute_value":"66.1949920654297"},{"attribute_category":"amenities","attribute_id":314,"attribute_name":"Placed
+                  on Map","attribute_value":"1"},{"attribute_category":"amenities","attribute_id":301,"attribute_name":"Map
+                  Y Coordinate","attribute_value":"515.94677734375"}],"average_rating":4.6,"campsite_id":"93608","campsite_reserve_type":"Site-Specific","campsite_status":"Open","city":"Big
+                  Bend National Park","country_code":"United States","fee_templates":{"Off Peak":"Off
+                  PeakGROUP TENT ONLY AREA NONELECTRIC","Peak":"b553ee9c-8f0a-41ca-9933-5d20091505fa","Transition":"TransitionGROUP
+                  TENT ONLY AREA NONELECTRIC","Walk In":"Walk InGROUP TENT ONLY AREA NONELECTRIC"},"latitude":"29.27596317000010","longitude":"-103.30530709100000","loop":"Group
+                  Sites L-R","name":"L","notices":[{"text":"A MINIMUM of 9 people are REQUIRED
+                  to camp on this site.  PLEASE DO NOT BOOK GROUP SITES FOR GROUPS OF LESS THAN
+                  9 PEOPLE OR THE RESERVATION WILL BE CANCELLED BY THE PARK.","type":"warning"},{"text":"Maximum
+                  number of tents: 10","type":"info"}],"number_of_ratings":5,"org_id":"128","org_name":"National
+                  Park Service","parent_asset_id":"234013","parent_asset_name":"CHISOS BASIN
+                  GROUP CAMPGROUND","parent_asset_type":"campground","permitted_equipment":[{"equipment_name":"Tent","max_length":0},{"equipment_name":"Small
+                  Tent","max_length":0}],"preview_image_url":"https://cdn.recreation.gov/public/2019/06/13/15/34/93608_6621814f-9f26-4f80-92a4-0ee9d0d48dea_700.jpg","reservable":true,"state_code":"Texas","type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","type_of_use":"Overnight"},{"accessible":"false","aggregate_cell_coverage":2.2857142857142856,"asset_id":"234013","asset_name":"CHISOS
+                  BASIN GROUP CAMPGROUND","asset_type":"Campground","attributes":[{"attribute_category":"site_details","attribute_id":79,"attribute_name":"Site
+                  Access","attribute_value":"Drive-In"},{"attribute_category":"site_details","attribute_id":11,"attribute_name":"Checkin
+                  Time","attribute_value":"1:00 PM"},{"attribute_category":"site_details","attribute_id":56,"attribute_name":"Min
+                  Num of People","attribute_value":"9"},{"attribute_category":"site_details","attribute_id":16,"attribute_name":"Condition
+                  Rating","attribute_value":"Good"},{"attribute_category":"site_details","attribute_id":12,"attribute_name":"Checkout
+                  Time","attribute_value":"12:00 PM"},{"attribute_category":"site_details","attribute_id":65,"attribute_name":"Pets
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":52,"attribute_name":"Max
+                  Num of People","attribute_value":"10"},{"attribute_category":"site_details","attribute_id":10,"attribute_name":"Capacity/Size
+                  Rating","attribute_value":"N/A"},{"attribute_category":"equipment_details","attribute_id":53,"attribute_name":"Max
+                  Num of Vehicles","attribute_value":"4"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"12"},{"attribute_category":"equipment_details","attribute_id":22,"attribute_name":"Double
+                  Driveway","attribute_value":"Yes"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"26"},{"attribute_category":"equipment_details","attribute_id":54,"attribute_name":"Max
+                  Vehicle Length","attribute_value":"26"},{"attribute_category":"equipment_details","attribute_id":26,"attribute_name":"Driveway
+                  Surface","attribute_value":"Paved"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"Is
+                  Equipment Mandatory","attribute_value":"true"},{"attribute_category":"equipment_details","attribute_id":23,"attribute_name":"Driveway
+                  Entry","attribute_value":"Back-in"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"10"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"Slight"},{"attribute_category":"amenities","attribute_id":32,"attribute_name":"Food
+                  Locker","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":301,"attribute_name":"Map
+                  Y Coordinate","attribute_value":"672.437133789063"},{"attribute_category":"amenities","attribute_id":4,"attribute_name":"BBQ","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":300,"attribute_name":"Map
+                  X Coordinate","attribute_value":"210.651885986328"},{"attribute_category":"amenities","attribute_id":67,"attribute_name":"Picnic
+                  Table","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":410,"attribute_name":"Base
+                  Number of Vehicles","attribute_value":"0"},{"attribute_category":"amenities","attribute_id":412,"attribute_name":"Base
+                  Number of People","attribute_value":"9"},{"attribute_category":"amenities","attribute_id":314,"attribute_name":"Placed
+                  on Map","attribute_value":"1"}],"average_rating":3.6666667,"campsite_id":"93659","campsite_reserve_type":"Site-Specific","campsite_status":"Open","city":"Big
+                  Bend National Park","country_code":"United States","fee_templates":{"Off Peak":"Off
+                  PeakGROUP TENT ONLY AREA NONELECTRIC","Peak":"PeakGROUP TENT ONLY AREA NONELECTRIC","Transition":"TransitionGROUP
+                  TENT ONLY AREA NONELECTRIC","Walk In":"Walk InGROUP TENT ONLY AREA NONELECTRIC"},"latitude":"29.27570417000000","longitude":"-103.30561909100000","loop":"Group
+                  Sites L-R","name":"M","notices":[{"text":"A MINIMUM of 9 people are REQUIRED
+                  to camp on this site.  PLEASE DO NOT BOOK GROUP SITES FOR GROUPS OF LESS THAN
+                  9 PEOPLE OR RESERVATION WILL BE CANCELLED BY THE PARK.","type":"warning"},{"text":"Maximum
+                  number of tents: 5","type":"info"},{"text":"There are three areas to put a
+                  tent in this site: 12x10 ft, 11x10 ft, and 20x19 ft.","type":"info"}],"number_of_ratings":6,"org_id":"128","org_name":"National
+                  Park Service","parent_asset_id":"234013","parent_asset_name":"CHISOS BASIN
+                  GROUP CAMPGROUND","parent_asset_type":"campground","permitted_equipment":[{"equipment_name":"Tent","max_length":0},{"equipment_name":"Small
+                  Tent","max_length":0}],"preview_image_url":"https://cdn.recreation.gov/public/2020/10/19/21/56/93659_2b58ed61-2ed6-4f2c-9cf6-afcb520a84ea_700.jpg","reservable":true,"state_code":"Texas","type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","type_of_use":"Overnight"},{"accessible":"false","aggregate_cell_coverage":2.8,"asset_id":"234013","asset_name":"CHISOS
+                  BASIN GROUP CAMPGROUND","asset_type":"Campground","attributes":[{"attribute_category":"site_details","attribute_id":65,"attribute_name":"Pets
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":52,"attribute_name":"Max
+                  Num of People","attribute_value":"14"},{"attribute_category":"site_details","attribute_id":10,"attribute_name":"Capacity/Size
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":79,"attribute_name":"Site
+                  Access","attribute_value":"Drive-In"},{"attribute_category":"site_details","attribute_id":11,"attribute_name":"Checkin
+                  Time","attribute_value":"1:00 PM"},{"attribute_category":"site_details","attribute_id":56,"attribute_name":"Min
+                  Num of People","attribute_value":"9"},{"attribute_category":"site_details","attribute_id":16,"attribute_name":"Condition
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":12,"attribute_name":"Checkout
+                  Time","attribute_value":"12:00 PM"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"Is
+                  Equipment Mandatory","attribute_value":"true"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"67"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"22"},{"attribute_category":"equipment_details","attribute_id":53,"attribute_name":"Max
+                  Num of Vehicles","attribute_value":"4"},{"attribute_category":"equipment_details","attribute_id":26,"attribute_name":"Driveway
+                  Surface","attribute_value":"Paved"},{"attribute_category":"equipment_details","attribute_id":23,"attribute_name":"Driveway
+                  Entry","attribute_value":"Parallel"},{"attribute_category":"equipment_details","attribute_id":54,"attribute_name":"Max
+                  Vehicle Length","attribute_value":"22"},{"attribute_category":"equipment_details","attribute_id":22,"attribute_name":"Double
+                  Driveway","attribute_value":"No"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"18"},{"attribute_category":"amenities","attribute_id":314,"attribute_name":"Placed
+                  on Map","attribute_value":"1"},{"attribute_category":"amenities","attribute_id":4,"attribute_name":"BBQ","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":410,"attribute_name":"Base
+                  Number of Vehicles","attribute_value":"0"},{"attribute_category":"amenities","attribute_id":32,"attribute_name":"Food
+                  Locker","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":412,"attribute_name":"Base
+                  Number of People","attribute_value":"9"},{"attribute_category":"amenities","attribute_id":300,"attribute_name":"Map
+                  X Coordinate","attribute_value":"196.860443115234"},{"attribute_category":"amenities","attribute_id":301,"attribute_name":"Map
+                  Y Coordinate","attribute_value":"467.209289550781"},{"attribute_category":"amenities","attribute_id":67,"attribute_name":"Picnic
+                  Table","attribute_value":"Y"}],"average_rating":4.714286,"campsite_id":"93232","campsite_reserve_type":"Site-Specific","campsite_status":"Open","city":"Big
+                  Bend National Park","country_code":"United States","fee_templates":{"Off Peak":"Off
+                  PeakGROUP TENT ONLY AREA NONELECTRIC","Peak":"PeakGROUP TENT ONLY AREA NONELECTRIC","Transition":"TransitionGROUP
+                  TENT ONLY AREA NONELECTRIC","Walk In":"Walk InGROUP TENT ONLY AREA NONELECTRIC"},"latitude":"29.27566117000000","longitude":"-103.30517609100001","loop":"Group
+                  Sites L-R","name":"N","notices":[{"text":"A MINIMUM of 9 people are REQUIRED
+                  to camp on this site.  PLEASE DO NOT BOOK GROUP SITES FOR GROUPS OF LESS THAN
+                  9 PEOPLE OR RESERVATION WILL BE CANCELLED BY THE PARK.","type":"warning"},{"text":"Maximum
+                  number of tents: 7","type":"info"},{"text":"There are three places to set
+                  up tents: 22x18 ft, 12x12 ft, and 19x22 ft.","type":"info"},{"text":"There
+                  are two parking locations for this site: parallel 67 ft, back-in 21 ft.","type":"info"}],"number_of_ratings":7,"org_id":"128","org_name":"National
+                  Park Service","parent_asset_id":"234013","parent_asset_name":"CHISOS BASIN
+                  GROUP CAMPGROUND","parent_asset_type":"campground","permitted_equipment":[{"equipment_name":"Tent","max_length":0},{"equipment_name":"Small
+                  Tent","max_length":0}],"preview_image_url":"https://cdn.recreation.gov/public/2022/12/09/22/02/93232_87b46f85-8ff2-4b93-8732-c40684b97022_700.jpg","reservable":true,"state_code":"Texas","type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","type_of_use":"Overnight"},{"accessible":"false","asset_id":"234013","asset_name":"CHISOS
+                  BASIN GROUP CAMPGROUND","asset_type":"Campground","attributes":[{"attribute_category":"site_details","attribute_id":60,"attribute_name":"Num
+                  of Beds","attribute_value":"0"},{"attribute_category":"site_details","attribute_id":52,"attribute_name":"Max
+                  Num of People","attribute_value":"14"},{"attribute_category":"site_details","attribute_id":16,"attribute_name":"Condition
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":12,"attribute_name":"Checkout
+                  Time","attribute_value":"12:00 PM"},{"attribute_category":"site_details","attribute_id":56,"attribute_name":"Min
+                  Num of People","attribute_value":"9"},{"attribute_category":"site_details","attribute_id":79,"attribute_name":"Site
+                  Access","attribute_value":"Drive-In"},{"attribute_category":"site_details","attribute_id":65,"attribute_name":"Pets
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":11,"attribute_name":"Checkin
+                  Time","attribute_value":"1:00 PM"},{"attribute_category":"site_details","attribute_id":10,"attribute_name":"Capacity/Size
+                  Rating","attribute_value":"N/A"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"97"},{"attribute_category":"equipment_details","attribute_id":53,"attribute_name":"Max
+                  Num of Vehicles","attribute_value":"4"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"Paved"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"30"},{"attribute_category":"equipment_details","attribute_id":23,"attribute_name":"Driveway
+                  Entry","attribute_value":"Pull-through"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"Slight"},{"attribute_category":"equipment_details","attribute_id":22,"attribute_name":"Double
+                  Driveway","attribute_value":"No"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"Is
+                  Equipment Mandatory","attribute_value":"true"},{"attribute_category":"equipment_details","attribute_id":54,"attribute_name":"Max
+                  Vehicle Length","attribute_value":"23"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"15"},{"attribute_category":"amenities","attribute_id":300,"attribute_name":"Map
+                  X Coordinate","attribute_value":"292.790679931641"},{"attribute_category":"amenities","attribute_id":410,"attribute_name":"Base
+                  Number of Vehicles","attribute_value":"0"},{"attribute_category":"amenities","attribute_id":4,"attribute_name":"BBQ","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":32,"attribute_name":"Food
+                  Locker","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":314,"attribute_name":"Placed
+                  on Map","attribute_value":"1"},{"attribute_category":"amenities","attribute_id":412,"attribute_name":"Base
+                  Number of People","attribute_value":"9"},{"attribute_category":"amenities","attribute_id":301,"attribute_name":"Map
+                  Y Coordinate","attribute_value":"547.441833496094"},{"attribute_category":"amenities","attribute_id":67,"attribute_name":"Picnic
+                  Table","attribute_value":"Y"}],"average_rating":3.6666667,"campsite_id":"93740","campsite_reserve_type":"Site-Specific","campsite_status":"Open","city":"Big
+                  Bend National Park","country_code":"United States","fee_templates":{"Off Peak":"Off
+                  PeakGROUP TENT ONLY AREA NONELECTRIC","Peak":"PeakGROUP TENT ONLY AREA NONELECTRIC","Transition":"TransitionGROUP
+                  TENT ONLY AREA NONELECTRIC","Walk In":"Walk InGROUP TENT ONLY AREA NONELECTRIC"},"latitude":"29.27547117000010","longitude":"-103.30543209100000","loop":"Group
+                  Sites L-R","name":"O","notices":[{"text":"A MINIMUM of 9 people are REQUIRED
+                  to camp on this site.  PLEASE DO NOT BOOK GROUP SITES FOR GROUPS OF LESS THAN
+                  9 PEOPLE OR RESERVATIONS WILL BE CANCELLED BY THE PARK.","type":"warning"},{"text":"Maximum
+                  number of tents: 7","type":"info"},{"text":"There are two parking areas at
+                  this site: 1 is a pull-through loop 67 ft long, 1 is a parallel driveway 48
+                  ft long.","type":"info"},{"text":"There are two tent areas at this site: 22x18
+                  ft, 14x22 ft.","type":"info"}],"number_of_ratings":3,"org_id":"128","org_name":"National
+                  Park Service","parent_asset_id":"234013","parent_asset_name":"CHISOS BASIN
+                  GROUP CAMPGROUND","parent_asset_type":"campground","permitted_equipment":[{"equipment_name":"Tent","max_length":0},{"equipment_name":"Small
+                  Tent","max_length":0}],"preview_image_url":"https://cdn.recreation.gov/public/2019/06/13/15/11/93740_0302db77-0ba1-4a2c-8733-68ecb09b2ca8_700.jpg","reservable":true,"state_code":"Texas","type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","type_of_use":"Overnight"},{"accessible":"false","aggregate_cell_coverage":2,"asset_id":"234013","asset_name":"CHISOS
+                  BASIN GROUP CAMPGROUND","asset_type":"Campground","attributes":[{"attribute_category":"site_details","attribute_id":12,"attribute_name":"Checkout
+                  Time","attribute_value":"12:00 PM"},{"attribute_category":"site_details","attribute_id":77,"attribute_name":"Shade","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":11,"attribute_name":"Checkin
+                  Time","attribute_value":"1:00 PM"},{"attribute_category":"site_details","attribute_id":16,"attribute_name":"Condition
+                  Rating","attribute_value":"Good"},{"attribute_category":"site_details","attribute_id":10,"attribute_name":"Capacity/Size
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":56,"attribute_name":"Min
+                  Num of People","attribute_value":"9"},{"attribute_category":"site_details","attribute_id":65,"attribute_name":"Pets
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":52,"attribute_name":"Max
+                  Num of People","attribute_value":"20"},{"attribute_category":"site_details","attribute_id":79,"attribute_name":"Site
+                  Access","attribute_value":"Drive-In"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"18"},{"attribute_category":"equipment_details","attribute_id":54,"attribute_name":"Max
+                  Vehicle Length","attribute_value":"24"},{"attribute_category":"equipment_details","attribute_id":26,"attribute_name":"Driveway
+                  Surface","attribute_value":"Paved"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"15"},{"attribute_category":"equipment_details","attribute_id":22,"attribute_name":"Double
+                  Driveway","attribute_value":"Yes"},{"attribute_category":"equipment_details","attribute_id":23,"attribute_name":"Driveway
+                  Entry","attribute_value":"Back-in"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"Slight"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"Is
+                  Equipment Mandatory","attribute_value":"true"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"15"},{"attribute_category":"equipment_details","attribute_id":53,"attribute_name":"Max
+                  Num of Vehicles","attribute_value":"4"},{"attribute_category":"amenities","attribute_id":32,"attribute_name":"Food
+                  Locker","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":4,"attribute_name":"BBQ","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":67,"attribute_name":"Picnic
+                  Table","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":0,"attribute_name":"Picnic
+                  Shelters","attribute_value":"Picnic Shelters"}],"average_rating":4.6666665,"campsite_id":"93279","campsite_reserve_type":"Site-Specific","campsite_status":"Open","city":"Big
+                  Bend National Park","country_code":"United States","fee_templates":{"Off Peak":"Off
+                  PeakGROUP TENT ONLY AREA NONELECTRIC","Peak":"b553ee9c-8f0a-41ca-9933-5d20091505fa","Transition":"TransitionGROUP
+                  TENT ONLY AREA NONELECTRIC","Walk In":"Walk InGROUP TENT ONLY AREA NONELECTRIC"},"latitude":"29.27489417000000","longitude":"-103.30533209100000","loop":"Group
+                  Sites L-R","name":"P","notices":[{"text":"A MINIMUM of 9 people are REQUIRED
+                  to camp on this site.  PLEASE DO NOT BOOK GROUP SITES FOR GROUPS OF LESS THAN
+                  9 PEOPLE OR RESERVATIONS WILL BE CANCELLED BY PARK.","type":"warning"},{"text":"Maximum
+                  number of tents: 10","type":"info"},{"text":"There are two parking locations
+                  for this site: 1 is back-in access 18 ft, 1 is parallel parking 60 ft.","type":"info"},{"text":"There
+                  are three tent areas for this site: 15x15 ft, 18x14 ft, 10x12 ft.","type":"info"}],"number_of_ratings":6,"org_id":"128","org_name":"National
+                  Park Service","parent_asset_id":"234013","parent_asset_name":"CHISOS BASIN
+                  GROUP CAMPGROUND","parent_asset_type":"campground","permitted_equipment":[{"equipment_name":"Large
+                  Tent Over 9X12`","max_length":0},{"equipment_name":"Small Tent","max_length":0}],"preview_image_url":"https://cdn.recreation.gov/public/2019/06/13/15/16/93279_31cb3122-2b6b-4e25-b211-f610c605f359_700.jpg","reservable":true,"state_code":"Texas","type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","type_of_use":"Overnight"},{"accessible":"false","aggregate_cell_coverage":1.5,"asset_id":"234013","asset_name":"CHISOS
+                  BASIN GROUP CAMPGROUND","asset_type":"Campground","attributes":[{"attribute_category":"site_details","attribute_id":52,"attribute_name":"Max
+                  Num of People","attribute_value":"20"},{"attribute_category":"site_details","attribute_id":79,"attribute_name":"Site
+                  Access","attribute_value":"Drive-In"},{"attribute_category":"site_details","attribute_id":12,"attribute_name":"Checkout
+                  Time","attribute_value":"12:00 PM"},{"attribute_category":"site_details","attribute_id":77,"attribute_name":"Shade","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":56,"attribute_name":"Min
+                  Num of People","attribute_value":"9"},{"attribute_category":"site_details","attribute_id":11,"attribute_name":"Checkin
+                  Time","attribute_value":"1:00 PM"},{"attribute_category":"site_details","attribute_id":16,"attribute_name":"Condition
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":10,"attribute_name":"Capacity/Size
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":65,"attribute_name":"Pets
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"equipment_details","attribute_id":23,"attribute_name":"Driveway
+                  Entry","attribute_value":"Parallel"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"Is
+                  Equipment Mandatory","attribute_value":"true"},{"attribute_category":"equipment_details","attribute_id":53,"attribute_name":"Max
+                  Num of Vehicles","attribute_value":"4"},{"attribute_category":"equipment_details","attribute_id":54,"attribute_name":"Max
+                  Vehicle Length","attribute_value":"24"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"23"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"75"},{"attribute_category":"equipment_details","attribute_id":26,"attribute_name":"Driveway
+                  Surface","attribute_value":"Paved"},{"attribute_category":"equipment_details","attribute_id":22,"attribute_name":"Double
+                  Driveway","attribute_value":"No"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"12"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"Slight"},{"attribute_category":"amenities","attribute_id":32,"attribute_name":"Food
+                  Locker","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":4,"attribute_name":"BBQ","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":67,"attribute_name":"Picnic
+                  Table","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":0,"attribute_name":"Picnic
+                  Shelters","attribute_value":"Picnic Shelters"}],"average_rating":4,"campsite_id":"93201","campsite_reserve_type":"Site-Specific","campsite_status":"Open","city":"Big
+                  Bend National Park","country_code":"United States","fee_templates":{"Off Peak":"Off
+                  PeakGROUP TENT ONLY AREA NONELECTRIC","Peak":"b553ee9c-8f0a-41ca-9933-5d20091505fa","Transition":"TransitionGROUP
+                  TENT ONLY AREA NONELECTRIC","Walk In":"Walk InGROUP TENT ONLY AREA NONELECTRIC"},"latitude":"29.27498117000000","longitude":"-103.30505709099999","loop":"Group
+                  Sites L-R","name":"Q","notices":[{"text":"A MINIMUM of 9 people are REQUIRED
+                  to camp on this site.  PLEASE DO NOT BOOK GROUP SITES FOR GROUPS OF LESS THAN
+                  9 PEOPLE OR RESERVATION WILL BE CANCELLED BY THE PARK.","type":"warning"},{"text":"Maximum
+                  number of tents: 10","type":"info"},{"text":"There are two parallel parking
+                  locations in this site: one is 18 ft long, one is 75 ft long.","type":"info"},{"text":"There
+                  are four locations for tents in this site: 10x10 ft, 23x15 ft, 17x15 ft, 23x12
+                  ft.","type":"info"}],"number_of_ratings":4,"org_id":"128","org_name":"National
+                  Park Service","parent_asset_id":"234013","parent_asset_name":"CHISOS BASIN
+                  GROUP CAMPGROUND","parent_asset_type":"campground","permitted_equipment":[{"equipment_name":"Tent","max_length":0},{"equipment_name":"Large
+                  Tent Over 9X12`","max_length":0},{"equipment_name":"Small Tent","max_length":0}],"preview_image_url":"https://cdn.recreation.gov/public/2019/06/13/15/24/93201_6e266c3f-2ee4-4998-adcb-e7f8d887c179_700.jpg","reservable":true,"state_code":"Texas","type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","type_of_use":"Overnight"},{"accessible":"false","aggregate_cell_coverage":2,"asset_id":"234013","asset_name":"CHISOS
+                  BASIN GROUP CAMPGROUND","asset_type":"Campground","attributes":[{"attribute_category":"site_details","attribute_id":10,"attribute_name":"Capacity/Size
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":79,"attribute_name":"Site
+                  Access","attribute_value":"Drive-In"},{"attribute_category":"site_details","attribute_id":52,"attribute_name":"Max
+                  Num of People","attribute_value":"20"},{"attribute_category":"site_details","attribute_id":77,"attribute_name":"Shade","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":56,"attribute_name":"Min
+                  Num of People","attribute_value":"9"},{"attribute_category":"site_details","attribute_id":65,"attribute_name":"Pets
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":11,"attribute_name":"Checkin
+                  Time","attribute_value":"1:00 PM"},{"attribute_category":"site_details","attribute_id":16,"attribute_name":"Condition
+                  Rating","attribute_value":"N/A"},{"attribute_category":"site_details","attribute_id":12,"attribute_name":"Checkout
+                  Time","attribute_value":"12:00 PM"},{"attribute_category":"equipment_details","attribute_id":23,"attribute_name":"Driveway
+                  Entry","attribute_value":"Parallel"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"22"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"Slight"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"50"},{"attribute_category":"equipment_details","attribute_id":22,"attribute_name":"Double
+                  Driveway","attribute_value":"No"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"Is
+                  Equipment Mandatory","attribute_value":"true"},{"attribute_category":"equipment_details","attribute_id":54,"attribute_name":"Max
+                  Vehicle Length","attribute_value":"24"},{"attribute_category":"equipment_details","attribute_id":53,"attribute_name":"Max
+                  Num of Vehicles","attribute_value":"4"},{"attribute_category":"equipment_details","attribute_id":26,"attribute_name":"Driveway
+                  Surface","attribute_value":"Paved"},{"attribute_category":"equipment_details","attribute_id":0,"attribute_name":"","attribute_value":"25"},{"attribute_category":"amenities","attribute_id":4,"attribute_name":"BBQ","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":67,"attribute_name":"Picnic
+                  Table","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":32,"attribute_name":"Food
+                  Locker","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":0,"attribute_name":"Picnic
+                  Shelters","attribute_value":"Picnic Shelters"}],"average_rating":4.125,"campsite_id":"93706","campsite_reserve_type":"Site-Specific","campsite_status":"Open","city":"Big
+                  Bend National Park","country_code":"United States","fee_templates":{"Off Peak":"Off
+                  PeakGROUP TENT ONLY AREA NONELECTRIC","Peak":"b553ee9c-8f0a-41ca-9933-5d20091505fa","Transition":"TransitionGROUP
+                  TENT ONLY AREA NONELECTRIC","Walk In":"Walk InGROUP TENT ONLY AREA NONELECTRIC"},"latitude":"29.27529417000010","longitude":"-103.30493709100000","loop":"Group
+                  Sites L-R","name":"R","notices":[{"text":"A MINIMUM of 9 people are REQUIRED
+                  to camp on this site.  PLEASE DO NOT BOOK GROUP SITES FOR GROUPS OF LESS THAN
+                  9 PEOPLE OR RESERVATIONS WILL BE CANCELLED BY PARK.","type":"warning"},{"text":"Maximum
+                  number of tents: 10","type":"info"},{"text":"There are three parking locations
+                  for this site: one is back-in access 19 ft, two are parallel parking 20 ft
+                  and 50 ft.","type":"info"},{"text":"There are three tent areas for this site:
+                  13x15 ft, 45x30 ft, 25x22 ft.","type":"info"}],"number_of_ratings":8,"org_id":"128","org_name":"National
+                  Park Service","parent_asset_id":"234013","parent_asset_name":"CHISOS BASIN
+                  GROUP CAMPGROUND","parent_asset_type":"campground","permitted_equipment":[{"equipment_name":"Tent","max_length":0},{"equipment_name":"Large
+                  Tent Over 9X12`","max_length":0},{"equipment_name":"Small Tent","max_length":0}],"preview_image_url":"https://cdn.recreation.gov/public/2018/08/09/21/48/6c7ff194-f057-4735-a5e8-2aa8e42d79ba_1600.jpg","reservable":true,"state_code":"Texas","type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","type_of_use":"Overnight"}],"size":7,"spelling_autocorrected":false,"start":"0","total":7}'
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -276,8 +460,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -294,6 +476,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Hit from cloudfront
+              content-length:
+                  - "31495"
           status:
               code: 200
               message: OK
@@ -321,21 +505,17 @@ interactions:
           uri: https://www.recreation.gov/api/camps/availability/campground/234013/month?start_date=2023-09-01T00%3A00%3A00.000Z
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+yWW2vbQBCF/4rQs01nVrnJbyaYUjByq7gP7YvYOptkQZa2upiG0P/eXaukNvVh
-                  klJCAgY/mNlPkjnifJ6HeKXXrrWdaePJQ5wmijh80RttS/3Nlrazw5EilYwpHRMviSbbz9d4Euem
-                  Nc3GXMejP4QSiUQkTvaI6fBzSrOLnMrImYycy8iFjKQiwiQjLCNKRhIZkdPlU+kV8ZlIyNmynC3L
-                  2So5WyVnq+RslZytkrNVYrZKzFadi8SFSKQSkdBh4ufo0RuFvfYngzh2ps2AFt29M/78ys/GV86s
-                  7I1d7XF9GfxS9WW5M/191ft88fljtJxly2iRzb9E03w2jbJFNpvPLpf5h8vtjZxe2e6+aHRnq1t/
-                  UfZu6udlXbtwh6buXRSe3kbzce4P1vpHUfXrwpna+bcyUeRnttqbpaP4e6+rTpAfIecRUh0hwzHy
-                  GiObMXIYI3Mx8hUjSzFyEyMjMfIQI/swcg4h1RAyDCOvMLIJI4cwMgcjXzCyBCM3MDICIREQ6j+h
-                  2hNqO6GSk+926KAvzydfl7Z3vhJrU3W6LEI/tyUb6hpaWtQ3Rd8GerExTWVv77pgB++DRD1rkTj4
-                  tyobmWQjH3eJ17VLHETkdI/bxJO2iYOInK6S033phcIL5C0uFHzyzwsFI/UxEh4jzR0Xir/Ew0g3
-                  jCTzPxaKXwAAAP//7No7DsIwEIThnmNwgrVE4sAZeImDQBNK7g7uvYritSJ7+fsoXSafZqcFUAQt
-                  CoIWAEH77E2guJpAEY80E2gCTaCJEk380qNHTVBPoAk0kdXE3aKJUSY0gSbQBJoo0ERKjyY0ASWg
-                  BJQwU+JsosSwrpjg0uFCE7nBQ/3RRO4JJOFIEkOfvUQoxwRXjgqYEC111s8mRIsWMFGEiYsFE1HG
-                  PnuJ3EsWf3ay+LNzz4iNxpc4IusIH9vLFBo9IqLxRkK0KBMtwUQLrjYRUXF76QURrWwvHyZEHIRG
-                  4v8aiY0owXXDeSeR4qNHTrC8dMMJDhx1OXEr5USKh9f7Oe9P8bP7AgAA//8DAMHEeiAuOgAA
+              string:
+                  '{"campsites":{"93201":{"availabilities":{"2023-09-01T00:00:00Z":"Reserved","2023-09-02T00:00:00Z":"Reserved","2023-09-03T00:00:00Z":"Reserved","2023-09-04T00:00:00Z":"Available","2023-09-05T00:00:00Z":"Available","2023-09-06T00:00:00Z":"Available","2023-09-07T00:00:00Z":"Available","2023-09-08T00:00:00Z":"Available","2023-09-09T00:00:00Z":"Available","2023-09-10T00:00:00Z":"Available","2023-09-11T00:00:00Z":"Available","2023-09-12T00:00:00Z":"Available","2023-09-13T00:00:00Z":"Available","2023-09-14T00:00:00Z":"Available","2023-09-15T00:00:00Z":"Reserved","2023-09-16T00:00:00Z":"Reserved","2023-09-17T00:00:00Z":"Available","2023-09-18T00:00:00Z":"Available","2023-09-19T00:00:00Z":"Available","2023-09-20T00:00:00Z":"Available","2023-09-21T00:00:00Z":"Available","2023-09-22T00:00:00Z":"Available","2023-09-23T00:00:00Z":"Available","2023-09-24T00:00:00Z":"Available","2023-09-25T00:00:00Z":"Reserved","2023-09-26T00:00:00Z":"Reserved","2023-09-27T00:00:00Z":"Reserved","2023-09-28T00:00:00Z":"Reserved","2023-09-29T00:00:00Z":"Reserved","2023-09-30T00:00:00Z":"Reserved"},"campsite_id":"93201","campsite_reserve_type":"Site-Specific","campsite_rules":null,"campsite_type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","capacity_rating":"N/A","loop":"Group Sites L-R","max_num_people":20,"min_num_people":9,"quantities":{"2023-09-01T00:00:00Z":0,"2023-09-02T00:00:00Z":0,"2023-09-03T00:00:00Z":0,"2023-09-04T00:00:00Z":1,"2023-09-05T00:00:00Z":1,"2023-09-06T00:00:00Z":1,"2023-09-07T00:00:00Z":1,"2023-09-08T00:00:00Z":1,"2023-09-09T00:00:00Z":1,"2023-09-10T00:00:00Z":1,"2023-09-11T00:00:00Z":1,"2023-09-12T00:00:00Z":1,"2023-09-13T00:00:00Z":1,"2023-09-14T00:00:00Z":1,"2023-09-15T00:00:00Z":0,"2023-09-16T00:00:00Z":0,"2023-09-17T00:00:00Z":1,"2023-09-18T00:00:00Z":1,"2023-09-19T00:00:00Z":1,"2023-09-20T00:00:00Z":1,"2023-09-21T00:00:00Z":1,"2023-09-22T00:00:00Z":1,"2023-09-23T00:00:00Z":1,"2023-09-24T00:00:00Z":1,"2023-09-25T00:00:00Z":0,"2023-09-26T00:00:00Z":0,"2023-09-27T00:00:00Z":0,"2023-09-28T00:00:00Z":0,"2023-09-29T00:00:00Z":0,"2023-09-30T00:00:00Z":0},"site":"Q","supplemental_camping":null,"type_of_use":"Overnight"},"93232":{"availabilities":{"2023-09-01T00:00:00Z":"Available","2023-09-02T00:00:00Z":"Available","2023-09-03T00:00:00Z":"Available","2023-09-04T00:00:00Z":"Available","2023-09-05T00:00:00Z":"Available","2023-09-06T00:00:00Z":"Available","2023-09-07T00:00:00Z":"Available","2023-09-08T00:00:00Z":"Available","2023-09-09T00:00:00Z":"Available","2023-09-10T00:00:00Z":"Available","2023-09-11T00:00:00Z":"Available","2023-09-12T00:00:00Z":"Available","2023-09-13T00:00:00Z":"Available","2023-09-14T00:00:00Z":"Available","2023-09-15T00:00:00Z":"Available","2023-09-16T00:00:00Z":"Available","2023-09-17T00:00:00Z":"Available","2023-09-18T00:00:00Z":"Available","2023-09-19T00:00:00Z":"Available","2023-09-20T00:00:00Z":"Available","2023-09-21T00:00:00Z":"Available","2023-09-22T00:00:00Z":"Available","2023-09-23T00:00:00Z":"Available","2023-09-24T00:00:00Z":"Available","2023-09-25T00:00:00Z":"Available","2023-09-26T00:00:00Z":"Available","2023-09-27T00:00:00Z":"Available","2023-09-28T00:00:00Z":"Reserved","2023-09-29T00:00:00Z":"Reserved","2023-09-30T00:00:00Z":"Reserved"},"campsite_id":"93232","campsite_reserve_type":"Site-Specific","campsite_rules":null,"campsite_type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","capacity_rating":"N/A","loop":"Group Sites L-R","max_num_people":14,"min_num_people":9,"quantities":{"2023-09-01T00:00:00Z":1,"2023-09-02T00:00:00Z":1,"2023-09-03T00:00:00Z":1,"2023-09-04T00:00:00Z":1,"2023-09-05T00:00:00Z":1,"2023-09-06T00:00:00Z":1,"2023-09-07T00:00:00Z":1,"2023-09-08T00:00:00Z":1,"2023-09-09T00:00:00Z":1,"2023-09-10T00:00:00Z":1,"2023-09-11T00:00:00Z":1,"2023-09-12T00:00:00Z":1,"2023-09-13T00:00:00Z":1,"2023-09-14T00:00:00Z":1,"2023-09-15T00:00:00Z":1,"2023-09-16T00:00:00Z":1,"2023-09-17T00:00:00Z":1,"2023-09-18T00:00:00Z":1,"2023-09-19T00:00:00Z":1,"2023-09-20T00:00:00Z":1,"2023-09-21T00:00:00Z":1,"2023-09-22T00:00:00Z":1,"2023-09-23T00:00:00Z":1,"2023-09-24T00:00:00Z":1,"2023-09-25T00:00:00Z":1,"2023-09-26T00:00:00Z":1,"2023-09-27T00:00:00Z":1,"2023-09-28T00:00:00Z":0,"2023-09-29T00:00:00Z":0,"2023-09-30T00:00:00Z":0},"site":"N","supplemental_camping":null,"type_of_use":"Overnight"},"93279":{"availabilities":{"2023-09-01T00:00:00Z":"Reserved","2023-09-02T00:00:00Z":"Reserved","2023-09-03T00:00:00Z":"Reserved","2023-09-04T00:00:00Z":"Available","2023-09-05T00:00:00Z":"Available","2023-09-06T00:00:00Z":"Available","2023-09-07T00:00:00Z":"Available","2023-09-08T00:00:00Z":"Available","2023-09-09T00:00:00Z":"Available","2023-09-10T00:00:00Z":"Available","2023-09-11T00:00:00Z":"Available","2023-09-12T00:00:00Z":"Available","2023-09-13T00:00:00Z":"Available","2023-09-14T00:00:00Z":"Available","2023-09-15T00:00:00Z":"Available","2023-09-16T00:00:00Z":"Available","2023-09-17T00:00:00Z":"Available","2023-09-18T00:00:00Z":"Available","2023-09-19T00:00:00Z":"Available","2023-09-20T00:00:00Z":"Available","2023-09-21T00:00:00Z":"Available","2023-09-22T00:00:00Z":"Available","2023-09-23T00:00:00Z":"Available","2023-09-24T00:00:00Z":"Available","2023-09-25T00:00:00Z":"Available","2023-09-26T00:00:00Z":"Available","2023-09-27T00:00:00Z":"Available","2023-09-28T00:00:00Z":"Reserved","2023-09-29T00:00:00Z":"Reserved","2023-09-30T00:00:00Z":"Reserved"},"campsite_id":"93279","campsite_reserve_type":"Site-Specific","campsite_rules":null,"campsite_type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","capacity_rating":"N/A","loop":"Group Sites L-R","max_num_people":20,"min_num_people":9,"quantities":{"2023-09-01T00:00:00Z":0,"2023-09-02T00:00:00Z":0,"2023-09-03T00:00:00Z":0,"2023-09-04T00:00:00Z":1,"2023-09-05T00:00:00Z":1,"2023-09-06T00:00:00Z":1,"2023-09-07T00:00:00Z":1,"2023-09-08T00:00:00Z":1,"2023-09-09T00:00:00Z":1,"2023-09-10T00:00:00Z":1,"2023-09-11T00:00:00Z":1,"2023-09-12T00:00:00Z":1,"2023-09-13T00:00:00Z":1,"2023-09-14T00:00:00Z":1,"2023-09-15T00:00:00Z":1,"2023-09-16T00:00:00Z":1,"2023-09-17T00:00:00Z":1,"2023-09-18T00:00:00Z":1,"2023-09-19T00:00:00Z":1,"2023-09-20T00:00:00Z":1,"2023-09-21T00:00:00Z":1,"2023-09-22T00:00:00Z":1,"2023-09-23T00:00:00Z":1,"2023-09-24T00:00:00Z":1,"2023-09-25T00:00:00Z":1,"2023-09-26T00:00:00Z":1,"2023-09-27T00:00:00Z":1,"2023-09-28T00:00:00Z":0,"2023-09-29T00:00:00Z":0,"2023-09-30T00:00:00Z":0},"site":"P","supplemental_camping":null,"type_of_use":"Overnight"},"93608":{"availabilities":{"2023-09-01T00:00:00Z":"Reserved","2023-09-02T00:00:00Z":"Reserved","2023-09-03T00:00:00Z":"Reserved","2023-09-04T00:00:00Z":"Available","2023-09-05T00:00:00Z":"Available","2023-09-06T00:00:00Z":"Available","2023-09-07T00:00:00Z":"Available","2023-09-08T00:00:00Z":"Available","2023-09-09T00:00:00Z":"Available","2023-09-10T00:00:00Z":"Available","2023-09-11T00:00:00Z":"Available","2023-09-12T00:00:00Z":"Available","2023-09-13T00:00:00Z":"Available","2023-09-14T00:00:00Z":"Available","2023-09-15T00:00:00Z":"Available","2023-09-16T00:00:00Z":"Available","2023-09-17T00:00:00Z":"Available","2023-09-18T00:00:00Z":"Available","2023-09-19T00:00:00Z":"Available","2023-09-20T00:00:00Z":"Available","2023-09-21T00:00:00Z":"Available","2023-09-22T00:00:00Z":"Available","2023-09-23T00:00:00Z":"Available","2023-09-24T00:00:00Z":"Available","2023-09-25T00:00:00Z":"Available","2023-09-26T00:00:00Z":"Available","2023-09-27T00:00:00Z":"Available","2023-09-28T00:00:00Z":"Reserved","2023-09-29T00:00:00Z":"Reserved","2023-09-30T00:00:00Z":"Reserved"},"campsite_id":"93608","campsite_reserve_type":"Site-Specific","campsite_rules":null,"campsite_type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","capacity_rating":"","loop":"Group Sites L-R","max_num_people":20,"min_num_people":9,"quantities":{"2023-09-01T00:00:00Z":0,"2023-09-02T00:00:00Z":0,"2023-09-03T00:00:00Z":0,"2023-09-04T00:00:00Z":1,"2023-09-05T00:00:00Z":1,"2023-09-06T00:00:00Z":1,"2023-09-07T00:00:00Z":1,"2023-09-08T00:00:00Z":1,"2023-09-09T00:00:00Z":1,"2023-09-10T00:00:00Z":1,"2023-09-11T00:00:00Z":1,"2023-09-12T00:00:00Z":1,"2023-09-13T00:00:00Z":1,"2023-09-14T00:00:00Z":1,"2023-09-15T00:00:00Z":1,"2023-09-16T00:00:00Z":1,"2023-09-17T00:00:00Z":1,"2023-09-18T00:00:00Z":1,"2023-09-19T00:00:00Z":1,"2023-09-20T00:00:00Z":1,"2023-09-21T00:00:00Z":1,"2023-09-22T00:00:00Z":1,"2023-09-23T00:00:00Z":1,"2023-09-24T00:00:00Z":1,"2023-09-25T00:00:00Z":1,"2023-09-26T00:00:00Z":1,"2023-09-27T00:00:00Z":1,"2023-09-28T00:00:00Z":0,"2023-09-29T00:00:00Z":0,"2023-09-30T00:00:00Z":0},"site":"L","supplemental_camping":null,"type_of_use":"Overnight"},"93659":{"availabilities":{"2023-09-01T00:00:00Z":"Available","2023-09-02T00:00:00Z":"Available","2023-09-03T00:00:00Z":"Available","2023-09-04T00:00:00Z":"Available","2023-09-05T00:00:00Z":"Available","2023-09-06T00:00:00Z":"Available","2023-09-07T00:00:00Z":"Available","2023-09-08T00:00:00Z":"Available","2023-09-09T00:00:00Z":"Available","2023-09-10T00:00:00Z":"Available","2023-09-11T00:00:00Z":"Available","2023-09-12T00:00:00Z":"Available","2023-09-13T00:00:00Z":"Available","2023-09-14T00:00:00Z":"Reserved","2023-09-15T00:00:00Z":"Reserved","2023-09-16T00:00:00Z":"Reserved","2023-09-17T00:00:00Z":"Reserved","2023-09-18T00:00:00Z":"Available","2023-09-19T00:00:00Z":"Available","2023-09-20T00:00:00Z":"Available","2023-09-21T00:00:00Z":"Available","2023-09-22T00:00:00Z":"Available","2023-09-23T00:00:00Z":"Available","2023-09-24T00:00:00Z":"Available","2023-09-25T00:00:00Z":"Available","2023-09-26T00:00:00Z":"Available","2023-09-27T00:00:00Z":"Available","2023-09-28T00:00:00Z":"Reserved","2023-09-29T00:00:00Z":"Reserved","2023-09-30T00:00:00Z":"Reserved"},"campsite_id":"93659","campsite_reserve_type":"Site-Specific","campsite_rules":null,"campsite_type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","capacity_rating":"N/A","loop":"Group Sites L-R","max_num_people":10,"min_num_people":9,"quantities":{"2023-09-01T00:00:00Z":1,"2023-09-02T00:00:00Z":1,"2023-09-03T00:00:00Z":1,"2023-09-04T00:00:00Z":1,"2023-09-05T00:00:00Z":1,"2023-09-06T00:00:00Z":1,"2023-09-07T00:00:00Z":1,"2023-09-08T00:00:00Z":1,"2023-09-09T00:00:00Z":1,"2023-09-10T00:00:00Z":1,"2023-09-11T00:00:00Z":1,"2023-09-12T00:00:00Z":1,"2023-09-13T00:00:00Z":1,"2023-09-14T00:00:00Z":0,"2023-09-15T00:00:00Z":0,"2023-09-16T00:00:00Z":0,"2023-09-17T00:00:00Z":0,"2023-09-18T00:00:00Z":1,"2023-09-19T00:00:00Z":1,"2023-09-20T00:00:00Z":1,"2023-09-21T00:00:00Z":1,"2023-09-22T00:00:00Z":1,"2023-09-23T00:00:00Z":1,"2023-09-24T00:00:00Z":1,"2023-09-25T00:00:00Z":1,"2023-09-26T00:00:00Z":1,"2023-09-27T00:00:00Z":1,"2023-09-28T00:00:00Z":0,"2023-09-29T00:00:00Z":0,"2023-09-30T00:00:00Z":0},"site":"M","supplemental_camping":null,"type_of_use":"Overnight"},"93706":{"availabilities":{"2023-09-01T00:00:00Z":"Reserved","2023-09-02T00:00:00Z":"Reserved","2023-09-03T00:00:00Z":"Reserved","2023-09-04T00:00:00Z":"Available","2023-09-05T00:00:00Z":"Reserved","2023-09-06T00:00:00Z":"Reserved","2023-09-07T00:00:00Z":"Reserved","2023-09-08T00:00:00Z":"Available","2023-09-09T00:00:00Z":"Available","2023-09-10T00:00:00Z":"Available","2023-09-11T00:00:00Z":"Available","2023-09-12T00:00:00Z":"Available","2023-09-13T00:00:00Z":"Available","2023-09-14T00:00:00Z":"Available","2023-09-15T00:00:00Z":"Reserved","2023-09-16T00:00:00Z":"Reserved","2023-09-17T00:00:00Z":"Reserved","2023-09-18T00:00:00Z":"Available","2023-09-19T00:00:00Z":"Available","2023-09-20T00:00:00Z":"Available","2023-09-21T00:00:00Z":"Available","2023-09-22T00:00:00Z":"Available","2023-09-23T00:00:00Z":"Available","2023-09-24T00:00:00Z":"Available","2023-09-25T00:00:00Z":"Reserved","2023-09-26T00:00:00Z":"Reserved","2023-09-27T00:00:00Z":"Reserved","2023-09-28T00:00:00Z":"Reserved","2023-09-29T00:00:00Z":"Reserved","2023-09-30T00:00:00Z":"Reserved"},"campsite_id":"93706","campsite_reserve_type":"Site-Specific","campsite_rules":null,"campsite_type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","capacity_rating":"N/A","loop":"Group Sites L-R","max_num_people":20,"min_num_people":9,"quantities":{"2023-09-01T00:00:00Z":0,"2023-09-02T00:00:00Z":0,"2023-09-03T00:00:00Z":0,"2023-09-04T00:00:00Z":1,"2023-09-05T00:00:00Z":0,"2023-09-06T00:00:00Z":0,"2023-09-07T00:00:00Z":0,"2023-09-08T00:00:00Z":1,"2023-09-09T00:00:00Z":1,"2023-09-10T00:00:00Z":1,"2023-09-11T00:00:00Z":1,"2023-09-12T00:00:00Z":1,"2023-09-13T00:00:00Z":1,"2023-09-14T00:00:00Z":1,"2023-09-15T00:00:00Z":0,"2023-09-16T00:00:00Z":0,"2023-09-17T00:00:00Z":0,"2023-09-18T00:00:00Z":1,"2023-09-19T00:00:00Z":1,"2023-09-20T00:00:00Z":1,"2023-09-21T00:00:00Z":1,"2023-09-22T00:00:00Z":1,"2023-09-23T00:00:00Z":1,"2023-09-24T00:00:00Z":1,"2023-09-25T00:00:00Z":0,"2023-09-26T00:00:00Z":0,"2023-09-27T00:00:00Z":0,"2023-09-28T00:00:00Z":0,"2023-09-29T00:00:00Z":0,"2023-09-30T00:00:00Z":0},"site":"R","supplemental_camping":null,"type_of_use":"Overnight"},"93740":{"availabilities":{"2023-09-01T00:00:00Z":"Available","2023-09-02T00:00:00Z":"Available","2023-09-03T00:00:00Z":"Available","2023-09-04T00:00:00Z":"Available","2023-09-05T00:00:00Z":"Available","2023-09-06T00:00:00Z":"Available","2023-09-07T00:00:00Z":"Available","2023-09-08T00:00:00Z":"Available","2023-09-09T00:00:00Z":"Available","2023-09-10T00:00:00Z":"Available","2023-09-11T00:00:00Z":"Available","2023-09-12T00:00:00Z":"Available","2023-09-13T00:00:00Z":"Available","2023-09-14T00:00:00Z":"Available","2023-09-15T00:00:00Z":"Reserved","2023-09-16T00:00:00Z":"Reserved","2023-09-17T00:00:00Z":"Available","2023-09-18T00:00:00Z":"Available","2023-09-19T00:00:00Z":"Available","2023-09-20T00:00:00Z":"Available","2023-09-21T00:00:00Z":"Available","2023-09-22T00:00:00Z":"Available","2023-09-23T00:00:00Z":"Available","2023-09-24T00:00:00Z":"Available","2023-09-25T00:00:00Z":"Available","2023-09-26T00:00:00Z":"Available","2023-09-27T00:00:00Z":"Available","2023-09-28T00:00:00Z":"Reserved","2023-09-29T00:00:00Z":"Reserved","2023-09-30T00:00:00Z":"Reserved"},"campsite_id":"93740","campsite_reserve_type":"Site-Specific","campsite_rules":null,"campsite_type":"GROUP
+                  TENT ONLY AREA NONELECTRIC","capacity_rating":"N/A","loop":"Group Sites L-R","max_num_people":14,"min_num_people":9,"quantities":{"2023-09-01T00:00:00Z":1,"2023-09-02T00:00:00Z":1,"2023-09-03T00:00:00Z":1,"2023-09-04T00:00:00Z":1,"2023-09-05T00:00:00Z":1,"2023-09-06T00:00:00Z":1,"2023-09-07T00:00:00Z":1,"2023-09-08T00:00:00Z":1,"2023-09-09T00:00:00Z":1,"2023-09-10T00:00:00Z":1,"2023-09-11T00:00:00Z":1,"2023-09-12T00:00:00Z":1,"2023-09-13T00:00:00Z":1,"2023-09-14T00:00:00Z":1,"2023-09-15T00:00:00Z":0,"2023-09-16T00:00:00Z":0,"2023-09-17T00:00:00Z":1,"2023-09-18T00:00:00Z":1,"2023-09-19T00:00:00Z":1,"2023-09-20T00:00:00Z":1,"2023-09-21T00:00:00Z":1,"2023-09-22T00:00:00Z":1,"2023-09-23T00:00:00Z":1,"2023-09-24T00:00:00Z":1,"2023-09-25T00:00:00Z":1,"2023-09-26T00:00:00Z":1,"2023-09-27T00:00:00Z":1,"2023-09-28T00:00:00Z":0,"2023-09-29T00:00:00Z":0,"2023-09-30T00:00:00Z":0},"site":"O","supplemental_camping":null,"type_of_use":"Overnight"}},"count":7}
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -343,8 +523,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -365,6 +543,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "14894"
           status:
               code: 200
               message: OK
