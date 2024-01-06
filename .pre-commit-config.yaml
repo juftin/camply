@@ -12,6 +12,7 @@ repos:
           - id: trailing-whitespace
           - id: end-of-file-fixer
           - id: check-yaml
+            exclude: mkdocs.yml
           - id: check-ast
           - id: check-docstring-first
           - id: check-merge-conflict
@@ -42,13 +43,13 @@ repos:
           - id: format
             name: format
             description: Runs Code Auto-Formatters
-            entry: hatch run format
+            entry: hatch run lint:fmt
             language: system
             pass_filenames: false
           - id: lint
             name: lint
             description: Runs Code Linters
-            entry: hatch run format
+            entry: hatch run lint:style
             language: system
             pass_filenames: false
             require_serial: false

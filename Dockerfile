@@ -1,17 +1,17 @@
-FROM python:3.9-slim
-
-COPY pyproject.toml /tmp/camply/pyproject.toml
-COPY README.md /tmp/camply/README.md
-COPY camply/ /tmp/camply/camply/
+FROM python:3.11-slim
 
 MAINTAINER Justin Flannery <juftin@juftin.com>
 LABEL description="camply, the campsite finder"
 
-COPY requirements/requirements-prod.txt /tmp/camply/requirements.txt
+COPY requirements.txt /tmp/project/requirements.txt
+RUN pip install -r /tmp/project/requirements.txt
 
-RUN python -m pip install -r /tmp/camply/requirements.txt && \
-    python -m pip install /tmp/camply --no-dependencies && \
-    rm -rf /tmp/camply/
+COPY README.md /tmp/project/README.md
+COPY pyproject.toml /tmp/project/pyproject.toml
+COPY camply /tmp/project/camply
+
+RUN pip install /tmp/project && \
+    rm -rf /tmp/project
 
 ENV HOME=/home/camply
 RUN mkdir ${HOME}

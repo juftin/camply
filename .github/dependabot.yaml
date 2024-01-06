@@ -4,20 +4,14 @@ updates:
       directory: /
       schedule:
           interval: monthly
-      labels:
-          - dependencies
     - package-ecosystem: pip
       directory: /.github/workflows
       schedule:
           interval: monthly
-      labels:
-          - dependencies
     - package-ecosystem: pip
       directory: /docs
       schedule:
           interval: monthly
-      labels:
-          - dependencies
     - package-ecosystem: pip
       directory: /
       schedule:
@@ -25,5 +19,3 @@ updates:
       versioning-strategy: lockfile-only
       allow:
           - dependency-type: all
-      labels:
-          - dependencies

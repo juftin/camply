@@ -11,32 +11,31 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Set up Github Workspace
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 0
-            - name: Set up Python Environment 3.10
-              uses: actions/setup-python@v4
+            - name: Set up Python Environment
+              uses: actions/setup-python@v5
               with:
-                  python-version: "3.9"
+                  python-version: "3.11"
             - name: Install Hatch
               run: |
-                  python -m pip install --upgrade pip
-                  python -m pip install -q hatch
-                  hatch env create
+                  python -m pip install --upgrade pip wheel
+                  python -m pip install -q hatch pre-commit
                   hatch --version
             - name: Lint
               id: lint
               continue-on-error: true
               run: |
-                  echo "::add-matcher::.github/matchers/flake8.json"
-                  hatch run lint
+                  echo "::add-matcher::.github/workflows/matchers/flake8.json"
+                  hatch run lint:style
                   echo "::remove-matcher owner=flake8::"
             - name: Code Checker
               id: check
               continue-on-error: true
               run: |
-                  echo "::add-matcher::.github/matchers/mypy.json"
-                  hatch run check
+                  echo "::add-matcher::.github/workflows/matchers/mypy.json"
+                  hatch run lint:typing
                   echo "::remove-matcher owner=mypy::"
             - name: Raise Errors For Linting Failures
               if: |
