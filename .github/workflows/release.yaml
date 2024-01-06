@@ -9,23 +9,30 @@ jobs:
         name: Release
         if: github.repository_owner == 'juftin'
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            issues: write
+            pull-requests: write
         steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-            - name: Set up Python
-              uses: actions/setup-python@v4
+            - name: Check out the repository
+              uses: actions/checkout@v4
               with:
-                  python-version: "3.9"
+                  fetch-depth: 2
+                  ref: main
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.11"
             - name: Install Hatch
               run: |
                   python -m pip install --upgrade pip
-                  python -m pip install -q hatch
-                  hatch env create
+                  python -m pip install -q hatch pre-commit
+                  hatch -v env create
                   hatch --version
             - name: Release
-              run: hatch run semantic-release
+              run: hatch run gen:release
               env:
                   GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
                   GIT_AUTHOR_NAME: github-actions[bot]
@@ -41,23 +48,23 @@ jobs:
             contents: write
         steps:
             - name: Checkout Latest Changes
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
               with:
                   ref: ${{ github.ref }}
                   fetch-depth: 0
             - name: Set up Python Environment
-              uses: actions/setup-python@v4
+              uses: actions/setup-python@v5
               with:
-                  python-version: "3.9"
+                  python-version: "3.11"
             - name: Install Hatch
               run: |
-                  python -m pip install --upgrade pip
-                  python -m pip install -q hatch
-                  hatch env create
+                  python -m pip install --upgrade pip wheel
+                  python -m pip install -q hatch pre-commit
+                  hatch env create docs
                   hatch --version
             - name: Set Up GitHub Actions User
               run: |
                   git config user.name "github-actions[bot]"
                   git config user.email "github-actions[bot]@users.noreply.github.com"
             - name: Deploy Documentation Changes
-              run: hatch run docs-deploy --force
+              run: hatch run docs:gh-deploy --force

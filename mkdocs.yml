@@ -65,6 +65,11 @@ markdown_extensions:
           anchor_linenums: true
     - admonition:
     - pymdownx.tilde:
+    - callouts
+    - pymdownx.details
+    - pymdownx.emoji
+    - pymdownx.tabbed:
+          alternate_style: true
 plugins:
     - search
     - gen-files:
@@ -86,3 +91,4 @@ plugins:
           exclude:
               - reference/*
           exclude_unreferenced: true
+    - markdown-exec
