@@ -28,8 +28,12 @@
     hatch env create
     ```
 
-3.  If you need to, you can link hatch's virtual environment to your IDE.
-    It's located in the `.venv` directory at the root of the project.
+3.  If you need to, you can link a hatch virtual environment to your IDE.
+    They can be located by name with the `env find` command:
+
+    ```shell
+    hatch env find test
+    ```
 
 4.  Activate the Virtual Environment
 
