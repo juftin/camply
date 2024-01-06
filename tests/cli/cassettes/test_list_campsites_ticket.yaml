@@ -117,24 +117,27 @@ interactions:
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A253731&fq=entity_type%3Atour&size=1000&start=0
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+xV247bNhD9lYFeugvYsi62ZfutaB4CpJcgWSBok0IYU5TELiUKJOXtJsi/51CS
-                  4wTpJ9QQYGlmNHPOmeHoU2SlG7V30en9p4ibxsqGvSyF1LoU5iItNzI6pfHhuM8PxWGbH4vtfpsd
-                  VxHPztKyV30TnbbxbrtLj2m+igR3g1NI458HWZq6HB2SvI96jv5eRZV0wqrBK9NHp+iPs5P2Iunt
-                  2FvlJNXWdPSSteRH1gxz1ylPyhHTYIZRsyUWXl2UfybuTN/QRaGWsY68od94VDG9ZvsITMSefCv/
-                  M5tWuJFVTA8tniACQHCARLJ3I57xJl5/NiM9Ka2pBd0AYcnsBhYy5De9JFNPZWozWnILjYuSTyFQ
-                  GzGldVcwboIQR9BBWSkmH2R4aOUV3QvlvFXCh7w36L9PaVhP5EhwT2cJ3CxaWc2iveJ21KNCaaY3
-                  ZvSS8iJokhfL34HufkG3pIWbq/uYXljoCJBedTKE3PDRXZqskiShWkpPUstZnPup0ulrKUiXxTtq
-                  wdyt6B0roA3G/Gr6lVtW/Wy7BgbNoTdVqC6n2hCbHyWpHhhYCDP2qPnvAHXArZV8eSZvua6VIO4r
-                  cl7KYYW+9FVAb0EGSf8M8mt2nvKEOtVDABckrBaSUxunOoMOzVO9U5WcOIeurojrIM3Azk2awC57
-                  lO0R6/w8G+hhcZPlLluleU6dxHvuPtT6KtTEcdHyJ3ezByGCslm+pMhXyW53TRET/ayf+HkayEAf
-                  cyYhwTSsoPhN90hY49w0ptaMTQusFfeNtAgH00qrWmJozwrIY/oQvZ0SvYIGjt4t/vhDhDEESZyl
-                  UlWYwmy3u1nC4YXNQ1cYG1Nq9KusAAFWiJCup+shSU7T9ReiWt/p8v8DPh/wq6TlIqFGoB+rIF+W
-                  xEVyLLIsS+ZfcIPr1b9Od/s43W/Dbw5IEdFzF5zf0p3BrBfiIWbsztKGpTsvZiyXPE2wr41t5ian
-                  2QFxIIo+X9ueF3l6M/5Q5/vls4h8Lf7mpq275Vimp2ahNFoZHFYG0UrVhc/GaDXcrfeDO202oupj
-                  bEPss+n0NOayGcazVmKTJelxk+SbrNik+SbNNkHQI4Y53R2z9S7Zi/W2SpL1+XwQa2ZRHIWsBe/3
-                  ZZEk8T9Dg8pL988aiLwd5SoKW6f8iN4Cw2tAxGrZvDS90VhreGEBD9qYFHoI7fuML5dTH8PHEDcD
-                  vo8Qt+TRG2GsnVZVdKpZO2THurA+HJKQyngG0/TzFwAAAP//AwCNMqtIawcAAA==
+              string:
+                  '{"results":[{"aggregate_cell_coverage":1.8963878439746429,"average_rating":4.5451913,"campsite_type_of_use":["na"],"description":"Observe
+                  Sunrise from Haleakala Summit is a popular activity among visitors to Maui.
+                  Parking at the Haleakala Summit is limited. This reservation ensures that
+                  you will have a parking space at one of the four sunrise viewing locations
+                  at the summit.","directions":"The Summit District of Haleakala National Park
+                  can be reached from Kahului via Route 37 to 377 to 378 (Crater Road). Driving
+                  time to the summit (10,000 feet elevation) from: Kahului is 2.5 hours, Wailea
+                  is 3 hours, Lahaina is 3.5 hours. These drive times take into account expected
+                  heavy traffic and steep, winding roads. Your last 30 minutes of driving will
+                  take place inside the park, after passing the entrance station at 7,000 feet
+                  (2,133 meters) of elevation. The summit''s elevation is 10,023 feet (3,055
+                  meters).  Always respect speed limits. Crater Road crosses through endangered
+                  wildlife habitat. \"Speed Kills Wildlife.\"","entity_id":"255","entity_type":"tour","go_live_date":"0001-01-01T00:00:00Z","html_description":"Observe
+                  Sunrise from Haleakala Summit is a popular activity among visitors to Maui.
+                  Parking at the Haleakala Summit is limited. This reservation ensures that
+                  you will have a parking space at one of the four sunrise viewing locations
+                  at the summit.","id":"255_tour","latitude":"20.70972220000000","longitude":"-156.16444440000001","name":"Haleakala
+                  Sunrise - Summit","number_of_ratings":3109,"org_id":"128","parent_id":"253731","parent_name":"Haleakala
+                  National Park Summit Sunrise Reservations","parent_type":"facility","preview_image_url":"https://cdn.recreation.gov/public/2019/03/27/13/12/255_9eed1592-506c-4d00-bb8c-aac79cefca66_700.jpg","reservable":true,"time_zone":"Pacific/Honolulu","type":"Nature
+                  Tour"}],"size":1,"spelling_autocorrected":false,"start":"0","total":1}'
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -144,8 +147,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -166,6 +167,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Hit from cloudfront
+              content-length:
+                  - "1899"
           status:
               code: 200
               message: OK

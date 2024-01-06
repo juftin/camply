@@ -18,9 +18,7 @@ interactions:
           uri: https://api.pushover.net/1/messages.json?message=This+is+a+test+message%21&token=REDACTED&user=REDACTED
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAAwTByxGAIAwFwF7e2cwQPkHpBkIK0MDJsXd3X/jqazsaH3js3uYLDcrFYrkq9VyF
-                  ss5OZwxCOhKHKZxKHPh+AAAA//8DAJNmHpA9AAAA
+              string: '{"status":1,"request":"c15e2597-a476-4cda-8206-cb310d61352b"}'
           headers:
               Access-Control-Allow-Headers:
                   - X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token,
@@ -39,8 +37,6 @@ interactions:
                   - max-age=0, private, must-revalidate
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -78,6 +74,8 @@ interactions:
                   - "0.057934"
               X-XSS-Protection:
                   - 1; mode=block
+              content-length:
+                  - "61"
           status:
               code: 200
               message: OK

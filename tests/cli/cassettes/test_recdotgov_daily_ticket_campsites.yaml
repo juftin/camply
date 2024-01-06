@@ -200,106 +200,499 @@ interactions:
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A234787&fq=entity_type%3Atour&size=1000&start=0
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+xWbW/bNhD+Kwd/2QbEsmQ7UeJvXdI1GJC0aIINe4NBU5TEhSJVirTrFfvve06S
-                  kXQN+oLtwwYkEJLweLx77p67I99NvOqiCd1k9cu7iRRN2+mg1mHfqrUr17FT2JhYMfntaFKoTnrd
-                  Bu3sZDV5/rZVXisrFYVaURet152i0rumF5zXQjph6YVXItClgykStiCjhLe0q/esBZnaKhs62imv
-                  SDet80HYQMFRb+WZlfAR6KVVXTIBBu2VZAQAPPk1pulCtv0fNSy64J2tBsl5rRur9vTayTu6FnxK
-                  GLpyNjZscjgwe3hiEG38Y6tFlp/RTRBB0eVuT9lxRh9Tf+j8iM4dnWbZPPvYiQ8D+I5z+UpUrhN0
-                  03ptq45NGedF4VaP4KcLr7eKshNqtFGc1C6QswPgk3Qg532DnGlO9CGmEL11Zcnij+cvoVuogs6S
-                  XUD9YIFJLnocixFG52KoD45w1AuuGld+ngevqzo8sBpq72JVv2+sYl6y2bz3eHD1g0YxO0/nUFM+
-                  IaJX0RjSjLYV/g7xk0B59sZZQBbFeTj2VTcepF59T1zBpVLJo7zPDmVoP1GVPakXEbAr91lsLpdj
-                  GpV4hM3R0j+lcUjy/4XHf4XGz+DtfYpVM6yuXVAruv0Atu7ItcrS2SpNRcPulqtF2jZUCG32wDvt
-                  QCEIvBKcYVZ4KYPbAFp2fIBzcPJ3dJh98KbDfq0LjL5lmt5LeFpDFlz0EFZubZDfdQFMkKZpmk37
-                  7zZNV/33M7Tq0Jj1f2GiH8JZj/ANyifEgqEv8iTLj9P7H95Gexz2p1maJ4t0nuf56b2GFQ1vPosh
-                  Npaev4naurd0M0bzyrvKiwZ6zldDLrNFhiUKB7AGyXyxzE/ze+Fo8hMXyi0C6O4PjayUQmoDlnjD
-                  q61Wu7VuRKXW0Rts1yG03Wo2k4VNcLVxamE2qdx21saN0XI2T+fZLF3MshP8O8uyGSfrNMvF2ZnM
-                  p6pY5tOlOimmZ+nxZiqlFMuzEt9crvM0TX5vK3jGJa/8VmwMEAUf1dEk6Eat/3C2T1UD3qWYXSi7
-                  VczBCP1Sd2ggLfvIJn8efdkD4XunLZqNSnSuoDLavlik6CKSNp/WsEkb7YvpTpg7FFFBmz0U76zb
-                  YVEpRtsrcH9XURcPSvFH1WgbJZdTLOIGPXXjUFZhn3BfgmZMqv52AxUEWLqysI8SxNDwrogo8b2L
-                  h/lSoF08DknXNNGCK55p7Bm3Y41S79DVBWtqj65okC2C9FND71sYgFm2JTCuujuN3wbNYQZYO2Xg
-                  UA1jyQctdYuOTegnTswQ746P1Mq0PVpI0O/lnrbCa3Qf40LQXZ9X9bY1AgnneBDDm4jeLEQbelxj
-                  HIDhdmOTjuE5BOS3PI5rtGuCx8GIpO9gdr8BDBDEJHQ4jkGGbEfLTU6Yqp6djn6xzanhUcyXwuvr
-                  K/raOghkLRQuugpFhkSgfoYMaCsNOrlgi6HWDCf6bxJ64Vxx77R2o7ootujg4ghxYAgAHS6j1iAn
-                  PV87wTOeU4HBRa3HkO4fiiCCHzoI2DoZjQAjuuzzWYv+FlJNQhjphO4D/2AagLhmoYJjstamQD8/
-                  PT6fHp9Pj8+nx+cX0/gXAAAA///sXdtu40YS/RXuIA+7gGhLvEii8zTJZoJk440ROwgCLDBoNpsS
-                  xxTJ8GKNBlgg/7BP+3v5kj1V3aQulpN1onHGgzaCjGVJzb5UV53TdemPEnz6JwefexNgoYOFDh8R
-                  dNjfTlvO45+a83xmRP5AxJ4v2Zme0yx5cirHYTp2k/nMd4NZHLpzMR27U0+q8WQexvHUew9kRywW
-                  tSLl+lqqPH8tS3weY3lx4Y1eCP3761qQsnhxEZx54ehR9OiGpLbSbBQ7ZZFhq2HdeBNWIOKDdckh
-                  YCyw2BqF0sqP93jCQq93ANktbSnxvTu8pUn6P7I74dxgo0F9lGVlQawFsRbEWhBrQSzM7+TkGPbP
-                  UulmPKdGE1+IGpNO5pD3qzd1XpHUXJbo3pWQt2QL8eFuhfknY6dtIczK/Nnijfk5pnEcBFGk/Lmb
-                  TuaxG0y9uRslInUDNR/PVBJH8UT8YbjxebmKyx2scYAnHgkmXkJeAOtp+24U4VSx0Bu/UiVwrrNe
-                  lg7JdHKPfSSq0rjVyByoAOF3Ac2iicuKEW0KXD0CE1P5CCJa5jCj9ED0deRIiPOSf1upBAygUCNW
-                  JOAD0DS0y2PMfELiTqpLVfgNKk+TooGz0eYX+aqEhgYJwSJmBdO4tkwEuJmzxwmLgY3RBDAXIT6k
-                  W9VjGCgO85dFDfpyOHYxUDNMbcMcEqoIBgSCd9WpOCdvh55BMxDencxtDAHh5x06RGr1UweU1UCL
-                  Lso2Y6FjLuc0rVLVyDFqmzcx6wFQsBJsivU1OgQ13xg9X1YurJD1fVvkZpGbRW4WufHBifd+jx+t
-                  Nf3YrelDJ3LeqTH0K1Jxh2riOGr2ni1qjs5p5uZTP5zGSeqmqUzcIBnP3CgU0k3UJFFBGKdAzk95
-                  SucfOaV77BGdYraTs/a+VHmZbAZ+14pbyCQ2h1T9ITaaXkL+lD5OxryNDMsr8JZ4R7qaJnvYWFlR
-                  CEnGRcToNWxrQU/sH2CO0LFze65Yq1y8pVbY7dFV3EohWhZ1Fn9u6F5fRtTmXaaPhgvaHn2cj+kJ
-                  twG5wWRnsMEsOjsn5bESXZulXc7db+71n3r+fYVdWSuyvfQYY732e9HujI7CTlcE08wEZQVU0Qrr
-                  hP7ngLk0JtZFVSaNuyLFspt298SeltNpOol2MJVOkjWyaxqjJbgX9/WQ7HJ6xKj3MAgGH+WKY5gg
-                  YKrR3b0Ub6Ahv+kKGFUA4CJpWizLSNvcBXsmNiNHtRIq7V/Fy4a/tCKGTNFGjTbUHE11i8+R66D3
-                  jLS0r7Rnid5fiq4gIYXWh5iRpmUVV+gZMduhcNK8a1klb7TTi08L1gXFZtUkSZfkhCnUuzPnS/GO
-                  BXNdwiDVNDUHXcNfshazBWN1R2YYemvH3K2Xqnhg8hpHipycbnursITJOAOSKPZOQXJMLBqs8Pot
-                  dEyrAAa8s5DMHXlTWO1n7CtR8tbNilGvxyHho0EQSHlTzzmCawVDSc4gCDGLDPpHrrudh+LXQ48M
-                  tEDjBNxQV2FyOkX9QlOtYwDSDiLrUSBBnI3GN0lX73aTHp6VCSwQr2GMNVt/yt/lT/drnGNiNErQ
-                  QC/REkmvoeto22C6Mnym1W6qTybTM6xClXckyHFZMr4DYDMIADu1LNxapUATpDnPnK/0InHIHTUu
-                  aTryXBvJpFPacYlNynt6DZFb0k5k1xsPZuuqE3eYeN3qK8xYolq8xjaAvRbk4SRP5L7Bb51oNnbn
-                  c98N/TAa9eDPBfYbE/a7BOpp6Uk3PNrvtMbXXkUN9iENOyt15nyTrTKa0KYStKo/QApcOkXDYIST
-                  ZnXTuuT4HJnfqT3gIdFkliBbgmwJsiXIliATexiP5/Pp/PQs2QJiC4gtILaA2ALi5wGI96zB6Y+2
-                  sPNG2h1s/MNQCHzc9NxPtybz83F07gV0tBUG57p3r32hAt+PAzeeC+EGoT9zhQwC15dyFqfSD/1g
-                  8qRhaGez8Fgk2uTxoWgAPYSaWBkes+diAalt9K6Nhbylk9TemOye12qN2O/vVn9obxUvVSMsV7Nc
-                  zXI1y9UsVyOf03thaU+tzs1YTo4x+oCzjyzQDP9hsgIR+qkXha6aycANJv7cjUNPuV4yDeIAX/D8
-                  J41rP+YxO5vyz+8Jbp8YWrMX2kjJJiV5c0EFMO2GMfKOz9qGGT2jgmVWDTk2vOtoLzQPE9jmYa88
-                  9AyvNfW7oYx0IVuC2x1zKQL0ZQu1shl88ZwJUoJ0VcYpfoeV/9T0FTOJP+PxRBnBCVS9Ar/USSxE
-                  h6WotMd+dNiPEdNU4HbJ6iZ36jJnRipzZoLGK77MblV/lmE2oA73HKj+/TT8FdqNKRspTTNi8kzx
-                  2ImfcarNapg59pk70AgJZeGP+nSctCxbDjrghKBcaVZigZoFahaoWaBmgRrQRPSeEgasmXz2ZtLp
-                  ETCE5NQQ+Euz9De62SMoePpcUbAfnNOExeN0HE1j6fqRnLhBFMxd4XtTdxp706kXRKlK/3i+xR+r
-                  ZXMFmeW4SJ3OvS7NeT3JD6cf7+5ddrrQqT0ljt+VeQddSMoQYLsxwlXWm8FpdCSmlB0t/VJMRnuO
-                  iLNt6KSJmmycuGyXuxvB+L50QOZu3hC/MZz280F3Q4fpMHkuyTa2BsSDVLd6K8Udn+Uv+Ou3+PqZ
-                  8zJvyiHlGqp1o1tk11DN6eQ7X6yylsNaaZ+TVmEnBT5FyehbV5sw9aCwfDpKUziNgOwk7InadUTR
-                  YunRU0grefDwod5Ttzdy0qq9RTOht1jL3mvojcd6sMMGdogPk16rKjJtMLq0CrPRlD6pVLu71W8O
-                  9U2q2OFIi76CTsncVKxIEydrLLj2MEJPKiJWOemRYX62uhUTO1Ds0Z4ybHo95jbtJj/KzjPtDWwF
-                  p6j/Kre/xvp83eF/vSPChs1YhG8RvkX4FuETTItODvAtbrC44ePEDQPl8aOTMx69J3a7/IOp6NPT
-                  kufDdz6oUIJHH+GntaLYEhZMl6LAChLAFFoA25r3y1Ll904SmgPrwpbkDEAPlJpEi9k2BkAab9Bz
-                  TZ/lljV0TJGoFQAptmW73ep87qBLgdUibS14teDVglcLXi14Jd97+H5Opz9wCzDAkCA8NQz5JkvV
-                  R1NJz/POMUPTsZopfzx14yCN3CBOUzeejWduGOCfqRyLyVw9bQSjmfXJeO7PvPH8WADCTP/8jgAE
-                  VSwo8X1BxEsXWVJU0shdlX1MPpGhZltAtCdfeyv2FQkw1kDHnTdNKU0Oejs4be7lszdV2eokCeHo
-                  E3vSigtVMJg3MfwCk8k7JxueQJ1i34ameswAskVBkf5HVWtP1R5y9GTFUsQcQMyf4vKaFNuOod6r
-                  cIBB/NiH4+uS/iImRkPflGVRaJh1rwtGJTPbQ8tMO5zP+2wCpq0HI+Cwe9UIlwKKdlD+aBhOIjZ4
-                  08U/+/4sMxyuqXDQj93eczbIwG0pRAnqKM8hVvyEI1yIGVkz0uNm8zEMfcu2TAaIEnLZ09dtvH6r
-                  S7zuDpVj6xtiaT8+nObQtF1R9IkwW/dTVzP/5BB74lz1huivVpDNrSlIy2Ud6AiAZKjVwftcmTRW
-                  sDo5Ocj0QcPeaUFJfTuWsKCHwGkLW3nehsNDBsjLh2+Z7J6fukxRjH3q6kMN0/etlTflUze0LWRX
-                  ZyV272aEZ0NziBENvU42fZXWItF1WC2ot6DegnoL6i2o16k70/ls/n6gvYVHFh5ZePQM4dGebjg1
-                  7b3cNC1lQ98ToV+JQJo820B83zsfJlKEMpLSi91JMk/cYBJ5VGZ+6oYRcKH0hPLS9GnZsXckv88/
-                  mz+OCvOlEBS9xlcZ6KrE2+LDOvSQVayQrMN30sWNS/HgLMfUtruXKH5M+wrHrBLfs8C140ymMZQX
-                  5d1LvhmOnIncp1YBgkgYWKiFG20HCPmY+zuGZ410W+1epstKmXvm6M/9NXNXvLO17lxS1brtI/h6
-                  jIaq4NHjG8pdPYMFg3qtbwvV0AlUI1WRQPGZThtIY0AYDJjWnntlncmhueO97bvMx1trkbWH42TA
-                  wtUIyJ8q8xJSRZWdb53DAVIaMlbGmNBllvJgE6UqVbvNLRYgfoP5bEy6dLHBJBfuSqDh/h1OtZY6
-                  4BHfpYW5nypOeeS0LtubLPj4r78uBKaxMauVm+zkVRnzprTczXI3y90sd7PcDTAoCE5O26wpt6b8
-                  CU15L8enphj/ZD1zfbu5cL6FxF6XFH90TbxjdZxfhM+VXlDcD+YPXEJMfKHcaRRKN5CpdKNIhq4X
-                  TpQXJlHsefFTMovJmX/wc8zxFvDPIx1v36kVlK/e45Luw+NzHuw7VbwpuZiUU/Dyk5RnBZ8qdRT1
-                  RlZhp9yWuczuuLJr6QTjuEbbLbB1TO8MyqZ3KRvqX5RtJrfkfdvHtvw/lI12SXd1rZ3U/FAaXK/k
-                  PkRlpOtgDecSw4gtiLcg3oJ4C+ItiL94EZy+hqY1kM/eQG6Dzk5eVG8HGl8P8/aloDKn6oHKetGz
-                  Bcfzc0ygiieel8ymrohngRtEvnLFRCXubCLjYC78cRB9EKHwMheQTOJUom4pSnGkf6tVmmusZP5g
-                  6s82WO6NuboFe7xtsYfuaCv+trFwfvn5P3zxc12yG4pVMAb4F8f5Qf3y83+JM7bcCy2oS7pLOYGF
-                  2v5BJIO/ade/d6PzeF6mpAliKjTJeSsmrBNU3DTPLsKE6qiaPbebC1RSRg1ZyDgXBZfqhHaRS5GR
-                  N4yup0GbsB5E7RaljhHFd/hpipP6FWXp6N3I/s9We+5SpsTQClzccqhwi7dXNBg9r2j4+4Yvd8aT
-                  5ZJKgvaXu4g1l4slxZaJvOk3Nw9LM231VgxVCPabhaaiVSSHs/a0ySVrNfIbCr58GipYVBV7g7l/
-                  Fc0ndRbD3PYF3ePJXYs6aUx607agKKi+YJ+fvqaGPKUlfWQ4UVkr7aFkR6tKuHwszSNeU81azCQk
-                  m2q+vsoa4F0q98rBtVh2ak3V22n9qlwLWHDad861XFLgLF1WrT8s6O5rXRaWL9fBHL0h96jgG8/1
-                  zTnoMNtZWu9usaCIX6pTyvOT6QwlEg7yw6PTBbvqMYupq95CO/CpE/f/clgQ3Wi/LPSSp6DaXhx+
-                  gS+018Ns0qvLTNZUxkwV9OqmrKneMNqmV1/WgowZ+W9hrGhXZJK+VFyZI5C/49nNhfN1h0WfjfAv
-                  VjEcOS+7BY3WGznXqoIcEDaYmlq9arfKLa8cz0LKMm6K3WKkISy8c3U5TMd+ddvwAsDj6hLScL+w
-                  rqmcy6lw3OJQPbfvQcOxCE69Ux7WLYt8KLUNwYI1xqpkLV/qpPumLxt3Oq5uPBmbYrpLRmEkYJ94
-                  Y+evJLSTsSn7+7dtJiBpm2HnaK1F3cOTsVScVHdQaRfaoTCZbS/3C/NWFZ8vYXVNLADX83Wqjg4Z
-                  G74bK6dNWO7XGOZyutJAz0uh4ebuHDz0aWporWJWI5lOlOTJWgvGJotOAN20nK1IcSd7N8bjSXRF
-                  Vj+v+q74Vp/TSVEJyR75uGsHFSIkVectE5aOvhpvluoCvXzr1rZq8GfbaQGEKXnRaHq4X/2Xf3fJ
-                  4t+oWWxZvGXxlsVbFm9ZPIdKRb7/nup3WWJgiYElBpYYWGJgicEzIQZ7VvHUR5h6l/IqaaNz1V+L
-                  9KyyZz+owh0Pxwjfd9w/slT3F9vLr3Rovb5UiPEy/eFYHU3SAjoHYr1kl0VjpJTsPHZKtqqgjk0I
-                  z14Mz7eFsmU7LDW11NRSU0tNyYM4Of39H3+ORu+Hc3I40a2IylyDppAD2rk2wzFI/oGEpOeENPZ8
-                  otNzmsMIIGM8V7E7DgMPMMNL3HmURq70hJjOvSiMk5OnIgEZNNk7ig4M8Fuli9C9Fl1byrKumQO/
-                  uEjBAtA8nzKQUFJrJVgjfevf/wMAAP//AwCfhCtoTagAAA==
+              string:
+                  "{\"results\":[{\"campsite_type_of_use\":[\"na\"],\"description\":\"Experience
+                  the sunrise from the Chacoan Great House and learn why these events were important
+                  to  the Ancient Ones.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"400\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"Experience
+                  the sunrise from the Chacoan Great House and learn why these events were important
+                  to  the Ancient Ones.\",\"id\":\"400_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Autumn
+                  Equinox Sunrise Program\",\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/11/400_817a99c7-ed47-4e6d-905b-ccca49f49f2c_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"campsite_type_of_use\":[\"na\"],\"description\":\"Join us for a
+                  fun and casual 2-hour bird-walk led by a knowledgeable birding guide from
+                  the Weminuche Audubon Society. These outings are designed to introduce you
+                  to the diverse community of birds that spend their summer at Chimney Rock
+                  National Monument. Birders of all skill levels are welcome to participate.
+                  Your guide will help you identify various species and explain the unique adaptations
+                  that allow these birds to survive here. Participants will be walking slowly
+                  on uneven terrain in the lower area of CRNM (no archaeological sites are included
+                  on this tour). Good walking shoes are advised, along with plenty of water
+                  and sun protection. Bring binoculars if you have them. Not recommended for
+                  young children.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"403\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"\\u003cp\\u003eJoin
+                  us for a fun and casual 2-hour bird-walk led by a knowledgeable birding guide
+                  from the Weminuche Audubon Society. These outings are designed to introduce
+                  you to the diverse community of birds that spend their summer at Chimney Rock
+                  National Monument. Birders of all skill levels are welcome to participate.
+                  Your guide will help you identify various species and explain the unique adaptations
+                  that allow these birds to survive here. Participants will be walking slowly
+                  on uneven terrain in the lower area of CRNM (no archaeological sites are included
+                  on this tour). Good walking shoes are advised, along with plenty of water
+                  and sun protection. Bring binoculars if you have them. Not recommended for
+                  young children.\\u003c/p\\u003e\",\"id\":\"403_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Birding
+                  at Chimney Rock\",\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/16/403_2c6c05f0-d873-47b5-8a60-62ce0185bb62_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"aggregate_cell_coverage\":2,\"average_rating\":4.25,\"campsite_type_of_use\":[\"na\"],\"description\":\"This
+                  program begins at the upper parking lot with a one-hour guided tour on the
+                  1/3 mile paved Great Kiva Trail loop.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"41\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"This
+                  program begins at the upper parking lot with a one-hour guided tour on the
+                  1/3 mile paved Great Kiva Trail loop.\",\"id\":\"41_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Early
+                  Tour \\u0026 Full Moon Package\",\"number_of_ratings\":8,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/18/41_04499e38-f18b-4628-9daf-4e807edb9b1a_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Combo
+                  Tour\"},{\"average_rating\":5,\"campsite_type_of_use\":[\"na\"],\"description\":\"A
+                  thousand years ago the people who lived at Chimney Rock depended on the plants
+                  around them for food, fuel, tools, housing, clothing, medicine, and art.  The
+                  breadth and depth of their knowledge is almost unimaginable today.  Join us
+                  for an introduction to some of the plant species that grow at Chimney Rock
+                  and their uses by ancestral Puebloan people.  The tour will include the Great
+                  House and requires negotiation of a steep, rough trail with exposure to heights
+                  and drop-offs.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"402\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"\\u003cp\\u003eA
+                  thousand years ago the people who lived at Chimney Rock depended on the plants
+                  around them for food, fuel, tools, housing, clothing, medicine, and art.  The
+                  breadth and depth of their knowledge is almost unimaginable today.  Join us
+                  for an introduction to some of the plant species that grow at Chimney Rock
+                  and their uses by ancestral Puebloan people.  The tour will include the Great
+                  House and requires negotiation of a steep, rough trail with exposure to heights
+                  and drop-offs.\\u003c/p\\u003e\",\"id\":\"402_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Flora
+                  of Chimney Rock\",\"number_of_ratings\":2,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/19/402_86356bdf-ffcd-4d07-95ac-de1de45bfdb9_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"aggregate_cell_coverage\":3,\"average_rating\":4,\"campsite_type_of_use\":[\"na\"],\"description\":\"The
+                  Moonlight Melody program takes place in the amphitheater area, with an amazing
+                  view of the pinnacles above. \\nThe program will begin with a relaxing walk
+                  up the nature trail above the amphitheater, providing an experience of the
+                  natural environment along with beautiful views of the pinnacles. \\nUpon returning
+                  to the amphitheater, the program resumes with an informative lecture on topics
+                  specific to the Chimney Rock site such as a discussion of the ancestral Puebloan
+                  culture, archaeoastronomy theories, the Major Lunar Standstill, area geology,
+                  etc.  \\nAs the moon rises into the sky, you will be treated to the haunting
+                  melodies of a native American flute played by our own Charles Martinez. Gaze
+                  in wonder as the moon rises as it did over 1000 years ago when the ancestral
+                  Puebloans called Chimney Rock home.\\n\\nThis program lasts approximately
+                  2.5 hours including check-in, trail walk, lecture and moonrise musical performance.
+                  This program is recommended for ages 4 and up. Guests must enter through the
+                  Hwy 151 entry gate during check-in period stated below; the gate will be locked
+                  at the end of that time. \\n\\nTickets are $16.00 plus a booking fee and are
+                  non-refundable. In the event of cancellation due to inclement weather, rain
+                  checks will be available. For details, please call Chimney Rock at 970-883-5359,
+                  9:00am - 4:00pm Mountain Time. Reservations strongly recommended. Limited
+                  space. Walk-ins on a first-come, first-serve basis.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"10088682\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"The
+                  Moonlight Melody program takes place in the amphitheater area, with an amazing
+                  view of the pinnacles above. \\nThe program will begin with a relaxing walk
+                  up the nature trail above the amphitheater, providing an experience of the
+                  natural environment along with beautiful views of the pinnacles. \\nUpon returning
+                  to the amphitheater, the program resumes with an informative lecture on topics
+                  specific to the Chimney Rock site such as a discussion of the ancestral Puebloan
+                  culture, archaeoastronomy theories, the Major Lunar Standstill, area geology,
+                  etc.  \\nAs the moon rises into the sky, you will be treated to the haunting
+                  melodies of a native American flute played by our own Charles Martinez. Gaze
+                  in wonder as the moon rises as it did over 1000 years ago when the ancestral
+                  Puebloans called Chimney Rock home.\\n\\nThis program lasts approximately
+                  2.5 hours including check-in, trail walk, lecture and moonrise musical performance.
+                  This program is recommended for ages 4 and up. Guests must enter through the
+                  Hwy 151 entry gate during check-in period stated below; the gate will be locked
+                  at the end of that time. \\n\\nTickets are $16.00 plus a booking fee and are
+                  non-refundable. In the event of cancellation due to inclement weather, rain
+                  checks will be available. For details, please call Chimney Rock at 970-883-5359,
+                  9:00am - 4:00pm Mountain Time. Reservations strongly recommended. Limited
+                  space. Walk-ins on a first-come, first-serve basis.\",\"id\":\"10088682_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Flute,
+                  Moon \\u0026 Stars\",\"number_of_ratings\":2,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2018/09/24/19/54/234787_3ae433b4-b8aa-4537-ac44-3cc7bfc35341_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"aggregate_cell_coverage\":2.75,\"average_rating\":4.125,\"campsite_type_of_use\":[\"na\"],\"description\":\"The
+                  full moon program takes place against the backdrop of the Great House Pueblo
+                  at the top of Chimney Rock Mesa.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"40\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"The
+                  full moon program takes place against the backdrop of the Great House Pueblo
+                  at the top of Chimney Rock Mesa.\",\"id\":\"40_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Full
+                  Moon\",\"number_of_ratings\":8,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/20/40_4a53f295-e7c4-4138-b52e-2d64b4021232_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"aggregate_cell_coverage\":3,\"average_rating\":4.6666665,\"campsite_type_of_use\":[\"na\"],\"description\":\"This
+                  1.5 hour guided tour explores local geology and its relationship to the daily
+                  lives of the ancestral Puebloans who lived at Chimney Rock.  Rock types impact
+                  structures, pottery, tools, and soil productivity; geologic processes determine
+                  the landscape, and, at Chimney Rock, play a central role in climate.  The
+                  hike up the Pueblo Trail to the Chacoan Great House may be difficult for some
+                  in terms of the steep gradient, uneven footing, and elevation.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"291\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"This
+                  1.5 hour guided tour explores local geology and its relationship to the daily
+                  lives of the ancestral Puebloans who lived at Chimney Rock.  Rock types impact
+                  structures, pottery, tools, and soil productivity; geologic processes determine
+                  the landscape, and, at Chimney Rock, play a central role in climate.  The
+                  hike up the Pueblo Trail to the Chacoan Great House may be difficult for some
+                  in terms of the steep gradient, uneven footing, and elevation. \",\"id\":\"291_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Geology
+                  Tour\",\"number_of_ratings\":6,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/34/291_b0f096bc-39c1-4948-a326-6b266249fefa_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"campsite_type_of_use\":[\"na\"],\"description\":\"Plan to spend
+                  two hours for this guided tour as a trained volunteer tells the story of the
+                  people who lived at the Monument 1,000 years ago. The tour includes both the
+                  Pueblo trail and the Great Kiva trail. Guests will see a 44-foot diameter
+                  excavated great kiva. Also on this easy trail, theres an excavated pit house,
+                  a typical residence of the ancient ones and a sacred archeoastronomy site.
+                  The unimproved natural Pueblo trail is 1/2 mile round trip with a 200-foot
+                  elevation gain, topping out at 7,600-feet elevation. The Pueblo Trail features
+                  a multi-family dwelling and several unexcavated structures. At the top, Chimney
+                  Rocks Chacoan-style Great House Pueblo is spectacular against the backdrop
+                  of the San Juan Mountains.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"39\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"Plan
+                  to spend two hours for this guided tour as a trained volunteer tells the story
+                  of the people who lived at the Monument 1,000 years ago. The tour includes
+                  both the Pueblo trail and the Great Kiva trail. Guests will see a 44-foot
+                  diameter excavated great kiva. Also on this easy trail, theres an excavated
+                  pit house, a typical residence of the ancient ones and a sacred archeoastronomy
+                  site. The unimproved natural Pueblo trail is 1/2 mile round trip with a 200-foot
+                  elevation gain, topping out at 7,600-feet elevation. The Pueblo Trail features
+                  a multi-family dwelling and several unexcavated structures. At the top, Chimney
+                  Rocks Chacoan-style Great House Pueblo is spectacular against the backdrop
+                  of the San Juan Mountains. \",\"id\":\"39_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Guided
+                  Great House Walking Tours\",\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2018/09/24/19/54/234787_3ae433b4-b8aa-4537-ac44-3cc7bfc35341_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"campsite_type_of_use\":[\"na\"],\"description\":\"This free, family-oriented
+                  festival is held at Chimney Rocks Visitor Center area. Step back in time as
+                  volunteers and artisans demonstrate ancient tools and crafts.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"45\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"This
+                  free, family-oriented festival is held at Chimney Rocks Visitor Center area.
+                  Step back in time as volunteers and artisans demonstrate ancient tools and
+                  crafts. \",\"id\":\"45_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Life
+                  at Chimney Rock\",\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/22/45_60e7e306-b4f9-4bff-b707-54b706c0a18e_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"aggregate_cell_coverage\":2.000000010837208,\"average_rating\":4.7777777,\"campsite_type_of_use\":[\"na\"],\"description\":\"This
+                  engaging two-hour early-morning tour is led by a trained Chimney Rock Interpretive
+                  Association tour guide.  The tour will spotlight a number of general topics
+                  aimed at interpreting the history and significance of Chimney Rock and the
+                  ancestral Puebloans who inhabited the area over a thousand years ago.  You
+                  will learn about the connection of Chimney Rock to the greater Chaco Culture,
+                  the significance of the mesa-top Great House, and the day-to-day lives of
+                  the inhabitants of Chimney Rock.  You will walk both the Mesa Village and
+                  Great House Pueblo Trails, learning about the structures along each trail,
+                  including their significance and uses. You will be treated to the stunning
+                  views of the surrounding countryside and asked to imagine what it must have
+                  been like for the people who once called Chimney Rock their home.  The tours
+                  will be conducted in the quiet off-hours of the Monument.  Bring your curiosity,
+                  camera, sturdy shoes and water.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"10086878\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"This
+                  engaging two-hour early-morning tour is led by a trained Chimney Rock Interpretive
+                  Association tour guide.  The tour will spotlight a number of general topics
+                  aimed at interpreting the history and significance of Chimney Rock and the
+                  ancestral Puebloans who inhabited the area over a thousand years ago.  You
+                  will learn about the connection of Chimney Rock to the greater Chaco Culture,
+                  the significance of the mesa-top Great House, and the day-to-day lives of
+                  the inhabitants of Chimney Rock.  You will walk both the Mesa Village and
+                  Great House Pueblo Trails, learning about the structures along each trail,
+                  including their significance and uses. You will be treated to the stunning
+                  views of the surrounding countryside and asked to imagine what it must have
+                  been like for the people who once called Chimney Rock their home.  The tours
+                  will be conducted in the quiet off-hours of the Monument.  Bring your curiosity,
+                  camera, sturdy shoes and water.\",\"id\":\"10086878_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Mysteries
+                  of Chimney Rock Tour\",\"number_of_ratings\":18,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/32/10086878_a5c9cc2b-1d8d-4192-8a66-593e3c2ae2ff_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"aggregate_cell_coverage\":2.25,\"average_rating\":3.8,\"campsite_type_of_use\":[\"na\"],\"description\":\"Your
+                  evening begins with a one hour interactive discussion at the Visitor Center
+                  on the archaeoastronomy of Chimney Rock and a preview of what guests may expect
+                  to see with telescopes. Topics range from astronomy, what the full moon meant
+                  to the Ancient People, and how a telescope helps us see stars. As darkness
+                  descends, guests drive to the High Mesa parking lot where volunteer astronomers
+                  await with telescopes to provide a closer look at the full moon. Focus will
+                  shift to deeper-sky objects plus any man-made objects that come into view.
+                  This program is perfect for young families and those with limited mobility.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"144\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"Your
+                  evening begins with a one hour interactive discussion at the Visitor Center
+                  on the archaeoastronomy of Chimney Rock and a preview of what guests may expect
+                  to see with telescopes. Topics range from astronomy, what the full moon meant
+                  to the Ancient People, and how a telescope helps us see stars. As darkness
+                  descends, guests drive to the High Mesa parking lot where volunteer astronomers
+                  await with telescopes to provide a closer look at the full moon. Focus will
+                  shift to deeper-sky objects plus any man-made objects that come into view.
+                  This program is perfect for young families and those with limited mobility.\",\"id\":\"144_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Night
+                  Sky: Our Solar System\",\"number_of_ratings\":5,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/24/144_419a13ae-695c-4cfc-99c5-251e25d9b22b_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"aggregate_cell_coverage\":1.3333333333333333,\"average_rating\":4.4444447,\"campsite_type_of_use\":[\"na\"],\"description\":\"Remote
+                  from city lights, enjoy the night sky in a truly dark environment. Your evening
+                  begins with a talk at the Visitor Center amphitheater. Topics range from what
+                  the ancient people noticed in the night sky to how a telescope helps us see
+                  stars and current topics in astronomy. As darkness descends, guests drive
+                  to the High Mesa parking lot where volunteer astronomers await with telescopes
+                  to provide a closer look at the wonders of the night sky.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"42\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"Remote
+                  from city lights, enjoy the night sky in a truly dark environment. Your evening
+                  begins with a talk at the Visitor Center amphitheater. Topics range from what
+                  the ancient people noticed in the night sky to how a telescope helps us see
+                  stars and current topics in astronomy. As darkness descends, guests drive
+                  to the High Mesa parking lot where volunteer astronomers await with telescopes
+                  to provide a closer look at the wonders of the night sky. \",\"id\":\"42_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Night
+                  Sky: Stars and Galaxies\",\"number_of_ratings\":9,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/28/42_eb122d76-ab74-493e-a1ed-71cb48a30491_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"campsite_type_of_use\":[\"na\"],\"description\":\"This class is
+                  part art, part reflection, part nature study, and a little visit to Chimney
+                  Rock National Monument \u2013 all rolled into one!  We\u2019ll start at the
+                  herradura at the head of the Mesa Village Trail. After becoming oriented,
+                  we\u2019ll walk down to the Great Kiva to sit on blankets or chairs we bring.
+                  \ Our goal is to become centered with the site and focus in on a specific
+                  item of nature.  Using sketchbooks and drawing materials provided, we will
+                  examine the item of nature selected and watch how it magically appears on
+                  a page in our sketchbook.  Afterwards, there will be a sharing with each other
+                  of what we have learned.\\n\\nOur leader is Denise Fisk, former art teacher
+                  with the Iowa Public Schools. No art talent is required, just a desire to
+                  be open to suggestions and willing to try a hand at self-expression.\\n\\nMaterials
+                  to be provided to each participant:\\n\\tSketchbook\\n\\tMicron pen\\n\\tTortillion\\n\\tGraphite
+                  pencil stick\\n\\nProgram Dates: June 7, July 5, August 2, September 6.\\n\\nThe
+                  entry gate will open for check-in at 5:00 PM and will be locked at 5:15 PM.
+                  \ Guests must enter during this checkin period.\\n\\nThese are reservations-only
+                  programs, not suitable for children under 10. \\n\\nThe fee of $20 (age 10
+                  and up) includes all materials, and is considered a non-refundable donation.
+                  A booking fee applies to  each ticket purchased online or through the call
+                  center. Making a reservation through the call center or website is the only
+                  way to guarantee a spot on this tour. Most programs are at full capacity,
+                  but we will accommodate walk-ins if space is available. Booking fees do not
+                  apply to walk-ins. In the event of cancellation due to inclement weather,
+                  \ rain checks will be available.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"10089331\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"This
+                  class is part art, part reflection, part nature study, and a little visit
+                  to Chimney Rock National Monument \u2013 all rolled into one!  We\u2019ll
+                  start at the herradura at the head of the Mesa Village Trail. After becoming
+                  oriented, we\u2019ll walk down to the Great Kiva to sit on blankets or chairs
+                  we bring.  Our goal is to become centered with the site and focus in on a
+                  specific item of nature.  Using sketchbooks and drawing materials provided,
+                  we will examine the item of nature selected and watch how it magically appears
+                  on a page in our sketchbook.  Afterwards, there will be a sharing with each
+                  other of what we have learned.\\n\\nOur leader is Denise Fisk, former art
+                  teacher with the Iowa Public Schools. No art talent is required, just a desire
+                  to be open to suggestions and willing to try a hand at self-expression.\\n\\nMaterials
+                  to be provided to each participant:\\n\\tSketchbook\\n\\tMicron pen\\n\\tTortillion\\n\\tGraphite
+                  pencil stick\\n\\nProgram Dates: June 7, July 5, August 2, September 6.\\n\\nThe
+                  entry gate will open for check-in at 5:00 PM and will be locked at 5:15 PM.
+                  \ Guests must enter during this checkin period.\\n\\nThese are reservations-only
+                  programs, not suitable for children under 10. \\n\\nThe fee of $20 (age 10
+                  and up) includes all materials, and is considered a non-refundable donation.
+                  A booking fee applies to  each ticket purchased online or through the call
+                  center. Making a reservation through the call center or website is the only
+                  way to guarantee a spot on this tour. Most programs are at full capacity,
+                  but we will accommodate walk-ins if space is available. Booking fees do not
+                  apply to walk-ins. In the event of cancellation due to inclement weather,
+                  \ rain checks will be available.\",\"id\":\"10089331_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Sketching
+                  at the Pinnacles\",\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2018/09/24/19/54/234787_3ae433b4-b8aa-4537-ac44-3cc7bfc35341_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"},{\"aggregate_cell_coverage\":2,\"average_rating\":5,\"campsite_type_of_use\":[\"na\"],\"description\":\"Experience
+                  the sunrise from the Chacoan Great House and learn why these events were important
+                  to  the Ancient Ones.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eChimney
+                  Rock National Monument \\u003c/strong\\u003e\\u003cbr\\u003e\\u003cbr\\u003e3179
+                  State Hwy 151 \\u003cbr\\u003e\\u003cbr\\u003eChimney Rock, Co 81121\\u003cbr\\u003e\\u003cbr\\u003e\\u003cstrong\\u003eFrom
+                  Pagosa Springs, Colorado:\\u003c/strong\\u003e Drive 16 miles west on Hwy
+                  160 from Pagosa Springs to the Hwy 151 turnoff to Chimney Rock National Monument.
+                  Turn left onto Hwy 151 and drive 3 miles south to the entrance of Chimney
+                  Rock National Monument. Turn right and drive through the entrance gate 1/2
+                  mile to the Visitor Center.   Pull into parking area and park near Visitor's
+                  Center to pay use fee. \\u003cbr\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  Durango, Colorado:\\u003c/strong\\u003e Drive 44 miles east on Hwy 160 from
+                  Durango to the Hwy 151 turnoff to Chimney Rock National Monument. Turn right
+                  onto Hwy 151 and drive 3 miles south to the entrance of Chimney Rock National
+                  Monument. Turn right and drive through the entrance gate 1/2 mile to the Visitor
+                  Center.  Pull into parking area and park near Visitor's Center to pay use
+                  fee.\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cbr\\u003e\\u003cem\\u003eNote:
+                  The entrance gate is open 9:00am to 4:30pm daily in-season May 15 to October
+                  15.\\u003c/em\\u003e\\u003c/p\\u003e\\n\",\"entity_id\":\"410\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"Experience
+                  the sunrise from the Chacoan Great House and learn why these events were important
+                  to  the Ancient Ones.\",\"id\":\"410_tour\",\"latitude\":\"37.17500000000000\",\"longitude\":\"-107.30277780000000\",\"name\":\"Summer
+                  Solstice Sunrise Program\",\"number_of_ratings\":1,\"org_id\":\"131\",\"parent_id\":\"234787\",\"parent_name\":\"Chimney
+                  Rock National Monument Tours\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2021/03/16/20/26/410_943308eb-0542-452d-89f9-c2aa68295bdf_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Denver\",\"type\":\"Historic
+                  Tour\"}],\"size\":14,\"spelling_autocorrected\":false,\"start\":\"0\",\"total\":14}"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -307,8 +700,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -329,6 +720,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "43085"
           status:
               code: 200
               message: OK
@@ -356,19 +749,11 @@ interactions:
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-09
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA6RUXWvbMBR9368IeraH7Dh17LeyZVDYktL6pStFKNZNI6JIwZbThdL/vivJ7Vxv
-                  GYOBsCXr3I9z77m+fya8aeSRK2blHthjB61ltem0bUn5/BIRbm0j150FdybKWAvNibWgoLbSaKb4
-                  GhQpyS230eQWDpNJEU1Smk6JMz5yiQCppD0xZeodAimlSexXRWnp13cSkbUxO6kf2ZPUwjwxcwDN
-                  zBEwOQGk1J1SY4xP6Prm6tvlzZ3bcnHkugbBWq6gZQIsBvcgu22g3RolGPyQrWO24aqFaHBhZb0D
-                  27IG9lxqDEJKigRqZVrwpWkt3x8wfUctpgWuis7KbIbpx/QCn8jBJz0Cpw6c0IrOA9ce/OKcc1V3
-                  iltgI/I+6luSdQOIEUzg8y0Bl0OV5GValDT5mNB5dpEUmSukAK6w1N4E2UFz5K5RSPr+ISKgj6Aw
-                  z9DcDa9Db6RwnqdZPs/RxaZTG6kUOvBKwFJERKKhtgZ7vz71MrGnA3hL5+rXfW/zTC6X2Jd0FrkN
-                  u118Wi0/+1ahty9X1et7dPN1VVULv0enimOYPdcd6rM79AU4I6DfsU5xePBb15WQqMcFwD/X9FX2
-                  UmNnUWOhXngxKPCIN/0P2kOvUrB157T55n8EcF3okzFKORU1OJwcZRvIhdFp6y2ITvWZr9MCIE2T
-                  OAWax1mRJ3GRzYt4mhXpBU+zpBYCHSJZ26FwyOp6scRzGBKGfwspQvChYIfKD0HP4seD0sNN17zv
-                  iBszMrhgiG/s2Xmk70astwMtzhkkdDTA3iDMQpG8nv8eM/+Ti6A2QvNshp96/oNxenn48BMAAP//
-                  AwBWl9D8egUAAA==
+              string:
+                  '[{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Sat,
+                  Sep  9, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-09T05:45:00-06:00","open_timestamp":"2022-09-10T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-09T17:29:01.10846194Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":25,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-09T17:29:01.10846194Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"b29ee221-2e07-4971-9489-34926a241cdd","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-09","tour_date_start_timestamp":"2023-09-09T00:00:00-06:00","tour_end_timestamp":"2023-09-09T10:45:00-06:00","tour_id":"291","tour_start_timestamp":"2023-09-09T07:45:00-06:00","tour_time":"0745","validated_count":0}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -376,8 +761,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -398,6 +781,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "1402"
           status:
               code: 200
               message: OK
@@ -480,19 +865,11 @@ interactions:
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-11
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA6RU32vbMBB+318R9GwP+UcSx29l66CwNqXNy1aKUKRzI6pIwZbThdD/fSfZzVxv
-                  GYOBsSXru7vv7r7Tw5HwulZ7rplTW2BPLTSOCdsa15Dy+BoR7lyt1q0DvyfaOgf1gTWgQThlDdN8
-                  DZqU5NqaaHIPu0mSRJOUphnxxnuuEKC0cgemrXhGIKU0icOzorQMz3cSkbW1z8o8sRdlpH1hdgeG
-                  2T0gOQmkNK3WY0wgdHt3dX1x980vudxzI0CyhmtomASHwQPIbWpoNlZLBj9U4zOruG4gGhw4JZ7B
-                  NayGLVcGg5CSYgJC2wZCaRrHtzuk71OL6SJOkP60zKdIP6YzfGMOgfQInAZwuqJFl2sPfvXOuRat
-                  5g7YKPkQ9URS1IAYySS+TwQ8h1VKy2lWJsnHaZovijyZ5b6SErjGWgcbTA/qPfedwqwfHiMCZg8a
-                  iXbdrbjomqOkd53l82KOLqpWV0prdBCkgLWIiEJD4yw2f33odeIOOwiW3tWv897mSC5usDHpNPIL
-                  dn/5aXnzOfQKvX25Wr19Rydfl6vVZVijU80xzJabFgXa7voKnFHQ71gvOdyEpW9LRzTgOsC/F/VN
-                  +Mpgb1FlXcHwYFDhUeL0P/IeelWSrVuvzpP/EcC3oSdjtfY6qnE8OQq3y64bnkZsQLa6Z15lIquq
-                  Iokrni/ivCpm8ULkMhYVlTzjiajyFB1isq5F5ZDl7eUN7rsxYXhfKNkFH0p2qP0u6Fn8eFR6uG3r
-                  9y3xg0YGBwzxtTs7kfTdkPV2YOQ5g+SPBqFCCaXFrJgXbz//Hng+ugqCSac5Quf5FH/1RRgM1evj
-                  h58AAAD//wMAg4FRu4EFAAA=
+              string:
+                  '[{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Mon,
+                  Sep 11, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-11T05:45:00-06:00","open_timestamp":"2022-09-12T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-09T20:53:11.524984164Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":25,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-09T20:53:11.524984164Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"f3c3ff81-fa49-4f86-9c4d-cf0da3a1cf42","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-11","tour_date_start_timestamp":"2023-09-11T00:00:00-06:00","tour_end_timestamp":"2023-09-11T10:00:00-06:00","tour_id":"10086878","tour_start_timestamp":"2023-09-11T07:45:00-06:00","tour_time":"0745","validated_count":0}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -500,8 +877,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -522,6 +897,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "1409"
           status:
               code: 200
               message: OK
@@ -549,21 +926,12 @@ interactions:
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-12
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+xVTU/cMBC991cgnxPkOF+b3FBLJaQWEM2lRchy4lmw8CarxFm6Qvz3jp1AQ2Ar
-                  VCRUtZWirB2/Gb+ZeTN7fktE26qN0NyoFfDLHjrDq6avTUfy2zuPCGNaVfYG7J7oxhhot7wDDZVR
-                  Tc21KEGTnBQ9eHtfYL0XMG+PURYSa7wRCgFKK7PluqmuEUgpDXz3FJTm7vlGPFI2zbWqL/mNqmVz
-                  w5s11LzZAJKTQPK613qOcYROz44+H5x9tUshN6KuQPJOaOi4BIOXO5C5aqG7arTk8F11NrKl0B14
-                  kwOjqmswHW9hJVSNl5CcYgCVbjpwqemMWK2Rvg3Np5kfsILGeRQjfZ8m+MYYHOkZmDlwWNDFEOsI
-                  vrPOha56LQzwWfDu1geSVQuIkVzi+4GA5VAEaU5T5LC/SOM4DBNmEylBaEy1M8HooN0IWygM+vzC
-                  I1BvQCPPobhLUQ21UdJ6DqN0kaKLZa+XSmt04JSAqfCIQsPaNFj7cjvKxGzX4Cytq5/no80tOTjG
-                  urDYswv+5fD9yfEHVyr09vGouP+dnXw6KYpDt0anWuA1K1H3qM9+PSZgh4CeYq3icOOWtioDUYcb
-                  AC/O6b3sVY2VRY0N+cKDSYJncdNXhD31qiQve6vNB/8zgK3CSKbR2qqoxeYUKNshuKF1uuoKZK9H
-                  5plIopJFS19kUepHLAv8Ms0Sn6YiBFkyQWWFDjFY06NwyMnp4THuhybhOC2UHC6fCnaq/OHSnfh5
-                  o4zwpm8fV8S2GZkccMS3Zmc/0kctNtpBLXcZBHTWwM5g6IUsuN//+s70OReD2ghNoxg/jfFP2unO
-                  +z93f3/uBvGszm86d4OoCJI8jvMg2Y8ZS5KQpeEfOHiD10ygtx68O5P6t01ekCnNaBz6IlxkfrRA
-                  kWZRKfxKsiRbQsLYMvsXJm/2nIHLUEDpIgvDl41f+2/91M84foPUfXpm/F68+wEAAP//AwAeCvCN
-                  +QoAAA==
+              string:
+                  '[{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Tue,
+                  Sep 12, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-12T05:45:00-06:00","open_timestamp":"2022-09-13T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-09T17:07:45.87553362Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":25,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-09T17:07:45.87553362Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"9a64b24f-a947-4291-b796-07a3edb2a0dc","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-12","tour_date_start_timestamp":"2023-09-12T00:00:00-06:00","tour_end_timestamp":"2023-09-12T10:45:00-06:00","tour_id":"291","tour_start_timestamp":"2023-09-12T07:45:00-06:00","tour_time":"0745","validated_count":0},{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Tue,
+                  Sep 12, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-12T15:00:00-06:00","open_timestamp":"2022-09-13T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-14T16:55:16.522663273Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":10,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-14T16:55:16.522663273Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"ed709053-a389-4809-94ba-cd269fe622f9","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-12","tour_date_start_timestamp":"2023-09-12T00:00:00-06:00","tour_end_timestamp":"2023-09-12T19:00:00-06:00","tour_id":"10089331","tour_start_timestamp":"2023-09-12T17:00:00-06:00","tour_time":"1700","validated_count":0}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -571,8 +939,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -593,6 +959,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "2809"
           status:
               code: 200
               message: OK
@@ -620,19 +988,11 @@ interactions:
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-13
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA6RUXWvbMBR9368IeraH7NiJ7beyZVDY2tIaxlaKUKzrVlSRgi2nC6H/fVeyk7ne
-                  MgYDY0vWuR/n3nN1fyC8aeSOK2blBthjB61llem0bUlxeA0It7aR686C2xNlrIVmz1pQUFlpNFN8
-                  DYoU5CuIYHYH21k0D2YxjefEGe+4RIBU0u6ZMtUzAimlUeifktLCP99JQNbGPEv9yF6kFuaFmS1o
-                  ZnaAyQkghe6UmmJ8Qje3l18ubr+5JRc7risQrOUKWibAYnAPsk8NtE9GCQY/ZOuY1Vy1EIwOrKye
-                  wbasgQ2XGoOQgiKBSpkWfGlayzdbTN9RC2keRvMySookxfRDusA3cvBJT8CxByclzXquA/jVOeeq
-                  6hS3wCbkfdRTklUDiBFM4PuUgMuhjKMiWhRz+j6iaZbGi2ThKimAK6y1t0F60Oy46xSyvn8ICOgd
-                  KEy0727Nq745UjjX82SZLdFF3alaKoUOvBSwFgGRaKitweav94NO7H4L3tK5+nU+2BzIxRU2Jk4D
-                  t2B3qw/XVx99r9Dbp8vy+J2cfL4uy5Vfo1PFMcyG6w4F2m2HCpxR0O9YJznc+KVrS5+ox/WAfy/q
-                  UfhSY29RZX3B8GBU4Qlx+h+8x16lYOvOqfPkfwJwbRiSMUo5HTU4nhyF27Prh6etnkB0asg85Tmy
-                  gzys13MeJkmVhjmN67DO4wxyLEcS1egQydoOlUOub1ZXuO/HhOF9IUUffCzZsfb7oGfx01EZ4KZr
-                  3rbEDRoZHTDEN/bcRB7lcJpIbwdanB3h/E8GvkIRpdkiW2bHn38NjIp5exV4k15zJFokKf4aijAa
-                  qteHdz8BAAD//wMATPvjoIEFAAA=
+              string:
+                  '[{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Wed,
+                  Sep 13, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-13T14:45:00-06:00","open_timestamp":"2022-09-14T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-09T21:16:30.105852646Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":25,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-09T21:16:30.105852646Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"5a9585e9-fb3a-44c5-902f-f928e920241f","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-13","tour_date_start_timestamp":"2023-09-13T00:00:00-06:00","tour_end_timestamp":"2023-09-13T19:00:00-06:00","tour_id":"10086878","tour_start_timestamp":"2023-09-13T16:45:00-06:00","tour_time":"1645","validated_count":0}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -640,8 +1000,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -662,6 +1020,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "1409"
           status:
               code: 200
               message: OK
@@ -689,19 +1049,11 @@ interactions:
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-14
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA6RUUWvbMBB+368oeraH7DiunbeydVDY2tL6ZStFKNalEVWkYEvpQul/30lyMs9b
-                  xmBgHCn69N19d9/54ZXwrpM7rpiVG2BPDnrLWuO07cni9S0h3NpOLp0FvyfKWAvdnvWgoLXSaKb4
-                  EhRZkGbtkrN72J5lRXKW03xG/OUdlwiQSto9U6Z9RiClNEvD01C6CM83kpClMc9SP7EXqYV5YWYL
-                  mpkdYHICyEI7paaYkNDt3dWXi7uvfsnFjusWBOu5gp4JsBg8gOy6g35tlGDwXfZe2YqrHpLRgZXt
-                  M9iedbDhUmMQsqAooFWmh1Ca3vLNFtP30lJap1nRZMWimGP6KS3xjRpC0hNwHsDzhlZR6wB+8+Rc
-                  tU5xC2wiPkQ9Jtl2gBjBBL6PCfgcmgw5ka16X+UlneXzeuYrKYArrHW4g/Kg23HfKVT98JgQ0DtQ
-                  mGjs7oq3sTlSeOpZcV6dI8XKqZVUCgmCFbAWCZF4UVuDzV/uB5/Y/RbCTU/183y480ourrEx+Tzx
-                  C3Z/+eHm+mPoFbJ9umoOv5OTzzdNcxnWSKo4htlw7dCgbjtU4ISDfsd6y+EmLH1bYqIBFwH/XtSD
-                  8aXG3qLLYsHwYFThiXD6H7rHrFKwpfPuPPJPAL4NQzJGKe+jDseTo3Gjujg8fbsG4dSQ+ayEnJZF
-                  lQpel2lR0jatebVMZ/y8qLOMt7yukBDFWofOITe3l9e4j2PC8HshRQw+tuzY+zHoSfx0VAa4cd2v
-                  LfGDRkYHDPGdPTWRBzscJzLcAy1OjnA9GeFwIQ5DnR32f42ZlX+iiHYjWVnM8a9B/2ie3h7f/QAA
-                  AP//AwCojaRZfAUAAA==
+              string:
+                  '[{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Thu,
+                  Sep 14, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-14T14:45:00-06:00","open_timestamp":"2022-09-15T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-09T18:06:08.826032593Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":25,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-09T18:06:08.826032593Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"36e20648-da96-460c-9a8b-3a74911aca98","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-14","tour_date_start_timestamp":"2023-09-14T00:00:00-06:00","tour_end_timestamp":"2023-09-14T19:45:00-06:00","tour_id":"291","tour_start_timestamp":"2023-09-14T16:45:00-06:00","tour_time":"1645","validated_count":0}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -709,8 +1061,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -731,6 +1081,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "1404"
           status:
               code: 200
               message: OK
@@ -758,21 +1110,12 @@ interactions:
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-15
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+xVTW/bMAy971cUOtuF5I/Y8a3YWqDA1hZdLltRCIpEt0IVO7DldEXR/z5KdjLP
-                  a4ZiO+wTMRwpeqQeyUfm6pGIptEbYbjVK+A3HbSWy7qrbEuKx6eACGsbvewsuD0xtbXQPPAWDEir
-                  64obsQRDCnLS6ODgPawPWBocRDSKiTPeCI0AbbR94KaWdwiklLLQPwtKC/98JAFZ1vWdrm74va5U
-                  fc/rNVS83gCSU0CKqjNmivGELi5P3x1dfnBLoTaikqB4Kwy0XIHFyz3I3jbQ3tZGcfikWxdZKUwL
-                  wejAankHtuUNrISu8BJSUAxAmroFn5rWitUa6bvQQjoPWbpgs4KlSD+kM3xjDJ70BBx58GxB8z7W
-                  AfzknAsjOyMs8Enw/tYdSdkAYhRX+N4RiMModgSiWRHTQ5bFeZ7M8shlUoEwmGtvg+FBsxGuUhj1
-                  1XVAoNqAQaJ9dUsh++Jo5VzHSZZn6KLsTKmNQQdeCpiLgGg0rGyNxV8+DDqxD2vwls7Vl/PB5pEc
-                  nWFhZmiLC/7++PX52RtfK/zl5HSx/Z6cvD1fLI79Gp0agdesRNWhQLv1kIE9CvoW6ySHG790ZemJ
-                  elwPeHlSt8LXFdYWVdYnDA9GGZ4E/jNxj71qxZedU+fO/wTgyjCQqY1xOmqwPQUKt4+ub55W3oLq
-                  zMA8hTKTaVqGS5mxMFGYznmSq5BmScIAlvFcMXSIwdoOlUPOL47PcN+3Ccd5oVV/+ViyY+33l+7F
-                  T1tlgNdd83VJXKOR0QFHfGP3deRWDruO9HZQqX0GEZu0sDfwGUqi7fa7V7L8OQ+92gjLPfsh/FE7
-                  PQX/B++PD16aFsmvG7x0vohokSYFTQ8jmuYsi+bZbzh4o/QPGrx7k/q3Dd4kLjORliqEOE7DBKQM
-                  5zHNwkyKhEnI5vj5BwYve9bAZ4hRms/yLH/R+KXZZBSMxy/+me0Zv9evPgMAAP//AwDwm8J7+goA
-                  AA==
+              string:
+                  '[{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Fri,
+                  Sep 15, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-15T16:15:00-06:00","open_timestamp":"2022-09-16T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-23T16:26:30.173884682Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":60,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-23T16:26:30.173884682Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"5ef7c55f-bc71-4d01-948d-07441eeb39d1","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-15","tour_date_start_timestamp":"2023-09-15T00:00:00-06:00","tour_end_timestamp":"2023-09-15T21:15:00-06:00","tour_id":"42","tour_start_timestamp":"2023-09-15T18:15:00-06:00","tour_time":"1815","validated_count":0},{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Fri,
+                  Sep 15, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-15T05:45:00-06:00","open_timestamp":"2022-09-16T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-09T20:54:05.205817297Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":25,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-09T20:54:05.205817297Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"43f7a5fd-e335-4ecc-9307-7ca41ce79797","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-15","tour_date_start_timestamp":"2023-09-15T00:00:00-06:00","tour_end_timestamp":"2023-09-15T10:00:00-06:00","tour_id":"10086878","tour_start_timestamp":"2023-09-15T07:45:00-06:00","tour_time":"0745","validated_count":0}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -780,8 +1123,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -802,6 +1143,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "2810"
           status:
               code: 200
               message: OK
@@ -829,20 +1172,12 @@ interactions:
           uri: https://www.recreation.gov/api/ticket/availability/facility/234787?date=2023-09-16
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+xV207cMBB971cgPyfIuV/eUEslpBYQ5IUiZDnxBCy8ySpxlq4Q/96xE2hI2aoS
-                  atXbKsra6zPjOTNnZi/vCe86ueGKabkCdj1Ar1nVDo3uSX7/4BCudSfLQYPZE9VqDd2W9aCg0rJt
-                  mOIlKJKTc66dvXNY73mxs+dTPyDGeMMlAqSSestUW90ikFLqufYpKM3t84k4pGzbW9lcszvZiPaO
-                  tWtoWLsBDE4AyZtBqSXGBnR6dvTx4OzCLLnY8KYCwXquoGcCNF5uQfqmg/6mVYLBZ9kbZjVXPTiz
-                  Ay2rW9A962DFZYOXkJwigUq1PdjU9Jqv1hi+oebSzPXigkZ5GGH4Lo3xjRxs0Auwb8FJQdOR6wR+
-                  MM65qgbFNbAFeXvrU5BVB4gRTOD7KQATQ+EleYA+4/0oC70kS9LAZFIAV5hra4P0oNtwUylkfXnl
-                  EGg2oDDQsbo1r8biSGFcB2GSJuiiHlQtlUIHVgqYC4dINGx0i8Uvt5NO9HYN1tK4+no+2dyTg2Ms
-                  jB85ZsHOD9+eHL+ztUJv74+Kx+/FyYeToji0a3SqOF6z4s2AAh3WUwZ2KOhbrJEcbuzSlGUM1OJG
-                  wI8n9VH4ssHaosrGhOHBLMML4vQVvOdepWDlYNT55H8BMGWYgmmVMjrqsD05CndkNzZPX92AGNQU
-                  eSCywAvSzIVSlG4YVeDyKAE3FlmZAfeyMKnQIZLVAyqHnJweHuN+bBOG80KK8fK5ZOfaHy/diV+2
-                  ygRvh+55SUyjkdkBQ3ynd3YkfdZkkx00YpeBRxctbA3GZsi8x/3370xecjHKjdAkjPCnif+snx6c
-                  /5P3j528SeGleZjlob/v+2Ea4sf/HSfvaybQL5+8u5L6103eso58GgrXqwMPJ29du5zj5E2pH2f4
-                  nxMn1P83Ju8LBjZDIQ1+5uS9evMFAAD//wMAK1pzy/YKAAA=
+              string:
+                  '[{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Sat,
+                  Sep 16, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-16T05:45:00-06:00","open_timestamp":"2022-09-17T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-09T17:30:06.594179783Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":25,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-09T17:30:06.594179783Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"3d931389-ebdb-45ce-a57e-6d9b9ea1947c","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-16","tour_date_start_timestamp":"2023-09-16T00:00:00-06:00","tour_end_timestamp":"2023-09-16T10:45:00-06:00","tour_id":"291","tour_start_timestamp":"2023-09-16T07:45:00-06:00","tour_time":"0745","validated_count":0},{"arrival_time_guest_counts":{},"attributes":{"lottery_selection_label":"Sat,
+                  Sep 16, 2023"},"availability_lock":"0001-01-01T00:00:00Z","booking_window_open_override":null,"booking_windows":{"PRIMARY":{"advanced_sales_details":{"threshold_exists":false,"threshold_tickets_remaining":0},"close_timestamp":"2023-09-16T05:45:00-06:00","open_timestamp":"2022-09-17T08:00:00-06:00"}},"calculate_booking_window_close":false,"created_date":"2023-03-07T18:49:42.224844442Z","deallocated_reservations":[],"envelope":{},"facility_id":"234787","fulfilled_count":0,"inventory_by_guest_type_id":{},"inventory_count":{"ANY":20,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"last_manual_update":"0001-01-01T00:00:00Z","last_manual_update_local_date_time":{},"last_updated_date":"2023-03-07T18:49:42.224844442Z","lottery_instance_id":"","reservation_count":{"ANY":0,"ANY_SECONDARY":0,"FIT":0,"FIT_SECONDARY":0,"LOTTERY":0},"reservation_id_bucket_count":{},"reservation_type":"","rolling_release_date":null,"schedule_id":"3bf5204d-1f31-45ff-aa7e-802695946702","status":"OPEN","ticket_validation_window_close_timestamp":null,"ticket_validation_window_open_timestamp":null,"tour_date":"2023-09-16","tour_date_start_timestamp":"2023-09-16T00:00:00-06:00","tour_end_timestamp":"2023-09-16T10:00:00-06:00","tour_id":"403","tour_start_timestamp":"2023-09-16T07:45:00-06:00","tour_time":"0745","validated_count":0}]
+
+                  '
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -850,8 +1185,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -872,6 +1205,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "2806"
           status:
               code: 200
               message: OK

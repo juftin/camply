@@ -18,9 +18,7 @@ interactions:
           uri: https://api.pushover.net/1/messages.json?html=1&message=%3Cb%3ECampsite+Id%3A%3C%2Fb%3E+100%0A%3Cb%3EBooking+Date%3A%3C%2Fb%3E+2023-09-01%0A%3Cb%3EBooking+End+Date%3A%3C%2Fb%3E+2023-09-02%0A%3Cb%3EBooking+Nights%3A%3C%2Fb%3E+1%0A%3Cb%3ECampsite+Site+Name%3A%3C%2Fb%3E+Test+Campsite+Name%0A%3Cb%3ECampsite+Loop+Name%3A%3C%2Fb%3E+A1%0A%3Cb%3ECampsite+Type%3A%3C%2Fb%3E+Test%0A%3Cb%3ECampsite+Occupancy%3A%3C%2Fb%3E+%281%2C+5%29%0A%3Cb%3ECampsite+Use+Type%3A%3C%2Fb%3E+Test%0A%3Cb%3EAvailability+Status%3A%3C%2Fb%3E+Available%0A%3Cb%3ERecreation+Area%3A%3C%2Fb%3E+Test+Recreation+Area%0A%3Cb%3ERecreation+Area+Id%3A%3C%2Fb%3E+20%0A%3Cb%3EFacility+Name%3A%3C%2Fb%3E+Test+Campground%0A%3Cb%3EFacility+Id%3A%3C%2Fb%3E+50%0A%3Cb%3EBooking+Link%3A%3C%2Fb%3E+%3Ca+href%3D%27https%3A%2F%2Fyoutu.be%2FeBGIQ7ZuuiU%27%3Ehttps%3A%2F%2Fyoutu.be%2FeBGIQ7ZuuiU%3C%2Fa%3E%0A%3Cb%3EPermitted+Equipment%3A%3C%2Fb%3E+%0A++-+&title=Test+Recreation+Area+%7C+Test+Campground+%7C+2023-09-01&token=REDACTED&user=REDACTED
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAAwTBQRKAIAgF0Lv8dSwkRMfbMIn7AldNd++9F5GWOzDKgcfv7ZEYaLy8sHdi6ReJ
-                  ipG5NpJZ5FyzirHi+wEAAP//AwA1ia9lPQAAAA==
+              string: '{"status":1,"request":"72fe12e8-248c-464a-ae67-4d143fd54a26"}'
           headers:
               Access-Control-Allow-Headers:
                   - X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token,
@@ -39,8 +37,6 @@ interactions:
                   - max-age=0, private, must-revalidate
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -78,6 +74,8 @@ interactions:
                   - "0.058920"
               X-XSS-Protection:
                   - 1; mode=block
+              content-length:
+                  - "61"
           status:
               code: 200
               message: OK

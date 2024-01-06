@@ -122,36 +122,65 @@ interactions:
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A300004&fq=entity_type%3Atour&size=1000&start=0
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA+xX224bNxD9lcG+1AbkzcqWbElvviS9GanruC3QtBDoXWqXEJdckFzJal7yIS2Q
-                  b8mn5Et6yNVlLctN3SZvMQRY4nJmzgzPmeG+iQy3tXQ2Gr1+E7E8Nzxnjo9TLuU41TNuWM6jURIP
-                  ekn4Gxz1esf95KgTsebh2DAnVB6NevEgGRx2h50oZWVlBby4RcXHejKuLXy8jhSLfu9EGbepEZUT
-                  WkWj6ELYEIZcwSnVUptJLUmKGbekJ3QmpCSmMnphmEqx9j1f2LAgOTOKCj33lguytZnBKAvPDBPW
-                  f6UJK4VckFDBfcGMLQjxuXHE1UwYrUquHOnmefB9jTgF3ejaxPT8rgIgHh6asF5o5NIhmxZaSzJa
-                  l/jhsKdDc22mttBVJ0Aog53hDMAAe2J0GdwcJ7QAcrsJmDIpAdYVAonBADFKHtOlsA7LS2gvma8X
-                  k3TNc//A+OJ8I3xokdKVZL42SLM7POl3gkVldIU8kbwlqVPmnWEDI8NL7YDX6HS6QHS1QAw8+U7b
-                  omZ0Y3gr3BUz0xjVgDtfthkn4SwVq8ApSspSwEHSWSmsFR6vbhUM0WHpsNkDwKO8Fhm+zZmcgjZY
-                  qY1FBBiEr74EAFkwOTnA2XGPTHKVu6I5dWYdDRMqhaodh+HXRtcVWfEHD4mKUizjHPap4rqSPI7A
-                  OWF46lMCz6Pf6iQ5Sqvwjzc/AFCrvFkBAXLUFyWoDZPIlK6Mzg0rLTWbn7V3M0evpouvbMjg0oen
-                  knNHWB8eD0/oJ8fAJhBS+kxu5qDbQgnFUVlZ2g6dI8REGyUY7Skd7HzxZgIC0oZS7OdmP15GXoFW
-                  H8lhi8l2B/A1zC3mgytTVNB3ASC2OKzHmfGPkN+/e//uAeyPAb9YH9SKRi1oAVPgBwSlpdRzO1rH
-                  aHt5YrVerMTZTvTnZTrnIZ1dBdxbyQoFOO73e01JzuQs69zzdH4a74/owqA9kdU1mAyRrPciE0Ps
-                  FuvUJ8/4dea/QDf0XLnQ+WhvY+EbhbSapkrPlS/Gh7d//lh7ir2qDESFemmWfXj7135Mp27Ljy9i
-                  x3eHlIduqRHK0CAeNsEhxRp99ZJPfFsEkjOExYYLVtJ1Fi/TQAJb65sskvjkEVeto/Qme5daT4Oh
-                  z9aK3Lc61NKyRUipxd8ml3XsbUeMIHCHjsay/RaSbsBBtXIojY+x5PYWpUL3MaF/MLIl2jFVSM53
-                  p9CPw0TxPQzdHhMlFVKgrS5Z35KL9wMf+CyAOejL+6h8c16Bd6LkO5gdxsPj7AvQKpzZnSgRCBPt
-                  qL9qgQFepvHFa1GoVNaQLLo6OnImlmLNuGRh1NR+Lt6i7YPGSMm3a+ZnYYscOLcdumwchKQB5p4B
-                  ZXXIqeVTTxxXHgCAtHEcrTt3KILBHUI2NQGd0auZ5b5esElTbTKUTy7iTyjwH5gF+qdJ+6TXG/S3
-                  +t6FiTu7mvkupbcmwIaaR3HvvthfaoPtK5UG3d5fekS43eO4f09u1yIvPrN0vyh3S7m7aPVQs73k
-                  M2p2x6z9l5o4185pNdc6e4ow9GRC3x50kwDlDree7vGAFG62DSUC+W8h4eamGi6kOJm1OlTgtp+D
-                  omGqxe3IT61nLTjradYekofDDUlPm5PEZbQKLMTN9z5tNzMzVDyE7na3Zt3/UcwXwfwnwTzKuYeq
-                  6fp3LhOQdddD78F9GHd82APsWGS44neTXrJZ8q+hWPTvF1jM9di/Xo4z+Mcq3mm7B+FzkySj8PkV
-                  uwpXyvEneVX9GwAA///sWD1vwyAQ/S+ebQM2IThb9oxdK4Qd4qbCH7JxKlXKf++7mCRSpQ7dw3gH
-                  BzzeHTxeUvUlVf8hVR/8NZGvHhsMuB9gLmXO5UbzgsdGbhTnuz8TeA4IVQkpqtjQo7cdOX9RhhxL
-                  V7uJPmjWPxyI440QaTJMbUyjQqMbKgSYt1pKmlU+jTH23wrxbUUKeNxV9HNwzMt7nSHH5C5n92WQ
-                  /K0zy+Th/ghhnHeMNcc+hzgE7Sh+3g4XNi61Pzes4KJiXDNRMrFlUrAbfEoJ7fRJZdKqOpP8qDNd
-                  N5vMylJXasvVsSnNlvP8c2wx9UoaW3ssKUyLSxMqYOZ76GmN+86BF5YdhtnscQ2j5GNM3MCD3Ddc
-                  r+9pQoec7ADlPDrvAa2xSxjwpCV16wDkCQIOU8zBToGKEAUbgsV+xfUHAAD//wMAtgN4qJQTAAA=
+              string:
+                  "{\"results\":[{\"aggregate_cell_coverage\":0.8400000083446503,\"average_rating\":4.808219,\"campsite_type_of_use\":[\"na\"],\"description\":\"Discover
+                  the colorful lives of Bill and Frances Keys and learn how they survived and
+                  raised a family in the harsh desert environment on the Keys Ranch Tour. Explore
+                  the ranch house, school room, store, workshop, and more treasures from the
+                  60 years the Keys called this area home. Listed on the National Register of
+                  Historic Places in 1975, the property is located in a remote, rocky canyon
+                  in Joshua Tree National Park. To preserve its historic character, admission
+                  to the ranch is restricted to guided walking tours. The tours are a half-mile
+                  in length and last 90 minutes. Group size is limited to 25 people.\",\"directions\":\"\\u003cp\\u003e\\u003cstrong\\u003eRanger
+                  Naturalist Programs \\u003c/strong\\u003eat Sky's The Limit meet at 9697 Utah
+                  Trail in Twentynine Palms, California (not at the visitor center).\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eKeys
+                  Ranch Tours\\u003c/strong\\u003e meet at the Keys Ranch locked gate inside
+                  Joshua Tree National Park (not at the visitor center).\_\_\\u003c/p\\u003e\\n\\n\\u003cp\\u003e\\u003cstrong\\u003eDirections
+                  to the Keys Ranch gate are as follows:\_\\u003c/strong\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  the Joshua Tree Visitor Center\\u003c/strong\\u003e (located at 6554 Park
+                  Blvd, Joshua Tree CA.): Drive south on Park Blvd for about 5 miles to the
+                  West Entrance (Park Blvd is also known as \u201CQuail Springs Road\u201D).
+                  At West Entrance gate, proceed another 8.9 miles. Turn Left onto Barker Dam
+                  Rd. Drive on Barker Dam Rd. for about 0.7 miles. Turn Left onto Keys Ranch
+                  Rd. (Look for the sign that says \u201CRanch Tours\u201D). Drive on Keys Ranch
+                  Rd. (a dirt road) for about 1 mile until the locked Keys Ranch gate. There
+                  is a small parking area and restroom facility at the locked gate. This is
+                  your meeting place. Drive time to the Keys Ranch from Joshua Tree Visitor
+                  Center is approximately 35 minutes and does not include any additional delays
+                  caused by congestion at entrance gates. \\u003cstrong\\u003eDelays at this
+                  entrance gate due to congestion often add an additional 30 minutes to travel
+                  time so please plan accordingly.\\u003c/strong\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  the Oasis Visitor Center\\u003c/strong\\u003e (located at 74485 National Park
+                  Dr., Twentynine Palms, CA.): Drive south on Utah Trail for about 3.4 miles
+                  to the North Entrance. At North Entrance gate, proceed another 16.5 miles.
+                  Turn Right onto Barker Dam Rd. Drive on Barker Dam Rd. for about 0.7 miles.
+                  Turn Left onto Keys Ranch Rd (Look for the sign that says \u201CRanch Tours\u201D).
+                  Drive on Keys Ranch Rd. (a dirt road) for about 1 mile until the locked Keys
+                  Ranch gate. There is a small parking area and restroom facility at the locked
+                  gate. This is your meeting place. Drive time to the Keys Ranch from Oasis
+                  Visitor Center is approximately 40 minutes and does not include any additional
+                  delays caused by congestion at entrance gates.\_\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cstrong\\u003eFrom
+                  the Cottonwood Visitor Center\\u003c/strong\\u003e (located off I-10 at exit
+                  168 near the south border of the park): Drive north on Pinto Basin Road/Cottonwood
+                  Springs Rd for about 29.7 miles. At the stop sign, turn Left onto Park Blvd
+                  and drive 11.9 miles. Turn Right onto Barker Dam Rd. Drive on Barker Dam Rd.
+                  for about .7 miles. Turn Left onto Keys Ranch Rd (Look for the sign that says
+                  \u201CRanch Tours\u201D). Drive on Keys Ranch Rd. (a dirt road) for about
+                  1 mile until the locked Keys Ranch gate. There is a small parking area and
+                  restroom facility at the locked gate. This is your meeting place. Drive time
+                  to the Keys Ranch from Cottonwood Visitor Center is approximately 1 hour and
+                  15 minutes.\\u003c/p\\u003e\\n\",\"entity_id\":\"1040\",\"entity_type\":\"tour\",\"go_live_date\":\"0001-01-01T00:00:00Z\",\"html_description\":\"Discover
+                  the colorful lives of Bill and Frances Keys and learn how they survived and
+                  raised a family in the harsh desert environment on the Keys Ranch Tour. Explore
+                  the ranch house, school room, store, workshop, and more treasures from the
+                  60 years the Keys called this area home. Listed on the National Register of
+                  Historic Places in 1975, the property is located in a remote, rocky canyon
+                  in Joshua Tree National Park. To preserve its historic character, admission
+                  to the ranch is restricted to guided walking tours. The tours are a half-mile
+                  in length and last 90 minutes. Group size is limited to 25 people.\",\"id\":\"1040_tour\",\"latitude\":\"34.04580200000000\",\"longitude\":\"-116.16914199999999\",\"name\":\"Keys
+                  Ranch Tour\",\"number_of_ratings\":511,\"org_id\":\"128\",\"parent_id\":\"300004\",\"parent_name\":\"Joshua
+                  Tree National Park Tours and Programs\",\"parent_type\":\"facility\",\"preview_image_url\":\"https://cdn.recreation.gov/public/2019/08/13/17/41/1040_6618e8f6-4a6b-40d8-8bc5-a43896706dc3_700.jpg\",\"reservable\":true,\"time_zone\":\"America/Los_Angeles\",\"type\":\"Historic
+                  Tour\"}],\"size\":1,\"spelling_autocorrected\":false,\"start\":\"0\",\"total\":1}"
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -159,8 +188,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -181,6 +208,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "5012"
           status:
               code: 200
               message: OK

@@ -115,25 +115,38 @@ interactions:
           uri: https://www.recreation.gov/api/search/campsites?fq=asset_id%3A252037&include_non_site_specific_campsites=True&size=1000&start=0
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA7SX227jNhCGX4XQtW2dfL5zDrsNNom9cdI2KAqBpkc2a1pUKcpZN9h371ArHwLQ
-                  2lROdSWRQ32cmZ9D8tVhdJ1mXEPmDP94dShjkGV8JsAZOjEVGTgNh2YZ6IjPsSnoBF7Y27cldG0M
-                  p6OHq5v7azK5Hn0ht+Pxl/HT495Gb1Njc4mchZJ5Mjc9Wis+y/fU3WfEqIaFVFscYCYVzUFTLrLj
-                  IcVEBscN5SwMIeYKyEgI+QJvONGGitwYPSPye6MO0g9szCWwlcw1eeRrsAL9YOh5ZHJXkxraPP2F
-                  r4DcJOSKZ5omDIiWZIp/sU7Aq0nudizkCejsf4pvz+ap8YqMClFacVeKb6B5k9Rkdmw5vaPfyH2+
-                  JjImE5CpsIe1XRfZtSF58g6kX1e5/inlIva0cM/Sbd8W2SKbD1TzZGFFTpSZTD1gu28B3koczmVy
-                  BhT+znm6hkSfzmivOqO/wpIzAXYBV+T05+QgtJCLJfFCt+Q60fgfG/SCslXlonkHul2F/qzo3K6q
-                  OzkHhaCz2LbKtGffQrLQS3uwvYpi+I5E23w21aLMcCW6cxbZluijOlUpseCsWNvK1T7W01zFlNkz
-                  jRrYgDjNxl8lXHOw7ASebedBJmV2PT/XoYSerSze0ZQ8k0sp1Zwn9MSWGvrdVoWSKjyz5fFrzkGT
-                  kQL6cc51bTVpwlnCGXmksxMbTC2UbVFcXHz9wETZKvtnxYXI3E/mvPdwqrTXw/k2jyYCdT4nuJWg
-                  Qv5rJa+CWViFUxOuP1LrtiVltP77z7Teaxda/7Oxvyn8uAlgLQ3CvnPUrCADtYHdgd9s9s1pCozH
-                  nB3b4ZlV53jwd+6lJg/FoFKRjOttsWtvqdAyMS14YcBdLGK4bWDPE/qHWZjiHwovY0AcrFNRfA9f
-                  nXFsTlB0hba718N9pOx42/ioaILTwkMCdh0+Dga/UbHCwzb2lm+7ru8NB7lc58XUwkGr0/YCP+zj
-                  MxgMPBwqZLLY9Tf9wGv5/V6/g0/XM09hIdPTF6gyT56P71ItysCHu8+y+2l6NSKfJIZfkykGkxcF
-                  OaXK1HXb3e1NV/UV7o1pmVh2fJNLQa25xqRE+70Er3SollTBhsNLxNd0AVGuBI5cap1mQ9dl86Sl
-                  gGHFM6FuLeTGTfOZ4MwNPH/geqHr993Ad/3A/SGzaBb2Bm3wOk0v7rNmu9eF5sAD2owp7XoxQxsI
-                  I7/d9lp/paYWqIOshsU1tuEY2cFOSJdU8FiqhJuaW/p18No0RDKO8sy0jzeAhoulLlZBxv/BRly2
-                  WQpCYOWJaK4lkwodwjAc45Q2yfsXAAD//wKZl1+SCPS/YS0AAAD//wMAY2UIOG8PAAA=
+              string:
+                  '{"campsites":[{"accessible":"false","asset_id":"252037","asset_name":"SARDINE
+                  PEAK LOOKOUT","asset_type":"Campground","attributes":[{"attribute_category":"site_details","attribute_id":9,"attribute_name":"Campfire
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":12,"attribute_name":"Checkout
+                  Time","attribute_value":"12:00 PM"},{"attribute_category":"site_details","attribute_id":39,"attribute_name":"Hike
+                  In Distance to Site","attribute_value":"0"},{"attribute_category":"site_details","attribute_id":65,"attribute_name":"Pets
+                  Allowed","attribute_value":"Yes"},{"attribute_category":"site_details","attribute_id":79,"attribute_name":"Site
+                  Access","attribute_value":"Drive-In"},{"attribute_category":"site_details","attribute_id":52,"attribute_name":"Max
+                  Num of People","attribute_value":"4"},{"attribute_category":"site_details","attribute_id":56,"attribute_name":"Min
+                  Num of People","attribute_value":"1"},{"attribute_category":"site_details","attribute_id":11,"attribute_name":"Checkin
+                  Time","attribute_value":"1:00 PM"},{"attribute_category":"site_details","attribute_id":82,"attribute_name":"Site
+                  Rating","attribute_value":"Prime"},{"attribute_category":"site_details","attribute_id":48,"attribute_name":"Location
+                  Rating","attribute_value":"Prime"},{"attribute_category":"equipment_details","attribute_id":57,"attribute_name":"Min
+                  Num of Vehicles","attribute_value":"1"},{"attribute_category":"equipment_details","attribute_id":23,"attribute_name":"Driveway
+                  Entry","attribute_value":"Back-In"},{"attribute_category":"equipment_details","attribute_id":24,"attribute_name":"Driveway
+                  Grade","attribute_value":"Moderate"},{"attribute_category":"equipment_details","attribute_id":25,"attribute_name":"Driveway
+                  Length","attribute_value":"100"},{"attribute_category":"equipment_details","attribute_id":54,"attribute_name":"Max
+                  Vehicle Length","attribute_value":"15"},{"attribute_category":"equipment_details","attribute_id":53,"attribute_name":"Max
+                  Num of Vehicles","attribute_value":"2"},{"attribute_category":"equipment_details","attribute_id":26,"attribute_name":"Driveway
+                  Surface","attribute_value":"Gravel"},{"attribute_category":"amenities","attribute_id":70,"attribute_name":"Privacy","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":301,"attribute_name":"Map
+                  Y Coordinate","attribute_value":"316.0"},{"attribute_category":"amenities","attribute_id":73,"attribute_name":"Quiet
+                  Area","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":67,"attribute_name":"Picnic
+                  Table","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":4,"attribute_name":"BBQ","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":38,"attribute_name":"Grills/Fire
+                  Ring","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":314,"attribute_name":"Placed
+                  on Map","attribute_value":"1"},{"attribute_category":"amenities","attribute_id":31,"attribute_name":"Fire
+                  Pit","attribute_value":"Y"},{"attribute_category":"amenities","attribute_id":300,"attribute_name":"Map
+                  X Coordinate","attribute_value":"746.0"}],"campsite_id":"100238","campsite_reserve_type":"Site-Specific","campsite_status":"Not
+                  Reservable","city":"Loyalton","country_code":"United States","fee_templates":{"Off
+                  Peak":"Off PeakLOOKOUT","Peak":"PeakLOOKOUT","Transition":"TransitionLOOKOUT","Walk
+                  In":"Walk InLOOKOUT"},"latitude":"39.54021388889990","longitude":"-120.18785555600000","loop":"SARDINE
+                  PEAK LOOKOUT","name":"01","org_id":"131","org_name":"USDA Forest Service","parent_asset_id":"252037","parent_asset_name":"SARDINE
+                  PEAK LOOKOUT","parent_asset_type":"campground","permitted_equipment":[],"preview_image_url":"https://cdn.recreation.gov/public/2019/03/18/21/12/100238_b3794e05-0f8c-476e-90ea-faa60fc023e3_1440.jpg","reservable":false,"state_code":"California","type":"LOOKOUT","type_of_use":"Overnight"}],"size":1,"spelling_autocorrected":false,"start":"0","total":1}'
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -141,8 +154,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -159,6 +170,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Miss from cloudfront
+              content-length:
+                  - "3951"
           status:
               code: 200
               message: OK
