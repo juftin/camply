@@ -25,7 +25,7 @@
         [
             "@semantic-release/git",
             {
-                "assets": ["pyproject.toml", "*/__about__.py"],
+                "assets": ["pyproject.toml", "*/_version.py"],
                 "message": "🔖 camply ${nextRelease.version}\n\n${nextRelease.notes}\n[skip ci]"
             }
         ],
