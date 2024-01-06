@@ -185,7 +185,8 @@ warn_unused_ignores = true
 filterwarnings = [
   "error",
   "ignore::DeprecationWarning:pkg_resources",
-  "ignore:The --rsyncdir command line argument and rsyncdirs config variable are deprecated.:DeprecationWarning"
+  "ignore:The --rsyncdir command line argument and rsyncdirs config variable are deprecated.:DeprecationWarning",
+  "ignore:datetime.datetime.utcfromtimestamp:DeprecationWarning:dateutil.tz.tz"
 ]
 
 [tool.ruff]
