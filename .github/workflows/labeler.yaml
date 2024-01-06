@@ -22,7 +22,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Check out the repository
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: Run Labeler
               uses: crazy-max/ghaction-github-labeler@v4.0.0
               with:
