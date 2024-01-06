@@ -102,19 +102,17 @@ interactions:
           uri: https://www.recreation.gov/api/search?fq=asset_id%3A10089508&fq=entity_type%3Atimedentry_tour&size=1000&start=0
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAA6xUy27cMAz8FcLnXduy931LgxY95FAkQS9pYWhl2qtGlgxKtpsE+fdS+0CaFr3V
-                  wD7AociZIeWXhNAPJvhk9/CSyLYlbGXASqExlXIjkmwx2RVpIbbxWYnNssyL9XKWyBNYkQzatslu
-                  ka4KDivZ9V5zifDUY+WaavBc4CGxMvk+S2r0inQftLPJLvlCbtQcgsYROIvQkx65PYx40MogBAe9
-                  pEeQAcIBIdZNE66iCVWswbSTb0Oel6o//uA9MS3DfOCzbg+TfILtGvYYJkQLH9DWIPlzN1huhDSD
-                  jz91ALEU2bULwdnJuRpu6xTuB7KA0geQTUAC5LxYNZ7uySnEmhmRG9oDDLZG6qWPMoxxU8zzurU+
-                  0r+Ro4Tb2AyumVp6/AbtQe7dwK2h06yzdpM9KuwZreGT46kEuEMatUIgJ2vWkZfs0TFriqhn58A1
-                  x0DMSE9GZGcnvlk2Cm3Q4anSNfsk8nyzXebbt3CcEANBd1hziDjiBmL8EDpT/Z9RvWtd/d3K8PaE
-                  oY48FmXKWWWRX54IO9te8LkoRFquNovFJUFwhpVdBP/wGb6ead2iZxflaVk4e+j2SHEtT2vLCyRE
-                  MUsctWeXyliUlTDLd75t3sL/aHkfxf3ekCPqEYN/O3l2vJFKG55ABAhHjVOlu3iXBjIMH0Lo/S7L
-                  VG1TXnTCY7W0dWPWD3ujVVbkRZHlq6wos0JkeZldSFZitSmWq30zF4tVOWen6vl2uVbzBjd1s2ga
-                  XG5Vtc7z9Effcns6sd0bphVowNlxG6pnnjATueqQtJLZjfPVlW3RYNRyFnHSHKf4yhfb62cOCv7T
-                  86uDna3kEJxyFG8qso+NNJ7L+yAp8Ok43OCCZL3i9RcAAAD//wMAP08sUYYEAAA=
+              string:
+                  '{"results":[{"aggregate_cell_coverage":2.2199999618530275,"average_rating":4.625,"campsite_type_of_use":["na"],"description":"Provides
+                  for one private vehicle to park at the site.","directions":"\u003cp\u003eTraveling
+                  Highway 97 between Bend and Sunriver, Exit 151/Cottonwood Rd. Turn east after
+                  exiting and proceed through underpass following signs to Lava River Cave.
+                  Cave is about 1 mile down the paved Forest Service road 9703 on the west side
+                  of the road.\u003c/p\u003e\n","entity_id":"10089509","entity_type":"timedentry_tour","html_description":"Provides
+                  for one private vehicle to park at the site.","id":"10089509_timedentry_tour","latitude":"43.89532000000000","longitude":"-121.36844000000001","name":"Lava
+                  River Cave Vehicle Reservations","number_of_ratings":112,"org_id":"131","parent_id":"10089508","parent_name":"Lava
+                  River Cave Timed Reservation Tickets","parent_type":"facility","preview_image_url":"https://cdn.recreation.gov/public/2022/06/23/21/03/10089508_168256bf-1463-400d-957c-fe8df4ffe59c_700.jpg","reservable":true,"time_zone":"America/Los_Angeles","type":"Cave
+                  Tour"}],"size":1,"spelling_autocorrected":false,"start":"0","total":1}'
           headers:
               Access-Control-Allow-Origin:
                   - "*"
@@ -124,8 +122,6 @@ interactions:
                   - h3=":443"; ma=86400
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -146,6 +142,8 @@ interactions:
                   - DEN52-P2
               X-Cache:
                   - Hit from cloudfront
+              content-length:
+                  - "1158"
           status:
               code: 200
               message: OK

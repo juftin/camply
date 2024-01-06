@@ -3028,9 +3028,7 @@ interactions:
           uri: https://api.pushover.net/1/messages.json?html=1&message=%3Cb%3ECampsite+Id%3A%3C%2Fb%3E+4501%0A%3Cb%3EBooking+Date%3A%3C%2Fb%3E+2023-07-13%0A%3Cb%3EBooking+End+Date%3A%3C%2Fb%3E+2023-07-14%0A%3Cb%3EBooking+Nights%3A%3C%2Fb%3E+1%0A%3Cb%3ECampsite+Site+Name%3A%3C%2Fb%3E+Tent+Hike+In+Primitive+Campsite+%23SUGA%0A%3Cb%3ECampsite+Loop+Name%3A%3C%2Fb%3E+None%0A%3Cb%3ECampsite+Type%3A%3C%2Fb%3E+Remote+Camping%0A%3Cb%3ECampsite+Occupancy%3A%3C%2Fb%3E+%280%2C+1%29%0A%3Cb%3ECampsite+Use+Type%3A%3C%2Fb%3E+Hike+In%0A%3Cb%3EAvailability+Status%3A%3C%2Fb%3E+Available%0A%3Cb%3ERecreation+Area%3A%3C%2Fb%3E+Calaveras+Big+Trees+SP%0A%3Cb%3ERecreation+Area+Id%3A%3C%2Fb%3E+5%0A%3Cb%3EFacility+Name%3A%3C%2Fb%3E+North+Grove+Environmental%0A%3Cb%3EFacility+Id%3A%3C%2Fb%3E+343%0A%3Cb%3EBooking+Link%3A%3C%2Fb%3E+%3Ca+href%3D%27https%3A%2F%2Fwww.reservecalifornia.com%2FWeb%2FDefault.aspx%23%21park%2F5%2F343%27%3Ehttps%3A%2F%2Fwww.reservecalifornia.com%2FWeb%2FDefault.aspx%23%21park%2F5%2F343%3C%2Fa%3E%0A%3Cb%3EPermitted+Equipment%3A%3C%2Fb%3E+%0A++-+&title=Calaveras+Big+Trees+SP+%7C+North+Grove+Environmental+%7C+2023-07-13&token=REDACTED&user=REDACTED
       response:
           body:
-              string: !!binary |
-                  H4sIAAAAAAAAAwTBQQ6AMAgEwL9wlqSNrUB/g816V+jJ+HdnXor0XEGjbvTgXoikQda0Yqoyugm3
-                  U51tN2egXBA9CmTS9wMAAP//AwATMdr0PQAAAA==
+              string: '{"status":1,"request":"9481ec88-e597-4b8a-939a-ee0fe7860e7c"}'
           headers:
               Access-Control-Allow-Headers:
                   - X-Requested-With, X-Prototype-Version, Origin, Accept, Content-Type, X-CSRF-Token,
@@ -3049,8 +3047,6 @@ interactions:
                   - max-age=0, private, must-revalidate
               Connection:
                   - keep-alive
-              Content-Encoding:
-                  - gzip
               Content-Type:
                   - application/json; charset=utf-8
               Date:
@@ -3088,6 +3084,8 @@ interactions:
                   - "0.059695"
               X-XSS-Protection:
                   - 1; mode=block
+              content-length:
+                  - "61"
           status:
               code: 200
               message: OK
