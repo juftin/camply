@@ -6,6 +6,7 @@ on:
             - main
         paths:
             - camply/**
+            - tests/**
             - pyproject.toml
             - .github/workflows/tests.yaml
     pull_request:
