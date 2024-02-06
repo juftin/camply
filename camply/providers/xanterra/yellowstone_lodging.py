@@ -88,9 +88,7 @@ class Yellowstone(BaseProvider):
         dict
         """
         yellowstone_headers = {}
-        user_agent = {
-            "User-Agent": UserAgent(use_external_data=False, browsers=["chrome"]).chrome
-        }
+        user_agent = {"User-Agent": UserAgent(browsers=["chrome"]).random}
         yellowstone_headers.update(user_agent)
         yellowstone_headers.update(STANDARD_HEADERS)
         yellowstone_headers.update(YellowstoneConfig.API_REFERRERS)

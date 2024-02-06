@@ -11,6 +11,7 @@ from datetime import date, datetime, timedelta
 from typing import Any, Dict, List, Optional, Union
 
 import ratelimit
+from fake_useragent import UserAgent
 from pydantic import ValidationError
 
 from camply.config import FileConfig
@@ -322,6 +323,8 @@ class UseDirectProvider(BaseProvider, ABC):
             key: value for key, value in data.items() if value not in [None, [], ""]
         }
         url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.AVAILABILITY_ENDPOINT}"
+        random_ua = UserAgent(browsers=["chrome"]).random
+        self.json_headers["User-Agent"] = random_ua
         response = self.make_http_request_retry(
             url=url,
             method="POST",
