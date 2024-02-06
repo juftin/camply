@@ -335,9 +335,7 @@ class GoingToCamp(BaseProvider):
         url = None
         if endpoint:
             url = endpoint.format(hostname)
-        user_agent = {
-            "User-Agent": UserAgent(browsers=["chrome"]).random
-        }
+        user_agent = {"User-Agent": UserAgent(browsers=["chrome"]).random}
         response = requests.get(url=url, headers=user_agent, params=params, timeout=30)
         if response.ok is False:
             error_message = f"Receiving bad data from GoingToCamp API: status_code: {response.status_code}: {response.text}"

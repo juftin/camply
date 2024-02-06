@@ -579,9 +579,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
         requests.Response
         """
         # BUILD THE HEADERS EXPECTED FROM THE API
-        user_agent = {
-            "User-Agent": UserAgent(use_external_data=False, browsers=["chrome"]).chrome
-        }
+        user_agent = {"User-Agent": UserAgent(browsers=["chrome"]).random}
         headers = STANDARD_HEADERS.copy()
         headers.update(user_agent)
         headers.update(RecreationBookingConfig.API_REFERRERS)
