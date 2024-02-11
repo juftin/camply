@@ -126,6 +126,10 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
     -   Search for campsite stays with consecutive nights. Defaults to 1 which returns all campsites
         found.
         [\*\*_example_](#look-for-consecutive-nights-at-the-same-campsite)
+-   `--exact-windows`
+    -   Search only for bookings which exactly match one of the ranges specified with the `--start-date` and
+        `--end-date` arguments.
+        [\*\*_example_](#look-for-exact-date-ranges)
 -   `--provider`: `PROVIDER`
     -   Camping Search Provider. Defaults to 'RecreationDotGov', not case-sensitive. Options include:
         [RecreationDotGov](#searching-for-a-campsite), [Yellowstone](#look-for-a-campsite-inside-of-yellowstone),
@@ -595,6 +599,30 @@ camply campsites \
     --end-date 2023-08-01 \
     --nights 4
 ```
+
+### Look for Exact Date Ranges
+
+Sometimes you have multiple specific date ranges you are searching for that do not necessarily share the
+same number of nights. Pass the `--exact-windows` flag to tell camply to only search for campsites with
+stays that exactly match the one or more date ranges specified with `--start-date` and `--end-date`.
+
+The below example will search for two night availabilities starting 2023-09-08 and three night
+availabilities starting 2023-09-15, but will not search for two night availabilities between 2023-09-15 and
+2023-09-18.
+
+```commandline
+camply campsites \
+    --rec-area 2991 \
+    --start-date 2023-09-08 \
+    --end-date 2023-09-10 \
+    --start-date 2023-09-15 \
+    --end-date 2023-09-18 \
+    --exact-windows
+```
+
+!!! note
+
+    You cannot specify `--exact-windows` alongside `--nights`, `--day`, or `--weekends`.
 
 ### Look for a Campsite Inside of Yellowstone
 

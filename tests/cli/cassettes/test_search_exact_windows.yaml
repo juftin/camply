@@ -1,0 +1,235 @@
+interactions:
+    - request:
+          body: null
+          headers:
+              User-Agent:
+                  - Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+                    Chrome/30.0.1599.17 Safari/537.36
+              accept:
+                  - application/json
+              apikey:
+                  - REDACTED
+          method: GET
+          uri: https://ridb.recreation.gov/api/v1/facilities/232045?full=True
+      response:
+          body:
+              string:
+                  "{\"ACTIVITY\":[{\"ActivityID\":5,\"ActivityName\":\"BIKING\",\"FacilityActivityDescription\":\"Biking\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"},{\"ActivityID\":6,\"ActivityName\":\"BOATING\",\"FacilityActivityDescription\":\"Canoeing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"},{\"ActivityID\":9,\"ActivityName\":\"CAMPING\",\"FacilityActivityDescription\":\"Camping\",\"FacilityActivityFeeDescription\":\"Camping\",\"FacilityID\":\"232045\"},{\"ActivityID\":11,\"ActivityName\":\"FISHING\",\"FacilityActivityDescription\":\"Fishing\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"},{\"ActivityID\":14,\"ActivityName\":\"HIKING\",\"FacilityActivityDescription\":\"Hiking\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"},{\"ActivityID\":34,\"ActivityName\":\"SWIMMING
+                  SITE\",\"FacilityActivityDescription\":\"Swimming\",\"FacilityActivityFeeDescription\":\"\",\"FacilityID\":\"232045\"}],\"CAMPSITE\":[],\"EVENT\":[],\"Enabled\":true,\"FACILITYADDRESS\":[{\"AddressCountryCode\":\"USA\",\"AddressStateCode\":\"CA\",\"City\":\"Foresthill\",\"FacilityAddressID\":\"20437400\",\"FacilityAddressType\":\"Default\",\"FacilityID\":\"232045\",\"FacilityStreetAddress1\":\"22830
+                  Foresthill Road\",\"FacilityStreetAddress2\":\"\",\"FacilityStreetAddress3\":\"\",\"LastUpdatedDate\":\"2023-09-12\",\"PostalCode\":\"95631\"}],\"FacilityAdaAccess\":\"N\",\"FacilityDescription\":\"<h2>Overview</h2>\\nForbes
+                  Creek Group Campground is located near the southeast shore of Sugar Pine Reservoir
+                  in the Tahoe National Forest. Visitors enjoy the area for its fishing, canoeing
+                  and hiking opportunities. This facility is operated and maintained by the
+                  Tahoe National Forest.<h2>Recreation</h2>\\nFishing, canoeing, swimming and
+                  boating are popular activities on the reservoir. A trail system for walking
+                  and non-motorized biking connects the two group sites at the campground, to
+                  the lake and nearby boat ramp.\_\_ The North Fork of the American River is
+                  nearby, offering opportunities for additional fishing and swimming. Many miles
+                  of hiking, biking and off-road vehicle trails are in the surrounding area.<h2>Facilities</h2>\\nThe
+                  campground offers two group campsites, Madrone and Rocky Ridge. Each site
+                  can accommodate up to 50 people and 18 vehicles. Both sites are equipped with
+                  a central cooking and picnic area, with a large campfire circle and multiple
+                  tables.\_ RVs, trailers and tents are allowed within the campground. An unloading
+                  area and accessible parking are available within the campground.<h2>Natural
+                  Features</h2>\\nThe 160-acre Sugar Pine Reservoir sits at an elevation of
+                  3,600 feet. Stands of cedar and ponderosa pine provides ample shade in the
+                  campground, which overlooks the reservoir. Summertime temperatures are warm
+                  during the day and cool at night.\",\"FacilityDirections\":\"Take Interstate
+                  80 to the Foresthill/Auburn exit, near Auburn. Continue east for 17 miles
+                  to Foresthill. Travel through town, about 9 miles, to Forest Road 10/Sugar
+                  Pine Road. Turn left and continue about 9 miles. Look for the Sugar Pine Recreation
+                  Area sign and turn right on the first road after the sign. Continue about
+                  a half-mile to the Rocky Ridge Group Campground, on the right, and to the
+                  Madrone Group Campground, at the end of the circle.\",\"FacilityEmail\":\"\",\"FacilityID\":\"232045\",\"FacilityLatitude\":39.1311111,\"FacilityLongitude\":-120.7819444,\"FacilityMapURL\":\"\",\"FacilityName\":\"FORBES
+                  CREEK\",\"FacilityPhone\":\"530-367-2224\",\"FacilityReservationURL\":\"\",\"FacilityTypeDescription\":\"Campground\",\"FacilityUseFeeDescription\":\"\",\"GEOJSON\":{\"COORDINATES\":[-120.7819444,39.1311111],\"TYPE\":\"Point\"},\"Keywords\":\"FORB,TAHOE
+                  NF - FS\",\"LINK\":[{\"Description\":\"California State Road Conditions\",\"EntityID\":\"232045\",\"EntityLinkID\":\"f7868acb9eddf3ff68c0365dc733c553\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"California
+                  State Road Conditions\",\"URL\":\"http://www.dot.ca.gov\"},{\"Description\":\"California
+                  State Tourism\",\"EntityID\":\"232045\",\"EntityLinkID\":\"60217acbf4be21db4ffa79eb82b5b513\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"California
+                  State Tourism\",\"URL\":\"http://gocalif.ca.gov/AM/Template.cfm?Section=Home\"},{\"Description\":\"Print
+                  Facility Map\",\"EntityID\":\"232045\",\"EntityLinkID\":\"7126b5c5f6110fa73149b633df8d09a0\",\"EntityType\":\"Facility\",\"LinkType\":\"Other\",\"Title\":\"Print
+                  Facility Map\",\"URL\":\"http://www.recreation.gov/webphotos/facilitymaps/70266_FORB.pdf\"}],\"LastUpdatedDate\":\"2023-09-12\",\"LegacyFacilityID\":\"70266\",\"MEDIA\":[{\"Credits\":\"Joel
+                  Miller USFS November 2018.\",\"Description\":\"Sugar pine\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"8bd74a9a-adaf-4c8b-b06e-b5e8610bfa61\",\"EntityType\":\"Facility\",\"Height\":340,\"IsGallery\":false,\"IsPreview\":false,\"IsPrimary\":true,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"Sugar
+                  pine\",\"URL\":\"https://cdn.recreation.gov/public/2018/11/15/00/31/232045_26f2c941-82f7-4a5f-9dee-0ab2cd6931e9_1440.jpg\",\"Width\":1440},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570442\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/63996.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570533\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/64092.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570422\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/63975.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570605\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/64168.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570434\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/63987.jpg\",\"Width\":540},{\"Credits\":\"\",\"Description\":\"\",\"EmbedCode\":\"\",\"EntityID\":\"232045\",\"EntityMediaID\":\"2570491\",\"EntityType\":\"Facility\",\"Height\":360,\"IsGallery\":true,\"IsPreview\":false,\"IsPrimary\":false,\"MediaType\":\"Image\",\"Subtitle\":\"\",\"Title\":\"FORBES
+                  CREEK\",\"URL\":\"https://cdn.recreation.gov/public/images/64047.jpg\",\"Width\":540}],\"ORGANIZATION\":[{\"LastUpdatedDate\":\"2018-06-26\",\"OrgAbbrevName\":\"FS\",\"OrgID\":\"131\",\"OrgImageURL\":\"fs.jpg\",\"OrgJurisdictionType\":\"State\",\"OrgName\":\"USDA
+                  Forest Service\",\"OrgParentID\":\"163\",\"OrgType\":\"Federal Agency\",\"OrgURLAddress\":\"http://www.fs.fed.us\",\"OrgURLText\":\"\"}],\"OrgFacilityID\":\"AN370266\",\"PERMITENTRANCE\":[],\"ParentOrgID\":\"131\",\"ParentRecAreaID\":\"1077\",\"RECAREA\":[{\"RecAreaID\":\"1077\",\"RecAreaName\":\"Tahoe
+                  National Forest\",\"ResourceLink\":\"http://localhost:3000/api/v1/recareas/1077\"}],\"Reservable\":true,\"StayLimit\":\"\",\"TOUR\":[]}\n"
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Length:
+                  - "7186"
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Wed, 13 Sep 2023 01:34:24 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 1343d20bdb50193b4d08099f66c57450.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - zTgdS6qOQF8sTJi1BNMevUOKxT42NugBWDCiRj6V63QSsslPSBoc8A==
+              X-Amz-Cf-Pop:
+                  - SFO20-C1
+              X-Cache:
+                  - Miss from cloudfront
+          status:
+              code: 200
+              message: OK
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate, br
+              Accept-Language:
+                  - en-US,en;q=0.9,la;q=0.8
+              Cache-Control:
+                  - max-age=0
+              Connection:
+                  - keep-alive
+              Referer:
+                  - https://www.recreation.gov/
+              Upgrade-Insecure-Requests:
+                  - "1"
+              User-Agent:
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/532.1 (KHTML,
+                    like Gecko) Chrome/4.0.219.5 Safari/532.1
+          method: GET
+          uri: https://www.recreation.gov/api/search/campsites?fq=asset_id%3A232045&include_non_site_specific_campsites=True&size=1000&start=0
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA+xX227jNhD9FULPsUVJvsVvXttdBN3EhuVkURSFQFOUzIaiVIpykgb59w5l2bG3
+                  dLZ1UqAF+iaRh3NmhofD4bNDSVaUXLPSGf787BBKWVnylWDO0NGqYs6FQ8qS6YjHMOIHPu5092OS
+                  ZAb3w2zxaRqi8WI6/XE/p58KMzcG86nKKxmbGa0VX1V7st1vRIlmaa6eYIHxJYqZJlyUh0tqB/r9
+                  w5GGPlyTmB1BN0RUtWOVEM7LxTlMXd/CdE0e0U2VoTxBc5YXws7axWdyetjCOSYFoVw/uSH/naEF
+                  0VymVtoQJsCjM6k9G/Wa0Xsu0ZJn9kj9IcZofn1uinu2FAPf91PsnRumbVfrMPNKn47Te1+gva6F
+                  dc50iUZC5A8stpL+BKfkJB/7reJFxqQ+nd3OCQHfsTWngqEvTKZ6baWGI/4OZpuKr0o03S1E10TG
+                  RBtzNvK66rwn8ODtk9vEX9p3evAeat+m6IniG/ZAnlBYqYRQu8LmZAMyeA+1Leo99VTqE9n+ROh9
+                  60qepgZLkmvO/to+m3KfcAWFCqqRPcXfQD6IGEKVUKtS9BUsKCvxN5APIv6suBD2SJupDyKacyo5
+                  RUuyOiXeY8QH0d6RSkBpzLmAgmWlPUa8/AKYDVMkZZHa3lbDoA0VcNdobDuJQTDoe87BqGIlUxu2
+                  6xtCGGuFBaM84fQQV2qiK+gfnFnBpJmAu9Fc9TkY0GtIuBmDfgMEH9E8NrZuIVwWoxBW1kEnDGhY
+                  Voj6f/jszBJz25B7Y7X5/LyY3c5RuBzdTEaLCbqZ3Uy/TMfLxdUYDDTY7+KWikhwmucS0K8/b675
+                  SsQ9ujILmq830C8XDsTAdVWHGVy2vQD3+t2+18MY+xisiVymu/mW5+N2f+D38KWHDQJvEXlhCuRo
+                  sgDLMLDTdWi2R+aa06Zd0+xRmzjWvERmKxA0i3mW5bFJI+ohDfWpbMOiZgsfiJJm+40Q/+5aLpO8
+                  lpKsshVTUZ40YgJX4A7PVbqVkRcYL81v4/ZtOBmhrRhQCILidcEtiDLF09bJHk3ZG9ojSOMgPexr
+                  C6YyrkFj0b5Q1xl7LduN4cUdoDPyGInt5TvsdE12/oRbGgvHSGwHKrgN6np3jIXMFYptOHuIeGaO
+                  YqUEwNdaF+XQdWks24pRxYjRYzvNN25RrQSnro+9get5rtd1MXb9jlsf1Ih2OjhOaL816PSDVofg
+                  oEW6rA+SosFlr+OxYOVHHoDavxamPd2eZlK/I8yFfuGYc8t2J3JMBE9ykAd53fI3T4XBGBFUpYHO
+                  oL5Inq71tsj9u98s/0D39/8b6T/0RvoDAAD//+zXQQuCMBQH8K8S3Yd7e85lV4OIDoG3TjLbhEBU
+                  1I599556yjAIMhJ2G2OHvbf/g/2ckZxZZjWLeDNLziwfmCW61pNNfjm0dLcsiBNjOaCPTg5flwNw
+                  GQhUpAKYkANuJIQcR3KIT9HxvIoPu/2THsQ/6ME5YT4nCEIC9wA9WnD0+rFMUlCGowpYqpRhfgaS
+                  hVYbZg3tCwugQA5OqIqfOoEKbehz2OuxqWyeU7YSfWvLS1lThfQm622m82a4Qd3Frct4W7aaGiLu
+                  DwAAAP//AwAOfQkyKRkAAA==
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Age:
+                  - "290"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Wed, 13 Sep 2023 01:29:34 GMT
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 7c6913fc3bfae6245d89d874d910fab4.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - iznXWj25LEbiumSdxwxtA-yQC9b9RS2zjnnjYuZm0Ezx9z5gkBBE6Q==
+              X-Amz-Cf-Pop:
+                  - SFO53-P2
+              X-Cache:
+                  - Hit from cloudfront
+          status:
+              code: 200
+              message: OK
+    - request:
+          body: null
+          headers:
+              Accept:
+                  - "*/*"
+              Accept-Encoding:
+                  - gzip, deflate, br
+              Accept-Language:
+                  - en-US,en;q=0.9,la;q=0.8
+              Cache-Control:
+                  - max-age=0
+              Connection:
+                  - keep-alive
+              Referer:
+                  - https://www.recreation.gov/
+              Upgrade-Insecure-Requests:
+                  - "1"
+              User-Agent:
+                  - Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US) AppleWebKit/532.0 (KHTML,
+                    like Gecko) Chrome/4.0.210.0 Safari/532.0
+          method: GET
+          uri: https://www.recreation.gov/api/camps/availability/campground/232045/month?start_date=2023-10-01T00%3A00%3A00.000Z
+      response:
+          body:
+              string: !!binary |
+                  H4sIAAAAAAAAA+yWz2vCMBTH/xXpWSEv8Uf1VlREtumo7rBdSqbRBdra2VYmsv99STtmBR/vsoOK
+                  4KEk39rmNZ/Py8FZyChJdaZSp3dwXCGawl7IndShfNehznQ5xRkXDWANBnPGesXvzek5XhkMlVM/
+                  RjgdEXSkSUdadKR9EvFVqrY7tawmOmTCpR/TJSPA6AhdW6BrC4JaEDTJBF1ZaNORDh2hawtd6m05
+                  IxN0ZTldWU7vWk7vWk7XltO15eS25e75xHf9D/pAL81MSX1ldFtGg2yfKDM/M2ONWaIWeqUXJ7k8
+                  tHKI8zCsjP7eNfKnL8+12dybDDx/UJtMJ8PHYX/uj/vFXyRyobN9sJWZjtfFQ+J1scBws0ns6077
+                  D681fzwYDc1gJL+COI+CRG0Sk+q1mBnT8ckY1J3PXMYZoSzARAWYngCTEmAqAkxADPMOw3QDmGQA
+                  UwtgQgFMI4DJg2HOYJgqABMEYFoATAaAKYBh5DMMeMAwBwxuwJAGDGTA8AUMWoaxWp3AvrnAvrk4
+                  Xbmh3VJpgZxxQ1KaJ4aWSMWZDAPLbIFfibAlN9isgjy1+elObWO9/sisMVzhduBqTwbnmvr9YHBj
+                  B4OzXZKu7c0fDY6RM53fUn1hnf/JG/jmluvr+gyzy73r/0PXB4xqwFi+jK7/AwAA//9Cz4/IErh8
+                  TtVa35DcWh9UXOSX5pUoWRnVcgEAAAD//wMASZey+ioQAAA=
+          headers:
+              Access-Control-Allow-Origin:
+                  - "*"
+              Alt-Svc:
+                  - h3=":443"; ma=86400
+              Connection:
+                  - keep-alive
+              Content-Encoding:
+                  - gzip
+              Content-Type:
+                  - application/json; charset=utf-8
+              Date:
+                  - Wed, 13 Sep 2023 01:34:25 GMT
+              Server:
+                  - CloudFront
+              Strict-Transport-Security:
+                  - max-age=31536000; includeSubdomains; always
+              Transfer-Encoding:
+                  - chunked
+              Vary:
+                  - Accept-Encoding
+              Via:
+                  - 1.1 060fd86e774e2e890f2f6a5bb72fc360.cloudfront.net (CloudFront)
+              X-Amz-Cf-Id:
+                  - YV3LPBisFNSC3mAJQHxMDixCdtkpTf5yoZGb6UXV2JoAWjlhUAr0Bg==
+              X-Amz-Cf-Pop:
+                  - SFO53-P2
+              X-Cache:
+                  - Miss from cloudfront
+          status:
+              code: 200
+              message: OK
+version: 1
