@@ -5,8 +5,8 @@ Service that lists camping and recreation inventory.
 
 !!! info
 
-    Rather than specifiying provider with the **`--provider`** option on the
-    command line you can also set the **`CAMPLY_PROVIDER`** environnment
+    Rather than specifying provider with the **`--provider`** option on the
+    command line you can also set the **`CAMPLY_PROVIDER`** environment
     variable.
 
 ## Recreation.gov
