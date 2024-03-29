@@ -7,7 +7,7 @@ campsites: # OVERRIDES CAMPGROUNDS / RECREATION AREA - (LIST OR SINGLE ENTRY)
 start_date: 2023-09-12 # YYYY-MM-DD - (LIST OR SINGLE ENTRY)
 end_date: 2023-09-13 # YYYY-MM-DD - (LIST OR SINGLE ENTRY)
 days: # Array of day names - DEFAULTS TO `null`
-weekends: false # FALSE BY DEFAULT
+weekends: false # Only search for weekend bookings (Fri/Sat nights). FALSE BY DEFAULT
 nights: 1 # 1 BY DEFAULT
 continuous: true # DEFAULTS TO TRUE
 polling_interval: 5 # DEFAULTS TO 10 , CAN'T BE LESS THAN 5
