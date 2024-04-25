@@ -126,9 +126,9 @@ class UseDirectProvider(BaseProvider, ABC):
         self.metadata_refreshed = True
 
     def search_for_recreation_areas(
-        self,
-        query: Optional[str] = None,
-        state: Optional[str] = None,
+            self,
+            query: Optional[str] = None,
+            state: Optional[str] = None,
     ) -> List[RecreationArea]:
         """
         Retrieve Recreation Areas
@@ -161,13 +161,13 @@ class UseDirectProvider(BaseProvider, ABC):
         return found_recareas
 
     def find_campgrounds(
-        self,
-        search_string: Optional[str] = None,
-        rec_area_id: Optional[List[int]] = None,
-        state: Optional[str] = None,
-        verbose: bool = True,
-        campground_id: Optional[List[int]] = None,
-        **kwargs: Any,
+            self,
+            search_string: Optional[str] = None,
+            rec_area_id: Optional[List[int]] = None,
+            state: Optional[str] = None,
+            verbose: bool = True,
+            campground_id: Optional[List[int]] = None,
+            **kwargs: Any,
     ) -> List[CampgroundFacility]:
         """
         Search A Facility via Offline Metadata
@@ -213,10 +213,10 @@ class UseDirectProvider(BaseProvider, ABC):
         return found_campgrounds
 
     def _search_for_campgrounds(
-        self,
-        campground_id: List[int],
-        rec_area_id: List[int],
-        search_string: Optional[str],
+            self,
+            campground_id: List[int],
+            rec_area_id: List[int],
+            search_string: Optional[str],
     ) -> List[CampgroundFacility]:
         """
         Filter a campground array
@@ -252,25 +252,25 @@ class UseDirectProvider(BaseProvider, ABC):
                 campground
                 for campground in self.usedirect_campgrounds.values()
                 if self._search_camply_model(query=search_string, model=campground)
-                is True
+                   is True
             ]
         return found_campgrounds
 
     @ratelimit.sleep_and_retry
     @ratelimit.limits(calls=1, period=1)
     def get_campsites_response(
-        self,
-        campground_id: int,
-        start_date: Union[datetime, date],
-        end_date: Union[datetime, date],
-        is_ada: Optional[bool] = None,
-        min_vehicle_length: Optional[int] = None,
-        unit_category_id: Optional[int] = None,
-        web_only: Optional[bool] = True,
-        unit_type_group_ids: Optional[List[int]] = None,
-        sleeping_unit_id: Optional[int] = None,
-        unit_sort: Optional[str] = "orderby",
-        in_season_only: Optional[bool] = True,
+            self,
+            campground_id: int,
+            start_date: Union[datetime, date],
+            end_date: Union[datetime, date],
+            is_ada: bool = False,
+            min_vehicle_length: int = 0,
+            unit_category_id: int = 0,
+            web_only: Optional[bool] = True,
+            unit_type_group_ids: Optional[List[int]] = None,
+            sleeping_unit_id: int = 0,
+            unit_sort: Optional[str] = "orderby",
+            in_season_only: Optional[bool] = True,
     ) -> UseDirectAvailabilityResponse:
         """
         Get Campsites from UseDirect
@@ -306,6 +306,7 @@ class UseDirectProvider(BaseProvider, ABC):
         """
         data = {
             "IsADA": is_ada,
+            "RestrictADA": False,
             "MinVehicleLength": min_vehicle_length,
             "UnitCategoryId": unit_category_id,
             "StartDate": start_date.strftime(UseDirectConfig.DATE_FORMAT),
@@ -317,10 +318,10 @@ class UseDirectProvider(BaseProvider, ABC):
             "EndDate": end_date.strftime(UseDirectConfig.DATE_FORMAT),
             "UnitSort": unit_sort,
             "InSeasonOnly": in_season_only,
-            "FacilityId": campground_id,
+            "FacilityId": str(campground_id),
         }
         non_null_data = {
-            key: value for key, value in data.items() if value not in [None, [], ""]
+            key: value for key, value in data.items() if value not in [None, ""]
         }
         url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.AVAILABILITY_ENDPOINT}"
         random_ua = UserAgent(browsers=["chrome"]).random
@@ -345,18 +346,18 @@ class UseDirectProvider(BaseProvider, ABC):
             raise UseDirectError(error_message) from e
 
     def get_campsites(
-        self,
-        campground_id: int,
-        start_date: Union[datetime, date],
-        end_date: Union[datetime, date],
-        is_ada: Optional[bool] = None,
-        min_vehicle_length: Optional[int] = None,
-        unit_category_id: Optional[int] = None,
-        web_only: Optional[bool] = True,
-        unit_type_group_ids: Optional[List[int]] = None,
-        sleeping_unit_id: Optional[int] = None,
-        unit_sort: Optional[str] = "orderby",
-        in_season_only: Optional[bool] = True,
+            self,
+            campground_id: int,
+            start_date: Union[datetime, date],
+            end_date: Union[datetime, date],
+            is_ada: bool = False,
+            min_vehicle_length: int = 0,
+            unit_category_id: int = 0,
+            web_only: Optional[bool] = True,
+            unit_type_group_ids: Optional[List[int]] = None,
+            sleeping_unit_id: int = 0,
+            unit_sort: Optional[str] = "orderby",
+            in_season_only: Optional[bool] = True,
     ) -> List[AvailableCampsite]:
         """
         Get Campsites from UseDirect
@@ -417,17 +418,17 @@ class UseDirectProvider(BaseProvider, ABC):
                 campsite_available = campsite.availability_status == "Available"
                 if campsite_available is True:
                     if (
-                        len(self.campsite_ids) == 0
-                        or campsite.campsite_id in self.campsite_ids
+                            len(self.campsite_ids) == 0
+                            or campsite.campsite_id in self.campsite_ids
                     ):
                         campsites.append(campsite)
         return campsites
 
     def _get_available_campsite(
-        self,
-        availability_slice: UseDirectAvailabilitySlice,
-        availability_response: UseDirectAvailabilityResponse,
-        unit: UseDirectAvailabilityUnit,
+            self,
+            availability_slice: UseDirectAvailabilitySlice,
+            availability_response: UseDirectAvailabilityResponse,
+            unit: UseDirectAvailabilityUnit,
     ) -> AvailableCampsite:
         """
         Create an AvailableCampsite Object from the Availability Grid Response
@@ -482,7 +483,7 @@ class UseDirectProvider(BaseProvider, ABC):
         return campsite
 
     def _fetch_metadata_from_disk(
-        self, file_path: pathlib.Path
+            self, file_path: pathlib.Path
     ) -> Optional[Union[Dict[Any, Any], List[Dict[Any, Any]]]]:
         """
         Cache Metadata Locally and Invalidate after a day
@@ -501,8 +502,8 @@ class UseDirectProvider(BaseProvider, ABC):
             modified_time = datetime.utcfromtimestamp(file_path.stat().st_mtime)
             current_time = datetime.utcnow()
             if (
-                current_time - modified_time > timedelta(days=1)
-                and self.active_search is False
+                    current_time - modified_time > timedelta(days=1)
+                    and self.active_search is False
             ):
                 data = None
             else:
@@ -653,7 +654,7 @@ class UseDirectProvider(BaseProvider, ABC):
         )
 
     def get_campsites_per_facility(
-        self, facility_id: int
+            self, facility_id: int
     ) -> List[UseDirectAvailabilityUnit]:
         """
         Get Campsites Per Facility
@@ -675,7 +676,7 @@ class UseDirectProvider(BaseProvider, ABC):
         return campsites
 
     def get_campsite_metadata(
-        self, facility_ids: List[int]
+            self, facility_ids: List[int]
     ) -> Dict[int, UseDirectAvailabilityUnit]:
         """
         Get the Campsite Metadata
@@ -698,9 +699,9 @@ class UseDirectProvider(BaseProvider, ABC):
         return campsites
 
     def _prepare_facility_ids(
-        self,
-        recreation_area_ids: Optional[List[int]] = None,
-        campground_ids: Optional[List[int]] = None,
+            self,
+            recreation_area_ids: Optional[List[int]] = None,
+            campground_ids: Optional[List[int]] = None,
     ) -> List[int]:
         """
         Prepare Facility Ids

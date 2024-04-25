@@ -111,7 +111,7 @@ class UseDirectConfig(APIConfig):
     METADATA_PREFIX = f"{RDR_PREFIX}/{SEARCH_PREFIX}/filters"
     PLACE_ENDPOINT = f"{RDR_PREFIX}/{SEARCH_PREFIX}/place"
     AVAILABILITY_ENDPOINT = f"{RDR_PREFIX}/{SEARCH_PREFIX}/grid"
-    DATE_FORMAT = "%m-%d-%Y"
+    DATE_FORMAT = "%Y-%m-%d"
 
 
 class YellowstoneConfig(DataColumns, APIConfig):
