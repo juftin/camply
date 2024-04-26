@@ -304,11 +304,12 @@ class UseDirectProvider(BaseProvider, ABC):
         -------
         UseDirectAvailabilityResponse
         """
+        greatest_start = max(start_date, date.today() - timedelta(days=1))
         data = {
             "IsADA": is_ada,
             "MinVehicleLength": min_vehicle_length,
             "UnitCategoryId": unit_category_id,
-            "StartDate": start_date.strftime(UseDirectConfig.DATE_FORMAT),
+            "StartDate": greatest_start.strftime(UseDirectConfig.DATE_FORMAT),
             "WebOnly": web_only,
             "UnitTypesGroupIds": []
             if unit_type_group_ids is None
