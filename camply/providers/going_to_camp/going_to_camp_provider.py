@@ -8,7 +8,6 @@ import sys
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-import requests
 from fake_useragent import UserAgent
 from pydantic import ValidationError
 
@@ -339,7 +338,7 @@ class GoingToCamp(BaseProvider):
             "User-Agent": UserAgent(browsers=["chrome"]).random,
             "Accept-Language": "en-US,en;q=0.9",
         }
-        response = requests.get(url=url, headers=headers, params=params, timeout=30)
+        response = self.session.get(url=url, headers=headers, params=params, timeout=30)
         if response.ok is False:
             error_message = f"Receiving bad data from GoingToCamp API: status_code: {response.status_code}: {response.text}"
             logger.error(error_message)
