@@ -23,15 +23,6 @@ camply --debug campsites \
     --nights 3
 ```
 
-**Expected behavior**
-< A clear and concise description of what you expected to happen. >
-
-**Console Output (with `--debug`)**
-
-```
-<Add your console output here>
-```
-
 **Additional context**
 
 < Add any other context about the problem here. >
