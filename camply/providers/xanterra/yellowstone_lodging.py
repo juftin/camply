@@ -63,6 +63,8 @@ class Yellowstone(BaseProvider):
         all_resort_availability_data = self.make_yellowstone_request(
             endpoint=api_endpoint, params=query_dict
         )
+        if not all_resort_availability_data.get(YellowstoneConfig.BOOKING_AVAILABILITY):
+            all_resort_availability_data[YellowstoneConfig.BOOKING_AVAILABILITY] = {}
         return all_resort_availability_data
 
     @staticmethod
