@@ -488,6 +488,14 @@ per notification provider.
     and includes a 30-day trial and a one-time fee of $5 after that to unlock lifetime programmatic push notifications.
     There are other notification providers like `Ntfy`, `Slack` and `Email` that are free to use if that's more your style.
 
+!!! note
+
+    Camply provides a courtesy Pushover API token for you to use, however it's
+    highly reccomended that you create and use your
+    [own API token](https://pushover.net/apps/build). This is done via the
+    `PUSHOVER_PUSH_TOKEN` environment variable. In the past, some users have exhausted the
+    courtesy token's monthly limit with faulty camply configurations.
+
 ### Send a Text Message
 
 If you want to sign up for a [Twilio](https://www.twilio.com/try-twilio) account, camply also supports
