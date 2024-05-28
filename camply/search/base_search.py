@@ -117,6 +117,7 @@ class BaseCampingSearch(ABC):
                 AvailableCampsite
             ] = self.load_campsites_from_file()
             self.loaded_campsites: Set[AvailableCampsite] = self.campsites_found.copy()
+        self.search_attempts: int = 0
 
     @property
     def search_days(self) -> List[datetime]:
@@ -274,6 +275,7 @@ class BaseCampingSearch(ABC):
             )
             logger.info(campsite_availability_message)
             raise CampsiteNotFoundError(campsite_availability_message)
+        self.search_attempts += 1
         return matching_campgrounds
 
     @classmethod
@@ -581,7 +583,8 @@ class BaseCampingSearch(ABC):
                     search_once=search_once,
                 )
             except Exception as e:
-                self.notifier.last_gasp(error=e)
+                if self.search_attempts >= 1:
+                    self.notifier.last_gasp(error=e)
                 raise e
         else:
             starting_count = len(self.campsites_found)

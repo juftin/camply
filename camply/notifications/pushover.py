@@ -34,6 +34,11 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
             )
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
+        self.pushover_token = PushoverConfig.PUSH_TOKEN
+        if self.pushover_token in [None, ""]:
+            self.pushover_token = base64.b64decode(
+                PushoverConfig.PUSHOVER_DEFAULT_API_TOKEN
+            ).decode("utf-8")
 
     def send_message(self, message: str, **kwargs) -> requests.Response:
         """
@@ -47,17 +52,13 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
         -------
         requests.Response
         """
-        token = (
-            PushoverConfig.PUSH_TOKEN
-            if PushoverConfig.PUSH_TOKEN not in [None, ""]
-            else base64.b64decode(PushoverConfig.PUSHOVER_DEFAULT_API_TOKEN).decode(
-                "utf-8"
-            )
-        )
         response = self.session.post(
             url=PushoverConfig.PUSHOVER_API_ENDPOINT,
             params=dict(
-                token=token, user=PushoverConfig.PUSH_USER, message=message, **kwargs
+                token=self.pushover_token,
+                user=PushoverConfig.PUSH_USER,
+                message=message,
+                **kwargs,
             ),
         )
         try:
