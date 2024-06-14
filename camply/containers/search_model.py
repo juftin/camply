@@ -47,6 +47,7 @@ class YamlSearchFile(CamplyModel):
     days: Optional[List[str]] = None
     weekends: bool = False
     nights: int = 1
+    exact_windows: bool = False
     continuous: bool = True
     polling_interval: int = SearchConfig.RECOMMENDED_POLLING_INTERVAL
     notifications: ArrayOrSingleStr = "silent"
