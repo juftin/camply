@@ -492,7 +492,7 @@ class RecDotGovSearchResult(CamplyModel):
     """
 
     average_rating: Optional[int]
-    description: str
+    description: Optional[str]
     entity_id: int
     entity_type: str
     latitude: Optional[float]
