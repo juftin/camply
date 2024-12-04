@@ -92,9 +92,11 @@ class SearchYellowstone(BaseCampingSearch):
         )
         campsite_df = self.campsites_to_df(campsites=matching_campsites)
         campsite_df_validated = self._filter_date_overlap(campsites=campsite_df)
+        time_window_start = min(self.search_days)
         time_window_end = max(self.search_days) + timedelta(days=1)
         compiled_campsite_df = campsite_df_validated[
-            campsite_df_validated.booking_end_date <= pd.Timestamp(time_window_end)
+            (campsite_df_validated.booking_date >= pd.Timestamp(time_window_start))
+            & (campsite_df_validated.booking_end_date <= pd.Timestamp(time_window_end))
         ]
         compiled_campsites = self.df_to_campsites(campsite_df=compiled_campsite_df)
         return compiled_campsites
