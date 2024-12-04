@@ -121,7 +121,7 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
 
         Returns
         -------
-        searchable_campgrounds: List[int]
+        searchable_campgrounds: List[CampgroundFacility]
             List of searchable campground IDs
         """
         if self.campsites not in [(), [], None]:
@@ -185,11 +185,11 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
 
     def _get_campgrounds_by_campground_id(self) -> List[CampgroundFacility]:
         """
-        Return a List of Campgrounds to search when provided with campground IDs
+        Return a List of Campgrounds to search when provided with Campground IDs
 
         Returns
         -------
-        returned_sites: List[int]
+        facilities: List[CampgroundFacility]
             List of searchable campground IDs
         """
         campground_list = make_list(self._campground_object)
@@ -204,7 +204,7 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
 
         Returns
         -------
-        returned_sites: List[int]
+        facilities: List[CampgroundFacility]
             List of searchable campground IDs
         """
         campsite_list = make_list(self.campsites)
@@ -217,15 +217,16 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
 
         Returns
         -------
-        campgrounds: List[CampgroundFacility]
+        facilities: List[CampgroundFacility]
+            List of searchable campground IDs
         """
-        campgrounds = []
+        facilities = []
         for rec_area in self._recreation_area_id:
             campground_array = self.campsite_finder.find_facilities_per_recreation_area(
                 rec_area_id=rec_area
             )
-            campgrounds += campground_array
-        return campgrounds
+            facilities += campground_array
+        return facilities
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """
