@@ -496,6 +496,14 @@ day_of_the_week_argument = click.option(
     metavar="TEXT",
     help="Day(s) of the Week to search.",
 )
+exact_windows_argument = click.option(
+    "--exact-windows",
+    is_flag=True,
+    show_default=True,
+    default=False,
+    help="Search only for bookings which exactly match one of the ranges "
+    "specified with the --start-date and --end-date arguments.",
+)
 
 
 def _get_equipment(equipment: Optional[List[str]]) -> List[Tuple[str, Optional[int]]]:
@@ -528,7 +536,10 @@ def _validate_campsites(
     notify_first_try: bool,
     search_forever: bool,
     search_once: bool,
+    weekends: bool,
+    nights: int,
     day: Optional[Tuple[str]],
+    exact_windows: bool,
     **kwargs: Dict[str, Any],
 ) -> Tuple[bool, List[SearchWindow], Set[int]]:
     """
@@ -550,7 +561,10 @@ def _validate_campsites(
     notifications: List[str]
     notify_first_try: bool
     search_forever: bool
+    weekends: bool
+    nights: int
     day: Optional[Tuple[str]]
+    exact_windows: bool
     **kwargs: Dict[str, Any]
 
     Returns
@@ -583,6 +597,11 @@ def _validate_campsites(
     if search_once is True and (continuous is True or search_forever is not None):
         logger.error(
             "You cannot specify `--search-once` alongside `--continuous` or `--search-forever`"
+        )
+        sys.exit(1)
+    if exact_windows and any([day, weekends, nights != 1]):
+        logger.error(
+            "You cannot specify `--exact-windows` alongside `--nights`, `--day`, or `--weekends`"
         )
         sys.exit(1)
 
@@ -620,6 +639,7 @@ def _get_provider_kwargs_from_cli(
     equipment: Tuple[Union[str, int]],
     equipment_id: Tuple[Union[str, int]],
     day: Optional[Tuple[str]],
+    exact_windows: bool,
 ) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """
     Get Provider kwargs from CLI
@@ -642,6 +662,7 @@ def _get_provider_kwargs_from_cli(
         search_forever=search_forever,
         search_once=search_once,
         day=day,
+        exact_windows=exact_windows,
     )
     if len(notifications) == 0:
         notifications = ["silent"]
@@ -667,6 +688,7 @@ def _get_provider_kwargs_from_cli(
         "equipment": equipment,
         "equipment_id": equipment_id,
         "days_of_the_week": days_of_the_week,
+        "exact_windows": exact_windows,
     }
     search_kwargs = {
         "log": True,
@@ -690,6 +712,7 @@ def _get_provider_kwargs_from_cli(
 @nights_argument
 @weekends_argument
 @day_of_the_week_argument
+@exact_windows_argument
 @notifications_argument
 @continuous_argument
 @search_forever_argument
@@ -727,6 +750,7 @@ def campsites(
     equipment: Tuple[Union[str, int]],
     equipment_id: Tuple[Union[str, int]],
     day: Optional[Tuple[str]],
+    exact_windows: bool,
 ) -> None:
     """
     Find Available Campsites with Custom Search Criteria
@@ -768,6 +792,7 @@ def campsites(
             equipment=equipment,
             equipment_id=equipment_id,
             day=day,
+            exact_windows=exact_windows,
             yaml_config=yaml_config,
         )
     provider_class: Type[BaseCampingSearch] = CAMPSITE_SEARCH_PROVIDER[provider]

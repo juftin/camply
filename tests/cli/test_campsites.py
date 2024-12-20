@@ -145,6 +145,30 @@ def test_search_nights(cli_runner: CamplyRunner) -> None:
 
 
 @vcr_cassette
+def test_search_exact_windows(cli_runner: CamplyRunner) -> None:
+    """
+    Search Functionality: Exact Windows
+    """
+    test_command = """
+    camply \
+        campsites \
+        --campground 232045
+        --start-date 2023-10-01 \
+        --end-date 2023-10-05 \
+        --start-date 2023-10-04 \
+        --end-date 2023-10-08 \
+        --start-date 2023-10-08
+        --end-date 2023-10-10 \
+        --exact-windows
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "Forbes Creek" in result.output
+    assert "9 booking nights selected for search" in result.output
+    assert "4 nights" in result.output
+    assert "2 nights" in result.output
+
+
+@vcr_cassette
 def test_search_yellowstone(cli_runner: CamplyRunner) -> None:
     """
     Search Functionality: Yellowstone Provider
