@@ -118,6 +118,7 @@ available.
 
 -   Pushover Notifications
     -   `PUSHOVER_PUSH_USER`
+    -   `PUSHOVER_PUSH_TOKEN`
 -   Apprise Notifications
     -   `APPRISE_URL`
 -   Email Notifications
