@@ -97,6 +97,14 @@ class RecreationBookingConfig(APIConfig):
     RATE_LIMITING = (1.01, 1.51)
 
 
+class ReserveAmericaConfig(APIConfig):
+    """
+    Reserve America API Configuration
+    """
+
+    # TODO: Add cookies or other authentication to configuration
+
+
 class UseDirectConfig(APIConfig):
     """
     Reserve California API Configuration

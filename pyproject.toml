@@ -27,9 +27,12 @@ dependencies = [
   "requests~=2.31.0",
   "rich~=13.3.2",
   "rich-click~=1.6.1",
-  "tenacity~=8.2.2"
+  "scrapy~=2.12.0",
+  "selenium~=4.30.0",
+  "tenacity~=8.2.2",
+  "webdriver-manager~=4.0.2"
 ]
-description = "camply, the campsite finder 🏕"
+description = "camply, the campsite finder"
 dynamic = ["version"]
 keywords = ["recdotgov", "outdoors", "camping", "reservations", "national-parks"]
 license = "MIT"
