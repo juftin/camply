@@ -14,7 +14,7 @@ from camply.providers.base_provider import BaseProvider
 logger = logging.getLogger(__name__)
 
 
-class ReserveAmericaBase(BaseProvider, ABC):
+class ReserveAmerica(BaseProvider, ABC):
     """
     Python Class for Reserve America Web Searching
     """

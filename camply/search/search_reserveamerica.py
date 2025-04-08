@@ -8,7 +8,7 @@ from typing import List, Optional, Tuple, Union
 from camply.containers import (
     SearchWindow,
 )
-from camply.providers import ReserveAmericaBase
+from camply.providers import ReserveAmerica
 from camply.search.base_search import BaseCampingSearch
 
 logger = logging.getLogger(__name__)
@@ -19,7 +19,7 @@ class SearchReserveAmerica(BaseCampingSearch):
     Searches on ReserveAmerica.com for Campsites
     """
 
-    provider_class = ReserveAmericaBase
+    provider_class = ReserveAmerica
     list_campsites_supported: bool = False
 
     def __init__(
