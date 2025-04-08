@@ -181,6 +181,9 @@ no_implicit_reexport = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 
+[tool.pylint.MESSAGES_CONTROL]
+disable = ["logging-fstring-interpolation"]
+
 [tool.pytest.ini_options]
 filterwarnings = [
   "error",
