@@ -3,7 +3,7 @@ ReserveAmerica search utilities
 """
 
 import logging
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Union
 
 from camply.containers import (
     AvailableCampsite,
@@ -26,13 +26,10 @@ class SearchReserveAmerica(BaseCampingSearch):
     def __init__(
         self,
         search_window: Union[SearchWindow, List[SearchWindow]],
-        recreation_area: Optional[Union[List[int], int]] = None,
         campgrounds: Optional[Union[List[int], int]] = None,
         campsites: Optional[Union[List[int], int]] = None,
         weekends_only: bool = False,
         nights: int = 1,
-        equipment: Optional[List[Tuple[str, Optional[int]]]] = None,
-        offline_search: bool = False,
         offline_search_path: Optional[str] = None,
         **kwargs,
     ) -> None:
@@ -43,21 +40,20 @@ class SearchReserveAmerica(BaseCampingSearch):
         ----------
         search_window: Union[SearchWindow, List[SearchWindow]]
             Search Window tuple containing start date and End Date
-        recreation_area: Optional[Union[List[int], int]]
-            ID of Recreation Area
-            #TODO: Document values of recreation_area
         campgrounds: Optional[Union[List[int], int]]
-            Campground ID or List of Campground IDs
+            Park ID or List of Park IDs
         campsites: Optional[Union[List[int], int]]
-            Campsite ID or List of Campsite IDs
+            Site ID or List of Site IDs
         weekends_only: bool
             Whether to only search for Camping availabilities on the weekends (Friday /
             Saturday nights)
+            # TODO: Implement weekends_only
         nights: int
             minimum number of consecutive nights to search per campsite,defaults to 1
+            # TODO: Implement number of nights
         equipment: Optional[List[Tuple[str, Optional[int]]]]
             List of tuples containing equipment name and optional quantity
-            #TODO: Document values of equipment
+            # TODO: Document values of equipment
         offline_search: bool
             When set to True, the campsite search will both save the results of the
             campsites it's found, but also load those campsites before beginning a
@@ -74,10 +70,13 @@ class SearchReserveAmerica(BaseCampingSearch):
             search_window=search_window,
             weekends_only=weekends_only,
             nights=nights,
-            offline_search=offline_search,
-            offline_search_path=offline_search_path,
+            # offline_search=offline_search,
+            # offline_search_path=offline_search_path,
             **kwargs,
         )
+        assert campgrounds not in [[], None]
+        self.campgrounds = campgrounds
+        # TODO: Validate campsites requested are within campgrounds requested
 
     def get_all_campsites(self, **kwargs: Dict[str, Any]) -> List[AvailableCampsite]:
         """
@@ -92,10 +91,10 @@ class SearchReserveAmerica(BaseCampingSearch):
         -------
         List[AvailableCampsite]
         """
-        logger.info(f"Searching across {len(self.campgrounds)} campgrounds")
+        logger.info("Searching across %d campgrounds", len(self.campgrounds))
 
         # TODO: Implement the logic to retrieve all campsites from ReserveAmerica
-        return super().get_all_campsites(**kwargs)
+        return []
 
     def list_campsite_units(self):
         """
@@ -105,5 +104,8 @@ class SearchReserveAmerica(BaseCampingSearch):
         -------
         List[AvailableCampsite]
         """
+
+        logger.info("Listing campsite units")
+
         # TODO: Implement the logic to list campsite units from ReserveAmerica
         return super().list_campsite_units()
