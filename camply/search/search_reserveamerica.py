@@ -3,9 +3,10 @@ ReserveAmerica search utilities
 """
 
 import logging
-from typing import List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 from camply.containers import (
+    AvailableCampsite,
     SearchWindow,
 )
 from camply.providers import ReserveAmerica
@@ -77,3 +78,32 @@ class SearchReserveAmerica(BaseCampingSearch):
             offline_search_path=offline_search_path,
             **kwargs,
         )
+
+    def get_all_campsites(self, **kwargs: Dict[str, Any]) -> List[AvailableCampsite]:
+        """
+        Retrieve All Available Campsites from ReserveAmerica
+
+        Parameters
+        ----------
+        kwargs: Dict[str, Any]
+        #TODO: Document kwargs
+
+        Returns
+        -------
+        List[AvailableCampsite]
+        """
+        logger.info(f"Searching across {len(self.campgrounds)} campgrounds")
+
+        # TODO: Implement the logic to retrieve all campsites from ReserveAmerica
+        return super().get_all_campsites(**kwargs)
+
+    def list_campsite_units(self):
+        """
+        List Campsite Units
+
+        Retruns
+        -------
+        List[AvailableCampsite]
+        """
+        # TODO: Implement the logic to list campsite units from ReserveAmerica
+        return super().list_campsite_units()

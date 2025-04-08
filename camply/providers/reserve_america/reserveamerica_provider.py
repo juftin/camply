@@ -5,10 +5,11 @@ Reserve America Web Searching Utilities
 import logging
 from abc import ABC
 from datetime import datetime
-from typing import Union
+from typing import List, Union
 
 # TODO: Update ReserveAmericaConfig as needed
 # TODO: Add and create other classes as needed
+from camply.containers import CampgroundFacility
 from camply.providers.base_provider import BaseProvider
 
 logger = logging.getLogger(__name__)
@@ -45,3 +46,7 @@ class ReserveAmerica(BaseProvider, ABC):
         """
 
     # TODO return availability, see search_reserveamerica.py for more details
+
+    def find_campgrounds(self) -> List[CampgroundFacility]:
+        # TODO: Implement find_campgrounds method
+        return super().find_campgrounds()
