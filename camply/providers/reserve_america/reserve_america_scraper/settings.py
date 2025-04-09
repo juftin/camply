@@ -47,7 +47,8 @@ DOWNLOAD_DELAY = 1
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
-    "reserve_america_scraper.middlewares.ReserveAmericaScraperSpiderMiddleware": 543,
+    "camply.providers.reserve_america.reserve_america_scraper.middlewares.CamplyReserveAmericaSpiderMiddleware": 500,
+    "reserve_america_scraper.middlewares.ReserveAmericaScraperSpiderMiddleware": 600,
 }
 
 # Enable or disable downloader middlewares

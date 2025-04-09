@@ -9,8 +9,12 @@ from camply.containers import (
     AvailableCampsite,
     SearchWindow,
 )
+from camply.exceptions import SearchError
 from camply.providers import ReserveAmerica
 from camply.search.base_search import BaseCampingSearch
+from camply.utils import logging_utils
+from camply.utils.general_utils import make_list
+from camply.utils.logging_utils import format_log_string
 
 logger = logging.getLogger(__name__)
 
@@ -74,8 +78,18 @@ class SearchReserveAmerica(BaseCampingSearch):
             # offline_search_path=offline_search_path,
             **kwargs,
         )
-        assert campgrounds not in [[], None]
-        self.campgrounds = campgrounds
+        try:
+            assert campgrounds not in [[], None]
+        except AssertionError:
+            raise ValueError(
+                f"You must provide a Campground ID to {self.provider_class.__name__}"
+            ) from None
+
+        self._campground_ids: List[int] = make_list(campgrounds)
+        self.campgrounds = self.campsite_finder.find_campgrounds(
+            park_ids=self._campground_ids,
+        )
+        self.campsites = make_list(campsites)
         # TODO: Validate campsites requested are within campgrounds requested
 
     def get_all_campsites(self, **kwargs: Dict[str, Any]) -> List[AvailableCampsite]:
@@ -91,10 +105,59 @@ class SearchReserveAmerica(BaseCampingSearch):
         -------
         List[AvailableCampsite]
         """
+        if len(self.campgrounds) == 0:
+            error_message = "No campgrounds found to search"
+            logger.error(error_message)
+            raise SearchError(error_message)
+
         logger.info("Searching across %d campgrounds", len(self.campgrounds))
 
-        # TODO: Implement the logic to retrieve all campsites from ReserveAmerica
-        return []
+        for campground in self.campgrounds:
+            log_str = format_log_string(campground)
+            logger.info("    %s", log_str)
+
+        campsites_found: List[AvailableCampsite] = []
+
+        for search_window in self.search_window:
+            for campground in self.campgrounds:
+                start_date = search_window.start_date
+                end_date = search_window.end_date
+
+                logger.info(
+                    f"Searching {campground.facility_name} "
+                    f"({campground.facility_id}) for availability: from "
+                    f"{start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}"
+                )
+
+                campsites = self.campsite_finder.get_campsites(
+                    park_id=campground.facility_id,
+                    start_date=start_date,
+                    end_date=end_date,
+                    **kwargs,
+                )
+
+                logger.info(
+                    f"\t{logging_utils.get_emoji(campsites)}\t"
+                    f"{len(campsites)} campsites found for {campground.facility_name} "
+                    f"from {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}"
+                )
+
+                if self.campsites not in [None, []]:
+                    campsites = [
+                        campsite_obj
+                        for campsite_obj in campsites
+                        if int(campsite_obj.campsite_id) in self.campsites
+                    ]
+                campsites_found += campsites
+
+        campsite_df = self.campsites_to_df(campsites=campsites_found)
+        campsite_df_validated = self._filter_date_overlap(campsites=campsite_df)
+        compiled_campsite_df = self._consolidate_campsites(
+            campsite_df=campsite_df_validated, nights=self.nights
+        )
+        compiled_campsites = self.df_to_campsites(campsite_df=compiled_campsite_df)
+
+        return compiled_campsites
 
     def list_campsite_units(self):
         """

@@ -3,9 +3,12 @@ from datetime import datetime, timedelta
 from urllib.parse import parse_qs, urlparse
 
 import scrapy
-from reserve_america_scraper.items import CampgroundAvailabilityItem
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
+
+from camply.providers.reserve_america.reserve_america_scraper.items import (
+    CampgroundAvailabilityItem,
+)
 
 
 class CampgroundSpider(scrapy.Spider):
@@ -37,6 +40,8 @@ class CampgroundSpider(scrapy.Spider):
         # Update the URL to include the start_date instead of "null"
         start_urls = [
             f"https://massdcrcamping.reserveamerica.com/campsiteCalendar.do?page=calendar&contractCode=MA&parkId={self.park_id}&calarvdate={self.start_date_str}&sitepage=true&startIdx=0",
+            # TODO: Implement generic reserveamerica.com.
+            # Note, calendar grid is slightly different for generic reserveamerica.com pages.
         ]
         for url in start_urls:
             yield scrapy.Request(url=url, callback=self.parse, meta={"selenium": True})
