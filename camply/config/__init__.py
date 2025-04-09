@@ -5,6 +5,7 @@ Config __init__ file
 from .api_config import (
     STANDARD_HEADERS,
     RecreationBookingConfig,
+    ReserveAmericaConfig,
     RIDBConfig,
     YellowstoneConfig,
 )
@@ -25,6 +26,7 @@ from .search_config import EquipmentOptions, SearchConfig
 __all__ = [
     "RecreationBookingConfig",
     "RIDBConfig",
+    "ReserveAmericaConfig",
     "STANDARD_HEADERS",
     "CampsiteContainerFields",
     "DataColumns",

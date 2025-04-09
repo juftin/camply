@@ -13,6 +13,7 @@ from camply.search.search_recreationdotgov import (
     SearchRecreationDotGovTicket,
     SearchRecreationDotGovTimedEntry,
 )
+from camply.search.search_reserveamerica import SearchReserveAmerica
 from camply.search.search_usedirect import (
     SearchAlabamaStateParks,
     SearchArizonaStateParks,
@@ -32,6 +33,7 @@ from camply.search.search_yellowstone import SearchYellowstone
 # Register Providers Here with their Search class
 __search_providers__: List[Type[BaseCampingSearch]] = [
     SearchRecreationDotGov,
+    SearchReserveAmerica,
     SearchYellowstone,
     SearchGoingToCamp,
     # UseDirect

@@ -45,7 +45,7 @@ class RecreationDotGovBase(BaseProvider, ABC):
 
     def __init__(self, api_key: Optional[str] = None):
         """
-        Initialize with Search Dates
+        Initialize API key and headers for the Recreation.gov API
         """
         super().__init__()
         if api_key is None:

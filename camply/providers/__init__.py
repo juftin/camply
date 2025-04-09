@@ -13,6 +13,7 @@ from .recreation_dot_gov.recdotgov_tours import (
     RecreationDotGovTicket,
     RecreationDotGovTimedEntry,
 )
+from .reserve_america.reserveamerica_provider import ReserveAmerica
 from .usedirect.variations import (
     AlabamaStateParks,
     ArizonaStateParks,
@@ -49,6 +50,7 @@ ProviderType = Union[
     AlabamaStateParks,
     FairfaxCountyParks,
     MinnesotaStateParks,
+    ReserveAmerica,
 ]
 
 __all__ = [
@@ -73,4 +75,5 @@ __all__ = [
     "AlabamaStateParks",
     "FairfaxCountyParks",
     "MinnesotaStateParks",
+    "ReserveAmerica",
 ]
