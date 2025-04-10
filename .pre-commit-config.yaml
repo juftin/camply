@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=https://json.schemastore.org/pre-commit-config.json
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+        exclude: mkdocs.yaml
+      - id: check-ast
+      - id: check-docstring-first
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+
+  - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+    rev: v2.14.0
+    hooks:
+      - id: pretty-format-toml
+        args: [--autofix, --no-sort]
+
+  - repo: local
+    hooks:
+      - id: ruff-format
+        name: format
+        description: Runs Code Auto-Formatters
+        entry: uv run ruff format
+        language: system
+        types:
+          - python
+      - id: ruff-check
+        name: lint
+        description: Runs Code Linters
+        entry: uv run ruff check --fix
+        language: system
+        types:
+          - python
+      - id: prettier
+        name: prettier
+        description: "Opinionated Code Formatter"
+        entry: prettier --write --list-different --ignore-unknown
+        language: node
+        types:
+          - text
+        require_serial: false
+        additional_dependencies: ["prettier@3.5.3"]
