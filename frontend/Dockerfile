@@ -11,12 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 # Copy source files
-COPY vite.config.ts .
-COPY tsconfig.json .
-COPY tsconfig.node.json .
-COPY index.html .
-COPY public/ ./public/
-COPY src/ ./src/
+COPY . .
 
 # Accept build-time argument for API URL
 ARG CAMPLY_API_URL

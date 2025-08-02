@@ -6,7 +6,8 @@
       "Bash(task test)",
       "Bash(task lint)",
       "Bash(task frontend:check:*)",
-      "Bash(task check)"
+      "Bash(task check)",
+      "Bash(docker compose exec:*)"
     ],
     "deny": []
   }

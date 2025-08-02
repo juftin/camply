@@ -6,8 +6,6 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     image: juftin/camply-web-backend:${BACKEND_VERSION:-local}
-    ports:
-      - 8000:8000
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
       interval: 30s
