@@ -48,17 +48,18 @@ export function Contribute() {
               keeping the lights on. This is a labor of love for the outdoor
               community, not a business venture.
             </p>
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mt-4">
-              <ExternalLink className="h-4 w-4" />
-              <span>All expenses are tracked transparently on our</span>
-              <a
-                href="https://github.com/juftin/camply-web"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 font-medium"
-              >
-                GitHub repository
-              </a>
+            <div className="text-sm text-muted-foreground mt-4">
+              <span className="text-center">
+                All expenses are tracked transparently on our{" "}
+                <a
+                  href="https://github.com/juftin/camply-web"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:text-primary/80 font-medium"
+                >
+                  GitHub repository
+                </a>
+              </span>
             </div>
           </CardContent>
         </Card>
@@ -145,10 +146,10 @@ export function Contribute() {
                   $10
                 </Button>
                 <Button variant="outline" className="h-12">
-                  $25
+                  $15
                 </Button>
                 <Button variant="outline" className="h-12">
-                  $50
+                  $20
                 </Button>
               </div>
               <Button className="w-full" size="lg" asChild>
@@ -200,7 +201,7 @@ export function Contribute() {
                       Hosting + notifications
                     </div>
                   </div>
-                  <div className="text-lg font-bold">$10/mo</div>
+                  <div className="text-lg font-bold">$5/mo</div>
                 </div>
                 <div className="flex justify-between items-center p-3 border rounded">
                   <div>
@@ -209,7 +210,7 @@ export function Contribute() {
                       Full operations support
                     </div>
                   </div>
-                  <div className="text-lg font-bold">$25/mo</div>
+                  <div className="text-lg font-bold">$10/mo</div>
                 </div>
               </div>
               <Button className="w-full" size="lg">

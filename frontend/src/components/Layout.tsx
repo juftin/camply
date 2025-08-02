@@ -20,6 +20,9 @@ export function Layout({ children }: LayoutProps) {
           element.scrollIntoView({ behavior: "smooth" });
         }, 100);
       }
+    } else {
+      // Scroll to top when navigating to new pages (no hash)
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [location]);
 
