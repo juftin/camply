@@ -9,9 +9,12 @@ import { Contact } from "@/pages/Contact";
 import { Contribute } from "@/pages/Contribute";
 import { FAQ } from "@/pages/FAQ";
 
+// Get base path from Vite's import.meta.env.BASE_URL
+const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
+
 function App() {
   return (
-    <Router>
+    <Router basename={basename}>
       <Routes>
         {/* Auth page without layout */}
         <Route path="/auth" element={<Auth />} />

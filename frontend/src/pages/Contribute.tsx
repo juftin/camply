@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Heart,
   Server,
@@ -249,12 +250,12 @@ export function Contribute() {
               <p className="text-muted-foreground mb-4">
                 Help improve camply by contributing to our open-source codebase.
                 Check our{" "}
-                <a
-                  href="/faq"
+                <Link
+                  to="/faq"
                   className="text-primary hover:text-primary/80 underline"
                 >
                   FAQ
-                </a>{" "}
+                </Link>{" "}
                 for common questions.
               </p>
               <Button variant="outline" className="w-full" asChild>

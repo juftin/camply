@@ -1,4 +1,4 @@
-name: site
+name: web-preview
 on:
   push:
     branches: [main]
@@ -14,21 +14,16 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Set up Github Workspace
+      - name: checkout
         uses: actions/checkout@v4
       - name: setup-node
         uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
-      - name: setup-uv
-        uses: astral-sh/setup-uv@v6
-      - name: setup-task
-        uses: arduino/setup-task@v2
-        with:
-          version: 3.x
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: build-docs
-        run: task frontend:build
+        run: |
+          npm --prefix frontend ci
+          npm --prefix frontend run build
       - name: github-pages
         uses: juftin/actions/github-pages@v1
         id: deployment

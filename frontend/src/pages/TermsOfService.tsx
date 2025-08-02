@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function TermsOfService() {
   return (
     <div className="container mx-auto py-12 px-4 max-w-4xl">
@@ -183,12 +185,12 @@ export function TermsOfService() {
           </ul>
           <p className="mb-4">
             Please review our{" "}
-            <a
-              href="/privacy"
+            <Link
+              to="/privacy"
               className="text-primary hover:text-primary/80 underline"
             >
               Privacy Policy
-            </a>{" "}
+            </Link>{" "}
             for complete details on how we collect, use, and protect your
             personal information.
           </p>
@@ -206,12 +208,12 @@ export function TermsOfService() {
             </li>
             <li>
               We will delete your personal data in accordance with our{" "}
-              <a
-                href="/privacy"
+              <Link
+                to="/privacy"
                 className="text-primary hover:text-primary/80 underline"
               >
                 Privacy Policy
-              </a>
+              </Link>
             </li>
           </ul>
         </section>

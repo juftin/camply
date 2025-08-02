@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import {
   Mail,
   MessageSquare,
@@ -243,7 +244,7 @@ export function Contact() {
             </CardHeader>
             <CardContent className="text-center">
               <Button variant="outline" className="w-full" asChild>
-                <a href="/faq">View FAQ</a>
+                <Link to="/faq">View FAQ</Link>
               </Button>
             </CardContent>
           </Card>
@@ -256,7 +257,7 @@ export function Contact() {
             </CardHeader>
             <CardContent className="text-center">
               <Button variant="outline" className="w-full" asChild>
-                <a href="/providers">View Providers</a>
+                <Link to="/providers">View Providers</Link>
               </Button>
             </CardContent>
           </Card>
@@ -269,7 +270,7 @@ export function Contact() {
             </CardHeader>
             <CardContent className="text-center">
               <Button variant="outline" className="w-full" asChild>
-                <a href="/contribute">Contribute</a>
+                <Link to="/contribute">Contribute</Link>
               </Button>
             </CardContent>
           </Card>
