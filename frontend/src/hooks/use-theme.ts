@@ -1,15 +1,20 @@
 import * as React from "react";
 
 type Theme = "dark" | "light" | "system";
+type UserTheme = "dark" | "light";
 
 type ThemeProviderState = {
   theme: Theme;
-  setTheme: (theme: Theme) => void;
+  userTheme: UserTheme;
+  setTheme: (theme: UserTheme) => void;
+  toggleTheme: () => void;
 };
 
 const initialState: ThemeProviderState = {
   theme: "system",
+  userTheme: "light",
   setTheme: () => null,
+  toggleTheme: () => null,
 };
 
 export const ThemeProviderContext =

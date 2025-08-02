@@ -2,47 +2,52 @@ import * as React from "react";
 import { ThemeProviderContext } from "@/hooks/use-theme";
 
 type Theme = "dark" | "light" | "system";
+type UserTheme = "dark" | "light";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
-  defaultTheme?: Theme;
   storageKey?: string;
 };
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = React.useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
-  );
+  const [userTheme, setUserTheme] = React.useState<UserTheme>(() => {
+    const stored = localStorage.getItem(storageKey) as Theme;
+    if (stored === "light" || stored === "dark") {
+      return stored;
+    }
+    // Default to system preference if no user preference stored
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  });
 
   React.useEffect(() => {
     const root = window.document.documentElement;
 
     root.classList.remove("light", "dark");
+    root.classList.add(userTheme);
+  }, [userTheme]);
 
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
+  const toggleTheme = () => {
+    const newTheme = userTheme === "light" ? "dark" : "light";
+    setUserTheme(newTheme);
+    localStorage.setItem(storageKey, newTheme);
+  };
 
-      root.classList.add(systemTheme);
-      return;
-    }
-
-    root.classList.add(theme);
-  }, [theme]);
+  const handleSetTheme = (newTheme: UserTheme) => {
+    setUserTheme(newTheme);
+    localStorage.setItem(storageKey, newTheme);
+  };
 
   const value = {
-    theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
-    },
+    theme: "system" as Theme,
+    userTheme,
+    setTheme: handleSetTheme,
+    toggleTheme,
   };
 
   return (
