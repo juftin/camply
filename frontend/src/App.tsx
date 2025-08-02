@@ -1,49 +1,40 @@
-import { useState, useEffect } from "react";
-import "./App.css";
-
-interface HealthResponse {
-  status: number;
-  timestamp: string;
-}
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Layout } from "@/components/Layout";
+import { Home } from "@/pages/Home";
+import { Providers } from "@/pages/Providers";
+import { Auth } from "@/pages/Auth";
+import { PrivacyPolicy } from "@/pages/PrivacyPolicy";
+import { TermsOfService } from "@/pages/TermsOfService";
+import { Contact } from "@/pages/Contact";
+import { Contribute } from "@/pages/Contribute";
+import { FAQ } from "@/pages/FAQ";
 
 function App() {
-  const [health, setHealth] = useState<HealthResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/health")
-      .then((res) => res.json())
-      .then((data: HealthResponse) => {
-        setHealth(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch health:", err);
-        setLoading(false);
-      });
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Camply Web</h1>
-        <p>Find campsites at sold-out campgrounds</p>
+    <Router>
+      <Routes>
+        {/* Auth page without layout */}
+        <Route path="/auth" element={<Auth />} />
 
-        <div className="health-status">
-          <h3>Backend Status</h3>
-          {loading ? (
-            <p>Loading...</p>
-          ) : health ? (
-            <div>
-              <p>Status: {health.status}</p>
-              <p>Timestamp: {health.timestamp}</p>
-            </div>
-          ) : (
-            <p>Failed to connect to backend</p>
-          )}
-        </div>
-      </header>
-    </div>
+        {/* Pages with layout */}
+        <Route
+          path="/*"
+          element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/providers" element={<Providers />} />
+                <Route path="/contribute" element={<Contribute />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsOfService />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
