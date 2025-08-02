@@ -1,0 +1,36 @@
+name: site
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    name: docs
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Set up Github Workspace
+        uses: actions/checkout@v4
+      - name: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+      - name: setup-uv
+        uses: astral-sh/setup-uv@v6
+      - name: setup-task
+        uses: arduino/setup-task@v2
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: build-docs
+        run: task frontend:build
+      - name: github-pages
+        uses: juftin/actions/github-pages@v1
+        id: deployment
+        with:
+          path: frontend/dist
