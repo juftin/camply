@@ -1,6 +1,6 @@
 [project]
 name = "camply-web"
-version = "0.1.0"
+version = "0.2.0"
 description = "A full-stack application to help you find campsites at sold-out campgrounds"
 readme = "README.md"
 authors = [
@@ -28,15 +28,20 @@ dev = [
   "pytest-cov>=6.0.0",
   "ruff>=0.11.2",
   "mypy>=1.15.0",  # mypy --install-types
-  "pip>=24.3.1"
+  "pip>=24.3.1",
+  "types-pyyaml>=6.0.12.20250516",
+  "types-ujson>=5.10.0.20250326"
 ]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build.targets.wheel]
+packages = ["camply_web"]
+
 [tool.pytest.ini_options]
-addopts = "-v --cov=src/camply_web --cov-report=term-missing"
+addopts = "-v --cov=camply_web --cov-report=term-missing"
 
 [tool.coverage.report]
 exclude_lines = [

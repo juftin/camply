@@ -2,46 +2,55 @@
 
 version: "3"
 
+includes:
+  frontend:
+    taskfile: frontend/Taskfile.yaml
+    dir: frontend
+  backend:
+    taskfile: backend/Taskfile.yaml
+    dir: backend
+
 vars:
-  SOURCE_CODE: src/camply_web
   DOCKER_ORG: juftin
   DOCKER_REPO: camply-web
-env:
-  UV_LOCKED: 1
+
 tasks:
   install:
-    desc: Install Project + Dev Dependencies
+    desc: Install All Dependencies (Backend + Frontend)
     cmds:
-      - task: pre-commit-install
-    deps: [sync]
+      - task: backend:install
+      - task: frontend:install
+
   test:
-    desc: Run Tests
+    desc: Run All Tests (Backend + Frontend)
     cmds:
-      - uv run --all-extras -- pytest {{.CLI_ARGS | default "tests"}}
-    deps: [sync]
-  fix:
-    desc: Fix Code with Linters and Formatters
-    cmds:
-      - task: fmt
-      - uv run -- ruff check --fix {{.CLI_ARGS | default .ROOT_DIR}}
-      - task: pre-commit
-    deps: [sync]
+      - task: backend:test
+      - task: frontend:test
+
   lint:
-    desc: Run Code Linters
+    desc: Lint All Code (Backend + Frontend)
     cmds:
-      - uv run -- ruff check {{.CLI_ARGS | default .ROOT_DIR}}
-      - task: check
-    deps: [sync]
+      - task: backend:lint
+      - task: frontend:lint
+
+  check:
+    desc: Run Type Checking (Backend + Frontend)
+    cmds:
+      - task: backend:check
+      - task: frontend:check
+
+  fix:
+    desc: Fix All Code with Linters and Formatters
+    deps:
+      - task: backend:fix
+      - task: frontend:fix
+
   build:
     desc: Build the Project Artifacts
     cmds:
-      - uv build
-      - task: docker
-  run:
-    desc: Run Command within Project (requires "--")
-    cmds:
-      - uv run -- {{.CLI_ARGS}}
-    deps: [sync]
+      - task: backend:build
+      - task: frontend:build
+
   publish:
     desc: Publish the Project Artifacts
     cmds:
@@ -49,70 +58,39 @@ tasks:
     deps: [build]
     requires:
       vars: [CI]
+
   version:
-    desc: View / Set Project Version
-    cmd: uv tool run --isolated hatch version {{.CLI_ARGS}}
-    silent: true
+    desc: Get/Set Project Versions
+    cmds:
+      - task: backend:version
+
   pre-commit:
     desc: Run Pre-Commit Hooks
     cmds:
-      - uv tool run --isolated pre-commit run
+      - uv tool run --isolated pre-commit run {{.CLI_ARGS}}
     status:
-      - test ! -f {{.ROOT_DIR}}/.pre-commit-config.yaml
+      - test ! -f .pre-commit-config.yaml
     deps: [pre-commit-install]
+
+  dev:
+    desc: Run Full Stack Development (Backend + Frontend)
+    deps: ["frontend:dev", "backend:debug"]
+
+  run:
+    desc: Run the project with Docker Compose
+    cmds:
+      - docker compose up --build
+
   default:
     desc: Install Project, List Tasks
     cmds:
       - task --list-all
-    deps: [sync]
-  docker:
-    desc: Build Docker Image
-    cmds:
-      - |
-        docker build \
-           --tag {{.DOCKER_ORG}}/{{.DOCKER_REPO}}:latest \
-           --tag {{.DOCKER_ORG}}/{{.DOCKER_REPO}}:{{.PACKAGE_VERSION}} \
-           {{.CLI_ARGS}} \
-           {{.ROOT_DIR}}
-    status:
-      - test ! -f {{.ROOT_DIR}}/{{.DOCKERFILE | default "Dockerfile"}}
-    vars:
-      PACKAGE_VERSION:
-        sh: uv tool run --isolated hatch project metadata version
-  check:
-    desc: Run Static Type Checkers
-    cmds:
-      - |
-        uv run -- \
-        mypy \
-          --install-types \
-          --ignore-missing-imports \
-          --non-interactive \
-          {{.CLI_ARGS | default .SOURCE_CODE}}
-    deps: [sync]
-  fmt:
-    desc: Run Code Formatters
-    cmds:
-      - uv run -- ruff format {{.CLI_ARGS | default .ROOT_DIR}}
-    deps: [sync]
-  ########################
-  # APP TASKS
-  ########################
-  debug:
-    desc: Run the Project in Debug Mode
-    cmds:
-      - uv run gunicorn --config {{.ROOT_DIR}}/config/gunicorn.conf.py camply_web.app:app
-    env:
-      GUNICORN_RELOAD: "1"
+    deps: [install]
 
   ########################
   # INTERNAL TASKS
   ########################
-  sync:
-    desc: Install Project Dependencies
-    internal: true
-    cmds:
-      - uv sync --all-extras
+
   pre-commit-install:
     desc: Install Pre-Commit Hooks
     internal: true
@@ -123,4 +101,4 @@ tasks:
           fi
         silent: true
     status:
-      - test ! -f {{.ROOT_DIR}}/.pre-commit-config.yaml
+      - test ! -f ../.pre-commit-config.yaml

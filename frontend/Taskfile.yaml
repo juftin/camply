@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  install:
+    desc: Install Frontend Dependencies
+    cmds:
+      - npm install
+
+  dev:
+    desc: Run Frontend Development Server
+    cmds:
+      - npm run dev
+    deps: [install]
+
+  build:
+    desc: Build Frontend for Production
+    cmds:
+      - npm run build
+      - task: docker
+
+  lint:
+    desc: Lint Frontend Code
+    cmds:
+      - npm run lint
+    deps: [install]
+
+  check:
+    desc: Run Frontend TypeScript Type Checking
+    cmds:
+      - npm run typecheck
+    deps: [install]
+
+  fix:
+    desc: Fix Frontend Code with Linters and Formatters
+    cmds:
+      - npm run fix
+
+  preview:
+    desc: Preview Production Build
+    cmds:
+      - npm run preview
+    deps: [build]
+
+  clean:
+    desc: Clean Build Artifacts
+    cmds:
+      - rm -rf dist node_modules
+
+  docker:
+    desc: Build Docker Image
+    cmd: docker compose --project-directory ../ build frontend
+    env:
+      FRONTEND_VERSION:
+        sh: npm pkg get version | jq -r
+
+  test:
+    desc: Run Frontend Tests
+    cmds:
+      - npm run test
+    deps: [install]

@@ -11,6 +11,8 @@ from camply_web.routers.health import health_router
 app = FastAPI(
     title=__application__,
     version=__version__,
+    docs_url="/api/docs",
+    openapi_url="/api/openapi.json",
     redoc_url=None,
     default_response_class=ORJSONResponse,
 )
@@ -20,7 +22,7 @@ API_ROUTERS: list[APIRouter] = [
 ]
 
 for router in API_ROUTERS:
-    app.include_router(router)
+    app.include_router(router, prefix="/api")
 
 
 def main() -> None:  # pragma: no cover

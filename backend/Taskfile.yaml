@@ -1,0 +1,93 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+vars:
+  SOURCE_CODE: camply_web
+
+env:
+  UV_LOCKED: 1
+
+tasks:
+  install:
+    desc: Install Project + Dev Dependencies
+    cmds:
+      - task: sync
+
+  test:
+    desc: Run Tests
+    cmds:
+      - uv run --all-extras -- pytest {{.CLI_ARGS | default "tests"}}
+    deps: [sync]
+
+  fix:
+    desc: Fix Code with Linters and Formatters
+    cmds:
+      - task: fmt
+      - uv run -- ruff check --fix {{.CLI_ARGS | default "."}}
+    deps: [sync]
+
+  lint:
+    desc: Run Code Linters
+    cmds:
+      - uv run -- ruff check {{.CLI_ARGS | default "."}}
+      - task: check
+    deps: [sync]
+
+  run:
+    desc: Run Command within Project (requires "--")
+    cmds:
+      - uv run -- {{.CLI_ARGS}}
+    deps: [sync]
+
+  check:
+    desc: Run Static Type Checkers
+    cmds:
+      - |
+        uv run -- \
+        mypy \
+          --ignore-missing-imports \
+          {{.CLI_ARGS | default .SOURCE_CODE}}
+    deps: [sync]
+
+  fmt:
+    desc: Run Code Formatters
+    cmds:
+      - uv run -- ruff format {{.CLI_ARGS | default "."}}
+    deps: [sync]
+
+  debug:
+    desc: Run the Project in Debug Mode
+    cmds:
+      - uv run gunicorn --config config/gunicorn.conf.py camply_web.app:app
+    env:
+      GUNICORN_RELOAD: "1"
+
+  build:
+    desc: Build the Project Artifacts
+    cmds:
+      - uv build
+      - task: docker
+
+  docker:
+    desc: Build Docker Image
+    cmd: docker compose --project-directory ../ build backend
+    env:
+      BACKEND_VERSION:
+        sh: uv version --short
+
+  version:
+    desc: View / Set Project Version
+    cmd: uv version {{.CLI_ARGS}}
+    silent: true
+    env:
+      UV_LOCKED: 0
+
+  ########################
+  # INTERNAL TASKS
+  ########################
+  sync:
+    desc: Install Project Dependencies
+    internal: true
+    cmds:
+      - uv sync --all-extras
