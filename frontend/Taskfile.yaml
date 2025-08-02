@@ -19,6 +19,7 @@ tasks:
     cmds:
       - npm run build
       - task: docker
+    deps: [install]
 
   lint:
     desc: Lint Frontend Code
