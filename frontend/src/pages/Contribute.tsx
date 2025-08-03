@@ -6,6 +6,7 @@ import {
   Shield,
   DollarSign,
   ExternalLink,
+  HeartHandshake,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,7 +21,14 @@ export function Contribute() {
   return (
     <div className="container mx-auto py-12 px-4 max-w-6xl">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Contribute to camply</h1>
+        <div className="mb-6">
+          <HeartHandshake className="h-16 w-16 text-primary mx-auto mb-4" />
+        </div>
+        {/*<h1 className="text-4xl font-bold mb-4">Contribute to camply</h1>*/}
+        <h1 className="text-5xl font-bold mb-6">
+          <span className="text-primary"> Contribute </span>
+          to camply
+        </h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
           Help keep camply running and accessible to everyone. Your
           contributions ensure we can continue providing free campsite
@@ -162,11 +170,11 @@ export function Contribute() {
                   Buy Us a Coffee
                 </a>
               </Button>
-              <Button variant="outline" className="w-full" size="lg">
+              <Button className="w-full" size="lg">
                 <Heart className="h-4 w-4 mr-2" />
                 Contribute via PayPal
               </Button>
-              <Button variant="outline" className="w-full" size="lg">
+              <Button className="w-full" size="lg">
                 <Heart className="h-4 w-4 mr-2" />
                 Contribute via GitHub Sponsors
               </Button>

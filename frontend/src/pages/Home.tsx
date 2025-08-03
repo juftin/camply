@@ -56,18 +56,17 @@ export function Home() {
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-md mx-auto mb-8">
-            <div className="flex gap-2">
+          <div className="max-w-2xl mx-auto mb-8">
+            <div className="flex gap-3">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                 <Input
                   placeholder="Search campgrounds..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-12 h-12 text-lg bg-gray-50 border-gray-300 dark:bg-background dark:border-border"
                 />
               </div>
-              <Button>Search</Button>
             </div>
           </div>
 
@@ -93,6 +92,13 @@ export function Home() {
               <MapPin className="h-4 w-4" />
               Recreation Areas
             </Link>
+          </div>
+
+          {/* Let's Go Camping CTA */}
+          <div className="mt-8">
+            <Button size="lg" asChild className="text-lg px-8 py-3">
+              <Link to="/auth?mode=signup">⛺️ Let's Go Camping</Link>
+            </Button>
           </div>
         </div>
       </section>

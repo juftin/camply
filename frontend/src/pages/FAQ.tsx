@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ChevronDown, ChevronUp, HelpCircle } from "lucide-react";
+import { ChevronDown, ChevronUp, HelpCircle, CircleHelp } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -169,6 +169,9 @@ export function FAQ() {
   return (
     <div className="container mx-auto py-12 px-4 max-w-4xl">
       <div className="text-center mb-12">
+        <div className="mb-6">
+          <CircleHelp className="h-16 w-16 text-primary mx-auto mb-4" />
+        </div>
         <h1 className="text-4xl font-bold mb-4">Frequently Asked Questions</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Find answers to common questions about camply, our campsite monitoring

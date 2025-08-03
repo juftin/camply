@@ -18,6 +18,12 @@ export function Auth() {
   const [isSignUp, setIsSignUp] = React.useState(
     searchParams.get("mode") === "signup",
   );
+
+  // Update isSignUp when URL params change
+  React.useEffect(() => {
+    const mode = searchParams.get("mode");
+    setIsSignUp(mode === "signup");
+  }, [searchParams]);
   const [showPassword, setShowPassword] = React.useState(false);
   const [formData, setFormData] = React.useState({
     name: "",
@@ -73,7 +79,7 @@ export function Auth() {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
-      <Header showLogo={false} />
+      <Header />
 
       {/* Development Banner - only show on signup */}
       <DismissibleBanner

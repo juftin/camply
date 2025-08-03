@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Menu, X, TentTree } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -10,9 +10,29 @@ interface HeaderProps {
 
 export function Header({ showLogo = true }: HeaderProps) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = React.useState(true);
   const [lastScrollY, setLastScrollY] = React.useState(0);
+
+  const handleAuthNavigation = (mode?: "signup") => {
+    if (location.pathname === "/auth") {
+      // Already on auth page, just update the URL
+      const searchParams = new URLSearchParams(location.search);
+      if (mode === "signup") {
+        searchParams.set("mode", "signup");
+      } else {
+        searchParams.delete("mode");
+      }
+      const queryString = searchParams.toString();
+      navigate(`/auth${queryString ? `?${queryString}` : ""}`, {
+        replace: true,
+      });
+    } else {
+      // Navigate to auth page
+      navigate(mode === "signup" ? "/auth?mode=signup" : "/auth");
+    }
+  };
 
   React.useEffect(() => {
     if (location.hash) {
@@ -76,14 +96,6 @@ export function Header({ showLogo = true }: HeaderProps) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-6">
             <Link
-              to="/"
-              className={`text-muted-foreground hover:text-foreground ${
-                location.pathname === "/" ? "text-foreground" : ""
-              }`}
-            >
-              Home
-            </Link>
-            <Link
               to="/providers"
               className={`text-muted-foreground hover:text-foreground ${
                 location.pathname === "/providers" ? "text-foreground" : ""
@@ -92,32 +104,20 @@ export function Header({ showLogo = true }: HeaderProps) {
               Providers
             </Link>
             <Link
-              to="/#features"
-              className="text-muted-foreground hover:text-foreground"
-              onClick={(e) => {
-                if (location.pathname === "/") {
-                  e.preventDefault();
-                  document
-                    .getElementById("features")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+              to="/how-it-works"
+              className={`text-muted-foreground hover:text-foreground ${
+                location.pathname === "/how-it-works" ? "text-foreground" : ""
+              }`}
             >
-              Features
+              How It Works
             </Link>
             <Link
-              to="/#how-it-works"
-              className="text-muted-foreground hover:text-foreground"
-              onClick={(e) => {
-                if (location.pathname === "/") {
-                  e.preventDefault();
-                  document
-                    .getElementById("how-it-works")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+              to="/ethos"
+              className={`text-muted-foreground hover:text-foreground ${
+                location.pathname === "/ethos" ? "text-foreground" : ""
+              }`}
             >
-              How it works
+              Ethos
             </Link>
             <Link
               to="/contribute"
@@ -145,8 +145,11 @@ export function Header({ showLogo = true }: HeaderProps) {
             className={`hidden md:flex items-center space-x-2 ${!showLogo ? "absolute right-4" : ""}`}
           >
             <ThemeToggle />
-            <Button variant="outline" asChild>
-              <Link to="/auth">Sign In</Link>
+            <Button variant="outline" onClick={() => handleAuthNavigation()}>
+              Sign In
+            </Button>
+            <Button onClick={() => handleAuthNavigation("signup")}>
+              Sign Up
             </Button>
           </div>
         </div>
@@ -157,15 +160,6 @@ export function Header({ showLogo = true }: HeaderProps) {
         <div className="md:hidden sticky top-[73px] z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <nav className="container mx-auto px-4 py-4 space-y-4">
             <Link
-              to="/"
-              className={`block text-muted-foreground hover:text-foreground ${
-                location.pathname === "/" ? "text-foreground" : ""
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
               to="/providers"
               className={`block text-muted-foreground hover:text-foreground ${
                 location.pathname === "/providers" ? "text-foreground" : ""
@@ -175,34 +169,22 @@ export function Header({ showLogo = true }: HeaderProps) {
               Providers
             </Link>
             <Link
-              to="/#features"
-              className="block text-muted-foreground hover:text-foreground"
-              onClick={(e) => {
-                setIsMobileMenuOpen(false);
-                if (location.pathname === "/") {
-                  e.preventDefault();
-                  document
-                    .getElementById("features")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+              to="/how-it-works"
+              className={`block text-muted-foreground hover:text-foreground ${
+                location.pathname === "/how-it-works" ? "text-foreground" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              Features
+              How It Works
             </Link>
             <Link
-              to="/#how-it-works"
-              className="block text-muted-foreground hover:text-foreground"
-              onClick={(e) => {
-                setIsMobileMenuOpen(false);
-                if (location.pathname === "/") {
-                  e.preventDefault();
-                  document
-                    .getElementById("how-it-works")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+              to="/ethos"
+              className={`block text-muted-foreground hover:text-foreground ${
+                location.pathname === "/ethos" ? "text-foreground" : ""
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
-              How it works
+              Ethos
             </Link>
             <Link
               to="/contribute"
@@ -213,13 +195,29 @@ export function Header({ showLogo = true }: HeaderProps) {
             >
               Contribute
             </Link>
-            <div className="pt-4 border-t flex items-center justify-between">
-              <ThemeToggle />
-              <Button variant="outline" asChild>
-                <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
+            <div className="pt-4 border-t space-y-3">
+              <div className="flex items-center justify-between">
+                <ThemeToggle />
+              </div>
+              <div className="flex flex-col space-y-2">
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    handleAuthNavigation();
+                  }}
+                >
                   Sign In
-                </Link>
-              </Button>
+                </Button>
+                <Button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    handleAuthNavigation("signup");
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </div>
             </div>
           </nav>
         </div>

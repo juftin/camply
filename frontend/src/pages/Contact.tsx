@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   Mail,
   MessageSquare,
+  MessageCircleHeart,
   Github,
   Bug,
   Lightbulb,
@@ -47,6 +48,9 @@ export function Contact() {
   return (
     <div className="container mx-auto py-12 px-4 max-w-6xl">
       <div className="text-center mb-12">
+        <div className="mb-6">
+          <MessageCircleHeart className="h-16 w-16 text-primary mx-auto mb-4" />
+        </div>
         <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
           Have questions about camply? Found a bug? Want to suggest a feature?
