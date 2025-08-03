@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, MapPin, Clock, Shield, Star } from "lucide-react";
+import { Search, MapPin, Clock, Shield, Star, Heart, Tent } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -9,12 +9,36 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { DismissibleBanner } from "@/components/DismissibleBanner";
 
 export function Home() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <>
+      {/* Development Banner */}
+      <DismissibleBanner
+        id="home-development"
+        icon={Tent}
+        className="bg-orange-100 border-b border-orange-200 py-3 px-4 text-orange-800"
+        closeButtonClassName="hover:bg-orange-200 text-orange-800"
+        storageType="session"
+      >
+        <p className="text-sm font-medium text-center">
+          camply is currently in development and not ready for use yet. Follow
+          our progress on{" "}
+          <a
+            href="https://github.com/juftin/camply-web"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:no-underline font-semibold"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+      </DismissibleBanner>
+
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto text-center">
@@ -22,10 +46,13 @@ export function Home() {
             Find Campsites at
             <span className="text-primary"> Sold-Out</span> Campgrounds
           </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
             Never miss out on your dream camping spot again. camply monitors
             availability and alerts you when cancellations open up at popular
             campgrounds.
+          </p>
+          <p className="text-lg font-medium text-primary mb-8">
+            🏕️ Free and Open Source 🏕
           </p>
 
           {/* Search Bar */}
@@ -76,7 +103,7 @@ export function Home() {
           <h2 className="text-3xl font-bold text-center mb-12">
             Why Choose camply?
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Card>
               <CardHeader>
                 <Clock className="h-10 w-10 text-primary mb-2" />
@@ -106,6 +133,17 @@ export function Home() {
                 <CardDescription>
                   Set up alerts in seconds. Just select your campground, dates,
                   and notification preferences.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <Heart className="h-10 w-10 text-primary mb-2" />
+                <CardTitle>Always Free</CardTitle>
+                <CardDescription>
+                  100% free and open source. No hidden fees, no subscriptions.
+                  Built by campers, for campers.
                 </CardDescription>
               </CardHeader>
             </Card>
