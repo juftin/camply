@@ -9,6 +9,7 @@ interface DismissibleBannerProps {
   showCondition?: boolean;
   icon?: LucideIcon;
   storageType?: "session" | "local";
+  dismissible?: boolean;
 }
 
 export function DismissibleBanner({
@@ -19,8 +20,10 @@ export function DismissibleBanner({
   showCondition = true,
   icon: Icon,
   storageType = "session",
+  dismissible = true,
 }: DismissibleBannerProps) {
   const [isVisible, setIsVisible] = React.useState(() => {
+    if (!dismissible) return true;
     if (typeof window !== "undefined") {
       const storage = storageType === "local" ? localStorage : sessionStorage;
       return storage.getItem(`banner-dismissed-${id}`) !== "true";
@@ -29,6 +32,7 @@ export function DismissibleBanner({
   });
 
   const handleDismiss = () => {
+    if (!dismissible) return;
     setIsVisible(false);
     const storage = storageType === "local" ? localStorage : sessionStorage;
     storage.setItem(`banner-dismissed-${id}`, "true");
@@ -46,13 +50,15 @@ export function DismissibleBanner({
           {children}
           {Icon && <Icon className="h-5 w-5 flex-shrink-0" />}
         </div>
-        <button
-          onClick={handleDismiss}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded ${closeButtonClassName}`}
-          aria-label="Close banner"
-        >
-          <X className="h-4 w-4" />
-        </button>
+        {dismissible && (
+          <button
+            onClick={handleDismiss}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded ${closeButtonClassName}`}
+            aria-label="Close banner"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        )}
       </div>
     </div>
   );

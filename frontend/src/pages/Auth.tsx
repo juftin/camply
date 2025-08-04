@@ -87,6 +87,7 @@ export function Auth() {
         icon={Tent}
         showCondition={isSignUp}
         storageType="session"
+        dismissible={false}
         className="bg-orange-100 border-b border-orange-200 py-3 px-4 text-orange-800"
         closeButtonClassName="hover:bg-orange-200 text-orange-800"
       >

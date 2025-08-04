@@ -52,8 +52,8 @@ export function Header({ showLogo = true }: HeaderProps) {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Only apply auto-hide behavior on mobile
-      if (window.innerWidth < 768) {
+      // Only apply auto-hide behavior on mobile when menu is not open
+      if (window.innerWidth < 768 && !isMobileMenuOpen) {
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
           // Scrolling down and past threshold - hide header
           setIsHeaderVisible(false);
@@ -74,7 +74,7 @@ export function Header({ showLogo = true }: HeaderProps) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, isMobileMenuOpen]);
 
   return (
     <>
