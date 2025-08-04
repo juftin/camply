@@ -390,7 +390,7 @@ export function Providers() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button size="lg" asChild>
             <a
-              href="https://github.com/juftin/camply-web/issues/new?template=feature_request.md"
+              href="https://github.com/juftin/camply/issues/new?template=feature_request.md"
               target="_blank"
               rel="noopener noreferrer"
             >

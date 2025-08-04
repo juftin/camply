@@ -1,11 +1,11 @@
-name: "camply-web"
+name: "camply"
 
 services:
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: juftin/camply-web-backend:${BACKEND_VERSION:-local}
+    image: juftin/camply-backend:${BACKEND_VERSION:-local}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
       interval: 30s
@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile
       args:
         - CAMPLY_API_URL=http://backend:8000/api
-    image: juftin/camply-web-frontend:${FRONTEND_VERSION:-local}
+    image: juftin/camply-frontend:${FRONTEND_VERSION:-local}
     ports:
       - "80:80"
     depends_on:

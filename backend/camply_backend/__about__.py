@@ -1,5 +1,5 @@
 """
-camply-web metadata
+camply-backend metadata
 """
 
 try:
@@ -7,6 +7,6 @@ try:
 except ImportError:
     from importlib.metadata import version as metadata_version
 
-__application__ = "camply-web"
+__application__ = "camply-backend"
 __author__ = "justin.flannery@juftin.com"
 __version__ = metadata_version(__application__)

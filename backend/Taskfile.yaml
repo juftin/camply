@@ -3,7 +3,7 @@
 version: "3"
 
 vars:
-  SOURCE_CODE: camply_web
+  SOURCE_CODE: camply_backend
 
 env:
   UV_LOCKED: 1
@@ -59,7 +59,7 @@ tasks:
   debug:
     desc: Run the Project in Debug Mode
     cmds:
-      - uv run gunicorn --config config/gunicorn.conf.py camply_web.app:app
+      - uv run gunicorn --config config/gunicorn.conf.py camply_backend.app:app
     env:
       GUNICORN_RELOAD: "1"
 

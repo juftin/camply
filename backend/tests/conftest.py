@@ -1,5 +1,5 @@
 """
-camply-web conftest
+camply-backend conftest
 """
 
 from fastapi.testclient import TestClient
@@ -11,6 +11,6 @@ def test_client() -> TestClient:
     """
     Test Client Fixture
     """
-    from camply_web.app import app
+    from camply_backend.app import app
 
     return TestClient(app)

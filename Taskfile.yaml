@@ -10,10 +10,6 @@ includes:
     taskfile: backend/Taskfile.yaml
     dir: backend
 
-vars:
-  DOCKER_ORG: juftin
-  DOCKER_REPO: camply-web
-
 tasks:
   install:
     desc: Install All Dependencies (Backend + Frontend)

@@ -28,7 +28,7 @@ export function Home() {
           camply is currently in development and not ready for use yet. Follow
           our progress on{" "}
           <a
-            href="https://github.com/juftin/camply-web"
+            href="https://github.com/juftin/camply/tree/web"
             target="_blank"
             rel="noopener noreferrer"
             className="underline hover:no-underline font-semibold"

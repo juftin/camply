@@ -1,4 +1,4 @@
-# camply-web
+# camply
 
 A full-stack application to help you find campsites at sold-out campgrounds.
 
@@ -8,6 +8,7 @@ This is a monorepo with two main components:
 
 - **Backend**: FastAPI Python application (`backend/`)
 - **Frontend**: React TypeScript application (`frontend/`)
+- **CLI**: Legacy command line interface (`cli/`) - ignore this directory for new development
 
 ## Technology Stack
 
@@ -107,4 +108,5 @@ task publish          # Publish project artifacts (CI only)
 
 ## Docker
 
-The project includes Docker configuration for both development and production deployment via Docker Compose.
+The project includes Docker configuration for both development and production deployment via Docker
+Compose.

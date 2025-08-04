@@ -1,12 +1,12 @@
 """
-camply-web FastAPI Application
+camply-backend FastAPI Application
 """
 
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import ORJSONResponse
 
-from camply_web.__about__ import __application__, __version__
-from camply_web.routers.health import health_router
+from camply_backend.__about__ import __application__, __version__
+from camply_backend.routers.health import health_router
 
 app = FastAPI(
     title=__application__,
@@ -32,7 +32,7 @@ def main() -> None:  # pragma: no cover
     import uvicorn
 
     uvicorn.run(
-        app="camply_web.app:app",
+        app="camply_backend.app:app",
         host="0.0.0.0",
         port=8000,
         reload=True,

@@ -6,7 +6,7 @@ export function TermsOfService() {
       <h1 className="text-4xl font-bold mb-8">Terms of Service</h1>
       <div className="prose prose-lg max-w-none">
         <p className="text-muted-foreground mb-8">
-          <strong>Last updated:</strong> January 2025
+          <strong>Last updated:</strong> August 2025
         </p>
 
         <section className="mb-8">
@@ -244,14 +244,14 @@ export function TermsOfService() {
             contact us at:
           </p>
           <ul className="list-none mb-4 space-y-1">
-            <li>Email: support@camply.app</li>
+            <li>Email: camply@juftin.com</li>
             <li>
               GitHub:{" "}
               <a
-                href="https://github.com/juftin/camply-web"
+                href="https://github.com/juftin/camply"
                 className="text-primary hover:text-primary/80"
               >
-                github.com/juftin/camply-web
+                github.com/juftin/camply
               </a>
             </li>
           </ul>

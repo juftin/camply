@@ -60,7 +60,7 @@ export function Contribute() {
               <span className="text-center">
                 All expenses are tracked transparently on our{" "}
                 <a
-                  href="https://github.com/juftin/camply-web"
+                  href="https://github.com/juftin/camply"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-primary hover:text-primary/80 font-medium"
@@ -269,7 +269,7 @@ export function Contribute() {
               </p>
               <Button variant="outline" className="w-full" asChild>
                 <a
-                  href="https://github.com/juftin/camply-web"
+                  href="https://github.com/juftin/camply"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -289,7 +289,7 @@ export function Contribute() {
               </p>
               <Button variant="outline" className="w-full" asChild>
                 <a
-                  href="https://github.com/juftin/camply-web/issues"
+                  href="https://github.com/juftin/camply/issues"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -351,7 +351,7 @@ export function Contribute() {
             <div className="text-center pt-4">
               <Button variant="outline" asChild>
                 <a
-                  href="https://github.com/juftin/camply-web"
+                  href="https://github.com/juftin/camply"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

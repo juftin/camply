@@ -20,7 +20,7 @@ RUN --mount=from=ghcr.io/astral-sh/uv:latest,source=/uv,target=/bin/uv \
     uv sync --no-install-project
 
 COPY pyproject.toml uv.lock README.md /app/
-COPY camply_web/ /app/camply_web/
+COPY camply_backend/ /app/camply_backend/
 RUN --mount=from=ghcr.io/astral-sh/uv:latest,source=/uv,target=/bin/uv \
     --mount=type=cache,target=/root/.cache/uv \
     uv sync --no-editable
@@ -29,4 +29,4 @@ ENV PATH=/app/.venv/bin:${PATH}
 
 COPY config/ /app/config/
 
-CMD [ "gunicorn", "--config", "/app/config/gunicorn.conf.py", "camply_web.app:app"]
+CMD [ "gunicorn", "--config", "/app/config/gunicorn.conf.py", "camply_backend.app:app"]
