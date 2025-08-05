@@ -3,7 +3,7 @@
 version: "3"
 
 vars:
-  SOURCE_CODE: camply_backend
+  SOURCE_CODE: packages
 
 env:
   UV_LOCKED: 1
@@ -17,7 +17,7 @@ tasks:
   test:
     desc: Run Tests
     cmds:
-      - uv run --all-extras -- pytest {{.CLI_ARGS | default "tests"}}
+      - uv run -- pytest {{.CLI_ARGS}}
     deps: [sync]
 
   fix:
@@ -59,14 +59,13 @@ tasks:
   debug:
     desc: Run the Project in Debug Mode
     cmds:
-      - uv run gunicorn --config config/gunicorn.conf.py camply_backend.app:app
+      - uv run gunicorn --config config/gunicorn.conf.py backend.app:app
     env:
       GUNICORN_RELOAD: "1"
 
   build:
     desc: Build the Project Artifacts
     cmds:
-      - uv build
       - task: docker
 
   docker:
@@ -90,4 +89,4 @@ tasks:
     desc: Install Project Dependencies
     internal: true
     cmds:
-      - uv sync --all-extras
+      - uv sync --all-packages

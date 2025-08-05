@@ -5,8 +5,8 @@ camply-backend FastAPI Application
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import ORJSONResponse
 
-from camply_backend.__about__ import __application__, __version__
-from camply_backend.routers.health import health_router
+from backend.__about__ import __application__, __version__
+from backend.routers.health import health_router
 
 app = FastAPI(
     title=__application__,
@@ -32,7 +32,7 @@ def main() -> None:  # pragma: no cover
     import uvicorn
 
     uvicorn.run(
-        app="camply_backend.app:app",
+        app="backend.app:app",
         host="0.0.0.0",
         port=8000,
         reload=True,

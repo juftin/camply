@@ -72,3 +72,6 @@ logs/
 # Temporary
 tmp/
 temp/
+
+# API Clients
+backend/clients/

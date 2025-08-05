@@ -1,4 +1,7 @@
-# camply: backend
+# camply-backend
 
-A full-stack application to help you find campsites at sold-out
-campgrounds.
+## Packages
+
+### backend
+
+The FastAPI backend for the `camply` application.

@@ -6,6 +6,12 @@ resolution-markers = [
     "python_full_version < '3.10'",
 ]
 
+[manifest]
+members = [
+    "backend",
+    "camply-backend",
+]
+
 [[package]]
 name = "annotated-types"
 version = "0.7.0"
@@ -31,9 +37,9 @@ wheels = [
 ]
 
 [[package]]
-name = "camply-backend"
+name = "backend"
 version = "0.2.0"
-source = { editable = "." }
+source = { editable = "packages/backend" }
 dependencies = [
     { name = "fastapi" },
     { name = "gunicorn" },
@@ -80,6 +86,17 @@ dev = [
     { name = "types-pyyaml", specifier = ">=6.0.12.20250516" },
     { name = "types-ujson", specifier = ">=5.10.0.20250326" },
 ]
+
+[[package]]
+name = "camply-backend"
+version = "0.2.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "backend" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "backend", editable = "packages/backend" }]
 
 [[package]]
 name = "certifi"

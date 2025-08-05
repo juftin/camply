@@ -13,20 +13,19 @@ ENV UV_LINK_MODE=copy \
     UV_LOCKED=1 \
     VIRTUAL_ENV=/app/.venv
 
-RUN --mount=from=ghcr.io/astral-sh/uv:latest,source=/uv,target=/bin/uv \
-    --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --no-install-project
 
-COPY pyproject.toml uv.lock README.md /app/
-COPY camply_backend/ /app/camply_backend/
+COPY pyproject.toml uv.lock /app/
+COPY packages/backend/pyproject.toml /app/packages/backend/pyproject.toml
 RUN --mount=from=ghcr.io/astral-sh/uv:latest,source=/uv,target=/bin/uv \
     --mount=type=cache,target=/root/.cache/uv \
-    uv sync --no-editable
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --no-dev --no-install-project
+
+COPY packages/ /app/packages/
+RUN --mount=from=ghcr.io/astral-sh/uv:latest,source=/uv,target=/bin/uv \
+    --mount=type=cache,target=/root/.cache/uv \
+    uv sync --no-dev
 
 ENV PATH=/app/.venv/bin:${PATH}
 
-COPY config/ /app/config/
-
-CMD [ "gunicorn", "--config", "/app/config/gunicorn.conf.py", "camply_backend.app:app"]
+CMD [ "gunicorn", "--config", "/app/packages/backend/config/gunicorn.conf.py", "backend.app:app"]

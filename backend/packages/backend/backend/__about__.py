@@ -7,6 +7,6 @@ try:
 except ImportError:
     from importlib.metadata import version as metadata_version
 
-__application__ = "camply-backend"
+__application__ = "backend"
 __author__ = "justin.flannery@juftin.com"
 __version__ = metadata_version(__application__)

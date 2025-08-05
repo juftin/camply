@@ -11,6 +11,6 @@ def test_client() -> TestClient:
     """
     Test Client Fixture
     """
-    from camply_backend.app import app
+    from backend.app import app
 
     return TestClient(app)
