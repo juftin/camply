@@ -1,0 +1,29 @@
+[project]
+name = "db"
+version = "0.2.0"
+dependencies = [
+  "sqlalchemy>=2,<3",
+  "sqlmodel>=0.0.24,<0.0.25",
+  "alembic>=1,<2",
+  "pydantic>=2,<3",
+  "pydantic-settings>=2,<3",
+  "aiosqlite>=0.21.0,<0.22.0",
+  "platformdirs>=4,<5",
+  "greenlet>=3,<4"
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8,<9",
+  "pytest-cov>=6,<7",
+  "ruff>=0.11.0,<0.12.0",
+  "mypy>=1,<2",
+  "pip>=24,<25"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["backend"]

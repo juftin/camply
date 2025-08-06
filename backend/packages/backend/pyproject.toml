@@ -6,24 +6,24 @@ authors = [
 ]
 requires-python = ">=3.9,<4.0"
 dependencies = [
+  "pydantic>=2,<3",
+  "pydantic-settings>=2,<3",
+  "orjson>=3,<4",
   "fastapi>=0.115.12",
   "gunicorn>=23.0.0",
   "importlib-metadata>=6.5.0; python_version < '3.10'",
-  "orjson>=3.10.16",
-  "pydantic>=2.10.6",
-  "pydantic-settings>=2.8.1",
   "uvicorn-worker>=0.3.0",
   "uvicorn[standard]>=0.34.0"
 ]
 
 [dependency-groups]
 dev = [
-  "httpx>=0.28.1",
-  "pytest>=8.3.5",
-  "pytest-cov>=6.0.0",
-  "ruff>=0.11.2",
-  "mypy>=1.15.0",
-  "pip>=24.3.1",
+  "pytest>=8,<9",
+  "pytest-cov>=6,<7",
+  "ruff>=0.11.0,<0.12.0",
+  "mypy>=1,<2",
+  "pip>=24,<25",
+  "httpx>=0.28.0,<0.29.0",
   "types-pyyaml>=6.0.12.20250516",
   "types-ujson>=5.10.0.20250326"
 ]
@@ -44,4 +44,3 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:"
 ]
-

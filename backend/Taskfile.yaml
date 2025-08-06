@@ -83,6 +83,25 @@ tasks:
       UV_LOCKED: 0
 
   ########################
+  # ALEMBIC
+  ########################
+  migration:
+    desc: Run Alembic Migration (task migration -- revision message)
+    dir: packages/db
+    cmds:
+      - uv run -- alembic revision --autogenerate -m "{{.CLI_ARGS}}"
+    deps: [sync]
+    preconditions:
+      - sh: '[[ -z "{{.CLI_ARGS}}" ]] && exit 1 || exit 0'
+        msg: Migration message is required
+  migration-upgrade:
+    desc: Run Alembic Migration Upgrade
+    dir: packages/db
+    cmds:
+      - uv run -- alembic upgrade head {{.CLI_ARGS}}
+    deps: [sync]
+
+  ########################
   # INTERNAL TASKS
   ########################
   sync:
