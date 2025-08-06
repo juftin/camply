@@ -1,9 +1,9 @@
 """
 init
 
-Revision ID: 69e4158a9cbd
+Revision ID: 5d73123f56dd
 Revises:
-Create Date: 2025-08-06 03:30:45.035610+00:00
+Create Date: 2025-08-06 05:27:02.265069+00:00
 """
 
 from textwrap import dedent
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 from alembic import op
 
 # revision identifiers, used by Alembic.
-revision: str = "69e4158a9cbd"
+revision: str = "5d73123f56dd"
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -31,19 +31,45 @@ def upgrade() -> None:
         sa.Column("description", sa.String(length=255), nullable=True),
         sa.Column("url", sa.String(length=255), nullable=False),
         sa.Column("enabled", sa.Boolean(), nullable=False),
+        sa.Column(
+            "created_at",
+            sa.DateTime(),
+            server_default=sa.text("(CURRENT_TIMESTAMP)"),
+            nullable=False,
+        ),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            server_default=sa.text("(CURRENT_TIMESTAMP)"),
+            nullable=False,
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_index(op.f("ix_providers_name"), "providers", ["name"], unique=True)
     op.create_table(
         "recreation_areas",
-        sa.Column("id", sa.UUID(), nullable=False),
-        sa.Column("provider_id", sa.BigInteger(), nullable=False),
+        sa.Column("id", sa.String(length=128), nullable=False),
+        sa.Column("provider_id", sa.Integer(), nullable=False),
         sa.Column("name", sa.String(length=255), nullable=False),
         sa.Column("description", sa.String(length=255), nullable=True),
         sa.Column("county", sa.String(length=50), nullable=True),
         sa.Column("state", sa.String(length=50), nullable=True),
         sa.Column("longitude", sa.Float(), nullable=True),
         sa.Column("latitude", sa.Float(), nullable=True),
+        sa.Column("reservable", sa.Boolean(), nullable=False),
+        sa.Column("enabled", sa.Boolean(), nullable=False),
+        sa.Column(
+            "created_at",
+            sa.DateTime(),
+            server_default=sa.text("(CURRENT_TIMESTAMP)"),
+            nullable=False,
+        ),
+        sa.Column(
+            "updated_at",
+            sa.DateTime(),
+            server_default=sa.text("(CURRENT_TIMESTAMP)"),
+            nullable=False,
+        ),
         sa.ForeignKeyConstraint(
             ["provider_id"],
             ["providers.id"],

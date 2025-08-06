@@ -6,10 +6,11 @@ import asyncio
 
 from alembic import context
 from alembic.config import Config
-from db.creds import DatabaseCredentials
-from db.models import Base
 from sqlalchemy import Connection
 from sqlalchemy.ext.asyncio import AsyncEngine
+
+from db.creds import DatabaseCredentials
+from db.models import Base
 
 config: Config = context.config
 target_metadata = Base.metadata
