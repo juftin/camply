@@ -1,35 +1,34 @@
 """
-RecreationArea
+Campground
 """
 
 import datetime
 from functools import partial
 from typing import TYPE_CHECKING
 
-from sqlalchemy import ForeignKey, Integer, String, func
+from sqlalchemy import ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from db.models.base import Base
 
 if TYPE_CHECKING:
-    from db.models.campgrounds import Campground
-    from db.models.providers import Provider
+    from db.models.providers import RecreationArea
 
 
-class RecreationArea(Base):
+class Campground(Base):
     """
-    Recreation Area Model
+    Campground Model
     """
 
-    __tablename__ = "recreation_areas"
+    __tablename__ = "campgrounds"
 
     id: Mapped[str] = mapped_column(
         String(128),
         primary_key=True,
         nullable=False,
     )
-    provider_id: Mapped[int] = mapped_column(
-        Integer, ForeignKey("providers.id"), primary_key=True
+    recreation_area_id: Mapped[str] = mapped_column(
+        String, ForeignKey("recreation_areas.id"), primary_key=True
     )
     name: Mapped[str] = mapped_column(String(255), index=True)
     description: Mapped[str | None] = mapped_column(String(255))
@@ -49,9 +48,6 @@ class RecreationArea(Base):
         onupdate=func.CURRENT_TIMESTAMP(),
     )
 
-    provider: Mapped["Provider"] = relationship(
-        back_populates="recreation_areas",
-    )
-    campgrounds: Mapped[list["Campground"]] = relationship(
-        back_populates="recreation_area",
+    recreation_area: Mapped["RecreationArea"] = relationship(
+        back_populates="campgrounds",
     )

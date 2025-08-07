@@ -1,7 +1,20 @@
 [project]
 name = "providers"
 version = "0.1.0"
-dependencies = []
+dependencies = [
+  # First Party
+  "db",
+  # Third Party
+  "pydantic>=2,<3",
+  "httpx>=0.28.0,<0.29.0",
+  "platformdirs>=4,<5",
+  "structlog>=25,<26",
+  "rich>=14,<15",
+  "click>=8,<9"
+]
+
+[project.scripts]
+populate-database = "providers.cli:populate_database"
 
 [dependency-groups]
 dev = [

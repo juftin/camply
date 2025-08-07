@@ -4,12 +4,17 @@ Database Connections
 
 from enum import Enum
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import platformdirs
 import sqlalchemy.engine
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
+from sqlalchemy.ext.asyncio import (
+    AsyncEngine,
+    AsyncSession,
+    async_sessionmaker,
+    create_async_engine,
+)
 
 
 class DatabaseDrivers(str, Enum):
@@ -28,7 +33,7 @@ class DatabaseCredentials(BaseSettings):
     Database credentials
     """
 
-    model_config: SettingsConfigDict = SettingsConfigDict(
+    model_config: ClassVar[SettingsConfigDict] = SettingsConfigDict(
         env_prefix="CAMPLY_DB_",
         case_sensitive=False,
     )
@@ -36,7 +41,7 @@ class DatabaseCredentials(BaseSettings):
     DRIVERNAME: DatabaseDrivers = DatabaseDrivers.SQLITE
     USERNAME: str = "camply"
     PASSWORD: Optional[str] = None
-    HOST: Optional[str] = f"/{DEFAULT_SQLITE_FILE}"
+    HOST: str = f"/{DEFAULT_SQLITE_FILE}"
     PORT: Optional[int] = None
     DATABASE: str = "camply"
 
@@ -71,3 +76,22 @@ class DatabaseCredentials(BaseSettings):
             str(self.url),
             **kwargs,
         )
+
+    def get_session_maker(self, **kwargs: Any) -> async_sessionmaker[AsyncSession]:
+        """
+        Get an async session maker for the database
+        """
+        return async_sessionmaker(
+            self.create_async_engine(**kwargs),
+            class_=AsyncSession,
+            autocommit=False,
+            expire_on_commit=False,
+            autoflush=False,
+        )
+
+    def get_session(self, **kwargs: Any) -> AsyncSession:
+        """
+        Get an async session for the database
+        """
+        async_session_maker = self.get_session_maker(**kwargs)
+        return async_session_maker()
