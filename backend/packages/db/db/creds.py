@@ -3,10 +3,8 @@ Database Connections
 """
 
 from enum import Enum
-from pathlib import Path
-from typing import Any, ClassVar, Optional
+from typing import Any, ClassVar
 
-import platformdirs
 import sqlalchemy.engine
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy.ext.asyncio import (
@@ -22,10 +20,7 @@ class DatabaseDrivers(str, Enum):
     Database drivers
     """
 
-    SQLITE = "sqlite+aiosqlite"
-
-
-DEFAULT_SQLITE_FILE = Path(platformdirs.user_data_dir(appname="camply")) / "camply.db"
+    POSTGRES = "postgresql+psycopg"
 
 
 class DatabaseCredentials(BaseSettings):
@@ -38,11 +33,11 @@ class DatabaseCredentials(BaseSettings):
         case_sensitive=False,
     )
 
-    DRIVERNAME: DatabaseDrivers = DatabaseDrivers.SQLITE
+    DRIVERNAME: DatabaseDrivers = DatabaseDrivers.POSTGRES
     USERNAME: str = "camply"
-    PASSWORD: Optional[str] = None
-    HOST: str = f"/{DEFAULT_SQLITE_FILE}"
-    PORT: Optional[int] = None
+    PASSWORD: str = "camply"
+    HOST: str = "localhost"
+    PORT: int = 5432
     DATABASE: str = "camply"
 
     @property
@@ -52,28 +47,19 @@ class DatabaseCredentials(BaseSettings):
         """
         return sqlalchemy.engine.URL.create(
             drivername=str(self.DRIVERNAME.value),
-            username=(
-                self.USERNAME if self.DRIVERNAME != DatabaseDrivers.SQLITE else None
-            ),
-            password=(
-                self.PASSWORD if self.DRIVERNAME != DatabaseDrivers.SQLITE else None
-            ),
+            username=self.USERNAME,
+            password=self.PASSWORD,
             host=self.HOST,
-            port=(self.PORT if self.DRIVERNAME != DatabaseDrivers.SQLITE else None),
-            database=(
-                self.DATABASE if self.DRIVERNAME != DatabaseDrivers.SQLITE else None
-            ),
+            port=self.PORT,
+            database=self.DATABASE,
         )
 
     def create_async_engine(self, **kwargs: Any) -> AsyncEngine:
         """
         Get the SQLAlchemy engine
         """
-        if self.DRIVERNAME == DatabaseDrivers.SQLITE:
-            sqlite_file = Path(self.HOST.replace("//", "/"))
-            sqlite_file.parent.mkdir(parents=True, exist_ok=True)
         return create_async_engine(
-            str(self.url),
+            self.url,
             **kwargs,
         )
 

@@ -2,11 +2,9 @@
 name = "db"
 version = "0.1.0"
 dependencies = [
-  "sqlalchemy>=2,<3",
-  "pydantic-settings>=2,<3",
-  "aiosqlite>=0.21.0,<0.22.0",
-  "platformdirs>=4,<5",
-  "greenlet>=3,<4"
+  "sqlalchemy[asyncio]>=2,<3",
+  "psycopg[binary]>=3,<4",
+  "pydantic-settings>=2,<3"
 ]
 
 [dependency-groups]

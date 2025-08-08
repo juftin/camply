@@ -4,12 +4,18 @@ Populate Database CLI
 
 import asyncio
 
-from click import command
+import click
+import rich.traceback
 
 from providers.recreation_gov.provider import RecreationGovProvider
 
+rich.traceback.install(
+    show_locals=False,
+    suppress=[click, asyncio],
+)
 
-@command
+
+@click.command
 def populate_database() -> None:
     """
     Populate the Database with Provider Data

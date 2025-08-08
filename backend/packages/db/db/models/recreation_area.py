@@ -26,13 +26,12 @@ class RecreationArea(Base):
     id: Mapped[str] = mapped_column(
         String(128),
         primary_key=True,
-        nullable=False,
     )
     provider_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("providers.id"), primary_key=True
     )
     name: Mapped[str] = mapped_column(String(255), index=True)
-    description: Mapped[str | None] = mapped_column(String(255))
+    description: Mapped[str | None] = mapped_column(String(32768))
     county: Mapped[str | None] = mapped_column(String(50))
     state: Mapped[str | None] = mapped_column(String(50))
     longitude: Mapped[float | None] = mapped_column()
@@ -53,5 +52,6 @@ class RecreationArea(Base):
         back_populates="recreation_areas",
     )
     campgrounds: Mapped[list["Campground"]] = relationship(
-        back_populates="recreation_area",
+        foreign_keys="[Campground.recreation_area_id, Campground.provider_id]",
+        viewonly=True,
     )

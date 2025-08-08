@@ -1,0 +1,16 @@
+volumes:
+  db_data:
+    driver: local
+
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-camply}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-camply}
+      POSTGRES_DB: ${POSTGRES_DB:-camply}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    restart: unless-stopped

@@ -15,6 +15,7 @@ import structlog
 
 from db.creds import DatabaseCredentials
 from providers.base import BaseProvider, DatabasePopulator
+from providers.recreation_gov import PROVIDER
 from providers.recreation_gov.models.campgrounds import RecDotGovCampgroundData
 from providers.recreation_gov.models.recreation_area import RecDotGovRecreationAreaData
 
@@ -65,14 +66,14 @@ class RecreationGovProvider(BaseProvider):
             if age_delta < self.expiration_time:
                 logger.info(
                     "Using cached offline data",
-                    provider="Recreation.gov",
+                    provider=PROVIDER,
                 )
                 return destination_file
         with destination_file.open("wb") as download_file:
             logger.info(
                 "Downloading offline data from %s",
                 self.data_source,
-                provider="Recreation.gov",
+                provider=PROVIDER,
             )
             async with self.async_client.stream("GET", self.data_source) as response:
                 total = int(response.headers["Content-Length"])
@@ -95,14 +96,14 @@ class RecreationGovProvider(BaseProvider):
         Process the downloaded offline data.
         """
         creds = DatabaseCredentials()
-        session = creds.get_session()
         logger.info(
             "Populating database",
-            provider="Recreation.gov",
+            provider=PROVIDER,
         )
-        data_file = await self.download_offline_data()
-        with zipfile.ZipFile(data_file, "r") as zipped:
-            for data in self.data_files:
-                with zipped.open(data.json_file, mode="r") as json_file:
-                    parsed = data.data_model.model_validate_json(json_file.read())
-                    await parsed.to_database(session)
+        async with creds.get_session() as session:
+            data_file = await self.download_offline_data()
+            with zipfile.ZipFile(data_file, "r") as zipped:
+                for data in self.data_files:
+                    with zipped.open(data.json_file, mode="r") as json_file:
+                        parsed = data.data_model.model_validate_json(json_file.read())
+                        await parsed.to_database(session)

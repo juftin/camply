@@ -5,7 +5,7 @@ Base Provider Configuration
 from abc import ABC, abstractmethod
 
 import httpx
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
@@ -32,6 +32,20 @@ class BaseProvider(ABC):
         """
         Populate the database with data from the provider.
         """
+
+
+class NullHandler(BaseModel):
+    """
+    Empty String to Null Handler
+    """
+
+    @field_validator("*", mode="before")
+    @classmethod
+    def convert_to_none(cls, v):
+        if isinstance(v, str) and v.strip() == "":
+            return None
+        else:
+            return v
 
 
 class DatabasePopulator(ABC, BaseModel):

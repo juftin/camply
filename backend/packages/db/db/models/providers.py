@@ -12,6 +12,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from db.models.base import Base
 
 if TYPE_CHECKING:
+    from db.models.campgrounds import Campground
     from db.models.recreation_area import RecreationArea
 
 
@@ -24,7 +25,7 @@ class Provider(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(255), unique=True, index=True)
-    description: Mapped[str | None] = mapped_column(String(255))
+    description: Mapped[str | None] = mapped_column(String(32768))
     url: Mapped[str] = mapped_column(String(255))
     enabled: Mapped[bool] = mapped_column(default=True)
     created_at: Mapped[datetime.datetime] = mapped_column(
@@ -38,5 +39,8 @@ class Provider(Base):
     )
 
     recreation_areas: Mapped[list["RecreationArea"]] = relationship(
+        back_populates="provider",
+    )
+    campgrounds: Mapped[list["Campground"]] = relationship(
         back_populates="provider",
     )

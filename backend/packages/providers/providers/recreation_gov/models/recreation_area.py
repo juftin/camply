@@ -5,16 +5,16 @@ Data Models for Upstream Recreation.gov Provider
 import datetime
 
 import structlog
-from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.models import RecreationArea
-from providers.base import DatabasePopulator
+from providers.base import DatabasePopulator, NullHandler
+from providers.recreation_gov import PROVIDER
 
 logger = structlog.getLogger(__name__)
 
 
-class RecDotGovRecreationArea(BaseModel):
+class RecDotGovRecreationArea(NullHandler):
     """
     Model representing a recreation area from Recreation.gov.
     """
@@ -22,8 +22,8 @@ class RecDotGovRecreationArea(BaseModel):
     RecAreaID: int | str
     OrgRecAreaID: int | str | None
     ParentOrgID: int | str | None
-    RecAreaName: str
-    RecAreaDescription: str
+    RecAreaName: str | None
+    RecAreaDescription: str | None
     RecAreaLongitude: float
     RecAreaLatitude: float
     Reservable: bool
@@ -42,16 +42,18 @@ class RecDotGovRecreationAreaData(DatabasePopulator):
         """
         Convert the data to database entries.
         """
+        provider_id = 1
+        sync_count = 0
         async with session.begin():
             logger.info(
-                "%s recreation areas to process",
+                "%s recreation areas detected",
                 len(self.RECDATA),
-                provider="Recreation.gov",
+                provider=PROVIDER,
             )
             for area in self.RECDATA:
                 recreation_area = RecreationArea(
                     id=area.RecAreaID,
-                    provider_id=1,
+                    provider_id=provider_id,
                     name=area.RecAreaName,
                     description=area.RecAreaDescription,
                     longitude=area.RecAreaLongitude,
@@ -59,5 +61,13 @@ class RecDotGovRecreationAreaData(DatabasePopulator):
                     reservable=area.Reservable,
                     enabled=area.Enabled,
                 )
+                if not area.RecAreaName:
+                    continue
                 await session.merge(recreation_area)
+                sync_count += 1
+            logger.info(
+                "%s recreation areas synced",
+                sync_count,
+                provider=PROVIDER,
+            )
             await session.commit()
