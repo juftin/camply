@@ -13,7 +13,7 @@ import platformdirs
 import rich.progress
 import structlog
 
-from db.creds import DatabaseCredentials
+from db.config import db
 from db.data.providers import RecreationDotGov
 from providers.base import BaseProvider, DatabasePopulator
 from providers.recreation_gov.models.campgrounds import RecDotGovCampgroundData
@@ -95,12 +95,11 @@ class RecreationGovProvider(BaseProvider):
         """
         Process the downloaded offline data.
         """
-        creds = DatabaseCredentials()
         logger.info(
             "Populating database",
             provider=RecreationDotGov.name,
         )
-        async with creds.get_session() as session:
+        async with db.get_session() as session:
             data_file = await self.download_offline_data()
             with zipfile.ZipFile(data_file, "r") as zipped:
                 for data in self.data_files:

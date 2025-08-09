@@ -70,7 +70,7 @@ tasks:
 
   dev:
     desc: Run Full Stack Development (Backend + Frontend)
-    deps: ["frontend:dev", "backend:debug"]
+    deps: ["frontend:dev", "backend:dev"]
 
   run:
     desc: Run the project with Docker Compose

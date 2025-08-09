@@ -9,7 +9,7 @@ from alembic.config import Config
 from sqlalchemy import Connection
 from sqlalchemy.ext.asyncio import AsyncEngine
 
-from db.creds import DatabaseCredentials
+from db.config import db
 from db.models import Base
 
 config: Config = context.config
@@ -20,9 +20,8 @@ def run_migrations_offline() -> None:
     """
     Run migrations in 'offline' mode.
     """
-    creds = DatabaseCredentials()
     context.configure(
-        url=creds.url,
+        url=db.url,
         target_metadata=target_metadata,
         literal_binds=True,
         dialect_opts={"paramstyle": "named"},

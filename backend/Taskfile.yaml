@@ -56,10 +56,10 @@ tasks:
       - uv run -- ruff format {{.CLI_ARGS | default "."}}
     deps: [sync]
 
-  debug:
+  dev:
     desc: Run the Project in Debug Mode
     cmds:
-      - uv run gunicorn --config config/gunicorn.conf.py backend.app:app
+      - uv run gunicorn --config packages/backend/config/gunicorn.conf.py backend.app:app
     env:
       GUNICORN_RELOAD: "1"
 

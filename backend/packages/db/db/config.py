@@ -3,7 +3,7 @@ Database Connections
 """
 
 from enum import Enum
-from typing import Any, ClassVar
+from typing import Any, AsyncGenerator, ClassVar
 
 import sqlalchemy.engine
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -23,9 +23,9 @@ class DatabaseDrivers(str, Enum):
     POSTGRES = "postgresql+psycopg"
 
 
-class DatabaseCredentials(BaseSettings):
+class DatabaseConfig(BaseSettings):
     """
-    Database credentials
+    Database Configuration
     """
 
     model_config: ClassVar[SettingsConfigDict] = SettingsConfigDict(
@@ -81,3 +81,13 @@ class DatabaseCredentials(BaseSettings):
         """
         async_session_maker = self.get_session_maker(**kwargs)
         return async_session_maker()
+
+    async def yield_session(self) -> AsyncGenerator[AsyncSession, None]:
+        """
+        Yield an async session for the database
+        """
+        async with self.get_session() as session:
+            yield session
+
+
+db = DatabaseConfig()

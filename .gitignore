@@ -75,3 +75,7 @@ temp/
 
 # API Clients
 backend/clients/
+
+# Coding Agents
+CLAUDE.md
+.claude/
