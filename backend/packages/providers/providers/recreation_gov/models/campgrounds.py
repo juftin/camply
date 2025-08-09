@@ -6,9 +6,9 @@ import structlog
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from db.data.providers import RecreationDotGov
 from db.models import Campground, RecreationArea
 from providers.base import DatabasePopulator, NullHandler
-from providers.recreation_gov import PROVIDER
 
 logger = structlog.getLogger(__name__)
 
@@ -40,16 +40,15 @@ class RecDotGovCampgroundData(DatabasePopulator):
         """
         Convert the data to database entries.
         """
-        provider_id = 1
         sync_count = 0
         async with session.begin():
             logger.info(
                 "%s campgrounds detected",
                 len(self.RECDATA),
-                provider=PROVIDER,
+                provider=RecreationDotGov.name,
             )
             id_query = select(RecreationArea.id).where(
-                RecreationArea.provider_id == provider_id
+                RecreationArea.provider_id == RecreationDotGov.id
             )
             id_result = await session.execute(id_query)
             existing_recreation_area_ids = set(id_result.scalars())
@@ -57,7 +56,7 @@ class RecDotGovCampgroundData(DatabasePopulator):
                 campground = Campground(
                     id=camp.FacilityID,
                     recreation_area_id=camp.ParentRecAreaID,
-                    provider_id=provider_id,
+                    provider_id=RecreationDotGov.id,
                     name=camp.FacilityName,
                     description=camp.FacilityDescription,
                     longitude=camp.FacilityLongitude,
@@ -74,6 +73,6 @@ class RecDotGovCampgroundData(DatabasePopulator):
             logger.info(
                 "%s campgrounds processed",
                 sync_count,
-                provider=PROVIDER,
+                provider=RecreationDotGov.name,
             )
             await session.commit()

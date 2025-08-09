@@ -14,8 +14,8 @@ import rich.progress
 import structlog
 
 from db.creds import DatabaseCredentials
+from db.data.providers import RecreationDotGov
 from providers.base import BaseProvider, DatabasePopulator
-from providers.recreation_gov import PROVIDER
 from providers.recreation_gov.models.campgrounds import RecDotGovCampgroundData
 from providers.recreation_gov.models.recreation_area import RecDotGovRecreationAreaData
 
@@ -66,14 +66,14 @@ class RecreationGovProvider(BaseProvider):
             if age_delta < self.expiration_time:
                 logger.info(
                     "Using cached offline data",
-                    provider=PROVIDER,
+                    provider=RecreationDotGov.name,
                 )
                 return destination_file
         with destination_file.open("wb") as download_file:
             logger.info(
                 "Downloading offline data from %s",
                 self.data_source,
-                provider=PROVIDER,
+                provider=RecreationDotGov.name,
             )
             async with self.async_client.stream("GET", self.data_source) as response:
                 total = int(response.headers["Content-Length"])
@@ -98,7 +98,7 @@ class RecreationGovProvider(BaseProvider):
         creds = DatabaseCredentials()
         logger.info(
             "Populating database",
-            provider=PROVIDER,
+            provider=RecreationDotGov.name,
         )
         async with creds.get_session() as session:
             data_file = await self.download_offline_data()

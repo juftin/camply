@@ -6,11 +6,13 @@ Revises:
 Create Date: 2025-08-08 03:22:08.178631+00:00
 """
 
-from textwrap import dedent
 from typing import Sequence, Union
 
 import sqlalchemy as sa
 from alembic import op
+
+from db.data.providers import RecreationDotGov
+from db.utils import model_to_dict
 
 # revision identifiers, used by Alembic.
 revision: str = "067d9d721253"
@@ -47,35 +49,10 @@ def upgrade() -> None:
     )
     op.create_index(op.f("ix_providers_name"), "providers", ["name"], unique=True)
     # ### end Alembic commands ###
-    recreation_dot_gov_description = """
-    Recreation.gov is the government's centralized travel planning platform and reservation
-    system for 14 federal agencies, offering the tools, tips, and information needed for you
-    to discover destinations and activities, plan a trip, and explore outdoor and cultural
-    destinations in your zip code and across the country. Find and reserve incredible experiences
-    that help you bring home a story through Recreation.gov!
-    """
-    # dedent and unwrap the description to ensure proper formatting
-    recreation_dot_gov_description = (
-        dedent(recreation_dot_gov_description)
-        .strip()
-        .replace("\n", " ")
-        .replace("  ", " ")
+    op.bulk_insert(
+        table=RecreationDotGov.__table__,
+        rows=[model_to_dict(RecreationDotGov)],
     )
-    rec_dot_gov_insert = sa.insert(
-        sa.table(
-            "providers",
-            sa.column("name"),
-            sa.column("description"),
-            sa.column("url"),
-            sa.column("enabled"),
-        )
-    ).values(
-        name="Recreation.gov",
-        description=recreation_dot_gov_description,
-        url="https://www.recreation.gov",
-        enabled=True,
-    )
-    op.execute(rec_dot_gov_insert)
 
 
 def downgrade() -> None:

@@ -7,9 +7,9 @@ import datetime
 import structlog
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from db.data.providers import RecreationDotGov
 from db.models import RecreationArea
 from providers.base import DatabasePopulator, NullHandler
-from providers.recreation_gov import PROVIDER
 
 logger = structlog.getLogger(__name__)
 
@@ -42,18 +42,17 @@ class RecDotGovRecreationAreaData(DatabasePopulator):
         """
         Convert the data to database entries.
         """
-        provider_id = 1
         sync_count = 0
         async with session.begin():
             logger.info(
                 "%s recreation areas detected",
                 len(self.RECDATA),
-                provider=PROVIDER,
+                provider=RecreationDotGov.name,
             )
             for area in self.RECDATA:
                 recreation_area = RecreationArea(
                     id=area.RecAreaID,
-                    provider_id=provider_id,
+                    provider_id=RecreationDotGov.id,
                     name=area.RecAreaName,
                     description=area.RecAreaDescription,
                     longitude=area.RecAreaLongitude,
@@ -68,6 +67,6 @@ class RecDotGovRecreationAreaData(DatabasePopulator):
             logger.info(
                 "%s recreation areas synced",
                 sync_count,
-                provider=PROVIDER,
+                provider=RecreationDotGov.name,
             )
             await session.commit()
