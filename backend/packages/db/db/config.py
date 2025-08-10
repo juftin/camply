@@ -34,9 +34,9 @@ class DatabaseConfig(BaseSettings):
     )
 
     DRIVERNAME: DatabaseDrivers = DatabaseDrivers.POSTGRES
+    HOST: str = "localhost"
     USERNAME: str = "camply"
     PASSWORD: str = "camply"
-    HOST: str = "localhost"
     PORT: int = 5432
     DATABASE: str = "camply"
 

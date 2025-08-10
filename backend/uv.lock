@@ -227,6 +227,7 @@ name = "db"
 version = "0.1.0"
 source = { editable = "packages/db" }
 dependencies = [
+    { name = "alembic" },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic-settings" },
     { name = "sqlalchemy", extra = ["asyncio"] },
@@ -234,7 +235,6 @@ dependencies = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "alembic" },
     { name = "mypy" },
     { name = "pip" },
     { name = "pytest" },
@@ -244,6 +244,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "alembic", specifier = ">=1,<2" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3,<4" },
     { name = "pydantic-settings", specifier = ">=2,<3" },
     { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2,<3" },
@@ -251,7 +252,6 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "alembic", specifier = ">=1,<2" },
     { name = "mypy", specifier = ">=1,<2" },
     { name = "pip", specifier = ">=24,<25" },
     { name = "pytest", specifier = ">=8,<9" },

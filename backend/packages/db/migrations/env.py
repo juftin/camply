@@ -46,8 +46,7 @@ async def run_migrations_online_async() -> None:
     """
     Run migrations in 'online' mode (Async).
     """
-    creds = DatabaseCredentials()
-    engine: AsyncEngine = creds.create_async_engine()
+    engine: AsyncEngine = db.create_async_engine()
     async with engine.connect() as connection:
         await connection.run_sync(do_migrations)
 

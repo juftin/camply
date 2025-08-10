@@ -75,6 +75,11 @@ class RecreationGovProvider(BaseProvider):
                 self.data_source,
                 provider=RecreationDotGov.name,
             )
+            logger.info(
+                "Saving Offline data to %s",
+                destination_file,
+                provider=RecreationDotGov.name,
+            )
             async with self.async_client.stream("GET", self.data_source) as response:
                 total = int(response.headers["Content-Length"])
                 with rich.progress.Progress(

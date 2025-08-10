@@ -18,34 +18,57 @@ to book your spot!
 
 ```text
 📂 camply
-├── LICENSE
 ├── README.md
-└── cli
+├── docker-compose.yaml
+├── cli/
 |   ├── pyproject.toml
-|   ├── camply
-|   └── ...
-└──  frontend
+|   └── camply/
+├── frontend/
+|   ├── Dockerfile
+|   ├── docker-compose.yaml
 |   ├── package.json
 |   ├── tsconfig.json
-|   ├── src
-|   └── ...
-└──  backend
+|   ├── src/
+|   └── public/
+└── backend/
+    ├── Dockerfile
+    ├── docker-compose.yaml
     ├── pyproject.toml
-    ├── camply
-    └── ...
+    ├── uv.lock
+    └── packages/
+        ├── backend/
+        |   ├── pyproject.toml
+        |   └── backend/
+        ├── db/
+        |   ├── pyproject.toml
+        |   ├── migrations/
+        |   └── db/
+        └── providers/
+            ├── pyproject.toml
+            └── providers/
 ```
 
 ### cli
 
-The `cli` directory contains the legacy code for `camply`, the command line interface
-for the campsite finder.
+- This directory contains the legacy command-line interface (CLI) for the project.
+  There will be no further development on this CLI and it can be ignored for new
+  features.
 
 ### frontend
 
-The `frontend` directory contains the code for React TypeScript frontend for the
-full stack `camply` application.
+- The frontend of the application is a React application built with TypeScript.
+- It uses Vite as the build tool and includes all necessary configurations for
+  development and production builds.
+- It leverages modern React features and libraries for state management,
+  routing, and UI components.
+- It uses Tailwind CSS for styling.
+- The frontend should be able to be published as a static site that can be served
+  by any web server.
 
 ### backend
 
-The `backend` directory contains the code for the FastAPI backend for the full stack
-`camply` application.
+- The backend of the application is built with Python.
+- The backend is a `uv` workspace containing multiple packages:
+  - `backend/`: The FastAPI application that serves the API endpoints.
+  - `db/`: Contains database models and migrations.
+  - `providers/`: Contains third-party API providers and integrations.

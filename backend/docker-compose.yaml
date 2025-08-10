@@ -3,6 +3,33 @@ volumes:
     driver: local
 
 services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: juftin/camply-backend:${BACKEND_VERSION:-local}
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - "${HOME}/Application\ Support/camply/:/root/.local/share/camply/"
+    environment:
+      CAMPLY_DB_DRIVERNAME: "postgresql+psycopg"
+      CAMPLY_DB_HOST: "db"
+      CAMPLY_DB_USERNAME: ${POSTGRES_USER:-camply}
+      CAMPLY_DB_PASSWORD: ${POSTGRES_PASSWORD:-camply}
+      CAMPLY_DB_DATABASE: ${POSTGRES_DB:-camply}
+      CAMPLY_DB_PORT: 5432
+      GUNICORN_WORKERS: ${GUNICORN_WORKERS:-4}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    ports:
+      - "8000:8000"
+
   db:
     image: postgres:17
     environment:
@@ -11,6 +38,12 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-camply}
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-camply}"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     ports:
       - 5432:5432
     restart: unless-stopped

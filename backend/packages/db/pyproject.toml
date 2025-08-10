@@ -4,7 +4,8 @@ version = "0.1.0"
 dependencies = [
   "sqlalchemy[asyncio]>=2,<3",
   "psycopg[binary]>=3,<4",
-  "pydantic-settings>=2,<3"
+  "pydantic-settings>=2,<3",
+  "alembic>=1,<2"
 ]
 
 [dependency-groups]
@@ -13,8 +14,7 @@ dev = [
   "pytest-cov>=6,<7",
   "ruff>=0.11.0,<0.12.0",
   "mypy>=1,<2",
-  "pip>=24,<25",
-  "alembic>=1,<2"
+  "pip>=24,<25"
 ]
 
 [build-system]

@@ -2,9 +2,20 @@
 Gunicorn Configuration
 """
 
+import multiprocessing
+import os
 from typing import ClassVar
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+def get_worker_count() -> int:
+    """
+    Get the number of workers based on the number of CPU cores.
+    """
+    default = max(1, multiprocessing.cpu_count() - 1)
+    return int(os.getenv("GUNICORN_WORKERS", default=default))
 
 
 class GunicornConfig(BaseSettings):
@@ -17,7 +28,7 @@ class GunicornConfig(BaseSettings):
         case_sensitive=True,
     )
 
-    WORKERS: int = 1
+    WORKERS: int = Field(default_factory=get_worker_count)
     WORKER_CLASS: str = "uvicorn_worker.UvicornWorker"
     HOST: str = "0.0.0.0"
     PORT: int = 8000
