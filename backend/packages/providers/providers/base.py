@@ -9,6 +9,7 @@ import structlog
 from pydantic import BaseModel, field_validator
 from sqlalchemy import Insert, delete, insert, literal, null, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.sql import func
 from sqlalchemy.sql.functions import concat
 
 from db.models import Campground, Provider, RecreationArea, Search
@@ -76,7 +77,7 @@ class BaseProvider(ABC):
                 literal(self.provider.id).label("provider_id"),
                 literal(self.provider.name).label("provider_name"),
                 RecreationArea.id.label("recreation_area_id"),
-                RecreationArea.name.label("recreation_area_name"),
+                func.lower(RecreationArea.name).label("recreation_area_name"),
                 null().label("campground_id"),
                 null().label("campground_name"),
             ).where(RecreationArea.provider_id == self.provider.id),
@@ -113,9 +114,9 @@ class BaseProvider(ABC):
                 literal(self.provider.id).label("provider_id"),
                 literal(self.provider.name).label("provider_name"),
                 RecreationArea.id.label("recreation_area_id"),
-                RecreationArea.name.label("recreation_area_name"),
+                func.lower(RecreationArea.name).label("recreation_area_name"),
                 Campground.id.label("campground_id"),
-                Campground.name.label("campground_name"),
+                func.lower(Campground.name).label("campground_name"),
             )
             .select_from(
                 Campground.__table__.outerjoin(
