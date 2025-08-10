@@ -71,21 +71,21 @@ class Search(Base):
         substring = f"%{term_lc}%"
         # -------------- MATCH QUALITY SCORE --------------
         match_score = case(
-            (cls.recreation_area_name == exact, 0),
-            (cls.campground_name == exact, 0),
-            (cls.recreation_area_name.like(prefix), 1),
-            (cls.campground_name.like(prefix), 1),
-            (cls.recreation_area_name.like(substring), 2),
-            (cls.campground_name.like(substring), 2),
-            else_=3,  # safety net
+            (cls.recreation_area_name == exact, 100),
+            (cls.campground_name == exact, 100),
+            (cls.recreation_area_name.like(prefix), 75),
+            (cls.campground_name.like(prefix), 75),
+            (cls.recreation_area_name.like(substring), 50),
+            (cls.campground_name.like(substring), 50),
+            else_=0,
             value=None,
         ).label("match_score")
 
         # -------------- ENTITY TYPE SCORE --------------
         entity_score = case(
-            (cls.entity_type == "RecreationArea", 0),
-            (cls.entity_type == "Campground", 5),
-            else_=10,
+            (cls.entity_type == "RecreationArea", 100),
+            (cls.entity_type == "Campground", 50),
+            else_=0,
         ).label("entity_score")
         total_score = (entity_score + match_score).label("total_score")
         # -------------- FINAL STATEMENT --------------
@@ -97,11 +97,12 @@ class Search(Base):
                     cls.campground_name.like(substring),
                 )
             )
-            .order_by(total_score, cls.provider_name)  # deterministic tie-break
+            .order_by(
+                total_score.desc(), cls.provider_name
+            )
             .limit(limit)
         )
         # -------------- EXECUTE STATEMENT --------------
         result = await session.execute(stmt)
-        raise ValueError(result)
-        rows = result.scalars().unique().all()
+        rows: list[Self] = result.scalars().all()  # type: ignore[assignment]
         return rows
