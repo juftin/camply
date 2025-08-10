@@ -3,6 +3,7 @@ Alembic Migration Environment Configuration
 """
 
 import asyncio
+import logging
 
 from alembic import context
 from alembic.config import Config
@@ -14,6 +15,11 @@ from db.models import Base
 
 config: Config = context.config
 target_metadata = Base.metadata
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)8s]: %(message)s",
+)
 
 
 def run_migrations_offline() -> None:

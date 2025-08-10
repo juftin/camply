@@ -15,6 +15,7 @@ import structlog
 
 from db.config import db
 from db.data.providers import RecreationDotGov
+from db.models import Provider
 from providers.base import BaseProvider, DatabasePopulator
 from providers.recreation_gov.models.campgrounds import RecDotGovCampgroundData
 from providers.recreation_gov.models.recreation_area import RecDotGovRecreationAreaData
@@ -36,6 +37,13 @@ class RecreationGovProvider(BaseProvider):
     """
     Recreation.gov Provider Class
     """
+
+    @property
+    def provider(self) -> Provider:
+        """
+        Return the provider instance.
+        """
+        return RecreationDotGov
 
     data_source: ClassVar[str] = (
         "https://ridb.recreation.gov/downloads/RIDBFullExport_V1_JSON.zip"
@@ -66,19 +74,19 @@ class RecreationGovProvider(BaseProvider):
             if age_delta < self.expiration_time:
                 logger.info(
                     "Using cached offline data",
-                    provider=RecreationDotGov.name,
+                    provider=self.provider.name,
                 )
                 return destination_file
         with destination_file.open("wb") as download_file:
             logger.info(
                 "Downloading offline data from %s",
                 self.data_source,
-                provider=RecreationDotGov.name,
+                provider=self.provider.name,
             )
             logger.info(
                 "Saving Offline data to %s",
                 destination_file,
-                provider=RecreationDotGov.name,
+                provider=self.provider.name,
             )
             async with self.async_client.stream("GET", self.data_source) as response:
                 total = int(response.headers["Content-Length"])
@@ -102,7 +110,7 @@ class RecreationGovProvider(BaseProvider):
         """
         logger.info(
             "Populating database",
-            provider=RecreationDotGov.name,
+            provider=self.provider.name,
         )
         async with db.get_session() as session:
             data_file = await self.download_offline_data()
@@ -111,3 +119,4 @@ class RecreationGovProvider(BaseProvider):
                     with zipped.open(data.json_file, mode="r") as json_file:
                         parsed = data.data_model.model_validate_json(json_file.read())
                         await parsed.to_database(session)
+            await self.populate_search_table(session)

@@ -1,5 +1,5 @@
 # Frontend Dockerfile for React + Vite application
-FROM node:20-alpine as builder
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
@@ -20,7 +20,7 @@ ENV CAMPLY_API_URL=$CAMPLY_API_URL
 # Build the application
 RUN npm run build
 
-FROM nginx:alpine as production
+FROM nginx:alpine AS production
 
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
