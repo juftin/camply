@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { Search, MapPin, Clock, Shield, Star, Heart, Tent } from "lucide-react";
+import { MapPin, Clock, Shield, Star, Heart, Tent } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Card,
   CardDescription,
@@ -10,10 +8,9 @@ import {
 } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { DismissibleBanner } from "@/components/DismissibleBanner";
+import { SearchBar } from "@/components/SearchBar";
 
 export function Home() {
-  const [searchQuery, setSearchQuery] = useState("");
-
   return (
     <>
       {/* Development Banner */}
@@ -56,19 +53,10 @@ export function Home() {
           </p>
 
           {/* Search Bar */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <div className="flex gap-3">
-              <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
-                <Input
-                  placeholder="Search campgrounds..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 h-12 text-lg bg-gray-50 border-gray-300 dark:bg-background dark:border-border"
-                />
-              </div>
-            </div>
-          </div>
+          <SearchBar
+            placeholder="Search campgrounds..."
+            className="max-w-2xl mx-auto mb-8"
+          />
 
           <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
             <Link

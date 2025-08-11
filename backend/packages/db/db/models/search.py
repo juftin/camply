@@ -97,9 +97,7 @@ class Search(Base):
                     cls.campground_name.like(substring),
                 )
             )
-            .order_by(
-                total_score.desc(), cls.provider_name
-            )
+            .order_by(total_score.desc(), cls.provider_name)
             .limit(limit)
         )
         # -------------- EXECUTE STATEMENT --------------

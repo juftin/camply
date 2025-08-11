@@ -10,6 +10,8 @@ import { Contribute } from "@/pages/Contribute";
 import { FAQ } from "@/pages/FAQ";
 import { Ethos } from "@/pages/Ethos";
 import { HowItWorks } from "@/pages/HowItWorks";
+import { Campground } from "@/pages/Campground";
+import { RecreationArea } from "@/pages/RecreationArea";
 
 // Get base path from Vite's import.meta.env.BASE_URL
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -36,6 +38,14 @@ function App() {
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<TermsOfService />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route
+                  path="/campgrounds/:providerId/:campgroundId"
+                  element={<Campground />}
+                />
+                <Route
+                  path="/rec-areas/:providerId/:recreationAreaId"
+                  element={<RecreationArea />}
+                />
               </Routes>
             </Layout>
           }
