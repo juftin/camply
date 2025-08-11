@@ -86,9 +86,9 @@ export function SearchBar({
 
     // Navigate to the appropriate page based on entity type
     if (result.entity_type === "RecreationArea" && result.recreation_area_id) {
-      navigate(`/rec-areas/${result.provider_id}/${result.recreation_area_id}`);
+      navigate(`/rec-area/${result.provider_id}/${result.recreation_area_id}`);
     } else if (result.entity_type === "Campground" && result.campground_id) {
-      navigate(`/campgrounds/${result.provider_id}/${result.campground_id}`);
+      navigate(`/campground/${result.provider_id}/${result.campground_id}`);
     }
   };
 

@@ -39,11 +39,11 @@ function App() {
                 <Route path="/terms" element={<TermsOfService />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route
-                  path="/campgrounds/:providerId/:campgroundId"
+                  path="/campground/:providerId/:campgroundId"
                   element={<Campground />}
                 />
                 <Route
-                  path="/rec-areas/:providerId/:recreationAreaId"
+                  path="/rec-area/:providerId/:recreationAreaId"
                   element={<RecreationArea />}
                 />
               </Routes>
