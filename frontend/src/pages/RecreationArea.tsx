@@ -23,7 +23,7 @@ export function RecreationArea() {
       {/* Search Bar at top */}
       <div className="mb-8">
         <SearchBar
-          placeholder="Search campgrounds..."
+          placeholder="Search other campgrounds..."
           className="max-w-4xl mx-auto"
         />
       </div>

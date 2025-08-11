@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { SearchBar } from "@/components/SearchBar.tsx";
 
 interface Provider {
   name: string;
@@ -235,6 +236,13 @@ export function Providers() {
             Real-time Availability
           </span>
         </div>
+      </div>
+
+      <div className="mb-8">
+        <SearchBar
+          placeholder="Search campgrounds..."
+          className="max-w-3xl mx-auto"
+        />
       </div>
 
       {/* Popular Providers */}

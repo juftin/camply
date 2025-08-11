@@ -55,7 +55,7 @@ export function Home() {
           {/* Search Bar */}
           <SearchBar
             placeholder="Search campgrounds..."
-            className="max-w-2xl mx-auto mb-8"
+            className="max-w-3xl mx-auto mb-8"
           />
 
           <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
