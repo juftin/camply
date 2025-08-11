@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const apiUrl = import.meta.env.VITE_API_URL;
+
 export interface SearchResult {
   id: string;
   entity_type: string;
@@ -12,9 +14,8 @@ export interface SearchResult {
 }
 
 // Configure axios with base URL
-// Vite proxy handles the API routing in development, so we can use '/api' for both dev and prod
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: apiUrl || "/api",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
