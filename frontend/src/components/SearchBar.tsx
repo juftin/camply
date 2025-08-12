@@ -4,8 +4,8 @@ import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { SearchDropdown } from "@/components/SearchDropdown";
 import { useSearch } from "@/hooks/useSearch";
-import { SearchResult } from "@/lib/api";
 import { toTitleCase } from "@/lib/utils";
+import { SearchResult } from "@/lib/structs.ts";
 
 interface SearchBarProps {
   placeholder?: string;

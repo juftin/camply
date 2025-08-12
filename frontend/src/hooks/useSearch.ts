@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { searchCampgrounds, SearchResult } from "@/lib/api";
+import { searchCampgrounds } from "@/lib/api";
+import { SearchResult } from "@/lib/structs.ts";
 
 export function useSearch(query: string, enabled: boolean = true) {
   const trimmedQuery = query.trim();

@@ -1,7 +1,7 @@
-import { SearchResult } from "@/lib/api";
 import { Mountain, Tent, Loader2 } from "lucide-react";
 import { toTitleCase } from "@/lib/utils";
 import { useEffect, useRef } from "react";
+import { SearchResult } from "@/lib/structs.ts";
 
 interface SearchDropdownProps {
   results: SearchResult[];

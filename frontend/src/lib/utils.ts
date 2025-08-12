@@ -34,12 +34,3 @@ export function toTitleCase(str: string): string {
     })
     .join(" ");
 }
-
-export function toSlug(str: string): string {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, "") // Remove special characters except spaces and hyphens
-    .trim()
-    .replace(/\s+/g, "-") // Replace spaces with hyphens
-    .replace(/-+/g, "-"); // Replace multiple hyphens with single hyphen
-}
