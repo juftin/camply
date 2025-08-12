@@ -8,3 +8,38 @@ export interface SearchResult {
   campground_id: string | null;
   campground_name: string | null;
 }
+
+export interface RecreationArea {
+  id: string;
+  provider_id: number;
+  name: string;
+  description: string | null;
+  country: string | null;
+  state: string | null;
+  longitude: number | null;
+  latitude: number | null;
+  reservable: boolean;
+  enabled: boolean;
+}
+
+export interface Provider {
+  id: number;
+  name: string;
+  description: string | null;
+  url: string;
+  enabled: boolean;
+}
+
+export interface Campground {
+  id: string;
+  provider_id: number;
+  recreation_area_id: string | null;
+  name: string;
+  description: string | null;
+  country: string | null;
+  state: string | null;
+  longitude: number | null;
+  latitude: number | null;
+  reservable: boolean;
+  enabled: boolean;
+}
