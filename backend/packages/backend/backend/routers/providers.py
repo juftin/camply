@@ -42,7 +42,7 @@ async def get_provider(id: int, session: SessionDep) -> Provider:
     )
 
 
-@provider_router.get("/")
+@provider_router.get("")
 async def list_providers(session: SessionDep) -> list[Provider]:
     """
     List all Providers

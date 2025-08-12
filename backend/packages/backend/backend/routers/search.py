@@ -26,7 +26,7 @@ class SearchResult(BaseModel):
     campground_name: str | None
 
 
-@search_router.get("/")
+@search_router.get("")
 async def search(
     query: str, session: SessionDep, limit: int = 20
 ) -> list[SearchResult]:
