@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from backend.dependencies import SessionDep
 from db.models import Search
 
-search_router = APIRouter(prefix="/search", tags=["search"])
+search_router = APIRouter(tags=["search"])
 
 
 class SearchResult(BaseModel):
@@ -26,7 +26,7 @@ class SearchResult(BaseModel):
     campground_name: str | None
 
 
-@search_router.get("")
+@search_router.get("/search")
 async def search(
     query: str, session: SessionDep, limit: int = 20
 ) -> list[SearchResult]:

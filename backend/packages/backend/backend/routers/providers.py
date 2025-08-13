@@ -9,7 +9,7 @@ from sqlalchemy import select
 from backend.dependencies import SessionDep
 from db.models import Provider as ProviderDB
 
-provider_router = APIRouter(prefix="/provider", tags=["providers"])
+provider_router = APIRouter(tags=["providers"])
 
 
 class Provider(BaseModel):
@@ -24,7 +24,7 @@ class Provider(BaseModel):
     enabled: bool
 
 
-@provider_router.get("/{id}")
+@provider_router.get("/provider/{id}")
 async def get_provider(id: int, session: SessionDep) -> Provider:
     """
     Get Provider by ID
@@ -42,7 +42,7 @@ async def get_provider(id: int, session: SessionDep) -> Provider:
     )
 
 
-@provider_router.get("")
+@provider_router.get("/provider")
 async def list_providers(session: SessionDep) -> list[Provider]:
     """
     List all Providers

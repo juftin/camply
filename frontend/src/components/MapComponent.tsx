@@ -6,22 +6,16 @@ interface MapMarkerProps {
   lng: number;
   label?: string;
   type?: "recreation-area" | "campground";
-  onClick?: () => void;
 }
 
-const MapMarker = ({
-  label,
-  type = "recreation-area",
-  onClick,
-}: MapMarkerProps) => (
+const MapMarker = ({ label, type = "recreation-area" }: MapMarkerProps) => (
   <div
-    className={`group ${onClick ? "cursor-pointer" : ""}`}
+    className={`group`}
     style={{
       transform: "translate(-50%, -100%)",
       zIndex: type === "recreation-area" ? 20 : 10,
       position: "relative",
     }}
-    onClick={onClick}
   >
     <div
       className={`flex items-center justify-center w-8 h-8 rounded-full border-2 border-white shadow-lg transition-transform group-hover:scale-110 ${
@@ -54,7 +48,6 @@ interface MapLocation {
   lng: number;
   label?: string;
   type?: "recreation-area" | "campground";
-  onClick?: () => void;
 }
 
 interface MapComponentProps {
@@ -111,7 +104,6 @@ export function MapComponent({
             lng={location.lng}
             label={location.label}
             type={location.type}
-            onClick={location.onClick}
           />
         ))}
         {/* Render recreation area last (higher z-index) to ensure it's on top */}

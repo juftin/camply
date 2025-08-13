@@ -167,8 +167,6 @@ export function RecreationArea() {
                           lng: c.longitude!,
                           label: toTitleCase(c.name),
                           type: "campground" as const,
-                          onClick: () =>
-                            navigate(`/campground/${providerId}/${c.id}`),
                         })) || []
                     }
                     className="h-96 rounded-lg overflow-hidden border"
