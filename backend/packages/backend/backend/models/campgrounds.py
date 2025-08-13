@@ -1,4 +1,9 @@
-from pydantic import BaseModel
+from functools import cached_property
+
+from pydantic import BaseModel, computed_field
+
+from providers import PROVIDERS
+from providers.base import BaseProvider
 
 
 class Campground(BaseModel):
@@ -17,3 +22,14 @@ class Campground(BaseModel):
     latitude: float | None
     reservable: bool = True
     enabled: bool = True
+
+    @cached_property
+    def provider(self) -> type[BaseProvider]:
+        """
+        Get the provider instance for this campground.
+        """
+        return PROVIDERS[self.provider_id]
+
+    @computed_field
+    def url(self) -> str:
+        return self.provider.get_campground_url(campground_id=self.id)

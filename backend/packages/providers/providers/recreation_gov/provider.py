@@ -129,3 +129,17 @@ class RecreationGovProvider(BaseProvider):
                         parsed.ADDRESSES = addresses
                         await parsed.to_database(session)
             await self.populate_search_table(session)
+
+    @classmethod
+    def get_rec_area_url(cls, rec_area_id: str) -> str:
+        """
+        Get the URL for a recreation area
+        """
+        return f"https://www.recreation.gov/gateways/{rec_area_id}"
+
+    @classmethod
+    def get_campground_url(cls, campground_id: str) -> str:
+        """
+        Get the URL for a campground
+        """
+        return f"https://www.recreation.gov/camping/campgrounds/{campground_id}"

@@ -123,7 +123,7 @@ export function Campground() {
                 <span>Provided by {toTitleCase(provider.name)}</span>
                 {provider.url && (
                   <a
-                    href={provider.url}
+                    href={campground.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-1 text-primary hover:underline"

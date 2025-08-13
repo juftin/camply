@@ -2,14 +2,18 @@
 Recreation Areas
 """
 
+from functools import cached_property
+
 from fastapi import APIRouter
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 from sqlalchemy import select
 
 from backend.dependencies import SessionDep
 from backend.models.campgrounds import Campground
 from db.models import Campground as CampgroundDB
 from db.models import RecreationArea as RecreationAreaDB
+from providers import PROVIDERS
+from providers.base import BaseProvider
 
 recreation_area_router = APIRouter(prefix="/rec-area", tags=["recreation_areas"])
 
@@ -29,6 +33,17 @@ class RecreationArea(BaseModel):
     latitude: float | None
     reservable: bool = True
     enabled: bool = True
+
+    @cached_property
+    def provider(self) -> type[BaseProvider]:
+        """
+        Get the provider instance for this recreation area.
+        """
+        return PROVIDERS[self.provider_id]
+
+    @computed_field
+    def url(self) -> str:
+        return self.provider.get_rec_area_url(rec_area_id=self.id)
 
 
 @recreation_area_router.get("/{provider}/{id}")

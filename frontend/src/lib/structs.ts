@@ -20,6 +20,7 @@ export interface RecreationArea {
   latitude: number | null;
   reservable: boolean;
   enabled: boolean;
+  url: string;
 }
 
 export interface Provider {
@@ -42,4 +43,5 @@ export interface Campground {
   latitude: number | null;
   reservable: boolean;
   enabled: boolean;
+  url: string;
 }

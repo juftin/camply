@@ -113,7 +113,7 @@ export function RecreationArea() {
                 <span>Provided by {toTitleCase(provider.name)}</span>
                 {provider.url && (
                   <a
-                    href={provider.url}
+                    href={recreationArea.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center space-x-1 text-primary hover:underline"
@@ -182,9 +182,6 @@ export function RecreationArea() {
                 <Tent className="h-5 w-5" />
                 <span>Campgrounds</span>
               </CardTitle>
-              <CardDescription>
-                Campgrounds Within This Recreation Area Will Be Listed Here.
-              </CardDescription>
             </CardHeader>
             <CardContent>
               {campgroundsError ? (

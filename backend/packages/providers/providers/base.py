@@ -144,6 +144,20 @@ class BaseProvider(ABC):
             await session.execute(self.search_campground_statement)
             await session.commit()
 
+    @classmethod
+    @abstractmethod
+    def get_rec_area_url(cls, rec_area_id: str) -> str:
+        """
+        Get the URL for a recreation area.
+        """
+
+    @classmethod
+    @abstractmethod
+    def get_campground_url(cls, campground_id: str) -> str:
+        """
+        Get the URL for a campground.
+        """
+
 
 class NullHandler(BaseModel):
     """
