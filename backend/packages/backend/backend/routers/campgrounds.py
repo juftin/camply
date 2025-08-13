@@ -21,6 +21,7 @@ async def get_campground(provider: int, id: str, session: SessionDep) -> Campgro
         select(CampgroundDB).where(
             CampgroundDB.provider_id == provider,
             CampgroundDB.id == id,
+            CampgroundDB.reservable.is_(True),
         )
     )
     fetched = result.scalar_one_or_none()

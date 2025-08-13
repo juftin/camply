@@ -149,7 +149,7 @@ export function RecreationArea() {
                     <p className="text-muted-foreground">
                       {[recreationArea.state, recreationArea.country]
                         .filter(Boolean)
-                        .map((item) => toTitleCase(item!))
+                        .map((item) => item!.toUpperCase())
                         .join(", ")}
                     </p>
                   </div>
@@ -230,7 +230,7 @@ export function RecreationArea() {
                         <div className="text-xs text-muted-foreground mt-1">
                           {[campground.state, campground.country]
                             .filter(Boolean)
-                            .map((item) => toTitleCase(item!))
+                            .map((item) => item!.toUpperCase())
                             .join(", ")}
                         </div>
                       )}

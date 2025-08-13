@@ -173,7 +173,7 @@ export function Campground() {
                     <p className="text-muted-foreground">
                       {[campground.state, campground.country]
                         .filter(Boolean)
-                        .map((item) => toTitleCase(item!))
+                        .map((item) => item!.toUpperCase())
                         .join(", ")}
                     </p>
                   </div>
@@ -272,7 +272,7 @@ export function Campground() {
                             <div className="text-xs text-muted-foreground mt-1">
                               {[otherCampground.state, otherCampground.country]
                                 .filter(Boolean)
-                                .map((item) => toTitleCase(item!))
+                                .map((item) => item!.toUpperCase())
                                 .join(", ")}
                             </div>
                           )}

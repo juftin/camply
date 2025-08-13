@@ -39,6 +39,7 @@ class Campground(Base):
     recreation_area_id: Mapped[str | None] = mapped_column(String(128), nullable=True)
     name: Mapped[str] = mapped_column(String(255), index=True)
     description: Mapped[str | None] = mapped_column(String(32768))
+    city: Mapped[str | None] = mapped_column(String(50))
     country: Mapped[str | None] = mapped_column(String(50))
     state: Mapped[str | None] = mapped_column(String(50))
     longitude: Mapped[float | None] = mapped_column()

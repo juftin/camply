@@ -16,7 +16,8 @@ import structlog
 from db.config import db
 from db.data.providers import RecreationDotGov
 from db.models import Provider
-from providers.base import BaseProvider, DatabasePopulator
+from providers.base import BaseProvider
+from providers.recreation_gov.models.address import AddressData, AddressPopulator
 from providers.recreation_gov.models.campgrounds import RecDotGovCampgroundData
 from providers.recreation_gov.models.recreation_area import RecDotGovRecreationAreaData
 
@@ -30,7 +31,8 @@ class ZippedDataContents:
     """
 
     json_file: str
-    data_model: type[DatabasePopulator]
+    data_model: type[AddressPopulator]
+    addresses: str
 
 
 class RecreationGovProvider(BaseProvider):
@@ -52,10 +54,12 @@ class RecreationGovProvider(BaseProvider):
     data_files: ClassVar[list[ZippedDataContents]] = [
         ZippedDataContents(
             json_file="RecAreas_API_v1.json",
+            addresses="RecAreaAddresses_API_v1.json",
             data_model=RecDotGovRecreationAreaData,
         ),
         ZippedDataContents(
             json_file="Facilities_API_v1.json",
+            addresses="FacilityAddresses_API_v1.json",
             data_model=RecDotGovCampgroundData,
         ),
     ]
@@ -116,7 +120,12 @@ class RecreationGovProvider(BaseProvider):
             data_file = await self.download_offline_data()
             with zipfile.ZipFile(data_file, "r") as zipped:
                 for data in self.data_files:
+                    with zipped.open(data.addresses, mode="r") as address_file:
+                        addresses = AddressData.model_validate_json(
+                            address_file.read()
+                        ).to_mapping()
                     with zipped.open(data.json_file, mode="r") as json_file:
                         parsed = data.data_model.model_validate_json(json_file.read())
+                        parsed.ADDRESSES = addresses
                         await parsed.to_database(session)
             await self.populate_search_table(session)

@@ -8,7 +8,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.data.providers import RecreationDotGov
 from db.models import Campground, RecreationArea
-from providers.base import DatabasePopulator, NullHandler
+from providers.base import NullHandler
+from providers.recreation_gov.models.address import AddressPopulator
 
 logger = structlog.getLogger(__name__)
 
@@ -29,7 +30,7 @@ class RecDotGovCampground(NullHandler):
     Enabled: bool
 
 
-class RecDotGovCampgroundData(DatabasePopulator):
+class RecDotGovCampgroundData(AddressPopulator):
     """
     Root model for a list of campgrounds.
     """
@@ -43,7 +44,7 @@ class RecDotGovCampgroundData(DatabasePopulator):
         sync_count = 0
         async with session.begin():
             logger.info(
-                "%s campgrounds detected",
+                "%s facilities detected",
                 len(self.RECDATA),
                 provider=RecreationDotGov.name,
             )
@@ -53,12 +54,25 @@ class RecDotGovCampgroundData(DatabasePopulator):
             id_result = await session.execute(id_query)
             existing_recreation_area_ids = set(id_result.scalars())
             for camp in self.RECDATA:
+                if camp.FacilityTypeDescription != "Campground":
+                    continue
+                country = None
+                city = None
+                state = None
+                address = self.ADDRESSES.get(camp.FacilityID)
+                if address:
+                    city = address.City
+                    state = address.AddressStateCode
+                    country = address.AddressCountryCode
                 campground = Campground(
                     id=camp.FacilityID,
                     recreation_area_id=camp.ParentRecAreaID,
                     provider_id=RecreationDotGov.id,
                     name=camp.FacilityName,
                     description=camp.FacilityDescription,
+                    city=city,
+                    state=state,
+                    country=country,
                     longitude=camp.FacilityLongitude,
                     latitude=camp.FacilityLatitude,
                     reservable=camp.Reservable,
