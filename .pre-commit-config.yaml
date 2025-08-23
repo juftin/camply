@@ -1,5 +1,5 @@
-default_stages: [commit]
-fail_fast: false
+# yaml-language-server: $schema=https://schemastore.org/pre-commit-config.json
+
 exclude: |
     (?x)(
       docs/yaml_search.json
@@ -7,49 +7,59 @@ exclude: |
 
 repos:
     - repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v4.5.0
+      rev: v6.0.0
       hooks:
           - id: trailing-whitespace
           - id: end-of-file-fixer
           - id: check-yaml
-            exclude: mkdocs.yml
           - id: check-ast
           - id: check-docstring-first
           - id: check-merge-conflict
           - id: mixed-line-ending
+          - id: no-commit-to-branch
 
     - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-      rev: v2.11.0
+      rev: v2.15.0
       hooks:
           - id: pretty-format-toml
-            args: [--autofix]
+            args: [--autofix, --no-sort]
 
-    - repo: https://github.com/pre-commit/mirrors-prettier
-      rev: v3.0.3
+    - repo: local
       hooks:
+          - id: ruff-format
+            name: format
+            description: Runs Code Auto-Formatters
+            entry: uv run ruff format
+            language: system
+            types:
+                - python
+          - id: ruff-check
+            name: lint
+            description: Runs Code Linters
+            entry: uv run ruff check --fix
+            language: system
+            types:
+                - python
+          - id: uv-lock
+            name: uv-lock
+            description: Runs uv lock when pyproject.toml changes
+            entry: uv lock
+            language: system
+            pass_filenames: false
+            files: pyproject.toml
           - id: prettier
-            args: [--print-width=88, --tab-width=4]
+            name: prettier
+            description: Runs Prettier Code Formatter
+            entry: prettier --write --ignore-unknown
+            args: ["--tab-width=4"]
+            language: node
+            types:
+                - text
+            additional_dependencies:
+                - prettier@3.6.2
             exclude: |
                 (?x)(
                   docs/cli.md|
                   PULL_REQUEST_TEMPLATE.md|
                   .github/semantic_release/release_notes.hbs
                 )
-            additional_dependencies:
-                - prettier
-
-    - repo: local
-      hooks:
-          - id: format
-            name: format
-            description: Runs Code Auto-Formatters
-            entry: hatch run lint:fmt
-            language: system
-            pass_filenames: false
-          - id: lint
-            name: lint
-            description: Runs Code Linters
-            entry: hatch run lint:style
-            language: system
-            pass_filenames: false
-            require_serial: false

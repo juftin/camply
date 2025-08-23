@@ -2,7 +2,9 @@
 camply Version file
 """
 
-__author__ = "Justin Flannery"
-__email__ = "juftin@juftin.com"
-__application__ = "camply"
-__version__ = "0.32.9"
+from importlib.metadata import version
+
+__author__: str = "Justin Flannery"
+__email__: str = "justin.flannery@juftin.com"
+__application__: str = "camply"
+__version__: str = version(__application__)

@@ -30,12 +30,12 @@ dependencies = [
   "tenacity~=8.2.2"
 ]
 description = "camply, the campsite finder 🏕"
-dynamic = ["version"]
 keywords = ["recdotgov", "outdoors", "camping", "reservations", "national-parks"]
 license = "MIT"
 name = "camply"
 readme = "README.md"
 requires-python = ">=3.8,<4"
+version = "0.32.9"
 
 [project.optional-dependencies]
 all = [
@@ -64,6 +64,34 @@ Documentation = "https://github.com/juftin/camply#readme"
 Issues = "https://github.com/juftin/camply/issues"
 Source = "https://github.com/juftin/camply"
 
+[dependency-groups]
+dev = [
+  # Testing
+  "pytest~=7.3.1",
+  "pytest-cov~=4.0.0",
+  "pytest-mock~=3.10.0",
+  "pytest-vcr~=1.0.2",
+  "pytest-xdist~=3.2.1",
+  "freezegun~=1.2.1",
+  # Linting
+  "mypy>=1.6.1",
+  "ruff~=0.1.7"
+]
+docs = [
+  "markdown-callouts",
+  "markdown-exec",
+  "mkdocs",
+  "mkdocs-click",
+  "mkdocs-exclude-search",
+  "mkdocs-gen-files",
+  "mkdocs-literate-nav",
+  "mkdocs-material",
+  "mkdocs-section-index",
+  "mkdocstrings",
+  "mkdocstrings-python",
+  "pymdown-extensions"
+]
+
 [tool.coverage.paths]
 camply = ["camply", "*/camply/camply"]
 
@@ -79,94 +107,6 @@ branch = true
 omit = ["camply/_version.py"]
 parallel = true
 source_pkgs = ["camply"]
-
-[tool.hatch.env]
-requires = ["hatch-pip-compile", "hatch-mkdocs"]
-
-[tool.hatch.env.collectors.mkdocs.docs]
-path = "mkdocs.yml"
-
-[tool.hatch.envs.all]
-pip-compile-constraint = ""
-template = "test"
-
-[[tool.hatch.envs.all.matrix]]
-python = ["3.8", "3.9", "3.10", "3.11", "3.12"]
-
-[tool.hatch.envs.default]
-features = ["all"]
-pip-compile-constraint = "default"
-post-install-commands = [
-  "- pre-commit install"
-]
-type = "pip-compile"
-
-[tool.hatch.envs.default.scripts]
-cov = "hatch run test:cov"
-test = "hatch run test:test"
-
-[tool.hatch.envs.docs]
-detached = false
-pip-compile-constraint = "default"
-template = "docs"
-type = "pip-compile"
-
-[tool.hatch.envs.gen]
-detached = true
-
-[tool.hatch.envs.gen.scripts]
-release = [
-  "npm install --prefix .github/semantic_release/",
-  "npx --prefix .github/semantic_release/ semantic-release {args:}"
-]
-
-[tool.hatch.envs.lint]
-dependencies = [
-  "mypy>=1.6.1",
-  "ruff~=0.1.7"
-]
-detached = true
-type = "pip-compile"
-
-[tool.hatch.envs.lint.scripts]
-all = [
-  "style",
-  "typing"
-]
-fmt = [
-  "ruff format {args:.}",
-  "ruff --fix {args:.}",
-  "style"
-]
-precommit = [
-  "pre-commit run --all-files"
-]
-style = [
-  "ruff {args:.}",
-  "ruff format --check --diff {args:.}"
-]
-typing = "mypy --install-types --non-interactive {args:camply tests}"
-
-[tool.hatch.envs.test]
-dependencies = [
-  "pytest~=7.3.1",
-  "pytest-cov~=4.0.0",
-  "pytest-mock~=3.10.0",
-  "pytest-vcr~=1.0.2",
-  "pytest-xdist~=3.2.1",
-  "freezegun~=1.2.1"
-]
-
-[tool.hatch.envs.test.env-vars]
-PUSHOVER_PUSH_TOKEN = "{env:PUSHOVER_PUSH_TOKEN:placeholder}"
-PUSHOVER_PUSH_USER = "{env:PUSHOVER_PUSH_USER:placeholder}"
-
-[tool.hatch.envs.test.scripts]
-cov = "pytest -n auto --cov=camply --cov-report={env:COVERAGE_REPORT:term-missing} --cov-config=pyproject.toml {args:tests/ -v}"
-test = "pytest {args:tests/ -v}"
-
-[tool.hatch.version]
-path = "camply/_version.py"
 
 [tool.mypy]
 check_untyped_defs = true
