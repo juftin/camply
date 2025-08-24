@@ -2,121 +2,84 @@
 
 ## Environment Setup
 
-> TIP: **pipx**
->
-> This documentaion uses [pipx] to
-> install and manage non-project command line tools like `hatch` and
-> `pre-commit`. If you don't already have `pipx` installed, make sure to
-> see their [documentation](https://pypa.github.io/pipx/installation/).
-> If you prefer not to use `pipx`, you can use `pip` instead.
+This project requires two core dependencies: **[uv]** (Python package
+manager) and **[task]** (task runner). Once both are installed, you can use
+`task` to interact with the project for all development workflows.
 
-1.  Install [hatch](https://hatch.pypa.io/latest/)
+1. [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
 
     ```shell
-    pipx install hatch
+    curl -LsSf https://astral.sh/uv/install.sh | sh
     ```
 
-    > NOTE: **pre-commit**
-    >
-    > Hatch will attempt to set up pre-commit hooks for you using
-    > [pre-commit]. If you don't already,
-    > make sure to install pre-commit as well: `pipx install pre-commit`
-
-2.  Build the Virtual Environment
+2. [Install task](https://taskfile.dev/installation/)
 
     ```shell
-    hatch env create
+    sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
     ```
 
-3.  If you need to, you can link a hatch virtual environment to your IDE.
-    They can be located by name with the `env find` command:
+3. Install project dependencies and list available tasks
 
     ```shell
-    hatch env find test
+    task install
     ```
 
-4.  Activate the Virtual Environment
+4. Optionally, activate the virtual environment created by `uv`:
 
     ```shell
-    hatch shell
+    source .venv/bin/activate
     ```
 
-## Using Hatch
+## Using Task
 
-### Hatch Cheat Sheet
+### Task Cheat Sheet
 
-| Command Description            | Command                     | Notes                                                      |
-| ------------------------------ | --------------------------- | ---------------------------------------------------------- |
-| Run Tests                      | `hatch run cov`             | Runs tests with `pytest` and `coverage`                    |
-| Run Formatting                 | `hatch run lint:fmt`        | Runs `ruff` code formatter                                 |
-| Run Linting                    | `hatch run lint:all`        | Runs `ruff` and `mypy` linters / type checkers             |
-| Run Type Checking              | `hatch run lint:typing`     | Runs `mypy` type checker                                   |
-| Update Requirements Lock Files | `hatch run gen:reqs`        | Updating lock file using `pip-compile`                     |
-| Upgrade Dependencies           | `hatch run gen:reqs-update` | Updating lock file using `pip-compile` and `--update` flag |
-| Serve the Documentation        | `hatch run docs:serve`      | Serve the documentation using MkDocs                       |
-| Run the `pre-commit` Hooks     | `hatch run lint:precommit`  | Runs the `pre-commit` hooks on all files                   |
+| Command Description | Command             | Notes                                   |
+| ------------------- | ------------------- | --------------------------------------- |
+| Install Project     | `task install`      | Installs project and dev dependencies   |
+| Run Tests           | `task test`         | Runs tests with `pytest`                |
+| Run Linting         | `task lint`         | Lints code with `ruff`                  |
+| Fix Code Issues     | `task fix`          | Formats and auto-fixes code with `ruff` |
+| Run Formatting      | `task fmt`          | Formats code with `ruff`                |
+| Run Type Checking   | `task check`        | Runs static analysis with `mypy`        |
+| Build Project       | `task build`        | Builds project artifacts                |
+| Update Dependencies | `task lock`         | Regenerates project lockfile            |
+| Serve Documentation | `task docs`         | Serves docs with `mkdocs`               |
+| Run Commands        | `task run -- <cmd>` | Runs arbitrary commands                 |
 
-### Hatch Explanation
+### Task Explanation
 
-Hatch is a Python package manager. Its most basic use is as a standardized build-system.
-However, hatch also has some extra features which this project takes advantage of.
-These features include virtual environment management and the organization of common
-scripts like linting and testing. All the operations in hatch take place in one
-of its managed virtual environments.
+`task` is a task runner built in Go that aims to be simpler and easier to use than GNU Make.
+Task uses a `Taskfile.yaml` file to define tasks and their dependencies. This project
+uses Task to organize and run common development operations like testing, linting,
+building, and documentation generation.
 
-Hatch has a variety of environments, to see them simply ask hatch:
+To see all available tasks, simply run:
 
-```bash exec="on" result="markdown" source="tabbed-left" tabs="hatch CLI|Output"
-hatch env show
+```bash exec="on" result="markdown" source="tabbed-left" tabs="task CLI|Output"
+task --list-all
 ```
 
-That above command will tell you that there are five environments that
-you can use:
-
--   `default`
--   `docs`
--   `gen`
--   `lint`
--   `test`
-
-Each of these environments has a set of commands that you can run.
-To see the commands for a specific environment, run:
-
-```bash exec="on" result="markdown" source="tabbed-left" tabs="hatch CLI|Output"
-hatch env show default
-```
-
-Here we can see that the `default` environment has the following commands:
-
--   `cov`
--   `test`
-
-The one that we're interested in is `cov`, which will run the tests
-for the project.
+To run a specific task, use:
 
 ```bash
-hatch run cov
+task test
 ```
 
-Since `cov` is in the default environment, we can run it without
-specifying the environment. However, to run the `serve` command in the
-`docs` environment, we need to specify the environment:
+For tasks that need additional arguments, use `--` to pass them:
 
 ```bash
-hatch run docs:serve
+task run -- python -m browsr --help
 ```
 
-You can see what scripts are available using the `env show` command
-
-```bash exec="on" result="markdown" source="tabbed-left" tabs="hatch CLI|Output"
-hatch env show docs
-```
+You can also run tasks from subdirectories, and Task will automatically
+find and use the `Taskfile.yaml` from the project root.
 
 ## Committing Code
 
 This project uses [pre-commit] to run a set of
-checks on the code before it is committed. The pre-commit hooks are
-installed by hatch automatically when you run it for the first time.
+checks on the code before it is committed. You can install the pre-commit
+hooks manually, or they will be set up when you run `task install`.
 
 This project uses [semantic-versioning] standards, managed by [semantic-release].
 Releases for this project are handled entirely by CI/CD via pull requests being
@@ -128,11 +91,11 @@ commit message emoji prefixes are the only ones to trigger new releases:
 
 | Emoji | Shortcode     | Description                 | Semver |
 | ----- | ------------- | --------------------------- | ------ |
-| 💥    | \:boom\:      | Introduce breaking changes. | Major  |
-| ✨    | \:sparkles\:  | Introduce new features.     | Minor  |
-| 🐛    | \:bug\:       | Fix a bug.                  | Patch  |
-| 🚑    | \:ambulance\: | Critical hotfix.            | Patch  |
-| 🔒    | \:lock\:      | Fix security issues.        | Patch  |
+| 💥    | `:boom:`      | Introduce breaking changes. | Major  |
+| ✨    | `:sparkles:`  | Introduce new features.     | Minor  |
+| 🐛    | `:bug:`       | Fix a bug.                  | Patch  |
+| 🚑    | `:ambulance:` | Critical hotfix.            | Patch  |
+| 🔒    | `:lock:`      | Fix security issues.        | Patch  |
 
 Most features can be squash merged into a single commit on a pull-request.
 When merging multiple commits, they will be summarized into a single release.
@@ -182,10 +145,11 @@ would create a branch named `1.2.x` and merge your changes into that branch.
 See the [semantic-release documentation] for more information about
 branch based releases and other advanced release cases.
 
-[pipx]: https://pypa.github.io/pipx/
-[pre-commit]: https://pre-commit.com/
-[gitmoji]: https://gitmoji.dev/
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
+[gitmoji]: https://gitmoji.dev/
+[pre-commit]: https://pre-commit.com/
 [semantic-release]: https://github.com/semantic-release/semantic-release
-[semantic-versioning]: https://semver.org/
 [semantic-release documentation]: https://semantic-release.gitbook.io/semantic-release/usage/configuration#branches
+[semantic-versioning]: https://semver.org/
+[task]: https://github.com/go-task/task
+[uv]: https://github.com/astral-sh/uv

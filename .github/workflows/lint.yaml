@@ -1,47 +1,36 @@
-name: Lint
+name: lint
 
 on:
     pull_request:
         branches: ["**"]
-concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: true
+
 jobs:
     lint:
         runs-on: ubuntu-latest
         steps:
-            - name: Set up Github Workspace
-              uses: actions/checkout@v4
-              with:
-                  fetch-depth: 0
-            - name: Set up Python Environment
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.11"
-            - name: Install Hatch
-              run: |
-                  python -m pip install --upgrade pip wheel
-                  python -m pip install -q hatch pre-commit
-                  hatch --version
-            - name: Lint
+            - name: lint
               id: lint
+              uses: juftin/actions/taskfile@v1
               continue-on-error: true
-              run: |
-                  echo "::add-matcher::.github/workflows/matchers/flake8.json"
-                  hatch run lint:style
-                  echo "::remove-matcher owner=flake8::"
-            - name: Code Checker
+              with:
+                  checkout: true
+                  setup-uv: true
+                  task: lint
+                  install: true
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  annotations-ruff: true
+            - name: check
               id: check
+              uses: juftin/actions/taskfile@v1
               continue-on-error: true
-              run: |
-                  echo "::add-matcher::.github/workflows/matchers/mypy.json"
-                  hatch run lint:typing
-                  echo "::remove-matcher owner=mypy::"
-            - name: Raise Errors For Linting Failures
+              with:
+                  task: check
+                  setup-task: false
+                  annotations-mypy: true
+            - name: Raise Errors For Failures
               if: |
                   steps.lint.outcome != 'success'
               run: |
                   echo "Lint: ${{ steps.lint.outcome }}"
                   echo "Check: ${{ steps.check.outcome }}"
-                  echo "I Should Really Be Enforcing MyPy Errors"
                   exit 1

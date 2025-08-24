@@ -1,0 +1,50 @@
+name: test
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - camply/**
+            - pyproject.toml
+            - uv.lock
+            - .github/workflows/test.yaml
+    pull_request:
+        paths:
+            - camply/**
+            - pyproject.toml
+            - uv.lock
+            - .github/workflows/test.yaml
+    schedule:
+        - cron: 0 12 1 * *
+jobs:
+    test:
+        env:
+            CAMPLY_LOG_HANDLER: PYTHON
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: true
+            matrix:
+                include:
+                    - { name: Python 3.13, python: "3.13" }
+                    - { name: Python 3.12, python: "3.12" }
+                    - { name: Python 3.11, python: "3.11" }
+                    - { name: Python 3.10, python: "3.10" }
+                    - { name: Python 3.9, python: "3.9" }
+        permissions:
+            contents: read
+            id-token: write
+            pull-requests: write
+        steps:
+            - name: test
+              uses: juftin/actions/taskfile@v1
+              with:
+                  checkout: true
+                  setup-uv: true
+                  task: test
+                  install: true
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  annotations-pytest: ${{ matrix.python == '3.12' && true || false }}
+                  pytest-coverage: ${{ matrix.python == '3.12' && github.event_name == 'pull_request' && true || false }}
+              env:
+                  UV_PYTHON: ${{ matrix.python }}

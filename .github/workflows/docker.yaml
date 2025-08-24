@@ -1,46 +1,22 @@
-name: Docker CI/CD
+name: docker
 
 on:
     pull_request:
-        branches: ["**"]
         paths:
             - camply/**
             - pyproject.toml
             - .github/workflows/docker.yaml
             - Dockerfile
-concurrency:
-    group: ${{ github.workflow }}-${{ github.ref }}
-    cancel-in-progress: true
+            - uv.lock
 jobs:
-    docker-ci-test:
+    docker:
         runs-on: ubuntu-latest
         steps:
-            - name: Set up Github Workspace
-              uses: actions/checkout@v4
+            - name: docker
+              uses: juftin/actions/taskfile@v1
               with:
-                  fetch-depth: 0
-            - name: Set up QEMU
-              uses: docker/setup-qemu-action@v3
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v3
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.11"
-            - name: Install Hatch
-              run: |
-                  python -m pip install -q --upgrade pip wheel
-                  python -m pip install -q hatch pre-commit
-                  hatch --version
-            - name: Declare Version Variable
-              run: |
-                  PACKAGE_VERSION=$(hatch version)
-                  PACKAGE_NAME=$(hatch project metadata | jq -r .name)
-                  echo PACKAGE_VERSION=${PACKAGE_VERSION} >> $GITHUB_ENV
-                  echo PACKAGE_NAME=${PACKAGE_NAME} >> $GITHUB_ENV
-            - name: Docker Image Building and Publishing
-              id: docker_build
-              uses: docker/build-push-action@v5
-              with:
-                  push: false
-                  tags: juftin/${{ env.PACKAGE_NAME }}:latest
+                  checkout: true
+                  setup-uv: true
+                  task: docker
+                  buildx: true
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
