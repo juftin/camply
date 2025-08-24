@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.9, <4"
 resolution-markers = [
     "python_full_version >= '3.12' and platform_python_implementation == 'PyPy'",
@@ -40,7 +40,7 @@ wheels = [
 
 [[package]]
 name = "camply"
-version = "0.32.9"
+version = "0.33.0"
 source = { editable = "." }
 dependencies = [
     { name = "click" },
