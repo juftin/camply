@@ -1,0 +1,182 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+env:
+    UV_LOCKED: 1
+    PUSHOVER_PUSH_TOKEN: placeholder
+    PUSHOVER_PUSH_USER: placeholder
+vars:
+    SOURCE_CODE: "camply"
+    DOCKER_REPO: juftin/camply
+
+tasks:
+    #######################################
+    default:
+        desc: Install Project, List Tasks
+        cmds:
+            - task --list-all
+        deps: [sync]
+    #######################################
+    install:
+        desc: Install Project + Dev Dependencies
+        cmds:
+            - task: pre-commit-install
+            - task: sync
+    #######################################
+    test:
+        desc: Run Tests
+        cmds:
+            - uv run -- pytest {{.CLI_ARGS}}
+        deps:
+            - task: sync
+              vars:
+                  UV_PYTHON: "{{.UV_PYTHON}}"
+                  CLI_ARGS: --quiet
+        env:
+            GITHUB_TOKEN: placeholder
+            UV_PYTHON: "{{.UV_PYTHON}}"
+    #######################################
+    test:matrix:
+        desc: Run Tests with different Python versions
+        cmds:
+            - for:
+                  matrix:
+                      PYTHON: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+              task: test
+              vars:
+                  UV_PYTHON: "{{.ITEM.PYTHON}}"
+    #######################################
+    lint:
+        desc: Run Code Linters
+        cmds:
+            - uv run -- ruff check {{.CLI_ARGS | default .ROOT_DIR}}
+            - task: fmt
+              vars:
+                  CLI_ARGS: --check
+        deps: [sync]
+    #######################################
+    fmt:
+        desc: Run Code Formatters
+        cmds:
+            - uv run -- ruff format {{.CLI_ARGS | default .ROOT_DIR}}
+        deps: [sync]
+    #######################################
+    fix:
+        desc: Fix Code with Linters and Formatters
+        cmds:
+            - task: fmt
+            - uv run -- ruff check --fix {{.CLI_ARGS | default .ROOT_DIR}}
+        deps: [sync]
+    #######################################
+    check:
+        desc: Run Static Type Checkers
+        cmds:
+            - |
+                uv run -- \
+                mypy \
+                  --ignore-missing-imports \
+                  {{.CLI_ARGS | default .SOURCE_CODE}}
+        status:
+            - '[$(uv tree --package mypy) != ""]'
+        requires:
+            vars: [SOURCE_CODE]
+    #######################################
+    dist:
+        desc: Build the Project Artifacts
+        cmds:
+            - cmd: rm -rf {{.ROOT_DIR}}/dist
+            - cmd: uv build
+    #######################################
+    docker:
+        desc: Build Docker Image
+        cmd: |
+            docker buildx build \
+              --tag {{.DOCKER_REPO}}:{{.RELEASE_VERSION}} \
+              --tag {{.DOCKER_REPO}}:latest \
+              --file {{.ROOT_DIR}}/Dockerfile \
+              {{.CLI_ARGS | default ""}} \
+              {{.ROOT_DIR}}
+        vars:
+            RELEASE_VERSION:
+                ref: .RELEASE_VERSION | default "local"
+        requires:
+            vars: [DOCKER_REPO]
+        status:
+            - test ! -f {{.ROOT_DIR}}/{{.DOCKERFILE | default "Dockerfile"}}
+    #######################################
+    build:
+        desc: Build the Project Artifacts
+        cmds:
+            - task: dist
+            - task: docker
+    #######################################
+    publish:
+        desc: Publish the Project Artifacts
+        cmds:
+            - task: docker
+              vars:
+                  CLI_ARGS: --push
+        requires:
+            vars: [CI, RELEASE_VERSION]
+    #######################################
+    docs:
+        desc: Generate Documentation
+        cmds:
+            - uv run --group docs -- mkdocs {{.CLI_ARGS | default "serve"}}
+    #######################################
+    run:
+        desc: Run Command within Project (requires "--")
+        interactive: true
+        cmds:
+            - uv run -- {{.CLI_ARGS}}
+    #######################################
+    docker-run:
+        desc: Run Command within Docker Container (supports "--" for command)
+        interactive: true
+        cmds:
+            - |
+                docker run \
+                  --rm -it \
+                  {{.DOCKER_REPO}}:{{.DOCKER_TAG_PREFIX}}{{.RELEASE_VERSION}} \
+                  {{.CLI_ARGS}}
+        deps:
+            - task: docker
+              vars:
+                  CLI_ARGS: ""
+        vars:
+            RELEASE_VERSION:
+                ref: .RELEASE_VERSION | default "local"
+        status:
+            - test ! -f {{.ROOT_DIR}}/{{.DOCKERFILE | default "Dockerfile"}}
+        requires:
+            vars: [DOCKER_REPO]
+    #######################################
+    lock:
+        desc: Regenerate the Project Lockfile
+        cmds:
+            - uv lock
+        env:
+            UV_LOCKED: "0"
+    #######################################
+    # INTERNAL TASKS
+    #######################################
+    sync:
+        desc: Install Project Dependencies
+        internal: true
+        cmds:
+            - uv sync --all-extras {{.CLI_ARGS}}
+        env:
+            UV_PYTHON: "{{.UV_PYTHON}}"
+    #######################################
+    pre-commit-install:
+        desc: Install Pre-Commit Hooks
+        internal: true
+        cmds:
+            - cmd: |
+                  if [ "{{.CI | default 0}}" = "0" ]; then
+                      uv tool run --isolated pre-commit install --install-hooks
+                  fi
+              silent: true
+        status:
+            - test ! -f {{.ROOT_DIR}}/.pre-commit-config.yaml

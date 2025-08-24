@@ -19,13 +19,13 @@
         [
             "@semantic-release/exec",
             {
-                "prepareCmd": "hatch version ${nextRelease.version} && hatch build"
+                "prepareCmd": "uv version ${nextRelease.version} && uv build"
             }
         ],
         [
             "@semantic-release/git",
             {
-                "assets": ["pyproject.toml", "*/_version.py"],
+                "assets": ["pyproject.toml", "uv.lock"],
                 "message": "🔖 camply ${nextRelease.version}\n\n${nextRelease.notes}\n[skip ci]"
             }
         ],
