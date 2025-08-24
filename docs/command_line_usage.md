@@ -101,92 +101,92 @@ and a link to make the booking. Required parameters include `--start-date`, `--e
 
 ### Arguments
 
--   `--rec-area`: `RECREATION_AREA_ID`
-    -   Add Recreation Areas (comprised of campgrounds) by ID.
-        [\*\*_example_](#searching-for-a-campsite)
--   `--campground`: `CAMPGROUND_ID`
-    -   Add individual Campgrounds by ID.
-        [\*\*_example_](#searching-for-a-campsite-by-campground-id)
--   `--campsite`: `CAMPSITE_ID`
-    -   Add individual Campsites by ID.
-        [\*\*_example_](#searching-for-a-specific-campsite-by-id)
--   `--start-date`: `START_DATE`
-    -   `YYYY-MM-DD`: Start of Search window. You will be arriving this day.
-        [\*\*_example_](#searching-for-a-campsite)
--   `--end-date`: `END_DATE`
-    -   `YYYY-MM-DD`: End of Search window. You will be checking out this day..
-        [\*\*_example_](#searching-for-a-campsite)
--   `--day`
-    -   Day(s) of the Week to search.
-        [\*\*_example_](#searching-for-specific-weekdays)
--   `--weekends`
-    -   Only search for weekend bookings (Fri/Sat nights).
-        [\*\*_example_](#look-for-weekend-campsite-availabilities)
--   `--nights`
-    -   Search for campsite stays with consecutive nights. Defaults to 1 which returns all campsites
-        found.
-        [\*\*_example_](#look-for-consecutive-nights-at-the-same-campsite)
--   `--provider`: `PROVIDER`
-    -   Camping Search Provider. Defaults to 'RecreationDotGov', not case-sensitive. Options include:
-        [RecreationDotGov](#searching-for-a-campsite), [Yellowstone](#look-for-a-campsite-inside-of-yellowstone),
-        [GoingToCamp](#look-for-a-campsite-from-goingtocamp), [RecreationDotGovDailyTicket](#tickets-tours),
-        [RecreationDotGovDailyTimedEntry](#timed-entry), [RecreationDotGovTicket](#tickets-tours),
-        [RecreationDotGovTimedEntry](#timed-entry).
-        [\*\*_example_](#look-for-a-campsite-inside-of-yellowstone)
--   `--continuous`
-    -   Continuously check for a campsite to become available, and quit once at least one campsite is
-        found.
-        [\*\*_example_](#continuously-searching-for-a-campsite)
--   `--search-forever`
-    -   Enables continuous searching. This method continues to search after the first availability
-        has been found. The one caveat is that it will never notify about the same identical campsite
-        for the same booking date.
-        [\*\*_example_](#continue-looking-after-the-first-match-is-found)
--   `--notifications`: `NOTIFICATIONS`
-    -   Enables continuous searching. Types of notifications to receive. Options available
-        are `pushover`, `email`, `ntfy`, `apprise`, `pushbullet`, `slack`, `telegram`, `twilio`,
-        `webhook`, `silent`.
-        Defaults to `silent` - which just logs messages to console.
-        [\*\*_example_](#send-a-push-notification)
--   `--equipment`
-    -   Search for campsites compatible with your camping equipment. This argument accepts two
-        options, the equipment name and its length If you don't want to filter based on length provide
-        a length of 0. Accepted equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are
-        not case-sensitive.
-        [\*\*_example_](#searching-for-a-campsite-that-fits-your-equipment)
--   `--equipment-id`
-    -   Search for campsites campaitble with specific equipment categories. Going To Camp
-        uses equipment category IDs for filtering campsites by equipment. Every recreation
-        area has equipment categories unique to it.
-        [\*\*_example_](#searching-goingtocamp-using-equipment)
--   `--notify-first-try`
-    -   Enables continuous searching. Whether to send all non-silent notifications if more than 5
-        matching campsites are found on the first try. Defaults to false which only sends the first5.
-        [\*\*_example_](#continuously-searching-for-a-campsite)
--   `--polling-interval`: `POLLING_INTERVAL`
-    -   Enables continuous searching. How often to wait in between checks (in minutes). Defaults to
-        10, cannot be less than 5.
-        [\*\*_example_](#look-for-weekend-campsite-availabilities)
--   `--yaml-config`
-    -   Rather than provide arguments to the command line utility, instead pass a file path to a YAML
-        configuration file. See the documentation for more information on how to structure your
-        configuration file.
-        [\*\*_example_](#using-a-yaml-configuration-file-to-search-for-campsites)
--   `--offline-search`
-    -   When set to True, the campsite search will both save the results of the campsites it's
-        found, but also load those campsites before beginning a search for other campsites.
-        [\*\*_example_](#saving-the-results-of-a-search)
--   `--offline-search-path`
-    -   Enables offline search. This is the name of the file to be saved/loaded. Campsites can be saved as
-        a serialized pickle file or a JSON file, depending on the file extension. When not specified,
-        the filename will default to `camply_campsites.json`.
-        [\*\*_example_](#saving-the-results-of-a-search)
--   `--search-once`
-    -   Enables continuous searching features - but doesn't actually search continuously. This option
-        is only useful when you want to run camply periodically in a CRON job fashion but still
-        receive notifications - it's strongly recommended you enable offline searching as
-        well to save results between searches.
-        [\*\*_example_](#run-camply-as-a-cron-job)
+- `--rec-area`: `RECREATION_AREA_ID`
+    - Add Recreation Areas (comprised of campgrounds) by ID.
+      [\*\*_example_](#searching-for-a-campsite)
+- `--campground`: `CAMPGROUND_ID`
+    - Add individual Campgrounds by ID.
+      [\*\*_example_](#searching-for-a-campsite-by-campground-id)
+- `--campsite`: `CAMPSITE_ID`
+    - Add individual Campsites by ID.
+      [\*\*_example_](#searching-for-a-specific-campsite-by-id)
+- `--start-date`: `START_DATE`
+    - `YYYY-MM-DD`: Start of Search window. You will be arriving this day.
+      [\*\*_example_](#searching-for-a-campsite)
+- `--end-date`: `END_DATE`
+    - `YYYY-MM-DD`: End of Search window. You will be checking out this day..
+      [\*\*_example_](#searching-for-a-campsite)
+- `--day`
+    - Day(s) of the Week to search.
+      [\*\*_example_](#searching-for-specific-weekdays)
+- `--weekends`
+    - Only search for weekend bookings (Fri/Sat nights).
+      [\*\*_example_](#look-for-weekend-campsite-availabilities)
+- `--nights`
+    - Search for campsite stays with consecutive nights. Defaults to 1 which returns all campsites
+      found.
+      [\*\*_example_](#look-for-consecutive-nights-at-the-same-campsite)
+- `--provider`: `PROVIDER`
+    - Camping Search Provider. Defaults to 'RecreationDotGov', not case-sensitive. Options include:
+      [RecreationDotGov](#searching-for-a-campsite), [Yellowstone](#look-for-a-campsite-inside-of-yellowstone),
+      [GoingToCamp](#look-for-a-campsite-from-goingtocamp), [RecreationDotGovDailyTicket](#tickets-tours),
+      [RecreationDotGovDailyTimedEntry](#timed-entry), [RecreationDotGovTicket](#tickets-tours),
+      [RecreationDotGovTimedEntry](#timed-entry).
+      [\*\*_example_](#look-for-a-campsite-inside-of-yellowstone)
+- `--continuous`
+    - Continuously check for a campsite to become available, and quit once at least one campsite is
+      found.
+      [\*\*_example_](#continuously-searching-for-a-campsite)
+- `--search-forever`
+    - Enables continuous searching. This method continues to search after the first availability
+      has been found. The one caveat is that it will never notify about the same identical campsite
+      for the same booking date.
+      [\*\*_example_](#continue-looking-after-the-first-match-is-found)
+- `--notifications`: `NOTIFICATIONS`
+    - Enables continuous searching. Types of notifications to receive. Options available
+      are `pushover`, `email`, `ntfy`, `apprise`, `pushbullet`, `slack`, `telegram`, `twilio`,
+      `webhook`, `silent`.
+      Defaults to `silent` - which just logs messages to console.
+      [\*\*_example_](#send-a-push-notification)
+- `--equipment`
+    - Search for campsites compatible with your camping equipment. This argument accepts two
+      options, the equipment name and its length If you don't want to filter based on length provide
+      a length of 0. Accepted equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are
+      not case-sensitive.
+      [\*\*_example_](#searching-for-a-campsite-that-fits-your-equipment)
+- `--equipment-id`
+    - Search for campsites campaitble with specific equipment categories. Going To Camp
+      uses equipment category IDs for filtering campsites by equipment. Every recreation
+      area has equipment categories unique to it.
+      [\*\*_example_](#searching-goingtocamp-using-equipment)
+- `--notify-first-try`
+    - Enables continuous searching. Whether to send all non-silent notifications if more than 5
+      matching campsites are found on the first try. Defaults to false which only sends the first5.
+      [\*\*_example_](#continuously-searching-for-a-campsite)
+- `--polling-interval`: `POLLING_INTERVAL`
+    - Enables continuous searching. How often to wait in between checks (in minutes). Defaults to
+      10, cannot be less than 5.
+      [\*\*_example_](#look-for-weekend-campsite-availabilities)
+- `--yaml-config`
+    - Rather than provide arguments to the command line utility, instead pass a file path to a YAML
+      configuration file. See the documentation for more information on how to structure your
+      configuration file.
+      [\*\*_example_](#using-a-yaml-configuration-file-to-search-for-campsites)
+- `--offline-search`
+    - When set to True, the campsite search will both save the results of the campsites it's
+      found, but also load those campsites before beginning a search for other campsites.
+      [\*\*_example_](#saving-the-results-of-a-search)
+- `--offline-search-path`
+    - Enables offline search. This is the name of the file to be saved/loaded. Campsites can be saved as
+      a serialized pickle file or a JSON file, depending on the file extension. When not specified,
+      the filename will default to `camply_campsites.json`.
+      [\*\*_example_](#saving-the-results-of-a-search)
+- `--search-once`
+    - Enables continuous searching features - but doesn't actually search continuously. This option
+      is only useful when you want to run camply periodically in a CRON job fashion but still
+      receive notifications - it's strongly recommended you enable offline searching as
+      well to save results between searches.
+      [\*\*_example_](#run-camply-as-a-cron-job)
 
 ```commandline
 camply campsites \
@@ -202,10 +202,10 @@ National Forests that can contain one or many campgrounds.
 
 ### Arguments
 
--   `--search` `SEARCH`
-    -   Search for Campgrounds or Recreation Areas by search string.
--   `--state` `STATE`
-    -   Filter by US state code.
+- `--search` `SEARCH`
+    - Search for Campgrounds or Recreation Areas by search string.
+- `--state` `STATE`
+    - Filter by US state code.
 
 ```commandline
 camply recreation-areas --search "Yosemite National Park"
@@ -221,14 +221,14 @@ like fire towers or cabins that might only contain a single 'campsite' to book.
 
 ### Arguments
 
--   `--search` `SEARCH`
-    -   Search for Campgrounds or Recreation Areas by search string.
--   `--state` `STATE`
-    -   Filter by US state code.
--   `--rec-area`: `RECREATION_AREA_ID`
-    -   Add Recreation Areas (comprised of campgrounds) by ID.
--   `--campground`: `CAMPGROUND_ID`
-    -   Add individual Campgrounds by ID.
+- `--search` `SEARCH`
+    - Search for Campgrounds or Recreation Areas by search string.
+- `--state` `STATE`
+    - Filter by US state code.
+- `--rec-area`: `RECREATION_AREA_ID`
+    - Add Recreation Areas (comprised of campgrounds) by ID.
+- `--campground`: `CAMPGROUND_ID`
+    - Add individual Campgrounds by ID.
 
 ```commandline
 camply campgrounds --search "Fire Tower Lookout" --state CA
@@ -452,15 +452,15 @@ camply campsites \
 
 camply supports notifications via a number of services:
 
--   [Pushover](https://pushover.net)
--   Email
--   [Ntfy](https://ntfy.sh)
--   [Apprise](https://github.com/caronc/apprise)
--   [Pushbullet](https://www.pushbullet.com/#settings/account)
--   [Slack](https://slack.com)
--   [Telegram](https://core.telegram.org/bots)
--   [Twilio (SMS)](https://www.twilio.com)
--   Silent
+- [Pushover](https://pushover.net)
+- Email
+- [Ntfy](https://ntfy.sh)
+- [Apprise](https://github.com/caronc/apprise)
+- [Pushbullet](https://www.pushbullet.com/#settings/account)
+- [Slack](https://slack.com)
+- [Telegram](https://core.telegram.org/bots)
+- [Twilio (SMS)](https://www.twilio.com)
+- Silent
 
 ```commandline
 camply campsites \
