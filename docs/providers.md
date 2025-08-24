@@ -40,11 +40,11 @@ camply --provider Yellowstone campgrounds
 
 The Yellowstone Provider currently supports the following Campgrounds:
 
--   Bridge Bay Campground (YLYB:RV)
--   Canyon Campground (YLYC:RV)
--   Fishing Bridge RV Park (YLYF:RV)
--   Grant Campground (YLYG:RV)
--   Madison Campground (YLYM:RV)
+- Bridge Bay Campground (YLYB:RV)
+- Canyon Campground (YLYC:RV)
+- Fishing Bridge RV Park (YLYF:RV)
+- Grant Campground (YLYG:RV)
+- Madison Campground (YLYM:RV)
 
 ## GoingToCamp
 
@@ -65,28 +65,28 @@ to filter searches by recreation area when using GoingToCamp.
 
 Currently, the following recreation areas are supported:
 
--   Parks Canada - Canada National Parks - [reservation.pc.gc.ca](https://reservation.pc.gc.ca/)
--   Washington State Parks - Washington, USA - [washington.goingtocamp.com](https://washington.goingtocamp.com)
--   Wisconsin State Parks - Wisconsin, USA - [wisconsin.goingtocamp.com](https://wisconsin.goingtocamp.com)
--   Michigan State Parks - Michigan, USA - [midnrreservations.com](https://midnrreservations.com/)
--   BC Parks - British Columbia, CA - [camping.bcparks.ca](https://camping.bcparks.ca)
--   Maryland State Parks - Maryland, USA - [parkreservations.maryland.gov](https://parkreservations.maryland.gov)
--   Nova Scotia Parks - Nova Scotia, CA - [novascotia.goingtocamp.com](https://novascotia.goingtocamp.com)
--   Manitoba Parks - Manitoba, CA - [manitoba.goingtocamp.com](https://manitoba.goingtocamp.com)
--   New Brunswick Provincial Parks - New Brunswick, CA - [parcsnbparks.info](https://parcsnbparks.info/)
--   Newfoundland & Labrador Provincial Parks - Newfoundland and Labrador, CA - [nlcamping.ca](https://nlcamping.ca)
--   Long Point Region - Ontario, CA - [longpoint.goingtocamp.com](https://longpoint.goingtocamp.com)
--   Algonquin Highlands - Ontario, CA - [ahtrails.ca](https://ahtrails.ca)
--   Maitland Valley, Ontario, CA - [maitlandvalley.goingtocamp.com](https://maitlandvalley.goingtocamp.com)
--   Saugeen Valley - Ontario, CA - [saugeen.goingtocamp.com](https://saugeen.goingtocamp.com)
--   St. Clair Region - Ontario, CA - [stclair.goingtocamp.com](https://stclair.goingtocamp.com)
--   Tacoma Power Parks, Washington, USA - [tacomapower.goingtocamp.com](https://tacomapower.goingtocamp.com)
--   Gatineau Park - Ontario-Quebec, CA - [reservations.ncc-ccn.gc.ca](https://reservations.ncc-ccn.gc.ca)
+- Parks Canada - Canada National Parks - [reservation.pc.gc.ca](https://reservation.pc.gc.ca/)
+- Washington State Parks - Washington, USA - [washington.goingtocamp.com](https://washington.goingtocamp.com)
+- Wisconsin State Parks - Wisconsin, USA - [wisconsin.goingtocamp.com](https://wisconsin.goingtocamp.com)
+- Michigan State Parks - Michigan, USA - [midnrreservations.com](https://midnrreservations.com/)
+- BC Parks - British Columbia, CA - [camping.bcparks.ca](https://camping.bcparks.ca)
+- Maryland State Parks - Maryland, USA - [parkreservations.maryland.gov](https://parkreservations.maryland.gov)
+- Nova Scotia Parks - Nova Scotia, CA - [novascotia.goingtocamp.com](https://novascotia.goingtocamp.com)
+- Manitoba Parks - Manitoba, CA - [manitoba.goingtocamp.com](https://manitoba.goingtocamp.com)
+- New Brunswick Provincial Parks - New Brunswick, CA - [parcsnbparks.info](https://parcsnbparks.info/)
+- Newfoundland & Labrador Provincial Parks - Newfoundland and Labrador, CA - [nlcamping.ca](https://nlcamping.ca)
+- Long Point Region - Ontario, CA - [longpoint.goingtocamp.com](https://longpoint.goingtocamp.com)
+- Algonquin Highlands - Ontario, CA - [ahtrails.ca](https://ahtrails.ca)
+- Maitland Valley, Ontario, CA - [maitlandvalley.goingtocamp.com](https://maitlandvalley.goingtocamp.com)
+- Saugeen Valley - Ontario, CA - [saugeen.goingtocamp.com](https://saugeen.goingtocamp.com)
+- St. Clair Region - Ontario, CA - [stclair.goingtocamp.com](https://stclair.goingtocamp.com)
+- Tacoma Power Parks, Washington, USA - [tacomapower.goingtocamp.com](https://tacomapower.goingtocamp.com)
+- Gatineau Park - Ontario-Quebec, CA - [reservations.ncc-ccn.gc.ca](https://reservations.ncc-ccn.gc.ca)
 
 Check out the following documentation examples for more details on searching GoingToCamp recreation areas:
 
--   [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
--   [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
+- [Look for a Campsite from GoingToCamp](command_line_usage.md#look-for-a-campsite-from-goingtocamp)
+- [Searching GoingToCamp Using Equipment](command_line_usage.md#searching-goingtocamp-using-equipment)
 
 ## Recreation.gov Tickets, Tours, & Timed-Entry
 
@@ -109,10 +109,10 @@ camply campgrounds --provider RecreationDotGovTicket --state HI
 camply campgrounds --provider RecreationDotGovTimedEntry --state OR
 ```
 
--   [Searching for Tickets and Timed Entries](command_line_usage.md#searching-for-tickets-and-timed-entries)
-    -   [Tickets + Tours](command_line_usage.md#tickets-tours)
-    -   [Timed Entry](command_line_usage.md#timed-entry)
-    -   [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
+- [Searching for Tickets and Timed Entries](command_line_usage.md#searching-for-tickets-and-timed-entries)
+    - [Tickets + Tours](command_line_usage.md#tickets-tours)
+    - [Timed Entry](command_line_usage.md#timed-entry)
+    - [Using the Daily Providers](command_line_usage.md#using-the-daily-providers)
 
 ## State Parks
 
@@ -142,20 +142,20 @@ camply campsites \
     --weekends
 ```
 
--   [Search ReserveCalifornia](command_line_usage.md#search-reservecalifornia)
+- [Search ReserveCalifornia](command_line_usage.md#search-reservecalifornia)
 
 ### Other UseDirect Providers
 
 ReserveCalifornia is one of many providers that use the UseDirect API. The following providers are also supported:
 
--   **`AlabamaStateParks`**: Searches on [ReserveAlaPark.com](https://reservealapark.com) for Campsites
--   **`ArizonaStateParks`**: Searches on [AZStateParks.com](https://azstateparks.com) for Campsites
--   **`FloridaStateParks`**: Searches on [FloridaStateParks.org](https://www.reserve.floridastateparks.org) for Campsites
--   **`MinnesotaStateParks`**: Searches on [ReserveMN.usedirect.com](https://reservemn.usedirect.com) for Campsites
--   **`MissouriStateParks`**: Searches on [icampmo1.usedirect.com](https://icampmo1.usedirect.com) for Campsites
--   **`OhioStateParks`**: Searches on [ReserveOhio.com](https://reserveohio.com) for Campsites
--   **`VirginiaStateParks`**: Searches on [ReserveVAParks.com](https://reservevaparks.com) for Campsites
--   **`NorthernTerritory`**: Searches the [Australian Northern Territory](https://parkbookings.nt.gov.au) for Campsites
--   **`FairfaxCountyParks`**: Searches on [fairfax.usedirect.com](https://fairfax.usedirect.com) for Campsites (Virginia)
--   **`MaricopaCountyParks`**: Searches on [MaricopaCountyParks.org](https://maricopacountyparks.org) for Campsites (Arizona)
--   **`OregonMetro`**: Searches on [OregonMetro.gov](https://oregonmetro.gov) for Campsites (Portland Metro)
+- **`AlabamaStateParks`**: Searches on [ReserveAlaPark.com](https://reservealapark.com) for Campsites
+- **`ArizonaStateParks`**: Searches on [AZStateParks.com](https://azstateparks.com) for Campsites
+- **`FloridaStateParks`**: Searches on [FloridaStateParks.org](https://www.reserve.floridastateparks.org) for Campsites
+- **`MinnesotaStateParks`**: Searches on [ReserveMN.usedirect.com](https://reservemn.usedirect.com) for Campsites
+- **`MissouriStateParks`**: Searches on [icampmo1.usedirect.com](https://icampmo1.usedirect.com) for Campsites
+- **`OhioStateParks`**: Searches on [ReserveOhio.com](https://reserveohio.com) for Campsites
+- **`VirginiaStateParks`**: Searches on [ReserveVAParks.com](https://reservevaparks.com) for Campsites
+- **`NorthernTerritory`**: Searches the [Australian Northern Territory](https://parkbookings.nt.gov.au) for Campsites
+- **`FairfaxCountyParks`**: Searches on [fairfax.usedirect.com](https://fairfax.usedirect.com) for Campsites (Virginia)
+- **`MaricopaCountyParks`**: Searches on [MaricopaCountyParks.org](https://maricopacountyparks.org) for Campsites (Arizona)
+- **`OregonMetro`**: Searches on [OregonMetro.gov](https://oregonmetro.gov) for Campsites (Portland Metro)

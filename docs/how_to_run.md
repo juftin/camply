@@ -116,39 +116,39 @@ available.
 
 ### Environment Variables
 
--   Pushover Notifications
-    -   `PUSHOVER_PUSH_USER`
--   Apprise Notifications
-    -   `APPRISE_URL`
--   Email Notifications
-    -   `EMAIL_TO_ADDRESS`
-    -   `EMAIL_USERNAME`
-    -   `EMAIL_PASSWORD`
-    -   `EMAIL_FROM_ADDRESS` (defaults to "camply@juftin.com")
-    -   `EMAIL_SUBJECT_LINE` (defaults to "camply Notification")
-    -   `EMAIL_SMTP_SERVER` (defaults to "smtp.gmail.com")
-    -   `EMAIL_SMTP_PORT` (defaults to 465)
--   Ntfy Notifications
-    -   `NTFY_TOPIC`
--   Pushbullet Notifications
-    -   `PUSHBULLET_API_TOKEN`
--   Twilio Notifications
-    -   `TWILIO_ACCOUNT_SID`
-    -   `TWILIO_AUTH_TOKEN`
-    -   `TWILIO_SOURCE_NUMBER`
-    -   `TWILIO_DEST_NUMBERS`
--   Slack Notifications
-    -   `SLACK_WEBHOOK`
--   Telegram Notifications
-    -   `TELEGRAM_BOT_TOKEN`
-    -   `TELEGRAM_CHAT_ID`
--   Webhook Notifications
-    -   `WEBHOOK_URL`
-    -   `WEBHOOK_HEADERS` (optional, defaults to `{"Content-Type": "application/json"}`)
--   Optional Environment Variables
-    -   `LOG_LEVEL` (sets logging level, defaults to "INFO")
-    -   `PUSHOVER_PUSH_TOKEN` (Personal Pushover App Token)
-    -   `RIDB_API_KEY` (Personal API Key
-        for [Recreation.gov API](https://ridb.recreation.gov/profile))
-    -   `TZ` ([TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
-        logging, defaults to UTC)
+- Pushover Notifications
+    - `PUSHOVER_PUSH_USER`
+- Apprise Notifications
+    - `APPRISE_URL`
+- Email Notifications
+    - `EMAIL_TO_ADDRESS`
+    - `EMAIL_USERNAME`
+    - `EMAIL_PASSWORD`
+    - `EMAIL_FROM_ADDRESS` (defaults to "camply@juftin.com")
+    - `EMAIL_SUBJECT_LINE` (defaults to "camply Notification")
+    - `EMAIL_SMTP_SERVER` (defaults to "smtp.gmail.com")
+    - `EMAIL_SMTP_PORT` (defaults to 465)
+- Ntfy Notifications
+    - `NTFY_TOPIC`
+- Pushbullet Notifications
+    - `PUSHBULLET_API_TOKEN`
+- Twilio Notifications
+    - `TWILIO_ACCOUNT_SID`
+    - `TWILIO_AUTH_TOKEN`
+    - `TWILIO_SOURCE_NUMBER`
+    - `TWILIO_DEST_NUMBERS`
+- Slack Notifications
+    - `SLACK_WEBHOOK`
+- Telegram Notifications
+    - `TELEGRAM_BOT_TOKEN`
+    - `TELEGRAM_CHAT_ID`
+- Webhook Notifications
+    - `WEBHOOK_URL`
+    - `WEBHOOK_HEADERS` (optional, defaults to `{"Content-Type": "application/json"}`)
+- Optional Environment Variables
+    - `LOG_LEVEL` (sets logging level, defaults to "INFO")
+    - `PUSHOVER_PUSH_TOKEN` (Personal Pushover App Token)
+    - `RIDB_API_KEY` (Personal API Key
+      for [Recreation.gov API](https://ridb.recreation.gov/profile))
+    - `TZ` ([TZ Database Name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for
+      logging, defaults to UTC)
