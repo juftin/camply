@@ -1,17 +1,34 @@
-FROM python:3.11-slim
+ARG PYTHON_VERSION=3.12
+FROM python:${PYTHON_VERSION}-slim-bookworm
 
-MAINTAINER Justin Flannery <juftin@juftin.com>
-LABEL description="camply, the campsite finder"
+WORKDIR /app
 
-COPY requirements.txt /tmp/project/requirements.txt
-RUN pip install -r /tmp/project/requirements.txt
+RUN apt-get update && apt-get install -y jq && apt-get clean
 
-COPY README.md /tmp/project/README.md
-COPY pyproject.toml /tmp/project/pyproject.toml
-COPY camply /tmp/project/camply
+# configure uv
+ENV UV_LINK_MODE=copy \
+    UV_LOCKED=1 \
+    UV_COMPILE_BYTECODE=1
+# Install dependencies
+RUN --mount=from=ghcr.io/astral-sh/uv,source=/uv,target=/bin/uv \
+    --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --no-install-project --no-dev
 
-RUN pip install /tmp/project && \
-    rm -rf /tmp/project
+COPY README.md /app/README.md
+COPY pyproject.toml /app/pyproject.toml
+COPY uv.lock /app/uv.lock
+COPY camply /app/camply
+
+# Install project
+RUN --mount=from=ghcr.io/astral-sh/uv,source=/uv,target=/bin/uv \
+    --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --no-dev --extra all
+
+ENV PATH="/app/.venv/bin:${PATH}"
 
 ENV HOME=/home/camply
 RUN mkdir ${HOME}
