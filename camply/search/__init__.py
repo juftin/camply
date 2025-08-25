@@ -12,6 +12,7 @@ from camply.search.search_recreationdotgov import (
     SearchRecreationDotGovDailyTimedEntry,
     SearchRecreationDotGovTicket,
     SearchRecreationDotGovTimedEntry,
+    SearchRecreationDotGovPermit,
 )
 from camply.search.search_usedirect import (
     SearchAlabamaStateParks,
@@ -52,6 +53,7 @@ __search_providers__: List[Type[BaseCampingSearch]] = [
     SearchRecreationDotGovTimedEntry,
     SearchRecreationDotGovDailyTicket,
     SearchRecreationDotGovDailyTimedEntry,
+    SearchRecreationDotGovPermit,
 ]
 
 CAMPSITE_SEARCH_PROVIDER: Dict[str, Type[BaseCampingSearch]] = {

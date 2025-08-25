@@ -58,12 +58,15 @@ class RIDBConfig(APIConfig):
     CAMPGROUND_FACILITY_FIELD_QUALIFIER: str = "Campground"
     TICKET_FACILITY_FIELD_QUALIFIER: str = "Ticket Facility"
     TIMED_ENTRY_FACILITY_FIELD_QUALIFIER: str = "Timed Entry"
+    PERMIT_FACILITY_FIELD_QUALIFIER: str = "Permit"
     # RECREATION AREA FIELDS
     REC_AREA_API_PATH: str = "recareas"
     # CAMPSITE DETAILS
     CAMPSITE_API_PATH: str = "campsites"
     # TOUR DETAILS
     TOUR_API_PATH: str = "tours"
+    # PERMIT ENTRANCE DETAILS
+    PERMIT_ENTRANCE_API_PATH: str = "permitentrances"
 
 
 class RecreationBookingConfig(APIConfig):
