@@ -62,7 +62,7 @@ class UseDirectProvider(BaseProvider, ABC):
 
     __offline_cache_dir__: Optional[pathlib.Path] = None
 
-    rdr_path: str = "rdr"
+    rdr_path: str = "rdr/"
 
     booking_path_params: bool = True
     booking_path: str = "Web/Default.aspx"
@@ -323,7 +323,7 @@ class UseDirectProvider(BaseProvider, ABC):
         non_null_data = {
             key: value for key, value in data.items() if value not in [None, [], ""]
         }
-        url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.AVAILABILITY_ENDPOINT}"
+        url = f"{self.base_url}/{self.rdr_path}{UseDirectConfig.AVAILABILITY_ENDPOINT}"
         random_ua = UserAgent(browsers=["chrome"]).random
         self.json_headers["User-Agent"] = random_ua
         response = self.make_http_request_retry(
@@ -527,7 +527,7 @@ class UseDirectProvider(BaseProvider, ABC):
         campground_metadata = self._fetch_metadata_from_disk(file_path=metadata_file)
         if campground_metadata is None:
             self.offline_cache_dir.mkdir(parents=True, exist_ok=True)
-            url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.METADATA_PREFIX}"
+            url = f"{self.base_url}/{self.rdr_path}{UseDirectConfig.METADATA_PREFIX}"
             resp = self.make_http_request_retry(url=url)
             resp.raise_for_status()
             campground_metadata = resp.json()
@@ -553,7 +553,7 @@ class UseDirectProvider(BaseProvider, ABC):
         metadata_file = self.offline_cache_dir.joinpath("cityparks.json")
         city_park_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if city_park_data is None:
-            url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.CITYPARK_ENDPOINT}"
+            url = f"{self.base_url}/{self.rdr_path}{UseDirectConfig.CITYPARK_ENDPOINT}"
             resp = self.make_http_request_retry(url=url)
             resp.raise_for_status()
             city_park_data: Dict[str, Dict[str, Any]] = resp.json()
@@ -576,7 +576,9 @@ class UseDirectProvider(BaseProvider, ABC):
         metadata_file = self.offline_cache_dir.joinpath("places.json")
         places_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if places_data is None:
-            url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.LIST_PLACES_ENDPOINT}"
+            url = (
+                f"{self.base_url}/{self.rdr_path}{UseDirectConfig.LIST_PLACES_ENDPOINT}"
+            )
             resp = self.make_http_request_retry(url=url)
             resp.raise_for_status()
             places_data: List[Dict[str, Any]] = resp.json()
@@ -609,7 +611,7 @@ class UseDirectProvider(BaseProvider, ABC):
         metadata_file = self.offline_cache_dir.joinpath("facilities.json")
         facilities_data = self._fetch_metadata_from_disk(file_path=metadata_file)
         if facilities_data is None:
-            url = f"{self.base_url}/{self.rdr_path}/{UseDirectConfig.LIST_FACILITIES_ENDPOINT}"
+            url = f"{self.base_url}/{self.rdr_path}{UseDirectConfig.LIST_FACILITIES_ENDPOINT}"
             resp = self.make_http_request_retry(url=url)
             resp.raise_for_status()
             facilities_data: List[Dict[str, Any]] = resp.json()
