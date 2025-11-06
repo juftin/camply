@@ -6,7 +6,7 @@ interactions:
                   - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.8 (KHTML, like Gecko)
                     Chrome/4.0.277.0 Safari/532.8
           method: GET
-          uri: https://calirdr.usedirect.com/rdr/rdr/search/filters
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/search/filters
       response:
           body:
               string:
@@ -264,7 +264,7 @@ interactions:
                   - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.8 (KHTML, like Gecko)
                     Chrome/4.0.277.0 Safari/532.8
           method: GET
-          uri: https://calirdr.usedirect.com/rdr/rdr/fd/citypark
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/fd/citypark
       response:
           body:
               string:
@@ -1010,7 +1010,7 @@ interactions:
                   - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.8 (KHTML, like Gecko)
                     Chrome/4.0.277.0 Safari/532.8
           method: GET
-          uri: https://calirdr.usedirect.com/rdr/rdr/fd/places
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/fd/places
       response:
           body:
               string:
@@ -2004,7 +2004,7 @@ interactions:
                   - Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/532.8 (KHTML, like Gecko)
                     Chrome/4.0.277.0 Safari/532.8
           method: GET
-          uri: https://calirdr.usedirect.com/rdr/rdr/fd/facilities
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/fd/facilities
       response:
           body:
               string:

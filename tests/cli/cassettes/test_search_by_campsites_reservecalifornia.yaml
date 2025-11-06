@@ -12,7 +12,7 @@ interactions:
                   - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/528.8 (KHTML,
                     like Gecko) Chrome/2.0.156.1 Safari/528.8
           method: POST
-          uri: https://calirdr.usedirect.com/rdr/rdr/search/grid
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/search/grid
       response:
           body:
               string:
@@ -106,7 +106,7 @@ interactions:
                   - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/528.8 (KHTML,
                     like Gecko) Chrome/2.0.156.1 Safari/528.8
           method: GET
-          uri: https://calirdr.usedirect.com/rdr/rdr/search/filters
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/search/filters
       response:
           body:
               string:
@@ -364,7 +364,7 @@ interactions:
                   - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/528.8 (KHTML,
                     like Gecko) Chrome/2.0.156.1 Safari/528.8
           method: GET
-          uri: https://calirdr.usedirect.com/rdr/rdr/fd/citypark
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/fd/citypark
       response:
           body:
               string:
@@ -1110,7 +1110,7 @@ interactions:
                   - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/528.8 (KHTML,
                     like Gecko) Chrome/2.0.156.1 Safari/528.8
           method: GET
-          uri: https://calirdr.usedirect.com/rdr/rdr/fd/places
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/fd/places
       response:
           body:
               string:
@@ -2104,7 +2104,7 @@ interactions:
                   - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/528.8 (KHTML,
                     like Gecko) Chrome/2.0.156.1 Safari/528.8
           method: GET
-          uri: https://calirdr.usedirect.com/rdr/rdr/fd/facilities
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/fd/facilities
       response:
           body:
               string:
@@ -3083,7 +3083,7 @@ interactions:
                   - Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/528.8 (KHTML,
                     like Gecko) Chrome/2.0.156.1 Safari/528.8
           method: POST
-          uri: https://calirdr.usedirect.com/rdr/rdr/search/grid
+          uri: https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/search/grid
       response:
           body:
               string:

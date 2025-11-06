@@ -147,7 +147,7 @@ class UseDirectPlace(CamplyModel):
 
 class UseDirectDetailedPlace(CamplyModel):
     """
-    https://calirdr.usedirect.com/RDR/rdr/fd/places
+    https://california-rdr.prod.cali.rd12.recreation-management.tylerapp.com/rdr/fd/places
     """
 
     PlaceId: int

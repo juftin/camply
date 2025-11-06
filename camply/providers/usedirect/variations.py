@@ -14,7 +14,7 @@ class AlabamaStateParks(UseDirectProvider):
 
     base_url = "https://alabamardr.usedirect.com"
     campground_url = "https://www.reservealapark.com"
-    rdr_path = "alabamardr"
+    rdr_path = "alabamardr/"
     booking_path = "AlabamaWebHome/Facilities/SearchViewUnitAvailabity.aspx"
     booking_path_params = False
     state_code = "AL"
