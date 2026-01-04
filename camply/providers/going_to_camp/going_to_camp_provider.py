@@ -275,7 +275,6 @@ class GoingToCamp(BaseProvider):
             logger.error(f"Recreation area '{rec_area_id}' does not exist.")
             sys.exit(1)
 
-        self.campground_details = {}
         api_response = self._api_request(rec_area_id, "LIST_CAMPGROUNDS")
 
         filtered_facilities = self._filter_facilities_responses(
@@ -283,9 +282,6 @@ class GoingToCamp(BaseProvider):
         )
 
         campgrounds = []
-        # Fetch campgrounds details for all facilities
-        for camp_details in self._api_request(rec_area_id, "CAMP_DETAILS"):
-            self.campground_details[camp_details["resourceLocationId"]] = camp_details
 
         # If a search string is provided, make sure every facility name contains
         # the search string
@@ -387,6 +383,7 @@ class GoingToCamp(BaseProvider):
                     resource_categories=facil.get("resourceCategoryIds"),
                     resource_location_id=facil.get("resourceLocationId"),
                     resource_location_name=location_name,
+                    root_map_id=facil.get("rootMapId"),
                 )
             except ValidationError as ve:
                 logger.error("That doesn't look like a valid Campground Facility")
@@ -424,10 +421,7 @@ class GoingToCamp(BaseProvider):
         -------
         Tuple[dict, CampgroundFacility]
         """
-        self.campground_details[facility.resource_location_id]
-        facility.id = _fetch_nested_key(
-            self.campground_details, facility.resource_location_id, "mapId"
-        )
+        facility.id = facility.root_map_id
         if facility.region_name:
             formatted_recreation_area = (
                 f"{rec_area.recreation_area}, {facility.region_name}"
