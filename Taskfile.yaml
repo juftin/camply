@@ -42,7 +42,7 @@ tasks:
         cmds:
             - for:
                   matrix:
-                      PYTHON: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+                      PYTHON: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
               task: test
               vars:
                   UV_PYTHON: "{{.ITEM.PYTHON}}"

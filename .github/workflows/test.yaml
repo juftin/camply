@@ -26,6 +26,7 @@ jobs:
             fail-fast: true
             matrix:
                 include:
+                    - { name: Python 3.13, python: "3.14" }
                     - { name: Python 3.13, python: "3.13" }
                     - { name: Python 3.12, python: "3.12" }
                     - { name: Python 3.11, python: "3.11" }
