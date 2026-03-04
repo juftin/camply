@@ -62,8 +62,8 @@ class VirginiaStateParks(UseDirectProvider):
     Virginia State Parks
     """
 
-    base_url = "https://virginiardr.usedirect.com"
-    campground_url = "https://VirginiaStateParks.com"
+    base_url = "https://prod-va-rdr.recreation-management.tylerapp.com"
+    campground_url = "https://reservevaparks.com"
     rdr_path = "virginiardr/"
     booking_path = "Web"
     state_code = "VA"

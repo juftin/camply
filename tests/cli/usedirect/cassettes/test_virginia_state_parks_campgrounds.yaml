@@ -6,7 +6,7 @@ interactions:
                   - Mozilla/5.0 (X11; CrOS i686 12.433.109) AppleWebKit/534.30 (KHTML, like Gecko)
                     Chrome/12.0.742.93 Safari/534.30
           method: GET
-          uri: https://virginiardr.usedirect.com/virginiardr/rdr/search/filters
+          uri: https://prod-va-rdr.recreation-management.tylerapp.com/virginiardr/rdr/search/filters
       response:
           body:
               string:
@@ -289,7 +289,7 @@ interactions:
                   - Mozilla/5.0 (X11; CrOS i686 12.433.109) AppleWebKit/534.30 (KHTML, like Gecko)
                     Chrome/12.0.742.93 Safari/534.30
           method: GET
-          uri: https://virginiardr.usedirect.com/virginiardr/rdr/fd/citypark
+          uri: https://prod-va-rdr.recreation-management.tylerapp.com/virginiardr/rdr/fd/citypark
       response:
           body:
               string:
@@ -538,7 +538,7 @@ interactions:
                   - Mozilla/5.0 (X11; CrOS i686 12.433.109) AppleWebKit/534.30 (KHTML, like Gecko)
                     Chrome/12.0.742.93 Safari/534.30
           method: GET
-          uri: https://virginiardr.usedirect.com/virginiardr/rdr/fd/places
+          uri: https://prod-va-rdr.recreation-management.tylerapp.com/virginiardr/rdr/fd/places
       response:
           body:
               string:
@@ -693,7 +693,7 @@ interactions:
                   - Mozilla/5.0 (X11; CrOS i686 12.433.109) AppleWebKit/534.30 (KHTML, like Gecko)
                     Chrome/12.0.742.93 Safari/534.30
           method: GET
-          uri: https://virginiardr.usedirect.com/virginiardr/rdr/fd/facilities
+          uri: https://prod-va-rdr.recreation-management.tylerapp.com/virginiardr/rdr/fd/facilities
       response:
           body:
               string:
