@@ -31,6 +31,8 @@ class ReserveCalifornia(UseDirectProvider):
     campground_url = "https://www.reservecalifornia.com"
     state_code = "CA"
     rdr_path = ""
+    booking_path = "park"
+    booking_path_hash = False
 
 
 class FloridaStateParks(UseDirectProvider):

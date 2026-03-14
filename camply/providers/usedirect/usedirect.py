@@ -66,6 +66,7 @@ class UseDirectProvider(BaseProvider, ABC):
 
     booking_path_params: bool = True
     booking_path: str = "Web/Default.aspx"
+    booking_path_hash: bool = True
 
     @property
     @abstractmethod
@@ -449,7 +450,10 @@ class UseDirectProvider(BaseProvider, ABC):
         recreation_area = self.usedirect_rec_areas[facility.recreation_area_id]
         booking_url = f"{self.campground_url}/{self.booking_path}"
         if self.booking_path_params is True:
-            booking_url = f"{booking_url}#!park/{recreation_area.recreation_area_id}/{facility_id}"
+            if self.booking_path_hash:
+                booking_url = f"{booking_url}#!park/{recreation_area.recreation_area_id}/{facility_id}"
+            else:
+                booking_url = f"{booking_url}/{recreation_area.recreation_area_id}/{facility_id}"
         if unit.UnitCategoryId is None:
             unit.UnitCategoryId = -1
         if unit.UnitTypeGroupId is None:
