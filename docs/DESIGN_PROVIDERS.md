@@ -1,6 +1,6 @@
 # DESIGN_PROVIDERS: Provider Architecture & Logic Migration
 
-This document outlines the architecture for the provider layer in `camply-web`, focusing on a standardized interface, provider-specific Pydantic models, and the logic migration from the legacy CLI.
+This document outlines the architecture for the provider layer in `camply`, focusing on a standardized interface, provider-specific Pydantic models, and the logic migration from the legacy CLI.
 
 ## 🎯 Architecture Goals
 1. **Standardization**: All providers must return a unified `CampsiteDTO` to the worker.

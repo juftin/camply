@@ -1,6 +1,6 @@
 # DESIGN_DATA: Database Schema & De-duplication
 
-This document defines the database architecture for the `camply-web` platform, reconciling the legacy CLI data structures with the existing `backend` FastAPI models.
+This document defines the database architecture for the `camply` platform, reconciling the legacy CLI data structures with the existing `backend` FastAPI models.
 
 ## 🎯 Hierarchy Overview
 The system models campsite data in a four-tier hierarchy. To handle overlapping IDs across different booking services, **Composite Primary Keys** (`id` + `provider_id`) are used for all provider-sourced entities.
