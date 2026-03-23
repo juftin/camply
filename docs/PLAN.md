@@ -1,4 +1,4 @@
-# camply-web: Path Forward
+# camply: Path Forward
 
 This document outlines the strategic roadmap for transitioning `camply` from a legacy CLI tool to a modern, full-stack, community-facing web application for campsite availability monitoring.
 
@@ -9,9 +9,11 @@ A **free, open-source, and self-hostable** campsite availability scanner. Users 
 - **Backend**: FastAPI (Python 3.12, `uv` workspace) using **Pydantic v2**.
 - **Frontend**: React (TypeScript, Vite, Tailwind CSS + **Shadcn/UI**).
 - **Database**: PostgreSQL (SQLAlchemy + Alembic).
-- **Worker**: Smart **De-duplicated Poller** (Celery + Redis) for high-frequency scanning without API pressure.
-- **Auth**: Multi-user **Auth0** integration with a **Local DB Whitelist** for early access.
-- **Notifications**: Initial support for **Pushover** (extensible to SMS, Email, Discord, and Telegram).
+- **Worker**: Smart **De-duplicated Poller** (Celery + Valkey) for high-frequency scanning without API pressure.
+- **Auth**: Multi-user **Auth0** integration with a **Local DB Whitelist**. Auth0 MUST be toggleable (via `.env`) to support simple local-only self-hosting without external identity providers.
+- **Licensing**: Transition to a **Non-Commercial License** (e.g., Polyform Non-Commercial or AGPL with restrictions) to prevent unauthorized paid hosting/monetization.
+- **Notifications**: Initial support for **Pushover** (extensible to Email/Discord).
+
 - **Monitoring**: **Sentry** integration enabled for error tracking and performance.
 - **Infrastructure**: **Docker Compose** + **Kubernetes** manifests.
 - **API Strategy**: OpenAPI/Swagger with automated TypeScript client generation for the frontend.
@@ -48,14 +50,19 @@ A **free, open-source, and self-hostable** campsite availability scanner. Users 
 - [ ] **DB Schema**: Design `Users` (with early access flag), `UniqueTargets` (unique definitions), and `UserScans` (user subscriptions).
 - [ ] **Sentry**: Initialize Sentry SDKs for both Backend and Frontend.
 - [ ] **Provider Engine**: Define the new `BaseProvider` ABC and migrate `recreation_dot_gov` logic.
-- [ ] **Smart Worker**: Implement de-duplicated polling logic in Celery with sub-minute support.
+- [ ] **Celery Worker**: Implement de-duplicated polling logic in Celery.
+- [ ] **Infrastructure**: Update `docker-compose.yaml` to include Valkey and Celery worker/beat services.
+- [ ] **Tooling**: Add Celery/Worker management tasks to the `backend/Taskfile.yaml`.
 - [ ] **OpenAPI**: Expose initial search/scan endpoints and configure client generation.
 - [ ] **Pushover**: Integrate basic notification delivery.
+
 
 ### Phase 2: User Dashboard & Auth
 **Goal**: Enable secure, multi-user management of scans.
 - [ ] **Auth0**: Implement login/signup and whitelist verification flow.
 - [ ] **Scan Management**: Build a dashboard to create, pause, and delete user-specific scans.
+- [ ] **Frontend Refactor**: Update `package.json` scripts and dependency management.
+- [ ] **Dockerization**: Update `docker-compose.yaml` and `Dockerfile` for optimized frontend builds.
 - [ ] **User Config**: Secure storage for user-specific Pushover keys and notification preferences.
 - [ ] **Validation**: Ensure strict schema validation for all user-provided scan parameters.
 
