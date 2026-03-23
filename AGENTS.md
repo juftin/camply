@@ -7,9 +7,17 @@
 Before modifying the system, review the relevant architectural blueprints:
 - 👉 **[Roadmap & Plan](docs/PLAN.md)**: The definitive path forward and current phases.
 - 👉 **[Feature Checklist](docs/CHECKLIST.md)**: Granular implementation tasks. (Update this before every PR!).
+- 👉 **[Developer Guide](docs/DEVELOPER_GUIDE.md)**: Quickstart, workflows, and local setup.
+- 👉 **[Style Guide](docs/STYLE_GUIDE.md)**: Engineering, Git, and PR standards.
+- 👉 **[Architecture Deep Dive](docs/ARCHITECTURE_DEEP_DIVE.md)**: Details on the Smart De-duplicated Poller.
 - 👉 **[Database Schema](docs/DESIGN_DATA.md)**: Details on the multi-tenant architecture and de-duplicated polling strategy.
 - 👉 **[Provider Architecture](docs/DESIGN_PROVIDERS.md)**: The standard interface for integrating campsite booking APIs.
+- 👉 **[Notification Architecture](docs/DESIGN_NOTIFICATIONS.md)**: Standarized multi-channel alerts.
+- 👉 **[API Contract & Security](docs/DESIGN_API.md)**: FastAPI endpoints and Auth0/Whitelist logic.
+- 👉 **[Frontend Journey](docs/DESIGN_FRONTEND.md)**: UX flows and Shadcn/UI design system.
 - 👉 **[Agentic Tooling](docs/DESIGN_AGENTIC.md)**: Configuration for MCP servers (Local Dev & Agent workflows).
+- 👉 **[Configuration](docs/CONFIGURATION.md)**: Environment variables and settings.
+- 👉 **[Troubleshooting](docs/AGENT_TROUBLESHOOTING.md)**: Solutions for common local dev issues.
 - 👉 **[Project Constitution](.specify/memory/constitution.md)**: Core engineering principles and governance rules.
 
 ## 🤖 Agent Lifecycle & Spec-Kit
@@ -36,7 +44,7 @@ This project uses **Spec-Kit** for formal feature definition and task tracking.
 - **Backend**: Python 3.12 managed by `uv`. FastAPI for web services.
 - **Frontend**: React 18+ with TypeScript, built via Vite. Tailwind CSS + Shadcn/UI.
 - **Database**: PostgreSQL (SQLAlchemy + Alembic).
-- **Worker**: Smart De-duplicated Poller (Celery + Redis).
+- **Worker**: Smart De-duplicated Poller (Celery + Valkey).
 - **Infrastructure**: Docker & Docker Compose.
 - **API**: OpenAPI with automated TypeScript client generation.
 - **Quality Gates**: `mypy`, `tsc`, `ruff`, `eslint`, `pytest`, `vitest`.
