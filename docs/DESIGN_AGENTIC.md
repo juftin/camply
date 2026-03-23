@@ -1,6 +1,6 @@
 # DESIGN_AGENTIC: Local Development & Agentic Tooling
 
-This document outlines the local "Agentic" development environment for `camply-web`. These Model Context Protocol (MCP) servers allow AI agents (like Gemini CLI) to interact directly with the database, UI, and infrastructure for autonomous implementation and validation.
+This document outlines the local "Agentic" development environment for `camply`. These Model Context Protocol (MCP) servers allow AI agents (like Gemini CLI) to interact directly with the database, UI, and infrastructure for autonomous implementation and validation.
 
 ## 🎯 Philosophy
 1. **Local-First**: All tools run locally to ensure privacy, speed, and reliability.
@@ -35,7 +35,7 @@ The following MCP servers should be added to the local agent configuration (e.g.
 - **Use Case**:
     - Check Celery logs for scan errors.
     - Restart specific services after a code change.
-    - Monitor queue depth in Redis.
+    - Monitor queue depth in Valkey.
 
 ### 4. GitHub MCP
 **Capability**: Manage issues, PRs, and project boards.
