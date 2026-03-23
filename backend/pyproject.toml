@@ -1,5 +1,5 @@
 [project]
-name = "camply-backend"
+name = "camply"
 version = "0.1.0"
 description = "A full-stack application to help you find campsites at sold-out campgrounds"
 requires-python = ">=3.9,<4.0"

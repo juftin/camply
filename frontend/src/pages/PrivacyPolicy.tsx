@@ -169,7 +169,7 @@ export function PrivacyPolicy() {
                 href="https://github.com/juftin/camply"
                 className="text-primary hover:text-primary/80"
               >
-                github.com/juftin/camply-web
+                github.com/juftin/camply
               </a>
             </li>
           </ul>
