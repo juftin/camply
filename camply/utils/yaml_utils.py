@@ -125,6 +125,7 @@ def yaml_file_to_arguments(
         "equipment": equipment,
         "offline_search": yaml_model.offline_search,
         "offline_search_path": yaml_model.offline_search_path,
+        "attribute_filters": yaml_model.attribute_filters,
     }
     search_kwargs = {
         "log": True,

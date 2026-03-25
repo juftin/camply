@@ -503,6 +503,7 @@ class GoingToCamp(BaseProvider):
         start_date: datetime.date,
         end_date: datetime.date,
         equipment_type_id: Optional[str],
+        attribute_filters: Optional[List[Dict[str, Any]]] = None,
     ) -> List[AvailableResource]:
         """
         Retrieve the Availability for all Sites in a Camp Area
@@ -510,11 +511,38 @@ class GoingToCamp(BaseProvider):
         Sites are filtered on the provided date range and compatible
         equipment.
 
+        Parameters
+        ----------
+        campground: CampgroundFacility
+            The campground to search
+        start_date: datetime.date
+            Start date of the search window
+        end_date: datetime.date
+            End date of the search window
+        equipment_type_id: Optional[str]
+            Equipment type ID to filter by
+        attribute_filters: Optional[List[Dict[str, Any]]]
+            List of attribute filters in format:
+            [{"attributeDefinitionId": -32767, "enumValues": [3]}]
+            Use `camply equipment-types` to find attribute IDs.
+            Common filters for WA State Parks:
+            - Electrical Service (-32767): 0=None, 1=15A, 2=20A, 3=30A, 4=50A
+
         Returns
         -------
         available_sites: List[AvailableResource]
             The list of available sites
         """
+        # Build filterData with enumValues format (not values)
+        # Must be JSON-encoded string for the API
+        filter_data = []
+        if attribute_filters:
+            for attr_filter in attribute_filters:
+                filter_data.append({
+                    "attributeDefinitionId": attr_filter.get("attributeDefinitionId"),
+                    "enumValues": attr_filter.get("enumValues", attr_filter.get("values", []))
+                })
+
         search_filter = {
             "mapId": campground.map_id,
             "resourceLocationId": campground.facility_id,
@@ -526,7 +554,7 @@ class GoingToCamp(BaseProvider):
             "partySize": 1,
             "numEquipment": 1,
             "equipmentCategoryId": NON_GROUP_EQUIPMENT,
-            "filterData": [],
+            "filterData": json.dumps(filter_data),
         }
         if equipment_type_id:
             search_filter["subEquipmentCategoryId"] = equipment_type_id
