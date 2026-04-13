@@ -3,6 +3,7 @@ Camply Command Line Interface
 """
 
 import logging
+import os
 import sys
 from dataclasses import dataclass
 from datetime import date, timedelta
@@ -441,9 +442,10 @@ yaml_config_argument = click.option(
     "--yaml-config",
     "--yml-config",
     default=None,
-    type=click.Path(exists=True, dir_okay=False, resolve_path=True),
+    type=str,
     help="Rather than provide arguments to the command line utility, instead "
-    "pass a file path to a YAML configuration file. See the documentation "
+    "pass a file path to a YAML configuration file. Multiple files can be "
+    "specified separated by commas. See the documentation "
     "for more information on how to structure your configuration file.",
 )
 equipment_argument = click.option(
@@ -741,11 +743,16 @@ def campsites(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
+    configs = []
     if yaml_config is not None:
-        provider, provider_kwargs, search_kwargs = yaml_utils.yaml_file_to_arguments(
-            file_path=yaml_config
-        )
-        provider = _preferred_provider(context, provider)
+        yaml_files = [f.strip() for f in yaml_config.split(',') if f.strip()]
+        for file_path in yaml_files:
+            if not os.path.exists(file_path):
+                raise click.BadParameter(f"YAML config file '{file_path}' does not exist.")
+            file_configs = yaml_utils.yaml_file_to_arguments(file_path=file_path)
+            for provider, provider_kwargs, search_kwargs in file_configs:
+                provider = _preferred_provider(context, provider)
+                configs.append((provider, provider_kwargs, search_kwargs))
     else:
         provider = _preferred_provider(context, provider)
         provider_kwargs, search_kwargs = _get_provider_kwargs_from_cli(
@@ -770,9 +777,11 @@ def campsites(
             day=day,
             yaml_config=yaml_config,
         )
-    provider_class: Type[BaseCampingSearch] = CAMPSITE_SEARCH_PROVIDER[provider]
-    camping_finder: BaseCampingSearch = provider_class(**provider_kwargs)
-    camping_finder.get_matching_campsites(**search_kwargs)
+        configs = [(provider, provider_kwargs, search_kwargs)]
+    for config_provider, config_provider_kwargs, config_search_kwargs in configs:
+        provider_class: Type[BaseCampingSearch] = CAMPSITE_SEARCH_PROVIDER[config_provider]
+        camping_finder: BaseCampingSearch = provider_class(**config_provider_kwargs)
+        camping_finder.get_matching_campsites(**config_search_kwargs)
 
 
 @camply_command_line.command(cls=RichCommand)
