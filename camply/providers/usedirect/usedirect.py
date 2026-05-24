@@ -458,7 +458,7 @@ class UseDirectProvider(BaseProvider, ABC):
         recreation_area = self.usedirect_rec_areas[facility.recreation_area_id]
         booking_url = self.get_booking_url(
             recreation_area_id=recreation_area.recreation_area_id,
-            facility_id=facility_id
+            facility_id=facility_id,
         )
         if unit.UnitCategoryId is None:
             unit.UnitCategoryId = -1
