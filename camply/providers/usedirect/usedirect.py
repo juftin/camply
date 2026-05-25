@@ -417,6 +417,7 @@ class UseDirectProvider(BaseProvider, ABC):
         campsites: List[AvailableCampsite] = []
         if availability_response.Facility.Units is None:
             return campsites
+        locked_count = 0
         for _campground_unit_id, unit in availability_response.Facility.Units.items():
             for _slice_date, availability_slice in unit.Slices.items():
                 campsite = self._get_available_campsite(
@@ -431,6 +432,17 @@ class UseDirectProvider(BaseProvider, ABC):
                         or campsite.campsite_id in self.campsite_ids
                     ):
                         campsites.append(campsite)
+                elif (
+                    availability_slice.Lock is not None
+                    and availability_slice.Lock > datetime.now()
+                ):
+                    locked_count += 1
+        if locked_count > 0:
+            logger.info(
+                "%s locked site(s) found that will become available "
+                "for booking at their scheduled unlock time (typically 8 AM).",
+                locked_count,
+            )
         return campsites
 
     def _get_available_campsite(
@@ -474,9 +486,7 @@ class UseDirectProvider(BaseProvider, ABC):
             booking_end_date=start_date + timedelta(days=1),
             booking_nights=1,
             campsite_site_name=unit.Name,
-            availability_status=(
-                "Available" if availability_slice.IsFree is True else "Unavailable"
-            ),
+            availability_status=self._get_availability_status(availability_slice),
             recreation_area=recreation_area.recreation_area,
             recreation_area_id=facility.recreation_area_id,
             facility_name=facility.facility_name,
@@ -491,6 +501,34 @@ class UseDirectProvider(BaseProvider, ABC):
             ),
         )
         return campsite
+
+    @staticmethod
+    def _get_availability_status(
+        availability_slice: UseDirectAvailabilitySlice,
+    ) -> str:
+        """
+        Determine availability status from an availability slice.
+
+        Sites that are not free but have a future Lock timestamp are
+        cancelled reservations that will become bookable at the lock
+        time (typically 8 AM the next day).
+
+        Parameters
+        ----------
+        availability_slice: UseDirectAvailabilitySlice
+
+        Returns
+        -------
+        str
+        """
+        if availability_slice.IsFree is True:
+            return "Available"
+        if (
+            availability_slice.Lock is not None
+            and availability_slice.Lock > datetime.now()
+        ):
+            return "Available"
+        return "Unavailable"
 
     def _fetch_metadata_from_disk(
         self, file_path: pathlib.Path
