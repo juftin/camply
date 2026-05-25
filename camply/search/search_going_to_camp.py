@@ -49,6 +49,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         campgrounds: Optional[Union[List[str], str]] = None,
         equipment_id: Optional[int] = None,
         nights: int = 1,
+        attribute_filters: Optional[List[dict]] = None,
         **kwargs,
     ) -> None:
         """
@@ -69,6 +70,12 @@ class SearchGoingToCamp(BaseCampingSearch):
             Campground ID or List of Campground IDs
         nights: int
             minimum number of consecutive nights to search per campsite,defaults to 1
+        attribute_filters: Optional[List[dict]]
+            List of attribute filters for GoingToCamp API in format:
+            [{"attributeDefinitionId": -32767, "enumValues": [3]}]
+            Common filters:
+            - Electrical Service (-32767): 0=None, 1=15A, 2=20A, 3=30A, 4=50A
+            - Service Type (-32768): 3=Standard, 5=Electric, 6=Elec+Water, 7=Full
         """
         self.provider = GoingToCamp
         super().__init__(
@@ -81,6 +88,7 @@ class SearchGoingToCamp(BaseCampingSearch):
         self._recreation_area_id = self._validate_rec_area(recreation_area)
         self._campgrounds = campgrounds
         self.weekends_only = weekends_only
+        self.attribute_filters = attribute_filters
         assert (
             any(
                 [
@@ -146,6 +154,7 @@ class SearchGoingToCamp(BaseCampingSearch):
                     start_date=current_start_date,
                     end_date=search_window.end_date,
                     equipment_type_id=self.equipment_id,
+                    attribute_filters=self.attribute_filters,
                 )
                 for site in sites:
                     site_details = self.campsite_finder.get_site_details(
