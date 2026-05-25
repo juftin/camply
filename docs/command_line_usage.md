@@ -715,6 +715,34 @@ camply campsites --yaml-config example_search.yaml
     A JSON Schema for the YAML configuration file can be found at
     [docs/yaml_search.json](yaml_search.json)
 
+#### Multiple YAML Configurations
+
+Camply supports searching across multiple providers or configurations in a single command. You can specify multiple YAML files separated by commas:
+
+```commandline
+camply campsites --yaml-config config1.yaml,config2.yaml
+```
+
+Alternatively, you can define multiple search configurations in a single YAML file using YAML document separators (`---`):
+
+```yaml
+provider: RecreationDotGov
+recreation_area: 2907
+start_date: 2023-09-10
+end_date: 2023-09-11
+---
+provider: GoingToCamp
+recreation_area: 1
+start_date: 2023-09-10
+end_date: 2023-09-11
+```
+
+```commandline
+camply campsites --yaml-config multi_config.yaml
+```
+
+This allows you to search multiple providers or different search criteria simultaneously.
+
 ### Searching for a Campsite That Fits Your Equipment
 
 Camply can help you filter campsites to fit your specific equipment, like a Trailer or an RV.
