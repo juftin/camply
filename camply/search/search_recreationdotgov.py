@@ -13,7 +13,11 @@ import pandas as pd
 from camply.config import RecreationBookingConfig
 from camply.config.search_config import EquipmentConfig, EquipmentOptions
 from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindow
-from camply.containers.api_responses import RecDotGovCampsite, RecDotGovSearchResult
+from camply.containers.api_responses import (
+    RecDotGovCampsite,
+    RecDotGovSearchResult,
+    PermitEntranceResponse,
+)
 from camply.containers.data_containers import ListedCampsite
 from camply.exceptions import SearchError
 from camply.providers import (
@@ -22,6 +26,7 @@ from camply.providers import (
     RecreationDotGovDailyTimedEntry,
     RecreationDotGovTicket,
     RecreationDotGovTimedEntry,
+    RecreationDotGovPermit,
 )
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
@@ -376,6 +381,15 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
                 )
                 for item in campsites
             ]
+        elif isinstance(campsites[0], PermitEntranceResponse):
+            return [
+                ListedCampsite(
+                    id=item.PermitEntranceID,
+                    facility_id=item.FacilityID,
+                    name=item.PermitEntranceName,
+                )
+                for item in campsites
+            ]
         else:
             raise NotImplementedError(
                 f"Cannot get listable campsites from type {type(campsites[0])}"
@@ -440,3 +454,11 @@ class SearchRecreationDotGovTimedEntry(SearchRecreationDotGovBase):
     """
 
     provider_class = RecreationDotGovTimedEntry
+
+
+class SearchRecreationDotGovPermit(SearchRecreationDotGovBase):
+    """
+    Searches on Recreation.gov for Timed Entries
+    """
+
+    provider_class = RecreationDotGovPermit
