@@ -175,7 +175,7 @@ class SearchGoingToCamp(BaseCampingSearch):
                     # be viable for camping. Skip all zero-capacity sites.
                     if (
                         not site_details["minCapacity"]
-                        or not site_details["maxCapacity"]
+                        and not site_details["maxCapacity"]
                     ):
                         continue
 
@@ -193,7 +193,7 @@ class SearchGoingToCamp(BaseCampingSearch):
                                 "Service Type", "Unknown"
                             ),
                             campsite_occupancy=(
-                                site_details["minCapacity"],
+                                site_details["minCapacity"] or 0,
                                 site_details["maxCapacity"],
                             ),
                             campsite_use_type="N/A",
