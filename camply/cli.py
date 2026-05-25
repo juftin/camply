@@ -2,6 +2,7 @@
 Camply Command Line Interface
 """
 
+import concurrent
 import logging
 import sys
 from dataclasses import dataclass
@@ -20,6 +21,7 @@ from typing import (
 )
 
 import click
+import tenacity
 from rich import traceback
 from rich_click import RichCommand, RichGroup, rich_click
 
@@ -111,7 +113,9 @@ def _set_up_debug(debug: Optional[bool] = None) -> None:
         logger.debug("Camply Version: %s", __version__)
         logger.debug("Python Version: %s", sys.version.split(" ")[0])
         logger.debug("Platform: %s", sys.platform)
-    traceback.install(show_locals=debug, suppress=[click, rich_click])
+    traceback.install(
+        show_locals=debug, suppress=[click, rich_click, tenacity, concurrent]
+    )
 
 
 def _preferred_provider(context: CamplyContext, command_provider: Optional[str]) -> str:
