@@ -166,9 +166,19 @@ class GoingToCamp(BaseProvider):
             )
         attribute_details = self._attribute_details
 
-        site_details = self._api_request(
-            rec_area_id, "SITE_DETAILS", {"resourceId": resource_id}
-        )
+        try:
+            site_details = self._api_request(
+                rec_area_id, "SITE_DETAILS", {"resourceId": resource_id}
+            )
+        except ConnectionError:
+            return {
+                "resourceId": resource_id,
+                "localizedValues": [{"name": f"Site {resource_id}"}],
+                "minCapacity": 1,
+                "maxCapacity": 1,
+                "definedAttributes": [],
+                "site_attributes": {},
+            }
         site_attributes = {}
         for attribute in site_details["definedAttributes"]:
             attribute_detail = attribute_details[
@@ -387,6 +397,7 @@ class GoingToCamp(BaseProvider):
                     resource_categories=facil.get("resourceCategoryIds"),
                     resource_location_id=facil.get("resourceLocationId"),
                     resource_location_name=location_name,
+                    root_map_id=facil.get("rootMapId"),
                 )
             except ValidationError as ve:
                 logger.error("That doesn't look like a valid Campground Facility")
@@ -424,10 +435,11 @@ class GoingToCamp(BaseProvider):
         -------
         Tuple[dict, CampgroundFacility]
         """
-        self.campground_details[facility.resource_location_id]
-        facility.id = _fetch_nested_key(
-            self.campground_details, facility.resource_location_id, "mapId"
-        )
+        facility.id = facility.root_map_id
+        if facility.id is None:
+            facility.id = _fetch_nested_key(
+                self.campground_details, facility.resource_location_id, "mapId"
+            )
         if facility.region_name:
             formatted_recreation_area = (
                 f"{rec_area.recreation_area}, {facility.region_name}"
