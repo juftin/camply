@@ -10,7 +10,8 @@ dependencies = [
   "platformdirs>=4,<5",
   "structlog>=25,<26",
   "rich>=14,<15",
-  "click>=8,<9"
+  "click>=8,<9",
+  "fake-useragent>=2.2.0"
 ]
 
 [project.scripts]
@@ -22,7 +23,8 @@ dev = [
   "pytest-cov>=6,<7",
   "ruff>=0.11.0,<0.12.0",
   "mypy>=1,<2",
-  "pip>=24,<25"
+  "pip>=24,<25",
+  "pytest-vcr>=1.0.2"
 ]
 
 [build-system]

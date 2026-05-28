@@ -17,11 +17,11 @@ This checklist tracks the granular progress of `camply`. Agents **MUST** update 
 
 ### 1.2 Provider Engine (`backend/packages/providers`)
 
-- [ ] T1.2.1 Define the `BaseProvider` ABC with standardized `find_availabilities` and `sync_metadata`.
-- [ ] T1.2.2 Implement `CampsiteDTO` (Pydantic v2) for unified data transfer.
-- [ ] T1.2.3 Migrate `recreation_dot_gov` logic from legacy CLI to new structure.
-- [ ] T1.2.4 Implement the first `sync_metadata` for `recreation_dot_gov` (Facilities/Rec Areas).
-- [ ] T1.2.5 **Testing**: Write integration tests using `pytest-vcr` for `recreation_dot_gov`.
+- [x] T1.2.1 Define the `BaseProvider` ABC with standardized `find_availabilities` and `sync_metadata`.
+- [x] T1.2.2 Implement `CampsiteDTO` (Pydantic v2) for unified data transfer.
+- [x] T1.2.3 Migrate `recreation_dot_gov` logic from legacy CLI to new structure.
+- [x] T1.2.4 Implement the first `sync_metadata` for `recreation_dot_gov` (Facilities/Rec Areas).
+- [x] T1.2.5 **Testing**: Write integration tests using `pytest-vcr` for `recreation_dot_gov`.
 
 ### 1.3 Celery Worker & Infrastructure
 

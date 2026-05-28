@@ -3,6 +3,7 @@ Base Provider Configuration
 """
 
 from abc import ABC, abstractmethod
+from datetime import date
 
 import httpx
 import structlog
@@ -13,6 +14,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.sql.functions import concat
 
 from db.models import Campground, Provider, RecreationArea, Search
+from providers.dto import CampsiteDTO
 
 logger = structlog.getLogger()
 
@@ -26,14 +28,38 @@ class BaseProvider(ABC):
         """
         Initialize the base provider.
         """
+        try:
+            from fake_useragent import UserAgent
+
+            self.user_agent = UserAgent(browsers=["chrome"]).random
+        except Exception:
+            self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         self.async_client = httpx.AsyncClient(headers=self.headers)
+
+    @abstractmethod
+    async def find_availabilities(
+        self,
+        park_id: str,
+        start_date: date,
+        end_date: date,
+    ) -> list[CampsiteDTO]:
+        """
+        Find campsite availabilities for the target park and dates.
+        """
+
+    @abstractmethod
+    async def sync_metadata(self) -> None:
+        """
+        Background task to update the 'Search' and 'Campground'
+        tables with the latest info from the provider.
+        """
 
     @property
     def headers(self) -> dict[str, str]:
         """
         Headers for the provider requests.
         """
-        return {}
+        return {"User-Agent": self.user_agent}
 
     @abstractmethod
     async def populate_database(self) -> None:
