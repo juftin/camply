@@ -53,6 +53,7 @@ class SearchUseDirect(BaseCampingSearch, ABC):
         weekends_only: bool = False,
         campgrounds: Optional[Union[List[str], str]] = None,
         nights: int = 1,
+        include_walkin: bool = False,
         **kwargs,
     ) -> None:
         """
@@ -78,6 +79,7 @@ class SearchUseDirect(BaseCampingSearch, ABC):
             nights=nights,
             **kwargs,
         )
+        self.include_walkin: bool = include_walkin
         self._recreation_area_ids: List[int] = make_list(recreation_area, coerce=int)
         self._campground_ids: List[int] = make_list(campgrounds, coerce=int)
         campsites = make_list(kwargs.get("campsites", []), coerce=int) or []
@@ -145,6 +147,7 @@ class SearchUseDirect(BaseCampingSearch, ABC):
                     campground_id=campground.facility_id,
                     start_date=month,
                     end_date=end_date,
+                    include_walkin=self.include_walkin,
                 )
                 logger.info(
                     f"\t{logging_utils.get_emoji(campsites)}\t"
