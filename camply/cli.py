@@ -804,6 +804,40 @@ def campsites(
         provider = _preferred_provider(context, provider)
         if excluded_campsite_types:
             provider_kwargs["excluded_campsite_types"] = excluded_campsite_types
+        # Extract geo fields added by yaml_file_to_arguments
+        _yaml_near = provider_kwargs.pop("near", None)
+        _yaml_lat = provider_kwargs.pop("latitude", None)
+        _yaml_lon = provider_kwargs.pop("longitude", None)
+        _yaml_radius = provider_kwargs.pop("radius", None)
+        if _yaml_near is not None or _yaml_lat is not None or _yaml_lon is not None:
+            if _yaml_radius is None:
+                logger.error(
+                    "radius is required in YAML config when using near/latitude/longitude."
+                )
+                sys.exit(1)
+            if _yaml_near is not None:
+                from camply.utils.geo_utils import geocode_location
+                _resolved_lat, _resolved_lon = geocode_location(_yaml_near)
+            else:
+                if _yaml_lat is None or _yaml_lon is None:
+                    logger.error(
+                        "Both latitude and longitude are required together in YAML config."
+                    )
+                    sys.exit(1)
+                _resolved_lat, _resolved_lon = _yaml_lat, _yaml_lon
+            provider_kwargs.pop("recreation_area", None)
+            provider_kwargs.pop("campgrounds", None)
+            provider_kwargs.pop("campsites", None)
+            from camply.search.search_geo import SearchGeo
+            camping_finder = SearchGeo(
+                latitude=_resolved_lat,
+                longitude=_resolved_lon,
+                radius_miles=_yaml_radius,
+                provider_filter=provider,
+                **provider_kwargs,
+            )
+            camping_finder.get_matching_campsites(**search_kwargs)
+            return
     elif any_geo:
         # Resolve coordinates
         if near is not None:
