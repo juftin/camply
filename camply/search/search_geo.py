@@ -160,7 +160,13 @@ class SearchGeo(BaseCampingSearch):
         **kwargs,
     ) -> List[BaseCampingSearch]:
         provider = search_cls.provider_class()
-        provider.refresh_metadata()
+        try:
+            provider.refresh_metadata()
+        except Exception as exc:
+            logger.warning(
+                f"{search_cls.provider_class.__name__}: skipping — metadata unavailable: {exc}"
+            )
+            return []
         in_radius = [
             int(cg.facility_id)
             for cg in provider.usedirect_campgrounds.values()
