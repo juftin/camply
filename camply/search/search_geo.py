@@ -82,6 +82,7 @@ class SearchGeo(BaseCampingSearch):
         self.latitude = latitude
         self.longitude = longitude
         self.radius_miles = radius_miles
+        self._facility_distances: Dict[str, float] = {}
         self._sub_searches: List[BaseCampingSearch] = self._build_sub_searches(
             search_window=search_window,
             provider_filter=provider_filter,
@@ -140,7 +141,13 @@ class SearchGeo(BaseCampingSearch):
         )
         if not campgrounds:
             return []
-        campground_ids = [int(cg.facility_id) for cg in campgrounds]
+        campground_ids = []
+        for cg in campgrounds:
+            campground_ids.append(int(cg.facility_id))
+            if cg.coordinates is not None:
+                self._facility_distances[str(cg.facility_id)] = haversine_distance_miles(
+                    self.latitude, self.longitude, cg.coordinates[0], cg.coordinates[1]
+                )
         logger.info(
             f"RecreationDotGov: {len(campground_ids)} campgrounds within "
             f"{self.radius_miles} miles"
@@ -167,15 +174,16 @@ class SearchGeo(BaseCampingSearch):
                 f"{search_cls.provider_class.__name__}: skipping — metadata unavailable: {exc}"
             )
             return []
-        in_radius = [
-            int(cg.facility_id)
-            for cg in provider.usedirect_campgrounds.values()
-            if cg.coordinates is not None
-            and haversine_distance_miles(
+        in_radius = []
+        for cg in provider.usedirect_campgrounds.values():
+            if cg.coordinates is None:
+                continue
+            dist = haversine_distance_miles(
                 self.latitude, self.longitude, cg.coordinates[0], cg.coordinates[1]
             )
-            <= self.radius_miles
-        ]
+            if dist <= self.radius_miles:
+                in_radius.append(int(cg.facility_id))
+                self._facility_distances[str(cg.facility_id)] = dist
         if not in_radius:
             return []
         logger.info(
@@ -205,13 +213,23 @@ class SearchGeo(BaseCampingSearch):
         logger.info(
             f"Yellowstone: park center is {dist:.1f} miles away — including in search"
         )
+        self._facility_distances["_yellowstone"] = dist
         return [SearchYellowstone(**shared, **kwargs)]
 
     def get_all_campsites(self) -> List[AvailableCampsite]:
         """Aggregate available campsites from all sub-searches."""
         results: List[AvailableCampsite] = []
         for sub_search in self._sub_searches:
-            results.extend(sub_search.get_all_campsites())
+            is_yellowstone = isinstance(sub_search, SearchYellowstone)
+            yellowstone_dist = self._facility_distances.get("_yellowstone")
+            for campsite in sub_search.get_all_campsites():
+                if is_yellowstone and yellowstone_dist is not None:
+                    dist = yellowstone_dist
+                else:
+                    dist = self._facility_distances.get(str(campsite.facility_id))
+                if dist is not None:
+                    campsite = campsite.copy(update={"distance_miles": dist})
+                results.append(campsite)
         return results
 
     def list_campsite_units(self) -> None:

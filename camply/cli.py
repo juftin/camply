@@ -524,8 +524,9 @@ exclude_type_argument = click.option(
     "--exclude-type",
     default=None,
     multiple=True,
-    help="Exclude campsites whose type contains this string (case-insensitive, repeatable). "
-    "E.g. --exclude-type group --exclude-type horse",
+    help="Exclude campsites or facilities whose type/name contains this string "
+    "(case-insensitive). Repeatable or comma-separated. "
+    "E.g. --exclude-type group,horse",
 )
 
 
@@ -795,7 +796,9 @@ def campsites(
         logger.error("GoingToCamp does not support geo-based search (no coordinate data).")
         sys.exit(1)
 
-    excluded_campsite_types = list(exclude_type) if exclude_type else []
+    excluded_campsite_types = [
+        t.strip() for val in exclude_type for t in val.split(",") if t.strip()
+    ] if exclude_type else []
 
     if yaml_config is not None:
         provider, provider_kwargs, search_kwargs = yaml_utils.yaml_file_to_arguments(

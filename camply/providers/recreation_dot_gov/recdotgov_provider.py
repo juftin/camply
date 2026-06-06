@@ -494,11 +494,14 @@ class RecreationDotGovBase(BaseProvider, ABC):
                 recreation_area = facility_object.RECAREA[0].RecAreaName
                 recreation_area_id = facility_object.RECAREA[0].RecAreaID
                 formatted_recreation_area = f"{recreation_area}, {facility_state}"
+            lat = facility_object.FacilityLatitude
+            lon = facility_object.FacilityLongitude
             campground_facility = CampgroundFacility(
                 facility_name=facility_object.FacilityName.title(),
                 recreation_area=formatted_recreation_area,
                 facility_id=facility_object.FacilityID,
                 recreation_area_id=recreation_area_id,
+                coordinates=(lat, lon) if lat is not None and lon is not None else None,
             )
             return facility, campground_facility
         except (KeyError, IndexError):

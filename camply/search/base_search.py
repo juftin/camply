@@ -259,6 +259,7 @@ class BaseCampingSearch(ABC):
                 c for c in matching_campgrounds
                 if not any(
                     excl.lower() in (c.campsite_type or "").lower()
+                    or excl.lower() in (c.facility_name or "").lower()
                     for excl in self.excluded_campsite_types
                 )
             ]
@@ -890,9 +891,16 @@ class BaseCampingSearch(ABC):
             for location_tuple, campground_availability in available_sites.groupby(
                 [DataColumns.RECREATION_AREA_COLUMN, DataColumns.FACILITY_NAME_COLUMN]
             ):
+                dist_col = campground_availability.get("distance_miles")
+                dist_val = (
+                    dist_col.dropna().iloc[0]
+                    if dist_col is not None and not dist_col.dropna().empty
+                    else None
+                )
+                dist_str = f"  ({dist_val:.1f} mi)" if dist_val is not None else ""
                 logger.info(
                     f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
-                    f"{len(campground_availability)} sites"
+                    f"{len(campground_availability)} sites{dist_str}"
                 )
                 if verbose is True:
                     for (
