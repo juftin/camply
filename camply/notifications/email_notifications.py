@@ -3,11 +3,12 @@ Push Notifications via Pushover
 """
 import logging
 from email.message import EmailMessage
-from smtplib import SMTP_SSL
+from smtplib import SMTP_SSL, SMTPException
 from typing import List
 
 from camply.config import EmailConfig
 from camply.containers import AvailableCampsite
+from camply.exceptions import CamplyError
 from camply.notifications.base_notifications import BaseNotifications
 
 logger = logging.getLogger(__name__)
@@ -55,16 +56,22 @@ class EmailNotifications(BaseNotifications):
             logger.error(error_message)
             raise EnvironmentError(error_message)
         # ATTEMPT AN EMAIL LOGIN AT INIT TO THROW ERRORS EARLY
-        _email_server = SMTP_SSL(
-            self.email_smtp_server,
-            self.email_smtp_server_port,
-        )
-        _email_server.ehlo()
-        _email_server.login(
-            user=self.email_username,
-            password=self._email_password,
-        )
-        _email_server.quit()
+        try:
+            _email_server = SMTP_SSL(
+                self.email_smtp_server,
+                self.email_smtp_server_port,
+            )
+            _email_server.ehlo()
+            _email_server.login(
+                user=self.email_username,
+                password=self._email_password,
+            )
+            _email_server.quit()
+        except SMTPException as e:
+            raise CamplyError(
+                f"Email authentication failed for {self.email_username!r}: {e}. "
+                "Check your credentials or run `camply configure`."
+            ) from e
 
     def send_message(self, message: str, **kwargs) -> None:
         """

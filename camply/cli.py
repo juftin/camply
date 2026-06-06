@@ -24,6 +24,7 @@ from rich import traceback
 from rich_click import RichCommand, RichGroup, rich_click
 
 from camply import Yellowstone, __application__, __version__
+from camply.exceptions import CamplyError
 from camply.config import EquipmentOptions, SearchConfig, logging_config
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
@@ -1043,6 +1044,9 @@ def cli():
         camply_command_line()
     except KeyboardInterrupt:
         logger.debug("Handling Exit Request")
+    except CamplyError as e:
+        logger.error(str(e))
+        sys.exit(1)
     finally:
         logger.camply("Exiting camply 👋")
 
