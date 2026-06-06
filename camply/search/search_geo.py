@@ -207,3 +207,6 @@ class SearchGeo(BaseCampingSearch):
         for sub_search in self._sub_searches:
             results.extend(sub_search.get_all_campsites())
         return results
+
+    def list_campsite_units(self) -> None:
+        raise NotImplementedError
