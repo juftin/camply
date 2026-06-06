@@ -605,6 +605,9 @@ class UseDirectProvider(BaseProvider, ABC):
                 recreation_area_id=place.PlaceId,
                 recreation_area_location=f"{place.City.title()}, {place.State}",
                 description=place.Description,
+                coordinates=(place.Latitude, place.Longitude)
+                if place.Latitude is not None and place.Longitude is not None
+                else None,
             )
             for place in places_data_validated.values()
         }
@@ -644,6 +647,7 @@ class UseDirectProvider(BaseProvider, ABC):
                     facility_id=facility.FacilityId,
                     recreation_area_id=facility.PlaceId,
                     recreation_area=rec_area.recreation_area,
+                    coordinates=rec_area.coordinates,
                 )
         return facilities_data_validated
 
