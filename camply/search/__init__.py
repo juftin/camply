@@ -27,8 +27,8 @@ from camply.search.search_usedirect import (
     SearchReserveCalifornia,
     SearchVirginiaStateParks,
 )
-from camply.search.search_yellowstone import SearchYellowstone
 from camply.search.search_geo import SearchGeo
+from camply.search.search_yellowstone import SearchYellowstone
 
 # Register Providers Here with their Search class
 __search_providers__: List[Type[BaseCampingSearch]] = [

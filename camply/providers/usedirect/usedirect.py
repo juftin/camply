@@ -630,7 +630,7 @@ class UseDirectProvider(BaseProvider, ABC):
             facilities_data: List[Dict[str, Any]] = resp.json()
             metadata_file.write_text(json.dumps(facilities_data, indent=2))
         if not isinstance(facilities_data, list):
-            raise CamplyError("Unexpected data from %s", metadata_file)
+            raise CamplyError(f"Unexpected data from {metadata_file}")
         facilities_validated = [
             UseDirectFacilityMetadata(**facility_json)
             for facility_json in facilities_data
