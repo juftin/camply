@@ -50,6 +50,7 @@ class BaseCampingSearch(ABC):
         offline_search: bool = False,
         offline_search_path: Optional[str] = None,
         days_of_the_week: Optional[Sequence[int]] = None,
+        excluded_campsite_types: Optional[List[str]] = None,
         **kwargs,
     ) -> None:
         """
@@ -118,6 +119,7 @@ class BaseCampingSearch(ABC):
             ] = self.load_campsites_from_file()
             self.loaded_campsites: Set[AvailableCampsite] = self.campsites_found.copy()
         self.search_attempts: int = 0
+        self.excluded_campsite_types: List[str] = excluded_campsite_types or []
 
     @property
     def search_days(self) -> List[datetime]:
@@ -252,6 +254,14 @@ class BaseCampingSearch(ABC):
                 ]
             ):
                 matching_campgrounds.append(camp)
+        if self.excluded_campsite_types:
+            matching_campgrounds = [
+                c for c in matching_campgrounds
+                if not any(
+                    excl.lower() in (c.campsite_type or "").lower()
+                    for excl in self.excluded_campsite_types
+                )
+            ]
         logger.info(
             f"{(get_emoji(matching_campgrounds) + ' ') * 4}{len(matching_campgrounds)} "
             "Reservable Campsites Matching Search Preferences"
