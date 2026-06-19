@@ -9,15 +9,21 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 from fake_useragent import UserAgent
-from pydantic import ValidationError
+The fix is not in the provided file snippet but in the data model `RecDotGovCampsiteResponse` (likely in `camply/containers/gtc_api_responses.py`). The original model likely has:
 
-from camply.containers import AvailableResource, CampgroundFacility, RecreationArea
-from camply.containers.base_container import GoingToCampEquipment
-from camply.containers.gtc_api_responses import ResourceLocation
-from camply.providers.base_provider import BaseProvider, ProviderSearchError
-from camply.providers.going_to_camp.rec_areas import RECREATION_AREAS
-from camply.utils import make_list
-from camply.utils.logging_utils import log_sorted_response
+```python
+class RecDotGovCampsiteResponse(BaseModel):
+    campsites: Dict[str, Any]
+```
+
+It should be changed to:
+
+```python
+class RecDotGovCampsiteResponse(BaseModel):
+    campsites: Optional[Dict[str, Any]] = None
+```
+
+Or, if the response might be a list: `Optional[Any]`.
 
 logger = logging.getLogger(__name__)
 
