@@ -53,6 +53,9 @@ class WebhookNotifications(BaseNotifications):
         ----------
         campsites: List[AvailableCampsite]
         """
+        if not campsites:
+            logger.debug("No campsites to send to webhook.")
+            return
         webhook_body = WebhookBody(campsites=campsites).json().encode("utf-8")
         response = self.session.post(url=self.webhook_url, data=webhook_body)
         try:

@@ -366,14 +366,14 @@ class BaseCampingSearch(ABC):
         )
         logger.info(f"{len(new_campsites)} New Campsites Found.")
         self.campsites_found.update(new_campsites)
-        logged_campsites = list(new_campsites)
-        self._handle_notifications(
-            retryer=retryer,
-            notifier=self.notifier,
-            logged_campsites=logged_campsites,
-            continuous_search_attempts=continuous_search_attempts,
-            notify_first_try=notify_first_try,
-        )
+        if new_campsites:
+            self._handle_notifications(
+                retryer=retryer,
+                notifier=self.notifier,
+                logged_campsites=list(new_campsites),
+                continuous_search_attempts=continuous_search_attempts,
+                notify_first_try=notify_first_try,
+            )
         return list(self.campsites_found)
 
     @classmethod
