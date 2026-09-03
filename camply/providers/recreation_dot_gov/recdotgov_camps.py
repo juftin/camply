@@ -21,6 +21,7 @@ from camply.containers.api_responses import (
 )
 from camply.containers.data_containers import CampsiteLocation
 from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
+from camply.providers.recreation_dot_gov.cloudfront_edge_session import CloudFrontEdgeSession
 from camply.utils import api_utils
 
 logger = logging.getLogger(__name__)
@@ -105,6 +106,38 @@ class RecreationDotGov(RecreationDotGovBase):
             url=api_endpoint,
             params=query_params,
         )
+
+    _edge_session: Optional[CloudFrontEdgeSession] = None
+
+    @property
+    def edge_session(self) -> CloudFrontEdgeSession:
+        if self._edge_session is None:
+            self._edge_session = CloudFrontEdgeSession()
+        return self._edge_session
+
+    def get_recdotgov_availability(
+        self,
+        campground_id: int,
+        month: datetime,
+    ) -> Tuple[dict, dict]:
+        """
+        Query monthly availability using persistent CloudFrontEdgeSession.
+        """
+        return self.edge_session.get_monthly_availability(
+            campground_id=campground_id,
+            month=month,
+        )
+
+    def get_recdotgov_data(
+        self,
+        campground_id: int,
+        month: datetime,
+    ) -> Union[dict, list]:
+        """
+        Find Campsite Availability Data (backward-compatible fallback).
+        """
+        data, _ = self.get_recdotgov_availability(campground_id=campground_id, month=month)
+        return data
 
     @classmethod
     def _items_to_unique_dicts(
