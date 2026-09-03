@@ -20,8 +20,10 @@ from camply.containers.api_responses import (
     RecDotGovCampsiteResponse,
 )
 from camply.containers.data_containers import CampsiteLocation
+from camply.providers.recreation_dot_gov.cloudfront_edge_session import (
+    CloudFrontEdgeSession,
+)
 from camply.providers.recreation_dot_gov.recdotgov_provider import RecreationDotGovBase
-from camply.providers.recreation_dot_gov.cloudfront_edge_session import CloudFrontEdgeSession
 from camply.utils import api_utils
 
 logger = logging.getLogger(__name__)
@@ -119,7 +121,7 @@ class RecreationDotGov(RecreationDotGovBase):
         self,
         campground_id: int,
         month: datetime,
-    ) -> Tuple[dict, dict]:
+    ) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         """
         Query monthly availability using persistent CloudFrontEdgeSession.
         """
@@ -132,11 +134,13 @@ class RecreationDotGov(RecreationDotGovBase):
         self,
         campground_id: int,
         month: datetime,
-    ) -> Union[dict, list]:
+    ) -> Union[Dict[str, Any], List[Any]]:
         """
         Find Campsite Availability Data (backward-compatible fallback).
         """
-        data, _ = self.get_recdotgov_availability(campground_id=campground_id, month=month)
+        data, _ = self.get_recdotgov_availability(
+            campground_id=campground_id, month=month
+        )
         return data
 
     @classmethod

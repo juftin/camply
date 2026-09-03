@@ -11,15 +11,20 @@ import logging
 import random
 import time
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
+
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 logger = logging.getLogger(__name__)
 
+HTTP_OK = 200
+HTTP_TOO_MANY_REQUESTS = 429
+
 
 class CloudFrontRateLimitError(ConnectionError):
     """Raised when CloudFront returns HTTP 429 Too Many Requests."""
+
     pass
 
 
@@ -53,13 +58,21 @@ class CloudFrontEdgeSession:
         url = f"/resolve?name={self.CLOUDFRONT_DOMAIN}&type=A&edns_client_subnet={self.SFO_SUBNET}"
 
         if self._doh_pool is None:
-            self._doh_pool = urllib3.HTTPSConnectionPool("dns.google", port=443, maxsize=2)
+            self._doh_pool = urllib3.HTTPSConnectionPool(
+                "dns.google", port=443, maxsize=2
+            )
 
         try:
-            r = self._doh_pool.request("GET", url, timeout=urllib3.Timeout(connect=2.0, read=3.0))
-            if r.status == 200:
+            r = self._doh_pool.request(
+                "GET", url, timeout=urllib3.Timeout(connect=2.0, read=3.0)
+            )
+            if r.status == HTTP_OK:
                 data = json.loads(r.data.decode("utf-8"))
-                ips = [ans["data"] for ans in data.get("Answer", []) if ans.get("type") == 1]
+                ips = [
+                    ans["data"]
+                    for ans in data.get("Answer", [])
+                    if ans.get("type") == 1
+                ]
                 if ips:
                     return random.choice(ips)
         except Exception as e:
@@ -88,7 +101,7 @@ class CloudFrontEdgeSession:
         self,
         campground_id: int,
         month: datetime,
-    ) -> Tuple[dict, dict]:
+    ) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         """
         Query monthly availability from local CloudFront edge node.
 
@@ -113,14 +126,16 @@ class CloudFrontEdgeSession:
         try:
             r = self._pool.request("GET", endpoint, headers=headers)
         except Exception as e:
-            logger.warning(f"Connection error to SFO edge ({self._current_ip}): {e}. Rotating edge IP...")
+            logger.warning(
+                f"Connection error to SFO edge ({self._current_ip}): {e}. Rotating edge IP..."
+            )
             self._rotate_pool()
             t0 = time.time()
             r = self._pool.request("GET", endpoint, headers=headers)
 
         latency_ms = (time.time() - t0) * 1000
 
-        if r.status == 429:
+        if r.status == HTTP_TOO_MANY_REQUESTS:
             retry_after = r.headers.get("retry-after", "N/A")
             cf_id = r.headers.get("x-amz-cf-id", "N/A")
             server = r.headers.get("server", "CloudFront")
@@ -128,7 +143,7 @@ class CloudFrontEdgeSession:
                 f"Recreation.gov API returned status 429 (Too Many Requests) via SFO "
                 f"[Server: {server}, Retry-After: {retry_after}, CF-ID: {cf_id}]"
             )
-        elif r.status != 200:
+        elif r.status != HTTP_OK:
             error_body = r.data.decode("utf-8", errors="ignore")[:200]
             raise ConnectionError(
                 f"Recreation.gov API returned status {r.status} via SFO: {error_body}"

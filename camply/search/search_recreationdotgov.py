@@ -21,6 +21,7 @@ from camply.containers import AvailableCampsite, CampgroundFacility, SearchWindo
 from camply.containers.api_responses import RecDotGovCampsite, RecDotGovSearchResult
 from camply.containers.data_containers import ListedCampsite
 from camply.exceptions import SearchError
+from camply.notifications.multi_provider_notifications import MultiNotifierProvider
 from camply.providers import (
     RecreationDotGov,
     RecreationDotGovDailyTicket,
@@ -28,7 +29,6 @@ from camply.providers import (
     RecreationDotGovTicket,
     RecreationDotGovTimedEntry,
 )
-from camply.notifications.multi_provider_notifications import MultiNotifierProvider
 from camply.search.base_search import BaseCampingSearch
 from camply.utils import logging_utils, make_list
 
@@ -412,6 +412,25 @@ class SearchRecreationDotGovBase(BaseCampingSearch, ABC):
         return listable_campsites
 
 
+ULTRA_FRESH_AGE_THRESHOLD = 2
+STABLE_STALENESS_THRESHOLD = 3.5
+STEADY_STALENESS_THRESHOLD = 6.0
+EVALUATING_STALENESS_THRESHOLD = 9.0
+DRIFT_TREND_TOLERANCE = 0.3
+CACHE_EXPIRY_PROBE_AGE = 14
+DEFAULT_CACHE_TTL = 15.0
+CACHE_EVICTION_BUFFER = 0.3
+NEAR_EXPIRY_PROBE_INTERVAL = 2.0
+PROBE_RETRY_BACKOFF = 6.0
+MIN_PROBE_INTERVAL = 3.0
+RATE_LIMIT_PAUSE_SECONDS = 75.0
+INITIAL_STAGGER_INTERVAL = 5.0
+STARTUP_BREATHER_SECONDS = 2.0
+DEFAULT_REPORT_INTERVAL_SECONDS = 300.0
+GLOBAL_PACING_FLOOR_SECONDS = 4.8
+ERROR_RETRY_INTERVAL_SECONDS = 5.0
+
+
 class SearchRecreationDotGov(SearchRecreationDotGovBase):
     """
     Searches on Recreation.gov for Campsites (default provider)
@@ -419,8 +438,59 @@ class SearchRecreationDotGov(SearchRecreationDotGovBase):
 
     provider_class = RecreationDotGov
 
-    @staticmethod
+    @classmethod
+    def _format_campground_staleness(
+        cls,
+        window_stats: Dict[int, Dict[str, Any]],
+    ) -> Tuple[List[str], int, List[int], int]:
+        """
+        Format per-campground recency metrics for report.
+        """
+        lines: List[str] = []
+        total_queries = 0
+        all_ages: List[int] = []
+        total_fresh = 0
+
+        for facil_id, s in window_stats.items():
+            name = s["name"]
+            queries = s["queries"]
+            total_queries += queries
+            if queries == 0:
+                lines.append(
+                    f"{name} ({facil_id}): No queries recorded in this window."
+                )
+                continue
+
+            ages = s["ages"]
+            all_ages.extend(ages)
+            fresh = s["fresh_hits"]
+            cache = s["cache_hits"]
+            total_fresh += fresh
+
+            avg_age = sum(ages) / len(ages)
+            min_age = min(ages)
+            max_age = max(ages)
+            fresh_pct = (fresh / queries) * 100.0
+            ultra_fresh = sum(1 for a in ages if a <= ULTRA_FRESH_AGE_THRESHOLD)
+            ultra_fresh_pct = (ultra_fresh / queries) * 100.0
+            avg_lat = (
+                sum(s["latencies"]) / len(s["latencies"]) if s["latencies"] else 0.0
+            )
+
+            lines.append(f"{name} ({facil_id}):")
+            lines.append(
+                f"  • Queries: {queries} | Fresh Origin: {fresh} ({fresh_pct:.1f}%) | Cache Hits: {cache}"
+            )
+            lines.append(
+                f"  • Staleness (Age): avg {avg_age:.1f}s [min: {min_age}s, max: {max_age}s] | <=2s: {ultra_fresh_pct:.1f}%"
+            )
+            lines.append(f"  • Avg Latency: {avg_lat:.1f}ms")
+
+        return lines, total_queries, all_ages, total_fresh
+
+    @classmethod
     def _log_staleness_report(
+        cls,
         window_stats: Dict[int, Dict[str, Any]],
         window_duration_seconds: float,
         previous_window_avg_age: Optional[float] = None,
@@ -434,62 +504,41 @@ class SearchRecreationDotGov(SearchRecreationDotGovBase):
             f"📊 [5-Minute Recency & Staleness Report] (Duration: {window_duration_seconds / 60:.1f}m)",
             "--------------------------------------------------------------------------------",
         ]
-        total_queries = 0
-        all_ages: List[int] = []
-        total_fresh = 0
-        total_cache = 0
+        (
+            c_lines,
+            total_queries,
+            all_ages,
+            total_fresh,
+        ) = cls._format_campground_staleness(window_stats)
+        lines.extend(c_lines)
+        lines.append(
+            "--------------------------------------------------------------------------------"
+        )
 
-        for facil_id, s in window_stats.items():
-            name = s["name"]
-            queries = s["queries"]
-            total_queries += queries
-            if queries == 0:
-                lines.append(f"{name} ({facil_id}): No queries recorded in this window.")
-                continue
-
-            ages = s["ages"]
-            all_ages.extend(ages)
-            fresh = s["fresh_hits"]
-            cache = s["cache_hits"]
-            total_fresh += fresh
-            total_cache += cache
-
-            avg_age = sum(ages) / len(ages)
-            min_age = min(ages)
-            max_age = max(ages)
-            fresh_pct = (fresh / queries) * 100.0
-            ultra_fresh = sum(1 for a in ages if a <= 2)
-            ultra_fresh_pct = (ultra_fresh / queries) * 100.0
-            avg_lat = sum(s["latencies"]) / len(s["latencies"]) if s["latencies"] else 0.0
-
-            lines.append(f"{name} ({facil_id}):")
-            lines.append(
-                f"  • Queries: {queries} | Fresh Origin: {fresh} ({fresh_pct:.1f}%) | Cache Hits: {cache}"
-            )
-            lines.append(
-                f"  • Staleness (Age): avg {avg_age:.1f}s [min: {min_age}s, max: {max_age}s] | <=2s: {ultra_fresh_pct:.1f}%"
-            )
-            lines.append(f"  • Avg Latency: {avg_lat:.1f}ms")
-
-        lines.append("--------------------------------------------------------------------------------")
         duration_minutes = window_duration_seconds / 60.0
-        req_per_min = (total_queries / duration_minutes) if duration_minutes > 0 else 0.0
+        req_per_min = (
+            (total_queries / duration_minutes) if duration_minutes > 0 else 0.0
+        )
         overall_avg_age = (sum(all_ages) / len(all_ages)) if all_ages else 0.0
-        overall_fresh_pct = (total_fresh / total_queries * 100.0) if total_queries > 0 else 0.0
+        overall_fresh_pct = (
+            (total_fresh / total_queries * 100.0) if total_queries > 0 else 0.0
+        )
 
-        if overall_avg_age <= 3.5:
+        if overall_avg_age <= STABLE_STALENESS_THRESHOLD:
             drift_status = "STABLE 🟢 (Optimal cache edge sniping)"
-        elif overall_avg_age <= 6.0:
+        elif overall_avg_age <= STEADY_STALENESS_THRESHOLD:
             drift_status = "STEADY 🟢 (Good cache recency)"
-        elif overall_avg_age <= 9.0:
+        elif overall_avg_age <= EVALUATING_STALENESS_THRESHOLD:
             drift_status = "EVALUATING 🟡 (Moderate cache age)"
         else:
             drift_status = "DRIFTED 🔴 (Stale cache hits elevated)"
 
         if previous_window_avg_age is not None:
             diff = overall_avg_age - previous_window_avg_age
-            if abs(diff) < 0.3:
-                trend_str = f"±0.0s (Steady ↔, prev window: {previous_window_avg_age:.1f}s)"
+            if abs(diff) < DRIFT_TREND_TOLERANCE:
+                trend_str = (
+                    f"±0.0s (Steady ↔, prev window: {previous_window_avg_age:.1f}s)"
+                )
             elif diff < 0:
                 trend_str = f"{diff:.1f}s (Fresher ↗, prev window: {previous_window_avg_age:.1f}s)"
             else:
@@ -508,10 +557,305 @@ class SearchRecreationDotGov(SearchRecreationDotGovBase):
         )
         lines.append(f"  • Rate Limits (429): {rate_limits}")
         lines.append(f"  • Drift Trend: {trend_str} | Status: {drift_status}")
-        lines.append("================================================================================")
+        lines.append(
+            "================================================================================"
+        )
 
         logger.info("\n" + "\n".join(lines))
         return overall_avg_age
+
+    @staticmethod
+    def _calculate_adaptive_ttl(x_cache: str, age: int, prev_age: int) -> float:
+        """
+        Calculate adaptive sleep until next cache eviction boundary.
+        """
+        if "Miss" in x_cache or age == 0:
+            return DEFAULT_CACHE_TTL + CACHE_EVICTION_BUFFER
+        if age >= CACHE_EXPIRY_PROBE_AGE:
+            if prev_age >= CACHE_EXPIRY_PROBE_AGE:
+                return PROBE_RETRY_BACKOFF
+            return NEAR_EXPIRY_PROBE_INTERVAL
+        return max(
+            MIN_PROBE_INTERVAL, (DEFAULT_CACHE_TTL - age) + CACHE_EVICTION_BUFFER
+        )
+
+    def _init_priority_queue(
+        self,
+    ) -> Tuple[List[Tuple[float, CampgroundFacility, datetime, int]], int]:
+        """
+        Initialize priority queue for continuous campground polling.
+        """
+        pq: List[Tuple[float, CampgroundFacility, datetime, int]] = []
+        event_counter = 0
+        initial_stagger = time.time() + STARTUP_BREATHER_SECONDS
+        for campground in self.campgrounds:
+            for month in self.search_months:
+                heapq.heappush(
+                    pq,
+                    (initial_stagger, campground, month, event_counter),
+                )
+                initial_stagger += INITIAL_STAGGER_INTERVAL
+                event_counter += 1
+        return pq, event_counter
+
+    def _init_window_stats(self) -> Dict[int, Dict[str, Any]]:
+        """
+        Initialize stats container for 5-minute reporting window.
+        """
+        return {
+            int(c.facility_id): {
+                "name": c.facility_name,
+                "queries": 0,
+                "ages": [],
+                "latencies": [],
+                "fresh_hits": 0,
+                "cache_hits": 0,
+            }
+            for c in self.campgrounds
+        }
+
+    @staticmethod
+    def _record_stat(
+        window_stats: Dict[int, Dict[str, Any]],
+        campground: CampgroundFacility,
+        age: int,
+        latency_ms: float,
+        x_cache: str,
+    ) -> None:
+        """
+        Record individual query metrics to window stats.
+        """
+        c_stats = window_stats.setdefault(
+            int(campground.facility_id),
+            {
+                "name": campground.facility_name,
+                "queries": 0,
+                "ages": [],
+                "latencies": [],
+                "fresh_hits": 0,
+                "cache_hits": 0,
+            },
+        )
+        c_stats["queries"] += 1
+        c_stats["ages"].append(age)
+        c_stats["latencies"].append(latency_ms)
+        if "Miss" in x_cache or age == 0:
+            c_stats["fresh_hits"] += 1
+        else:
+            c_stats["cache_hits"] += 1
+
+    @staticmethod
+    def _handle_429_rate_limit(
+        pq: List[Tuple[float, CampgroundFacility, datetime, int]],
+    ) -> Tuple[float, List[Tuple[float, CampgroundFacility, datetime, int]]]:
+        """
+        Pause requests for 75 seconds on 429 and re-stagger priority queue.
+        """
+        logger.warning(
+            "⚠️ [RATE LIMIT] CloudFront HTTP 429 detected! Pausing all requests for 75 seconds to let WAF block expire..."
+        )
+        sleep(RATE_LIMIT_PAUSE_SECONDS)
+        now = time.time()
+        new_pq = [
+            (now + idx * INITIAL_STAGGER_INTERVAL, c, m, eid)
+            for idx, (t, c, m, eid) in enumerate(pq)
+        ]
+        heapq.heapify(new_pq)
+        return time.time(), new_pq
+
+    def _process_and_notify_matches(
+        self,
+        availabilities: Dict[str, Any],
+        campground: CampgroundFacility,
+        month: datetime,
+        cf_pop: str,
+        log: bool,
+        verbose: bool,
+        retryer: tenacity.Retrying,
+        continuous_search_attempts: int,
+        notify_first_try: bool,
+    ) -> bool:
+        """
+        Process campground availability, filter campsites, and dispatch notifications.
+        """
+        campsites = self.campsite_finder.process_campsite_availability(
+            availability=availabilities,
+            recreation_area=campground.recreation_area,
+            recreation_area_id=campground.recreation_area_id,
+            facility_name=campground.facility_name,
+            facility_id=campground.facility_id,
+            month=month,
+            campsite_metadata=self.campsite_metadata,
+        )
+        if self.campsites not in [None, []]:
+            campsites = [
+                campsite_obj
+                for campsite_obj in campsites
+                if int(campsite_obj.campsite_id) in self.campsites
+            ]
+
+        matching_campsites = self._filter_and_consolidate_campsites(campsites)
+        found_set = set(matching_campsites)
+        new_campsites = found_set.difference(self.campsites_found)
+
+        if not new_campsites:
+            return False
+
+        logger.info(
+            f"🎉 [MATCH FOUND] {len(new_campsites)} available site(s) discovered in "
+            f"{campground.facility_name} via {cf_pop} (SFO)!"
+        )
+        self.assemble_availabilities(
+            matching_data=list(new_campsites), log=log, verbose=verbose
+        )
+        self.campsites_found.update(new_campsites)
+        self._handle_notifications(
+            retryer=retryer,
+            notifier=self.notifier,
+            logged_campsites=list(new_campsites),
+            continuous_search_attempts=continuous_search_attempts,
+            notify_first_try=notify_first_try,
+        )
+        return True
+
+    def _ensure_campsite_metadata(self) -> None:
+        """
+        Fetch and cache internal campsite metadata if not already populated.
+        """
+        if self.campsite_metadata is None:
+            self.campsite_metadata = (
+                self.campsite_finder.get_internal_campsite_metadata(
+                    facility_ids=[int(facil.facility_id) for facil in self.campgrounds]
+                )
+            )
+            logger.info(
+                "Metadata fetched for %s campsites across %s campgrounds",
+                len(self.campsite_metadata),
+                len(self.campgrounds),
+            )
+
+    @staticmethod
+    def _enforce_pacing(next_poll_time: float, last_request_time: float) -> float:
+        """
+        Sleep until next scheduled poll time and enforce global pacing floor.
+        """
+        sleep_needed = next_poll_time - time.time()
+        if sleep_needed > 0:
+            sleep(sleep_needed)
+        time_since_last = time.time() - last_request_time
+        if time_since_last < GLOBAL_PACING_FLOOR_SECONDS:
+            sleep(GLOBAL_PACING_FLOOR_SECONDS - time_since_last)
+        return time.time()
+
+    def _poll_and_notify_campground(
+        self,
+        campground: CampgroundFacility,
+        month: datetime,
+        last_ages: Dict[Tuple[int, str], int],
+        window_stats: Dict[int, Dict[str, Any]],
+        log: bool,
+        verbose: bool,
+        retryer: tenacity.Retrying,
+        continuous_search_attempts: int,
+        notify_first_try: bool,
+    ) -> Tuple[float, bool]:
+        """
+        Poll single campground availability, record metrics, and dispatch notifications.
+        """
+        availabilities, meta = self.campsite_finder.get_recdotgov_availability(
+            campground_id=int(campground.facility_id),
+            month=month,
+        )
+        age = meta["age"]
+        cf_pop = meta["cf_pop"]
+        x_cache = meta["x_cache"]
+        latency_ms = meta["latency_ms"]
+
+        self._record_stat(window_stats, campground, age, latency_ms, x_cache)
+
+        key = (int(campground.facility_id), month.strftime("%Y-%m"))
+        prev_age = last_ages.get(key, -1)
+        last_ages[key] = age
+        remaining_ttl = self._calculate_adaptive_ttl(x_cache, age, prev_age)
+
+        cache_indicator = (
+            "⚡ [FRESH ORIGIN]" if "Miss" in x_cache or age == 0 else f"[Age: {age}s]"
+        )
+        logger.info(
+            f"[Cache Recency] {cf_pop:<10} (SFO) | "
+            f"{campground.facility_name} ({campground.facility_id}): "
+            f"{x_cache} {cache_indicator} | RTT: {latency_ms:.1f}ms | "
+            f"Next check in {remaining_ttl:.1f}s"
+        )
+
+        found = self._process_and_notify_matches(
+            availabilities=availabilities,
+            campground=campground,
+            month=month,
+            cf_pop=cf_pop,
+            log=log,
+            verbose=verbose,
+            retryer=retryer,
+            continuous_search_attempts=continuous_search_attempts,
+            notify_first_try=notify_first_try,
+        )
+        return remaining_ttl, found
+
+    def _handle_poll_exception(
+        self,
+        e: Exception,
+        campground: CampgroundFacility,
+        month: datetime,
+        event_id: int,
+        pq: List[Tuple[float, CampgroundFacility, datetime, int]],
+        rate_limits: int,
+    ) -> Tuple[float, List[Tuple[float, CampgroundFacility, datetime, int]], int]:
+        """
+        Handle 429 rate limit or general polling errors.
+        """
+        if "429" in str(e) or "Too Many Requests" in str(e):
+            rate_limits += 1
+            last_request_time, pq = self._handle_429_rate_limit(pq)
+            return last_request_time, pq, rate_limits
+
+        logger.warning(
+            f"Error polling {campground.facility_name} via SFO: {e}. Retrying in 5.0s..."
+        )
+        heapq.heappush(
+            pq,
+            (time.time() + ERROR_RETRY_INTERVAL_SECONDS, campground, month, event_id),
+        )
+        return time.time(), pq, rate_limits
+
+    def _maybe_log_staleness_report(
+        self,
+        window_stats: Dict[int, Dict[str, Any]],
+        window_start_time: float,
+        last_stats_report_time: float,
+        stats_interval: float,
+        previous_window_avg_age: Optional[float],
+        rate_limits: int,
+    ) -> Tuple[Dict[int, Dict[str, Any]], float, float, Optional[float], int]:
+        """
+        Log staleness report if interval expired, returning updated window state.
+        """
+        now = time.time()
+        if now - last_stats_report_time < stats_interval:
+            return (
+                window_stats,
+                window_start_time,
+                last_stats_report_time,
+                previous_window_avg_age,
+                rate_limits,
+            )
+
+        prev_avg = self._log_staleness_report(
+            window_stats=window_stats,
+            window_duration_seconds=now - window_start_time,
+            previous_window_avg_age=previous_window_avg_age,
+            rate_limits=rate_limits,
+        )
+        return self._init_window_stats(), now, now, prev_avg, 0
 
     def _search_campsites_continuous(
         self,
@@ -531,17 +875,7 @@ class SearchRecreationDotGov(SearchRecreationDotGovBase):
             logger.error(error_message)
             raise SearchError(error_message)
 
-        if self.campsite_metadata is None:
-            self.campsite_metadata = (
-                self.campsite_finder.get_internal_campsite_metadata(
-                    facility_ids=[facil.facility_id for facil in self.campgrounds]
-                )
-            )
-            logger.info(
-                "Metadata fetched for %s campsites across %s campgrounds",
-                len(self.campsite_metadata),
-                len(self.campgrounds),
-            )
+        self._ensure_campsite_metadata()
 
         if search_once is True:
             return super()._search_campsites_continuous(
@@ -562,209 +896,73 @@ class SearchRecreationDotGov(SearchRecreationDotGovBase):
             self.notifier = MultiNotifierProvider(provider=notification_provider)
         self.notifier.log_providers()
 
-        # Strict Global Pacing Floor:
-        # For 3 campgrounds and 15s cache TTL, ~4.8s spacing provides ideal cache alignment
-        # (15s / 3 = 5.0s) while capping request velocity at 12.5 req/min (<= 62.5 req / 5 min),
-        # providing a 37% safety buffer below AWS WAF / origin rate ceilings.
-        min_request_spacing = 4.8
-
-        # Build Priority Queue for Campgrounds
-        # Event item: (next_poll_time, campground, month, event_id)
-        pq = []
-        event_counter = 0
-
-        # Stagger initial checks by 5.0s with a 2s startup breather after metadata fetching
-        initial_stagger = time.time() + 2.0
-        for campground in self.campgrounds:
-            for month in self.search_months:
-                heapq.heappush(
-                    pq,
-                    (initial_stagger, campground, month, event_counter),
-                )
-                initial_stagger += 5.0
-                event_counter += 1
-
+        pq, event_counter = self._init_priority_queue()
+        window_stats = self._init_window_stats()
+        window_start_time = time.time()
+        last_stats_report_time = time.time()
+        stats_interval = float(
+            os.getenv(
+                "CAMPLY_STALENESS_REPORT_INTERVAL",
+                str(DEFAULT_REPORT_INTERVAL_SECONDS),
+            )
+        )
+        previous_window_avg_age: Optional[float] = None
+        window_rate_limits = 0
         continuous_search_attempts = 1
         retryer = tenacity.Retrying()
         last_request_time = 0.0
-        last_ages: Dict[Tuple[int, str], int] = {}  # Tracks (campground_id, month_str) -> last observed age
-
-        # Recency & Staleness Monitoring: logs per-campground stats every 5 minutes (300s)
-        def _init_window_stats() -> Dict[int, Dict[str, Any]]:
-            return {
-                c.facility_id: {
-                    "name": c.facility_name,
-                    "queries": 0,
-                    "ages": [],
-                    "latencies": [],
-                    "fresh_hits": 0,
-                    "cache_hits": 0,
-                }
-                for c in self.campgrounds
-            }
-
-        window_stats = _init_window_stats()
-        window_start_time = time.time()
-        last_stats_report_time = time.time()
-        stats_interval = float(os.getenv("CAMPLY_STALENESS_REPORT_INTERVAL", "300"))
-        previous_window_avg_age: Optional[float] = None
-        window_rate_limits = 0
+        last_ages: Dict[Tuple[int, str], int] = {}
 
         while True:
             next_poll_time, campground, month, event_id = heapq.heappop(pq)
-            sleep_needed = next_poll_time - time.time()
-            if sleep_needed > 0:
-                time.sleep(sleep_needed)
-
-            # Enforce global pacing floor to prevent bursts and stay strictly within WAF limits
-            time_since_last = time.time() - last_request_time
-            if time_since_last < min_request_spacing:
-                time.sleep(min_request_spacing - time_since_last)
-            last_request_time = time.time()
+            last_request_time = self._enforce_pacing(next_poll_time, last_request_time)
 
             try:
-                # Query local Bay Area SFO POP (~19ms RTT)
-                availabilities, meta = self.campsite_finder.get_recdotgov_availability(
-                    campground_id=campground.facility_id,
+                remaining_ttl, found = self._poll_and_notify_campground(
+                    campground=campground,
                     month=month,
+                    last_ages=last_ages,
+                    window_stats=window_stats,
+                    log=log,
+                    verbose=verbose,
+                    retryer=retryer,
+                    continuous_search_attempts=continuous_search_attempts,
+                    notify_first_try=notify_first_try,
                 )
-                age = meta["age"]
-                cf_pop = meta["cf_pop"]
-                x_cache = meta["x_cache"]
-                latency_ms = meta["latency_ms"]
-
-                # Record metrics for 5-minute recency & staleness report
-                c_stats = window_stats.setdefault(
-                    campground.facility_id,
-                    {
-                        "name": campground.facility_name,
-                        "queries": 0,
-                        "ages": [],
-                        "latencies": [],
-                        "fresh_hits": 0,
-                        "cache_hits": 0,
-                    },
-                )
-                c_stats["queries"] += 1
-                c_stats["ages"].append(age)
-                c_stats["latencies"].append(latency_ms)
-                if "Miss" in x_cache or age == 0:
-                    c_stats["fresh_hits"] += 1
-                else:
-                    c_stats["cache_hits"] += 1
-
-                key = (campground.facility_id, month.strftime("%Y-%m"))
-                prev_age = last_ages.get(key, -1)
-                last_ages[key] = age
-
-                # Adaptive SFO Cache Expiration Timing
-                if "Miss" in x_cache or age == 0:
-                    # Fresh origin fetch! SFO cache expires in 15.0s. Check right after eviction.
-                    remaining_ttl = 15.3
-                elif age >= 14:
-                    if prev_age >= 14:
-                        # Cache has not evicted yet after probe; back off 6.0s to avoid tight loop
-                        remaining_ttl = 6.0
-                    else:
-                        # Near eviction; check in 2.0s to catch the fresh origin cycle
-                        remaining_ttl = 2.0
-                else:
-                    # External caller refreshed cache `age` seconds ago. It expires in (15.0 - age) seconds.
-                    remaining_ttl = max(3.0, (15.0 - age) + 0.3)
-
-                cache_indicator = (
-                    "⚡ [FRESH ORIGIN]"
-                    if "Miss" in x_cache or age == 0
-                    else f"[Age: {age}s]"
-                )
-                logger.info(
-                    f"[Cache Recency] {cf_pop:<10} (SFO) | "
-                    f"{campground.facility_name} ({campground.facility_id}): "
-                    f"{x_cache} {cache_indicator} | RTT: {latency_ms:.1f}ms | "
-                    f"Next check in {remaining_ttl:.1f}s"
-                )
-
-                campsites = self.campsite_finder.process_campsite_availability(
-                    availability=availabilities,
-                    recreation_area=campground.recreation_area,
-                    recreation_area_id=campground.recreation_area_id,
-                    facility_name=campground.facility_name,
-                    facility_id=campground.facility_id,
-                    month=month,
-                    campsite_metadata=self.campsite_metadata,
-                )
-                if self.campsites not in [None, []]:
-                    campsites = [
-                        campsite_obj
-                        for campsite_obj in campsites
-                        if int(campsite_obj.campsite_id) in self.campsites
-                    ]
-
-                matching_campsites = self._filter_and_consolidate_campsites(campsites)
-                found_set = set(matching_campsites)
-                new_campsites = found_set.difference(self.campsites_found)
-
-                if new_campsites:
+                if found and search_forever is False:
                     logger.info(
-                        f"🎉 [MATCH FOUND] {len(new_campsites)} available site(s) discovered in "
-                        f"{campground.facility_name} via {cf_pop} (SFO)!"
+                        "Campsites found and search_forever=False. Exiting search."
                     )
-                    self.assemble_availabilities(
-                        matching_data=list(new_campsites), log=log, verbose=verbose
-                    )
-                    self.campsites_found.update(new_campsites)
-                    self._handle_notifications(
-                        retryer=retryer,
-                        notifier=self.notifier,
-                        logged_campsites=list(new_campsites),
-                        continuous_search_attempts=continuous_search_attempts,
-                        notify_first_try=notify_first_try,
-                    )
-                    if search_forever is False:
-                        logger.info("Campsites found and search_forever=False. Exiting search.")
-                        return list(self.campsites_found)
+                    return list(self.campsites_found)
 
-                next_poll = time.time() + remaining_ttl
                 heapq.heappush(
-                    pq,
-                    (next_poll, campground, month, event_id),
+                    pq, (time.time() + remaining_ttl, campground, month, event_id)
                 )
                 continuous_search_attempts += 1
-
             except Exception as e:
-                if "429" in str(e) or "Too Many Requests" in str(e):
-                    window_rate_limits += 1
-                    logger.warning(
-                        "⚠️ [RATE LIMIT] CloudFront HTTP 429 detected! Pausing all requests for 75 seconds to let WAF block expire..."
-                    )
-                    time.sleep(75.0)
-                    now = time.time()
-                    pq = [(now + idx * 5.0, c, m, eid) for idx, (t, c, m, eid) in enumerate(pq)]
-                    heapq.heapify(pq)
-                    last_request_time = time.time()
-                    continue
-
-                logger.warning(
-                    f"Error polling {campground.facility_name} via SFO: {e}. Retrying in 5.0s..."
-                )
-                heapq.heappush(
-                    pq,
-                    (time.time() + 5.0, campground, month, event_id),
-                )
-
-            # Periodic 5-minute Recency & Staleness Report
-            now = time.time()
-            if now - last_stats_report_time >= stats_interval:
-                previous_window_avg_age = self._log_staleness_report(
-                    window_stats=window_stats,
-                    window_duration_seconds=now - window_start_time,
-                    previous_window_avg_age=previous_window_avg_age,
+                last_request_time, pq, window_rate_limits = self._handle_poll_exception(
+                    e=e,
+                    campground=campground,
+                    month=month,
+                    event_id=event_id,
+                    pq=pq,
                     rate_limits=window_rate_limits,
                 )
-                window_stats = _init_window_stats()
-                window_start_time = now
-                last_stats_report_time = now
-                window_rate_limits = 0
+
+            (
+                window_stats,
+                window_start_time,
+                last_stats_report_time,
+                previous_window_avg_age,
+                window_rate_limits,
+            ) = self._maybe_log_staleness_report(
+                window_stats=window_stats,
+                window_start_time=window_start_time,
+                last_stats_report_time=last_stats_report_time,
+                stats_interval=stats_interval,
+                previous_window_avg_age=previous_window_avg_age,
+                rate_limits=window_rate_limits,
+            )
 
 
 class SearchRecreationDotGovDailyTicket(SearchRecreationDotGovBase):
