@@ -367,6 +367,7 @@ class UseDirectProvider(BaseProvider, ABC):
         sleeping_unit_id: Optional[int] = None,
         unit_sort: Optional[str] = "orderby",
         in_season_only: Optional[bool] = True,
+        include_walkin: bool = False,
     ) -> List[AvailableCampsite]:
         """
         Get Campsites from UseDirect
@@ -425,7 +426,17 @@ class UseDirectProvider(BaseProvider, ABC):
                     unit=unit,
                 )
                 campsite_available = campsite.availability_status == "Available"
-                if campsite_available is True:
+                # The API reports walk-in / non-web-bookable slices as
+                # "Available" but they can't actually be reserved online.
+                # IsWalkin can be set per-night even on units whose
+                # AllowWebBooking is True (a normally bookable site that's
+                # held back for walk-ups on specific dates), so both flags
+                # matter. Pass through unfiltered when --include-walkin is set.
+                is_bookable = (
+                    availability_slice.IsWalkin is not True
+                    and unit.AllowWebBooking is not False
+                )
+                if campsite_available is True and (include_walkin or is_bookable):
                     if (
                         len(self.campsite_ids) == 0
                         or campsite.campsite_id in self.campsite_ids

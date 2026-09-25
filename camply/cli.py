@@ -457,6 +457,16 @@ equipment_argument = click.option(
     "equipment names include `Tent`, `RV`. `Trailer`, `Vehicle` and are "
     "not case-sensitive.",
 )
+include_walkin_argument = click.option(
+    "--include-walkin",
+    is_flag=True,
+    show_default=True,
+    default=False,
+    help="Include walk-in / non-web-bookable campsites in results. By default "
+    "these are filtered out because they show as 'Available' in the API but "
+    "can't actually be reserved online. Currently honored by the "
+    "ReserveCalifornia and other UseDirect-based providers.",
+)
 equipment_id_argument = click.option(
     "--equipment-id",
     default=None,
@@ -619,6 +629,7 @@ def _get_provider_kwargs_from_cli(
     offline_search_path: Optional[str],
     equipment: Tuple[Union[str, int]],
     equipment_id: Tuple[Union[str, int]],
+    include_walkin: bool,
     day: Optional[Tuple[str]],
 ) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """
@@ -666,6 +677,7 @@ def _get_provider_kwargs_from_cli(
         "offline_search_path": offline_search_path,
         "equipment": equipment,
         "equipment_id": equipment_id,
+        "include_walkin": include_walkin,
         "days_of_the_week": days_of_the_week,
     }
     search_kwargs = {
@@ -701,6 +713,7 @@ def _get_provider_kwargs_from_cli(
 @notify_first_try_argument
 @equipment_argument
 @equipment_id_argument
+@include_walkin_argument
 @provider_argument
 @debug_option
 @click.pass_obj
@@ -726,6 +739,7 @@ def campsites(
     offline_search_path: Optional[str],
     equipment: Tuple[Union[str, int]],
     equipment_id: Tuple[Union[str, int]],
+    include_walkin: bool,
     day: Optional[Tuple[str]],
 ) -> None:
     """
@@ -767,6 +781,7 @@ def campsites(
             offline_search_path=offline_search_path,
             equipment=equipment,
             equipment_id=equipment_id,
+            include_walkin=include_walkin,
             day=day,
             yaml_config=yaml_config,
         )
