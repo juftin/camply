@@ -35,10 +35,13 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
             logger.error(warning_message)
             raise EnvironmentError(warning_message)
         self.pushover_token = PushoverConfig.PUSH_TOKEN
+        self.default_token: bool = False
         if self.pushover_token in [None, ""]:
             self.pushover_token = base64.b64decode(
                 PushoverConfig.PUSHOVER_DEFAULT_API_TOKEN
             ).decode("utf-8")
+            self.default_token = True
+        self.counter: int = 0
 
     def send_message(self, message: str, **kwargs) -> requests.Response:
         """
@@ -105,3 +108,9 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
                 fields.append(f"<b>{key}:</b> {value}")
             composed_message = "\n".join(fields)
             self.send_message(message=composed_message, title=message_title, html=1)
+        if self.counter == 0 and self.default_token:
+            logger.warning(
+                "You are using camply's courtesy Pushover token. It is highly "
+                "recommended that you use your own token."
+            )
+        self.counter += 1
