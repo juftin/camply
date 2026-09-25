@@ -40,7 +40,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
                 PushoverConfig.PUSHOVER_DEFAULT_API_TOKEN
             ).decode("utf-8")
             logger.warning(
-                "You are using camply's built-in Pushover token. It is highly "
+                "You are using camply's courtesy Pushover token. It is highly "
                 "recommended that you use your own token."
             )
 

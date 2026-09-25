@@ -42,7 +42,7 @@ def test_pushover_default_token_warning_at_initialization(
     token: Optional[str],
     expected_warnings: int,
 ) -> None:
-    """Warn at initialization when using the built-in Pushover token."""
+    """Warn at initialization when using the courtesy Pushover token."""
     monkeypatch.setattr(PushoverConfig, "PUSH_USER", "test-user")
     monkeypatch.setattr(PushoverConfig, "PUSH_TOKEN", token)
 
@@ -51,6 +51,6 @@ def test_pushover_default_token_warning_at_initialization(
         warnings = [
             record
             for record in caplog.records
-            if "built-in Pushover token" in record.message
+            if "courtesy Pushover token" in record.message
         ]
         assert len(warnings) == expected_warnings
