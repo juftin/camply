@@ -110,7 +110,7 @@ class PushoverNotifications(BaseNotifications, logging.StreamHandler):
             self.send_message(message=composed_message, title=message_title, html=1)
         if self.counter == 0 and self.default_token:
             logger.warning(
-                "You are using camply's courtesy Pushover token. It is highly "
+                "You are using camply's built-in Pushover token. It is highly "
                 "recommended that you use your own token."
             )
         self.counter += 1
