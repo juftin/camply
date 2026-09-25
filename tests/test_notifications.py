@@ -4,7 +4,6 @@ Notification Testing
 
 import logging
 from typing import Optional
-from unittest.mock import Mock
 
 import pytest
 from pytest import LogCaptureFixture, MonkeyPatch
@@ -37,35 +36,21 @@ def test_pushover_campsite(available_campsite: AvailableCampsite):
     ("token", "expected_warnings"),
     [(None, 1), ("custom-token", 0)],
 )
-def test_pushover_default_token_warning(
-    available_campsite: AvailableCampsite,
+def test_pushover_default_token_warning_at_initialization(
     monkeypatch: MonkeyPatch,
     caplog: LogCaptureFixture,
     token: Optional[str],
     expected_warnings: int,
 ) -> None:
-    """Warn once per instance when sending campsites with the built-in token."""
+    """Warn at initialization when using the built-in Pushover token."""
     monkeypatch.setattr(PushoverConfig, "PUSH_USER", "test-user")
     monkeypatch.setattr(PushoverConfig, "PUSH_TOKEN", token)
-    send_message = Mock()
-    monkeypatch.setattr(PushoverNotifications, "send_message", send_message)
-    pusher = PushoverNotifications()
 
     with caplog.at_level(logging.WARNING, logger="camply.notifications.pushover"):
-        pusher.send_campsites(campsites=[available_campsite])
+        PushoverNotifications()
         warnings = [
             record
             for record in caplog.records
             if "built-in Pushover token" in record.message
         ]
         assert len(warnings) == expected_warnings
-
-        pusher.send_campsites(campsites=[available_campsite])
-        warnings = [
-            record
-            for record in caplog.records
-            if "built-in Pushover token" in record.message
-        ]
-        assert len(warnings) == expected_warnings
-
-    assert send_message.call_count == 2
