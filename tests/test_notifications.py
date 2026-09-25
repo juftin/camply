@@ -2,7 +2,14 @@
 Notification Testing
 """
 
+import logging
+from typing import Optional
+
+import pytest
+from pytest import LogCaptureFixture, MonkeyPatch
+
 from camply import AvailableCampsite
+from camply.config import PushoverConfig
 from camply.notifications import PushoverNotifications
 from tests.conftest import vcr_cassette
 
@@ -23,3 +30,27 @@ def test_pushover_campsite(available_campsite: AvailableCampsite):
     """
     pusher = PushoverNotifications()
     pusher.send_campsites(campsites=[available_campsite])
+
+
+@pytest.mark.parametrize(
+    ("token", "expected_warnings"),
+    [(None, 1), ("custom-token", 0)],
+)
+def test_pushover_default_token_warning_at_initialization(
+    monkeypatch: MonkeyPatch,
+    caplog: LogCaptureFixture,
+    token: Optional[str],
+    expected_warnings: int,
+) -> None:
+    """Warn at initialization when using the courtesy Pushover token."""
+    monkeypatch.setattr(PushoverConfig, "PUSH_USER", "test-user")
+    monkeypatch.setattr(PushoverConfig, "PUSH_TOKEN", token)
+
+    with caplog.at_level(logging.WARNING, logger="camply.notifications.pushover"):
+        PushoverNotifications()
+        warnings = [
+            record
+            for record in caplog.records
+            if "courtesy Pushover token" in record.message
+        ]
+        assert len(warnings) == expected_warnings
