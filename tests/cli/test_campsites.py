@@ -578,3 +578,35 @@ def test_search_by_yaml_reservecalifornia(
     assert "Andrew Molera SP" in result.output
     assert "Reservable Campsites Matching Search Preferences" in result.output
     cli_status_checker(result=result, exit_code_zero=True)
+
+
+def test_geo_near_and_lat_lon_mutually_exclusive(cli_runner: CamplyRunner) -> None:
+    """
+    --near and --latitude/--longitude are mutually exclusive
+    """
+    test_command = """
+    camply campsites \
+        --near "San Francisco, CA" \
+        --latitude 37.77 \
+        --radius 100 \
+        --start-date 2026-07-10 \
+        --end-date 2026-07-14
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "mutually exclusive" in result.output
+    cli_status_checker(result=result, exit_code_zero=False)
+
+
+def test_geo_radius_required(cli_runner: CamplyRunner) -> None:
+    """
+    --radius is required when any geo param is provided
+    """
+    test_command = """
+    camply campsites \
+        --near "San Francisco, CA" \
+        --start-date 2026-07-10 \
+        --end-date 2026-07-14
+    """
+    result = cli_runner.run_camply_command(command=test_command)
+    assert "radius" in result.output.lower()
+    cli_status_checker(result=result, exit_code_zero=False)

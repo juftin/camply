@@ -212,9 +212,10 @@ class RecreationDotGovBase(BaseProvider, ABC):
             state_arg = kwargs.get("state", None)
             if state_arg is not None:
                 kwargs.update({"state": state_arg.upper()})
-            if search_string in ["", None] and state_arg is None:
+            geo_arg = kwargs.get("latitude", None)
+            if search_string in ["", None] and state_arg is None and geo_arg is None:
                 raise RuntimeError(
-                    "You must provide a search query or state to find campsites"
+                    "You must provide a search query, state, or lat/lon to find campsites"
                 )
             if self.activity_name:
                 kwargs["activity"] = self.activity_name
@@ -493,11 +494,14 @@ class RecreationDotGovBase(BaseProvider, ABC):
                 recreation_area = facility_object.RECAREA[0].RecAreaName
                 recreation_area_id = facility_object.RECAREA[0].RecAreaID
                 formatted_recreation_area = f"{recreation_area}, {facility_state}"
+            lat = facility_object.FacilityLatitude
+            lon = facility_object.FacilityLongitude
             campground_facility = CampgroundFacility(
                 facility_name=facility_object.FacilityName.title(),
                 recreation_area=formatted_recreation_area,
                 facility_id=facility_object.FacilityID,
                 recreation_area_id=recreation_area_id,
+                coordinates=(lat, lon) if lat is not None and lon is not None else None,
             )
             return facility, campground_facility
         except (KeyError, IndexError):
