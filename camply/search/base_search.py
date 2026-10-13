@@ -426,7 +426,12 @@ class BaseCampingSearch(ABC):
                     "Go Get your campsite! 🏕"
                 )
                 logger.warning(error_message)
-                notifier.send_message(message=error_message)
+                # Create subject with campground name and date
+                first_campsite = logged_campsites[0]
+                campground_name = first_campsite.facility_name
+                booking_date = first_campsite.booking_date.strftime("%Y-%m-%d")
+                subject = f"Lots of Availability ({len(logged_campsites)} sites): {campground_name} - {booking_date}"
+                notifier.send_message(message=error_message, subject=subject)
                 logged_campsites = logged_campsites[:minimum_first_notify]
             notifier.send_campsites(campsites=logged_campsites)
 

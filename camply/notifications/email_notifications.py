@@ -120,4 +120,14 @@ class EmailNotifications(BaseNotifications):
             master_email_body_list.append(composed_message)
         master_email_body = "\n".join(master_email_body_list)
         if len(campsites) > 0:
-            self.send_message(message=master_email_body)
+            # Create dynamic subject with campground name and date
+            first_campsite = campsites[0]
+            campground_name = first_campsite.facility_name
+            booking_date = first_campsite.booking_date.strftime("%Y-%m-%d")
+
+            if len(campsites) == 1:
+                subject = f"Campsite Available: {campground_name} - {booking_date}"
+            else:
+                subject = f"{len(campsites)} Campsites Available: {campground_name} - {booking_date}"
+
+            self.send_message(message=master_email_body, subject=subject)
