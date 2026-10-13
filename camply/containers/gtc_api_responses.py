@@ -18,3 +18,4 @@ class ResourceLocation(CamplyModel):
     resource_location_id: Optional[int]
     resource_location_name: str
     region_name: str
+    root_map_id: Optional[int]
