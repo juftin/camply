@@ -479,7 +479,7 @@ class RecDotGovCampsiteResponse(CamplyModel):
     Parent Response from Campsite Metadata
     """
 
-    campsites: List[RecDotGovCampsite]
+    campsites: List[RecDotGovCampsite] = []
     size: int
     spelling_autocorrected: Any
     start: int
