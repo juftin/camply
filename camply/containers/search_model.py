@@ -56,6 +56,12 @@ class YamlSearchFile(CamplyModel):
     equipment: ArrayOrSingleEquipment = None
     offline_search: bool = False
     offline_search_path: Optional[str] = None
+    attribute_filters: Optional[List[dict]] = Field(
+        default=None,
+        description="GoingToCamp site attribute filters. Format: "
+        "[{attributeDefinitionId: -32767, enumValues: [3]}]. "
+        "Common: -32767 (Electric: 0=None, 1=15A, 2=20A, 3=30A, 4=50A)",
+    )
 
     @validator("provider", pre=True)
     def validate_provider(cls, value):
