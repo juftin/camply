@@ -8,8 +8,10 @@ import sys
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple, Union
 
+import tenacity
 from fake_useragent import UserAgent
 from pydantic import ValidationError
+from requests.exceptions import Timeout
 
 from camply.containers import AvailableResource, CampgroundFacility, RecreationArea
 from camply.containers.base_container import GoingToCampEquipment
@@ -485,6 +487,13 @@ class GoingToCamp(BaseProvider):
         log_sorted_response(response_array=equipment_types)
         return equipment_types
 
+    @tenacity.retry(
+        retry=tenacity.retry_if_exception_type((ConnectionError, Timeout)),
+        wait=tenacity.wait_exponential(multiplier=3, max=1800),
+        stop=tenacity.stop.stop_after_delay(6000),
+        before_sleep=tenacity.before_sleep_log(logger, logging.WARNING),
+        reraise=True,
+    )
     def list_site_availability(
         self,
         campground: CampgroundFacility,
