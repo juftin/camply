@@ -49,7 +49,7 @@ class UseDirectAvailabilitySlice(CamplyModel):
     IsBlocked: Optional[bool]
     IsWalkin: Optional[bool]
     ReservationId: Optional[int]
-    Lock: Any
+    Lock: Optional[datetime.datetime]
     MinStay: Optional[int]
     IsReservationDraw: Optional[bool]
 
