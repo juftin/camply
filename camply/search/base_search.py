@@ -50,6 +50,7 @@ class BaseCampingSearch(ABC):
         offline_search: bool = False,
         offline_search_path: Optional[str] = None,
         days_of_the_week: Optional[Sequence[int]] = None,
+        excluded_campsite_types: Optional[List[str]] = None,
         **kwargs,
     ) -> None:
         """
@@ -118,6 +119,7 @@ class BaseCampingSearch(ABC):
             ] = self.load_campsites_from_file()
             self.loaded_campsites: Set[AvailableCampsite] = self.campsites_found.copy()
         self.search_attempts: int = 0
+        self.excluded_campsite_types: List[str] = excluded_campsite_types or []
 
     @property
     def search_days(self) -> List[datetime]:
@@ -252,6 +254,15 @@ class BaseCampingSearch(ABC):
                 ]
             ):
                 matching_campgrounds.append(camp)
+        if self.excluded_campsite_types:
+            matching_campgrounds = [
+                c for c in matching_campgrounds
+                if not any(
+                    excl.lower() in (c.campsite_type or "").lower()
+                    or excl.lower() in (c.facility_name or "").lower()
+                    for excl in self.excluded_campsite_types
+                )
+            ]
         logger.info(
             f"{(get_emoji(matching_campgrounds) + ' ') * 4}{len(matching_campgrounds)} "
             "Reservable Campsites Matching Search Preferences"
@@ -880,9 +891,16 @@ class BaseCampingSearch(ABC):
             for location_tuple, campground_availability in available_sites.groupby(
                 [DataColumns.RECREATION_AREA_COLUMN, DataColumns.FACILITY_NAME_COLUMN]
             ):
+                dist_col = campground_availability.get("distance_miles")
+                dist_val = (
+                    dist_col.dropna().iloc[0]
+                    if dist_col is not None and not dist_col.dropna().empty
+                    else None
+                )
+                dist_str = f"  ({dist_val:.1f} mi)" if dist_val is not None else ""
                 logger.info(
                     f"\t⛰️  {'  🏕  '.join(location_tuple)}: ⛺ "
-                    f"{len(campground_availability)} sites"
+                    f"{len(campground_availability)} sites{dist_str}"
                 )
                 if verbose is True:
                     for (

@@ -125,6 +125,11 @@ def yaml_file_to_arguments(
         "equipment": equipment,
         "offline_search": yaml_model.offline_search,
         "offline_search_path": yaml_model.offline_search_path,
+        "near": yaml_model.near,
+        "latitude": yaml_model.latitude,
+        "longitude": yaml_model.longitude,
+        "radius": yaml_model.radius,
+        "excluded_campsite_types": yaml_model.excluded_campsite_types,
     }
     search_kwargs = {
         "log": True,

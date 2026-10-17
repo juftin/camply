@@ -104,6 +104,7 @@ class AvailableCampsite(CamplyModel):
     facility_id: Union[int, str]
     booking_url: str
     location: Optional[CampsiteLocation] = None
+    distance_miles: Optional[float] = None
 
     permitted_equipment: Optional[List[RecDotGovEquipment]]
     campsite_attributes: Optional[List[RecDotGovAttribute]]

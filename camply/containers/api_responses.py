@@ -329,6 +329,8 @@ class FacilityResponse(CamplyModel):
     FacilityTypeDescription: str
     Enabled: bool
     Reservable: bool
+    FacilityLatitude: Optional[float] = None
+    FacilityLongitude: Optional[float] = None
     FACILITYADDRESS: Optional[List[_FacilityAddress]]
     RECAREA: Optional[List[_FacilityRecArea]]
     ORGANIZATION: Optional[List[_FacilityOrganization]]

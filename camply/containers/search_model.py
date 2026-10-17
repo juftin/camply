@@ -56,6 +56,11 @@ class YamlSearchFile(CamplyModel):
     equipment: ArrayOrSingleEquipment = None
     offline_search: bool = False
     offline_search_path: Optional[str] = None
+    near: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    radius: Optional[float] = None
+    excluded_campsite_types: Optional[List[str]] = None
 
     @validator("provider", pre=True)
     def validate_provider(cls, value):

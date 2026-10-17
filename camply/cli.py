@@ -24,6 +24,7 @@ from rich import traceback
 from rich_click import RichCommand, RichGroup, rich_click
 
 from camply import Yellowstone, __application__, __version__
+from camply.exceptions import CamplyError
 from camply.config import EquipmentOptions, SearchConfig, logging_config
 from camply.config.logging_config import set_up_logging
 from camply.containers import SearchWindow
@@ -496,6 +497,38 @@ day_of_the_week_argument = click.option(
     metavar="TEXT",
     help="Day(s) of the Week to search.",
 )
+near_argument = click.option(
+    "--near",
+    default=None,
+    help="Search for campgrounds near a place name (geocoded via Nominatim). "
+    "Mutually exclusive with --latitude/--longitude.",
+)
+latitude_argument = click.option(
+    "--latitude",
+    default=None,
+    type=float,
+    help="Center latitude for radius search (decimal degrees).",
+)
+longitude_argument = click.option(
+    "--longitude",
+    default=None,
+    type=float,
+    help="Center longitude for radius search (decimal degrees).",
+)
+radius_argument = click.option(
+    "--radius",
+    default=None,
+    type=float,
+    help="Search radius in miles. Required when --near, --latitude, or --longitude is used.",
+)
+exclude_type_argument = click.option(
+    "--exclude-type",
+    default=None,
+    multiple=True,
+    help="Exclude campsites or facilities whose type/name contains this string "
+    "(case-insensitive). Repeatable or comma-separated. "
+    "E.g. --exclude-type group,horse",
+)
 
 
 def _get_equipment(equipment: Optional[List[str]]) -> List[Tuple[str, Optional[int]]]:
@@ -701,6 +734,11 @@ def _get_provider_kwargs_from_cli(
 @notify_first_try_argument
 @equipment_argument
 @equipment_id_argument
+@near_argument
+@latitude_argument
+@longitude_argument
+@radius_argument
+@exclude_type_argument
 @provider_argument
 @debug_option
 @click.pass_obj
@@ -727,6 +765,11 @@ def campsites(
     equipment: Tuple[Union[str, int]],
     equipment_id: Tuple[Union[str, int]],
     day: Optional[Tuple[str]],
+    near: Optional[str] = None,
+    latitude: Optional[float] = None,
+    longitude: Optional[float] = None,
+    radius: Optional[float] = None,
+    exclude_type: Tuple[str] = (),
 ) -> None:
     """
     Find Available Campsites with Custom Search Criteria
@@ -741,11 +784,126 @@ def campsites(
     if context.debug is None:
         context.debug = debug
         _set_up_debug(debug=context.debug)
+
+    # --- geo validation ---
+    any_geo = near is not None or latitude is not None or longitude is not None
+    if near is not None and (latitude is not None or longitude is not None):
+        logger.error("--near is mutually exclusive with --latitude/--longitude.")
+        sys.exit(1)
+    if any_geo and radius is None:
+        logger.error("--radius is required when using --near, --latitude, or --longitude.")
+        sys.exit(1)
+    if any_geo and provider == "GoingToCamp":
+        logger.error("GoingToCamp does not support geo-based search (no coordinate data).")
+        sys.exit(1)
+
+    excluded_campsite_types = [
+        t.strip() for val in exclude_type for t in val.split(",") if t.strip()
+    ] if exclude_type else []
+
     if yaml_config is not None:
         provider, provider_kwargs, search_kwargs = yaml_utils.yaml_file_to_arguments(
             file_path=yaml_config
         )
         provider = _preferred_provider(context, provider)
+        if excluded_campsite_types:
+            provider_kwargs["excluded_campsite_types"] = excluded_campsite_types
+        # Extract geo fields added by yaml_file_to_arguments
+        _yaml_near = provider_kwargs.pop("near", None)
+        _yaml_lat = provider_kwargs.pop("latitude", None)
+        _yaml_lon = provider_kwargs.pop("longitude", None)
+        _yaml_radius = provider_kwargs.pop("radius", None)
+        if _yaml_near is not None or _yaml_lat is not None or _yaml_lon is not None:
+            if _yaml_radius is None:
+                logger.error(
+                    "radius is required in YAML config when using near/latitude/longitude."
+                )
+                sys.exit(1)
+            if _yaml_near is not None:
+                from camply.utils.geo_utils import geocode_location
+                _resolved_lat, _resolved_lon = geocode_location(_yaml_near)
+            else:
+                if _yaml_lat is None or _yaml_lon is None:
+                    logger.error(
+                        "Both latitude and longitude are required together in YAML config."
+                    )
+                    sys.exit(1)
+                _resolved_lat, _resolved_lon = _yaml_lat, _yaml_lon
+            provider_kwargs.pop("recreation_area", None)
+            provider_kwargs.pop("campgrounds", None)
+            provider_kwargs.pop("campsites", None)
+            from camply.search.search_geo import SearchGeo
+            camping_finder = SearchGeo(
+                latitude=_resolved_lat,
+                longitude=_resolved_lon,
+                radius_miles=_yaml_radius,
+                provider_filter=provider,
+                **provider_kwargs,
+            )
+            camping_finder.get_matching_campsites(**search_kwargs)
+            return
+    elif any_geo:
+        # Resolve coordinates
+        if near is not None:
+            from camply.utils.geo_utils import geocode_location
+            resolved_lat, resolved_lon = geocode_location(near)
+        else:
+            if latitude is None or longitude is None:
+                logger.error("Both --latitude and --longitude are required together.")
+                sys.exit(1)
+            resolved_lat, resolved_lon = latitude, longitude
+
+        # Build kwargs directly (bypassing _get_provider_kwargs_from_cli to avoid
+        # RecreationDotGov-specific validation that requires rec_area/campground)
+        search_windows = handle_search_windows(start_date=start_date, end_date=end_date)
+        days_of_the_week = (
+            {days_of_the_week_mapping[d] for d in day} if day else None
+        )
+        _notifications = make_list(notifications) if notifications else ["silent"]
+        _polling_interval = float(
+            polling_interval or SearchConfig.RECOMMENDED_POLLING_INTERVAL
+        )
+        _notify_first_try = notify_first_try is not None
+        _search_forever = search_forever is not None
+        _continuous = continuous or any(
+            [
+                len(_notifications) > 0 and _notifications != ["silent"],
+                _search_forever,
+                _notify_first_try,
+                polling_interval is not None,
+                search_once,
+            ]
+        )
+        provider_kwargs = {
+            "search_window": search_windows,
+            "weekends_only": weekends,
+            "nights": int(nights),
+            "offline_search": offline_search,
+            "offline_search_path": offline_search_path,
+            "days_of_the_week": days_of_the_week,
+        }
+        search_kwargs = {
+            "log": True,
+            "verbose": True,
+            "continuous": _continuous,
+            "polling_interval": _polling_interval,
+            "notify_first_try": _notify_first_try,
+            "notification_provider": _notifications,
+            "search_forever": _search_forever,
+            "search_once": search_once,
+        }
+
+        from camply.search.search_geo import SearchGeo
+        camping_finder = SearchGeo(
+            latitude=resolved_lat,
+            longitude=resolved_lon,
+            radius_miles=radius,
+            provider_filter=provider,
+            excluded_campsite_types=excluded_campsite_types,
+            **provider_kwargs,
+        )
+        camping_finder.get_matching_campsites(**search_kwargs)
+        return
     else:
         provider = _preferred_provider(context, provider)
         provider_kwargs, search_kwargs = _get_provider_kwargs_from_cli(
@@ -770,6 +928,9 @@ def campsites(
             day=day,
             yaml_config=yaml_config,
         )
+        if excluded_campsite_types:
+            provider_kwargs["excluded_campsite_types"] = excluded_campsite_types
+
     provider_class: Type[BaseCampingSearch] = CAMPSITE_SEARCH_PROVIDER[provider]
     camping_finder: BaseCampingSearch = provider_class(**provider_kwargs)
     camping_finder.get_matching_campsites(**search_kwargs)
@@ -883,6 +1044,9 @@ def cli():
         camply_command_line()
     except KeyboardInterrupt:
         logger.debug("Handling Exit Request")
+    except CamplyError as e:
+        logger.error(str(e))
+        sys.exit(1)
     finally:
         logger.camply("Exiting camply 👋")
 
