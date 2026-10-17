@@ -155,6 +155,12 @@ Head over to the [camply documentation](https://juftin.com/camply/) to see what 
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
+## Related Projects
+
+- [**CampSage**](https://campsage.app) — a hosted, no-install web front-end that surfaces
+  camply-powered campsite availability and last-minute cancellations on a live map, with free
+  email alerts when a sold-out spot opens up.
+
 ## Contributing
 
 Camply doesn't support your favorite campsite booking provider yet? Consider
