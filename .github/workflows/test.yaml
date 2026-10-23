@@ -26,12 +26,11 @@ jobs:
             fail-fast: true
             matrix:
                 include:
+                    - { name: Python 3.15, python: "3.15" }
                     - { name: Python 3.14, python: "3.14" }
                     - { name: Python 3.13, python: "3.13" }
                     - { name: Python 3.12, python: "3.12" }
                     - { name: Python 3.11, python: "3.11" }
-                    - { name: Python 3.10, python: "3.10" }
-                    - { name: Python 3.9, python: "3.9" }
         permissions:
             contents: read
             id-token: write
