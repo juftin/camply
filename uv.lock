@@ -1,5 +1,5 @@
 version = 1
-revision = 5
+revision = 3
 requires-python = ">=3.9, <4"
 resolution-markers = [
     "python_full_version >= '3.12' and platform_python_implementation == 'PyPy'",
@@ -14,7 +14,7 @@ resolution-markers = [
 
 [[package]]
 name = "apprise"
-version = "1.3.0"
+version = "1.11.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
@@ -23,10 +23,11 @@ dependencies = [
     { name = "pyyaml" },
     { name = "requests" },
     { name = "requests-oauthlib" },
+    { name = "tzdata", marker = "sys_platform == 'win32'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e2/81/b25a7dc3fe2cdcfc5b2bc12d459f80a73b9ec4ab087a26cd99a675db75eb/apprise-1.3.0.tar.gz", hash = "sha256:2c50c19a5dd41317b1f659c52b21a990febe6c15e08464228a1ce8e6098f11bf", size = 1544792, upload-time = "2023-02-22T22:42:27.114Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a8/f8/83f4e2aaaa0342dc67f783bf84427d9ff5cfa4ecde3a52d9b587740a91ee/apprise-1.11.0.tar.gz", hash = "sha256:3b1e6f5365b302d1fae270c0c8007958e54224b9b7808acec69006ea27f5b8a2", size = 2337248, upload-time = "2026-05-29T17:52:29.198Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/52/27/150411d166042b7cf49a4b1747e603017069e572a0a9465e621de4f22b71/apprise-1.3.0-py2.py3-none-any.whl", hash = "sha256:ef0c1413a32182272b6ed60ddcee6057744dc683725651015332e063b9a6a4ad", size = 1140044, upload-time = "2023-02-22T22:42:24.488Z" },
+    { url = "https://files.pythonhosted.org/packages/5e/79/1483693160917522703708e45b4045946d86be634b8af2c2ac9f361f8fa3/apprise-1.11.0-py3-none-any.whl", hash = "sha256:6abc6d9f8dddedfe14b2918c3553146894ac6e3dad401deaf854b20b4c455d38", size = 1712975, upload-time = "2026-05-29T17:52:26.645Z" },
 ]
 
 [[package]]
@@ -101,8 +102,8 @@ docs = [
 
 [package.metadata]
 requires-dist = [
-    { name = "apprise", marker = "extra == 'all'", specifier = "~=1.3.0" },
-    { name = "apprise", marker = "extra == 'apprise'", specifier = "~=1.3.0" },
+    { name = "apprise", marker = "extra == 'all'", specifier = ">=1.3,<1.12" },
+    { name = "apprise", marker = "extra == 'apprise'", specifier = ">=1.3,<1.12" },
     { name = "click", specifier = "~=8.1.3" },
     { name = "fake-useragent", specifier = "~=1.4.0" },
     { name = "pandas", specifier = ">=2,<3" },
